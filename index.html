@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>B7 FI Command Center V3.0.0</title>
+<link rel="stylesheet" href="css/app.css?v=3.0.0">
+</head><body data-center="operations">
+<div class="app-frame">
+  <div id="stickyShell" class="sticky-shell">
+    <header class="hero">
+      <div class="hero-left">B7 FI COMMAND CENTER</div>
+      <div class="hero-center"><img src="assets/kla-plus-official.png" alt="KLA+"></div>
+      <div class="hero-right" id="pageTitle">OPERATIONS CENTER — CY26Q3</div>
+    </header>
+    <nav class="main-nav" id="mainNav"></nav>
+    <section class="status-stack" id="statusStack"></section>
+    <div class="pagebar"><div class="subnav" id="subnav"></div><div class="page-actions" id="pageActions"></div></div>
+  </div>
+  <main id="app"></main>
+  <footer><button id="adminButton">ADMINISTRATION CENTER</button><img src="assets/kla-plus-official.png" alt="KLA+"><span>LOCAL PRODUCTION MODE · <b id="versionLabel"></b></span></footer>
+</div>
+<button id="exitScreenshot" class="exit-shot hidden">EXIT SCREENSHOT MODE</button>
+<div id="toast"></div>
+<div id="modal" class="modal hidden"><div class="modal-card"><button class="modal-x" id="modalClose">×</button><div id="modalBody"></div></div></div>
+<script src="js/app.js?v=3.0.0"></script>
+</body></html>
