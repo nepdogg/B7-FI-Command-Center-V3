@@ -1,5 +1,5 @@
-# B7 FI Command Center V3.1.0
-## Operations / Update / Shipping Consolidation
+# B7 FI Command Center V3.3.0 — Field Test 2
+
 
 This build starts from V3.0.1 Editing Hotfix and keeps its fixed editing/navigation framework.
 
@@ -74,3 +74,17 @@ This build starts from V3.0.1 Editing Hotfix and keeps its fixed editing/navigat
 - Search tool results are clickable and open the complete tool record.
 - Global navigation is evenly distributed; body panels align to the common page width.
 - Live Operations carousel controls moved below the tool card and centered.
+
+## V3.3.0 field-test updates
+- Restored centered defined-width Command Center frame and full-width aligned body frames.
+- Enlarged header titles and KLA logo without increasing header height.
+- Equal-width main center navigation and active-center color carried through body/footer.
+- Restored operational color coding for live tool cards and status boxes.
+- Packing-only reversible Subsystems / Accessories / Cables / MST / IS handoffs; all handoffs complete automatically moves tool to Shipped.
+- Priority date ranges, multiline notes, and Weekend Saturday/Sunday volunteer lists restored.
+- Morning meeting workspace restored in Status Center with saved tool order, per-tool notes/actions, general notes/actions, and weekend on-call Manager/MDE/Planner.
+- Meeting Center recurring meeting tabs use shared meeting history/workspace.
+- Action Center filter navigation with full-width color-coded action list.
+- Search results are clickable for tools, meetings, actions and references.
+- Quarter-based Archive Center with Add Tool to Archive action.
+- Mystery reveal uses the supplied Raiders celebration image.
