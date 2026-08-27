@@ -31,3 +31,14 @@ V3 combines the V1 operational presentation with a clean V2-style single runtime
 13. Administration → Scenario Test / Empty Test / Single Tool Test; check Data Integrity.
 
 Keep V1 and V2 repositories as archives/reference. Use V3 as the new test branch/repository.
+
+
+## V3.0.1 Editing Hotfix
+
+This hotfix fixes a global click-routing defect in V3.0.0 that caused clicks on form fields, dropdowns, and textareas to navigate back to Operations Center. The root cause was the `data-center` attribute on the `<body>` element being picked up by the delegated navigation click handler.
+
+Fixes:
+- Removed the global `data-center` attribute from `<body>`.
+- Restricted Center navigation handling to actual navigation buttons.
+- Preserves the existing V3.0.0 layouts and data store; no reset is required.
+- Version/build updated to V3.0.1 / V3-EDIT-HOTFIX.
