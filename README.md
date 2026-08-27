@@ -1,44 +1,64 @@
-# B7 FI Command Center V3.0.0 — V1 Interface + V2 Stable Core
+# B7 FI Command Center V3.1.0
+## Operations / Update / Shipping Consolidation
 
-V3 combines the V1 operational presentation with a clean V2-style single runtime.
+This build starts from V3.0.1 Editing Hotfix and keeps its fixed editing/navigation framework.
 
-## Core goals
-- V1-style page-specific views rather than generic V2 placeholders.
-- One sticky shell / one navigation controller.
-- One page-action controller with stable Create/Edit/Save/Cancel controls.
-- Screenshot action on every center; Screenshot Mode removes page controls and lets footer follow content.
-- One version authority: V3.0.0 in tab, footer, exports, and runtime.
-- Full production checklist routes through 190-series plus one unified `FI 200 Final Pre-Pack and QA` terminal checklist.
-- Tool Status is the authoritative phase: Waiting for FI → In FI → Packing → Shipped.
-- Reaching FI 200 automatically changes Tool Status to Packing.
-- Shipping Schedule = Complete automatically changes Tool Status to Shipped.
-- Duplicate UTID protection.
-- Test Data Manager and V1/V2 browser-data import.
+### Operations Center
+- Keeps the finalized four views: Live Operations, Daily Status, System Priorities, Shipping Schedule.
+- Edit Source now remembers the originating Operations page; Save/Cancel returns to that exact page.
+- Daily Status Edit Source opens the same all-tools Quick Update interface used by Morning Status.
+- Shipping Schedule is one read-only overview of FI tools with STILL TESTING / SHIPPING ACTIVE / SHIPPED states.
+- Live System Status carousel restores Previous / Pause-Play / Next controls and automatic rotation.
+- Live tool status color coding restored.
+- Every live progress bar shows its current checklist / target / task / shipping step underneath.
+- Redundant Tool Family Status and Live System Status body headings removed.
 
-## First QA sequence
-1. Open all Centers repeatedly; confirm navigation stays stable.
-2. Verify sticky header while scrolling.
-3. Update Center → Add Tool → confirm `CANCEL / ADD TOOL / SCREENSHOT / EXPORT` appear.
-4. Attempt duplicate UTID; second record must be rejected.
-5. Update Center → CY26Q3 Tools → click a tool card → edit and save.
-6. Update Center → Command Center Daily Update → Edit Daily Update → save changes.
-7. Change a current checklist to `FI 200 Final Pre-Pack and QA`; verify Packing everywhere.
-8. Shipping Center → Edit Shipping → set schedule Complete; verify Shipped everywhere.
-9. Status Center → confirm email-style morning status presentation; use Screenshot Mode.
-10. Priority Center → Edit Priorities → Save.
-11. Meeting Center → start Escalation Meeting → Tool + NC + notes + POA + action → End Meeting.
-12. Action Center → verify meeting action and escalation appear.
-13. Administration → Scenario Test / Empty Test / Single Tool Test; check Data Integrity.
+### Update Center
+- Simplified to two pages: Current Quarter Tools and Command Center Daily Update.
+- Tool Countdown page removed; countdown visualization remains in Operations Center.
+- Current-quarter Tools is the master fleet page, grouped by tool family, inside one consistent body frame.
+- Tool cards retain live status and now show current step beneath every progress bar.
+- Clicking a tool card opens Complete Tool Update.
+- Add Tool defaults Original Quarter and Current Quarter to the active quarter.
+- Complete Tool Update now includes Original Quarter, Current Quarter, Lamp State, Notes and the existing full workflow fields.
+- Archive Tool action moves a tool out of the active Command Center and into Archive Center data.
 
-Keep V1 and V2 repositories as archives/reference. Use V3 as the new test branch/repository.
+### Quick Update / Morning Status shared editor
+- One shared all-tools editor for Command Center Daily Update and Morning Status.
+- Adds Quarter, Tool Status, FI Checklist, Micro Target, Driver, Ship Date, Lead/Admin Step, Lead/Admin %, Cleanroom, Bay, SW Version, Lamp Hours, Lamp State, Latest Status, Notes.
+- Lists active escalated NCs with automatically calculated escalation day age.
+- Tools can be reordered with Up / Down controls to match the daily-status email order.
+- Save from Operations Daily Status returns to Operations Daily Status.
+- Save from Status Center Morning Status returns to the Morning Status page.
+- Save from Update Center Daily Update remains in Update Center.
 
+### Shipping Center
+- Removed the two sub-navigation tabs; Shipping Center is now one workspace.
+- One unified current-quarter tool table.
+- Shipping states: AWAITING FI / STILL TESTING / SHIPPING ACTIVE / SHIPPED.
+- Active shipping tools show progress and current physical shipping step.
+- Quick shipping controls remain available.
+- Edit Shipping uses the same full shipping schedule editor and Save/Cancel behavior.
 
-## V3.0.1 Editing Hotfix
+### Global V3 refinements
+- V3.0.1 editing hotfix retained.
+- Leads Alert and System Status right sections are symmetric again.
+- Active data environment moved to the page-navigation row.
+- Update Center and Action Center body content now use the same outer frame convention.
+- Main navigation spacing tightened for 100% desktop zoom.
+- Screenshot and Export actions retained.
+- Duplicate UTID protection retained.
+- FI 200 Final Pre-Pack and QA -> Packing automation retained.
+- Shipping Schedule Complete -> Shipped automation retained.
 
-This hotfix fixes a global click-routing defect in V3.0.0 that caused clicks on form fields, dropdowns, and textareas to navigate back to Operations Center. The root cause was the `data-center` attribute on the `<body>` element being picked up by the delegated navigation click handler.
-
-Fixes:
-- Removed the global `data-center` attribute from `<body>`.
-- Restricted Center navigation handling to actual navigation buttons.
-- Preserves the existing V3.0.0 layouts and data store; no reset is required.
-- Version/build updated to V3.0.1 / V3-EDIT-HOTFIX.
+### Suggested first tests
+1. Load SINGLE TOOL TEST in Administration.
+2. Operations > Daily Status > Edit Source; change fields and Save Daily Status. Confirm return to Operations > Daily Status.
+3. Status Center > Weekday Morning Status > Update Morning Status; change fields and Save Morning Status. Confirm return to Status Center.
+4. Update Center > Current Quarter Tools; click the tool card, edit the complete record, Save, reopen and verify persistence.
+5. Confirm each progress bar shows its current checklist/task/step.
+6. Confirm Live Operations carousel arrows and Pause/Play work.
+7. Open Shipping Center; confirm no page-navigation tabs and test Edit Shipping / Save.
+8. Set FI checklist to FI 200 Final Pre-Pack and QA; confirm Tool Status becomes Packing.
+9. Set Shipping Schedule Status to Complete; confirm Tool Status becomes Shipped.
+10. Archive the test tool and confirm it disappears from active tools.
