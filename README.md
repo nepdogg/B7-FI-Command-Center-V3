@@ -62,3 +62,15 @@ This build starts from V3.0.1 Editing Hotfix and keeps its fixed editing/navigat
 8. Set FI checklist to FI 200 Final Pre-Pack and QA; confirm Tool Status becomes Packing.
 9. Set Shipping Schedule Status to Complete; confirm Tool Status becomes Shipped.
 10. Archive the test tool and confirm it disappears from active tools.
+
+## V3.2.0 Field Test Candidate
+- Daily Update: Alias added; Lead/Admin percentage is automatically derived from current Lead/Admin step.
+- Daily Update: Packing handoffs added (Subsystems, Accessories, Cables, MST, IS); controls only activate in Packing and are reversible.
+- Shipping Center: quick handoff controls only activate in Packing and toggle/undo on a second click.
+- Priority Center: notes support multiple lines.
+- Meeting Center: recurring meeting types moved into page navigation; center opens on Meeting History; Start Meeting action supports recurring and generic meetings.
+- Action Center: filter tabs for Critical, Attention, Reminders, Information, plus history.
+- Archive Center: simplified to Quarter Archive, automatically grouped by tool quarter, with Add Tool archive action.
+- Search tool results are clickable and open the complete tool record.
+- Global navigation is evenly distributed; body panels align to the common page width.
+- Live Operations carousel controls moved below the tool card and centered.
