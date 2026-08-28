@@ -238,3 +238,62 @@ footer{margin-top:12px}
   .lead-task-row input{grid-column:2/-1}
   .fi-checklist-row{grid-template-columns:26px minmax(0,1fr) 115px}
 }
+
+/* ===== V4.0.0 STABLE CORE WORKFLOW OVERRIDES ===== */
+main{padding:12px 12px 18px!important}
+.panel{margin-bottom:12px!important}
+.operations-dual-grid{gap:12px!important;margin-top:12px!important;margin-bottom:12px!important}
+footer{margin-top:0!important}
+.app-frame>footer{margin-bottom:0}
+
+/* phase colors: Waiting=red, In FI=yellow, Packing=cyan/blue, Shipped=green */
+.summary-box.status-waiting,.mini-stat.status-waiting,.family-cell.status-waiting{border-color:#ff3857!important;box-shadow:inset 0 -2px rgba(255,56,87,.7)!important;background:rgba(255,56,87,.07)!important}
+.summary-box.status-infi,.mini-stat.status-infi,.family-cell.status-infi{border-color:#f6b51b!important;box-shadow:inset 0 -2px rgba(246,181,27,.7)!important;background:rgba(246,181,27,.07)!important}
+.summary-box.status-packing,.mini-stat.status-packing,.family-cell.status-packing{border-color:#00cfff!important;box-shadow:inset 0 -2px rgba(0,207,255,.7)!important;background:rgba(0,207,255,.07)!important}
+.summary-box.status-shipped,.mini-stat.status-shipped,.family-cell.status-shipped{border-color:#24d98b!important;box-shadow:inset 0 -2px rgba(36,217,139,.75)!important;background:rgba(36,217,139,.07)!important}
+.state-chip.waiting{color:#ff5b73!important}.state-chip.infi{color:#ffd257!important}.state-chip.packing{color:#1cdcf3!important}.state-chip.shipped{color:#42e9a1!important}
+.system-card.waiting{border-color:#ff3857!important}.system-card.infi{border-color:#f6b51b!important}.system-card.packing{border-color:#00cfff!important}.system-card.shipped{border-color:#24d98b!important}
+.live-card.live-waiting{border-color:#ff3857!important;box-shadow:inset 4px 0 #ff3857!important}.live-card.live-infi{border-color:#f6b51b!important;box-shadow:inset 4px 0 #f6b51b!important}.live-card.live-packing{border-color:#00cfff!important;box-shadow:inset 4px 0 #00cfff!important}.live-card.live-shipped{border-color:#24d98b!important;box-shadow:inset 4px 0 #24d98b!important}
+
+/* Live card is a reliable full-card drill-down target. */
+.clickable-tool-card,[data-tool],[data-search-tool],[data-alert-tool]{cursor:pointer}
+.clickable-tool-card:hover{outline:1px solid rgba(255,255,255,.55);outline-offset:-3px}
+.clickable-tool-card:focus{outline:2px solid #fff;outline-offset:2px}
+
+/* Keep image strictly inside and centered in its assigned photo space. */
+.operations-tool-carousel .live-identity{overflow:hidden;min-height:0}
+.operations-tool-carousel .live-photo{box-sizing:border-box!important;width:100%!important;overflow:hidden!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:8px!important}
+.operations-tool-carousel .live-photo img{width:92%!important;height:92%!important;max-width:92%!important;max-height:92%!important;object-fit:contain!important;object-position:center center!important;margin:auto!important;transform:none!important}
+
+/* Fill the carousel card instead of leaving a large dead area below the work panels. */
+.operations-tool-carousel .live-panel{height:520px!important;min-height:520px!important;max-height:520px!important;box-sizing:border-box;display:flex!important;flex-direction:column!important}
+.operations-tool-carousel .live-card-v36{flex:1 1 auto!important;height:auto!important;min-height:0!important;align-self:stretch!important}
+.operations-tool-carousel .live-ops{height:100%!important;min-height:0!important;display:flex!important;flex-direction:column!important;box-sizing:border-box}
+.operations-tool-carousel .live-work-panels{flex:1 1 auto!important;min-height:0!important;margin-top:6px!important}
+.operations-tool-carousel .live-fi-panel,.operations-tool-carousel .live-tasks{min-height:0!important;height:100%!important}
+
+/* Consistent control spacing. */
+.snapshot-controls,.carousel-controls{gap:8px!important;margin-top:8px!important}
+.snapshot-controls .btn,.carousel-controls .btn{min-width:42px!important}
+
+/* Viewport-safe checklist dialogs: never scroll horizontally. */
+.modal{padding:14px!important;overflow:hidden!important}
+.modal-card{width:min(1180px,calc(100vw - 28px))!important;max-width:calc(100vw - 28px)!important;max-height:calc(100vh - 28px)!important;overflow:hidden!important;box-sizing:border-box!important}
+#modalBody{min-width:0!important;max-width:100%!important;overflow:hidden!important}
+.lead-modal{min-width:0!important;max-width:100%!important;overflow:hidden!important}
+.lead-modal .lead-task-list,.lead-modal .fi-checklist-list{overflow-y:auto!important;overflow-x:hidden!important;min-width:0!important}
+.lead-task-row{grid-template-columns:34px minmax(220px,1.3fr) minmax(135px,.55fr) minmax(220px,1fr)!important;width:100%!important;min-width:0!important;box-sizing:border-box!important}
+.fi-checklist-row{grid-template-columns:34px minmax(260px,1fr) minmax(135px,180px)!important;width:100%!important;min-width:0!important;box-sizing:border-box!important}
+.lead-task-row>* ,.fi-checklist-row>*{min-width:0!important;max-width:100%!important;box-sizing:border-box!important}
+.lead-task-row input,.lead-task-row select,.fi-checklist-row select{width:100%!important;max-width:100%!important}
+.modal-actions{overflow:hidden!important}
+
+@media(max-width:1250px){
+  .operations-tool-carousel .live-panel{height:auto!important;max-height:none!important;min-height:500px!important}
+}
+@media(max-width:800px){
+  .lead-task-row{grid-template-columns:28px 1fr!important}
+  .lead-task-row select,.lead-task-row input{grid-column:2!important}
+  .fi-checklist-row{grid-template-columns:28px 1fr!important}
+  .fi-checklist-row select{grid-column:2!important}
+}
