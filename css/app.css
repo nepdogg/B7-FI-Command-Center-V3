@@ -333,3 +333,12 @@ footer{margin-top:0!important}
 /* Transparent/dark photo stage: never show a white photo rectangle. */
 .live-photo,.operations-tool-carousel .live-photo,.live-card-v36 .live-photo{background:transparent!important}
 .live-photo img,.operations-tool-carousel .live-photo img,.live-card-v36 .live-photo img{object-fit:contain!important;object-position:center!important;margin:auto!important;transform:none!important}
+
+/* V4.4 Tool Editor NC runtime fix */
+.nc-empty{padding:14px;border:1px dashed var(--line);color:var(--muted)}
+.nc-edit-row{display:grid;grid-template-columns:36px 100px minmax(220px,2fr) 130px 80px 140px minmax(220px,2fr) auto;gap:8px;align-items:end;padding:10px 0;border-bottom:1px solid var(--line)}
+.nc-edit-row label{display:flex;flex-direction:column;gap:4px;font-size:11px}
+.nc-edit-row input,.nc-edit-row select{width:100%;box-sizing:border-box}
+.nc-edit-order{align-self:center;text-align:center;font-weight:800;color:var(--muted)}
+.editor-error{border-color:#ff365f!important;color:#fff}
+@media (max-width:1100px){.nc-edit-row{grid-template-columns:36px 90px 1fr 120px 70px 120px 1fr}.nc-edit-row .danger{grid-column:2/-1;justify-self:end}}

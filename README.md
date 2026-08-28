@@ -1,3 +1,17 @@
+# B7 FI Command Center V4.4.0 — Tool Editor Runtime Fix
+
+This build fixes the actual runtime failure that prevented the Tool Editor body from rendering.
+
+Root cause found: the Tool Editor template called `ncFormRows()` but that renderer did not exist. The shell and page actions rendered first, which is why the UI changed to Save/Cancel while the old tool list remained on screen. The missing NC renderer then threw a JavaScript error before the editor body could replace the page.
+
+V4.4.0 adds the missing NC / Escalation / POA editor renderer and adds a visible Tool Editor error panel if any future editor-render exception occurs instead of silently leaving the previous page body visible.
+
+Test these first:
+1. Update Center → ADD TOOL
+2. Update Center → click an existing tool card
+3. Live Operations → click the tool carousel card
+4. Save a new tool and reopen it
+
 # B7 FI Command Center V4.3.0 — Tool Editor Routing Fix
 
 This build is a focused stability update on top of V4.0.0.
