@@ -627,3 +627,32 @@ footer{margin:0 var(--page-gutter) var(--page-gap)!important;width:calc(100% - (
 .priority-edit-wrap{width:100%;overflow-x:auto}.priority-edit-full{min-width:1250px}.priority-edit-full td{vertical-align:top}.priority-edit-full td:first-child{min-width:125px}.priority-edit-full td:first-child small{display:block;margin-top:4px;color:#8fb6ca;font-weight:800}.priority-edit-full input,.priority-edit-full textarea{width:100%;box-sizing:border-box;background:#020b13;color:#fff;border:1px solid #2b5873;padding:6px}.priority-edit-full textarea{min-width:210px;min-height:58px;resize:vertical}
 .morning-actions-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px;padding-top:7px;border-top:1px solid #24485d;color:#9bc4d8;font-size:9px}.morning-action-list{display:grid;gap:5px;margin-top:6px}.morning-action-row{display:grid;grid-template-columns:110px minmax(260px,2fr) minmax(140px,.8fr) 150px 34px;gap:6px;align-items:center}.morning-action-row input,.morning-action-row select{width:100%;box-sizing:border-box;background:#020b13;color:#fff;border:1px solid #2b5873;padding:7px}.morning-action-row .danger-mini{height:31px;padding:0;color:#ff8293}.general-meeting .morning-actions-head{margin-top:10px}
 @media(max-width:1100px){.morning-action-row{grid-template-columns:100px 1fr 1fr 140px 34px}}@media(max-width:760px){.morning-action-row{grid-template-columns:1fr}.morning-action-row .danger-mini{width:100%}}
+
+
+/* ===== V4.9.0 NIGHT-READY FIXES ===== */
+/* Restore a visible centered application frame without the old upper-left fixed-canvas behavior. */
+body{background:#020a11!important}
+.app-frame{
+  width:calc(100% - 12px)!important;
+  max-width:1920px!important;
+  margin:4px auto!important;
+  min-height:calc(100vh - 8px)!important;
+  border:1px solid #244f69!important;
+  box-sizing:border-box!important;
+}
+/* Keep page internals fluid inside the frame. */
+.sticky-shell,.hero,.main-nav,.status-stack,.pagebar,main,footer{max-width:100%!important;box-sizing:border-box!important}
+
+/* OPEN on the alert/status bars always routes to Action Center and is never swallowed by tool drill-down. */
+.status-open-button{appearance:none;background:transparent;color:#fff;border:0;border-left:1px solid currentColor;font:inherit;font-weight:900;cursor:pointer;width:100%;height:100%;padding:0 8px}
+.status-open-button:hover{background:rgba(255,255,255,.06)}
+.status-message.clickable-status{cursor:pointer}
+
+/* Tool Family Countdown is display-only except the Mystery Box reveal buttons and carousel controls. */
+.snapshot-static{cursor:default!important}
+.snapshot-static:hover{box-shadow:none!important}
+.snapshot-static .snapshot-body{pointer-events:auto!important}
+.snapshot-static .family-matrix,.snapshot-static .family-cell{cursor:default!important}
+.snapshot-static .reveal-btn{pointer-events:auto!important;cursor:pointer!important;position:relative;z-index:5}
+
+@media(max-width:1940px){.app-frame{max-width:calc(100% - 8px)!important;width:calc(100% - 8px)!important}}
