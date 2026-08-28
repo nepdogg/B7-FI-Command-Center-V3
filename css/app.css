@@ -297,3 +297,27 @@ footer{margin-top:0!important}
   .fi-checklist-row{grid-template-columns:28px 1fr!important}
   .fi-checklist-row select{grid-column:2!important}
 }
+
+/* ===== V4.1.0 TOOL EDITOR ROUTING / PHOTO CLEANUP ===== */
+/* The PNG assets already carry transparency.  Do not paint a white rectangle behind them. */
+.live-photo,
+.operations-tool-carousel .live-photo,
+.live-card-v36 .live-photo{
+  background:#061624!important;
+}
+.operations-tool-carousel .live-photo img,
+.live-card-v36 .live-photo img{
+  display:block!important;
+  width:94%!important;
+  height:94%!important;
+  max-width:94%!important;
+  max-height:94%!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  margin:auto!important;
+}
+/* Make the drill-down intent obvious without changing the wallboard visual language. */
+.clickable-tool-card,[data-tool],[data-search-tool],[data-alert-tool]{cursor:pointer!important}
+.clickable-tool-card:hover,[data-tool]:hover,[data-search-tool]:hover{outline:1px solid rgba(255,255,255,.55);outline-offset:-2px}
+/* Full editor always renders as its own top-level workspace. */
+.tool-editor{display:block!important;visibility:visible!important;opacity:1!important;min-height:320px}

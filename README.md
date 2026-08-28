@@ -1,24 +1,19 @@
-# B7 FI Command Center V4.0.0 — Stable Core Workflows
+# B7 FI Command Center V4.1.0 — Tool Editor Routing Fix
 
-This build prioritizes the core workflows needed for production testing.
+This build is a focused stability update on top of V4.0.0.
 
-## Core fixes in V4.0.0
-- Add Tool opens the full blank Tool Editor and saves a new tool with duplicate-UTID validation.
-- Every current-quarter tool card, Live Operations tool card, Search tool result, and tool-specific alert drills into the same full Tool Editor.
-- Correct cache/version stamps in index.html so browsers load the V4.0 code instead of a stale earlier JS/CSS build.
-- Live status summary/family boxes use consistent phase colors: Waiting for FI red, In FI yellow, Packing cyan/blue, Shipped green.
-- Live tool photo is constrained and centered in its photo frame.
-- Tool carousel content stretches to use the available card height.
-- More even dashboard spacing and a deliberate gap above the footer.
-- FI and Lead/Admin checklist dialogs remain viewport-safe with no horizontal scrolling.
-- Administration backup/import/master reset behavior from V3.9 is retained.
+## Core fixes
+- Rebuilt the **ADD TOOL** click path so it directly opens the blank full Tool Editor.
+- Rebuilt tool-card routing so Live Operations, Update Center tool cards, Search results, and tool-specific alert bars directly open the selected tool's full Tool Editor instead of only switching to Update Center.
+- Added an independent Tool Editor state so the selected tool/create mode cannot be lost during center navigation/rendering.
+- Kept duplicate UTID validation and the existing Save/Cancel workflow.
+- Removed the white photo panel from the Live Operations tool image area; transparent tool PNGs now render over the Command Center dark background and remain centered/contained.
+- Preserves V4.0.0 status colors, modal fixes, backup/restore, and unified Operations layout.
 
-## Recommended test order
-1. Administration → Scenario Test.
-2. Update Center → ADD TOOL → enter a unique UTID → SAVE TOOL.
-3. Click the new tool card and confirm the full editor opens.
-4. Operations Center → click the Live Tool card and confirm the same editor opens.
-5. Search Center → search UTID → click result.
-6. Click Leads Alert/System Status tool messages.
-7. Test FI Checklist and Lead/Admin VIEW ALL dialogs.
-8. Export backup, change data, import backup and verify restoration.
+## First tests
+1. Update Center → ADD TOOL → verify the blank Tool Editor appears with CANCEL / SAVE TOOL.
+2. Save a test tool and verify it appears in the current-quarter list.
+3. Click any current-quarter tool card and verify its full Tool Editor opens.
+4. Click a Live Operations tool carousel card and verify the same Tool Editor opens for that exact UTID.
+5. Search for a tool and click the result.
+6. Click a tool-specific top alert.
