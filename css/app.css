@@ -370,3 +370,193 @@ footer{margin-top:0!important}
 .daily-card-v45 .ship-toggle{font-size:8px;padding:5px 7px}
 .daily-card-v45 .state-chip{margin-left:auto}
 @media(max-width:1200px){.daily-card-v45 .form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.daily-card-v45 .span2{grid-column:span 1}.daily-status-grid{grid-template-columns:1fr}}
+
+/* ===== V4.6.0 LIVE OPERATIONS VISUAL UPGRADE ===== */
+/* Tool Family Countdown: use the entire rotating Status Carousel frame. */
+.snapshot-family{overflow:hidden!important;padding:0!important}
+.snapshot-family>.panel{
+  height:100%!important;
+  min-height:100%!important;
+  display:grid!important;
+  grid-template-rows:26px repeat(6,minmax(0,1fr))!important;
+  gap:7px!important;
+  padding:6px!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+.snapshot-family .family-matrix{
+  grid-template-columns:minmax(92px,.95fr) 52px 64px 56px 62px 62px minmax(105px,.95fr) 46px!important;
+  gap:6px!important;
+  min-height:0!important;
+  align-items:stretch!important;
+}
+.snapshot-family .family-matrix.header{
+  font-size:8px!important;
+  align-items:center!important;
+}
+.snapshot-family .family-cell{
+  min-height:0!important;
+  height:100%!important;
+  padding:8px 5px!important;
+  font-size:13px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border-radius:3px!important;
+  box-sizing:border-box!important;
+}
+.snapshot-family .family-cell.name{
+  justify-content:flex-start!important;
+  padding-left:10px!important;
+  font-size:14px!important;
+  font-weight:900!important;
+}
+.snapshot-family .family-progress{
+  gap:8px!important;
+  padding:8px!important;
+}
+.snapshot-family .family-progress .track{height:9px!important;flex:1 1 auto!important}
+.snapshot-family .family-progress small{font-size:12px!important;min-width:34px!important;text-align:right!important}
+.snapshot-family .reveal-btn{
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  font-size:22px!important;
+  border-radius:3px!important;
+}
+
+/* Live Tool Carousel: occupy the whole frame and improve legibility. */
+.operations-tool-carousel .live-panel{
+  padding:8px!important;
+  overflow:hidden!important;
+}
+.operations-tool-carousel .live-card-v36{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  height:auto!important;
+  grid-template-columns:minmax(225px,34%) minmax(0,66%)!important;
+  overflow:hidden!important;
+}
+.operations-tool-carousel .live-identity{
+  min-height:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  border-right:1px solid #24506a!important;
+  overflow:hidden!important;
+  padding-bottom:7px!important;
+}
+.operations-tool-carousel .live-codename{
+  flex:0 0 auto!important;
+  font-size:22px!important;
+  line-height:1.05!important;
+  padding:9px 8px 6px!important;
+  letter-spacing:.7px!important;
+}
+.operations-tool-carousel .live-photo{
+  flex:0 0 176px!important;
+  height:176px!important;
+  padding:8px 10px!important;
+  border-bottom:1px solid #24506a!important;
+}
+.operations-tool-carousel .live-photo img{
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  max-height:100%!important;
+}
+/* Standard blue inner frame: schedule color belongs only on the OUTER tool card. */
+.operations-tool-carousel .live-info{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  margin:8px 8px 0!important;
+  padding:0!important;
+  border:1px solid #24506a!important;
+  border-radius:3px!important;
+  background:#071927!important;
+  display:flex!important;
+  flex-direction:column!important;
+  overflow:hidden!important;
+}
+.operations-tool-carousel .live-info .kv{
+  flex:1 1 0!important;
+  min-height:25px!important;
+  padding:5px 8px!important;
+  font-size:10px!important;
+  line-height:1.15!important;
+  align-items:center!important;
+  border-bottom:1px solid #1c4258!important;
+}
+.operations-tool-carousel .live-info .kv:last-child{border-bottom:0!important}
+.operations-tool-carousel .live-info .kv span{font-weight:700!important;color:#b5cfde!important}
+.operations-tool-carousel .live-info .kv strong{font-size:10px!important}
+.operations-tool-carousel .live-ops{
+  padding:10px 12px 8px!important;
+  overflow:hidden!important;
+}
+.operations-tool-carousel .compact-progress{
+  flex:0 0 auto!important;
+  padding-bottom:2px!important;
+}
+.operations-tool-carousel .compact-progress .progress-item{
+  margin-bottom:10px!important;
+}
+.operations-tool-carousel .compact-progress .progress-item:last-of-type{margin-bottom:7px!important}
+.operations-tool-carousel .progress-head{
+  font-size:10px!important;
+  margin-bottom:3px!important;
+}
+.operations-tool-carousel .progress-item .track{height:8px!important}
+.operations-tool-carousel .progress-step{
+  font-size:8px!important;
+  margin-top:3px!important;
+  color:#a9c5d5!important;
+}
+.operations-tool-carousel .perf-label{
+  margin:1px 0 7px!important;
+  font-size:10px!important;
+}
+.operations-tool-carousel .live-work-panels{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  margin-top:0!important;
+  grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr)!important;
+  gap:8px!important;
+}
+.operations-tool-carousel .live-fi-panel,
+.operations-tool-carousel .live-tasks{
+  border:1px solid #24506a!important;
+  border-radius:3px!important;
+  background:#071927!important;
+  padding:8px!important;
+}
+.operations-tool-carousel .live-task-head{
+  font-size:10px!important;
+  padding-bottom:6px!important;
+  margin-bottom:5px!important;
+  border-bottom:1px solid #1c4258!important;
+}
+.operations-tool-carousel .active-fi,
+.operations-tool-carousel .next-task{
+  font-size:9px!important;
+  padding:6px!important;
+  margin:4px 0!important;
+}
+.operations-tool-carousel .next-task em{font-size:7px!important}
+.operations-tool-carousel .no-active-fi,
+.operations-tool-carousel .tasks-complete{font-size:9px!important;padding:13px 5px!important}
+.operations-tool-carousel .view-all-tasks{font-size:9px!important;padding:7px!important}
+
+/* Outer tool card = schedule performance only. Internal panels stay standard blue. */
+.live-card.live-ahead{border-color:var(--purple)!important;box-shadow:inset 4px 0 var(--purple)!important}
+.live-card.live-behind{border-color:var(--red)!important;box-shadow:inset 4px 0 var(--red)!important}
+.live-card.live-critical{border-color:var(--red)!important;box-shadow:0 0 13px rgba(255,56,87,.28),inset 5px 0 var(--red)!important}
+.live-card.live-normal{border-color:var(--green)!important;box-shadow:inset 4px 0 var(--green)!important}
+.operations-tool-carousel .live-card-v36 .live-info,
+.operations-tool-carousel .live-card-v36 .live-fi-panel,
+.operations-tool-carousel .live-card-v36 .live-tasks{box-shadow:none!important;color:inherit!important}
+
+@media(max-width:1250px){
+  .snapshot-family>.panel{grid-template-rows:24px repeat(6,minmax(48px,1fr))!important}
+  .snapshot-family .family-cell{font-size:11px!important;padding:7px 4px!important}
+  .operations-tool-carousel .live-photo{flex-basis:160px!important;height:160px!important}
+}

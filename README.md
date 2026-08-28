@@ -1,14 +1,16 @@
-# B7 FI Command Center V4.5.0
+# B7 FI Command Center V4.6.0
 
-Stable baseline: V4.4.0 Tool Editor Runtime Fix.
+V4.6.0 builds directly on the stable V4.5.0 workflow baseline.
 
-V4.5.0 updates:
-- Morning Status Update and Command Center Daily Update now share the same Tool Editor-style operational interface.
-- Daily update cards use Tool Information / Plan + FI Testing / Micro Schedule fields from the Full Tool Editor workflow.
-- Lead/Admin Progress is automatic and is no longer an editable input; it is shown as a calculated progress bar.
-- Full Tool Editor also uses the automatic Lead/Admin progress display.
-- Tool Center header becomes contextual while editing: TOOL <UTID> — <CODE NAME> — <QUARTER>; Add Tool shows ADD TOOL — <QUARTER>.
-- Operational Focus no longer treats ordinary incomplete Lead/Admin tasks or Requirement TBD items as Critical/Attention alerts.
-- Operational Focus is now driven by actual operational exceptions: escalated NCs, behind Micro Schedule, and incomplete packing handoffs while Packing.
-- Next Lead/Admin Tasks prioritizes the selected Current Lead/Admin Task, then In Progress, then actionable Not Started, with Requirement TBD after actionable work.
-- V4.4 Tool Editor routing/runtime fix retained.
+Live Operations visual updates:
+- Replaced the Regera / Celestiq tool image with the new supplied transparent tool image.
+- Added three new supplied Raiders celebration images to Mystery Box Settings while retaining the existing Raiders image and animated GIF choices.
+- Tool Family Countdown now expands vertically to fill the entire Status Carousel frame.
+- Family/codename cells and shipping-progress cells are narrower so the six family rows can be taller and easier to read.
+- Live Tool Carousel card now fills its frame more completely.
+- Tool identity fields below the photo are grouped in a standard blue command-center frame and enlarged for readability.
+- Progress sections have increased vertical spacing and larger progress tracks.
+- Only the outer live tool card carries schedule-performance color: purple=Ahead, red=Behind/Critical, green=On Schedule.
+- Internal information, FI checklist and Lead/Admin panels use the standard blue command-center framing instead of inheriting the purple schedule color.
+
+All V4.5.0 shared Daily/Morning Update, automatic Lead/Admin progress, alert logic, Tool Editor routing, Add Tool, save/reopen, reset, and test-dataset behavior remain intact.
