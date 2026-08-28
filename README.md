@@ -1,4 +1,4 @@
-# B7 FI Command Center V3.7.0 — Production Stability
+# B7 FI Command Center V3.8.0 — Production Stability
 
 Build: `20260827-V3.4-PRODUCTION-STABILITY`
 
@@ -137,7 +137,7 @@ Mystery boxes unlock only when every active tool in that family has Tool Status 
 11. Create a new V3.4 backup after the real quarter data is entered.
 
 
-## V3.7.0 Unified Live Operations + Lead/Admin Workload
+## V3.8.0 Working Operations + Lead/Admin Workload
 - Provisional ordered Lead/Admin master checklist per tool.
 - Per-task states: Not Started, In Progress, Complete, N/A, Requirement TBD.
 - Automatic Lead/Admin percentage and remaining-task count.
@@ -149,7 +149,7 @@ Mystery boxes unlock only when every active tool in that family has Tool Status 
 - Reference rows are clickable.
 
 
-## V3.7.0 additions
+## V3.8.0 additions
 - Reorganized Live Operations carousel: code name centered above tool photo; UTID and static tool fields under photo.
 - Shorter progress bars free space for live work panels.
 - FI CHECKLISTS panel shows completed count, incomplete count, and currently Open/In Progress checklists.
@@ -157,3 +157,14 @@ Mystery boxes unlock only when every active tool in that family has Tool Status 
 - Visual FI checklist status is intentionally independent from the Official FI Checklist.
 - Lead/Admin panel continues to show the next five unresolved tasks with full checklist access.
 - Existing V3.5 operational focus, meeting/action safeguards, archive restore, backup controls, and report work are retained.
+
+
+## V3.8.0 Working Operations updates
+- Operations Center uses two independent side-by-side carousels: a 5-view Status Carousel and the individual Tool Carousel.
+- Status Carousel rotates Morning Status, System Priorities, Shipping Schedule, Operational Focus, and Tool Family Countdown.
+- Operations page-level action is Screenshot only; source views are opened from the carousel itself.
+- Tool carousel View All FI Checklists and View All Lead/Admin Tasks now open working modal checklists.
+- Tool cards, search results, and top alert/status messages drill into their source records.
+- Add Tool opens the full blank Tool Editor and uses Save Tool / Cancel.
+- Weekday and Weekend Morning Status share one exact renderer; every subordinate Latest Status / NC / POA line is blue and NC display is standardized as NC #.
+- Status Center now keeps Morning Status at the top and provides the Morning Meeting workspace directly below it.
