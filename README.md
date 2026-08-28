@@ -1,50 +1,14 @@
-# B7 FI Command Center V4.4.0 — Tool Editor Runtime Fix
+# B7 FI Command Center V4.5.0
 
-This build fixes the actual runtime failure that prevented the Tool Editor body from rendering.
+Stable baseline: V4.4.0 Tool Editor Runtime Fix.
 
-Root cause found: the Tool Editor template called `ncFormRows()` but that renderer did not exist. The shell and page actions rendered first, which is why the UI changed to Save/Cancel while the old tool list remained on screen. The missing NC renderer then threw a JavaScript error before the editor body could replace the page.
-
-V4.4.0 adds the missing NC / Escalation / POA editor renderer and adds a visible Tool Editor error panel if any future editor-render exception occurs instead of silently leaving the previous page body visible.
-
-Test these first:
-1. Update Center → ADD TOOL
-2. Update Center → click an existing tool card
-3. Live Operations → click the tool carousel card
-4. Save a new tool and reopen it
-
-# B7 FI Command Center V4.3.0 — Tool Editor Routing Fix
-
-This build is a focused stability update on top of V4.0.0.
-
-## Core fixes
-- Rebuilt the **ADD TOOL** click path so it directly opens the blank full Tool Editor.
-- Rebuilt tool-card routing so Live Operations, Update Center tool cards, Search results, and tool-specific alert bars directly open the selected tool's full Tool Editor instead of only switching to Update Center.
-- Added an independent Tool Editor state so the selected tool/create mode cannot be lost during center navigation/rendering.
-- Kept duplicate UTID validation and the existing Save/Cancel workflow.
-- Removed the white photo panel from the Live Operations tool image area; transparent tool PNGs now render over the Command Center dark background and remain centered/contained.
-- Preserves V4.0.0 status colors, modal fixes, backup/restore, and unified Operations layout.
-
-## First tests
-1. Update Center → ADD TOOL → verify the blank Tool Editor appears with CANCEL / SAVE TOOL.
-2. Save a test tool and verify it appears in the current-quarter list.
-3. Click any current-quarter tool card and verify its full Tool Editor opens.
-4. Click a Live Operations tool carousel card and verify the same Tool Editor opens for that exact UTID.
-5. Search for a tool and click the result.
-6. Click a tool-specific top alert.
-
-
-## V4.3.0 core-routing hard fix
-- Add Tool uses a direct, global click path and forcibly re-renders the blank Tool Editor after the click event completes if any legacy navigation handler reset the page.
-- Live Operations tool cards, Update Center tool cards, Search tool results, and tool-specific alert bars use direct tool-editor routing.
-- Tool Editor state is re-asserted on the next event-loop tick so a later delegated handler cannot leave the user on the Update Center list.
-- Save Tool and Cancel Tool have direct editor handlers on the page action buttons.
-- Tool photo panels remain dark/transparent rather than painting the old white rectangle.
-
-
-## V4.3.0 core fix
-- Rebuilt Tool Editor as an explicit Update Center route (`tool`) instead of inferring editor state from the generic tools list.
-- Live tool card, Update Center tool card, Search result, and alerts now route directly to a selected tool editor.
-- ADD TOOL routes directly to a dedicated new-tool editor.
-- Save/Cancel return to the originating page or CY26Q3 Tools.
-
-- Initial Tool Editor render now bypasses the generic Update Center body renderer entirely and writes the Tool Editor directly into the page body. This is the hard fallback for the exact failure observed in V4.2 where the action bar entered edit mode but the tool list remained visible.
+V4.5.0 updates:
+- Morning Status Update and Command Center Daily Update now share the same Tool Editor-style operational interface.
+- Daily update cards use Tool Information / Plan + FI Testing / Micro Schedule fields from the Full Tool Editor workflow.
+- Lead/Admin Progress is automatic and is no longer an editable input; it is shown as a calculated progress bar.
+- Full Tool Editor also uses the automatic Lead/Admin progress display.
+- Tool Center header becomes contextual while editing: TOOL <UTID> — <CODE NAME> — <QUARTER>; Add Tool shows ADD TOOL — <QUARTER>.
+- Operational Focus no longer treats ordinary incomplete Lead/Admin tasks or Requirement TBD items as Critical/Attention alerts.
+- Operational Focus is now driven by actual operational exceptions: escalated NCs, behind Micro Schedule, and incomplete packing handoffs while Packing.
+- Next Lead/Admin Tasks prioritizes the selected Current Lead/Admin Task, then In Progress, then actionable Not Started, with Requirement TBD after actionable work.
+- V4.4 Tool Editor routing/runtime fix retained.
