@@ -1,4 +1,4 @@
-# B7 FI Command Center V4.1.0 — Tool Editor Routing Fix
+# B7 FI Command Center V4.2.0 — Tool Editor Routing Fix
 
 This build is a focused stability update on top of V4.0.0.
 
@@ -17,3 +17,11 @@ This build is a focused stability update on top of V4.0.0.
 4. Click a Live Operations tool carousel card and verify the same Tool Editor opens for that exact UTID.
 5. Search for a tool and click the result.
 6. Click a tool-specific top alert.
+
+
+## V4.2.0 core-routing hard fix
+- Add Tool uses a direct, global click path and forcibly re-renders the blank Tool Editor after the click event completes if any legacy navigation handler reset the page.
+- Live Operations tool cards, Update Center tool cards, Search tool results, and tool-specific alert bars use direct tool-editor routing.
+- Tool Editor state is re-asserted on the next event-loop tick so a later delegated handler cannot leave the user on the Update Center list.
+- Save Tool and Cancel Tool have direct editor handlers on the page action buttons.
+- Tool photo panels remain dark/transparent rather than painting the old white rectangle.

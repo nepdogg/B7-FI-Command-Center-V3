@@ -321,3 +321,15 @@ footer{margin-top:0!important}
 .clickable-tool-card:hover,[data-tool]:hover,[data-search-tool]:hover{outline:1px solid rgba(255,255,255,.55);outline-offset:-2px}
 /* Full editor always renders as its own top-level workspace. */
 .tool-editor{display:block!important;visibility:visible!important;opacity:1!important;min-height:320px}
+
+/* ===== V4.2.0 HARD CORE WORKFLOW FIX ===== */
+/* The entire tool card is an obvious drill-down target. */
+.system-card.clickable-tool-card,
+.live-card.clickable-tool-card,
+.search-result[data-search-tool],
+.status-bar[data-alert-tool]{cursor:pointer!important;position:relative}
+.system-card.clickable-tool-card:hover,
+.live-card.clickable-tool-card:hover{box-shadow:inset 0 0 0 2px rgba(255,255,255,.45)}
+/* Transparent/dark photo stage: never show a white photo rectangle. */
+.live-photo,.operations-tool-carousel .live-photo,.live-card-v36 .live-photo{background:transparent!important}
+.live-photo img,.operations-tool-carousel .live-photo img,.live-card-v36 .live-photo img{object-fit:contain!important;object-position:center!important;margin:auto!important;transform:none!important}
