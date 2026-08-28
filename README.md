@@ -1,4 +1,4 @@
-# B7 FI Command Center V3.6.0 — Production Stability
+# B7 FI Command Center V3.7.0 — Production Stability
 
 Build: `20260827-V3.4-PRODUCTION-STABILITY`
 
@@ -137,7 +137,7 @@ Mystery boxes unlock only when every active tool in that family has Tool Status 
 11. Create a new V3.4 backup after the real quarter data is entered.
 
 
-## V3.6.0 Operational Checklists + Lead/Admin Workload
+## V3.7.0 Unified Live Operations + Lead/Admin Workload
 - Provisional ordered Lead/Admin master checklist per tool.
 - Per-task states: Not Started, In Progress, Complete, N/A, Requirement TBD.
 - Automatic Lead/Admin percentage and remaining-task count.
@@ -149,7 +149,7 @@ Mystery boxes unlock only when every active tool in that family has Tool Status 
 - Reference rows are clickable.
 
 
-## V3.6.0 additions
+## V3.7.0 additions
 - Reorganized Live Operations carousel: code name centered above tool photo; UTID and static tool fields under photo.
 - Shorter progress bars free space for live work panels.
 - FI CHECKLISTS panel shows completed count, incomplete count, and currently Open/In Progress checklists.
