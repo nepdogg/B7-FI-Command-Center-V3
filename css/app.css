@@ -178,3 +178,63 @@ body.screenshot-mode .sticky-shell,body.screenshot-mode footer{display:none!impo
 .search-result{user-select:none}.search-result:focus{outline:2px solid var(--accent);outline-offset:1px}.snapshot-scroll .clickrow,.snapshot-scroll tr[data-tool]{cursor:pointer}
 body[data-center="operations"] .pagebar .subnav{display:none}body[data-center="operations"] .pagebar{justify-content:flex-end}body[data-center="operations"] .page-actions{margin-left:auto}
 @media(max-width:1250px){.operations-dual-grid{grid-template-columns:1fr}.snapshot-panel,.operations-tool-carousel .live-panel{max-height:none;min-height:460px;height:auto}.operations-tool-carousel .live-card-v36{height:auto;min-height:430px}.snapshot-focus .focus-list{grid-template-columns:1fr}}
+
+/* V3.9.0 interaction + layout fixes */
+main{padding-bottom:16px}
+.operations-dual-grid{margin-bottom:4px}
+footer{margin-top:12px}
+
+/* Status carousel is itself the drill-down target; no redundant heading/source strip. */
+.snapshot-source{cursor:pointer}
+.snapshot-source:hover{border-color:var(--accent);box-shadow:inset 0 0 0 1px rgba(var(--accent-rgb),.3)}
+.snapshot-body{padding-top:0}
+.snapshot-controls,.carousel-controls{position:relative;z-index:4}
+.snapshot-controls .btn,.carousel-controls .btn{cursor:pointer}
+.carousel-toggle{min-width:58px!important;font-size:8px!important;letter-spacing:.4px}
+
+/* Make actionable top bars visually and functionally obvious. */
+.status-bar[data-alert-tool] .status-message{cursor:pointer}
+.status-bar[data-alert-tool] .status-message:hover{text-decoration:underline;text-underline-offset:2px}
+
+/* Entire tool card is a drill-down target; nested checklist buttons still win via event delegation. */
+.clickable-tool-card{cursor:pointer}
+.clickable-tool-card:hover{filter:brightness(1.035)}
+
+/* Keep the tool image centered and fully inside its assigned photo area. */
+.operations-tool-carousel .live-card-v36 .live-photo{display:flex;align-items:center;justify-content:center;overflow:hidden;padding:6px;background:#e9ecf1}
+.operations-tool-carousel .live-card-v36 .live-photo img{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;object-position:center;margin:auto}
+
+/* Use the full height of the Tool Carousel card instead of leaving a dead area at the bottom. */
+.operations-tool-carousel .live-card-v36{align-items:stretch}
+.operations-tool-carousel .live-identity,.operations-tool-carousel .live-ops{height:100%;min-height:0}
+.operations-tool-carousel .live-identity{overflow:hidden}
+.operations-tool-carousel .live-ops{display:flex;flex-direction:column;overflow:hidden}
+.operations-tool-carousel .compact-progress{flex:0 0 auto}
+.operations-tool-carousel .live-work-panels{flex:1 1 auto;min-height:0;align-items:stretch}
+.operations-tool-carousel .live-fi-panel,.operations-tool-carousel .live-tasks{height:100%;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.operations-tool-carousel .live-fi-panel .view-all-tasks,.operations-tool-carousel .live-tasks .view-all-tasks{margin-top:auto}
+.operations-tool-carousel .live-tasks .next-task{flex:0 0 auto}
+
+/* Viewport-safe checklist modals: no left/right scrollbar, fixed controls, vertical body scrolling only. */
+.modal{padding:14px;overflow:hidden}
+.modal-card{width:min(1180px,calc(100vw - 28px));max-width:calc(100vw - 28px);max-height:calc(100vh - 28px);overflow:hidden;display:flex;flex-direction:column}
+#modalBody{min-width:0;min-height:0;max-width:100%;overflow:auto;overflow-x:hidden}
+.modal-card:has(.lead-modal) #modalBody{height:100%;overflow:hidden}
+.modal-card:has(.lead-modal){height:min(820px,calc(100vh - 28px));padding:16px 18px}
+.lead-modal{width:100%!important;height:100%;min-width:0;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.lead-modal>h2,.lead-modal>.helper{flex:0 0 auto;padding-right:36px}
+.lead-modal .lead-task-list,.lead-modal .fi-checklist-list{flex:1 1 auto;min-height:0;max-height:none;overflow-y:auto;overflow-x:hidden;padding-right:3px;scrollbar-width:thin}
+.lead-modal .modal-actions{flex:0 0 auto;margin-top:8px;padding-top:8px;border-top:1px solid #244e69;background:#061522;position:relative;z-index:2}
+.lead-task-row{width:100%;grid-template-columns:30px minmax(0,1.35fr) minmax(125px,.48fr) minmax(155px,.9fr);gap:6px}
+.lead-task-row select,.lead-task-row input{width:100%;max-width:100%;min-width:0}
+.fi-checklist-row{width:100%;grid-template-columns:30px minmax(0,1fr) minmax(125px,.32fr);gap:7px}
+.fi-checklist-row select{width:100%;max-width:100%;min-width:0}
+
+@media(max-width:900px){
+  .modal{padding:8px}
+  .modal-card{width:calc(100vw - 16px);max-width:calc(100vw - 16px);max-height:calc(100vh - 16px)}
+  .modal-card:has(.lead-modal){height:calc(100vh - 16px);padding:12px}
+  .lead-task-row{grid-template-columns:26px minmax(0,1fr) minmax(110px,.5fr)}
+  .lead-task-row input{grid-column:2/-1}
+  .fi-checklist-row{grid-template-columns:26px minmax(0,1fr) 115px}
+}

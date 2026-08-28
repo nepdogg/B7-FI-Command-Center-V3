@@ -1,3 +1,7 @@
+# B7 FI Command Center V3.9.0 — Interaction & Layout Fixes
+
+This field-test build focuses on the issues found during V3.8 testing: working modal Cancel buttons, viewport-safe Lead/Admin and FI Checklist dialogs with no horizontal scrolling, simplified carousel controls, full-frame Status Carousel drill-down, clickable Tool Carousel cards, improved alert routing, contained/centered tool images, fuller tool-card use of vertical space, and footer breathing room.
+
 # B7 FI Command Center V3.8.0 — Production Stability
 
 Build: `20260827-V3.4-PRODUCTION-STABILITY`
