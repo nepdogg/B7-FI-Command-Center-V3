@@ -1,16 +1,21 @@
-# B7 FI Command Center V4.6.0
+# B7 FI Command Center V4.7.0
 
-V4.6.0 builds directly on the stable V4.5.0 workflow baseline.
+Navigation, responsive layout, status-carousel click model, status box color coding, uppercase family labels, and Administration tool-photo management update.
 
-Live Operations visual updates:
-- Replaced the Regera / Celestiq tool image with the new supplied transparent tool image.
-- Added three new supplied Raiders celebration images to Mystery Box Settings while retaining the existing Raiders image and animated GIF choices.
-- Tool Family Countdown now expands vertically to fill the entire Status Carousel frame.
-- Family/codename cells and shipping-progress cells are narrower so the six family rows can be taller and easier to read.
-- Live Tool Carousel card now fills its frame more completely.
-- Tool identity fields below the photo are grouped in a standard blue command-center frame and enlarged for readability.
-- Progress sections have increased vertical spacing and larger progress tracks.
-- Only the outer live tool card carries schedule-performance color: purple=Ahead, red=Behind/Critical, green=On Schedule.
-- Internal information, FI checklist and Lead/Admin panels use the standard blue command-center framing instead of inheriting the purple schedule color.
+Key fixes:
+- Entire Live Operations status frame opens only its source center; inner rows/tools are display-only.
+- Operational Focus / Auto Live labels removed from the rotating frame.
+- Global body gutters and spacing aligned with the status bars.
+- Fluid full-width shell and responsive reflow for browser zoom changes.
+- Reference Center -> Action Center navigation hard-refreshes the routed body.
+- Quarter informational boxes and family TOTAL boxes color coded.
+- Family code names shown uppercase.
+- Administration Center can upload/replace/reset tool family photos.
 
-All V4.5.0 shared Daily/Morning Update, automatic Lead/Admin progress, alert logic, Tool Editor routing, Add Tool, save/reopen, reset, and test-dataset behavior remain intact.
+
+## V4.8.0 Production Workflow Polish
+- Weekday and Weekend Priority editors now show UTID, Priority, Model, Sales Order, Customer, MFG Ship Date, Cleanroom, Tool Assignment and Notes. Master tool fields updated here stay synchronized.
+- Morning Meeting supports multiple Action / Reminder / Alert rows per tool and multiple general rows.
+- Saved Morning Meeting drafts can be resumed; Start/Resume button label reflects draft state. Completing a meeting creates actions once and removes the draft.
+- Tool Center selected-tool header now uses `UTID — CODENAME — QUARTER` without the redundant word TOOL.
+- Retains V4.7 navigation, responsive layout, Live Operations frame routing, status color coding, uppercase code names and Administration tool-photo management.
