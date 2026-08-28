@@ -58,3 +58,108 @@ footer{border-color:var(--accent);box-shadow:inset 0 2px rgba(var(--accent-rgb),
 @media(max-width:1546px){.app-frame{width:calc(100% - 24px)}}
 @media(max-width:1100px){.hero-left,.hero-right{font-size:19px}.hero-center img{max-height:50px}.main-nav{overflow-x:auto;display:flex}.main-nav button{flex:1 0 120px}.volunteer-display,.volunteer-editor{grid-template-columns:1fr}.meeting-snapshot{grid-template-columns:repeat(2,1fr)}}
 .volunteer-display-row{display:grid;grid-template-columns:1fr .8fr 1.5fr;gap:8px;padding:7px 4px;border-bottom:1px solid #24485d;font-size:10px}.volunteer-display-row span:last-child{white-space:pre-wrap}.field input[readonly]{opacity:.9;color:#9fd4ea;background:#061522}
+
+/* V3.4.0 Production Stability — 2026-08-27 */
+:root{--max:1510px}
+body{overflow-x:hidden}
+.app-frame{width:calc(100% - 28px);max-width:var(--max);min-height:calc(100vh - 8px);display:flex;flex-direction:column;margin:0 auto}
+.sticky-shell{flex:0 0 auto}
+main{flex:1 0 auto;min-height:500px;padding:12px 0 0}
+footer{flex:0 0 auto;margin-top:auto}
+
+/* Header stays large but always fits its assigned zone. */
+.hero{height:76px;grid-template-columns:minmax(0,1fr) 180px minmax(0,1fr)}
+.hero-left,.hero-right{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:clamp(17px,1.55vw,24px);line-height:1;padding-left:26px;padding-right:26px}
+.hero-center img{max-height:56px;max-width:142px}
+
+/* Main and page navigation must fit at 100% zoom without browser scrollbars. */
+.main-nav{display:grid!important;grid-template-columns:repeat(10,minmax(0,1fr));overflow:hidden!important;height:38px}
+.main-nav button{min-width:0!important;width:100%;padding:0 3px!important;font-size:clamp(7px,.69vw,10px)!important;line-height:1.05;overflow:hidden;text-overflow:ellipsis}
+.pagebar{display:flex;min-width:0;overflow:hidden}
+.subnav{flex:1 1 auto;min-width:0;overflow:hidden!important;display:flex}
+.subnav button{flex:1 1 auto;min-width:0;padding:0 8px;font-size:clamp(8px,.72vw,11px);overflow:hidden;text-overflow:ellipsis}
+.page-actions{flex:0 0 auto;min-width:0;overflow:hidden!important}
+.page-actions button{padding:0 11px;font-size:clamp(8px,.74vw,11px)}
+.env-chip{flex:0 1 auto;min-width:0;padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* Consistent page frame/height even for short pages such as Search and Archive. */
+.search-frame,.status-workspace,.shipping-frame,.fleet-frame,.action-frame{min-height:150px}
+body[data-center="search"] main,body[data-center="archive"] main,body[data-center="reference"] main,body[data-center="meeting"] main{min-height:500px}
+.panel{border-color:color-mix(in srgb,var(--accent) 70%,#1b4d6d)}
+
+/* Daily update keeps fields readable in one contained card. */
+.daily-grid{grid-template-columns:1.05fr .72fr .78fr 1.08fr 1.45fr 1.45fr 1.08fr .92fr;gap:5px}
+.daily-wide{grid-column:span 4}
+.daily-nc-day{display:flex!important;flex-direction:row!important;align-items:center;gap:4px!important;color:#ff7084!important;font-size:8px!important}
+.daily-nc-day input{width:50px!important;padding:3px!important}
+.daily-shipping{grid-column:1/-1}
+
+/* Email-style Morning Status matches the operational email, not a dashboard. */
+.email-match .email-row{display:block;padding:7px 10px}
+.email-match .email-main{font-size:11px;line-height:1.35;font-weight:800}
+.email-match .lamp-hours{color:#ffd35a;font-weight:900}
+.email-match .email-escalated-head{color:#ff6a7d;font-weight:900}
+.email-match .reduced-process{color:#ff7c8f;font-weight:900}
+.email-match .email-latest{color:#76bce8;margin-top:3px;padding-left:4px;font-weight:700}
+.email-match .email-nc{color:#76bce8;margin-top:2px;padding-left:4px}
+.email-match .email-nc.escalated{color:#ff687d}
+.email-match .email-poa{color:#ffd35a;margin-top:2px;padding-left:4px}
+.email-match .email-tags,.email-match .email-num{display:none!important}
+
+/* Shipping Center: one clean update action per packing tool. */
+.handoff-open{white-space:nowrap;border:1px solid var(--green)!important;color:#a9f5d2!important;background:rgba(36,217,139,.08)!important}
+.handoff-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:10px 0}
+.handoff-grid label,.modal-notes-label{display:flex;flex-direction:column;gap:4px;color:#9bb9cb;font-size:9px;font-weight:900}
+.handoff-grid input,.modal-notes-label textarea{width:100%;background:#020b13;color:#fff;border:1px solid #2b5873;padding:7px}
+.modal-notes-label textarea{min-height:80px;resize:vertical}
+
+/* Standard Command Center modal forms replace browser prompts. */
+.modal-card{max-height:90vh;overflow:auto}
+.modal-form{min-width:0}
+.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:12px}
+.modal-form .field select,.modal-form .field input,.modal-form .field textarea{width:100%;background:#020b13;color:#fff;border:1px solid #2b5873;padding:7px}
+
+/* Mystery reveal: X / Esc / backdrop only; no redundant unlock/close copy. */
+.mystery-kicker,.mystery-close{display:none!important}
+.modal-x{z-index:5;width:34px;height:34px;font-size:26px;line-height:30px;cursor:pointer;pointer-events:auto}
+.mystery-celebration h1{margin-top:0}
+
+/* Administration production/test controls and mystery configuration. */
+.admin-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.mode-banner{border:1px solid #315a75;padding:10px;font-weight:900}
+.mode-banner.production{border-color:var(--green);color:#9ef0c9}
+.mode-banner.test{border-color:var(--amber);color:#ffd56a}
+.mystery-admin-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.mystery-admin-card{border:1px solid #28516b;background:#061624;padding:10px}
+.mystery-admin-card h3{color:var(--accent)}
+.mystery-admin-card label{display:grid;grid-template-columns:130px 1fr;align-items:center;gap:6px;margin:5px 0;color:#9bb9cb;font-size:9px;font-weight:900}
+.mystery-admin-card input,.mystery-admin-card select{width:100%;background:#020b13;color:#fff;border:1px solid #2b5873;padding:6px}
+.btn.danger{color:#ff8293;border:1px solid #7c3040}
+
+@media(max-width:1100px){
+  .hero{grid-template-columns:minmax(0,1fr) 150px minmax(0,1fr)}
+  .hero-left,.hero-right{font-size:clamp(15px,2vw,19px);padding-left:18px;padding-right:18px}
+  .hero-center img{max-height:50px;max-width:120px}
+  .main-nav{display:grid!important;overflow:hidden!important}
+  .main-nav button{font-size:7px!important;padding:0 1px!important}
+  .subnav button{font-size:8px;padding:0 4px}
+  .page-actions button{font-size:8px;padding:0 7px}
+  .env-chip{display:none}
+  .daily-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .daily-wide{grid-column:span 2}
+  .handoff-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .mystery-admin-grid{grid-template-columns:1fr}
+}
+
+/* V3.5 Lead/Admin workload intelligence */
+.live-workspace{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(340px,.75fr);gap:12px;align-items:stretch}.live-workspace>.panel{margin:0}.live-card{grid-template-columns:150px minmax(190px,.65fr) minmax(260px,1fr) minmax(330px,1.15fr)!important}.live-tasks{border-left:1px solid rgba(255,255,255,.14);padding:10px 12px;min-width:0}.live-task-head{display:flex;justify-content:space-between;gap:8px;margin-bottom:7px;font-size:12px}.live-task-head span{opacity:.75}.next-task{display:grid;grid-template-columns:22px 1fr auto;gap:7px;align-items:center;padding:6px 7px;margin:4px 0;border:1px solid rgba(255,255,255,.13);border-radius:5px;background:rgba(255,255,255,.035);font-size:11px}.next-task>b{border-radius:50%;text-align:center}.next-task em{font-style:normal;font-size:9px;opacity:.8}.next-task.progress{border-color:#d4a72c}.next-task.tbd{border-color:#f28c28}.view-all-tasks{width:100%;margin-top:7px}.tasks-complete{padding:18px 8px;text-align:center;font-weight:800}.focus-panel{min-height:100%}.live-auto{font-size:10px;letter-spacing:1px;opacity:.7}.focus-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:8px 0 12px}.focus-summary>div{text-align:center;border:1px solid rgba(255,255,255,.13);padding:10px 4px}.focus-summary b{display:block;font-size:24px}.focus-summary span{font-size:9px}.focus-list{display:grid;gap:6px}.focus-item{display:grid;grid-template-columns:90px 1fr;gap:7px;padding:8px;border-left:4px solid #f28c28;background:rgba(255,255,255,.04);cursor:pointer;font-size:11px}.focus-item.critical{border-left-color:#e54848}.focus-clear{padding:22px 8px;text-align:center;font-weight:800}.lead-task-list{display:grid;gap:4px;max-height:520px;overflow:auto}.lead-task-row{display:grid;grid-template-columns:34px minmax(220px,1.4fr) 150px minmax(180px,1fr);gap:7px;align-items:center;padding:5px;border-bottom:1px solid rgba(255,255,255,.08)}.lead-order{text-align:center;font-weight:800;opacity:.6}.lead-name{font-size:12px}.lead-task-row select,.lead-task-row input{min-width:0}.lead-editor{margin-top:8px}.lead-modal{width:min(1050px,92vw)}
+@media(max-width:1100px){.live-workspace{grid-template-columns:1fr}.live-card{grid-template-columns:130px 1fr 1.2fr!important}.live-tasks{grid-column:1/-1;border-left:0;border-top:1px solid rgba(255,255,255,.14)}.lead-task-row{grid-template-columns:30px 1fr 130px}.lead-task-row input{grid-column:2/-1}}
+.meeting-task-list{display:grid;gap:6px}.meeting-task-row{display:grid;grid-template-columns:70px minmax(260px,1fr) 160px 150px 38px;gap:7px;align-items:center}.meeting-task-row>b{font-size:10px;opacity:.7}
+/* V3.5 report/screenshot view: share the report, not the application chrome */
+body.screenshot-mode .sticky-shell,body.screenshot-mode footer{display:none!important}body.screenshot-mode{background:#101419}body.screenshot-mode .app-frame{max-width:1120px!important;margin:0 auto!important}body.screenshot-mode main{padding:10px!important}body.screenshot-mode main>.panel,body.screenshot-mode main>.live-workspace{margin-top:0!important}body.screenshot-mode .btn,body.screenshot-mode button:not(#exitScreenshot),body.screenshot-mode .meeting-ready{display:none!important}body.screenshot-mode .panel{box-shadow:none!important}
+@media(max-width:900px){.meeting-task-row{grid-template-columns:60px 1fr}.meeting-task-row input,.meeting-task-row button{grid-column:2}}
+
+/* V3.6 operational carousel + FI checklist matrix */
+.live-card-v36{display:grid!important;grid-template-columns:minmax(285px,32%) minmax(0,68%)!important;min-height:390px}.live-identity{border-right:1px solid rgba(255,255,255,.14);display:flex;flex-direction:column;min-width:0}.live-codename{text-align:center;font-size:22px;font-weight:950;letter-spacing:2px;padding:8px 6px 5px;color:#fff}.live-card-v36 .live-photo{height:205px;border-right:0;border-bottom:1px solid #1f516e;padding:6px}.live-card-v36 .live-photo img{height:195px}.live-card-v36 .live-info{padding:5px 12px 10px}.live-card-v36 .kv{padding:3px 0;font-size:10px}.live-ops{padding:10px 12px;min-width:0}.compact-progress{max-width:88%;padding:0}.compact-progress .progress-item{margin-bottom:7px}.live-work-panels{display:grid;grid-template-columns:minmax(250px,.8fr) minmax(330px,1.2fr);gap:10px;margin-top:8px}.live-fi-panel,.live-card-v36 .live-tasks{border:1px solid rgba(255,255,255,.14);padding:9px 10px;background:rgba(255,255,255,.025);min-width:0}.live-card-v36 .live-tasks{border-left:1px solid rgba(255,255,255,.14)}.active-fi{display:grid;grid-template-columns:1fr auto;gap:8px;padding:6px 7px;margin:4px 0;border:1px solid #d4a72c;background:rgba(212,167,44,.05);font-size:10px}.active-fi em{font-style:normal;font-size:9px;color:#f3c84c}.no-active-fi{padding:16px 6px;text-align:center;font-size:10px;color:#f28c28;font-weight:800}.fi-checklist-list{display:grid;gap:3px;max-height:540px;overflow:auto}.fi-checklist-row{display:grid;grid-template-columns:34px minmax(280px,1fr) 160px;gap:8px;align-items:center;padding:5px;border-bottom:1px solid rgba(255,255,255,.08)}.fi-checklist-row small{display:block;color:#91adbd;font-size:9px;margin-top:2px}.fi-check-order{text-align:center;font-weight:800;opacity:.55}.fi-editor{margin-top:8px}.fi-editor>.panel-head b{font-size:9px;color:#9bc4d8}
+@media(max-width:1150px){.live-card-v36{grid-template-columns:300px minmax(0,1fr)!important}.live-work-panels{grid-template-columns:1fr}.compact-progress{max-width:100%}}
+@media(max-width:800px){.live-card-v36{grid-template-columns:1fr!important}.live-identity{border-right:0}.live-work-panels{grid-template-columns:1fr}.fi-checklist-row{grid-template-columns:28px 1fr 125px}}
