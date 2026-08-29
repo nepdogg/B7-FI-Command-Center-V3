@@ -1215,3 +1215,82 @@ body.presentation-mode .snapshot-body::-webkit-scrollbar{display:none!important;
 body.presentation-mode .operations-dual-grid{min-height:0!important;height:auto!important;margin-bottom:0!important}
 body.presentation-mode .snapshot-panel,
 body.presentation-mode .operations-tool-carousel .live-panel{margin-bottom:0!important}
+
+
+/* V5.3.1 — final Live Operations polish.
+   Keep Presentation Mode read-only, but leave a normal visible cursor; keep status-bar borders
+   fully inside the fullscreen viewport; and restore the compact centered Mystery Reveal modal. */
+body.presentation-mode,
+body.presentation-mode *,
+body.presentation-mode *::before,
+body.presentation-mode *::after{
+  cursor:default!important;
+}
+body.presentation-mode .status-stack{
+  width:calc(100% - 4px)!important;
+  margin:2px 2px 0!important;
+  padding:0!important;
+  overflow:visible!important;
+}
+body.presentation-mode .status-bar{
+  width:100%!important;
+  max-width:100%!important;
+  margin-left:0!important;
+  margin-right:0!important;
+  box-sizing:border-box!important;
+}
+
+/* Mystery Reveal is a contained celebration card, independent of Presentation/Screenshot sizing. */
+.modal-card:has(.mystery-celebration){
+  width:min(760px,calc(100vw - 48px))!important;
+  max-width:min(760px,calc(100vw - 48px))!important;
+  max-height:calc(100vh - 48px)!important;
+  padding:14px 16px 16px!important;
+  overflow:hidden!important;
+  border-color:var(--purple)!important;
+  box-shadow:0 0 28px rgba(154,98,232,.42)!important;
+}
+.modal-card:has(.mystery-celebration) #modalBody{
+  overflow:hidden!important;
+  min-height:0!important;
+}
+.mystery-celebration{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:5px!important;
+  text-align:center!important;
+  max-height:calc(100vh - 80px)!important;
+}
+.mystery-celebration h1{
+  font-size:24px!important;
+  line-height:1.05!important;
+  margin:0 38px 5px!important;
+}
+.mystery-celebration img{
+  width:auto!important;
+  max-width:100%!important;
+  height:auto!important;
+  max-height:52vh!important;
+  object-fit:contain!important;
+  margin:0 auto!important;
+  border:1px solid var(--purple)!important;
+}
+.mystery-celebration .raiders-call{
+  font-size:34px!important;
+  line-height:1.05!important;
+  margin:7px 0 1px!important;
+}
+.mystery-celebration h2{
+  font-size:18px!important;
+  margin:0!important;
+}
+.mystery-celebration p{
+  margin:2px 0 0!important;
+  font-size:12px!important;
+}
+@media(max-height:760px){
+  .mystery-celebration img{max-height:44vh!important}
+  .mystery-celebration .raiders-call{font-size:28px!important}
+}

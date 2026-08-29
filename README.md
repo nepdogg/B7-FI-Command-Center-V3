@@ -1,15 +1,13 @@
-# B7 FI Command Center V5.3.0 — Live Operations Locked
+# B7 FI Command Center V5.3.1 — Live Operations Final Lock
 
-Final Live Operations presentation-mode and sticky-shell fix.
+Final Live Operations polish build.
 
-## V5.3.0 changes
-- Presentation Mode is a true non-interactive wallboard.
-- Removed the presentation-mode X button; use **Esc** to leave browser fullscreen.
-- Disabled mouse/touch click behavior while Presentation Mode is active.
-- Source arrows and reveal controls are hidden in Presentation Mode.
-- Presentation Mode suppresses page/internal scrollbars and automatically fits the Live Operations report to the available fullscreen viewport.
-- Both rotating Live Operations carousels continue to advance in Presentation Mode.
-- Screenshot Mode behavior is unchanged.
-- Restored reliable site-wide fixed/sticky behavior for the full top shell: header, Center navigation, alert/status bars, and page-action navigation remain visible while normal pages scroll.
-
-Live Operations layout/data behavior from V5.2.9 is preserved.
+## V5.3.1 changes
+- Presentation Mode keeps the normal mouse cursor visible everywhere while all page content remains non-interactive.
+- Presentation Mode status bars are inset by 2 px so the complete colored border is visible on all four edges in fullscreen.
+- Mystery Reveal popup restored to a compact centered viewport-safe celebration card.
+- Reveal image is constrained to the viewport and the congratulations text remains visible beneath it.
+- Reveal unlock logic is unchanged.
+- Screenshot Mode is unchanged.
+- Sticky header/site shell behavior from V5.3.0 is unchanged.
+- All Live Operations data, carousel, archive/restore, lifecycle and progress behavior from V5.3.0 is preserved.
