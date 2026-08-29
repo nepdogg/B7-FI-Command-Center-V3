@@ -1929,3 +1929,133 @@ body.presentation-mode .body-shell{margin-top:0!important}
 body.screenshot-mode .app-footer,
 body.presentation-mode .app-footer{margin-top:0!important;margin-bottom:0!important}
 \n\n/* V5.4.8 — FINAL SHELL BORDER / GAP CORRECTION.\n   Each major application layer is a fully framed independent element. */\n:root{--shell-section-gap:6px;--shell-frame:#1a4c69}\n\n/* Remove any residual document/application space below the footer. */\nhtml,body{padding-bottom:0!important;margin-bottom:0!important}\nbody:not(.screenshot-mode):not(.presentation-mode) .app-frame{\n  padding-bottom:0!important;\n  margin-bottom:0!important;\n}\n\n/* The header and navigation are siblings: retain the gap and force the nav's top edge visible. */\nbody:not(.screenshot-mode):not(.presentation-mode) .sticky-shell>.main-nav{\n  border:1px solid var(--shell-frame)!important;\n  border-top:1px solid var(--shell-frame)!important;\n  box-shadow:inset 0 1px 0 rgba(79,174,229,.22)!important;\n}\n\n/* The page-action/navigation bar is also a fully framed independent layer. */\nbody:not(.screenshot-mode):not(.presentation-mode) .sticky-shell>.pagebar{\n  border:1px solid var(--shell-frame)!important;\n}\n\n/* Body begins after a true separator and has an unmistakable top frame. */\nbody:not(.screenshot-mode):not(.presentation-mode) .body-shell{\n  margin-top:var(--shell-section-gap)!important;\n  border:1px solid var(--shell-frame)!important;\n  border-top:1px solid var(--shell-frame)!important;\n  box-shadow:inset 0 1px 0 rgba(79,174,229,.18)!important;\n  position:relative!important;\n  z-index:1!important;\n}\n\n/* Put the separator above the footer — never below it. */\nbody:not(.screenshot-mode):not(.presentation-mode) .app-footer{\n  margin-top:var(--shell-section-gap)!important;\n  margin-bottom:0!important;\n  border:1px solid var(--shell-frame)!important;\n  border-top:1px solid var(--shell-frame)!important;\n  box-shadow:inset 0 1px 0 rgba(79,174,229,.18)!important;\n}\n\n/* Ensure no child/footer rule can recreate a trailing strip after the application. */\nbody:not(.screenshot-mode):not(.presentation-mode) .app-frame>.app-footer:last-child{\n  margin-bottom:0!important;\n}\nbody:not(.screenshot-mode):not(.presentation-mode) .app-frame::after{content:none!important;display:none!important}\n\n/* Capture modes keep their established full-frame behavior. */\nbody.screenshot-mode .body-shell,body.presentation-mode .body-shell{box-shadow:none!important}\nbody.screenshot-mode .app-footer,body.presentation-mode .app-footer{box-shadow:none!important}\n
+
+/* V5.4.9 — ACTIVE CENTER THEME + FINAL VISUAL FRAMEWORK LOCK
+   One accent drives the active Center while every major shell layer remains independent. */
+:root{
+  --shell-section-gap:6px;
+  --shell-separator-bg:#03101c;
+}
+
+/* Active Center theme: both header wings and both footer wings inherit the page accent. */
+body:not(.screenshot-mode):not(.presentation-mode) .hero-left{
+  background:linear-gradient(115deg,var(--accent) 0 86%,transparent 86%)!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .hero-right{
+  background:linear-gradient(65deg,transparent 0 14%,var(--accent) 14% 100%)!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer .footer-left{
+  background:linear-gradient(115deg,var(--accent) 0 86%,transparent 86%)!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer .footer-right{
+  background:linear-gradient(65deg,transparent 0 14%,var(--accent) 14% 100%)!important;
+}
+
+/* Use the Center accent consistently for application-frame/navigation accents. */
+body:not(.screenshot-mode):not(.presentation-mode) .main-nav,
+body:not(.screenshot-mode):not(.presentation-mode) .pagebar,
+body:not(.screenshot-mode):not(.presentation-mode) .body-shell{
+  border-color:color-mix(in srgb,var(--accent) 68%,#173d57)!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .panel,
+body:not(.screenshot-mode):not(.presentation-mode) .tool-section-head,
+body:not(.screenshot-mode):not(.presentation-mode) .report-title,
+body:not(.screenshot-mode):not(.presentation-mode) .meeting-title{
+  border-color:color-mix(in srgb,var(--accent) 66%,#1b4d6d)!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .main-nav button.active,
+body:not(.screenshot-mode):not(.presentation-mode) .subnav button.active{
+  color:#fff!important;
+  background:rgba(var(--accent-rgb),.24)!important;
+  box-shadow:inset 0 -3px var(--accent)!important;
+}
+
+/* Header: preserve the floating KLA center by removing only the bottom edge. */
+body:not(.screenshot-mode):not(.presentation-mode) .hero{
+  border:1px solid color-mix(in srgb,var(--accent) 66%,#173d57)!important;
+  border-bottom:0!important;
+  box-shadow:none!important;
+}
+
+/* Explicit shell stack.  Gaps are real background space, not margins covered by sibling borders. */
+body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:var(--shell-section-gap)!important;
+  padding:0!important;
+  margin:0!important;
+  background:var(--shell-separator-bg)!important;
+  box-shadow:none!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell>.hero,
+body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell>.main-nav,
+body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell>.status-stack,
+body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell>.pagebar{
+  margin:0!important;
+  flex:0 0 auto!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .status-stack{
+  gap:var(--shell-section-gap)!important;
+  background:var(--shell-separator-bg)!important;
+}
+
+/* Navigation is its own framed layer, including the top edge beneath the header gap. */
+body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell>.main-nav{
+  border:1px solid color-mix(in srgb,var(--accent) 68%,#173d57)!important;
+  box-shadow:none!important;
+}
+
+/* Page navigation is independent from the body; do not let a shadow/outline bridge the gap. */
+body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell>.pagebar{
+  border:1px solid color-mix(in srgb,var(--accent) 68%,#173d57)!important;
+  box-shadow:none!important;
+  outline:0!important;
+}
+
+/* Body is a standalone framed workspace with exactly one standard gap above it. */
+body:not(.screenshot-mode):not(.presentation-mode) .body-shell{
+  margin:var(--shell-section-gap) 0 0!important;
+  border:1px solid color-mix(in srgb,var(--accent) 68%,#173d57)!important;
+  box-shadow:none!important;
+  outline:0!important;
+  background:#03101c!important;
+  position:relative!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .body-shell::before,
+body:not(.screenshot-mode):not(.presentation-mode) .body-shell::after{
+  content:none!important;
+  display:none!important;
+}
+
+/* Footer floats like the header KLA treatment: gap above, no top/bottom horizontal border. */
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer{
+  margin:var(--shell-section-gap) 0 0!important;
+  border-left:1px solid color-mix(in srgb,var(--accent) 68%,#173d57)!important;
+  border-right:1px solid color-mix(in srgb,var(--accent) 68%,#173d57)!important;
+  border-top:0!important;
+  border-bottom:0!important;
+  box-shadow:none!important;
+  outline:0!important;
+}
+
+/* No trailing strip below the footer. */
+html,body{padding-bottom:0!important;margin-bottom:0!important}
+body:not(.screenshot-mode):not(.presentation-mode) .app-frame{
+  padding-bottom:0!important;
+  margin-bottom:0!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .app-frame>.app-footer:last-child{
+  margin-bottom:0!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .app-frame::after{
+  content:none!important;
+  display:none!important;
+}
+
+/* Capture modes keep their established report/fullscreen geometry. */
+body.screenshot-mode .hero,
+body.presentation-mode .hero,
+body.screenshot-mode .app-footer,
+body.presentation-mode .app-footer{
+  box-shadow:none!important;
+}
