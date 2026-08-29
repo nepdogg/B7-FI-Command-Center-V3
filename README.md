@@ -1,4 +1,4 @@
-# B7 FI Command Center V5.2.0 — Live Operations Finalization
+# B7 FI Command Center V5.2.1 — Live Operations Finalization
 
 This build consolidates the Live Operations design and workflow corrections from real-data testing.
 
