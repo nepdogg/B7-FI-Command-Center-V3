@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='5.4.7', BUILD='20260829-V5.4.7-VISUAL-FRAMEWORK-LOCK';
+const VERSION='5.4.8', BUILD='20260829-V5.4.8-VISUAL-FRAMEWORK-FINAL-SHELL-FIX';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI 200 Final Pre-Pack and QA';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];

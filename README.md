@@ -1,3 +1,7 @@
+# B7 FI Command Center V5.4.8 — Visual Framework Final Shell Fix
+
+Final shell-polish build based on V5.4.7. This release forces complete top borders on Main Navigation and Body Workspace, keeps the standard separator gap between Page Navigation and Body, moves the footer separator space above the footer, and removes residual space below the footer. Existing V5.x localStorage data remains compatible.
+
 # B7 FI Command Center V5.4.7 — Visual Framework Lock
 
 This build is the visual-framework lock candidate. It keeps the V5.4.6 tool-card, badge, cycle-time, multi-quarter, history, workflow, screenshot, and presentation behavior and applies the final site-wide shell-spacing polish.
