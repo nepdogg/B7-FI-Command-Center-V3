@@ -1650,3 +1650,20 @@ body.presentation-mode .operations-tool-carousel .live-panel{
   body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell{left:4px!important;right:4px!important}
   body[data-center="operations"] .live-card-v52{grid-template-columns:1fr!important;grid-template-rows:auto!important}
 }
+
+
+/* V5.4.5 key process badges + day-based cycle time */
+body[data-center="operations"] .photo-panel .key-test-badges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;width:100%;margin-top:6px}
+body[data-center="operations"] .key-test-badge{min-height:28px;border:1px solid #315266;background:#0a1a25;padding:4px 5px;display:flex;align-items:center;justify-content:space-between;gap:5px;font-size:7px;font-weight:900;letter-spacing:.25px}
+body[data-center="operations"] .key-test-badge b{font-size:7px;color:#9bb4c5;white-space:nowrap}
+body[data-center="operations"] .key-test-badge span{font-size:7px;text-align:right;white-space:nowrap}
+body[data-center="operations"] .key-test-badge.idle{opacity:.48}
+body[data-center="operations"] .key-test-badge.active{border-color:#ffb000;box-shadow:inset 0 0 9px rgba(255,176,0,.10)}
+body[data-center="operations"] .key-test-badge.active span{color:#ffbf2f}
+body[data-center="operations"] .key-test-badge.done{border-color:#20d990;box-shadow:inset 0 0 9px rgba(32,217,144,.10)}
+body[data-center="operations"] .key-test-badge.done span{color:#39eaa2}
+body[data-center="operations"] .key-test-badge.failed{border-color:#ff365d;box-shadow:inset 0 0 9px rgba(255,54,93,.12)}
+body[data-center="operations"] .key-test-badge.failed span{color:#ff5574}
+body[data-center="operations"] .cycle-day-item .progress-head b{min-width:55px;text-align:right}
+body[data-center="operations"] .status-cycle-box{justify-content:space-between!important}
+body[data-center="operations"] .status-cycle-box .cycle-status-grid{margin-top:auto!important}
