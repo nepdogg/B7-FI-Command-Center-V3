@@ -1,13 +1,18 @@
-# B7 FI Command Center V5.3.1 — Live Operations Final Lock
+# B7 FI Command Center V5.4.1 — Operational Workflow Update
 
-Final Live Operations polish build.
+Consolidated test build based on V5.4.0. It retains the Operational Logic Upgrade and adds the latest workflow rules discovered in production testing.
 
-## V5.3.1 changes
-- Presentation Mode keeps the normal mouse cursor visible everywhere while all page content remains non-interactive.
-- Presentation Mode status bars are inset by 2 px so the complete colored border is visible on all four edges in fullscreen.
-- Mystery Reveal popup restored to a compact centered viewport-safe celebration card.
-- Reveal image is constrained to the viewport and the congratulations text remains visible beneath it.
-- Reveal unlock logic is unchanged.
-- Screenshot Mode is unchanged.
-- Sticky header/site shell behavior from V5.3.0 is unchanged.
-- All Live Operations data, carousel, archive/restore, lifecycle and progress behavior from V5.3.0 is preserved.
+## Latest changes
+- Shipped tools remain visible in Tool Center, Shipping Center, Live Operations, quarter totals and historical records.
+- Shipped tools are automatically excluded from current Weekday/Weekend Morning Status, Morning Meeting workspaces, Weekday/Weekend Priority lists and Systems Requiring Attention.
+- Morning Status ordering is now automatic and deterministic:
+  1. all non-Regera/Celestiq tools, ascending UTID;
+  2. Regera tools, ascending UTID;
+  3. Celestiq tools, ascending UTID.
+- The same automatic order is used by Weekday Status, Weekend Status, Daily Update and Morning Meeting. Manual Morning Status reorder controls are no longer needed.
+- Priority lists rebuild from the current operational workload so a newly shipped tool drops out automatically without deleting its quarter record.
+
+## Retained from V5.4.0
+Multi-quarter Tool Center navigation and Active Quarter management, Engineering lifecycle status, FI cycle-time tracking and management target averages, sixth Live Operations Cycle Time rotation page, FI handoff/Engineering/forecast date fields, Action Center editable history, clickable immutable Status History snapshots, compact global save notifications, form clipping fixes, dense one-row Shipping Center formatting, Status screenshot cleanup, and Reveal-column preservation in Screenshot/Presentation modes.
+
+Existing localStorage key remains `b7fi-command-center-v3`, so existing V5.x browser data is preserved and normalized forward.
