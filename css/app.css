@@ -2060,51 +2060,129 @@ body.presentation-mode .app-footer{
   box-shadow:none!important;
 }
 
+/* V5.5.1 — VISUAL FRAMEWORK POLISH + REPORT TITLE STANDARDIZATION */
+:root{--shell-section-gap:6px}
 
-/* V5.5.0 — FINAL FRAMEWORK SEPARATION PASS
-   Page Navigation, Body and Footer are visibly independent layers. */
-:root{--shell-section-gap:8px;--shell-separator-bg:#020914}
-
-/* No outer shell edge/shadow may visually bridge Page Navigation to Body. */
-body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell{
-  border-bottom:0!important;
-  box-shadow:none!important;
-  background:var(--shell-separator-bg)!important;
-}
-body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell>.pagebar{
-  margin:0!important;
-  box-shadow:none!important;
+/* The outer application wrapper must never bridge the intentional shell gaps.
+   Every major layer owns its own border; the wrapper is only a layout container. */
+body:not(.screenshot-mode):not(.presentation-mode) .app-frame{
+  border:0!important;
   outline:0!important;
+  box-shadow:none!important;
+  background:#03101c!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell{
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
 }
 
-/* Create a true empty separator after the fixed shell, then start the Body frame. */
+/* Keep every major layer visually independent with the same separator space. */
+body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell{
+  gap:var(--shell-section-gap)!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .status-stack{
+  gap:var(--shell-section-gap)!important;
+}
 body:not(.screenshot-mode):not(.presentation-mode) .body-shell{
   margin-top:var(--shell-section-gap)!important;
-  box-shadow:none!important;
-  outline:0!important;
 }
-
-/* Give carousel/page content breathing room before the Body's own bottom frame. */
-body:not(.screenshot-mode):not(.presentation-mode) .body-workspace{
-  padding-bottom:var(--shell-section-gap)!important;
-}
-body:not(.screenshot-mode):not(.presentation-mode) .body-workspace> :last-child{
-  margin-bottom:0!important;
-}
-
-/* Footer begins only after the same true separator; no footer horizontal edge can bridge it. */
 body:not(.screenshot-mode):not(.presentation-mode) .app-footer{
   margin-top:var(--shell-section-gap)!important;
   margin-bottom:0!important;
+}
+
+/* Header/footer floating KLA treatment.  Do not draw horizontal lines through the center logo. */
+body:not(.screenshot-mode):not(.presentation-mode) .hero{
+  border-bottom:0!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer{
+  border-left:1px solid color-mix(in srgb,var(--accent) 68%,#173d57)!important;
+  border-right:1px solid color-mix(in srgb,var(--accent) 68%,#173d57)!important;
   border-top:0!important;
   border-bottom:0!important;
   box-shadow:none!important;
-  outline:0!important;
 }
 
-/* The application ends at the footer — never reserve a trailing separator. */
-html,body,
-body:not(.screenshot-mode):not(.presentation-mode) .app-frame{
-  padding-bottom:0!important;
-  margin-bottom:0!important;
+/* Update Center subnavigation is fully coordinated to the Update Center purple theme.
+   Current-quarter identity is conveyed by the text; the accent remains purple. */
+body[data-center="update"] .pagebar{
+  border-color:var(--accent)!important;
 }
+body[data-center="update"] .subnav button,
+body[data-center="update"] .subnav .quarter-nav,
+body[data-center="update"] .subnav .env-chip{
+  border-color:color-mix(in srgb,var(--accent) 62%,#173d57)!important;
+}
+body[data-center="update"] .subnav button.active,
+body[data-center="update"] .subnav .quarter-nav.active,
+body[data-center="update"] .subnav .quarter-nav.current-quarter{
+  background:rgba(var(--accent-rgb),.25)!important;
+  box-shadow:inset 0 -3px var(--accent)!important;
+  border-bottom-color:var(--accent)!important;
+  color:#fff!important;
+}
+body[data-center="update"] .subnav .quarter-nav.current-quarter:not(.active){
+  background:rgba(var(--accent-rgb),.10)!important;
+  box-shadow:inset 0 -2px color-mix(in srgb,var(--accent) 72%,transparent)!important;
+}
+
+/* Simple, consistent body report titles. */
+.center-page-title{
+  margin:0 0 8px!important;
+  min-height:42px!important;
+  display:flex!important;
+  align-items:center!important;
+  padding:0 16px!important;
+  font-size:17px!important;
+  font-weight:900!important;
+  letter-spacing:.35px!important;
+  text-transform:uppercase!important;
+}
+
+/* Screenshot mode uses one title only: PAGE NAME + DATE. */
+body.screenshot-mode .email-meta{display:none!important}
+
+/* The mystery/reveal state is part of the report and must remain visible in capture modes.
+   It stays display-only there. */
+body.screenshot-mode .snapshot-family .family-panel-v526,
+body.presentation-mode .snapshot-family .family-panel-v526{
+  width:100%!important;
+  max-width:100%!important;
+  overflow:hidden!important;
+}
+body.screenshot-mode .snapshot-family .family-panel-v526>.family-matrix.header,
+body.screenshot-mode .snapshot-family .family-rows-scroll .family-matrix,
+body.presentation-mode .snapshot-family .family-panel-v526>.family-matrix.header,
+body.presentation-mode .snapshot-family .family-rows-scroll .family-matrix{
+  grid-template-columns:minmax(118px,1.52fr) repeat(5,minmax(36px,.56fr)) minmax(82px,.92fr) 46px!important;
+  column-gap:3px!important;
+  width:100%!important;
+  min-width:0!important;
+}
+body.screenshot-mode .snapshot-family button.reveal-btn,
+body.presentation-mode .snapshot-family button.reveal-btn{
+  display:flex!important;
+  visibility:visible!important;
+  opacity:1!important;
+  min-width:42px!important;
+  width:auto!important;
+  align-items:center!important;
+  justify-content:center!important;
+  pointer-events:none!important;
+}
+body.screenshot-mode .snapshot-family .family-matrix.header>b:last-child,
+body.presentation-mode .snapshot-family .family-matrix.header>b:last-child{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  text-align:center!important;
+}
+body.screenshot-mode .snapshot-family .family-rows-scroll,
+body.presentation-mode .snapshot-family .family-rows-scroll{
+  overflow-x:hidden!important;
+}
+
+/* No hidden trailing document strip after the footer. */
+html,body{padding-bottom:0!important;margin-bottom:0!important}
+body:not(.screenshot-mode):not(.presentation-mode) .app-frame{padding-bottom:0!important;margin-bottom:0!important}
