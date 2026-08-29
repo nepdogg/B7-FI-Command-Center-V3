@@ -37,3 +37,12 @@ Built from the V4.9.0 stable real-data testing baseline after the first full wor
 6. Navigate Reference Center → Action Center and verify the Action body replaces the Reference body.
 7. Scroll a long Morning Status slide inside Live Operations without navigating away.
 8. Enter/exit Screenshot Mode on Status, Shipping, Priority, and Actions and verify consistent titles.
+
+
+## V5.1.0 Live Tool Status Grid
+- Live Tool Carousel reorganized into six equal panels in a 3 x 2 desktop grid.
+- Ship countdown title uses the tool alias and ship date includes weekday.
+- Schedule Health renamed FI Process.
+- Current Phase renamed Current System Status.
+- Added persistent Reduced Process checkbox to Tool Editor and Daily Update.
+- Reduced Process displays prominently beneath the tool photo and in Current System Status.
