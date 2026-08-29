@@ -1,4 +1,4 @@
-# B7 FI Command Center V5.2.6 — Live Operations Lockdown
+# B7 FI Command Center V5.2.7 — Live Operations Final
 
 Final Live Operations testing build.
 
@@ -11,3 +11,12 @@ Key changes:
 - Browser refresh restores the last Center/page.
 - Tool Editor now includes a guarded DELETE TOOL action for temporary/test tool removal.
 - Existing dynamic nine-tool-type behavior remains intact.
+
+
+## V5.2.7
+- Final Live Operations responsive layout pass.
+- Tool Shipping Progress now uses one shared responsive grid for header and rows.
+- Uniform row heights, box sizes, and border thicknesses.
+- Dedicated scrollbar gutter keeps the scrollbar away from Reveal.
+- Smaller desktop monitors tighten automatically at 100% browser zoom.
+- Preserves V5.2.6 routing persistence, delete-tool workflow, lifecycle states, and Live Operations logic.
