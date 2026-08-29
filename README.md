@@ -1,3 +1,3 @@
-# B7 FI Command Center V5.2.4 — Live Operations Lockdown Candidate
+# B7 FI Command Center V5.2.5 — Live Operations Final Test
 
-Final Live Operations refinement candidate: source-arrow-only snapshot navigation, health-driven outer tool frame, Reduced Process status tag, white Next FI emphasis, unified centered carousel controls, larger family progress counts, and locked/unlocked reveal icons.
+Built from V5.2.4. Adds the complete official Tool Type list (Targa, Panamera, Vanquish, Zephyr, Macan, Boxster, Regera, Celestiq, Taycan), dynamic family reporting support, final Live Operations state/color rules, shipped milestone presentation, distinct progress-bar colors, and unified Status/Tool carousel controls in the page action bar.

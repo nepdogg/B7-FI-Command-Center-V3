@@ -800,3 +800,32 @@ footer{margin-top:8px!important}
 .snapshot-family .reveal-btn{font-size:20px!important;line-height:1!important;display:flex!important;align-items:center!important;justify-content:center!important}
 .snapshot-family .reveal-btn:not(.unlocked){color:#a9c1d1!important}
 .snapshot-family .reveal-btn.unlocked{color:#fff!important;background:#3a2b69!important;border-color:#9b75ff!important}
+
+/* V5.2.5 final Live Operations testing pass */
+.live-card-v52.perf-purple{border-color:#9b5cff!important;box-shadow:0 0 10px rgba(155,92,255,.18)!important}
+.fill.blue{background:#2e78a0!important}
+/* FI is dynamic; Micro cyan; Lead/Admin amber; Packing cyan; shipped override remains green. */
+.live-progress .fill.amber{background:#ffb21a!important}
+.live-progress .fill.purple{background:#9b5cff!important}
+.live-progress .fill.red{background:#ff344f!important}
+.live-progress .fill.green{background:#20dd7c!important}
+/* Shipped packing milestones render operationally complete without altering stored history. */
+.milestone-pill.done{border-color:#20dd7c!important;color:#20dd7c!important;background:rgba(32,221,124,.08)!important}
+/* Live Operations rotating bodies are display-only. */
+.operations-status-carousel .snapshot-body,.operations-status-carousel .snapshot-scroll,.operations-status-carousel .snapshot-scroll *{cursor:default!important}
+.operations-status-carousel .snapshot-source-button,.operations-status-carousel button[data-reveal]{cursor:pointer!important}
+/* Carousel controls now live in the page action bar. */
+#pageActions:has(.ops-action-controls){display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;padding:4px 8px!important;min-height:34px!important;box-sizing:border-box!important}
+.ops-action-controls{display:flex;align-items:center;justify-content:center;gap:24px;flex:1 1 auto}
+.ops-control-group{display:grid;grid-template-columns:auto 34px 46px 54px 34px;align-items:center;gap:6px;color:#d9edf8;font-size:9px;font-weight:950;letter-spacing:.35px}
+.ops-control-group>b{color:#8fb9cf;margin-right:2px}
+.ops-control-group>span{text-align:center;white-space:nowrap;color:#fff}
+.ops-mini-btn,.ops-pause-btn{height:24px;border:1px solid #315a75;background:#071b2a;color:#fff;font-size:9px;font-weight:950;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center}
+.ops-mini-btn{width:34px}.ops-pause-btn{width:54px}.ops-mini-btn:hover,.ops-pause-btn:hover{border-color:var(--accent)}
+.ops-mini-btn:disabled,.ops-pause-btn:disabled{opacity:.35;cursor:not-allowed}
+.ops-action-right{display:flex;align-items:center;justify-content:flex-end;flex:0 0 auto}
+.operations-status-carousel .snapshot-panel,.operations-tool-carousel .live-panel{padding-bottom:8px!important}
+/* With controls removed from the boxes, use the reclaimed vertical space. */
+.snapshot-panel,.operations-tool-carousel .live-panel{min-height:494px!important;max-height:494px!important}
+.operations-tool-carousel .live-card-v52{height:100%!important}
+@media(max-width:1050px){#pageActions:has(.ops-action-controls){flex-wrap:wrap}.ops-action-controls{gap:8px;flex-wrap:wrap}.ops-control-group{grid-template-columns:auto 30px 42px 50px 30px}.ops-action-right{margin-left:auto}.snapshot-panel,.operations-tool-carousel .live-panel{max-height:none!important;min-height:460px!important}}
