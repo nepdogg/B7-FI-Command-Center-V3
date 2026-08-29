@@ -1571,3 +1571,82 @@ body[data-center="operations"] .live-card-v52 *::-webkit-scrollbar{display:none}
   body[data-center="operations"] .live-card-v52{grid-template-columns:1fr!important;grid-template-rows:auto!important;overflow:visible!important}
   body[data-center="operations"] .live-card-v52>.live-six-panel{min-height:250px!important}
 }
+
+
+/* V5.4.4 — Live Operations proportion refinement + unified application inset. */
+/* Every normal-mode application shell layer shares the same small browser-edge gutter. */
+:root{--app-edge-gutter:6px}
+body:not(.screenshot-mode):not(.presentation-mode) .app-frame{
+  width:calc(100% - (var(--app-edge-gutter) * 2))!important;
+  margin-left:var(--app-edge-gutter)!important;
+  margin-right:var(--app-edge-gutter)!important;
+  max-width:none!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell{
+  left:var(--app-edge-gutter)!important;
+  right:var(--app-edge-gutter)!important;
+  width:auto!important;
+  margin:0!important;
+  box-sizing:border-box!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .hero,
+body:not(.screenshot-mode):not(.presentation-mode) .main-nav,
+body:not(.screenshot-mode):not(.presentation-mode) .status-stack,
+body:not(.screenshot-mode):not(.presentation-mode) .pagebar,
+body:not(.screenshot-mode):not(.presentation-mode) .body-shell,
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer{
+  width:100%!important;
+  max-width:none!important;
+  box-sizing:border-box!important;
+  margin-left:0!important;
+  margin-right:0!important;
+}
+
+/* Keep the two Live Operations carousel frames equal, with just enough extra height for the richer tool card. */
+body[data-center="operations"] .snapshot-panel,
+body[data-center="operations"] .operations-tool-carousel .live-panel{
+  height:632px!important;
+  min-height:632px!important;
+  max-height:632px!important;
+}
+
+/* The top row carries the dense status/cycle/progress information; give it more room.
+   Bottom row remains large enough for tool data and the four/five-row working lists. */
+body[data-center="operations"] .live-card-v52{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-template-rows:minmax(0,1.62fr) minmax(0,1fr)!important;
+  gap:8px!important;
+}
+
+/* Use the freed top-row height for clearer spacing instead of squeezing labels together. */
+body[data-center="operations"] .status-cycle-box{padding:12px!important}
+body[data-center="operations"] .status-cycle-box .status-rule{margin:8px 0!important}
+body[data-center="operations"] .status-cycle-box .cycle-divider{margin-top:9px!important;margin-bottom:7px!important}
+body[data-center="operations"] .status-cycle-box .cycle-head{padding-bottom:6px!important}
+body[data-center="operations"] .cycle-status-grid .cycle-kv{padding:6px 0!important}
+body[data-center="operations"] .live-progress.compact-progress{padding:12px!important;justify-content:space-between!important}
+body[data-center="operations"] .live-progress.compact-progress .progress-item{margin-bottom:6px!important}
+body[data-center="operations"] .live-progress.compact-progress .progress-head{font-size:9.5px!important}
+body[data-center="operations"] .live-progress.compact-progress .progress-step{font-size:8px!important;line-height:1.12!important}
+
+/* Bottom panels use the shorter row efficiently; keep key data readable and avoid empty lower space. */
+body[data-center="operations"] .live-card-v52>.live-info,
+body[data-center="operations"] .live-card-v52>.live-fi-panel,
+body[data-center="operations"] .live-card-v52>.live-tasks{padding:9px!important}
+body[data-center="operations"] .live-card-v52>.live-info .kv{padding:4px 0!important}
+body[data-center="operations"] .live-card-v52>.live-fi-panel .active-fi,
+body[data-center="operations"] .live-card-v52>.live-tasks .next-task{padding-top:5px!important;padding-bottom:5px!important}
+
+/* Presentation uses the same equal carousel geometry before the existing fit-to-screen routine scales it. */
+body.presentation-mode .snapshot-panel,
+body.presentation-mode .operations-tool-carousel .live-panel{
+  height:632px!important;
+  min-height:632px!important;
+  max-height:632px!important;
+}
+
+@media(max-width:1100px){
+  body:not(.screenshot-mode):not(.presentation-mode) .app-frame{width:calc(100% - 8px)!important;margin-left:4px!important;margin-right:4px!important}
+  body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell{left:4px!important;right:4px!important}
+  body[data-center="operations"] .live-card-v52{grid-template-columns:1fr!important;grid-template-rows:auto!important}
+}
