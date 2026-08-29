@@ -1866,3 +1866,65 @@ body[data-center="operations"] .status-cycle-box>.cycle-status-grid{display:none
   .system-card .system-key-badges{grid-template-columns:repeat(2,minmax(0,1fr))!important}
   body[data-center="operations"] .cycle-metric-grid{grid-template-columns:1fr!important}
 }
+
+
+/* V5.4.7 — VISUAL FRAMEWORK LOCK: explicit, equal separation between every shell layer. */
+:root{
+  --shell-section-gap:6px;
+  --shell-separator-bg:#03101c;
+}
+
+/* The fixed application shell is a stack of independent framed elements. */
+body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:var(--shell-section-gap)!important;
+  padding:0!important;
+  background:var(--shell-separator-bg)!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell>.hero,
+body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell>.main-nav,
+body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell>.status-stack,
+body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell>.pagebar{
+  flex:0 0 auto!important;
+  margin:0!important;
+}
+/* Main navigation is now visually independent from the header on all four edges. */
+body:not(.screenshot-mode):not(.presentation-mode) .main-nav{
+  border:1px solid #163b55!important;
+}
+/* Alert bars are independent siblings with the same separator. */
+body:not(.screenshot-mode):not(.presentation-mode) .status-stack{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:var(--shell-section-gap)!important;
+  padding:0!important;
+  margin:0!important;
+  background:var(--shell-separator-bg)!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .status-stack .status-bar{
+  margin:0!important;
+}
+
+/* Body workspace is its own complete framed element, separated from page navigation. */
+body:not(.screenshot-mode):not(.presentation-mode) .body-shell{
+  margin-top:var(--shell-section-gap)!important;
+  border:1px solid #173d57!important;
+  background:#03101c!important;
+}
+/* Footer is a separate shell element, with exactly the same gap above and no added gap below. */
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer{
+  margin-top:var(--shell-section-gap)!important;
+  margin-bottom:0!important;
+}
+/* Preserve the small browser-edge frame, but do not add a second bottom margin under the footer. */
+body:not(.screenshot-mode):not(.presentation-mode) .app-frame{
+  margin-top:var(--app-edge-gutter)!important;
+  margin-bottom:0!important;
+}
+
+/* Keep special capture modes untouched by the normal application-shell separators. */
+body.screenshot-mode .body-shell,
+body.presentation-mode .body-shell{margin-top:0!important}
+body.screenshot-mode .app-footer,
+body.presentation-mode .app-footer{margin-top:0!important;margin-bottom:0!important}

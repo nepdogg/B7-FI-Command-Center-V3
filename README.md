@@ -1,4 +1,18 @@
-# B7 FI Command Center V5.4.6 — Tool Card Badges & Shell Polish
+# B7 FI Command Center V5.4.7 — Visual Framework Lock
+
+This build is the visual-framework lock candidate. It keeps the V5.4.6 tool-card, badge, cycle-time, multi-quarter, history, workflow, screenshot, and presentation behavior and applies the final site-wide shell-spacing polish.
+
+## V5.4.7 visual changes
+
+- One shared 6px separator gap between Header, Main Navigation, Leads Alert, System Status, Page Navigation/Actions, Body Workspace, and Footer.
+- Main Navigation has its own complete border so it reads as an independent shell element beneath the header.
+- Body Workspace now has a complete frame on all four sides and remains separate from the footer.
+- Footer keeps the same gap above as every other shell layer and no longer adds an extra gap below itself.
+- All normal-mode shell layers retain the same left/right browser inset and aligned width.
+- Screenshot and Presentation modes retain their special capture/fullscreen geometry.
+
+Existing browser data remains compatible with the `b7fi-command-center-v3` localStorage key.
+
 
 Built from V5.4.5 with the latest testing refinements.
 
