@@ -701,3 +701,69 @@ body{background:#020a11!important}
 .milestone-strip{display:flex;flex-wrap:wrap;gap:3px}.milestone-pill{display:inline-flex;border:1px solid #38546a;padding:2px 5px;font-size:8px;background:#081723;color:#9db3c4}.milestone-pill.done{border-color:#22d67d;color:#b7ffda;background:#07251b}.shipping-milestone-editor{display:grid;gap:6px}.milestone-edit-row{display:grid;grid-template-columns:minmax(125px,1fr) minmax(150px,1fr) minmax(150px,1fr);gap:7px;align-items:end;border:1px solid #23465d;padding:7px;background:#071722}.milestone-edit-row label{font-size:10px;font-weight:850}.milestone-check{display:flex!important;align-items:center;gap:7px!important}.milestone-check input{width:18px!important;height:18px!important}.modal-card{max-width:min(920px,calc(100vw - 28px))!important;max-height:calc(100vh - 28px)!important;overflow:auto!important;box-sizing:border-box!important}.reference-detail .form-grid,.modal-form .form-grid{min-width:0!important}.modal-form input,.modal-form select,.modal-form textarea{max-width:100%!important;box-sizing:border-box!important}
 @media(max-width:1150px){.live-card-v52{grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:auto!important}.live-card-v52 .live-six-panel{min-height:220px}.snapshot-family .family-matrix{grid-template-columns:minmax(150px,1.5fr) repeat(5,minmax(72px,.7fr)) minmax(110px,1fr) 60px!important}.family-thumb{width:55px;height:38px}}
 @media(max-width:760px){.live-card-v52{grid-template-columns:1fr!important}.milestone-edit-row{grid-template-columns:1fr!important}}
+
+
+/* V5.2.2 — Live Operations layout refinement */
+/* Content-driven page height: browser zoom no longer creates a large artificial body void. */
+.app-frame{min-height:0!important;height:auto!important}
+main{flex:0 0 auto!important;min-height:0!important}
+footer{margin-top:8px!important}
+
+/* Quarter summary and progress bars */
+.summary-grid .summary-box span{text-align:center!important;width:100%!important;display:block!important}
+.quarter-time-progress .fill.quarter-days{background:#9b5cff!important}
+.quarter-time-progress .progress-head b:last-child{color:#c9abff!important}
+
+/* One shared, mathematically centered carousel control component. */
+.snapshot-controls,.carousel-controls,.operations-tool-carousel .carousel-controls{
+  width:100%!important;max-width:none!important;margin:8px 0 0!important;
+  display:flex!important;justify-content:center!important;align-items:center!important;
+  gap:8px!important;left:auto!important;right:auto!important;transform:none!important;box-sizing:border-box!important
+}
+.snapshot-controls .btn,.carousel-controls .btn{width:42px!important;min-width:42px!important;height:26px!important;padding:0!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}
+.snapshot-controls .carousel-toggle,.carousel-controls .carousel-toggle{width:54px!important;min-width:54px!important}
+.snapshot-controls span,.carousel-controls span{width:44px!important;min-width:44px!important;text-align:center!important}
+
+/* Tool card: six truly equal panels, exact inset inside the color-coded frame. */
+.operations-tool-carousel .live-panel{padding:8px!important;box-sizing:border-box!important}
+.live-card-v52{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:repeat(2,minmax(0,1fr))!important;gap:8px!important;padding:8px!important;box-sizing:border-box!important;width:100%!important;flex:1 1 auto!important;min-height:0!important;align-items:stretch!important}
+.live-card-v52 .live-six-panel{width:100%!important;height:100%!important;margin:0!important;padding:8px!important;box-sizing:border-box!important;min-width:0!important;min-height:0!important;overflow:hidden!important}
+.live-card-v52 .photo-panel,.live-card-v52 .tool-status-box,.live-card-v52 .live-progress,.live-card-v52 .live-info,.live-card-v52 .live-fi-panel,.live-card-v52 .live-tasks{align-self:stretch!important;justify-self:stretch!important}
+.live-card-v52 .live-photo{min-height:0!important}
+
+/* Family/system shipping progress matrix */
+.snapshot-family .family-matrix.header b{text-align:center!important;justify-self:stretch!important;align-self:center!important}
+.snapshot-family .family-matrix.header b:first-child{text-align:center!important}
+
+/* Shipping schedule compact one-line packing progress */
+.snapshot-scroll .shipping-overview{table-layout:fixed!important;width:100%!important}
+.snapshot-scroll .shipping-overview th,.snapshot-scroll .shipping-overview td{text-align:left!important;vertical-align:middle!important}
+.snapshot-scroll .shipping-overview th:nth-child(1){width:12%!important}
+.snapshot-scroll .shipping-overview th:nth-child(2){width:12%!important}
+.snapshot-scroll .shipping-overview th:nth-child(3){width:9%!important}
+.snapshot-scroll .shipping-overview th:nth-child(4){width:15%!important}
+.snapshot-scroll .shipping-overview th:nth-child(5){width:13%!important}
+.snapshot-scroll .shipping-overview th:nth-child(6){width:13%!important}
+.snapshot-scroll .shipping-overview th:nth-child(7){width:26%!important}
+.snapshot-scroll .shipping-overview .milestone-strip{display:flex!important;flex-wrap:nowrap!important;gap:3px!important;white-space:nowrap!important;align-items:center!important}
+.snapshot-scroll .shipping-overview .milestone-pill{font-size:7px!important;padding:2px 4px!important;white-space:nowrap!important}
+
+/* Systems requiring attention: three real category columns. */
+.snapshot-focus .focus-panel{height:100%!important;padding:0!important}
+.focus-columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;height:100%;min-height:0}
+.focus-column{border:1px solid #284c63;background:#071925;display:flex;flex-direction:column;min-width:0;min-height:0}
+.focus-column-head{height:56px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-bottom:1px solid #284c63}
+.focus-column-head b{font-size:22px;line-height:1;color:#fff}.focus-column-head span{font-size:10px;font-weight:950;margin-top:4px}
+.focus-column.critical .focus-column-head{border-top:3px solid #ff4057}.focus-column.critical .focus-column-head span{color:#ff6478}
+.focus-column.attention .focus-column-head{border-top:3px solid #ffad16}.focus-column.attention .focus-column-head span{color:#ffc34e}
+.focus-column.ontrack .focus-column-head{border-top:3px solid #25d984}.focus-column.ontrack .focus-column-head span{color:#70efb0}
+.focus-column-list{padding:5px;overflow:auto;min-height:0}
+.focus-column-list .focus-item{display:grid!important;grid-template-columns:72px minmax(0,1fr)!important;gap:5px!important;margin:0 0 4px!important;padding:6px!important;font-size:8px!important;border-left-width:3px!important}
+.focus-column-list .focus-item.ontrack{border-left-color:#25d984!important;background:#0a211b!important}
+.focus-empty{padding:14px 6px;text-align:center;color:#6f8798;font-size:8px;font-weight:900}
+
+@media(max-width:1150px){
+  .live-card-v52{grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:repeat(2,minmax(0,1fr))!important}
+  .live-card-v52 .live-six-panel{min-height:0!important}
+}
+@media(max-width:900px){.focus-columns{grid-template-columns:1fr}.live-card-v52{grid-template-columns:1fr!important;grid-template-rows:auto!important}.live-card-v52 .live-six-panel{min-height:210px!important}}
