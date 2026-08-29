@@ -1,4 +1,4 @@
-# B7 FI Command Center V5.4.2 — Live Operations Readability & Layout
+# B7 FI Command Center V5.4.3 — Live Operations Readability & Layout
 
 Consolidated test build based on V5.4.0. It retains the Operational Logic Upgrade and adds the latest workflow rules discovered in production testing.
 
@@ -18,7 +18,7 @@ Multi-quarter Tool Center navigation and Active Quarter management, Engineering 
 Existing localStorage key remains `b7fi-command-center-v3`, so existing V5.x browser data is preserved and normalized forward.
 
 
-## V5.4.2 Live Operations Readability & Layout
+## V5.4.3 Live Operations Readability & Layout
 - Enlarged both Live Operations rotating panels to identical dimensions.
 - Rebuilt the Live Tool Card into a 4-panel top row and 3-panel bottom row.
 - Added a dedicated FI Cycle Time Status panel between Ship/FI Status and Progress.
@@ -26,3 +26,13 @@ Existing localStorage key remains `b7fi-command-center-v3`, so existing V5.x bro
 - Removed internal Tool Card scrollbars and increased typography/panel sizing for 100% zoom readability.
 - Added a distinct full-width body shell and moved the footer visually outside that workspace.
 - Redesigned the footer to mirror the header: themed left/right sections with a dark centered KLA+ section.
+
+
+## V5.4.3 — Live Tool Card Final Layout
+- Restored the Live Tool Card to exactly six panels in a 3 x 2 layout.
+- Top row: Tool Photo | Tool Status + FI Cycle Time | Progress.
+- Bottom row: Tool Information | Active FI Checklists | Next Lead/Admin Tasks.
+- Merged FI Cycle Time into the top-middle operational status panel.
+- Removed duplicate Reduced Process text from status; the dedicated badge remains under the tool photo.
+- Preserved six progress bars in this order: FI Testing, Micro Schedule, Tool Cycle Time, Average Cycle Time, Lead/Admin, Packing/Shipping.
+- Increased panel typography/spacing and suppressed internal Tool Card scrollbars.

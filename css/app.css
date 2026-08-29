@@ -1476,3 +1476,98 @@ body.screenshot-mode .live-progress.compact-progress{overflow:hidden!important}
   .app-footer .footer-right span{font-size:7px!important}
   body[data-center="operations"] .live-card-v52{grid-template-columns:1fr!important}
 }
+
+/* V5.4.3 — Final Live Tool Card: six equal panels, 3 x 2. */
+body[data-center="operations"] .live-card-v52{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-template-rows:repeat(2,minmax(0,1fr))!important;
+  gap:8px!important;
+  padding:8px!important;
+}
+body[data-center="operations"] .live-card-v52>.photo-panel,
+body[data-center="operations"] .live-card-v52>.tool-status-box,
+body[data-center="operations"] .live-card-v52>.live-progress,
+body[data-center="operations"] .live-card-v52>.live-info,
+body[data-center="operations"] .live-card-v52>.live-fi-panel,
+body[data-center="operations"] .live-card-v52>.live-tasks{
+  grid-column:auto!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  box-sizing:border-box!important;
+}
+body[data-center="operations"] .live-card-v52>.live-cycle-panel{display:none!important}
+
+/* Combined top-middle status + FI cycle-time panel. */
+body[data-center="operations"] .status-cycle-box{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-start!important;
+  overflow:hidden!important;
+}
+body[data-center="operations"] .status-cycle-box .status-rule{margin:7px 0!important}
+body[data-center="operations"] .status-cycle-box .status-current-label{margin-top:6px!important}
+body[data-center="operations"] .status-cycle-box .cycle-divider{margin-top:8px!important;margin-bottom:6px!important}
+body[data-center="operations"] .status-cycle-box .cycle-head{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:8px!important;
+  padding:0 0 5px!important;
+  margin:0!important;
+  border-bottom:1px solid #24485d!important;
+}
+body[data-center="operations"] .status-cycle-box .cycle-head b{font-size:9px!important;letter-spacing:.35px!important}
+body[data-center="operations"] .status-cycle-box .cycle-head .cycle-health{font-size:8px!important;white-space:nowrap!important}
+body[data-center="operations"] .cycle-status-grid{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:0 12px!important;
+  min-height:0!important;
+}
+body[data-center="operations"] .cycle-status-grid .cycle-kv{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  gap:7px!important;
+  align-items:center!important;
+  padding:5px 0!important;
+  border-bottom:1px solid #183b52!important;
+  min-width:0!important;
+}
+body[data-center="operations"] .cycle-status-grid .cycle-kv span{font-size:8px!important}
+body[data-center="operations"] .cycle-status-grid .cycle-kv strong{font-size:9px!important;max-width:150px!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+body[data-center="operations"] .cycle-status-grid .cycle-kv.cycle-next strong{white-space:normal!important;line-height:1.1!important;text-align:right!important}
+
+/* Reduced Process lives only under the tool photo. */
+body[data-center="operations"] .status-cycle-box .status-reduced,
+body[data-center="operations"] .status-cycle-box .reduced-inline{display:none!important}
+body[data-center="operations"] .photo-panel .reduced-process-badge{
+  width:88%!important;
+  margin:7px auto 0!important;
+  text-align:center!important;
+}
+
+/* Larger equal panels and readable text with no card scrollbars. */
+body[data-center="operations"] .live-card-v52 .live-six-panel{padding:11px!important;overflow:hidden!important}
+body[data-center="operations"] .live-card-v52 .live-codename{font-size:27px!important}
+body[data-center="operations"] .live-card-v52 .countdown-big{font-size:23px!important}
+body[data-center="operations"] .live-card-v52 .schedule-health,
+body[data-center="operations"] .live-card-v52 .phase-big{font-size:15px!important}
+body[data-center="operations"] .live-card-v52 .next-fi-standout{font-size:9px!important}
+body[data-center="operations"] .live-progress.compact-progress{overflow:hidden!important;scrollbar-width:none!important}
+body[data-center="operations"] .live-progress.compact-progress::-webkit-scrollbar{display:none!important}
+body[data-center="operations"] .live-card-v52,
+body[data-center="operations"] .live-card-v52 *{scrollbar-width:none}
+body[data-center="operations"] .live-card-v52 *::-webkit-scrollbar{display:none}
+
+@media(max-width:1450px){
+  body[data-center="operations"] .cycle-status-grid{grid-template-columns:1fr!important}
+  body[data-center="operations"] .cycle-status-grid .cycle-kv{padding:3px 0!important}
+  body[data-center="operations"] .status-cycle-box .status-rule{margin:5px 0!important}
+}
+@media(max-width:1100px){
+  body[data-center="operations"] .live-card-v52{grid-template-columns:1fr!important;grid-template-rows:auto!important;overflow:visible!important}
+  body[data-center="operations"] .live-card-v52>.live-six-panel{min-height:250px!important}
+}
