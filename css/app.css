@@ -1002,3 +1002,90 @@ body[data-center="operations"] .operations-dual-grid{gap:8px!important}
   .snapshot-family .family-progress{padding:4px!important;gap:3px!important}
   .snapshot-family .family-progress small{font-size:8px!important;min-width:20px!important}
 }
+
+
+/* V5.2.8 LIVE OPERATIONS LOCKDOWN FIX — sticky shell + final family matrix geometry */
+/* Restore the site-wide sticky shell through the page-action navigation bar. */
+html,body{overflow-x:hidden!important;overflow-y:visible!important}
+.app-frame{overflow:visible!important}
+.sticky-shell{
+  position:-webkit-sticky!important;
+  position:sticky!important;
+  top:0!important;
+  z-index:1000!important;
+  align-self:stretch!important;
+  width:100%!important;
+  overflow:visible!important;
+  background:#020a13!important;
+}
+body.screenshot-mode .sticky-shell{position:static!important}
+
+/* Final Tool Shipping Progress geometry: wider SYSTEM, five identical count columns. */
+.snapshot-family .family-panel-v526>.family-matrix.header,
+.snapshot-family .family-rows-scroll .family-matrix{
+  grid-template-columns:
+    minmax(190px,1.95fr)
+    repeat(5,minmax(62px,.68fr))
+    minmax(120px,1.02fr)
+    minmax(54px,.52fr)!important;
+  column-gap:6px!important;
+}
+.snapshot-family .family-cell.name{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 58px!important;
+  align-items:center!important;
+  gap:5px!important;
+  justify-content:stretch!important;
+  padding:5px 7px 5px 10px!important;
+}
+.snapshot-family .family-cell.name span{
+  display:block!important;
+  min-width:0!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+  white-space:nowrap!important;
+  font-size:18px!important;
+}
+.snapshot-family .family-thumb{
+  width:58px!important;
+  height:40px!important;
+  max-width:none!important;
+  justify-self:end!important;
+  object-fit:contain!important;
+}
+.snapshot-family .family-total,
+.snapshot-family .status-waiting,
+.snapshot-family .status-infi,
+.snapshot-family .status-packing,
+.snapshot-family .status-shipped{
+  width:100%!important;
+  min-width:0!important;
+  padding:0 4px!important;
+}
+/* Reserve a clean gutter between REVEAL and the vertical scrollbar. */
+.snapshot-family .family-rows-scroll{
+  scrollbar-gutter:stable!important;
+  padding-right:18px!important;
+}
+.snapshot-family .family-matrix.header{padding-right:18px!important}
+
+@media(max-width:1450px){
+  .snapshot-family .family-panel-v526>.family-matrix.header,
+  .snapshot-family .family-rows-scroll .family-matrix{
+    grid-template-columns:minmax(175px,1.90fr) repeat(5,minmax(56px,.66fr)) minmax(108px,.96fr) minmax(50px,.50fr)!important;
+    column-gap:4px!important;
+  }
+  .snapshot-family .family-cell.name{grid-template-columns:minmax(0,1fr) 50px!important;padding:4px 6px 4px 8px!important}
+  .snapshot-family .family-cell.name span{font-size:16px!important}
+  .snapshot-family .family-thumb{width:50px!important;height:36px!important}
+}
+@media(max-width:1180px){
+  .snapshot-family .family-panel-v526>.family-matrix.header,
+  .snapshot-family .family-rows-scroll .family-matrix{
+    grid-template-columns:minmax(155px,1.86fr) repeat(5,minmax(48px,.64fr)) minmax(96px,.92fr) 46px!important;
+    column-gap:3px!important;
+  }
+  .snapshot-family .family-cell.name{grid-template-columns:minmax(0,1fr) 42px!important;padding:4px 5px 4px 7px!important}
+  .snapshot-family .family-cell.name span{font-size:14px!important}
+  .snapshot-family .family-thumb{width:42px!important;height:32px!important}
+}
