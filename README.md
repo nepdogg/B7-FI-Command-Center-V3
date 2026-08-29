@@ -1,3 +1,7 @@
+# B7 FI Command Center V5.5.0 — Framework Final Separation
+
+Final shell separation pass: equal 8px gaps, no connector shadows/lines between Page Navigation, Body and Footer, added internal bottom breathing room inside Body, and no trailing space below Footer. Existing V5.x localStorage data remains compatible.
+
 # B7 FI Command Center V5.4.9 — Active Theme Visual Framework Lock
 
 This build continues V5.4.8 and focuses on the final visual-framework pass.

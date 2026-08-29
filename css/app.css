@@ -2059,3 +2059,52 @@ body.screenshot-mode .app-footer,
 body.presentation-mode .app-footer{
   box-shadow:none!important;
 }
+
+
+/* V5.5.0 — FINAL FRAMEWORK SEPARATION PASS
+   Page Navigation, Body and Footer are visibly independent layers. */
+:root{--shell-section-gap:8px;--shell-separator-bg:#020914}
+
+/* No outer shell edge/shadow may visually bridge Page Navigation to Body. */
+body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell{
+  border-bottom:0!important;
+  box-shadow:none!important;
+  background:var(--shell-separator-bg)!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell>.pagebar{
+  margin:0!important;
+  box-shadow:none!important;
+  outline:0!important;
+}
+
+/* Create a true empty separator after the fixed shell, then start the Body frame. */
+body:not(.screenshot-mode):not(.presentation-mode) .body-shell{
+  margin-top:var(--shell-section-gap)!important;
+  box-shadow:none!important;
+  outline:0!important;
+}
+
+/* Give carousel/page content breathing room before the Body's own bottom frame. */
+body:not(.screenshot-mode):not(.presentation-mode) .body-workspace{
+  padding-bottom:var(--shell-section-gap)!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .body-workspace> :last-child{
+  margin-bottom:0!important;
+}
+
+/* Footer begins only after the same true separator; no footer horizontal edge can bridge it. */
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer{
+  margin-top:var(--shell-section-gap)!important;
+  margin-bottom:0!important;
+  border-top:0!important;
+  border-bottom:0!important;
+  box-shadow:none!important;
+  outline:0!important;
+}
+
+/* The application ends at the footer — never reserve a trailing separator. */
+html,body,
+body:not(.screenshot-mode):not(.presentation-mode) .app-frame{
+  padding-bottom:0!important;
+  margin-bottom:0!important;
+}
