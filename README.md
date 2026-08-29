@@ -1,17 +1,15 @@
-# B7 FI Command Center V5.2.8 — Live Operations Lockdown Fix
+# B7 FI Command Center V5.3.0 — Live Operations Locked
 
-Final Live Operations layout corrections:
+Final Live Operations presentation-mode and sticky-shell fix.
 
-- Restored the site-wide sticky header/navigation shell through the page action bar.
-- Widened the Tool Shipping Progress SYSTEM column so full tool code names fit.
-- Made Total, Waiting FI, In FI, Packing, and Shipped use one identical column width and box geometry.
-- Preserved the responsive desktop layout and internal vertical scrolling.
-- Increased the dedicated gutter between Reveal and the scrollbar.
-- Preserves all V5.2.7 data/workflow behavior.
+## V5.3.0 changes
+- Presentation Mode is a true non-interactive wallboard.
+- Removed the presentation-mode X button; use **Esc** to leave browser fullscreen.
+- Disabled mouse/touch click behavior while Presentation Mode is active.
+- Source arrows and reveal controls are hidden in Presentation Mode.
+- Presentation Mode suppresses page/internal scrollbars and automatically fits the Live Operations report to the available fullscreen viewport.
+- Both rotating Live Operations carousels continue to advance in Presentation Mode.
+- Screenshot Mode behavior is unchanged.
+- Restored reliable site-wide fixed/sticky behavior for the full top shell: header, Center navigation, alert/status bars, and page-action navigation remain visible while normal pages scroll.
 
-
-## V5.2.9 — Live Operations Final Modes
-- Screenshot Mode now freezes both rotating views and keeps the LIVE OPERATIONS title/date/system count visible for the entire capture session.
-- Reveal boxes remain visible in the email-friendly Screenshot Mode layout.
-- Added Presentation Mode to the Live Operations page action bar; it enters full-screen wallboard view and keeps both rotating carousels active.
-- Screenshot and Presentation modes both use the small top-right X to exit.
+Live Operations layout/data behavior from V5.2.9 is preserved.
