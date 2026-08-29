@@ -2186,3 +2186,38 @@ body.presentation-mode .snapshot-family .family-rows-scroll{
 /* No hidden trailing document strip after the footer. */
 html,body{padding-bottom:0!important;margin-bottom:0!important}
 body:not(.screenshot-mode):not(.presentation-mode) .app-frame{padding-bottom:0!important;margin-bottom:0!important}
+
+
+/* V5.5.2 — UNIFORM FRAMEWORK SPACING LOCK
+   One spacing token now controls the vertical rhythm between shell elements and
+   the interior breathing room of the body workspace. */
+:root{--shell-section-gap:6px;--framework-gap:6px}
+
+/* Page/action navigation -> body: exactly one framework gap, never a doubled gap. */
+body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell>.pagebar{
+  margin:0!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .body-shell{
+  margin:var(--framework-gap) 0 0!important;
+}
+
+/* Body content receives equal space on every edge.  This specifically restores
+   the missing bottom breathing room below both Live Operations carousels. */
+body:not(.screenshot-mode):not(.presentation-mode) .body-workspace{
+  padding:var(--framework-gap)!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .body-workspace>.operations-dual-grid:last-child,
+body:not(.screenshot-mode):not(.presentation-mode) .body-workspace>:last-child{
+  margin-bottom:0!important;
+}
+
+/* Body -> footer uses the same single framework gap. */
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer{
+  margin:var(--framework-gap) 0 0!important;
+}
+
+/* Preserve the intentionally borderless floating KLA footer treatment. */
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer{
+  border-top:0!important;
+  border-bottom:0!important;
+}
