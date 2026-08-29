@@ -1089,3 +1089,36 @@ body.screenshot-mode .sticky-shell{position:static!important}
   .snapshot-family .family-cell.name span{font-size:14px!important}
   .snapshot-family .family-thumb{width:42px!important;height:32px!important}
 }
+\n\n/* V5.2.9 Live Operations final display modes */
+/* Screenshot mode is a compact, email-friendly frozen report. Keep the title persistent. */
+body.screenshot-mode .screenshot-report-title{display:block!important;position:relative!important;z-index:3!important;margin:0 0 10px!important}
+body.screenshot-mode .operations-dual-grid{gap:8px!important}
+body.screenshot-mode .snapshot-family .family-panel-v526>.family-matrix.header,
+body.screenshot-mode .snapshot-family .family-rows-scroll .family-matrix{
+  grid-template-columns:minmax(116px,1.55fr) repeat(5,42px) minmax(78px,.9fr) 42px!important;
+  column-gap:4px!important;
+}
+body.screenshot-mode .snapshot-family .family-cell.name{
+  grid-template-columns:minmax(0,1fr) 34px!important;
+  padding:3px 4px 3px 7px!important;
+}
+body.screenshot-mode .snapshot-family .family-cell.name span{font-size:13px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+body.screenshot-mode .snapshot-family .family-thumb{width:34px!important;height:28px!important}
+body.screenshot-mode .snapshot-family .family-cell:not(.name):not(.family-progress){font-size:15px!important}
+body.screenshot-mode .snapshot-family .family-progress{padding:3px!important;gap:3px!important}
+body.screenshot-mode .snapshot-family .family-progress small{font-size:8px!important;min-width:18px!important}
+body.screenshot-mode .snapshot-family .reveal-btn{display:flex!important;font-size:16px!important;min-width:38px!important;visibility:visible!important;opacity:1!important}
+body.screenshot-mode .snapshot-family .family-rows-scroll{padding-right:12px!important;scrollbar-gutter:stable!important}
+body.screenshot-mode .snapshot-family .family-matrix.header{padding-right:12px!important}
+
+/* Presentation mode: full-screen wallboard. Keep alerts and live report title, hide application chrome. */
+body.presentation-mode{background:#020a13!important;overflow:auto!important}
+body.presentation-mode .app-frame{max-width:none!important;width:100%!important;margin:0!important}
+body.presentation-mode .hero,body.presentation-mode .main-nav,body.presentation-mode .pagebar,body.presentation-mode footer{display:none!important}
+body.presentation-mode .sticky-shell{position:static!important;box-shadow:none!important;background:#020a13!important}
+body.presentation-mode .status-stack{padding-top:0!important}
+body.presentation-mode main{padding:8px!important}
+body.presentation-mode .screenshot-report-title{display:block!important;margin:0 0 8px!important;font-size:18px!important;text-align:center!important}
+body.presentation-mode .operations-dual-grid{min-height:calc(100vh - 245px)!important}
+body.presentation-mode .operations-status-carousel,body.presentation-mode .operations-tool-carousel{min-height:0!important}
+body.presentation-mode #exitScreenshot{display:block!important}
