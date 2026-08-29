@@ -767,3 +767,36 @@ footer{margin-top:8px!important}
   .live-card-v52 .live-six-panel{min-height:0!important}
 }
 @media(max-width:900px){.focus-columns{grid-template-columns:1fr}.live-card-v52{grid-template-columns:1fr!important;grid-template-rows:auto!important}.live-card-v52 .live-six-panel{min-height:210px!important}}
+
+
+/* V5.2.4 Live Operations lockdown candidate */
+/* Status snapshots are read-only; only the top-right source arrow navigates. */
+.snapshot-panel,.snapshot-source,.snapshot-static{cursor:default!important}
+.snapshot-panel .snapshot-body{pointer-events:auto!important}
+.snapshot-source-button{pointer-events:auto!important}
+
+/* Tool-card outer health frame: liveTone() uses perf-* classes. */
+.live-card-v52.perf-red{border-color:#ff344f!important;box-shadow:0 0 10px rgba(255,52,79,.18)!important}
+.live-card-v52.perf-cyan{border-color:#08d9e8!important;box-shadow:none!important}
+.live-card-v52.perf-green{border-color:#20dd7c!important;box-shadow:none!important}
+.live-card-v52.perf-neutral{border-color:#2e78a0!important;box-shadow:none!important}
+
+/* Reduced-process and next-FI hierarchy inside current system status. */
+.live-card-v52 .status-reduced{color:#ff3857!important;font-size:9px!important;font-weight:950!important;letter-spacing:.8px!important;margin:3px 0 2px!important}
+.live-card-v52 .next-fi-standout{color:#fff!important;font-weight:900!important;font-size:9px!important;line-height:1.25!important;margin-top:3px!important}
+
+/* One identical control bar for both rotating Live Operations boxes. */
+.snapshot-controls,.operations-tool-carousel .carousel-controls{
+  width:100%!important;display:grid!important;grid-template-columns:42px 44px 54px 42px!important;
+  justify-content:center!important;align-items:center!important;column-gap:8px!important;
+  margin:8px 0 0!important;padding:0!important;box-sizing:border-box!important
+}
+.snapshot-controls .btn,.operations-tool-carousel .carousel-controls .btn{width:42px!important;min-width:42px!important;height:26px!important;margin:0!important;padding:0!important;display:flex!important;align-items:center!important;justify-content:center!important}
+.snapshot-controls .carousel-toggle,.operations-tool-carousel .carousel-controls .carousel-toggle{width:54px!important;min-width:54px!important}
+.snapshot-controls span,.operations-tool-carousel .carousel-controls span{width:44px!important;min-width:44px!important;text-align:center!important;margin:0!important}
+
+/* Family shipping matrix: larger wallboard counts and clearer reveal states. */
+.snapshot-family .family-cell:not(.name):not(.family-progress){font-size:20px!important;line-height:1!important}
+.snapshot-family .reveal-btn{font-size:20px!important;line-height:1!important;display:flex!important;align-items:center!important;justify-content:center!important}
+.snapshot-family .reveal-btn:not(.unlocked){color:#a9c1d1!important}
+.snapshot-family .reveal-btn.unlocked{color:#fff!important;background:#3a2b69!important;border-color:#9b75ff!important}

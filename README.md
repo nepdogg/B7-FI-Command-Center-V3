@@ -1,9 +1,3 @@
-# B7 FI Command Center V5.2.3 — Live Operations Layout Refinement
+# B7 FI Command Center V5.2.4 — Live Operations Lockdown Candidate
 
-Live Operations refinement build based on V5.2.1.
-
-Changes include centered System Shipping Progress headings, SYSTEM terminology, unified carousel controls, equal six-panel Live Tool Card geometry, simplified quarter progress labels, purple Days Remaining bar, compact Shipping Schedule packing milestones, grouped Systems Requiring Attention columns, and global content-driven page height behavior.
-
-
-## V5.2.3 Rendering Hotfix
-Restores the core navigation/theme/utility declarations accidentally dropped from V5.2.2, which caused the application shell to render without page content. Also completes the Shipping Schedule heading/packing-progress cleanup.
+Final Live Operations refinement candidate: source-arrow-only snapshot navigation, health-driven outer tool frame, Reduced Process status tag, white Next FI emphasis, unified centered carousel controls, larger family progress counts, and locked/unlocked reveal icons.
