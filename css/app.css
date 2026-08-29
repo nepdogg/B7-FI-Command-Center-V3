@@ -829,3 +829,51 @@ footer{margin-top:8px!important}
 .snapshot-panel,.operations-tool-carousel .live-panel{min-height:494px!important;max-height:494px!important}
 .operations-tool-carousel .live-card-v52{height:100%!important}
 @media(max-width:1050px){#pageActions:has(.ops-action-controls){flex-wrap:wrap}.ops-action-controls{gap:8px;flex-wrap:wrap}.ops-control-group{grid-template-columns:auto 30px 42px 50px 30px}.ops-action-right{margin-left:auto}.snapshot-panel,.operations-tool-carousel .live-panel{max-height:none!important;min-height:460px!important}}
+
+
+/* V5.2.6 Live Operations lockdown: spacing, scrolling, uniform frames, ship-readiness countdown */
+body[data-center="operations"] main#app{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:8px!important;
+}
+body[data-center="operations"] main#app>.panel,
+body[data-center="operations"] main#app>.operations-dual-grid{
+  margin:0!important;
+}
+.operations-dual-grid{margin-top:0!important;gap:8px!important}
+
+/* Family rows scroll independently; title/header/source control remain fixed. */
+.snapshot-family{overflow:hidden!important}
+.snapshot-family>.family-panel-v526{height:100%!important;min-height:0!important;display:flex!important;flex-direction:column!important;overflow:hidden!important}
+.snapshot-family .family-panel-v526>.family-matrix.header{flex:0 0 38px!important;position:relative!important;z-index:2;background:#071a28!important}
+.snapshot-family .family-rows-scroll{flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;padding-right:3px!important;scrollbar-width:thin}
+.snapshot-family .family-rows-scroll .family-matrix{height:58px!important;min-height:58px!important;max-height:58px!important;align-items:stretch!important}
+.snapshot-family .family-cell,.snapshot-family .reveal-btn{box-sizing:border-box!important;border-width:1px!important;min-height:54px!important;height:54px!important;margin:2px!important}
+.snapshot-family .family-cell{display:flex!important;align-items:center!important;justify-content:center!important}
+.snapshot-family .family-cell.name{justify-content:space-between!important}
+.snapshot-family .family-progress{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:7px!important;align-items:center!important}
+
+/* Live card uses one exact frame thickness and one exact panel border thickness. */
+.live-card-v52{border-width:2px!important;border-style:solid!important}
+.live-card-v52 .live-six-panel{border:1px solid #28516b!important;border-radius:0!important}
+.live-card-v52 .photo-panel.reduced-photo{border:1px solid #ff344f!important;box-shadow:inset 0 0 18px rgba(255,52,79,.15)!important}
+
+/* Ship countdown is its own readiness signal. */
+.countdown-big.critical{color:#ff344f!important}
+.countdown-big.warning{color:#ffbf2f!important}
+.countdown-big.ready{color:#20dd7c!important}
+.countdown-big.normal,.countdown-big.neutral{color:#fff!important}
+.countdown-big.shipped{color:#20dd7c!important}
+
+/* Keep display-only rotating reports visually non-clickable. */
+.operations-status-carousel .snapshot-panel,
+.operations-status-carousel .snapshot-body,
+.operations-status-carousel .snapshot-scroll,
+.operations-status-carousel .snapshot-scroll .panel,
+.operations-status-carousel .snapshot-scroll table,
+.operations-status-carousel .snapshot-scroll tr,
+.operations-status-carousel .snapshot-scroll td,
+.operations-status-carousel .snapshot-scroll div:not(.reveal-btn){cursor:default!important}
+.operations-status-carousel .snapshot-source-button,
+.operations-status-carousel .reveal-btn{cursor:pointer!important}
