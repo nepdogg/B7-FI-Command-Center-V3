@@ -1,66 +1,56 @@
-# B7 FI Command Center V5.6.4 — Live Checklist Forecast
+# B7 FI Command Center V5.5.12 — Three-Column Universal Tool Cards
 
-Changes: reorganized FI/Micro Schedule editor; removed editor Lead/Admin progress bar; controlled Cleanroom CR1/CR2/CR3; Macan models 2930XR/2935XR; standardized AV Data/SCC Cleanup/Backup lists; split Customer Source and STR workflows; combined source handoff/start and return-to-FI date labels; standardized shipping schedule status; paired Next Step Forecast checklist with forecast date; reinforced Mystery/Reveal visibility in Screenshot and Presentation modes. Existing localStorage key/data remain compatible.
+## This build
+- Rebuilds the universal tool card into three full-height vertical information columns.
+- Left column: tool photo/identity/badges + complete tool information.
+- Middle column: ship countdown/FI/cycle/forecast status + Active FI Checklists.
+- Right column: all progress bars + Next Lead/Admin Tasks.
+- Active FI Checklists now shows the next 3 items.
+- Next Lead/Admin Tasks now shows the next 3 items.
+- VIEW ALL remains available for both complete lists.
+- Live Operations and Update Center use the same universal card renderer and three-column geometry.
+- Existing localStorage data key is unchanged.
 
-# B7 FI Command Center V5.5.17 — Navigation Effects + Presentation Restore
+# B7 FI Command Center V5.5.8 — Two-Column Universal Tool Cards
 
-This build continues the consolidated Operations Center architecture.
+This build continues the locked universal Live Operations tool-card design across the Update Center.
 
-Changes in V5.5.17:
-- Operations Center page-navigation buttons are equal-width, larger, and more pronounced across the available navigation area.
-- Previous, current, and next-quarter universal tool-card pages are locked to two cards per row on normal desktop widths.
-- An odd final tool card remains half-width instead of stretching across the entire page.
-- The consolidated Operations Center now receives the same universal-card geometry/parity CSS that previously applied only to the old Update Center.
-- Tool cards collapse to one per row only on narrow/mobile widths.
-- Existing Live Operations carousel controls and Operations actions are preserved.
-- Existing localStorage key/data compatibility is preserved.
+## V5.5.8 changes
+- Update Center family sections now render **two complete universal tool cards side by side** at normal desktop widths.
+- Cards no longer stretch to fill the entire page width.
+- Each card keeps the same six-panel proportions and shared live data/status logic used by the Operations Center Tool Carousel.
+- At narrower widths the layout collapses to one card per row for usability.
+- Existing V5.x localStorage data remains compatible.
 
+# B7 FI Command Center V5.5.7 — Universal Live Tool Cards
 
-V5.5.17: Operations page navigation now uses the standard five-button Center page-nav treatment. Added a permanent PRESENTATION MODE action to the main navigation. It always presents Live Operations and returns to the originating page when Presentation Mode exits (including Esc/fullscreen exit).
+Update Center tool cards now use the same complete card renderer as the Live Operations carousel, including UTID identity, tool photo, Reduced Process, six workflow/test badges, ship countdown and FI status, cycle information, FI/Micro/Lead/Customer Source/STR/Packing progress, tool information, active FI checklists, and next Lead/Admin tasks.
 
+# B7 FI Command Center V5.5.4
 
-V5.5.17: Operations action controls now match the standard page-action geometry; current-quarter navigation uses the Operations accent instead of green; the global Presentation Mode button inherits the active Center color on hover/focus; Presentation Mode hides all page navigation/actions and still returns to the originating route on exit.
+Customer Source + STR Progress update.
 
-
-V5.5.17: Standardized hover/focus/active feedback across the main Center navigation, all Center page-navigation bars, and page actions. Each main Center previews its own identity color; page navigation inherits the active Center accent. Fixed the first-exit Status Center Presentation Mode scale bug by deferring route/layout restoration until fullscreen has fully closed and clearing presentation zoom before the normal render.
-
-
-## V5.6.0 Automatic Forecast Engine
-- Added centrally stored Regera/Celestiq and standard-tool timing profiles.
-- Automatic checklist-based FI/power-down forecasts.
-- Automatic required power-down date from ship date minus 5-day or 3-day packing window.
-- Automatic schedule health feeds Systems Requiring Attention.
-- Forecast Center now compares estimated FI completion, required power down, packing window and ship date.
-- Calculation Standards are editable in Administration and saved in the existing local database.
-
-
-## V5.6.1 Daily Editor Parity
-- Updated **Update Command Center** and **Update Morning Status** to use the same field structure, labels, dropdown choices, and workflow sections as the Full Tool Editor.
-- Added Key Process / Test Status, Customer Source, STR, Shipping / Packing schedule fields, detailed milestones, and full NC / Escalation / POA editing to the daily editor.
-- Updated forecast fields to the Tool Editor pair: **Next Step Forecast Checklist** + **Forecast Start**.
-- Removed the obsolete standalone Lead/Admin progress control from the daily editor; Current Lead/Admin Task remains the editable source field and progress stays automatic.
-- Added collapsible FI and Lead/Admin checklist working aids so the daily page remains manageable while retaining parity with the Tool Editor.
-- Morning Status edit titles now identify Weekday vs Weekend context.
-- Daily Save captures all matching nested workflow fields and preserves existing localStorage compatibility.
+Changes from V5.5.3:
+- Added CUSTOMER SOURCE progress to the Live Operations tool-card progress panel.
+- Added STR progress to the Live Operations tool-card progress panel.
+- Progress order is now FI Testing, Micro Schedule, Tool Cycle Time, Average Cycle Time, Lead/Admin, Customer Source, STR, Packing/Shipping.
+- Customer Source and STR bars use the same underlying workflow fields as their badges.
+- Required = No displays N/A / Not Required.
+- Required = TBD displays TBD / Requirement TBD.
+- Required workflow states advance the progress bar through their defined stages.
+- Existing V5.x browser/localStorage data remains compatible.
 
 
-## V5.6.4 Live Checklist Forecast
-- Live Operations tool cards now include an interactive Forecast Target Checklist selector.
-- Selecting a target saves it to the same tool record used by Full Tool Edit and immediately recalculates the estimated date.
-- Full Tool Edit and Daily/Morning editors use the same Forecast Target Checklist field and show the forecast date as a calculated read-only output.
-- Selecting the final FI 200 checklist automatically presents the result as a Power Down Forecast.
-- Live cards also show the Required Power Down date when a ship date is available.
-- Forecast dates are no longer intended to be manually maintained; they recalculate from current FI progress and Calculation Standards.
+## V5.5.6 — Status Header, Reveal & UTID Fix
+- Live Tool Carousel photo panel now displays the UTID as the primary tool identifier.
+- Tool Information panel replaces the redundant UTID row with Tool Type / Code Name.
+- All other V5.5.4 functionality and stored data remain unchanged.
 
 
-## V5.6.4 Forecast Card Fixes
-- Live forecast selector no longer bubbles into the tool-card navigation, so the dropdown can be used without opening Tool Edit.
-- Forecast selector is compact and the Estimated Date row is kept visible on dense Live Operations cards.
-- Tools already at the selected checklist / FI 200 can return a current-date forecast when no historical powered-down date exists.
-- Full Tool Edit now uses the same collapsible FI Checklist / Lead-Admin working-aids section as Update Command Center and Morning Status Update.
+## V5.5.6 changes
+- Restored **UTID** as the first field in the lower Live Operations tool-information panel while keeping UTID as the large primary identifier above the photo.
+- Status Center Weekday/Weekend pages now use the same external **PAGE NAME · DATE** body heading treatment as Priority Center; the duplicate embedded email heading is hidden in normal mode.
+- Hardened Screenshot and Presentation family-progress layouts so the **REVEAL / Mystery** column remains visible and display-only instead of being clipped.
 
 
-## V5.6.4 Forecast Date Fix
-- Corrected checklist index lookup in the automatic forecast engine so selections saved from Full Tool Edit and Live Operations generate dates correctly for current/future FI targets.
-- Past checklist targets now show ALREADY REACHED instead of a misleading blank or false date.
-- FI 200 / Power Down targets continue to use the actual powered-down date when available.
+V5.5.9: Update Center universal cards now use the same final 3x2 layout, dimensions, typography, badge geometry, progress spacing, and status/cycle composition as the Live Operations Tool Carousel. Two cards remain side-by-side at normal desktop widths.
