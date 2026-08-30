@@ -1,4 +1,4 @@
-# B7 FI Command Center V5.6.0 — Tool Editor Workflow Polish
+# B7 FI Command Center V5.6.1 — Daily Editor Parity
 
 Changes: reorganized FI/Micro Schedule editor; removed editor Lead/Admin progress bar; controlled Cleanroom CR1/CR2/CR3; Macan models 2930XR/2935XR; standardized AV Data/SCC Cleanup/Backup lists; split Customer Source and STR workflows; combined source handoff/start and return-to-FI date labels; standardized shipping schedule status; paired Next Step Forecast checklist with forecast date; reinforced Mystery/Reveal visibility in Screenshot and Presentation modes. Existing localStorage key/data remain compatible.
 
@@ -32,3 +32,13 @@ V5.5.17: Standardized hover/focus/active feedback across the main Center navigat
 - Automatic schedule health feeds Systems Requiring Attention.
 - Forecast Center now compares estimated FI completion, required power down, packing window and ship date.
 - Calculation Standards are editable in Administration and saved in the existing local database.
+
+
+## V5.6.1 Daily Editor Parity
+- Updated **Update Command Center** and **Update Morning Status** to use the same field structure, labels, dropdown choices, and workflow sections as the Full Tool Editor.
+- Added Key Process / Test Status, Customer Source, STR, Shipping / Packing schedule fields, detailed milestones, and full NC / Escalation / POA editing to the daily editor.
+- Updated forecast fields to the Tool Editor pair: **Next Step Forecast Checklist** + **Forecast Start**.
+- Removed the obsolete standalone Lead/Admin progress control from the daily editor; Current Lead/Admin Task remains the editable source field and progress stays automatic.
+- Added collapsible FI and Lead/Admin checklist working aids so the daily page remains manageable while retaining parity with the Tool Editor.
+- Morning Status edit titles now identify Weekday vs Weekend context.
+- Daily Save captures all matching nested workflow fields and preserves existing localStorage compatibility.

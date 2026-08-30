@@ -1,0 +1,9 @@
+
+/* V5.6.1 — Update Command Center / Morning Status parity with Full Tool Editor */
+.daily-card-v561 .daily-section{margin-top:14px}
+.daily-card-v561 .daily-detail-workspace{display:block;border:1px solid rgba(var(--accent-rgb),.28);border-radius:10px;padding:0;background:rgba(255,255,255,.02)}
+.daily-card-v561 .daily-detail-workspace>summary{cursor:pointer;padding:12px 14px;font-weight:800;letter-spacing:.03em;color:var(--accent)}
+.daily-card-v561 .daily-detail-workspace[open]>summary{border-bottom:1px solid rgba(var(--accent-rgb),.22)}
+.daily-card-v561 .daily-detail-workspace .checklist-workspace{padding:12px}
+.daily-card-v561 .daily-nc-list .nc-edit-row{margin-top:8px}
+.daily-card-v561 .shipping-milestone-editor{width:100%}
