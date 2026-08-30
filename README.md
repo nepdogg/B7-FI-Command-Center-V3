@@ -11,3 +11,9 @@ Changes from V5.5.3:
 - Required = TBD displays TBD / Requirement TBD.
 - Required workflow states advance the progress bar through their defined stages.
 - Existing V5.x browser/localStorage data remains compatible.
+
+
+## V5.5.5 — UTID Primary Tool Identity
+- Live Tool Carousel photo panel now displays the UTID as the primary tool identifier.
+- Tool Information panel replaces the redundant UTID row with Tool Type / Code Name.
+- All other V5.5.4 functionality and stored data remain unchanged.
