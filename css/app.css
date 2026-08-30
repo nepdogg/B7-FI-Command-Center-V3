@@ -3142,3 +3142,18 @@ body.presentation-mode .snapshot-family .family-matrix.header>b:last-child{displ
 
 /* V5.6.2 interactive checklist forecast */
 .interactive-forecast{gap:8px}.forecast-target-line{align-items:stretch!important}.live-forecast-select{width:100%;min-width:0;background:#09111f;color:#fff;border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:7px 28px 7px 8px;font-weight:800;font-size:11px;line-height:1.2;cursor:pointer}.live-forecast-select:focus{outline:2px solid var(--accent);outline-offset:1px}.forecast-date-line strong{font-size:18px!important;letter-spacing:.04em}.forecast-required{display:flex;justify-content:space-between;gap:8px;border-top:1px solid rgba(255,255,255,.14);padding-top:6px;font-size:10px}.forecast-required span{opacity:.7}.forecast-required strong{font-size:11px}.capture-mode .live-forecast-select,.presentation-mode .live-forecast-select{pointer-events:auto}
+
+/* V5.6.3 live forecast card compact layout + tool editor collapsible working aids */
+body[data-center="operations"] .interactive-forecast{gap:3px!important;padding-top:3px!important}
+body[data-center="operations"] .interactive-forecast .forecast-line{grid-template-columns:66px minmax(0,1fr)!important;gap:6px!important;padding:3px 0!important;align-items:center!important}
+body[data-center="operations"] .interactive-forecast .forecast-target-line span{font-size:7px!important;line-height:1.05!important}
+body[data-center="operations"] .live-forecast-select{height:28px!important;padding:3px 24px 3px 7px!important;font-size:9px!important;font-weight:850!important;text-overflow:ellipsis!important;white-space:nowrap!important;overflow:hidden!important}
+body[data-center="operations"] .interactive-forecast .forecast-date-line strong{font-size:11px!important;line-height:1.05!important;white-space:nowrap!important}
+body[data-center="operations"] .interactive-forecast .forecast-required{padding-top:3px!important;font-size:7px!important;line-height:1.05!important}
+body[data-center="operations"] .interactive-forecast .forecast-required strong{font-size:8px!important;white-space:nowrap!important}
+.tool-detail-workspace{border:1px solid rgba(255,255,255,.14);border-radius:6px;padding:0!important;overflow:hidden}
+.tool-detail-workspace>summary{cursor:pointer;list-style:none;padding:11px 13px;font-weight:900;letter-spacing:.04em;color:#dcecf7;background:rgba(255,255,255,.035)}
+.tool-detail-workspace>summary::-webkit-details-marker{display:none}
+.tool-detail-workspace>summary:after{content:'EXPAND';float:right;color:var(--accent);font-size:10px}
+.tool-detail-workspace[open]>summary:after{content:'COLLAPSE'}
+.tool-detail-workspace .checklist-workspace{padding:10px}

@@ -1,4 +1,4 @@
-# B7 FI Command Center V5.6.2 — Live Checklist Forecast
+# B7 FI Command Center V5.6.3 — Live Checklist Forecast
 
 Changes: reorganized FI/Micro Schedule editor; removed editor Lead/Admin progress bar; controlled Cleanroom CR1/CR2/CR3; Macan models 2930XR/2935XR; standardized AV Data/SCC Cleanup/Backup lists; split Customer Source and STR workflows; combined source handoff/start and return-to-FI date labels; standardized shipping schedule status; paired Next Step Forecast checklist with forecast date; reinforced Mystery/Reveal visibility in Screenshot and Presentation modes. Existing localStorage key/data remain compatible.
 
@@ -44,10 +44,17 @@ V5.5.17: Standardized hover/focus/active feedback across the main Center navigat
 - Daily Save captures all matching nested workflow fields and preserves existing localStorage compatibility.
 
 
-## V5.6.2 Live Checklist Forecast
+## V5.6.3 Live Checklist Forecast
 - Live Operations tool cards now include an interactive Forecast Target Checklist selector.
 - Selecting a target saves it to the same tool record used by Full Tool Edit and immediately recalculates the estimated date.
 - Full Tool Edit and Daily/Morning editors use the same Forecast Target Checklist field and show the forecast date as a calculated read-only output.
 - Selecting the final FI 200 checklist automatically presents the result as a Power Down Forecast.
 - Live cards also show the Required Power Down date when a ship date is available.
 - Forecast dates are no longer intended to be manually maintained; they recalculate from current FI progress and Calculation Standards.
+
+
+## V5.6.3 Forecast Card Fixes
+- Live forecast selector no longer bubbles into the tool-card navigation, so the dropdown can be used without opening Tool Edit.
+- Forecast selector is compact and the Estimated Date row is kept visible on dense Live Operations cards.
+- Tools already at the selected checklist / FI 200 can return a current-date forecast when no historical powered-down date exists.
+- Full Tool Edit now uses the same collapsible FI Checklist / Lead-Admin working-aids section as Update Command Center and Morning Status Update.
