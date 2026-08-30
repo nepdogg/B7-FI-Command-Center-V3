@@ -1,3 +1,7 @@
+# B7 FI Command Center V5.5.18 — Tool Editor Workflow Polish
+
+Changes: reorganized FI/Micro Schedule editor; removed editor Lead/Admin progress bar; controlled Cleanroom CR1/CR2/CR3; Macan models 2930XR/2935XR; standardized AV Data/SCC Cleanup/Backup lists; split Customer Source and STR workflows; combined source handoff/start and return-to-FI date labels; standardized shipping schedule status; paired Next Step Forecast checklist with forecast date; reinforced Mystery/Reveal visibility in Screenshot and Presentation modes. Existing localStorage key/data remain compatible.
+
 # B7 FI Command Center V5.5.17 — Navigation Effects + Presentation Restore
 
 This build continues the consolidated Operations Center architecture.

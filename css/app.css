@@ -3100,3 +3100,40 @@ body[data-center="operations"] .pagebar .subnav .quarter-nav.current-quarter:not
 body:not(.presentation-mode) .app-frame{
   zoom:1!important;
 }
+\n\n/* V5.5.18 — Tool Editor workflow polish */
+.tool-editor .micro-date-pair{align-self:start}
+.tool-editor .micro-date-pair>label{display:block;margin-bottom:4px}
+.tool-editor .micro-date-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;min-width:0}
+.tool-editor .micro-date-grid .field{margin:0;min-width:0}
+@media(max-width:760px){.tool-editor .micro-date-grid{grid-template-columns:1fr}}
+
+/* Screenshot / Presentation mystery reveal parity: reserve a real final column and override global button hiding. */
+body.screenshot-mode .snapshot-family .family-panel-v526,
+body.presentation-mode .snapshot-family .family-panel-v526{overflow:visible!important}
+body.screenshot-mode .snapshot-family .family-matrix.header,
+body.screenshot-mode .snapshot-family .family-rows-scroll .family-matrix,
+body.presentation-mode .snapshot-family .family-matrix.header,
+body.presentation-mode .snapshot-family .family-rows-scroll .family-matrix{
+  display:grid!important;
+  grid-template-columns:minmax(112px,1.45fr) 44px 48px 44px 48px 48px minmax(84px,1fr) 44px!important;
+  gap:3px!important;
+  width:100%!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+  overflow:visible!important;
+}
+body.screenshot-mode .snapshot-family .family-rows-scroll,
+body.presentation-mode .snapshot-family .family-rows-scroll{
+  padding-right:0!important;
+  overflow-x:visible!important;
+  scrollbar-gutter:auto!important;
+}
+body.screenshot-mode .snapshot-family button.reveal-btn,
+body.presentation-mode .snapshot-family button.reveal-btn{
+  display:flex!important;visibility:visible!important;opacity:1!important;
+  width:44px!important;min-width:44px!important;max-width:44px!important;
+  height:100%!important;min-height:40px!important;margin:0!important;
+  align-items:center!important;justify-content:center!important;pointer-events:none!important;
+}
+body.screenshot-mode .snapshot-family .family-matrix.header>b:last-child,
+body.presentation-mode .snapshot-family .family-matrix.header>b:last-child{display:block!important;visibility:visible!important;opacity:1!important}
