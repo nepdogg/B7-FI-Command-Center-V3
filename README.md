@@ -80,3 +80,8 @@ V5.5.18 updates:
 - Forecast date is estimated from FI handoff/current position and configured tool-family cycle target when available.
 - Left identity footer removes outer divider lines and enlarges Customer / Sales Order / Ship Date.
 - Middle-column top status section uses more vertical spacing while retaining the balanced FI Cycle Time and FI Forecast sections.
+
+
+## V5.6.0 — Automation Engine Foundation
+
+This build introduces a centralized, render-time Command Center automation engine. Tool Editor and Daily Update fields remain the source of truth. The engine derives operational attention, critical status, ship-date urgency, FI-vs-Micro health, packing incompleteness, Customer Source/STR urgency, and automatic priority ordering without overwriting historical tool facts. Shipped/Archived tools are automatically excluded from daily workload and priority calculations. Live Operations, Status bars, Systems Requiring Attention, and Priority Center now consume the same derived engine state.
