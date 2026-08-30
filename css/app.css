@@ -3139,3 +3139,6 @@ body.screenshot-mode .snapshot-family .family-matrix.header>b:last-child,
 body.presentation-mode .snapshot-family .family-matrix.header>b:last-child{display:block!important;visibility:visible!important;opacity:1!important}
 
 .calculation-standards-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.calculation-standards-grid .subsection{margin:0}.cycle-health small{display:block;margin-top:4px;white-space:normal}@media(max-width:900px){.calculation-standards-grid{grid-template-columns:1fr}}
+
+/* V5.6.2 interactive checklist forecast */
+.interactive-forecast{gap:8px}.forecast-target-line{align-items:stretch!important}.live-forecast-select{width:100%;min-width:0;background:#09111f;color:#fff;border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:7px 28px 7px 8px;font-weight:800;font-size:11px;line-height:1.2;cursor:pointer}.live-forecast-select:focus{outline:2px solid var(--accent);outline-offset:1px}.forecast-date-line strong{font-size:18px!important;letter-spacing:.04em}.forecast-required{display:flex;justify-content:space-between;gap:8px;border-top:1px solid rgba(255,255,255,.14);padding-top:6px;font-size:10px}.forecast-required span{opacity:.7}.forecast-required strong{font-size:11px}.capture-mode .live-forecast-select,.presentation-mode .live-forecast-select{pointer-events:auto}
