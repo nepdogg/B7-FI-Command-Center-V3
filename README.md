@@ -56,3 +56,9 @@ Changes from V5.5.3:
 
 
 V5.5.9: Update Center universal cards now use the same final 3x2 layout, dimensions, typography, badge geometry, progress spacing, and status/cycle composition as the Live Operations Tool Carousel. Two cards remain side-by-side at normal desktop widths.
+
+
+V5.5.16 — Universal Tool Card Single Layout
+- Removed the visual divergence between Live Operations and Update Center universal tool cards by overriding legacy Operations-only two-row grid rules.
+- Both centers now use the same 3-column, single-row, 610px universal card geometry.
+- Left and middle columns fill the complete card height; right column preserves progress + 3 FI checklists + 3 Lead/Admin tasks.

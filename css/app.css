@@ -2703,3 +2703,105 @@ body[data-center="update"] .update-live-card-list .live-card-v52>.universal-tool
     height:auto!important;min-height:0!important;max-height:none!important;flex:none!important;overflow:visible!important;
   }
 }
+
+
+/* V5.5.16 — UNIVERSAL TOOL CARD SINGLE LAYOUT
+   Live Operations and Update Center must render the exact same card geometry.
+   This final block intentionally overrides older Operations-only two-row rules. */
+body[data-center="operations"] .operations-tool-carousel .live-panel,
+body[data-center="update"] .update-live-card-list>.live-panel{
+  height:626px!important;
+  min-height:626px!important;
+  max-height:626px!important;
+  padding:8px!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52,
+body[data-center="update"] .update-live-card-list .live-card-v52{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-template-rows:minmax(0,1fr)!important;
+  grid-auto-rows:unset!important;
+  gap:8px!important;
+  align-items:stretch!important;
+  height:610px!important;
+  min-height:610px!important;
+  max-height:610px!important;
+  overflow:hidden!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52>.universal-tool-column,
+body[data-center="update"] .update-live-card-list .live-card-v52>.universal-tool-column{
+  grid-row:1!important;
+  height:100%!important;
+  min-height:0!important;
+  max-height:none!important;
+  align-self:stretch!important;
+  display:flex!important;
+  flex-direction:column!important;
+  gap:8px!important;
+  overflow:hidden!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52>.universal-info-column,
+body[data-center="update"] .update-live-card-list .live-card-v52>.universal-info-column{grid-column:1!important}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52>.universal-status-column,
+body[data-center="update"] .update-live-card-list .live-card-v52>.universal-status-column{grid-column:2!important}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52>.universal-progress-column,
+body[data-center="update"] .update-live-card-list .live-card-v52>.universal-progress-column{grid-column:3!important}
+
+/* Left and middle are one full-height panel each. */
+body[data-center="operations"] .operations-tool-carousel .live-card-v52>.universal-info-column>.photo-panel,
+body[data-center="update"] .update-live-card-list .live-card-v52>.universal-info-column>.photo-panel,
+body[data-center="operations"] .operations-tool-carousel .live-card-v52>.universal-status-column>.sketch-status-box,
+body[data-center="update"] .update-live-card-list .live-card-v52>.universal-status-column>.sketch-status-box{
+  flex:1 1 auto!important;
+  height:100%!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow:hidden!important;
+  box-sizing:border-box!important;
+}
+
+/* Right column is progress + FI checklist + Lead/Admin, all inside the same full-height column. */
+body[data-center="operations"] .operations-tool-carousel .live-card-v52>.universal-progress-column>.sketch-progress,
+body[data-center="update"] .update-live-card-list .live-card-v52>.universal-progress-column>.sketch-progress{
+  flex:0 0 52%!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow:hidden!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52>.universal-progress-column>.live-fi-panel,
+body[data-center="operations"] .operations-tool-carousel .live-card-v52>.universal-progress-column>.live-tasks,
+body[data-center="update"] .update-live-card-list .live-card-v52>.universal-progress-column>.live-fi-panel,
+body[data-center="update"] .update-live-card-list .live-card-v52>.universal-progress-column>.live-tasks{
+  flex:1 1 24%!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow:hidden!important;
+}
+
+/* Ensure the sketch spacing is identical in both centers. */
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .photo-panel,
+body[data-center="update"] .update-live-card-list .live-card-v52 .photo-panel{padding:12px!important}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-status-box,
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-status-box{padding:12px!important}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-progress,
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-progress{padding:11px!important}
+
+@media(max-width:1150px){
+  body[data-center="operations"] .operations-tool-carousel .live-panel,
+  body[data-center="update"] .update-live-card-list>.live-panel{
+    height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;
+  }
+  body[data-center="operations"] .operations-tool-carousel .live-card-v52,
+  body[data-center="update"] .update-live-card-list .live-card-v52{
+    grid-template-columns:1fr!important;grid-template-rows:auto!important;
+    height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;
+  }
+  body[data-center="operations"] .operations-tool-carousel .live-card-v52>.universal-tool-column,
+  body[data-center="update"] .update-live-card-list .live-card-v52>.universal-tool-column{
+    grid-column:1!important;grid-row:auto!important;height:auto!important;overflow:visible!important;
+  }
+}
