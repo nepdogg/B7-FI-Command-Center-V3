@@ -3379,3 +3379,107 @@ body[data-center="operations"] .update-live-card-list .live-card-v52 .sketch-sta
 body[data-center="operations"] #subnav.subnav{border-color:var(--accent)!important}
 body[data-center="operations"] #subnav.subnav>button.active{box-shadow:inset 0 -3px 0 var(--accent)!important;background:rgba(var(--accent-rgb),.22)!important}
 body[data-build="20260830-V5.6.4-DEPLOYMENT-NAVIGATION-VERIFICATION"] .pagebar{visibility:visible!important;opacity:1!important}
+\n\n/* V5.6.5 — UNIVERSAL CARD / ONE-LINE OPERATIONS NAV / TOOL FAMILY JUMP — FINAL AUTHORITY */
+html{scroll-behavior:smooth}
+
+/* Top-level center navigation: Cycle Time restored; all center buttons stay on one line. */
+.main-nav{display:grid!important;grid-template-columns:repeat(10,minmax(0,1fr))!important;overflow:hidden!important}
+.main-nav button{min-width:0!important;width:100%!important;padding:0 2px!important;font-size:clamp(6.5px,.58vw,9px)!important;letter-spacing:-.08px!important;text-overflow:ellipsis!important;overflow:hidden!important}
+
+/* Operations page navigation + carousel controls = ONE compact bar. */
+body[data-center="operations"] .pagebar{
+  display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;grid-template-rows:34px!important;
+  min-height:34px!important;height:34px!important;align-items:stretch!important;overflow:hidden!important
+}
+body[data-center="operations"] .pagebar .subnav{
+  grid-column:1!important;grid-row:1!important;display:flex!important;align-items:stretch!important;
+  min-width:0!important;width:auto!important;overflow:hidden!important;height:34px!important
+}
+body[data-center="operations"] .pagebar .subnav button{
+  flex:1 1 auto!important;min-width:0!important;height:34px!important;min-height:34px!important;
+  padding:0 5px!important;font-size:clamp(6.5px,.55vw,8.5px)!important;letter-spacing:-.12px!important;
+  white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important
+}
+body[data-center="operations"] .pagebar .subnav .env-chip{
+  flex:0 0 auto!important;height:34px!important;min-height:34px!important;padding:0 7px!important;font-size:7px!important
+}
+body[data-center="operations"] .pagebar .page-actions{
+  grid-column:2!important;grid-row:1!important;display:flex!important;align-items:stretch!important;
+  width:auto!important;min-width:0!important;height:34px!important;min-height:34px!important;border-top:0!important;overflow:hidden!important
+}
+body[data-center="operations"] #pageActions:has(.ops-action-controls){padding:0 3px!important;gap:3px!important;height:34px!important;min-height:34px!important}
+body[data-center="operations"] .ops-action-controls{gap:4px!important;flex:0 1 auto!important;min-width:0!important}
+body[data-center="operations"] .ops-control-group{grid-template-columns:auto 24px 35px 42px 24px!important;gap:2px!important;font-size:7px!important}
+body[data-center="operations"] .ops-mini-btn{width:24px!important;height:26px!important;font-size:8px!important}
+body[data-center="operations"] .ops-pause-btn{width:42px!important;height:26px!important;font-size:7px!important}
+body[data-center="operations"] .ops-action-right button{height:34px!important;padding:0 7px!important;font-size:7px!important}
+
+/* Universal Tool Card navigation: card is display-only; ONLY photo and arrow open Tool Editor. */
+.live-card-v52{cursor:default!important}
+.live-card-v52 .tool-open-photo{cursor:pointer!important;position:relative!important}
+.live-card-v52 .tool-open-photo:hover{background:rgba(var(--accent-rgb),.06)!important}
+.live-card-v52 .tool-photo-open{
+  position:absolute!important;top:8px!important;right:8px!important;z-index:6!important;width:26px!important;height:26px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;border:1px solid #34789d!important;
+  background:#071b2a!important;color:#dff6ff!important;font-weight:950!important;font-size:15px!important;cursor:pointer!important;padding:0!important
+}
+.live-card-v52 .tool-photo-open:hover{border-color:var(--accent)!important;color:#fff!important;background:rgba(var(--accent-rgb),.22)!important}
+.live-card-v52 .photo-panel{position:relative!important}
+
+/* Middle status column: deliberate 3-zone balance with no giant blank region. */
+.live-card-v52 .sketch-status-box{
+  display:grid!important;grid-template-rows:minmax(0,42fr) minmax(0,27fr) minmax(0,31fr)!important;
+  gap:0!important;padding:12px!important;height:100%!important;min-height:0!important;overflow:hidden!important
+}
+.live-card-v52 .sketch-status-box>.sketch-status-section:first-child,
+.live-card-v52 .sketch-status-box>.sketch-status-section:nth-child(2){grid-row:1!important}
+.live-card-v52 .sketch-status-box>.sketch-status-section:first-child{
+  align-self:start!important;justify-content:flex-start!important;padding:0 0 10px!important;border:0!important
+}
+.live-card-v52 .sketch-status-box>.sketch-status-section:nth-child(2){
+  align-self:end!important;justify-content:flex-end!important;padding:10px 0 8px!important;border:0!important
+}
+.live-card-v52 .sketch-status-box>.sketch-status-section:nth-child(3){
+  grid-row:2!important;justify-content:space-evenly!important;padding:8px 0!important;border-top:1px solid #24485d!important;border-bottom:1px solid #24485d!important
+}
+.live-card-v52 .sketch-status-box>.sketch-status-section:nth-child(4){
+  grid-row:3!important;justify-content:space-evenly!important;padding:8px 0 2px!important;border:0!important
+}
+.live-card-v52 .sketch-status-box .status-current-label{margin-top:7px!important}
+.live-card-v52 .sketch-status-box .schedule-health{margin:4px 0 7px!important}
+.live-card-v52 .sketch-status-box .phase-big{margin:3px 0 7px!important}
+.live-card-v52 .sketch-status-box .next-fi-standout{margin-top:4px!important;line-height:1.32!important}
+.live-card-v52 .sketch-status-box .cycle-metric,.live-card-v52 .sketch-status-box .forecast-line{padding:7px 0!important}
+.live-card-v52 .sketch-status-box .forecast-target-button{max-height:72px!important}
+
+/* Tool pages: sticky type jump row and stronger family separators. */
+.tool-family-jump{
+  position:sticky!important;top:var(--sticky-shell-height)!important;z-index:24!important;display:flex!important;align-items:stretch!important;
+  gap:4px!important;padding:5px 6px!important;margin:0 0 8px!important;border:1px solid var(--accent)!important;background:#04111d!important;
+  box-shadow:0 4px 10px rgba(0,0,0,.28)!important;overflow-x:auto!important
+}
+.tool-jump-btn{
+  flex:1 1 0!important;min-width:92px!important;padding:8px 10px!important;border:1px solid #28516b!important;background:#071b2a!important;
+  color:#e8f6ff!important;text-decoration:none!important;text-align:center!important;font-size:10px!important;font-weight:950!important;letter-spacing:.25px!important;white-space:nowrap!important
+}
+.tool-jump-btn:hover{border-color:var(--accent)!important;background:rgba(var(--accent-rgb),.18)!important;color:#fff!important}
+.tool-section{scroll-margin-top:calc(var(--sticky-shell-height) + 52px)!important;margin-bottom:18px!important}
+.tool-section-head{
+  min-height:64px!important;display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-start!important;
+  gap:18px!important;padding:8px 12px!important;margin-bottom:9px!important;border:1px solid var(--accent)!important;background:rgba(var(--accent-rgb),.07)!important
+}
+.tool-section-head h2{min-width:190px!important;font-size:24px!important;line-height:1!important;margin:0!important;padding:0!important;letter-spacing:.35px!important}
+.tool-family-totals{display:flex!important;align-items:stretch!important;gap:7px!important;margin:0!important}
+.tool-family-totals .mini-stat{min-width:72px!important;padding:6px 8px!important;font-size:9px!important;line-height:1.05!important}
+.tool-family-totals .mini-stat b{font-size:20px!important;margin-top:3px!important}
+
+@media(max-width:1450px){
+  body[data-center="operations"] .pagebar .subnav button{font-size:6.5px!important;padding:0 3px!important}
+  body[data-center="operations"] .ops-control-group{grid-template-columns:auto 22px 32px 38px 22px!important}
+  body[data-center="operations"] .ops-mini-btn{width:22px!important}.ops-pause-btn{width:38px!important}
+  .tool-section-head h2{min-width:150px!important;font-size:21px!important}
+}
+@media(max-width:1100px){
+  body[data-center="operations"] .pagebar{height:auto!important;min-height:34px!important;grid-template-columns:minmax(720px,1fr) auto!important;overflow-x:auto!important}
+  .tool-family-jump{top:var(--sticky-shell-height)!important}
+}
