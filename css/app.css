@@ -2324,10 +2324,11 @@ body.presentation-mode .snapshot-family .family-matrix.header>b:last-child{
    the Live Operations tool carousel. One card = one shared visual language. */
 body[data-center="update"] .update-live-card-list{
   display:grid!important;
-  grid-template-columns:1fr!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
   gap:12px!important;
   width:100%!important;
   min-width:0!important;
+  align-items:start!important;
 }
 body[data-center="update"] .update-live-card-list>.live-panel{
   width:100%!important;
@@ -2355,12 +2356,19 @@ body[data-center="update"] .update-live-card-list .live-card-v52>.live-info{grid
 body[data-center="update"] .update-live-card-list .live-card-v52>.live-fi-panel{grid-column:span 4!important}
 body[data-center="update"] .update-live-card-list .live-card-v52>.live-tasks{grid-column:span 4!important}
 body[data-center="update"] .update-live-card-list .live-six-panel{min-height:0!important;overflow:hidden!important}
-@media(max-width:1150px){
-  body[data-center="update"] .update-live-card-list>.live-panel{height:auto!important;max-height:none!important;min-height:900px!important}
-  body[data-center="update"] .update-live-card-list .live-card-v52{grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:auto!important}
-  body[data-center="update"] .update-live-card-list .live-card-v52>.live-six-panel{grid-column:span 1!important;min-height:250px!important}
+@media(max-width:1280px){
+  body[data-center="update"] .update-live-card-list{grid-template-columns:1fr!important}
+  body[data-center="update"] .update-live-card-list>.live-panel{height:620px!important;max-height:620px!important;min-height:620px!important}
 }
 @media(max-width:760px){
-  body[data-center="update"] .update-live-card-list>.live-panel{min-height:0!important}
-  body[data-center="update"] .update-live-card-list .live-card-v52{grid-template-columns:1fr!important}
+  body[data-center="update"] .update-live-card-list>.live-panel{height:auto!important;max-height:none!important;min-height:0!important}
+  body[data-center="update"] .update-live-card-list .live-card-v52{grid-template-columns:1fr!important;grid-template-rows:auto!important;overflow:visible!important}
+  body[data-center="update"] .update-live-card-list .live-card-v52>.live-six-panel{grid-column:span 1!important;min-height:250px!important}
 }
+
+
+/* V5.5.8 — Update Center two-column universal cards.
+   At desktop widths, every family renders two locked-proportion Live Operations
+   cards side by side instead of stretching one card across the full workspace. */
+body[data-center="update"] .tool-section{min-width:0!important}
+body[data-center="update"] .update-live-card-list>.live-panel{min-width:0!important}

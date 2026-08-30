@@ -1,3 +1,14 @@
+# B7 FI Command Center V5.5.8 — Two-Column Universal Tool Cards
+
+This build continues the locked universal Live Operations tool-card design across the Update Center.
+
+## V5.5.8 changes
+- Update Center family sections now render **two complete universal tool cards side by side** at normal desktop widths.
+- Cards no longer stretch to fill the entire page width.
+- Each card keeps the same six-panel proportions and shared live data/status logic used by the Operations Center Tool Carousel.
+- At narrower widths the layout collapses to one card per row for usability.
+- Existing V5.x localStorage data remains compatible.
+
 # B7 FI Command Center V5.5.7 — Universal Live Tool Cards
 
 Update Center tool cards now use the same complete card renderer as the Live Operations carousel, including UTID identity, tool photo, Reduced Process, six workflow/test badges, ship countdown and FI status, cycle information, FI/Micro/Lead/Customer Source/STR/Packing progress, tool information, active FI checklists, and next Lead/Admin tasks.
