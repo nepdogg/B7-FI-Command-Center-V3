@@ -2688,3 +2688,113 @@ body[data-center="update"] .update-live-card-list .live-card-v52 *::-webkit-scro
   body[data-center="update"] .update-live-card-list .live-card-v52{grid-template-columns:1fr!important;grid-template-rows:auto!important;overflow:visible!important}
   body[data-center="update"] .update-live-card-list .live-card-v52>.live-six-panel{min-height:250px!important}
 }
+
+
+/* V5.5.13 — Operations page navigation restored + compact stacked carousel controls */
+body[data-center="operations"] .pagebar .subnav{
+  display:flex!important;
+  flex:1 1 auto!important;
+  min-width:0!important;
+  overflow:hidden!important;
+}
+body[data-center="operations"] .pagebar{
+  justify-content:space-between!important;
+  align-items:stretch!important;
+}
+body[data-center="operations"] .pagebar .subnav button{
+  flex:1 1 0!important;
+  min-width:88px!important;
+  padding:0 7px!important;
+  font-size:clamp(7px,.58vw,9px)!important;
+}
+body[data-center="operations"] #pageActions{
+  flex:0 1 auto!important;
+  min-width:0!important;
+  margin-left:0!important;
+}
+body[data-center="operations"] #pageActions:has(.ops-action-controls){
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:7px!important;
+  padding:3px 5px!important;
+  min-height:38px!important;
+  box-sizing:border-box!important;
+}
+body[data-center="operations"] .ops-action-controls{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:6px!important;
+  flex:0 1 auto!important;
+  min-width:0!important;
+}
+body[data-center="operations"] .ops-control-group{
+  display:grid!important;
+  grid-template-columns:24px 38px 52px 24px!important;
+  align-items:center!important;
+  gap:3px!important;
+  min-width:0!important;
+  padding:0 4px!important;
+  border-left:1px solid #244b64!important;
+  border-right:1px solid #244b64!important;
+}
+body[data-center="operations"] .ops-control-group>span{
+  width:auto!important;
+  min-width:0!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+  color:#fff!important;
+  font-size:8px!important;
+  font-weight:950!important;
+}
+body[data-center="operations"] .ops-mini-btn{
+  width:24px!important;
+  min-width:24px!important;
+  height:28px!important;
+  font-size:9px!important;
+}
+body[data-center="operations"] .ops-pause-btn.ops-stacked-toggle{
+  width:52px!important;
+  min-width:52px!important;
+  height:30px!important;
+  padding:2px 3px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:1px!important;
+  line-height:1!important;
+}
+body[data-center="operations"] .ops-stacked-toggle span{
+  display:block!important;
+  color:#8fb9cf!important;
+  font-size:6.5px!important;
+  font-weight:950!important;
+  letter-spacing:.35px!important;
+  line-height:1!important;
+}
+body[data-center="operations"] .ops-stacked-toggle strong{
+  display:block!important;
+  color:#fff!important;
+  font-size:8px!important;
+  font-weight:950!important;
+  line-height:1.05!important;
+}
+body[data-center="operations"] .ops-action-right{
+  display:flex!important;
+  align-items:stretch!important;
+  justify-content:flex-end!important;
+  flex:0 0 auto!important;
+  min-width:0!important;
+}
+body[data-center="operations"] .ops-action-right button{
+  padding:0 7px!important;
+  font-size:clamp(7px,.58vw,9px)!important;
+}
+@media(max-width:1320px){
+  body[data-center="operations"] .pagebar{flex-wrap:wrap!important}
+  body[data-center="operations"] .pagebar .subnav{flex:1 1 100%!important;min-height:34px!important}
+  body[data-center="operations"] #pageActions{flex:1 1 100%!important;border-top:1px solid #173d57!important}
+  body[data-center="operations"] #pageActions:has(.ops-action-controls){justify-content:space-between!important}
+}

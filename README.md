@@ -1,16 +1,14 @@
-# B7 FI Command Center V5.5.12 — Operations Consolidation
+# B7 FI Command Center V5.5.13 — Operations Navigation + Compact Carousel Controls
 
-Framework consolidation build for testing.
+Testing build based on V5.5.12.
 
 ## Changes
-- Update Center removed from the main Center navigation.
-- Archive Center removed from the main Center navigation.
-- Operations Center is now the complete home for tool records.
-- Operations page navigation: Live Operations, Previous Quarter, Current Quarter (Active), Next Quarter, Tool Archive.
-- Quarter navigation is dynamic around the configured active quarter.
-- Existing universal tool-card dashboard is reused for quarter pages.
-- Existing Tool Archive is reused inside Operations Center.
-- Operations actions provide Update Command Center, Add Tool, and Screenshot where appropriate.
-- Existing tool editor and data model are preserved internally for compatibility.
-- Cycle Time Center remains a dedicated Center.
-- Existing localStorage production data key is unchanged.
+- Restored the Operations Center page navigation bar.
+- Operations page navigation now shows Live Operations, previous quarter, current active quarter, next quarter, and Tool Archive.
+- Removed the Operations environment chip from the page-navigation row to preserve horizontal room.
+- Compressed Status carousel controls into a four-part control with a two-line STATUS / PLAY-PAUSE center button.
+- Compressed Tools carousel controls the same way with a two-line TOOLS / PLAY-PAUSE center button.
+- Update Command Center, Add Tool, and Screenshot remain on the right side of the page-action bar.
+- Carousel controls are shown only on Live Operations.
+- Quarter and Tool Archive pages retain the page navigation while omitting carousel controls.
+- Existing localStorage key and production data compatibility are unchanged.
