@@ -2805,3 +2805,81 @@ body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-progres
     grid-column:1!important;grid-row:auto!important;height:auto!important;overflow:visible!important;
   }
 }
+
+
+/* V5.5.17 — UNIVERSAL TOOL CARD BALANCE REFINEMENT
+   Final visual refinement from Live Operations testing:
+   stronger centered identity, evenly distributed left/middle content,
+   fewer middle-column dividers, and one-item work-ahead previews. */
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-photo-title,
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-photo-title{
+  justify-content:center!important;text-align:center!important;flex:0 0 auto!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-photo-title>div,
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-photo-title>div{width:100%!important;text-align:center!important}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .live-codename,
+body[data-center="update"] .update-live-card-list .live-card-v52 .live-codename{
+  font-size:28px!important;line-height:1!important;letter-spacing:1.2px!important;text-align:center!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .tool-type-model,
+body[data-center="update"] .update-live-card-list .live-card-v52 .tool-type-model{
+  font-size:11px!important;line-height:1.2!important;margin-top:6px!important;text-align:center!important;letter-spacing:.6px!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-info-lines,
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-info-lines{
+  width:100%!important;padding:8px 12px 0!important;margin-top:8px!important;box-sizing:border-box!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-info-lines .kv,
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-info-lines .kv{
+  min-height:34px!important;padding:8px 0!important;align-items:center!important;font-size:11px!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-info-lines .kv span,
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-info-lines .kv span{font-size:10px!important}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-info-lines .kv strong,
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-info-lines .kv strong{font-size:11px!important}
+
+/* Middle column: three visual zones use the entire height; only major zones divide. */
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-status-box,
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-status-box{
+  display:grid!important;grid-template-rows:auto 1.25fr .9fr .8fr!important;gap:0!important;padding:14px!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-status-section,
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-status-section{
+  margin:0!important;padding:0!important;border-bottom:0!important;min-height:0!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-status-section:nth-child(2),
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-status-section:nth-child(2){
+  padding-top:16px!important;align-self:start!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-status-section:nth-child(3),
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-status-section:nth-child(3),
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-status-section:nth-child(4),
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-status-section:nth-child(4){
+  border-top:1px solid #24485d!important;padding-top:18px!important;align-self:stretch!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-status-section:nth-child(3),
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-status-section:nth-child(3){align-self:center!important;width:100%!important}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-status-section:nth-child(4),
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-status-section:nth-child(4){align-self:end!important;width:100%!important}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-status-box .cycle-metric,
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-status-box .cycle-metric,
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-status-box .forecast-line,
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-status-box .forecast-line{
+  padding:10px 0!important;border-bottom:0!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-section-title,
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-section-title{font-size:14px!important;margin-bottom:8px!important}
+
+/* Right column: progress stays balanced; FI and Lead/Admin are matching one-item preview boxes. */
+body[data-center="operations"] .operations-tool-carousel .live-card-v52>.universal-progress-column>.sketch-progress,
+body[data-center="update"] .update-live-card-list .live-card-v52>.universal-progress-column>.sketch-progress{flex:1 1 auto!important}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52>.universal-progress-column>.live-fi-panel,
+body[data-center="operations"] .operations-tool-carousel .live-card-v52>.universal-progress-column>.live-tasks,
+body[data-center="update"] .update-live-card-list .live-card-v52>.universal-progress-column>.live-fi-panel,
+body[data-center="update"] .update-live-card-list .live-card-v52>.universal-progress-column>.live-tasks{
+  flex:0 0 132px!important;min-height:132px!important;max-height:132px!important;padding:12px!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .live-fi-panel .active-fi,
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .live-tasks .next-task,
+body[data-center="update"] .update-live-card-list .live-card-v52 .live-fi-panel .active-fi,
+body[data-center="update"] .update-live-card-list .live-card-v52 .live-tasks .next-task{margin:8px 0!important;min-height:38px!important}

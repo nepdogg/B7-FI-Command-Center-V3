@@ -62,3 +62,12 @@ V5.5.16 — Universal Tool Card Single Layout
 - Removed the visual divergence between Live Operations and Update Center universal tool cards by overriding legacy Operations-only two-row grid rules.
 - Both centers now use the same 3-column, single-row, 610px universal card geometry.
 - Left and middle columns fill the complete card height; right column preserves progress + 3 FI checklists + 3 Lead/Admin tasks.
+
+
+V5.5.17 — Universal Tool Card Balance Refinement
+- Centered/larger UTID and tool type/model identity.
+- Enlarged and evenly spaced Customer / Sales Order / Ship Date area.
+- Middle column distributed through full height with only major section dividers.
+- FI Checklist preview reduced to next 1 checklist plus View All.
+- Lead/Admin preview reduced to next 1 task plus View All.
+- Same universal card rules apply in Operations and Update Center.
