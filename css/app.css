@@ -2520,3 +2520,63 @@ body[data-center="update"] .update-live-card-list .live-card-v52 *::-webkit-scro
 body[data-center="update"] .update-live-card-list .live-card-v52>.universal-tool-column{display:flex!important;flex-direction:column!important;gap:8px!important}
 body[data-center="update"] .update-live-card-list .live-card-v52>.universal-info-column>.photo-panel{padding:12px!important}
 @media(max-width:1150px){.live-card-v52>.universal-tool-column{overflow:visible!important}.live-card-v52>.universal-progress-column>.live-fi-panel,.live-card-v52>.universal-progress-column>.live-tasks{min-height:190px!important}}
+
+/* V5.5.14 — FULL-HEIGHT / EVEN-SPACING UNIVERSAL TOOL CARD
+   Preserve the sketch-driven content, but make every primary column span the full card
+   and distribute its sections vertically so dense tool data does not crowd the top. */
+.live-card-v52{
+  min-height:610px!important;
+  align-items:stretch!important;
+}
+.live-card-v52>.universal-tool-column{
+  height:100%!important;
+  min-height:0!important;
+  align-self:stretch!important;
+}
+.live-card-v52>.universal-info-column>.photo-panel,
+.live-card-v52>.universal-status-column>.sketch-status-box{
+  flex:1 1 100%!important;
+  height:100%!important;
+}
+.live-card-v52>.universal-info-column>.photo-panel{
+  justify-content:space-between!important;
+  gap:10px!important;
+}
+.live-card-v52 .photo-panel .live-photo{min-height:155px!important;flex:1 1 210px!important}
+.live-card-v52 .photo-panel .key-test-badges{margin:0!important}
+.live-card-v52 .sketch-info-lines{margin-top:0!important}
+.live-card-v52>.universal-status-column>.sketch-status-box{
+  justify-content:space-between!important;
+  gap:0!important;
+}
+.live-card-v52 .sketch-status-section{
+  flex:0 0 auto!important;
+  padding-bottom:14px!important;
+  margin-bottom:14px!important;
+}
+.live-card-v52 .sketch-status-section:nth-child(2){flex:1 1 auto!important}
+.live-card-v52 .sketch-status-box .cycle-metric,
+.live-card-v52 .sketch-status-box .forecast-line{padding:8px 0!important}
+.live-card-v52>.universal-progress-column{
+  justify-content:space-between!important;
+}
+.live-card-v52>.universal-progress-column>.sketch-progress{
+  flex:0 0 auto!important;
+  padding:12px!important;
+}
+.live-card-v52>.universal-progress-column>.live-fi-panel,
+.live-card-v52>.universal-progress-column>.live-tasks{
+  flex:1 1 0!important;
+  min-height:0!important;
+  padding:12px!important;
+  justify-content:space-between!important;
+}
+.live-card-v52 .sketch-progress .progress-item{margin-bottom:9px!important}
+.live-card-v52 .live-fi-panel .active-fi,
+.live-card-v52 .live-tasks .next-task{margin-bottom:7px!important}
+body[data-center="update"] .update-live-card-list .live-card-v52{min-height:610px!important}
+body[data-center="update"] .update-live-card-list .live-card-v52>.universal-tool-column{height:100%!important}
+@media(max-width:1150px){
+  .live-card-v52,body[data-center="update"] .update-live-card-list .live-card-v52{min-height:0!important}
+  .live-card-v52>.universal-tool-column{height:auto!important}
+}
