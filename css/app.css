@@ -2322,7 +2322,7 @@ body.presentation-mode .snapshot-family .family-matrix.header>b:last-child{
 /* V5.5.7 — Universal Live Tool Cards
    The Update Center now uses the exact same complete tool-card renderer as
    the Live Operations tool carousel. One card = one shared visual language. */
-body[data-center="update"] .update-live-card-list{
+body[data-center="operations"] .update-live-card-list{
   display:grid!important;
   grid-template-columns:repeat(2,minmax(0,1fr))!important;
   gap:12px!important;
@@ -2330,7 +2330,7 @@ body[data-center="update"] .update-live-card-list{
   min-width:0!important;
   align-items:start!important;
 }
-body[data-center="update"] .update-live-card-list>.live-panel{
+body[data-center="operations"] .update-live-card-list>.live-panel{
   width:100%!important;
   height:620px!important;
   min-height:620px!important;
@@ -2340,7 +2340,7 @@ body[data-center="update"] .update-live-card-list>.live-panel{
   box-sizing:border-box!important;
   overflow:hidden!important;
 }
-body[data-center="update"] .update-live-card-list .live-card-v52{
+body[data-center="operations"] .update-live-card-list .live-card-v52{
   display:grid!important;
   grid-template-columns:repeat(12,minmax(0,1fr))!important;
   grid-template-rows:minmax(0,1.08fr) minmax(0,.92fr)!important;
@@ -2349,29 +2349,29 @@ body[data-center="update"] .update-live-card-list .live-card-v52{
   min-height:0!important;
   overflow:hidden!important;
 }
-body[data-center="update"] .update-live-card-list .live-card-v52>.photo-panel{grid-column:span 4!important}
-body[data-center="update"] .update-live-card-list .live-card-v52>.tool-status-box{grid-column:span 4!important}
-body[data-center="update"] .update-live-card-list .live-card-v52>.live-progress{grid-column:span 4!important}
-body[data-center="update"] .update-live-card-list .live-card-v52>.live-info{grid-column:span 4!important}
-body[data-center="update"] .update-live-card-list .live-card-v52>.live-fi-panel{grid-column:span 4!important}
-body[data-center="update"] .update-live-card-list .live-card-v52>.live-tasks{grid-column:span 4!important}
-body[data-center="update"] .update-live-card-list .live-six-panel{min-height:0!important;overflow:hidden!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52>.photo-panel{grid-column:span 4!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52>.tool-status-box{grid-column:span 4!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52>.live-progress{grid-column:span 4!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52>.live-info{grid-column:span 4!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52>.live-fi-panel{grid-column:span 4!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52>.live-tasks{grid-column:span 4!important}
+body[data-center="operations"] .update-live-card-list .live-six-panel{min-height:0!important;overflow:hidden!important}
 @media(max-width:1280px){
-  body[data-center="update"] .update-live-card-list{grid-template-columns:1fr!important}
-  body[data-center="update"] .update-live-card-list>.live-panel{height:620px!important;max-height:620px!important;min-height:620px!important}
+  body[data-center="operations"] .update-live-card-list{grid-template-columns:1fr!important}
+  body[data-center="operations"] .update-live-card-list>.live-panel{height:620px!important;max-height:620px!important;min-height:620px!important}
 }
 @media(max-width:760px){
-  body[data-center="update"] .update-live-card-list>.live-panel{height:auto!important;max-height:none!important;min-height:0!important}
-  body[data-center="update"] .update-live-card-list .live-card-v52{grid-template-columns:1fr!important;grid-template-rows:auto!important;overflow:visible!important}
-  body[data-center="update"] .update-live-card-list .live-card-v52>.live-six-panel{grid-column:span 1!important;min-height:250px!important}
+  body[data-center="operations"] .update-live-card-list>.live-panel{height:auto!important;max-height:none!important;min-height:0!important}
+  body[data-center="operations"] .update-live-card-list .live-card-v52{grid-template-columns:1fr!important;grid-template-rows:auto!important;overflow:visible!important}
+  body[data-center="operations"] .update-live-card-list .live-card-v52>.live-six-panel{grid-column:span 1!important;min-height:250px!important}
 }
 
 
 /* V5.5.8 — Update Center two-column universal cards.
    At desktop widths, every family renders two locked-proportion Live Operations
    cards side by side instead of stretching one card across the full workspace. */
-body[data-center="update"] .tool-section{min-width:0!important}
-body[data-center="update"] .update-live-card-list>.live-panel{min-width:0!important}
+body[data-center="operations"] .tool-section{min-width:0!important}
+body[data-center="operations"] .update-live-card-list>.live-panel{min-width:0!important}
 
 
 /* V5.5.9 — Identical Universal Tool Cards
@@ -2379,7 +2379,7 @@ body[data-center="update"] .update-live-card-list>.live-panel{min-width:0!import
    spacing, typography, badge treatment and 3x2 panel proportions as the
    Live Operations Tool Carousel. The only difference is the surrounding
    two-column Update Center grid. */
-body[data-center="update"] .update-live-card-list>.live-panel{
+body[data-center="operations"] .update-live-card-list>.live-panel{
   width:100%!important;
   height:632px!important;
   min-height:632px!important;
@@ -2391,7 +2391,7 @@ body[data-center="update"] .update-live-card-list>.live-panel{
   display:flex!important;
   flex-direction:column!important;
 }
-body[data-center="update"] .update-live-card-list .live-card-v52{
+body[data-center="operations"] .update-live-card-list .live-card-v52{
   display:grid!important;
   grid-template-columns:repeat(3,minmax(0,1fr))!important;
   grid-template-rows:minmax(0,1.62fr) minmax(0,1fr)!important;
@@ -2404,12 +2404,12 @@ body[data-center="update"] .update-live-card-list .live-card-v52{
   align-items:stretch!important;
   box-sizing:border-box!important;
 }
-body[data-center="update"] .update-live-card-list .live-card-v52>.photo-panel,
-body[data-center="update"] .update-live-card-list .live-card-v52>.tool-status-box,
-body[data-center="update"] .update-live-card-list .live-card-v52>.live-progress,
-body[data-center="update"] .update-live-card-list .live-card-v52>.live-info,
-body[data-center="update"] .update-live-card-list .live-card-v52>.live-fi-panel,
-body[data-center="update"] .update-live-card-list .live-card-v52>.live-tasks{
+body[data-center="operations"] .update-live-card-list .live-card-v52>.photo-panel,
+body[data-center="operations"] .update-live-card-list .live-card-v52>.tool-status-box,
+body[data-center="operations"] .update-live-card-list .live-card-v52>.live-progress,
+body[data-center="operations"] .update-live-card-list .live-card-v52>.live-info,
+body[data-center="operations"] .update-live-card-list .live-card-v52>.live-fi-panel,
+body[data-center="operations"] .update-live-card-list .live-card-v52>.live-tasks{
   grid-column:auto!important;
   width:100%!important;
   height:100%!important;
@@ -2420,40 +2420,40 @@ body[data-center="update"] .update-live-card-list .live-card-v52>.live-tasks{
   align-self:stretch!important;
   justify-self:stretch!important;
 }
-body[data-center="update"] .update-live-card-list .live-card-v52>.live-cycle-panel{display:none!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 .live-six-panel{padding:11px!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 .live-codename{font-size:27px!important;line-height:1.05!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 .countdown-big{font-size:23px!important;line-height:1.02!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 .countdown-date{font-size:9px!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 .schedule-health,
-body[data-center="update"] .update-live-card-list .live-card-v52 .phase-big{font-size:15px!important;line-height:1.05!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 .next-fi-standout{font-size:9px!important;line-height:1.25!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 .kv{font-size:10px!important;padding:4px 0!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 .live-task-head{font-size:10px!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 .active-fi,
-body[data-center="update"] .update-live-card-list .live-card-v52 .next-task{font-size:9px!important;line-height:1.15!important;padding-top:5px!important;padding-bottom:5px!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 .next-task em,
-body[data-center="update"] .update-live-card-list .live-card-v52 .active-fi em{font-size:7px!important}
-body[data-center="update"] .update-live-card-list .status-cycle-box{
+body[data-center="operations"] .update-live-card-list .live-card-v52>.live-cycle-panel{display:none!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 .live-six-panel{padding:11px!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 .live-codename{font-size:27px!important;line-height:1.05!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 .countdown-big{font-size:23px!important;line-height:1.02!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 .countdown-date{font-size:9px!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 .schedule-health,
+body[data-center="operations"] .update-live-card-list .live-card-v52 .phase-big{font-size:15px!important;line-height:1.05!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 .next-fi-standout{font-size:9px!important;line-height:1.25!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 .kv{font-size:10px!important;padding:4px 0!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 .live-task-head{font-size:10px!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 .active-fi,
+body[data-center="operations"] .update-live-card-list .live-card-v52 .next-task{font-size:9px!important;line-height:1.15!important;padding-top:5px!important;padding-bottom:5px!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 .next-task em,
+body[data-center="operations"] .update-live-card-list .live-card-v52 .active-fi em{font-size:7px!important}
+body[data-center="operations"] .update-live-card-list .status-cycle-box{
   display:flex!important;
   flex-direction:column!important;
   justify-content:space-between!important;
   overflow:hidden!important;
   padding:12px!important;
 }
-body[data-center="update"] .update-live-card-list .status-cycle-box .status-rule{margin:8px 0!important}
-body[data-center="update"] .update-live-card-list .status-cycle-box .status-current-label{margin-top:6px!important}
-body[data-center="update"] .update-live-card-list .status-cycle-box .cycle-head{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;padding:0 0 6px!important;margin:0!important;border-bottom:1px solid #24485d!important}
-body[data-center="update"] .update-live-card-list .status-cycle-box .cycle-head b{font-size:9px!important;letter-spacing:.35px!important}
-body[data-center="update"] .update-live-card-list .status-cycle-box .cycle-head .cycle-health{font-size:8px!important;white-space:nowrap!important}
-body[data-center="update"] .update-live-card-list .cycle-metric-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:0 12px!important;min-height:0!important}
-body[data-center="update"] .update-live-card-list .cycle-metric{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:7px!important;align-items:center!important;padding:6px 0!important;border-bottom:1px solid #183b52!important;min-width:0!important}
-body[data-center="update"] .update-live-card-list .cycle-metric span{font-size:8px!important;color:#9ab8ca!important;font-weight:850!important}
-body[data-center="update"] .update-live-card-list .cycle-metric strong{font-size:9px!important;text-align:right!important;min-width:0!important}
-body[data-center="update"] .update-live-card-list .forecast-line{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:8px!important;align-items:center!important;padding:6px 0!important;border-bottom:1px solid #183b52!important;font-size:8px!important}
-body[data-center="update"] .update-live-card-list .forecast-line span{color:#9ab8ca!important;font-weight:850!important}
-body[data-center="update"] .update-live-card-list .forecast-line strong{text-align:right!important;font-size:9px!important}
-body[data-center="update"] .update-live-card-list .photo-panel .key-test-badges{
+body[data-center="operations"] .update-live-card-list .status-cycle-box .status-rule{margin:8px 0!important}
+body[data-center="operations"] .update-live-card-list .status-cycle-box .status-current-label{margin-top:6px!important}
+body[data-center="operations"] .update-live-card-list .status-cycle-box .cycle-head{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;padding:0 0 6px!important;margin:0!important;border-bottom:1px solid #24485d!important}
+body[data-center="operations"] .update-live-card-list .status-cycle-box .cycle-head b{font-size:9px!important;letter-spacing:.35px!important}
+body[data-center="operations"] .update-live-card-list .status-cycle-box .cycle-head .cycle-health{font-size:8px!important;white-space:nowrap!important}
+body[data-center="operations"] .update-live-card-list .cycle-metric-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:0 12px!important;min-height:0!important}
+body[data-center="operations"] .update-live-card-list .cycle-metric{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:7px!important;align-items:center!important;padding:6px 0!important;border-bottom:1px solid #183b52!important;min-width:0!important}
+body[data-center="operations"] .update-live-card-list .cycle-metric span{font-size:8px!important;color:#9ab8ca!important;font-weight:850!important}
+body[data-center="operations"] .update-live-card-list .cycle-metric strong{font-size:9px!important;text-align:right!important;min-width:0!important}
+body[data-center="operations"] .update-live-card-list .forecast-line{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:8px!important;align-items:center!important;padding:6px 0!important;border-bottom:1px solid #183b52!important;font-size:8px!important}
+body[data-center="operations"] .update-live-card-list .forecast-line span{color:#9ab8ca!important;font-weight:850!important}
+body[data-center="operations"] .update-live-card-list .forecast-line strong{text-align:right!important;font-size:9px!important}
+body[data-center="operations"] .update-live-card-list .photo-panel .key-test-badges{
   display:grid!important;
   grid-template-columns:repeat(2,minmax(0,1fr))!important;
   grid-auto-rows:minmax(34px,auto)!important;
@@ -2461,7 +2461,7 @@ body[data-center="update"] .update-live-card-list .photo-panel .key-test-badges{
   width:100%!important;
   margin:6px 0 5px!important;
 }
-body[data-center="update"] .update-live-card-list .photo-panel .key-test-badge{
+body[data-center="operations"] .update-live-card-list .photo-panel .key-test-badge{
   min-width:0!important;
   min-height:34px!important;
   padding:4px 3px!important;
@@ -2473,52 +2473,52 @@ body[data-center="update"] .update-live-card-list .photo-panel .key-test-badge{
   text-align:center!important;
   overflow:hidden!important;
 }
-body[data-center="update"] .update-live-card-list .photo-panel .key-test-badge b{display:block!important;width:100%!important;font-size:7px!important;line-height:1!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
-body[data-center="update"] .update-live-card-list .photo-panel .key-test-badge span{display:block!important;width:100%!important;font-size:6.5px!important;line-height:1.05!important;white-space:normal!important;overflow-wrap:anywhere!important;text-align:center!important}
-body[data-center="update"] .update-live-card-list .photo-panel .reduced-process-badge{width:100%!important;margin-top:0!important;min-height:28px!important;display:flex!important;align-items:center!important;justify-content:center!important}
-body[data-center="update"] .update-live-card-list .live-progress.compact-progress{padding:12px!important;justify-content:space-between!important;overflow:hidden!important;scrollbar-width:none!important}
-body[data-center="update"] .update-live-card-list .live-progress.compact-progress::-webkit-scrollbar{display:none!important}
-body[data-center="update"] .update-live-card-list .live-progress.compact-progress .progress-item{margin-bottom:6px!important;min-height:0!important;flex:0 1 auto!important}
-body[data-center="update"] .update-live-card-list .live-progress.compact-progress .progress-head{font-size:9.5px!important;line-height:1.05!important}
-body[data-center="update"] .update-live-card-list .live-progress.compact-progress .track{height:7px!important;margin-top:2px!important}
-body[data-center="update"] .update-live-card-list .live-progress.compact-progress .progress-step{font-size:8px!important;line-height:1.12!important;margin-top:2px!important;white-space:normal!important;overflow-wrap:anywhere!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 .live-photo{min-height:0!important;flex:1 1 auto!important;display:flex!important;align-items:center!important;justify-content:center!important;background:transparent!important;border:0!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 .live-photo img{width:98%!important;height:98%!important;max-width:98%!important;max-height:98%!important;object-fit:contain!important;object-position:center!important;margin:auto!important;transform:none!important}
-body[data-center="update"] .update-live-card-list .live-card-v52>.live-info,
-body[data-center="update"] .update-live-card-list .live-card-v52>.live-fi-panel,
-body[data-center="update"] .update-live-card-list .live-card-v52>.live-tasks{padding:9px!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 .view-all-tasks{font-size:9px!important;padding:7px!important;margin-top:auto!important}
-body[data-center="update"] .update-live-card-list .live-card-v52,
-body[data-center="update"] .update-live-card-list .live-card-v52 *{scrollbar-width:none!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 *::-webkit-scrollbar{display:none!important}
+body[data-center="operations"] .update-live-card-list .photo-panel .key-test-badge b{display:block!important;width:100%!important;font-size:7px!important;line-height:1!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+body[data-center="operations"] .update-live-card-list .photo-panel .key-test-badge span{display:block!important;width:100%!important;font-size:6.5px!important;line-height:1.05!important;white-space:normal!important;overflow-wrap:anywhere!important;text-align:center!important}
+body[data-center="operations"] .update-live-card-list .photo-panel .reduced-process-badge{width:100%!important;margin-top:0!important;min-height:28px!important;display:flex!important;align-items:center!important;justify-content:center!important}
+body[data-center="operations"] .update-live-card-list .live-progress.compact-progress{padding:12px!important;justify-content:space-between!important;overflow:hidden!important;scrollbar-width:none!important}
+body[data-center="operations"] .update-live-card-list .live-progress.compact-progress::-webkit-scrollbar{display:none!important}
+body[data-center="operations"] .update-live-card-list .live-progress.compact-progress .progress-item{margin-bottom:6px!important;min-height:0!important;flex:0 1 auto!important}
+body[data-center="operations"] .update-live-card-list .live-progress.compact-progress .progress-head{font-size:9.5px!important;line-height:1.05!important}
+body[data-center="operations"] .update-live-card-list .live-progress.compact-progress .track{height:7px!important;margin-top:2px!important}
+body[data-center="operations"] .update-live-card-list .live-progress.compact-progress .progress-step{font-size:8px!important;line-height:1.12!important;margin-top:2px!important;white-space:normal!important;overflow-wrap:anywhere!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 .live-photo{min-height:0!important;flex:1 1 auto!important;display:flex!important;align-items:center!important;justify-content:center!important;background:transparent!important;border:0!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 .live-photo img{width:98%!important;height:98%!important;max-width:98%!important;max-height:98%!important;object-fit:contain!important;object-position:center!important;margin:auto!important;transform:none!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52>.live-info,
+body[data-center="operations"] .update-live-card-list .live-card-v52>.live-fi-panel,
+body[data-center="operations"] .update-live-card-list .live-card-v52>.live-tasks{padding:9px!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 .view-all-tasks{font-size:9px!important;padding:7px!important;margin-top:auto!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52,
+body[data-center="operations"] .update-live-card-list .live-card-v52 *{scrollbar-width:none!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 *::-webkit-scrollbar{display:none!important}
 
 /* Two cards side by side at normal desktop widths. This breakpoint is kept
    below the user's normal test resolution so the cards retain carousel size. */
 @media(max-width:1180px){
-  body[data-center="update"] .update-live-card-list{grid-template-columns:1fr!important}
-  body[data-center="update"] .update-live-card-list>.live-panel{height:632px!important;min-height:632px!important;max-height:632px!important}
+  body[data-center="operations"] .update-live-card-list{grid-template-columns:1fr!important}
+  body[data-center="operations"] .update-live-card-list>.live-panel{height:632px!important;min-height:632px!important;max-height:632px!important}
 }
 @media(max-width:760px){
-  body[data-center="update"] .update-live-card-list>.live-panel{height:auto!important;min-height:0!important;max-height:none!important}
-  body[data-center="update"] .update-live-card-list .live-card-v52{grid-template-columns:1fr!important;grid-template-rows:auto!important;overflow:visible!important}
-  body[data-center="update"] .update-live-card-list .live-card-v52>.live-six-panel{min-height:250px!important}
+  body[data-center="operations"] .update-live-card-list>.live-panel{height:auto!important;min-height:0!important;max-height:none!important}
+  body[data-center="operations"] .update-live-card-list .live-card-v52{grid-template-columns:1fr!important;grid-template-rows:auto!important;overflow:visible!important}
+  body[data-center="operations"] .update-live-card-list .live-card-v52>.live-six-panel{min-height:250px!important}
 }
 
 /* V5.5.10 — Update Center / Live Operations card parity
    The universal tool card is now sized and styled from the exact same final
    geometry used by the Live Operations carousel. Update Center only supplies
    a two-column outer grid; it no longer reformats the card itself. */
-body[data-center="update"] .fleet-frame{
+body[data-center="operations"] .fleet-frame{
   padding:8px!important;
 }
-body[data-center="update"] .tool-section{
+body[data-center="operations"] .tool-section{
   margin-bottom:8px!important;
   min-width:0!important;
 }
-body[data-center="update"] .tool-section-head{
+body[data-center="operations"] .tool-section-head{
   margin-bottom:8px!important;
 }
-body[data-center="update"] .update-live-card-list{
+body[data-center="operations"] .update-live-card-list{
   display:grid!important;
   grid-template-columns:repeat(2,minmax(0,1fr))!important;
   gap:8px!important;
@@ -2526,7 +2526,7 @@ body[data-center="update"] .update-live-card-list{
   min-width:0!important;
   align-items:start!important;
 }
-body[data-center="update"] .update-live-card-list>.live-panel{
+body[data-center="operations"] .update-live-card-list>.live-panel{
   width:100%!important;
   height:632px!important;
   min-height:632px!important;
@@ -2538,7 +2538,7 @@ body[data-center="update"] .update-live-card-list>.live-panel{
   display:flex!important;
   align-items:stretch!important;
 }
-body[data-center="update"] .update-live-card-list .live-card-v52{
+body[data-center="operations"] .update-live-card-list .live-card-v52{
   display:grid!important;
   grid-template-columns:repeat(3,minmax(0,1fr))!important;
   grid-template-rows:minmax(0,1.62fr) minmax(0,1fr)!important;
@@ -2552,12 +2552,12 @@ body[data-center="update"] .update-live-card-list .live-card-v52{
   align-items:stretch!important;
   box-sizing:border-box!important;
 }
-body[data-center="update"] .update-live-card-list .live-card-v52>.photo-panel,
-body[data-center="update"] .update-live-card-list .live-card-v52>.tool-status-box,
-body[data-center="update"] .update-live-card-list .live-card-v52>.live-progress,
-body[data-center="update"] .update-live-card-list .live-card-v52>.live-info,
-body[data-center="update"] .update-live-card-list .live-card-v52>.live-fi-panel,
-body[data-center="update"] .update-live-card-list .live-card-v52>.live-tasks{
+body[data-center="operations"] .update-live-card-list .live-card-v52>.photo-panel,
+body[data-center="operations"] .update-live-card-list .live-card-v52>.tool-status-box,
+body[data-center="operations"] .update-live-card-list .live-card-v52>.live-progress,
+body[data-center="operations"] .update-live-card-list .live-card-v52>.live-info,
+body[data-center="operations"] .update-live-card-list .live-card-v52>.live-fi-panel,
+body[data-center="operations"] .update-live-card-list .live-card-v52>.live-tasks{
   grid-column:auto!important;
   width:100%!important;
   height:100%!important;
@@ -2568,24 +2568,24 @@ body[data-center="update"] .update-live-card-list .live-card-v52>.live-tasks{
   align-self:stretch!important;
   justify-self:stretch!important;
 }
-body[data-center="update"] .update-live-card-list .live-card-v52>.live-cycle-panel{display:none!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 .live-six-panel{padding:11px!important;overflow:hidden!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 .live-codename{font-size:27px!important;line-height:1.05!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 .countdown-big{font-size:23px!important;line-height:1.02!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 .countdown-date{font-size:9px!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 .schedule-health,
-body[data-center="update"] .update-live-card-list .live-card-v52 .phase-big{font-size:15px!important;line-height:1.05!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 .next-fi-standout{font-size:9px!important;line-height:1.25!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 .kv{font-size:10px!important;padding:4px 0!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 .live-task-head{font-size:10px!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 .active-fi,
-body[data-center="update"] .update-live-card-list .live-card-v52 .next-task{font-size:9px!important;line-height:1.15!important;padding-top:5px!important;padding-bottom:5px!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 .next-task em,
-body[data-center="update"] .update-live-card-list .live-card-v52 .active-fi em{font-size:7px!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52>.live-cycle-panel{display:none!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 .live-six-panel{padding:11px!important;overflow:hidden!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 .live-codename{font-size:27px!important;line-height:1.05!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 .countdown-big{font-size:23px!important;line-height:1.02!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 .countdown-date{font-size:9px!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 .schedule-health,
+body[data-center="operations"] .update-live-card-list .live-card-v52 .phase-big{font-size:15px!important;line-height:1.05!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 .next-fi-standout{font-size:9px!important;line-height:1.25!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 .kv{font-size:10px!important;padding:4px 0!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 .live-task-head{font-size:10px!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 .active-fi,
+body[data-center="operations"] .update-live-card-list .live-card-v52 .next-task{font-size:9px!important;line-height:1.15!important;padding-top:5px!important;padding-bottom:5px!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 .next-task em,
+body[data-center="operations"] .update-live-card-list .live-card-v52 .active-fi em{font-size:7px!important}
 
 /* Exact photo/badge treatment from the Operations carousel. */
-body[data-center="update"] .update-live-card-list .photo-title-row{display:flex!important;align-items:flex-start!important;justify-content:space-between!important;gap:8px!important;width:100%!important}
-body[data-center="update"] .update-live-card-list .photo-panel .key-test-badges{
+body[data-center="operations"] .update-live-card-list .photo-title-row{display:flex!important;align-items:flex-start!important;justify-content:space-between!important;gap:8px!important;width:100%!important}
+body[data-center="operations"] .update-live-card-list .photo-panel .key-test-badges{
   display:grid!important;
   grid-template-columns:repeat(2,minmax(0,1fr))!important;
   grid-auto-rows:minmax(34px,auto)!important;
@@ -2593,7 +2593,7 @@ body[data-center="update"] .update-live-card-list .photo-panel .key-test-badges{
   width:100%!important;
   margin:6px 0 5px!important;
 }
-body[data-center="update"] .update-live-card-list .photo-panel .key-test-badge{
+body[data-center="operations"] .update-live-card-list .photo-panel .key-test-badge{
   min-width:0!important;
   min-height:34px!important;
   border:1px solid #315266!important;
@@ -2609,32 +2609,32 @@ body[data-center="update"] .update-live-card-list .photo-panel .key-test-badge{
   font-weight:900!important;
   letter-spacing:.25px!important;
 }
-body[data-center="update"] .update-live-card-list .photo-panel .key-test-badge b{
+body[data-center="operations"] .update-live-card-list .photo-panel .key-test-badge b{
   display:block!important;width:100%!important;font-size:7px!important;line-height:1!important;
   color:#9bb4c5!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important
 }
-body[data-center="update"] .update-live-card-list .photo-panel .key-test-badge span{
+body[data-center="operations"] .update-live-card-list .photo-panel .key-test-badge span{
   display:block!important;width:100%!important;font-size:6.5px!important;line-height:1.05!important;
   white-space:normal!important;overflow-wrap:anywhere!important;text-align:center!important
 }
-body[data-center="update"] .update-live-card-list .photo-panel .key-test-badge.idle{opacity:.48!important}
-body[data-center="update"] .update-live-card-list .photo-panel .key-test-badge.active{border-color:#ffb000!important;box-shadow:inset 0 0 9px rgba(255,176,0,.10)!important}
-body[data-center="update"] .update-live-card-list .photo-panel .key-test-badge.active span{color:#ffbf2f!important}
-body[data-center="update"] .update-live-card-list .photo-panel .key-test-badge.done{border-color:#20d990!important;box-shadow:inset 0 0 9px rgba(32,217,144,.10)!important}
-body[data-center="update"] .update-live-card-list .photo-panel .key-test-badge.done span{color:#39eaa2!important}
-body[data-center="update"] .update-live-card-list .photo-panel .key-test-badge.failed{border-color:#ff365d!important;box-shadow:inset 0 0 9px rgba(255,54,93,.12)!important}
-body[data-center="update"] .update-live-card-list .photo-panel .key-test-badge.failed span{color:#ff5574!important}
-body[data-center="update"] .update-live-card-list .photo-panel .reduced-process-badge.compact{
+body[data-center="operations"] .update-live-card-list .photo-panel .key-test-badge.idle{opacity:.48!important}
+body[data-center="operations"] .update-live-card-list .photo-panel .key-test-badge.active{border-color:#ffb000!important;box-shadow:inset 0 0 9px rgba(255,176,0,.10)!important}
+body[data-center="operations"] .update-live-card-list .photo-panel .key-test-badge.active span{color:#ffbf2f!important}
+body[data-center="operations"] .update-live-card-list .photo-panel .key-test-badge.done{border-color:#20d990!important;box-shadow:inset 0 0 9px rgba(32,217,144,.10)!important}
+body[data-center="operations"] .update-live-card-list .photo-panel .key-test-badge.done span{color:#39eaa2!important}
+body[data-center="operations"] .update-live-card-list .photo-panel .key-test-badge.failed{border-color:#ff365d!important;box-shadow:inset 0 0 9px rgba(255,54,93,.12)!important}
+body[data-center="operations"] .update-live-card-list .photo-panel .key-test-badge.failed span{color:#ff5574!important}
+body[data-center="operations"] .update-live-card-list .photo-panel .reduced-process-badge.compact{
   width:auto!important;min-width:92px!important;max-width:112px!important;margin:0!important;
   padding:4px 6px!important;font-size:7px!important;line-height:1.05!important;letter-spacing:.45px!important;white-space:nowrap!important;box-shadow:none!important
 }
-body[data-center="update"] .update-live-card-list .photo-panel .reduced-process-badge.idle{opacity:.38!important;color:#8c9aa5!important;border-color:#315266!important;background:#0a1a25!important;box-shadow:none!important}
-body[data-center="update"] .update-live-card-list .photo-panel .reduced-process-badge.active{opacity:1!important;color:#fff!important;border-color:#ff365d!important;background:#9e102d!important;box-shadow:inset 0 0 10px rgba(255,54,93,.18)!important}
-body[data-center="update"] .update-live-card-list .live-photo{min-height:0!important;flex:1 1 auto!important;display:flex!important;align-items:center!important;justify-content:center!important;background:transparent!important;border:0!important}
-body[data-center="update"] .update-live-card-list .live-photo img{width:98%!important;height:98%!important;max-width:98%!important;max-height:98%!important;object-fit:contain!important;object-position:center!important;margin:auto!important;transform:none!important}
+body[data-center="operations"] .update-live-card-list .photo-panel .reduced-process-badge.idle{opacity:.38!important;color:#8c9aa5!important;border-color:#315266!important;background:#0a1a25!important;box-shadow:none!important}
+body[data-center="operations"] .update-live-card-list .photo-panel .reduced-process-badge.active{opacity:1!important;color:#fff!important;border-color:#ff365d!important;background:#9e102d!important;box-shadow:inset 0 0 10px rgba(255,54,93,.18)!important}
+body[data-center="operations"] .update-live-card-list .live-photo{min-height:0!important;flex:1 1 auto!important;display:flex!important;align-items:center!important;justify-content:center!important;background:transparent!important;border:0!important}
+body[data-center="operations"] .update-live-card-list .live-photo img{width:98%!important;height:98%!important;max-width:98%!important;max-height:98%!important;object-fit:contain!important;object-position:center!important;margin:auto!important;transform:none!important}
 
 /* Exact combined status + cycle-time spacing from the carousel. */
-body[data-center="update"] .update-live-card-list .status-cycle-box{
+body[data-center="operations"] .update-live-card-list .status-cycle-box{
   display:grid!important;
   grid-template-rows:auto 1fr auto!important;
   align-content:stretch!important;
@@ -2643,50 +2643,50 @@ body[data-center="update"] .update-live-card-list .status-cycle-box{
   justify-content:stretch!important;
   overflow:hidden!important;
 }
-body[data-center="update"] .update-live-card-list .status-cycle-section{min-width:0!important}
-body[data-center="update"] .update-live-card-list .status-cycle-section.status-primary{display:block!important}
-body[data-center="update"] .update-live-card-list .status-cycle-section.cycle-primary{
+body[data-center="operations"] .update-live-card-list .status-cycle-section{min-width:0!important}
+body[data-center="operations"] .update-live-card-list .status-cycle-section.status-primary{display:block!important}
+body[data-center="operations"] .update-live-card-list .status-cycle-section.cycle-primary{
   display:flex!important;flex-direction:column!important;justify-content:center!important;
   border-top:1px solid #24485d!important;border-bottom:1px solid #24485d!important;padding:8px 0!important
 }
-body[data-center="update"] .update-live-card-list .status-cycle-box .status-rule{margin:8px 0!important}
-body[data-center="update"] .update-live-card-list .status-cycle-box .status-current-label{margin-top:6px!important}
-body[data-center="update"] .update-live-card-list .status-cycle-box .cycle-head{margin:0 0 8px!important;padding:0 0 6px!important;border-bottom:1px solid #183b52!important}
-body[data-center="update"] .update-live-card-list .cycle-metric-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:0 12px!important}
-body[data-center="update"] .update-live-card-list .cycle-metric{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:center!important;gap:8px!important;padding:7px 0!important;border-bottom:1px solid #183b52!important;min-width:0!important}
-body[data-center="update"] .update-live-card-list .cycle-metric span,
-body[data-center="update"] .update-live-card-list .forecast-line span{color:#9ab8ca!important;font-size:8px!important;font-weight:900!important;letter-spacing:.25px!important}
-body[data-center="update"] .update-live-card-list .cycle-metric strong{font-size:9px!important;text-align:right!important;white-space:nowrap!important}
-body[data-center="update"] .update-live-card-list .forecast-primary{display:grid!important;grid-template-columns:1fr!important;gap:0!important}
-body[data-center="update"] .update-live-card-list .forecast-line{display:grid!important;grid-template-columns:70px minmax(0,1fr)!important;gap:10px!important;align-items:start!important;padding:5px 0!important;min-width:0!important}
-body[data-center="update"] .update-live-card-list .forecast-line strong{min-width:0!important;text-align:right!important;font-size:9px!important;line-height:1.18!important;white-space:normal!important;overflow-wrap:anywhere!important}
-body[data-center="update"] .update-live-card-list .status-cycle-box>.cycle-status-grid{display:none!important}
+body[data-center="operations"] .update-live-card-list .status-cycle-box .status-rule{margin:8px 0!important}
+body[data-center="operations"] .update-live-card-list .status-cycle-box .status-current-label{margin-top:6px!important}
+body[data-center="operations"] .update-live-card-list .status-cycle-box .cycle-head{margin:0 0 8px!important;padding:0 0 6px!important;border-bottom:1px solid #183b52!important}
+body[data-center="operations"] .update-live-card-list .cycle-metric-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:0 12px!important}
+body[data-center="operations"] .update-live-card-list .cycle-metric{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:center!important;gap:8px!important;padding:7px 0!important;border-bottom:1px solid #183b52!important;min-width:0!important}
+body[data-center="operations"] .update-live-card-list .cycle-metric span,
+body[data-center="operations"] .update-live-card-list .forecast-line span{color:#9ab8ca!important;font-size:8px!important;font-weight:900!important;letter-spacing:.25px!important}
+body[data-center="operations"] .update-live-card-list .cycle-metric strong{font-size:9px!important;text-align:right!important;white-space:nowrap!important}
+body[data-center="operations"] .update-live-card-list .forecast-primary{display:grid!important;grid-template-columns:1fr!important;gap:0!important}
+body[data-center="operations"] .update-live-card-list .forecast-line{display:grid!important;grid-template-columns:70px minmax(0,1fr)!important;gap:10px!important;align-items:start!important;padding:5px 0!important;min-width:0!important}
+body[data-center="operations"] .update-live-card-list .forecast-line strong{min-width:0!important;text-align:right!important;font-size:9px!important;line-height:1.18!important;white-space:normal!important;overflow-wrap:anywhere!important}
+body[data-center="operations"] .update-live-card-list .status-cycle-box>.cycle-status-grid{display:none!important}
 
 /* Exact progress/list density from the carousel. */
-body[data-center="update"] .update-live-card-list .live-progress.compact-progress{padding:12px!important;justify-content:space-between!important;overflow:hidden!important;scrollbar-width:none!important}
-body[data-center="update"] .update-live-card-list .live-progress.compact-progress .progress-item{margin-bottom:6px!important;min-height:0!important;flex:0 1 auto!important}
-body[data-center="update"] .update-live-card-list .live-progress.compact-progress .progress-head{font-size:9.5px!important;line-height:1.05!important}
-body[data-center="update"] .update-live-card-list .live-progress.compact-progress .track{height:7px!important;margin-top:2px!important}
-body[data-center="update"] .update-live-card-list .live-progress.compact-progress .progress-step{font-size:8px!important;line-height:1.12!important;margin-top:2px!important;white-space:normal!important;overflow-wrap:anywhere!important}
-body[data-center="update"] .update-live-card-list .live-card-v52>.live-info,
-body[data-center="update"] .update-live-card-list .live-card-v52>.live-fi-panel,
-body[data-center="update"] .update-live-card-list .live-card-v52>.live-tasks{padding:9px!important}
-body[data-center="update"] .update-live-card-list .live-card-v52>.live-info .kv{padding:4px 0!important}
-body[data-center="update"] .update-live-card-list .live-card-v52>.live-fi-panel .active-fi,
-body[data-center="update"] .update-live-card-list .live-card-v52>.live-tasks .next-task{padding-top:5px!important;padding-bottom:5px!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 .view-all-tasks{font-size:9px!important;padding:7px!important;margin-top:auto!important}
-body[data-center="update"] .update-live-card-list .live-card-v52,
-body[data-center="update"] .update-live-card-list .live-card-v52 *{scrollbar-width:none!important}
-body[data-center="update"] .update-live-card-list .live-card-v52 *::-webkit-scrollbar{display:none!important}
+body[data-center="operations"] .update-live-card-list .live-progress.compact-progress{padding:12px!important;justify-content:space-between!important;overflow:hidden!important;scrollbar-width:none!important}
+body[data-center="operations"] .update-live-card-list .live-progress.compact-progress .progress-item{margin-bottom:6px!important;min-height:0!important;flex:0 1 auto!important}
+body[data-center="operations"] .update-live-card-list .live-progress.compact-progress .progress-head{font-size:9.5px!important;line-height:1.05!important}
+body[data-center="operations"] .update-live-card-list .live-progress.compact-progress .track{height:7px!important;margin-top:2px!important}
+body[data-center="operations"] .update-live-card-list .live-progress.compact-progress .progress-step{font-size:8px!important;line-height:1.12!important;margin-top:2px!important;white-space:normal!important;overflow-wrap:anywhere!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52>.live-info,
+body[data-center="operations"] .update-live-card-list .live-card-v52>.live-fi-panel,
+body[data-center="operations"] .update-live-card-list .live-card-v52>.live-tasks{padding:9px!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52>.live-info .kv{padding:4px 0!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52>.live-fi-panel .active-fi,
+body[data-center="operations"] .update-live-card-list .live-card-v52>.live-tasks .next-task{padding-top:5px!important;padding-bottom:5px!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 .view-all-tasks{font-size:9px!important;padding:7px!important;margin-top:auto!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52,
+body[data-center="operations"] .update-live-card-list .live-card-v52 *{scrollbar-width:none!important}
+body[data-center="operations"] .update-live-card-list .live-card-v52 *::-webkit-scrollbar{display:none!important}
 
 @media(max-width:1180px){
-  body[data-center="update"] .update-live-card-list{grid-template-columns:1fr!important}
-  body[data-center="update"] .update-live-card-list>.live-panel{height:632px!important;min-height:632px!important;max-height:632px!important}
+  body[data-center="operations"] .update-live-card-list{grid-template-columns:1fr!important}
+  body[data-center="operations"] .update-live-card-list>.live-panel{height:632px!important;min-height:632px!important;max-height:632px!important}
 }
 @media(max-width:760px){
-  body[data-center="update"] .update-live-card-list>.live-panel{height:auto!important;min-height:0!important;max-height:none!important}
-  body[data-center="update"] .update-live-card-list .live-card-v52{grid-template-columns:1fr!important;grid-template-rows:auto!important;overflow:visible!important}
-  body[data-center="update"] .update-live-card-list .live-card-v52>.live-six-panel{min-height:250px!important}
+  body[data-center="operations"] .update-live-card-list>.live-panel{height:auto!important;min-height:0!important;max-height:none!important}
+  body[data-center="operations"] .update-live-card-list .live-card-v52{grid-template-columns:1fr!important;grid-template-rows:auto!important;overflow:visible!important}
+  body[data-center="operations"] .update-live-card-list .live-card-v52>.live-six-panel{min-height:250px!important}
 }
 
 
@@ -2797,4 +2797,53 @@ body[data-center="operations"] .ops-action-right button{
   body[data-center="operations"] .pagebar .subnav{flex:1 1 100%!important;min-height:34px!important}
   body[data-center="operations"] #pageActions{flex:1 1 100%!important;border-top:1px solid #173d57!important}
   body[data-center="operations"] #pageActions:has(.ops-action-controls){justify-content:space-between!important}
+}
+
+
+/* V5.5.14 — Operations quarter/archive tool-grid lock + stronger page navigation */
+body[data-center="operations"] .pagebar .subnav{
+  display:grid!important;
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  flex:1 1 auto!important;
+  min-width:0!important;
+  align-items:stretch!important;
+}
+body[data-center="operations"] .pagebar .subnav button{
+  width:100%!important;
+  min-width:0!important;
+  min-height:40px!important;
+  padding:0 10px!important;
+  font-size:clamp(9px,.68vw,11px)!important;
+  font-weight:950!important;
+  letter-spacing:.2px!important;
+  white-space:nowrap!important;
+}
+/* Every Operations tool-family grid is two fixed columns on normal desktop.
+   An odd final card stays half-width instead of stretching across the row. */
+body[data-center="operations"] .update-live-card-list{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-auto-flow:row!important;
+  gap:8px!important;
+  width:100%!important;
+  min-width:0!important;
+  align-items:start!important;
+  justify-items:stretch!important;
+}
+body[data-center="operations"] .update-live-card-list>.live-panel{
+  grid-column:auto!important;
+  width:100%!important;
+  max-width:none!important;
+  min-width:0!important;
+  margin:0!important;
+}
+@media(max-width:1180px){
+  body[data-center="operations"] .update-live-card-list{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+@media(max-width:760px){
+  body[data-center="operations"] .update-live-card-list{
+    grid-template-columns:1fr!important;
+  }
 }
