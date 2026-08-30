@@ -38,3 +38,6 @@ Changes from V5.5.3:
 - Restored **UTID** as the first field in the lower Live Operations tool-information panel while keeping UTID as the large primary identifier above the photo.
 - Status Center Weekday/Weekend pages now use the same external **PAGE NAME · DATE** body heading treatment as Priority Center; the duplicate embedded email heading is hidden in normal mode.
 - Hardened Screenshot and Presentation family-progress layouts so the **REVEAL / Mystery** column remains visible and display-only instead of being clipped.
+
+
+V5.5.9: Update Center universal cards now use the same final 3x2 layout, dimensions, typography, badge geometry, progress spacing, and status/cycle composition as the Live Operations Tool Carousel. Two cards remain side-by-side at normal desktop widths.
