@@ -1,8 +1,8 @@
-B7 FI Command Center V5.5.10 — Update Card / Carousel Parity
+# B7 FI Command Center V5.5.11
 
-Changes:
-- Update Center universal cards now use the same final card geometry as the Live Operations tool carousel.
-- Reduced the Update Center outer grid gap/padding so two cards receive the same usable dimensions as the carousel card.
-- Mirrored the carousel photo/badge, status-cycle, progress, typography, checklist, and Lead/Admin spacing exactly.
-- Preserved the two-column desktop Update Center layout and one-column responsive fallback.
-- Existing localStorage data remains compatible.
+Cycle Time Center update.
+
+- Adds dedicated blue Cycle Time Center.
+- Live Operations FI Cycle Time Status source arrow now opens Cycle Time Center / Current Cycle Time.
+- Adds Current Cycle Time, Tool Type Performance, Forecasts, and Cycle Time History navigation.
+- Preserves existing localStorage production data and universal tool-card framework.
