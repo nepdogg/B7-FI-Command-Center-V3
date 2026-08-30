@@ -2250,3 +2250,71 @@ body[data-center="operations"] .live-progress.compact-progress{
 body[data-center="operations"] .live-progress.compact-progress .progress-item{
   flex:0 1 auto!important;
 }
+
+/* V5.5.6 — final Status Center header + capture Reveal reliability */
+/* Status Center now uses the same external PAGE NAME · DATE body header as Priority Center. */
+body:not(.screenshot-mode):not(.presentation-mode) .status-workspace .email-meta{
+  display:none!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .center-page-title{
+  border-bottom:1px solid var(--center-accent,var(--shell-frame))!important;
+}
+
+/* The family Mystery/Reveal column is report content and must never be clipped in capture modes. */
+body.screenshot-mode .snapshot-family,
+body.presentation-mode .snapshot-family{
+  overflow:hidden!important;
+  padding:0!important;
+}
+body.screenshot-mode .snapshot-family .family-panel-v526,
+body.presentation-mode .snapshot-family .family-panel-v526{
+  box-sizing:border-box!important;
+  width:100%!important;
+  min-width:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+}
+body.screenshot-mode .snapshot-family .family-panel-v526>.family-matrix.header,
+body.screenshot-mode .snapshot-family .family-rows-scroll .family-matrix,
+body.presentation-mode .snapshot-family .family-panel-v526>.family-matrix.header,
+body.presentation-mode .snapshot-family .family-rows-scroll .family-matrix{
+  box-sizing:border-box!important;
+  width:100%!important;
+  min-width:0!important;
+  grid-template-columns:minmax(92px,1.34fr) repeat(5,minmax(31px,.50fr)) minmax(66px,.82fr) 38px!important;
+  column-gap:2px!important;
+  padding-left:0!important;
+  padding-right:0!important;
+}
+body.screenshot-mode .snapshot-family .family-rows-scroll,
+body.presentation-mode .snapshot-family .family-rows-scroll{
+  box-sizing:border-box!important;
+  width:100%!important;
+  padding-right:8px!important;
+  scrollbar-gutter:stable!important;
+  overflow-x:hidden!important;
+}
+body.screenshot-mode .snapshot-family .family-matrix.header,
+body.presentation-mode .snapshot-family .family-matrix.header{
+  padding-right:8px!important;
+}
+body.screenshot-mode .snapshot-family .reveal-btn,
+body.presentation-mode .snapshot-family .reveal-btn{
+  display:flex!important;
+  visibility:visible!important;
+  opacity:1!important;
+  width:36px!important;
+  min-width:36px!important;
+  max-width:36px!important;
+  margin-left:0!important;
+  margin-right:0!important;
+  pointer-events:none!important;
+}
+body.screenshot-mode .snapshot-family .family-matrix.header>b:last-child,
+body.presentation-mode .snapshot-family .family-matrix.header>b:last-child{
+  display:block!important;
+  visibility:visible!important;
+  overflow:visible!important;
+  font-size:7px!important;
+  text-align:center!important;
+}

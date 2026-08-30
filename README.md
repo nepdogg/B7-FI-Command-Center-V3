@@ -13,7 +13,13 @@ Changes from V5.5.3:
 - Existing V5.x browser/localStorage data remains compatible.
 
 
-## V5.5.5 — UTID Primary Tool Identity
+## V5.5.6 — Status Header, Reveal & UTID Fix
 - Live Tool Carousel photo panel now displays the UTID as the primary tool identifier.
 - Tool Information panel replaces the redundant UTID row with Tool Type / Code Name.
 - All other V5.5.4 functionality and stored data remain unchanged.
+
+
+## V5.5.6 changes
+- Restored **UTID** as the first field in the lower Live Operations tool-information panel while keeping UTID as the large primary identifier above the photo.
+- Status Center Weekday/Weekend pages now use the same external **PAGE NAME · DATE** body heading treatment as Priority Center; the duplicate embedded email heading is hidden in normal mode.
+- Hardened Screenshot and Presentation family-progress layouts so the **REVEAL / Mystery** column remains visible and display-only instead of being clipped.
