@@ -2883,3 +2883,133 @@ body[data-center="operations"] .operations-tool-carousel .live-card-v52 .live-fi
 body[data-center="operations"] .operations-tool-carousel .live-card-v52 .live-tasks .next-task,
 body[data-center="update"] .update-live-card-list .live-card-v52 .live-fi-panel .active-fi,
 body[data-center="update"] .update-live-card-list .live-card-v52 .live-tasks .next-task{margin:8px 0!important;min-height:38px!important}
+
+
+/* V5.5.18 — MODAL LAYERING + FORECAST PICKER + FINAL TOOL-CARD SPACING
+   - All checklist/task/forecast modals render above the fixed shell.
+   - Left identity footer is larger and cleaner.
+   - Top FI-status section uses more vertical breathing room.
+   - Forecast target is a modal-backed checklist selector. */
+.modal{
+  z-index:15000!important;
+  align-items:flex-start!important;
+  padding:18px!important;
+  overflow:hidden!important;
+}
+.modal-card{
+  z-index:15001!important;
+  margin-top:0!important;
+  max-height:calc(100vh - 36px)!important;
+}
+.modal-x{z-index:15003!important}
+.modal-card:has(.lead-modal){
+  height:calc(100vh - 36px)!important;
+  max-height:calc(100vh - 36px)!important;
+}
+.modal-card:has(.lead-modal) #modalBody{
+  min-height:0!important;
+  height:100%!important;
+}
+.lead-modal .lead-task-list,.lead-modal .fi-checklist-list{
+  min-height:0!important;
+  flex:1 1 auto!important;
+  overflow-y:auto!important;
+}
+
+/* Tool Info lower three-row block: no outer top/bottom rules, larger labels/values. */
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-info-lines,
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-info-lines{
+  border-top:0!important;
+  border-bottom:0!important;
+  padding-top:0!important;
+  padding-bottom:0!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-info-lines .kv,
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-info-lines .kv{
+  min-height:34px!important;
+  padding:8px 0!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-info-lines .kv:first-child,
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-info-lines .kv:first-child{border-top:0!important}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-info-lines .kv:last-child,
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-info-lines .kv:last-child{border-bottom:0!important}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-info-lines .kv span,
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-info-lines .kv span{
+  font-size:11px!important;font-weight:850!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-info-lines .kv strong,
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-info-lines .kv strong{
+  font-size:12px!important;font-weight:950!important;
+}
+
+/* Middle column: preserve the good lower sections and give the top section breathing room. */
+body[data-center="operations"] .operations-tool-carousel .live-card-v52>.universal-status-column>.sketch-status-box,
+body[data-center="update"] .update-live-card-list .live-card-v52>.universal-status-column>.sketch-status-box{
+  display:grid!important;
+  grid-template-rows:minmax(0,1.55fr) minmax(0,1fr) minmax(0,.82fr)!important;
+  gap:0!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-status-section,
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-status-section{
+  margin:0!important;
+  min-height:0!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-status-section:first-child,
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-status-section:first-child{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-start!important;
+  padding:3px 0 18px!important;
+  border-bottom:1px solid #24485d!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-status-section:first-child .countdown-date,
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-status-section:first-child .countdown-date{
+  margin-bottom:17px!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-status-section:first-child .schedule-health,
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-status-section:first-child .schedule-health{
+  margin:4px 0 9px!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-status-section:first-child .phase-big,
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-status-section:first-child .phase-big{
+  margin:3px 0 10px!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-status-section:first-child .next-fi-standout,
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-status-section:first-child .next-fi-standout{
+  margin-top:4px!important;line-height:1.28!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-status-section:nth-child(2),
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-status-section:nth-child(2){
+  padding:18px 0!important;
+  border-bottom:1px solid #24485d!important;
+}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-status-section:nth-child(3),
+body[data-center="update"] .update-live-card-list .live-card-v52 .sketch-status-section:nth-child(3){
+  padding:18px 0 0!important;border-bottom:0!important;
+}
+
+/* Forecast target selector */
+.forecast-target-line{align-items:center!important}
+.forecast-target-button{
+  width:100%!important;min-width:0!important;display:flex!important;align-items:center!important;
+  justify-content:space-between!important;gap:8px!important;text-align:left!important;
+  background:#071722!important;color:#fff!important;border:1px solid #315b75!important;
+  border-radius:4px!important;padding:7px 9px!important;font-weight:850!important;cursor:pointer!important;
+  white-space:normal!important;line-height:1.2!important;
+}
+.forecast-target-button:hover{border-color:var(--accent)!important;background:rgba(var(--accent-rgb),.12)!important}
+.forecast-target-button>span{flex:0 0 auto;color:#9edcff;font-size:13px}
+.forecast-picker-modal{width:100%!important;height:100%!important;display:flex!important;flex-direction:column!important;min-height:0!important}
+.modal-card:has(.forecast-picker-modal){height:min(820px,calc(100vh - 36px))!important;width:min(980px,calc(100vw - 36px))!important;overflow:hidden!important}
+.modal-card:has(.forecast-picker-modal) #modalBody{height:100%!important;overflow:hidden!important}
+.forecast-picker-modal>h2,.forecast-picker-modal>.helper,.forecast-picker-modal>.modal-actions{flex:0 0 auto}
+.forecast-picker-list{flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;display:grid!important;gap:4px!important;padding-right:4px!important}
+.forecast-picker-row{
+  width:100%!important;display:grid!important;grid-template-columns:34px minmax(0,1fr) 105px!important;
+  gap:8px!important;align-items:center!important;text-align:left!important;padding:8px!important;
+  border:1px solid #24485d!important;background:#071722!important;color:#fff!important;cursor:pointer!important;
+}
+.forecast-picker-row:hover,.forecast-picker-row.selected{border-color:var(--accent)!important;background:rgba(var(--accent-rgb),.14)!important}
+.forecast-picker-row small{display:block!important;color:#90b4ca!important;margin-top:2px!important}
+.forecast-picker-row em{font-style:normal!important;text-align:right!important;color:#9edcff!important;font-size:9px!important;font-weight:900!important}
+.forecast-picker-order{text-align:center!important;font-weight:950!important;color:#87ccec!important}

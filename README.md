@@ -64,10 +64,19 @@ V5.5.16 — Universal Tool Card Single Layout
 - Left and middle columns fill the complete card height; right column preserves progress + 3 FI checklists + 3 Lead/Admin tasks.
 
 
-V5.5.17 — Universal Tool Card Balance Refinement
+V5.5.18 — Modal, Forecast & Tool Card Refinement
 - Centered/larger UTID and tool type/model identity.
 - Enlarged and evenly spaced Customer / Sales Order / Ship Date area.
 - Middle column distributed through full height with only major section dividers.
 - FI Checklist preview reduced to next 1 checklist plus View All.
 - Lead/Admin preview reduced to next 1 task plus View All.
 - Same universal card rules apply in Operations and Update Center.
+
+
+V5.5.18 updates:
+- Checklist and Lead/Admin modals are forced above the fixed Command Center shell.
+- FI Forecast Next Step is now a clickable checklist-target selector.
+- Forecast target selection does not change official FI status/progress.
+- Forecast date is estimated from FI handoff/current position and configured tool-family cycle target when available.
+- Left identity footer removes outer divider lines and enlarges Customer / Sales Order / Ship Date.
+- Middle-column top status section uses more vertical spacing while retaining the balanced FI Cycle Time and FI Forecast sections.
