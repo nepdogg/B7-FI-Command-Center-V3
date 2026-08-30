@@ -2580,3 +2580,126 @@ body[data-center="update"] .update-live-card-list .live-card-v52>.universal-tool
   .live-card-v52,body[data-center="update"] .update-live-card-list .live-card-v52{min-height:0!important}
   .live-card-v52>.universal-tool-column{height:auto!important}
 }
+
+
+/* V5.5.15 — EXTENDED UNIVERSAL TOOL COLUMNS
+   Fix the sketch-driven 3-column card so all three columns fill the full card height.
+   Prevent the previous short-column clipping while preserving the exact content model. */
+.live-card-v52{
+  height:610px!important;
+  min-height:610px!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-template-rows:610px!important;
+  align-items:stretch!important;
+  overflow:hidden!important;
+}
+.live-card-v52>.universal-tool-column{
+  height:100%!important;
+  min-height:100%!important;
+  max-height:100%!important;
+  align-self:stretch!important;
+  display:flex!important;
+  flex-direction:column!important;
+  gap:8px!important;
+  overflow:hidden!important;
+}
+/* LEFT and MIDDLE each contain one full-height panel. */
+.live-card-v52>.universal-info-column>.photo-panel,
+.live-card-v52>.universal-status-column>.sketch-status-box{
+  flex:1 1 auto!important;
+  height:100%!important;
+  min-height:100%!important;
+  max-height:100%!important;
+  overflow:hidden!important;
+  box-sizing:border-box!important;
+}
+/* Spread the sketch content down the entire left column. */
+.live-card-v52>.universal-info-column>.photo-panel{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:space-between!important;
+  gap:8px!important;
+}
+.live-card-v52 .photo-panel .live-photo{
+  flex:1 1 190px!important;
+  min-height:145px!important;
+  max-height:230px!important;
+}
+.live-card-v52 .photo-panel .key-test-badges{flex:0 0 auto!important}
+.live-card-v52 .sketch-info-lines{flex:0 0 auto!important;margin-top:auto!important}
+/* Spread ship status / FI cycle / FI forecast vertically instead of crowding the top. */
+.live-card-v52>.universal-status-column>.sketch-status-box{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:space-between!important;
+}
+.live-card-v52 .sketch-status-section{
+  flex:0 0 auto!important;
+  margin:0!important;
+  padding:12px 0!important;
+}
+.live-card-v52 .sketch-status-section:first-child{padding-top:0!important}
+.live-card-v52 .sketch-status-section:last-child{padding-bottom:0!important}
+.live-card-v52 .sketch-status-section:nth-child(2){flex:1 1 auto!important}
+/* RIGHT column: progress + three FI checklists + three Lead/Admin tasks all remain visible. */
+.live-card-v52>.universal-progress-column{
+  justify-content:stretch!important;
+}
+.live-card-v52>.universal-progress-column>.sketch-progress{
+  flex:0 0 52%!important;
+  min-height:0!important;
+  height:auto!important;
+  overflow:hidden!important;
+  box-sizing:border-box!important;
+}
+.live-card-v52>.universal-progress-column>.live-fi-panel,
+.live-card-v52>.universal-progress-column>.live-tasks{
+  flex:1 1 24%!important;
+  min-height:0!important;
+  height:auto!important;
+  overflow:hidden!important;
+  display:flex!important;
+  flex-direction:column!important;
+  box-sizing:border-box!important;
+}
+.live-card-v52 .live-fi-panel .active-fi,
+.live-card-v52 .live-tasks .next-task{
+  flex:0 0 auto!important;
+  margin-bottom:5px!important;
+}
+.live-card-v52 .view-all-tasks{
+  margin-top:auto!important;
+  flex:0 0 auto!important;
+}
+/* The Update Center uses the exact same dimensions as the Operations carousel card. */
+body[data-center="update"] .update-live-card-list>.live-panel{
+  height:626px!important;
+  min-height:626px!important;
+  max-height:626px!important;
+}
+body[data-center="update"] .update-live-card-list .live-card-v52{
+  height:610px!important;
+  min-height:610px!important;
+  max-height:610px!important;
+  grid-template-rows:610px!important;
+}
+body[data-center="update"] .update-live-card-list .live-card-v52>.universal-tool-column{
+  height:100%!important;
+  min-height:100%!important;
+  max-height:100%!important;
+}
+@media(max-width:1150px){
+  .live-card-v52,body[data-center="update"] .update-live-card-list .live-card-v52{
+    height:auto!important;min-height:0!important;max-height:none!important;grid-template-rows:auto!important;overflow:visible!important;
+  }
+  .live-card-v52>.universal-tool-column,body[data-center="update"] .update-live-card-list .live-card-v52>.universal-tool-column{
+    height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;
+  }
+  .live-card-v52>.universal-info-column>.photo-panel,
+  .live-card-v52>.universal-status-column>.sketch-status-box,
+  .live-card-v52>.universal-progress-column>.sketch-progress,
+  .live-card-v52>.universal-progress-column>.live-fi-panel,
+  .live-card-v52>.universal-progress-column>.live-tasks{
+    height:auto!important;min-height:0!important;max-height:none!important;flex:none!important;overflow:visible!important;
+  }
+}
