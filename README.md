@@ -1,4 +1,4 @@
-# B7 FI Command Center V5.5.18 — Tool Editor Workflow Polish
+# B7 FI Command Center V5.6.0 — Tool Editor Workflow Polish
 
 Changes: reorganized FI/Micro Schedule editor; removed editor Lead/Admin progress bar; controlled Cleanroom CR1/CR2/CR3; Macan models 2930XR/2935XR; standardized AV Data/SCC Cleanup/Backup lists; split Customer Source and STR workflows; combined source handoff/start and return-to-FI date labels; standardized shipping schedule status; paired Next Step Forecast checklist with forecast date; reinforced Mystery/Reveal visibility in Screenshot and Presentation modes. Existing localStorage key/data remain compatible.
 
@@ -23,3 +23,12 @@ V5.5.17: Operations action controls now match the standard page-action geometry;
 
 
 V5.5.17: Standardized hover/focus/active feedback across the main Center navigation, all Center page-navigation bars, and page actions. Each main Center previews its own identity color; page navigation inherits the active Center accent. Fixed the first-exit Status Center Presentation Mode scale bug by deferring route/layout restoration until fullscreen has fully closed and clearing presentation zoom before the normal render.
+
+
+## V5.6.0 Automatic Forecast Engine
+- Added centrally stored Regera/Celestiq and standard-tool timing profiles.
+- Automatic checklist-based FI/power-down forecasts.
+- Automatic required power-down date from ship date minus 5-day or 3-day packing window.
+- Automatic schedule health feeds Systems Requiring Attention.
+- Forecast Center now compares estimated FI completion, required power down, packing window and ship date.
+- Calculation Standards are editable in Administration and saved in the existing local database.
