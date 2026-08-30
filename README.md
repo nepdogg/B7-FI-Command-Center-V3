@@ -1,3 +1,7 @@
+# B7 FI Command Center V5.5.7 — Universal Live Tool Cards
+
+Update Center tool cards now use the same complete card renderer as the Live Operations carousel, including UTID identity, tool photo, Reduced Process, six workflow/test badges, ship countdown and FI status, cycle information, FI/Micro/Lead/Customer Source/STR/Packing progress, tool information, active FI checklists, and next Lead/Admin tasks.
+
 # B7 FI Command Center V5.5.4
 
 Customer Source + STR Progress update.

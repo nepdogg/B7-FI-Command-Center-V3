@@ -2318,3 +2318,49 @@ body.presentation-mode .snapshot-family .family-matrix.header>b:last-child{
   font-size:7px!important;
   text-align:center!important;
 }
+
+/* V5.5.7 — Universal Live Tool Cards
+   The Update Center now uses the exact same complete tool-card renderer as
+   the Live Operations tool carousel. One card = one shared visual language. */
+body[data-center="update"] .update-live-card-list{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:12px!important;
+  width:100%!important;
+  min-width:0!important;
+}
+body[data-center="update"] .update-live-card-list>.live-panel{
+  width:100%!important;
+  height:620px!important;
+  min-height:620px!important;
+  max-height:620px!important;
+  margin:0!important;
+  padding:8px!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+body[data-center="update"] .update-live-card-list .live-card-v52{
+  display:grid!important;
+  grid-template-columns:repeat(12,minmax(0,1fr))!important;
+  grid-template-rows:minmax(0,1.08fr) minmax(0,.92fr)!important;
+  gap:8px!important;
+  height:100%!important;
+  min-height:0!important;
+  overflow:hidden!important;
+}
+body[data-center="update"] .update-live-card-list .live-card-v52>.photo-panel{grid-column:span 4!important}
+body[data-center="update"] .update-live-card-list .live-card-v52>.tool-status-box{grid-column:span 4!important}
+body[data-center="update"] .update-live-card-list .live-card-v52>.live-progress{grid-column:span 4!important}
+body[data-center="update"] .update-live-card-list .live-card-v52>.live-info{grid-column:span 4!important}
+body[data-center="update"] .update-live-card-list .live-card-v52>.live-fi-panel{grid-column:span 4!important}
+body[data-center="update"] .update-live-card-list .live-card-v52>.live-tasks{grid-column:span 4!important}
+body[data-center="update"] .update-live-card-list .live-six-panel{min-height:0!important;overflow:hidden!important}
+@media(max-width:1150px){
+  body[data-center="update"] .update-live-card-list>.live-panel{height:auto!important;max-height:none!important;min-height:900px!important}
+  body[data-center="update"] .update-live-card-list .live-card-v52{grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:auto!important}
+  body[data-center="update"] .update-live-card-list .live-card-v52>.live-six-panel{grid-column:span 1!important;min-height:250px!important}
+}
+@media(max-width:760px){
+  body[data-center="update"] .update-live-card-list>.live-panel{min-height:0!important}
+  body[data-center="update"] .update-live-card-list .live-card-v52{grid-template-columns:1fr!important}
+}
