@@ -3369,3 +3369,13 @@ body[data-center="operations"] .update-live-card-list .live-card-v52 .sketch-sta
   .live-card-v52{height:auto!important;grid-template-columns:1fr!important;grid-template-rows:auto!important;overflow:visible!important}
   .live-card-v52>.universal-tool-column{height:auto!important;overflow:visible!important}
 }
+
+
+/* V5.6.4 — deployment/navigation hard lock */
+.pagebar{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:stretch!important;width:100%!important;min-height:38px!important;gap:0!important}
+#subnav.subnav{display:flex!important;align-items:stretch!important;min-width:0!important;overflow-x:auto!important;overflow-y:hidden!important}
+#subnav.subnav>button{flex:1 0 auto!important;min-width:138px!important}
+#pageActions.page-actions{display:flex!important;align-items:stretch!important;justify-content:flex-end!important;white-space:nowrap!important}
+body[data-center="operations"] #subnav.subnav{border-color:var(--accent)!important}
+body[data-center="operations"] #subnav.subnav>button.active{box-shadow:inset 0 -3px 0 var(--accent)!important;background:rgba(var(--accent-rgb),.22)!important}
+body[data-build="20260830-V5.6.4-DEPLOYMENT-NAVIGATION-VERIFICATION"] .pagebar{visibility:visible!important;opacity:1!important}
