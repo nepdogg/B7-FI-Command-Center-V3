@@ -3028,3 +3028,75 @@ body.presentation-mode #subnav,
 body.presentation-mode #pageActions{
   display:none!important;
 }
+
+/* V5.5.17 — universal navigation hover/active feedback + presentation restore polish */
+/* Main Center navigation: every Center previews its own identity color on hover/focus. */
+.main-nav button[data-center]{
+  transition:background-color .14s ease,box-shadow .14s ease,color .14s ease,border-color .14s ease!important;
+}
+.main-nav button[data-center]:hover,
+.main-nav button[data-center]:focus-visible{
+  color:#fff!important;
+  outline:none!important;
+}
+.main-nav button[data-center="operations"]:hover,.main-nav button[data-center="operations"]:focus-visible{background:rgba(23,111,168,.24)!important;box-shadow:inset 0 -3px #176FA8!important}
+.main-nav button[data-center="shipping"]:hover,.main-nav button[data-center="shipping"]:focus-visible{background:rgba(39,174,96,.24)!important;box-shadow:inset 0 -3px #27AE60!important}
+.main-nav button[data-center="priority"]:hover,.main-nav button[data-center="priority"]:focus-visible{background:rgba(212,167,44,.24)!important;box-shadow:inset 0 -3px #D4A72C!important}
+.main-nav button[data-center="status"]:hover,.main-nav button[data-center="status"]:focus-visible{background:rgba(242,140,40,.24)!important;box-shadow:inset 0 -3px #F28C28!important}
+.main-nav button[data-center="cycle"]:hover,.main-nav button[data-center="cycle"]:focus-visible{background:rgba(37,99,235,.24)!important;box-shadow:inset 0 -3px #2563EB!important}
+.main-nav button[data-center="meeting"]:hover,.main-nav button[data-center="meeting"]:focus-visible{background:rgba(25,185,209,.24)!important;box-shadow:inset 0 -3px #19B9D1!important}
+.main-nav button[data-center="action"]:hover,.main-nav button[data-center="action"]:focus-visible{background:rgba(229,72,72,.24)!important;box-shadow:inset 0 -3px #E54848!important}
+.main-nav button[data-center="reference"]:hover,.main-nav button[data-center="reference"]:focus-visible{background:rgba(233,74,154,.24)!important;box-shadow:inset 0 -3px #E94A9A!important}
+.main-nav button[data-center="search"]:hover,.main-nav button[data-center="search"]:focus-visible{background:rgba(83,109,254,.24)!important;box-shadow:inset 0 -3px #536DFE!important}
+.main-nav button[data-center].active{
+  color:#fff!important;
+  background:rgba(var(--accent-rgb),.22)!important;
+  box-shadow:inset 0 -3px var(--accent)!important;
+}
+
+/* Every Center page navigation uses the active Center accent for hover/focus and selected state. */
+.pagebar .subnav button{
+  transition:background-color .14s ease,box-shadow .14s ease,color .14s ease,border-color .14s ease!important;
+}
+.pagebar .subnav button:hover,
+.pagebar .subnav button:focus-visible{
+  background:rgba(var(--accent-rgb),.18)!important;
+  color:#fff!important;
+  box-shadow:inset 0 -3px var(--accent)!important;
+  outline:none!important;
+}
+.pagebar .subnav button.active{
+  background:rgba(var(--accent-rgb),.25)!important;
+  color:#fff!important;
+  box-shadow:inset 0 -3px var(--accent)!important;
+  border-bottom-color:var(--accent)!important;
+}
+/* Current quarter is identified by text only until it is actually selected. */
+body[data-center="operations"] .pagebar .subnav .quarter-nav.current-quarter:not(.active){
+  background:#061522!important;
+  box-shadow:none!important;
+  color:#fff!important;
+}
+body[data-center="operations"] .pagebar .subnav .quarter-nav.current-quarter:not(.active):hover,
+body[data-center="operations"] .pagebar .subnav .quarter-nav.current-quarter:not(.active):focus-visible{
+  background:rgba(var(--accent-rgb),.18)!important;
+  box-shadow:inset 0 -3px var(--accent)!important;
+}
+
+/* Page actions use the same hover language as the page navigation. */
+.page-actions button,
+#pageActions button{
+  transition:background-color .14s ease,box-shadow .14s ease,color .14s ease!important;
+}
+.page-actions button:hover,.page-actions button:focus-visible,
+#pageActions button:hover,#pageActions button:focus-visible{
+  background:rgba(var(--accent-rgb),.20)!important;
+  color:#fff!important;
+  box-shadow:inset 0 -3px var(--accent)!important;
+  outline:none!important;
+}
+
+/* Returning from Presentation Mode must never preserve the temporary fit/zoom. */
+body:not(.presentation-mode) .app-frame{
+  zoom:1!important;
+}
