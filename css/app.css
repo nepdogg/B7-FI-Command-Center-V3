@@ -2239,3 +2239,14 @@ body[data-center="operations"] .photo-panel .live-photo{min-height:105px!importa
 .system-card .system-key-badges.six-badges .key-test-badge{min-height:28px!important}
 .system-card .system-key-badges.six-badges .system-reduced-badge{grid-column:1/-1!important;margin-top:0!important}
 .system-card .workflow-badge span{font-size:6px!important}
+
+/* V5.5.4 — Customer Source + STR progress rows */
+body[data-center="operations"] .live-progress.compact-progress .workflow-progress-item{
+  margin-bottom:5px!important;
+}
+body[data-center="operations"] .live-progress.compact-progress{
+  gap:0!important;
+}
+body[data-center="operations"] .live-progress.compact-progress .progress-item{
+  flex:0 1 auto!important;
+}
