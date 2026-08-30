@@ -13,3 +13,6 @@ This build continues from the V5.5.0 framework lock candidate and focuses on fin
 - removes system/action/reference counts from screenshot report titles;
 - keeps Mystery Reveal/lock status visible in Screenshot and Presentation modes while remaining non-interactive;
 - retains existing V5.x localStorage compatibility (`b7fi-command-center-v3`).
+
+
+V5.5.3: Live Operations photo panel now places Reduced Process beside the code name and uses a 2x3 badge matrix for Ironman, AV Data, SCC Cleanup, Backup, Customer Source, and STR. Update Center compact tool cards now include the family photo and the same six status signals.

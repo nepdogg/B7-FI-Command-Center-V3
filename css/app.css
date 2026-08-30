@@ -2221,3 +2221,21 @@ body:not(.screenshot-mode):not(.presentation-mode) .app-footer{
   border-top:0!important;
   border-bottom:0!important;
 }
+
+
+/* V5.5.3 — shared compact/live tool identity and six process badges */
+body[data-center="operations"] .photo-panel .photo-title-row{width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:7px;padding:0 2px 3px;box-sizing:border-box}
+body[data-center="operations"] .photo-panel .photo-title-row .live-codename{text-align:left!important;padding:0!important;min-width:0}
+body[data-center="operations"] .photo-panel .reduced-process-badge.compact{width:auto!important;min-width:92px;max-width:112px;margin:0!important;padding:4px 6px!important;font-size:7px!important;line-height:1.05;letter-spacing:.45px;white-space:nowrap;box-shadow:none}
+body[data-center="operations"] .photo-panel .key-test-badges.six-badges{grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:repeat(3,minmax(27px,auto));margin-top:5px!important}
+body[data-center="operations"] .photo-panel .workflow-badge span{font-size:6.2px!important}
+body[data-center="operations"] .photo-panel .live-photo{min-height:105px!important}
+
+.system-card .compact-tool-identity{min-height:70px!important;align-items:center!important;padding-top:3px!important;margin-top:0!important}
+.system-card .compact-tool-visual{display:flex;align-items:center;justify-content:flex-end;gap:6px;height:62px;min-width:96px}
+.system-card .compact-tool-visual img{width:70px;height:58px;object-fit:contain;display:block}
+.system-card .compact-tool-visual .state-chip{position:static!important;min-width:22px!important;width:auto!important;height:auto!important;min-height:28px!important;padding:4px 5px!important;display:flex!important;align-items:center;justify-content:center;box-sizing:border-box;writing-mode:horizontal-tb!important}
+.system-card .system-key-badges.six-badges{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:4px!important}
+.system-card .system-key-badges.six-badges .key-test-badge{min-height:28px!important}
+.system-card .system-key-badges.six-badges .system-reduced-badge{grid-column:1/-1!important;margin-top:0!important}
+.system-card .workflow-badge span{font-size:6px!important}
