@@ -61,5 +61,5 @@ This release is a stability rebuild of the presentation layer using the existing
 - No navigation, storage schema, calculation, workflow, or page-generation logic changes.
 
 
-## V6.0.4
-Focused Universal Tool Card structural stabilization and footer color restoration.
+## V6.0.5
+Rollback to V6.0.3 card structure, targeted centering/spacing fixes, visible progress bars, and active-center footer mirroring the header.
