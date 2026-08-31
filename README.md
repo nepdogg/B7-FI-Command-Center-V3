@@ -63,3 +63,7 @@ This release is a stability rebuild of the presentation layer using the existing
 
 ## V6.0.5
 Rollback to V6.0.3 card structure, targeted centering/spacing fixes, visible progress bars, and active-center footer mirroring the header.
+
+
+## V6.0.6
+Equalized all three Universal Tool Card columns, enlarged left-column data, and rebuilt the footer with the exact header wing geometry and active-center accent.

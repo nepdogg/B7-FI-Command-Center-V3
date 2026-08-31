@@ -2733,3 +2733,166 @@ footer .footer-right,
   font-weight:800 !important;
   color:inherit !important;
 }
+
+
+/* =========================================================
+   V6.0.6 — EQUAL CARD COLUMNS + HEADER-MATCH FOOTER
+   Final authority for the two remaining visual-lock items.
+   ========================================================= */
+
+/* EXACTLY equal Universal Tool Card columns everywhere. */
+body[data-center="operations"] .operations-tool-carousel .live-card-v52,
+body[data-center="operations"] .update-live-card-list .live-card-v52,
+.universal-card-host .live-card-v52{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) !important;
+  column-gap:8px !important;
+  width:100% !important;
+  box-sizing:border-box !important;
+}
+
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 > .universal-tool-column,
+body[data-center="operations"] .update-live-card-list .live-card-v52 > .universal-tool-column,
+.universal-card-host .live-card-v52 > .universal-tool-column{
+  width:100% !important;
+  min-width:0 !important;
+  max-width:none !important;
+  flex:none !important;
+  box-sizing:border-box !important;
+}
+
+/* Left column: use the newly available width with larger, clearer data. */
+body[data-center="operations"] .operations-tool-carousel .universal-info-column .live-codename,
+body[data-center="operations"] .update-live-card-list .universal-info-column .live-codename,
+.universal-card-host .universal-info-column .live-codename{
+  font-size:32px !important;
+  letter-spacing:1px !important;
+}
+
+body[data-center="operations"] .operations-tool-carousel .universal-info-column .tool-type-model,
+body[data-center="operations"] .update-live-card-list .universal-info-column .tool-type-model,
+.universal-card-host .universal-info-column .tool-type-model{
+  font-size:14px !important;
+  font-weight:900 !important;
+  letter-spacing:.35px !important;
+}
+
+body[data-center="operations"] .operations-tool-carousel .universal-info-column .tool-info-lines,
+body[data-center="operations"] .update-live-card-list .universal-info-column .tool-info-lines,
+.universal-card-host .universal-info-column .tool-info-lines{
+  width:100% !important;
+}
+
+body[data-center="operations"] .operations-tool-carousel .universal-info-column .tool-info-line,
+body[data-center="operations"] .update-live-card-list .universal-info-column .tool-info-line,
+.universal-card-host .universal-info-column .tool-info-line{
+  font-size:14px !important;
+  min-height:40px !important;
+}
+
+body[data-center="operations"] .operations-tool-carousel .universal-info-column .tool-info-line strong,
+body[data-center="operations"] .update-live-card-list .universal-info-column .tool-info-line strong,
+.universal-card-host .universal-info-column .tool-info-line strong{
+  font-size:14px !important;
+}
+
+body[data-center="operations"] .operations-tool-carousel .universal-info-column .key-test-grid,
+body[data-center="operations"] .update-live-card-list .universal-info-column .key-test-grid,
+.universal-card-host .universal-info-column .key-test-grid{
+  width:100% !important;
+}
+
+body[data-center="operations"] .operations-tool-carousel .universal-info-column .key-test-grid > *,
+body[data-center="operations"] .update-live-card-list .universal-info-column .key-test-grid > *,
+.universal-card-host .universal-info-column .key-test-grid > *{
+  font-size:9px !important;
+}
+
+/* FOOTER: use the exact same three-part geometry and angled wings as the header. */
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer{
+  display:grid !important;
+  grid-template-columns:minmax(260px,1fr) clamp(120px,14vw,190px) minmax(320px,1fr) !important;
+  min-height:76px !important;
+  height:76px !important;
+  padding:0 !important;
+  margin-top:var(--shell-section-gap) !important;
+  background:#020914 !important;
+  border:1px solid color-mix(in srgb,var(--accent) 66%,#173d57) !important;
+  border-top:0 !important;
+  color:#fff !important;
+  overflow:hidden !important;
+  position:relative !important;
+}
+
+/* Same wing shape as .hero-left */
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer .footer-left{
+  min-width:0 !important;
+  height:100% !important;
+  display:flex !important;
+  align-items:center !important;
+  gap:12px !important;
+  padding:0 28px !important;
+  background:linear-gradient(115deg,var(--accent) 0 86%,transparent 86%) !important;
+  color:#fff !important;
+  box-sizing:border-box !important;
+}
+
+/* Same black center as .hero-center */
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer .footer-center{
+  height:100% !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  background:#05080d !important;
+  position:static !important;
+  transform:none !important;
+}
+
+/* Same wing shape as .hero-right */
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer .footer-right{
+  min-width:0 !important;
+  height:100% !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-end !important;
+  padding:0 28px !important;
+  margin:0 !important;
+  background:linear-gradient(65deg,transparent 0 14%,var(--accent) 14% 100%) !important;
+  color:#dff4ff !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer .footer-center img{
+  max-height:56px !important;
+  max-width:142px !important;
+}
+
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer .footer-data{
+  color:#fff !important;
+  font-size:9px !important;
+  font-weight:950 !important;
+}
+
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer .footer-right > span{
+  max-width:100% !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  white-space:nowrap !important;
+}
+
+/* Match header sizing at narrower widths as well. */
+@media(max-width:1100px){
+  body:not(.screenshot-mode):not(.presentation-mode) .app-footer{
+    grid-template-columns:1fr 100px 1fr !important;
+  }
+  body:not(.screenshot-mode):not(.presentation-mode) .app-footer .footer-left,
+  body:not(.screenshot-mode):not(.presentation-mode) .app-footer .footer-right{
+    padding-left:10px !important;
+    padding-right:10px !important;
+  }
+  body:not(.screenshot-mode):not(.presentation-mode) .app-footer .footer-center img{
+    max-height:50px !important;
+    max-width:120px !important;
+  }
+}
