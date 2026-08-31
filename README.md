@@ -67,3 +67,7 @@ Rollback to V6.0.3 card structure, targeted centering/spacing fixes, visible pro
 
 ## V6.0.6
 Equalized all three Universal Tool Card columns, enlarged left-column data, and rebuilt the footer with the exact header wing geometry and active-center accent.
+
+
+## V6.0.7
+Corrected the actual Universal Tool Card DOM grid placement, enlarged visible progress bars, improved spacing, and matched footer blue/black geometry to the header.
