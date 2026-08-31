@@ -1,4 +1,4 @@
-# B7 FI Command Center V5.6.5
+# B7 FI Command Center V5.6.6
 
 Universal Card / Navigation / Tool Jump refinement.
 
@@ -10,3 +10,12 @@ Key changes:
 - Tool pages add a sticky dynamic Tool Type jump row.
 - Tool family dividers and Total / Waiting / In FI / Packing / Shipped status boxes are larger and easier to see while scrolling.
 - Existing localStorage key remains b7fi-command-center-v3.
+
+
+## V5.6.6
+- Moved DATA environment indicator from page navigation to footer.
+- Standardized one-line page navigation sizing and removed special current-quarter green state.
+- Removed Tools/date page heading above family jump navigation.
+- Locked Live Operations and Tools pages to the same Universal Tool Card geometry and renderer.
+- Rebuilt the middle card column into four protected sections to prevent overlap/clipping.
+- Protected UTID/model header from the top-right Tool Editor arrow.
