@@ -157,3 +157,20 @@ Targeted workflow cleanup:
 - Micro Schedule Start/Complete belong under Micro Schedule Target
 - Complete FI Checklist and Complete Lead/Admin Checklist now support Minimize/Expand
 - Screenshot Mystery Boxes visibility reinforced
+
+## V6.1.4
+Actual Tool Edit correction:
+- Current Lead/Admin Task is directly under Current FI Checklist
+- Micro Scheduled Start and Complete are directly under Micro Schedule Target
+- automatic Lead/Admin Progress visual is removed from Tool Edit
+- Complete FI Checklist and Complete Lead/Admin Checklist now have working MINIMIZE / EXPAND controls
+- removed the unintended extra Tool Family Mystery Boxes strip from Live Operations
+- existing family matrix Reveal/Mystery functionality remains intact
+
+## V6.1.5
+- Restored the always-visible mystery-box row on Live Operations.
+- Renamed TOOL FAMILY MYSTERY BOXES to TOOLS MYSTERY BOXES.
+- Each mystery box now uses only its codename as the main label.
+- Locked boxes show lock + shipped/total count.
+- Completed families show UNLOCKED and retain the existing celebration/reveal action.
+- Preserves the V6.1.4 Tool Edit corrections and Update Progress wording.

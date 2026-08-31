@@ -5860,3 +5860,123 @@ html body.screenshot-mode .quarter-mystery-box{
   visibility:visible !important;
   opacity:1 !important;
 }
+
+
+/* =========================================================
+   V6.1.4 — ACTUAL TOOL EDIT FIX
+   ========================================================= */
+
+html body .tool-fi-micro-layout{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+  gap:14px !important;
+  width:100% !important;
+  margin-bottom:14px !important;
+  align-items:start !important;
+}
+
+html body .tool-fi-column{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:10px !important;
+  min-width:0 !important;
+}
+
+html body .tool-fi-column > .field{
+  width:100% !important;
+  min-width:0 !important;
+  margin:0 !important;
+}
+
+html body .tool-micro-dates{
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:10px !important;
+  width:100% !important;
+}
+
+html body .tool-checklist-workspace{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+  gap:14px !important;
+  width:100% !important;
+  margin:0 0 14px !important;
+}
+
+html body .checklist-collapse-head{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:12px !important;
+}
+
+html body .checklist-head-actions{
+  display:flex !important;
+  align-items:center !important;
+  gap:10px !important;
+  margin-left:auto !important;
+}
+
+html body .checklist-head-actions b{
+  white-space:nowrap !important;
+}
+
+html body .collapse-toggle{
+  min-width:92px !important;
+  height:28px !important;
+  flex:0 0 auto !important;
+}
+
+html body .collapsible-body.collapsed{
+  display:none !important;
+}
+
+html body .tool-edit-status-notes{
+  margin-top:0 !important;
+}
+
+/* Remove any legacy Tool Edit automatic Lead/Admin Progress visual if an old rule renders it. */
+html body .tool-editor .daily-progress-readonly{
+  display:none !important;
+}
+
+/* No extra quarter mystery strip; mystery/reveal remains in the existing family matrix. */
+html body .quarter-mystery-strip{
+  display:none !important;
+}
+
+@media(max-width:1000px){
+  html body .tool-fi-micro-layout,
+  html body .tool-checklist-workspace{
+    grid-template-columns:1fr !important;
+  }
+}
+
+
+/* V6.1.5 — finalized always-visible Tools Mystery Boxes */
+html body .quarter-mystery-strip{
+  display:block !important;
+}
+html body .quarter-mystery-title{
+  font-weight:900 !important;
+  letter-spacing:.06em !important;
+}
+html body .quarter-mystery-box{
+  min-height:48px !important;
+}
+html body .quarter-mystery-box > b{
+  font-size:12px !important;
+  line-height:1.05 !important;
+  letter-spacing:.04em !important;
+}
+html body .quarter-mystery-box > small{
+  margin-top:4px !important;
+  font-size:9px !important;
+}
+html body .quarter-mystery-box.unlocked{
+  cursor:pointer !important;
+}
+html body.screenshot-mode .quarter-mystery-strip,
+html body.presentation-mode .quarter-mystery-strip{
+  display:block !important;
+}
