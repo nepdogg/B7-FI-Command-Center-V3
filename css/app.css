@@ -5794,3 +5794,69 @@ html body .app-footer #versionLabel{
   overflow:visible !important;
   text-overflow:clip !important;
 }
+
+
+/* =========================================================
+   V6.1.3 — TOOL EDIT RESTORE + COLLAPSIBLE CHECKLISTS
+   ========================================================= */
+
+/* FI Testing / Micro Schedule editor layout */
+html body .fi-micro-editor-grid{
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:14px !important;
+  align-items:start !important;
+}
+html body .fi-micro-left,
+html body .fi-micro-right{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:10px !important;
+}
+html body .lead-admin-progress-editor{
+  display:none !important;
+}
+
+/* Collapsible checklist sections */
+html body .collapsible-head{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:12px !important;
+  width:100% !important;
+}
+html body .collapse-toggle{
+  min-width:92px !important;
+  height:28px !important;
+  border:1px solid var(--accent) !important;
+  background:rgba(var(--accent-rgb),.16) !important;
+  color:#fff !important;
+  font-weight:900 !important;
+  font-size:9px !important;
+  cursor:pointer !important;
+}
+html body .collapsible-body.collapsed{
+  display:none !important;
+}
+
+/* Shipping wording */
+html body [data-update-milestones],
+html body .update-milestones{
+  /* label text updated in JS; selector retained for compatibility */
+}
+
+/* Screenshot mystery boxes: force visibility despite generic screenshot button hiding */
+html body.screenshot-mode .quarter-mystery-strip,
+html body.screenshot-mode .quarter-mystery-grid{
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+}
+html body.screenshot-mode .quarter-mystery-grid{
+  display:grid !important;
+}
+html body.screenshot-mode .quarter-mystery-box{
+  display:grid !important;
+  visibility:visible !important;
+  opacity:1 !important;
+}

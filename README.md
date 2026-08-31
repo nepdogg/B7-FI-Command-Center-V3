@@ -147,3 +147,13 @@ Final screenshot/framework cleanup:
 - screenshot mystery boxes are display-only while capturing
 - footer version text now shows only `B7 FI COMMAND CENTER V6.1.2`
 - browser tab and footer now use the same concise version identity
+
+## V6.1.3
+Targeted workflow cleanup:
+- Shipping button text changed from UPDATE MILESTONES to UPDATE PROGRESS
+- Tool Edit FI/Micro section restored to two-column workflow
+- Lead/Admin Progress visual removed from Tool Edit
+- Current Lead/Admin Task belongs under Current FI Checklist
+- Micro Schedule Start/Complete belong under Micro Schedule Target
+- Complete FI Checklist and Complete Lead/Admin Checklist now support Minimize/Expand
+- Screenshot Mystery Boxes visibility reinforced
