@@ -94,3 +94,12 @@ Universal Tool Card finalization pass:
 - larger progress region with 11px bars and more spacing
 - fixed checklist/task slots regardless tool state
 - finalized footer retained and shortened slightly to 52px
+
+## V6.0.11
+Universal Tool Card framework lock pass:
+- all tool states share one alignment and width system
+- all data regions span full column width
+- active and completed checklist/task states use the same geometry
+- progress rows use full-width label/value/bar layout
+- footer left and right wings now both use the active center/page accent
+- finalized 52px footer height preserved

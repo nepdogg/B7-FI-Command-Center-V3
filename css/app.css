@@ -4152,3 +4152,242 @@ html body:not(.screenshot-mode):not(.presentation-mode) .app-footer .footer-righ
 html body:not(.screenshot-mode):not(.presentation-mode) .app-footer .footer-center img{
   max-height:36px !important;
 }
+
+
+/* =========================================================
+   V6.0.11 — LOCKED CARD ALIGNMENT + PAGE-ACCENT FOOTER
+   Final authority:
+   - one geometry/alignment system for every tool state
+   - all data regions fill their column width
+   - shipped/complete content uses same alignment as active
+   - both footer wings use the active center/page accent
+   ========================================================= */
+
+/* MASTER 3-COLUMN CARD — never varies by tool state */
+html body .universal-card-host .live-card-v52{
+  display:grid !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  grid-template-rows:minmax(0,1fr) !important;
+  gap:8px !important;
+  width:100% !important;
+  height:100% !important;
+  box-sizing:border-box !important;
+  align-items:stretch !important;
+}
+
+html body .universal-card-host .live-card-v52 > .universal-tool-column{
+  width:100% !important;
+  min-width:0 !important;
+  max-width:none !important;
+  height:100% !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:1px solid #2b607d !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+
+/* Every major inner region spans the full available column width */
+html body .universal-card-host .photo-panel,
+html body .universal-card-host .sketch-photo-title,
+html body .universal-card-host .live-photo,
+html body .universal-card-host .sketch-reduced,
+html body .universal-card-host .six-badges,
+html body .universal-card-host .sketch-info-lines,
+html body .universal-card-host .sketch-status-box,
+html body .universal-card-host .sketch-status-box > .sketch-status-section,
+html body .universal-card-host .sketch-progress,
+html body .universal-card-host .sketch-progress .progress-item,
+html body .universal-card-host .sketch-progress .progress-head,
+html body .universal-card-host .sketch-progress .track,
+html body .universal-card-host .live-fi-panel,
+html body .universal-card-host .live-tasks,
+html body .universal-card-host .live-task-head,
+html body .universal-card-host .active-fi,
+html body .universal-card-host .no-active-fi,
+html body .universal-card-host .next-task,
+html body .universal-card-host .tasks-complete,
+html body .universal-card-host .view-all-tasks{
+  width:100% !important;
+  max-width:none !important;
+  min-width:0 !important;
+  box-sizing:border-box !important;
+}
+
+/* LEFT: only the UTID/model header is centered.
+   All bottom label/value data occupies the full row consistently. */
+html body .universal-card-host .sketch-photo-title,
+html body .universal-card-host .sketch-photo-title > div,
+html body .universal-card-host .live-codename,
+html body .universal-card-host .tool-type-model{
+  text-align:center !important;
+}
+
+html body .universal-card-host .sketch-info-lines .kv{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.25fr) !important;
+  width:100% !important;
+  align-items:center !important;
+  column-gap:12px !important;
+  padding-left:12px !important;
+  padding-right:12px !important;
+  text-align:left !important;
+}
+
+html body .universal-card-host .sketch-info-lines .kv > span,
+html body .universal-card-host .sketch-info-lines .kv > label{
+  width:100% !important;
+  text-align:left !important;
+}
+
+html body .universal-card-host .sketch-info-lines .kv strong{
+  width:100% !important;
+  text-align:right !important;
+}
+
+/* MIDDLE: one fixed left-aligned information system for all states */
+html body .universal-card-host .sketch-status-box{
+  padding-left:14px !important;
+  padding-right:14px !important;
+}
+
+html body .universal-card-host .sketch-status-box > .sketch-status-section,
+html body .universal-card-host .sketch-status-box > .sketch-status-section *{
+  text-align:left !important;
+}
+
+html body .universal-card-host .sketch-status-box .forecast-target-button{
+  width:100% !important;
+  max-width:none !important;
+  justify-content:space-between !important;
+  text-align:left !important;
+}
+
+/* RIGHT: all eight progress rows span full width and share identical alignment */
+html body .universal-card-host .sketch-progress{
+  padding-left:14px !important;
+  padding-right:14px !important;
+}
+
+html body .universal-card-host .sketch-progress .progress-item{
+  display:grid !important;
+  grid-template-rows:auto 11px auto !important;
+  align-content:center !important;
+  text-align:left !important;
+}
+
+html body .universal-card-host .sketch-progress .progress-head{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:10px !important;
+  text-align:left !important;
+}
+
+html body .universal-card-host .sketch-progress .progress-head > :first-child{
+  text-align:left !important;
+}
+
+html body .universal-card-host .sketch-progress .progress-head > :last-child{
+  margin-left:auto !important;
+  text-align:right !important;
+}
+
+html body .universal-card-host .sketch-progress .track{
+  width:100% !important;
+  max-width:none !important;
+}
+
+html body .universal-card-host .sketch-progress .progress-step{
+  width:100% !important;
+  text-align:left !important;
+}
+
+/* CHECKLIST + LEAD/ADMIN:
+   Active, empty and complete states use identical header/body/footer alignment. */
+html body .universal-card-host .live-fi-panel,
+html body .universal-card-host .live-tasks{
+  padding-left:14px !important;
+  padding-right:14px !important;
+  text-align:left !important;
+}
+
+html body .universal-card-host .live-fi-panel .live-task-head,
+html body .universal-card-host .live-tasks .live-task-head{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:10px !important;
+  width:100% !important;
+  text-align:left !important;
+}
+
+html body .universal-card-host .live-fi-panel .active-fi,
+html body .universal-card-host .live-fi-panel .no-active-fi,
+html body .universal-card-host .live-fi-panel .tasks-complete,
+html body .universal-card-host .live-tasks .next-task,
+html body .universal-card-host .live-tasks .tasks-complete{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  width:100% !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  text-align:left !important;
+}
+
+html body .universal-card-host .live-fi-panel .tasks-complete,
+html body .universal-card-host .live-tasks .tasks-complete{
+  font-weight:900 !important;
+}
+
+html body .universal-card-host .live-fi-panel .view-all-tasks,
+html body .universal-card-host .live-tasks .view-all-tasks{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:100% !important;
+  text-align:center !important;
+}
+
+/* Any task/checklist row must stretch across the region instead of sizing to content */
+html body .universal-card-host .active-fi > *,
+html body .universal-card-host .next-task > *,
+html body .universal-card-host .live-fi-panel .task-row,
+html body .universal-card-host .live-tasks .task-row{
+  width:100% !important;
+  max-width:none !important;
+  box-sizing:border-box !important;
+}
+
+/* Prevent shipped/complete state from introducing centered alternate layouts */
+html body .universal-card-host .shipped .tasks-complete,
+html body .universal-card-host .complete .tasks-complete,
+html body .universal-card-host .tool-complete .tasks-complete{
+  justify-content:flex-start !important;
+  text-align:left !important;
+}
+
+/* FOOTER: both colored wings always use the ACTIVE center/page accent.
+   This removes the fixed blue left wing that caused mismatched pages. */
+html body:not(.screenshot-mode):not(.presentation-mode) .app-footer{
+  background:
+    linear-gradient(115deg,var(--accent) 0 40%,transparent 40%),
+    linear-gradient(65deg,transparent 0 60%,var(--accent) 60% 100%),
+    #05080d !important;
+  border-color:color-mix(in srgb,var(--accent) 70%,#173d57) !important;
+}
+
+html body:not(.screenshot-mode):not(.presentation-mode) .app-footer .footer-left,
+html body:not(.screenshot-mode):not(.presentation-mode) .app-footer .footer-right{
+  background:transparent !important;
+}
+
+/* Footer remains at finalized compact height */
+html body:not(.screenshot-mode):not(.presentation-mode) .app-footer{
+  height:52px !important;
+  min-height:52px !important;
+  max-height:52px !important;
+}
