@@ -103,3 +103,17 @@ Universal Tool Card framework lock pass:
 - progress rows use full-width label/value/bar layout
 - footer left and right wings now both use the active center/page accent
 - finalized 52px footer height preserved
+
+## V6.0.12
+Final Universal Tool Card desktop lock:
+- fixed 680px card geometry
+- exact equal 3-column widths
+- absolute fixed row heights inside all three columns
+- UTID centered independently from the arrow
+- full-width metadata rows with non-clipping ship date
+- no empty top band in Ship Countdown
+- stronger separation inside FI Process
+- more spacing between FI Next Step and FI Forecast Date
+- full-width 12px progress bars with larger gaps
+- active/packing/shipped/complete states forced into identical geometry
+- active-page accent footer preserved at 52px
