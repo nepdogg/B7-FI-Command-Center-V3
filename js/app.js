@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.1.0', BUILD='20260830-V6.1.0-CLEAN-UNIVERSAL-CARD-COMPONENT';
+const VERSION='6.1.1', BUILD='20260830-V6.1.1-FRAMEWORK-FINAL-SCREENSHOT-ACTIONS-MYSTERY';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI 200 Final Pre-Pack and QA';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -119,7 +119,7 @@ function normalizeConsolidatedRoute(){if(route.center==='update'){route.center='
 function setTheme(){let [name,color,rgb]=THEMES[route.center]||THEMES.operations;document.body.dataset.center=route.center;document.documentElement.style.setProperty('--accent',color);document.documentElement.style.setProperty('--accent-rgb',rgb);let title=`${name} — ${state.quarter}`;if(route.center==='operations'&&route.sub==='tool'){if(route.toolId==='new')title=`ADD TOOL — ${state.quarter}`;else{let t=(draft&&String(draft.id)===String(route.toolId))?draft:state.tools.find(x=>x.id===route.toolId);title=`${route.toolId}${t?.codename?` — ${String(t.codename).toUpperCase()}`:''} — ${state.quarter}`}}document.querySelector('#pageTitle').textContent=title;document.title=`B7 FI Command Center V${VERSION}`;document.querySelector('#versionLabel').textContent=`B7 FI COMMAND CENTER V${VERSION} · BUILD ${BUILD}`;let envLabel=document.querySelector('#environmentLabel');if(envLabel)envLabel.textContent=`DATA: ${String(state.environment||'PRODUCTION').toUpperCase()}`}
 function nav(){
   let main=MAIN.map(x=>`<button class="${route.center===x[0]?'active':''}" data-center="${x[0]}">${x[1]}</button>`).join('');
-  main+=`<button class="presentation-main-nav" data-main-presentation>PRESENTATION MODE</button>`;
+  main+=`<button class="presentation-main-nav" data-main-presentation title="Open Presentation Mode">PRESENTATION MODE</button>`;
   document.querySelector('#mainNav').innerHTML=main;
   let html='';
   if(route.center==='operations'){
@@ -191,7 +191,55 @@ function modelOptions(t,sel){let arr=(PRODUCT_CATALOG[t.codename]||[]).slice();i
 function quarterBounds(q){let m=String(q||'').match(/^CY(\d{2})Q([1-4])$/i);if(!m)return null;let y=2000+Number(m[1]),qn=Number(m[2]),sm=(qn-1)*3;return{start:new Date(y,sm,1,12),end:new Date(y,sm+3,0,12)}}
 function quarterTimeProgress(){let b=quarterBounds(state.quarter);if(!b)return{pct:0,remainingPct:0,remaining:0,text:'QUARTER DATES NOT SET',tone:'normal'};let now=dateOnly(today()),total=Math.max(1,Math.round((b.end-b.start)/86400000)+1),elapsed=Math.min(total,Math.max(0,Math.round((now-b.start)/86400000)+1)),remaining=Math.max(0,Math.round((b.end-now)/86400000));let pct=Math.max(0,Math.min(100,Math.round(elapsed/total*100))),remainingPct=now>b.end?0:Math.max(0,Math.min(100,100-pct)),text=now>b.end?'QUARTER COMPLETE':remaining===0?'FINAL DAY':`${remaining} DAY${remaining===1?'':'S'} REMAINING`;return{pct,remainingPct,remaining,text,tone:remaining<=7?'critical':remaining<=21?'attention':'normal'}}
 function fiSummaryStatus(t){if(['OPI','OI'].includes(t.toolStatus))return'Waiting';if(['FI','Powered Down'].includes(t.toolStatus))return'In FI';if(t.toolStatus==='Packing')return'Packing';if(t.toolStatus==='Shipped')return'Shipped';if(t.toolStatus==='Engineering')return'Engineering';return'Waiting'}
-function quarterPanel(){let a=activeTools(),c=s=>a.filter(t=>fiSummaryStatus(t)===s).length,sh=c('Shipped'),pct=a.length?Math.round(sh/a.length*100):0,base=Number(state.config?.plannedCount)||0,pulled=state.tools.filter(t=>t.toolStatus!=='Archived'&&t.quarter===state.quarter&&t.originalQuarter&&t.originalQuarter!==state.quarter).length,pushed=state.tools.filter(t=>t.originalQuarter===state.quarter&&t.quarter!==state.quarter).length,updated=base>0?Math.max(0,base+pulled-pushed):0,qt=quarterTimeProgress();let box=(cls,label,val,active=true)=>`<div class="summary-box ${cls} ${active?'':'summary-disabled'}"><span>${label}</span><b>${active?val:0}</b></div>`;return `<section class="panel"><div class="summary-grid">${box('summary-quarter',`${state.quarter} TOOLS`,a.length)}${box('summary-pulled',`PULLED INTO ${state.quarter}`,pulled,pulled>0)}${box('summary-pushed','PUSHED OUT',pushed,pushed>0)}${box('summary-planned',`UPDATED PLANNED ${state.quarter} TOOLS`,updated,base>0)}${box('status-waiting','WAITING FI',c('Waiting'))}${box('status-infi','IN FI',a.filter(t=>fiSummaryStatus(t)==='In FI').length)}${box('status-packing','PACKING',c('Packing'))}${box('status-shipped','SHIPPED',sh)}</div><div class="shipping-total"><div class="progress-head"><b>${esc(state.quarter)} TOOLS SHIPPING PROGRESS</b><b>${sh} OF ${a.length} TOOLS SHIPPED</b></div><div class="track"><div class="fill green" style="width:${pct}%"></div></div></div><div class="quarter-time-progress ${qt.tone}"><div class="progress-head"><b>${esc(state.quarter)} DAYS REMAINING</b><b>${esc(qt.text)}</b></div><div class="track"><div class="fill quarter-days" style="width:${qt.remainingPct}%"></div></div></div></section>`}
+function quarterPanel(){
+  let a=activeTools(),
+      c=s=>a.filter(t=>fiSummaryStatus(t)===s).length,
+      sh=c('Shipped'),
+      pct=a.length?Math.round(sh/a.length*100):0,
+      base=Number(state.config?.plannedCount)||0,
+      pulled=state.tools.filter(t=>t.toolStatus!=='Archived'&&t.quarter===state.quarter&&t.originalQuarter&&t.originalQuarter!==state.quarter).length,
+      pushed=state.tools.filter(t=>t.originalQuarter===state.quarter&&t.quarter!==state.quarter).length,
+      updated=base>0?Math.max(0,base+pulled-pushed):0,
+      qt=quarterTimeProgress();
+
+  let box=(cls,label,val,active=true)=>`<div class="summary-box ${cls} ${active?'':'summary-disabled'}"><span>${label}</span><b>${active?val:0}</b></div>`;
+
+  let mystery=familyNames().map(f=>{
+    let fam=a.filter(t=>String(t.codename||'').toLowerCase()===f.toLowerCase()),
+        shipped=fam.filter(t=>t.toolStatus==='Shipped').length,
+        unlocked=fam.length>0&&shipped===fam.length;
+    return `<button class="quarter-mystery-box ${unlocked?'unlocked':'locked'}" data-reveal="${esc(f)}" type="button" title="${unlocked?'Open celebration':'Ships all '+f+' tools to unlock'}">
+      <span>${esc(f).toUpperCase()}</span>
+      <b>${unlocked?'🎁 MYSTERY BOX':'🔒 MYSTERY BOX'}</b>
+      <small>${shipped}/${fam.length} SHIPPED</small>
+    </button>`;
+  }).join('');
+
+  return `<section class="panel quarter-live-panel">
+    <div class="summary-grid">
+      ${box('summary-quarter',`${state.quarter} TOOLS`,a.length)}
+      ${box('summary-pulled',`PULLED INTO ${state.quarter}`,pulled,pulled>0)}
+      ${box('summary-pushed','PUSHED OUT',pushed,pushed>0)}
+      ${box('summary-planned',`UPDATED PLANNED ${state.quarter} TOOLS`,updated,base>0)}
+      ${box('status-waiting','WAITING FI',c('Waiting'))}
+      ${box('status-infi','IN FI',a.filter(t=>fiSummaryStatus(t)==='In FI').length)}
+      ${box('status-packing','PACKING',c('Packing'))}
+      ${box('status-shipped','SHIPPED',sh)}
+    </div>
+    <div class="shipping-total">
+      <div class="progress-head"><b>${esc(state.quarter)} TOOLS SHIPPING PROGRESS</b><b>${sh} OF ${a.length} TOOLS SHIPPED</b></div>
+      <div class="track"><div class="fill green" style="width:${pct}%"></div></div>
+    </div>
+    <div class="quarter-time-progress ${qt.tone}">
+      <div class="progress-head"><b>${esc(state.quarter)} DAYS REMAINING</b><b>${esc(qt.text)}</b></div>
+      <div class="track"><div class="fill quarter-days" style="width:${qt.remainingPct}%"></div></div>
+    </div>
+    <div class="quarter-mystery-strip">
+      <div class="quarter-mystery-title">TOOL FAMILY MYSTERY BOXES</div>
+      <div class="quarter-mystery-grid">${mystery||'<span class="muted">No active tool families.</span>'}</div>
+    </div>
+  </section>`;
+}
 function familyNames(){let names=[];activeTools().forEach(t=>{let n=String(t.codename||'UNKNOWN').trim();if(n&&!names.some(x=>x.toLowerCase()===n.toLowerCase()))names.push(n)});return names.sort((a,b)=>a.localeCompare(b))}
 function familyPanel(){let rows=familyNames().map(f=>{let a=activeTools().filter(t=>String(t.codename||'').toLowerCase()===f.toLowerCase()),c=s=>a.filter(t=>fiSummaryStatus(t)===s).length,p=a.length?Math.round(c('Shipped')/a.length*100):0,ok=a.length&&p===100,img=a[0]?familyImage(a[0]):'assets/tool-29xx-family.png';return `<div class="family-matrix"><div class="family-cell name"><span>${esc(f).toUpperCase()}</span><img class="family-thumb" src="${img}" alt="${esc(f)}"></div><div class="family-cell family-total">${a.length}</div><div class="family-cell status-waiting">${c('Waiting')}</div><div class="family-cell status-infi">${a.filter(t=>fiSummaryStatus(t)==='In FI').length}</div><div class="family-cell status-packing">${c('Packing')}</div><div class="family-cell status-shipped">${c('Shipped')}</div><div class="family-cell family-progress"><div class="track"><div class="fill green" style="width:${p}%"></div></div><small>${p}%</small></div><button class="reveal-btn ${ok?'unlocked':''}" data-reveal="${esc(f)}">${ok?'🎁':'🔒'}</button></div>`}).join('');return `<section class="panel family-panel-v526"><div class="family-matrix header"><b>SYSTEM</b><b>TOTAL</b><b>WAITING FI</b><b>IN FI</b><b>PACKING</b><b>SHIPPED</b><b>SHIPPING PROGRESS</b><b>REVEAL</b></div><div class="family-rows-scroll">${rows||'<p class="muted">No active tool families.</p>'}</div></section>`}
 function statusSnapshot(){let d=fmtDate(today()),views=[{name:`SYSTEM STATUS · ${d}`,source:['status','weekday'],html:`<div class="snapshot-scroll snapshot-status">${snapshotDisplay(statusEmail('Weekday'))}</div>`},{name:`SYSTEM PRIORITIES · ${d}`,source:['priority','weekday'],html:`<div class="snapshot-scroll">${snapshotDisplay(priorityView('weekday',false))}</div>`},{name:`SYSTEM SHIPPING SCHEDULE · ${d}`,source:['shipping','home'],html:`<div class="snapshot-scroll">${snapshotDisplay(shippingView(true))}</div>`},{name:`SYSTEMS REQUIRING ATTENTION · ${d}`,source:['action','open'],html:`<div class="snapshot-scroll snapshot-focus">${snapshotDisplay(operationalFocus())}</div>`},{name:`${state.quarter} TOOL SHIPPING PROGRESS · ${d}`,source:['operations','tools'],html:`<div class="snapshot-scroll snapshot-family">${familyPanel()}</div>`},{name:`FI CYCLE TIME STATUS · ${d}`,source:['cycle','home'],html:`<div class="snapshot-scroll snapshot-cycle">${cycleTimeView()}</div>`}];snapshotIndex=((snapshotIndex%views.length)+views.length)%views.length;let v=views[snapshotIndex],clickable=Array.isArray(v.source);return `<section class="panel snapshot-panel ${clickable?'snapshot-source':'snapshot-static'}">${clickable?`<button class="snapshot-source-button" data-source-center="${v.source[0]}" data-source-sub="${v.source[1]}" title="Open source center">↗</button>`:''}<div class="snapshot-title">${esc(v.name)}</div><div class="snapshot-body">${v.html}</div></section>`}

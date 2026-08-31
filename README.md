@@ -129,3 +129,12 @@ Clean Universal Tool Card Component rebuild:
 - fixed checklist/admin regions for active and completed states
 - page containers can position the card but cannot restyle its internals
 - active-page accent footer retained
+
+## V6.1.1
+Framework finalization:
+- standardized page-action buttons
+- added active-page color divider between page navigation and page actions
+- Presentation Mode button now follows active center accent and no longer appears permanently active/blue
+- Screenshot Mode now has top breathing room and a complete outer report border
+- screenshot tables/list content are constrained inside the report frame
+- Live Operations now always shows Tool Family Mystery Boxes with locked/unlocked state

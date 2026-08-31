@@ -5439,3 +5439,254 @@ html body:not(.screenshot-mode):not(.presentation-mode) .app-footer{
     max-height:52px !important;
   }
 }
+
+
+/* =========================================================
+   V6.1.1 — FRAMEWORK FINALIZATION
+   1) Page navigation vs page actions distinction
+   2) Presentation nav follows active center accent
+   3) Screenshot mode boxed report frame + safe overflow
+   4) Always-visible Live Operations Mystery Boxes
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   PAGEBAR CONTRACT
+   Left = navigation. Right = actions.
+   A strong accent divider clearly separates the two.
+   --------------------------------------------------------- */
+html body:not(.screenshot-mode):not(.presentation-mode) .pagebar{
+  display:flex !important;
+  align-items:stretch !important;
+  gap:0 !important;
+}
+
+html body:not(.screenshot-mode):not(.presentation-mode) .subnav{
+  flex:1 1 auto !important;
+  min-width:0 !important;
+}
+
+/* Color-coded divider between page navigation and page actions */
+html body:not(.screenshot-mode):not(.presentation-mode) .page-actions{
+  position:relative !important;
+  flex:0 0 auto !important;
+  min-width:0 !important;
+  height:100% !important;
+  border-left:4px solid var(--accent) !important;
+  box-shadow:-1px 0 0 rgba(var(--accent-rgb),.28) !important;
+}
+
+/* All page ACTION buttons use one consistent visual language,
+   deliberately different from page navigation buttons. */
+html body:not(.screenshot-mode):not(.presentation-mode) .page-actions > button,
+html body:not(.screenshot-mode):not(.presentation-mode) .ops-action-right > button,
+html body:not(.screenshot-mode):not(.presentation-mode) .ops-action-controls button{
+  height:100% !important;
+  min-height:100% !important;
+  border:0 !important;
+  border-right:1px solid rgba(var(--accent-rgb),.46) !important;
+  background:rgba(var(--accent-rgb),.17) !important;
+  color:#fff !important;
+  box-shadow:inset 0 -2px var(--accent) !important;
+  font-weight:950 !important;
+}
+
+html body:not(.screenshot-mode):not(.presentation-mode) .page-actions > button:hover,
+html body:not(.screenshot-mode):not(.presentation-mode) .ops-action-right > button:hover,
+html body:not(.screenshot-mode):not(.presentation-mode) .ops-action-controls button:hover{
+  background:rgba(var(--accent-rgb),.34) !important;
+}
+
+html body:not(.screenshot-mode):not(.presentation-mode) .page-actions > button.primary,
+html body:not(.screenshot-mode):not(.presentation-mode) .page-actions > button.save,
+html body:not(.screenshot-mode):not(.presentation-mode) .ops-action-right > button.primary,
+html body:not(.screenshot-mode):not(.presentation-mode) .ops-action-right > button.save{
+  background:rgba(var(--accent-rgb),.25) !important;
+}
+
+/* ---------------------------------------------------------
+   PRESENTATION MODE MAIN NAV BUTTON
+   Never pretend to be the active center. It inherits the
+   current center accent instead of always showing blue.
+   --------------------------------------------------------- */
+html body:not(.presentation-mode) .main-nav .presentation-main-nav{
+  background:#061421 !important;
+  color:#d8e9f4 !important;
+  box-shadow:none !important;
+  border-bottom:2px solid var(--accent) !important;
+}
+
+html body:not(.presentation-mode) .main-nav .presentation-main-nav:hover{
+  background:rgba(var(--accent-rgb),.22) !important;
+  color:#fff !important;
+  box-shadow:inset 0 -2px var(--accent) !important;
+}
+
+/* ---------------------------------------------------------
+   SCREENSHOT MODE — CONSISTENT BOXED REPORT
+   Every screenshot gets top breathing room + complete border.
+   --------------------------------------------------------- */
+html body.screenshot-mode{
+  background:#02070d !important;
+}
+
+html body.screenshot-mode .app-frame{
+  width:100% !important;
+  max-width:1180px !important;
+  margin:0 auto !important;
+  padding:16px 18px 20px !important;
+  box-sizing:border-box !important;
+}
+
+html body.screenshot-mode main{
+  width:100% !important;
+  margin:0 !important;
+  padding:0 !important;
+  box-sizing:border-box !important;
+}
+
+html body.screenshot-mode #app{
+  width:100% !important;
+  max-width:100% !important;
+  margin:0 !important;
+  padding:12px !important;
+  border:1px solid var(--accent) !important;
+  background:#020a13 !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+
+/* Full top border and spacing around the title. */
+html body.screenshot-mode .screenshot-report-title{
+  width:100% !important;
+  margin:0 0 10px !important;
+  border:1px solid #28516b !important;
+  box-sizing:border-box !important;
+}
+
+/* Keep all report-level sections inside the screenshot frame. */
+html body.screenshot-mode #app > *,
+html body.screenshot-mode #app .panel,
+html body.screenshot-mode #app .live-workspace,
+html body.screenshot-mode #app .status-center-stack,
+html body.screenshot-mode #app .priority-frame,
+html body.screenshot-mode #app .shipping-frame,
+html body.screenshot-mode #app .action-frame,
+html body.screenshot-mode #app .reference-frame{
+  max-width:100% !important;
+  box-sizing:border-box !important;
+}
+
+/* Tables must never draw text past the report border. */
+html body.screenshot-mode table,
+html body.screenshot-mode .data-table{
+  width:100% !important;
+  max-width:100% !important;
+  table-layout:fixed !important;
+  box-sizing:border-box !important;
+}
+
+html body.screenshot-mode table th,
+html body.screenshot-mode table td,
+html body.screenshot-mode .data-table th,
+html body.screenshot-mode .data-table td{
+  min-width:0 !important;
+  max-width:100% !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  white-space:nowrap !important;
+}
+
+/* Long card/list text may wrap rather than escape the report frame. */
+html body.screenshot-mode .ref-row,
+html body.screenshot-mode .action-card,
+html body.screenshot-mode .meeting-row,
+html body.screenshot-mode .search-result{
+  max-width:100% !important;
+  overflow:hidden !important;
+  overflow-wrap:anywhere !important;
+  box-sizing:border-box !important;
+}
+
+/* ---------------------------------------------------------
+   LIVE OPERATIONS — ALWAYS-VISIBLE MYSTERY BOXES
+   --------------------------------------------------------- */
+html body .quarter-live-panel{
+  overflow:visible !important;
+}
+
+html body .quarter-mystery-strip{
+  margin-top:8px !important;
+  padding-top:8px !important;
+  border-top:1px solid #24485d !important;
+}
+
+html body .quarter-mystery-title{
+  margin-bottom:6px !important;
+  color:#bca2ff !important;
+  font-size:9px !important;
+  font-weight:950 !important;
+  letter-spacing:.45px !important;
+}
+
+html body .quarter-mystery-grid{
+  display:grid !important;
+  grid-template-columns:repeat(6,minmax(0,1fr)) !important;
+  gap:6px !important;
+  width:100% !important;
+}
+
+html body .quarter-mystery-box{
+  display:grid !important;
+  grid-template-rows:auto auto auto !important;
+  align-items:center !important;
+  justify-items:center !important;
+  min-width:0 !important;
+  min-height:48px !important;
+  padding:5px 6px !important;
+  border:1px solid #42526c !important;
+  border-radius:3px !important;
+  background:#071522 !important;
+  color:#aab7c3 !important;
+  cursor:pointer !important;
+  box-sizing:border-box !important;
+}
+
+html body .quarter-mystery-box span{
+  width:100% !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  white-space:nowrap !important;
+  font-size:8px !important;
+  font-weight:950 !important;
+  text-align:center !important;
+}
+
+html body .quarter-mystery-box b{
+  margin-top:2px !important;
+  font-size:9px !important;
+  line-height:1 !important;
+  white-space:nowrap !important;
+}
+
+html body .quarter-mystery-box small{
+  margin-top:3px !important;
+  font-size:7px !important;
+  color:#8198a8 !important;
+}
+
+html body .quarter-mystery-box.unlocked{
+  border-color:#9b75ff !important;
+  background:rgba(155,117,255,.18) !important;
+  color:#fff !important;
+  box-shadow:0 0 10px rgba(155,117,255,.18) !important;
+}
+
+html body .quarter-mystery-box.locked:hover{
+  border-color:#775ea5 !important;
+}
+
+@media(max-width:1300px){
+  html body .quarter-mystery-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  }
+}
