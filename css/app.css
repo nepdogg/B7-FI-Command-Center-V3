@@ -5690,3 +5690,107 @@ html body .quarter-mystery-box.locked:hover{
     grid-template-columns:repeat(3,minmax(0,1fr)) !important;
   }
 }
+
+
+/* =========================================================
+   V6.1.2 — SCREENSHOT / MYSTERY / FOOTER CLEANUP
+   Final cleanup after framework lock:
+   - remove screenshot-mode outer blue shell
+   - preserve only the active-color report box
+   - mystery boxes remain visible in screenshot mode
+   - footer shows concise version only
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   SCREENSHOT MODE: REMOVE THE EXTRA OUTER BLUE BOX
+   Keep #app as the single active-color report frame.
+   --------------------------------------------------------- */
+html body.screenshot-mode .app-frame{
+  border:0 !important;
+  outline:0 !important;
+  box-shadow:none !important;
+  background:transparent !important;
+}
+
+html body.screenshot-mode main{
+  border:0 !important;
+  outline:0 !important;
+  box-shadow:none !important;
+  background:transparent !important;
+}
+
+/* #app remains the ONE screenshot report border */
+html body.screenshot-mode #app{
+  border:1px solid var(--accent) !important;
+  outline:0 !important;
+  box-shadow:none !important;
+}
+
+/* Do not let nested generic screenshot frames recreate an outer blue box. */
+html body.screenshot-mode .app-frame::before,
+html body.screenshot-mode .app-frame::after,
+html body.screenshot-mode main::before,
+html body.screenshot-mode main::after{
+  display:none !important;
+  content:none !important;
+}
+
+/* ---------------------------------------------------------
+   MYSTERY BOXES: screenshot mode normally hides all buttons.
+   These are DISPLAY CONTENT, not screenshot actions, so keep
+   them visible in both normal and screenshot views.
+   --------------------------------------------------------- */
+html body.screenshot-mode .quarter-mystery-strip{
+  display:block !important;
+  visibility:visible !important;
+  overflow:visible !important;
+}
+
+html body.screenshot-mode .quarter-mystery-grid{
+  display:grid !important;
+  visibility:visible !important;
+  grid-template-columns:repeat(6,minmax(0,1fr)) !important;
+  gap:6px !important;
+  width:100% !important;
+  min-height:48px !important;
+}
+
+html body.screenshot-mode button.quarter-mystery-box{
+  display:grid !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  min-height:48px !important;
+  pointer-events:none !important;
+}
+
+/* Make the mystery strip fully visible even if older screenshot
+   rules constrain the quarter panel's height/overflow. */
+html body.screenshot-mode .quarter-live-panel{
+  height:auto !important;
+  max-height:none !important;
+  overflow:visible !important;
+}
+
+html body.screenshot-mode .quarter-live-panel .quarter-mystery-strip,
+html body.screenshot-mode .quarter-live-panel .quarter-mystery-grid{
+  height:auto !important;
+  max-height:none !important;
+  overflow:visible !important;
+}
+
+/* At narrower screenshot widths, keep all boxes visible. */
+@media(max-width:1300px){
+  html body.screenshot-mode .quarter-mystery-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  }
+}
+
+/* ---------------------------------------------------------
+   FOOTER: concise version identity only.
+   No build-description text should consume footer width.
+   --------------------------------------------------------- */
+html body .app-footer #versionLabel{
+  white-space:nowrap !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
+}

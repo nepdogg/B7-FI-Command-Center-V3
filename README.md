@@ -138,3 +138,12 @@ Framework finalization:
 - Screenshot Mode now has top breathing room and a complete outer report border
 - screenshot tables/list content are constrained inside the report frame
 - Live Operations now always shows Tool Family Mystery Boxes with locked/unlocked state
+
+## V6.1.2
+Final screenshot/framework cleanup:
+- removed the extra outer blue screenshot shell
+- screenshot pages now keep only the active-color report border
+- Tool Family Mystery Boxes remain visible in Screenshot Mode
+- screenshot mystery boxes are display-only while capturing
+- footer version text now shows only `B7 FI COMMAND CENTER V6.1.2`
+- browser tab and footer now use the same concise version identity
