@@ -75,3 +75,12 @@ Corrected the actual Universal Tool Card DOM grid placement, enlarged visible pr
 
 ## V6.0.8
 Universal Tool Card design-lock candidate. All tool states now use state-independent card geometry: identical three-column widths, fixed left/middle/right section slots, fixed checklist/task regions, and eight always-visible progress bars. Footer/navigation preserved from V6.0.7.
+
+## V6.0.9
+Universal Tool Card refinement:
+- exact equal three-column framework
+- all major data regions forced to full column width
+- left, middle, and right sections distribute from top to bottom
+- eight progress rows fill the progress region evenly
+- checklist/admin regions consume their full assigned height
+- footer design preserved from V6.0.8, height reduced to 54px

@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.0.8', BUILD='20260830-V6.0.8-STATE-INDEPENDENT-UNIVERSAL-CARD';
+const VERSION='6.0.9', BUILD='20260830-V6.0.9-FULL-WIDTH-EVEN-CARD-SHORT-FOOTER';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI 200 Final Pre-Pack and QA';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
