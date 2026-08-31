@@ -1,4 +1,4 @@
-# B7 FI Command Center V6.0.1 — Universal Card Stabilization
+# B7 FI Command Center V6.0.2 — Equal Column Card Balance
 
 This release is a stability rebuild of the presentation layer using the existing V5.6.7 business/data logic as the compatibility baseline.
 
@@ -22,8 +22,8 @@ This release is a stability rebuild of the presentation layer using the existing
 - Tool-family jump navigation remains available and sticky.
 
 ## Version
-- Version: 6.0.1
-- Build: `20260830-V6.0.1-UNIVERSAL-CARD-STABILIZATION`
+- Version: 6.0.2
+- Build: `20260830-V6.0.2-EQUAL-COLUMN-CARD-BALANCE`
 
 
 ## V6.0.1 focused stabilization
@@ -37,3 +37,16 @@ This release is a stability rebuild of the presentation layer using the existing
 - Progress rows receive dedicated spacing so labels/bars do not collide.
 - FI Checklists and Lead/Admin Tasks are open sections separated by divider lines, not nested outer boxes.
 - No navigation, data-schema, calculation, workflow, or localStorage behavior was intentionally changed in this release.
+
+
+## V6.0.2 focused card corrections
+
+- Universal Tool Card columns are now exactly equal width: 1/3 + 1/3 + 1/3.
+- Left-column UTID and tool type/model are hard-centered independent of the editor-arrow button.
+- Left-column vertical zones are explicitly balanced to reduce dead space around the photo and tool metadata.
+- Removed the trailing divider under Ship Date.
+- Middle-column four zones were rebalanced without adding any new content or changing data logic.
+- Right-column progress rows receive even vertical spacing.
+- Added one explicit divider between progress and FI Checklists, and one explicit divider between FI Checklists and Lead/Admin Tasks.
+- FI Checklists and Lead/Admin Tasks remain open sections, not nested boxed cards.
+- No navigation, storage, workflow, or calculation logic was changed.
