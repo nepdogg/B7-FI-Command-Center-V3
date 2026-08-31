@@ -1,4 +1,4 @@
-# B7 FI Command Center V6.0.0 — Clean Foundation
+# B7 FI Command Center V6.0.1 — Universal Card Stabilization
 
 This release is a stability rebuild of the presentation layer using the existing V5.6.7 business/data logic as the compatibility baseline.
 
@@ -22,5 +22,18 @@ This release is a stability rebuild of the presentation layer using the existing
 - Tool-family jump navigation remains available and sticky.
 
 ## Version
-- Version: 6.0.0
-- Build: `20260830-V6.0.0-CLEAN-FOUNDATION`
+- Version: 6.0.1
+- Build: `20260830-V6.0.1-UNIVERSAL-CARD-STABILIZATION`
+
+
+## V6.0.1 focused stabilization
+- Live Operations status and tool carousels are locked to the exact same height.
+- Universal Tool Card geometry is authoritative and identical in carousel and quarter Tools pages.
+- Tool information column restored as one full-height outlined panel.
+- UTID and tool type/model enlarged and centered.
+- Tool image region tightened to remove excess top/bottom dead space.
+- Middle column uses four fixed zones with exactly three section dividers; duplicate FI Forecast divider removed.
+- Progress column restored as one full-height outlined panel.
+- Progress rows receive dedicated spacing so labels/bars do not collide.
+- FI Checklists and Lead/Admin Tasks are open sections separated by divider lines, not nested outer boxes.
+- No navigation, data-schema, calculation, workflow, or localStorage behavior was intentionally changed in this release.

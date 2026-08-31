@@ -2283,7 +2283,7 @@ html{scroll-behavior:smooth}
 /* No date/header above the tool-family jump strip. */
 
 /* ========================================================================== */
-/* V6.0.0 CANONICAL PRESENTATION SYSTEM — ONE DEFINITION PER SHARED COMPONENT */
+/* V6.0.1 CANONICAL PRESENTATION SYSTEM — UNIVERSAL CARD STABILIZATION        */
 /* ========================================================================== */
 :root{--v6-card-h:660px;--v6-gap:8px;--v6-nav-h:40px;--v6-frame:#1a4c69}
 
@@ -2296,11 +2296,11 @@ html{scroll-behavior:smooth}
 .app-footer .footer-right{display:flex!important;align-items:center!important;justify-content:flex-end!important;min-width:0!important;overflow:hidden!important;padding:0 12px!important}
 .app-footer .footer-right>span{min-width:0!important;max-width:100%!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
 
-/* Main navigation always remains one row. */
+/* Main navigation */
 .main-nav{display:flex!important;width:100%!important;overflow:hidden!important}
 .main-nav>button{flex:1 1 0!important;min-width:0!important;padding:0 5px!important;font-size:clamp(7px,.65vw,10px)!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
 
-/* One page bar system for every center. */
+/* Page navigation */
 .pagebar{display:flex!important;width:100%!important;height:var(--v6-nav-h)!important;min-height:var(--v6-nav-h)!important;align-items:stretch!important;gap:0!important;border:1px solid var(--v6-frame)!important;background:#05121e!important;overflow:hidden!important}
 #subnav.subnav{display:flex!important;flex:1 1 0!important;min-width:0!important;height:100%!important;overflow:hidden!important}
 #subnav.subnav>button{display:flex!important;align-items:center!important;justify-content:center!important;flex:1 1 0!important;min-width:0!important;height:100%!important;padding:0 6px!important;border:0!important;border-right:1px solid #1c4c69!important;background:#061421!important;color:#d8e9f4!important;font-size:clamp(7px,.62vw,9.5px)!important;font-weight:900!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;cursor:pointer!important}
@@ -2313,7 +2313,7 @@ html{scroll-behavior:smooth}
 .page-actions>button:hover,.ops-action-right>button:hover{background:rgba(var(--accent-rgb),.28)!important}
 .page-actions>button.primary,.page-actions>button.save,.ops-action-right>button.primary,.ops-action-right>button.save{background:rgba(var(--accent-rgb),.24)!important;box-shadow:inset 0 -3px var(--accent)!important}
 
-/* Live Operations compact controls: label stacked over PLAY/PAUSE, no label-only cell. */
+/* Live Operations compact carousel controls */
 .ops-action-controls{display:flex!important;align-items:stretch!important;height:100%!important;gap:0!important}
 .ops-control-group{display:grid!important;grid-template-columns:34px 55px 58px 34px!important;height:100%!important;border-left:1px solid #1c4c69!important}
 .ops-mini-btn,.ops-pause-btn,.ops-count{height:100%!important;border:0!important;border-right:1px solid #1c4c69!important;background:#082035!important;color:#fff!important}
@@ -2326,7 +2326,7 @@ html{scroll-behavior:smooth}
 .ops-mini-btn:disabled,.ops-pause-btn:disabled{opacity:.45!important;cursor:default!important}
 .ops-action-right{display:flex!important;height:100%!important}
 
-/* Tool family jump + dividers */
+/* Tool family jump and dividers */
 .tool-family-jump{position:sticky!important;top:var(--sticky-shell-height)!important;z-index:24!important;display:flex!important;align-items:stretch!important;width:100%!important;gap:4px!important;margin:0 0 8px!important;padding:5px 6px!important;border:1px solid var(--accent)!important;background:#04111d!important;box-shadow:0 4px 10px rgba(0,0,0,.28)!important;overflow-x:auto!important}
 .tool-jump-btn{display:flex!important;align-items:center!important;justify-content:center!important;flex:1 1 0!important;min-width:92px!important;padding:8px 10px!important;border:1px solid #28516b!important;background:#071b2a!important;color:#e8f6ff!important;text-decoration:none!important;text-align:center!important;font-size:10px!important;font-weight:950!important;letter-spacing:.25px!important;white-space:nowrap!important}
 .tool-jump-btn:hover{border-color:var(--accent)!important;background:rgba(var(--accent-rgb),.18)!important;color:#fff!important}
@@ -2337,73 +2337,94 @@ html{scroll-behavior:smooth}
 .tool-family-totals .mini-stat{min-width:72px!important;padding:6px 8px!important;font-size:9px!important;line-height:1.05!important}
 .tool-family-totals .mini-stat b{display:block!important;margin-top:3px!important;font-size:20px!important}
 
-/* Exactly one Universal Tool Card host and one geometry. */
-.universal-card-host.live-panel{width:100%!important;height:var(--v6-card-h)!important;min-height:var(--v6-card-h)!important;max-height:var(--v6-card-h)!important;margin:0!important;padding:8px!important;box-sizing:border-box!important;overflow:hidden!important}
-.operations-tool-carousel,.update-live-card-list{min-width:0!important}
-.operations-tool-carousel>.universal-card-host,.update-live-card-list>.universal-card-host{width:100%!important}
-.update-live-card-list{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;align-items:start!important}
-.universal-card-host .live-card-v52{display:grid!important;grid-template-columns:minmax(0,31fr) minmax(0,31fr) minmax(0,38fr)!important;grid-template-rows:minmax(0,1fr)!important;gap:8px!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;padding:8px!important;overflow:hidden!important;box-sizing:border-box!important}
-.universal-card-host .live-card-v52>.universal-tool-column{display:flex!important;flex-direction:column!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;gap:8px!important;overflow:hidden!important;box-sizing:border-box!important}
-.universal-card-host .live-six-panel{width:100%!important;min-width:0!important;box-sizing:border-box!important}
+/* Live Operations: both carousels are exactly the same height. */
+body[data-center="operations"] .operations-dual-grid{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:8px!important;align-items:stretch!important}
+body[data-center="operations"] .operations-status-carousel,
+body[data-center="operations"] .operations-tool-carousel{height:var(--v6-card-h)!important;min-height:var(--v6-card-h)!important;max-height:var(--v6-card-h)!important;min-width:0!important;overflow:hidden!important}
+body[data-center="operations"] .operations-status-carousel>.panel,
+body[data-center="operations"] .operations-status-carousel .snapshot-panel{height:100%!important;min-height:100%!important;max-height:100%!important;margin:0!important;box-sizing:border-box!important}
+body[data-center="operations"] .operations-tool-carousel>.universal-card-host{height:100%!important;min-height:100%!important;max-height:100%!important}
 
-/* Information column */
-.universal-card-host .photo-panel{position:relative!important;display:flex!important;flex-direction:column!important;height:100%!important;min-height:0!important;padding:10px 12px!important;overflow:hidden!important}
-.universal-card-host .tool-photo-open{position:absolute!important;top:8px!important;right:8px!important;z-index:10!important;display:flex!important;align-items:center!important;justify-content:center!important;width:27px!important;height:27px!important;padding:0!important;border:1px solid #34789d!important;background:#071b2a!important;color:#dff6ff!important;font-size:15px!important;font-weight:950!important;cursor:pointer!important}
-.universal-card-host .sketch-photo-title{flex:0 0 56px!important;width:100%!important;padding:0 34px!important;box-sizing:border-box!important;text-align:center!important}
-.universal-card-host .sketch-photo-title>div{width:100%!important;text-align:center!important}
-.universal-card-host .live-codename{width:100%!important;font-size:28px!important;line-height:1!important;text-align:center!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
-.universal-card-host .tool-type-model{width:100%!important;margin-top:6px!important;font-size:11px!important;text-align:center!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
-.universal-card-host .live-photo{display:flex!important;align-items:center!important;justify-content:center!important;flex:1 1 auto!important;min-height:170px!important;margin:0!important;overflow:hidden!important;cursor:pointer!important}
-.universal-card-host .live-photo img{display:block!important;max-width:94%!important;max-height:100%!important;width:auto!important;height:auto!important;object-fit:contain!important}
-.universal-card-host .sketch-reduced{flex:0 0 30px!important;display:flex!important;align-items:center!important;justify-content:center!important;margin-top:6px!important}
-.universal-card-host .six-badges{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:5px!important;flex:0 0 113px!important;margin-top:6px!important}
-.universal-card-host .key-test-badge{min-width:0!important;overflow:hidden!important}
-.universal-card-host .sketch-info-lines{flex:0 0 105px!important;display:flex!important;flex-direction:column!important;justify-content:flex-end!important;margin-top:6px!important}
-.universal-card-host .sketch-info-lines .kv{min-height:34px!important}
+/* ONE Universal Tool Card geometry everywhere. Parent pages may only position it. */
+body .universal-card-host.live-panel{width:100%!important;height:var(--v6-card-h)!important;min-height:var(--v6-card-h)!important;max-height:var(--v6-card-h)!important;margin:0!important;padding:8px!important;box-sizing:border-box!important;overflow:hidden!important}
+body .operations-tool-carousel,body .update-live-card-list{min-width:0!important}
+body .operations-tool-carousel>.universal-card-host,body .update-live-card-list>.universal-card-host{width:100%!important}
+body .update-live-card-list{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;align-items:start!important}
+body .universal-card-host .live-card-v52{display:grid!important;grid-template-columns:minmax(0,31fr) minmax(0,31fr) minmax(0,38fr)!important;grid-template-rows:minmax(0,1fr)!important;gap:8px!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;padding:8px!important;overflow:hidden!important;box-sizing:border-box!important;border:1px solid #2b5873!important;background:#061624!important}
+body .universal-card-host .live-card-v52>.universal-tool-column{display:flex!important;flex-direction:column!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;gap:0!important;overflow:hidden!important;box-sizing:border-box!important}
+body .universal-card-host .live-six-panel{width:100%!important;min-width:0!important;box-sizing:border-box!important}
 
-/* Status column: four deliberate zones with no dead area. */
-.universal-card-host .sketch-status-box{display:grid!important;grid-template-rows:108px minmax(0,1.18fr) 132px 160px!important;width:100%!important;height:100%!important;min-height:0!important;padding:10px 14px!important;overflow:hidden!important}
-.universal-card-host .sketch-status-box>.sketch-status-section{display:flex!important;flex-direction:column!important;justify-content:flex-start!important;min-width:0!important;min-height:0!important;margin:0!important;padding:9px 0!important;border:0!important;overflow:hidden!important}
-.universal-card-host .sketch-status-box>.sketch-status-section+.sketch-status-section{border-top:1px solid #24485d!important}
-.universal-card-host .status-kicker{font-size:10px!important;line-height:1.1!important;letter-spacing:.45px!important}
-.universal-card-host .countdown-big{margin-top:5px!important;font-size:27px!important;line-height:1!important}
-.universal-card-host .countdown-date{margin-top:6px!important;font-size:9px!important}
-.universal-card-host .schedule-health{margin:7px 0 12px!important;font-size:19px!important;line-height:1.02!important;letter-spacing:.1px!important}
-.universal-card-host .status-current-label{margin-top:2px!important}
-.universal-card-host .phase-big{margin:6px 0 12px!important;font-size:17px!important;line-height:1.03!important}
-.universal-card-host .next-fi-standout{margin-top:5px!important;font-size:10.5px!important;line-height:1.25!important;white-space:normal!important;overflow-wrap:anywhere!important}
-.universal-card-host .sketch-section-title{margin-bottom:7px!important;font-size:15px!important;line-height:1.05!important}
-.universal-card-host .cycle-metric{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;min-height:31px!important;padding:5px 0!important}
-.universal-card-host .cycle-metric span{font-size:9px!important}
-.universal-card-host .cycle-metric strong{font-size:11px!important;text-align:right!important;white-space:nowrap!important}
-.universal-card-host .sketch-forecast{overflow:visible!important}
-.universal-card-host .forecast-target-stack,.universal-card-host .forecast-date-stack{display:flex!important;flex-direction:column!important;align-items:stretch!important;width:100%!important;min-width:0!important}
-.universal-card-host .forecast-target-stack{gap:6px!important}
-.universal-card-host .forecast-target-button{display:flex!important;align-items:center!important;justify-content:space-between!important;width:100%!important;min-width:0!important;min-height:48px!important;max-height:58px!important;padding:7px 10px!important;border:1px solid #2b5873!important;background:#071b2a!important;color:#fff!important;font-size:11.5px!important;font-weight:800!important;line-height:1.12!important;text-align:left!important;white-space:normal!important;overflow:hidden!important;cursor:pointer!important}
-.universal-card-host .forecast-date-stack{margin-top:9px!important;gap:4px!important}
-.universal-card-host .forecast-date-stack strong{font-size:17px!important;line-height:1!important;color:#fff!important;white-space:nowrap!important}
+/* LEFT / TOOL INFORMATION — one full-height box, centered identity, tighter photo. */
+body .universal-card-host .universal-info-column{height:100%!important}
+body .universal-card-host .photo-panel{position:relative!important;display:grid!important;grid-template-rows:54px minmax(0,1fr) 30px 112px 104px!important;row-gap:6px!important;width:100%!important;height:100%!important;min-height:0!important;padding:10px 12px!important;border:1px solid #28516b!important;background:#061522!important;overflow:hidden!important;box-sizing:border-box!important}
+body .universal-card-host .tool-photo-open{position:absolute!important;top:8px!important;right:8px!important;z-index:10!important;display:flex!important;align-items:center!important;justify-content:center!important;width:27px!important;height:27px!important;padding:0!important;border:1px solid #34789d!important;background:#071b2a!important;color:#dff6ff!important;font-size:15px!important;font-weight:950!important;cursor:pointer!important}
+body .universal-card-host .sketch-photo-title{display:flex!important;align-items:flex-start!important;justify-content:center!important;width:100%!important;height:auto!important;padding:0 34px!important;box-sizing:border-box!important;text-align:center!important}
+body .universal-card-host .sketch-photo-title>div{width:100%!important;text-align:center!important}
+body .universal-card-host .live-codename{width:100%!important;margin:0!important;padding:0!important;font-size:30px!important;line-height:1!important;letter-spacing:1.8px!important;text-align:center!important}
+body .universal-card-host .tool-type-model{width:100%!important;margin-top:6px!important;font-size:11.5px!important;line-height:1.05!important;font-weight:950!important;letter-spacing:.45px!important;text-align:center!important;color:#8fd8ff!important}
+body .universal-card-host .live-photo{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:100%!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;overflow:hidden!important}
+body .universal-card-host .live-photo img{display:block!important;max-width:98%!important;max-height:98%!important;width:auto!important;height:auto!important;object-fit:contain!important}
+body .universal-card-host .sketch-reduced{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:30px!important;margin:0!important;box-sizing:border-box!important}
+body .universal-card-host .six-badges{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:repeat(3,minmax(0,1fr))!important;gap:5px!important;width:100%!important;height:112px!important;margin:0!important}
+body .universal-card-host .key-test-badge{min-width:0!important;min-height:0!important;overflow:hidden!important}
+body .universal-card-host .sketch-info-lines{display:flex!important;flex-direction:column!important;justify-content:flex-end!important;width:100%!important;height:104px!important;margin:0!important}
+body .universal-card-host .sketch-info-lines .kv{display:grid!important;grid-template-columns:1fr 1.35fr!important;align-items:center!important;min-height:34px!important;padding:5px 0!important;font-size:11px!important}
+body .universal-card-host .sketch-info-lines .kv strong{font-size:11px!important;text-align:right!important;white-space:nowrap!important}
 
-/* Progress column */
-.universal-card-host .universal-progress-column{display:grid!important;grid-template-rows:minmax(0,1.62fr) minmax(0,.65fr) minmax(0,.65fr)!important;gap:8px!important}
-.universal-card-host .universal-progress-column>.live-six-panel{height:100%!important;min-height:0!important;overflow:hidden!important}
-.universal-card-host .sketch-progress{display:flex!important;flex-direction:column!important;justify-content:space-between!important;padding:10px 12px!important}
-.universal-card-host .progress-item{margin:0!important}
-.universal-card-host .live-fi-panel,.universal-card-host .live-tasks{display:flex!important;flex-direction:column!important;padding:10px 12px!important}
-.universal-card-host .view-all-tasks{margin-top:auto!important;width:100%!important}
+/* MIDDLE / STATUS — exactly four zones and exactly three separators. */
+body .universal-card-host .universal-status-column{height:100%!important}
+body .universal-card-host .sketch-status-box{display:grid!important;grid-template-rows:110px 190px 130px 190px!important;width:100%!important;height:100%!important;min-height:0!important;padding:10px 14px!important;border:1px solid #28516b!important;background:#061522!important;overflow:hidden!important;box-sizing:border-box!important}
+body .universal-card-host .sketch-status-box>.sketch-status-section{display:flex!important;flex-direction:column!important;justify-content:flex-start!important;min-width:0!important;min-height:0!important;margin:0!important;padding:9px 0!important;border:0!important;overflow:hidden!important;box-sizing:border-box!important}
+body .universal-card-host .sketch-status-box>.sketch-status-section+.sketch-status-section{border-top:1px solid #24485d!important}
+body .universal-card-host .sketch-status-box>.sketch-status-section .cycle-metric{border:0!important;border-bottom:1px solid #183b52!important}
+body .universal-card-host .sketch-status-box>.sketch-status-section .cycle-metric:last-child{border-bottom:0!important}
+body .universal-card-host .status-kicker{font-size:10px!important;line-height:1.1!important;letter-spacing:.45px!important}
+body .universal-card-host .countdown-big{margin-top:5px!important;font-size:27px!important;line-height:1!important}
+body .universal-card-host .countdown-date{margin-top:6px!important;font-size:9px!important}
+body .universal-card-host .schedule-health{margin:7px 0 11px!important;font-size:19px!important;line-height:1.02!important;letter-spacing:.1px!important}
+body .universal-card-host .status-current-label{margin-top:1px!important}
+body .universal-card-host .phase-big{margin:6px 0 11px!important;font-size:17px!important;line-height:1.03!important}
+body .universal-card-host .next-fi-standout{margin-top:5px!important;font-size:10.5px!important;line-height:1.22!important;white-space:normal!important;overflow-wrap:anywhere!important}
+body .universal-card-host .sketch-section-title{margin:0 0 6px!important;font-size:15px!important;line-height:1.05!important}
+body .universal-card-host .cycle-metric{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;min-height:29px!important;padding:4px 0!important}
+body .universal-card-host .cycle-metric span{font-size:9px!important}
+body .universal-card-host .cycle-metric strong{font-size:11px!important;text-align:right!important;white-space:nowrap!important}
+body .universal-card-host .sketch-forecast{overflow:visible!important}
+body .universal-card-host .forecast-target-stack,body .universal-card-host .forecast-date-stack{display:flex!important;flex-direction:column!important;align-items:stretch!important;width:100%!important;min-width:0!important}
+body .universal-card-host .forecast-target-stack{gap:6px!important}
+body .universal-card-host .forecast-target-button{display:flex!important;align-items:center!important;justify-content:space-between!important;width:100%!important;min-width:0!important;min-height:48px!important;max-height:58px!important;padding:7px 10px!important;border:1px solid #2b5873!important;background:#071b2a!important;color:#fff!important;font-size:11.5px!important;font-weight:800!important;line-height:1.12!important;text-align:left!important;white-space:normal!important;overflow:hidden!important;cursor:pointer!important}
+body .universal-card-host .forecast-date-stack{margin-top:8px!important;gap:4px!important}
+body .universal-card-host .forecast-date-stack strong{font-size:17px!important;line-height:1!important;color:#fff!important;white-space:nowrap!important}
 
-/* Card state border is determined only by the renderer's state class. */
-.universal-card-host .live-card-v52{border:1px solid #2b5873!important}
-.universal-card-host .live-card-v52.perf-red{border-color:var(--red)!important}
-.universal-card-host .live-card-v52.perf-green{border-color:var(--green)!important}
-.universal-card-host .live-card-v52.perf-purple{border-color:var(--purple)!important}
-.universal-card-host .live-card-v52.perf-orange{border-color:var(--orange)!important}
-.universal-card-host .live-card-v52.perf-cyan{border-color:var(--cyan)!important}
+/* RIGHT / PROGRESS — one full-height box. Internal sections use dividers, not boxes. */
+body .universal-card-host .universal-progress-column{display:grid!important;grid-template-rows:minmax(0,56fr) minmax(0,22fr) minmax(0,22fr)!important;gap:0!important;height:100%!important;padding:0!important;border:1px solid #28516b!important;background:#061522!important;overflow:hidden!important;box-sizing:border-box!important}
+body .universal-card-host .universal-progress-column>.live-six-panel{width:100%!important;height:100%!important;min-height:0!important;margin:0!important;border:0!important;border-radius:0!important;background:transparent!important;overflow:hidden!important;box-sizing:border-box!important}
+body .universal-card-host .sketch-progress{display:flex!important;flex-direction:column!important;justify-content:space-between!important;padding:12px 12px 10px!important}
+body .universal-card-host .sketch-progress .progress-item{display:block!important;flex:0 0 auto!important;min-height:35px!important;margin:0!important;padding:0!important;overflow:visible!important}
+body .universal-card-host .sketch-progress .progress-head{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;margin-bottom:4px!important;font-size:9.5px!important;line-height:1.05!important}
+body .universal-card-host .sketch-progress .track{display:block!important;width:100%!important;height:7px!important;margin:0!important;overflow:hidden!important}
+body .universal-card-host .live-fi-panel,body .universal-card-host .live-tasks{display:flex!important;flex-direction:column!important;padding:10px 12px!important;border:0!important;border-top:1px solid #28516b!important;background:transparent!important}
+body .universal-card-host .live-task-head{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;margin:0 0 8px!important;font-size:10px!important}
+body .universal-card-host .active-fi,body .universal-card-host .next-task{flex:0 0 auto!important;margin:0!important}
+body .universal-card-host .view-all-tasks{margin-top:auto!important;width:100%!important;border-left:0!important;border-right:0!important;border-bottom:0!important;background:#061421!important}
+
+/* Card status border */
+body .universal-card-host .live-card-v52.perf-red{border-color:var(--red)!important}
+body .universal-card-host .live-card-v52.perf-green{border-color:var(--green)!important}
+body .universal-card-host .live-card-v52.perf-purple{border-color:var(--purple)!important}
+body .universal-card-host .live-card-v52.perf-orange{border-color:var(--orange)!important}
+body .universal-card-host .live-card-v52.perf-cyan{border-color:var(--cyan)!important}
 
 @media(max-width:1450px){
-  .update-live-card-list{grid-template-columns:1fr!important}
+  body .update-live-card-list{grid-template-columns:1fr!important}
   .tool-section-head h2{min-width:150px!important;font-size:21px!important}
   .page-actions>button,.ops-action-right>button{min-width:96px!important;padding:0 7px!important}
   .ops-control-group{grid-template-columns:30px 48px 54px 30px!important}
+}
+@media(max-width:1250px){
+  body[data-center="operations"] .operations-dual-grid{grid-template-columns:1fr!important}
+  body[data-center="operations"] .operations-status-carousel,
+  body[data-center="operations"] .operations-tool-carousel{height:var(--v6-card-h)!important;min-height:var(--v6-card-h)!important;max-height:var(--v6-card-h)!important}
 }
 @media(max-width:1100px){
   .pagebar{overflow-x:auto!important}
@@ -2411,9 +2432,12 @@ html{scroll-behavior:smooth}
   .page-actions{overflow:visible!important}
 }
 @media(max-width:900px){
-  .universal-card-host.live-panel{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important}
-  .universal-card-host .live-card-v52{grid-template-columns:1fr!important;grid-template-rows:auto!important;overflow:visible!important}
-  .universal-card-host .live-card-v52>.universal-tool-column{height:auto!important;overflow:visible!important}
-  .universal-card-host .sketch-status-box{grid-template-rows:auto!important;height:auto!important;overflow:visible!important}
-  .universal-card-host .universal-progress-column{display:flex!important;flex-direction:column!important}
+  body .universal-card-host.live-panel{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important}
+  body .universal-card-host .live-card-v52{grid-template-columns:1fr!important;grid-template-rows:auto!important;overflow:visible!important}
+  body .universal-card-host .live-card-v52>.universal-tool-column{height:auto!important;overflow:visible!important}
+  body .universal-card-host .photo-panel{display:flex!important;flex-direction:column!important;height:auto!important}
+  body .universal-card-host .sketch-status-box{grid-template-rows:auto!important;height:auto!important;overflow:visible!important}
+  body .universal-card-host .universal-progress-column{display:flex!important;flex-direction:column!important;height:auto!important}
+  body[data-center="operations"] .operations-status-carousel,
+  body[data-center="operations"] .operations-tool-carousel{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important}
 }
