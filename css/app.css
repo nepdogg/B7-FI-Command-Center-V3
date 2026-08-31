@@ -3574,3 +3574,65 @@ body[data-center="operations"] .update-live-card-list .live-card-v52 .sketch-sta
   body[data-center="operations"] .operations-tool-carousel .live-card-v52>.universal-tool-column,
   body[data-center="operations"] .update-live-card-list .live-card-v52>.universal-tool-column{height:auto!important;overflow:visible!important}
 }
+
+/* V5.6.7 — REGRESSION LOCKS + UNIVERSAL CARD READABILITY — FINAL AUTHORITY */
+/* Footer: DATA status is a compact left-side companion to Administration Center. */
+.app-footer{display:grid!important;grid-template-columns:minmax(330px,1fr) auto minmax(330px,1fr)!important;align-items:stretch!important;overflow:hidden!important}
+.app-footer .footer-left{display:flex!important;align-items:stretch!important;min-width:0!important}
+.app-footer .footer-left #adminButton{flex:0 0 auto!important}
+.app-footer .footer-left .footer-data{display:flex!important;align-items:center!important;padding:0 14px!important;border-left:1px solid rgba(255,255,255,.28)!important;font-size:8px!important;font-weight:950!important;letter-spacing:.25px!important;white-space:nowrap!important;color:#fff!important}
+.app-footer .footer-right{min-width:0!important;overflow:hidden!important;padding-right:12px!important}
+.app-footer .footer-right>span{display:block!important;min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+
+/* Operations navigation: locked names live in JS; fill every pixel to the right edge. */
+body[data-center="operations"] .pagebar{display:flex!important;width:100%!important;height:40px!important;min-height:40px!important;gap:0!important;overflow:hidden!important}
+body[data-center="operations"] .pagebar .subnav{display:flex!important;flex:1 1 auto!important;width:auto!important;height:40px!important;min-width:0!important;overflow:hidden!important}
+body[data-center="operations"] .pagebar .subnav>button{flex:1 1 0!important;min-width:0!important;height:40px!important;min-height:40px!important;padding:0 7px!important;font-size:clamp(7px,.62vw,10px)!important;border-right:1px solid #1c4c69!important}
+body[data-center="operations"] .pagebar .page-actions{display:flex!important;flex:0 0 auto!important;width:auto!important;height:40px!important;min-height:40px!important;gap:0!important;margin:0!important;padding:0!important;border:0!important;overflow:hidden!important}
+body[data-center="operations"] .pagebar .page-actions:not(:has(.ops-action-controls)) button,
+body[data-center="operations"] .ops-action-right button{height:40px!important;min-height:40px!important;min-width:108px!important;padding:0 10px!important;font-size:9px!important;border-left:1px solid #1c4c69!important;background:#082035!important;color:#fff!important}
+body[data-center="operations"] .ops-action-right{display:flex!important;height:40px!important;margin:0!important}
+body[data-center="operations"] #pageActions:has(.ops-action-controls){display:flex!important;height:40px!important;min-height:40px!important;padding:0!important;gap:0!important;align-items:stretch!important}
+body[data-center="operations"] .ops-action-controls{display:flex!important;align-items:stretch!important;gap:0!important;height:40px!important;margin:0!important}
+body[data-center="operations"] .ops-control-group{display:grid!important;grid-template-columns:34px 48px 64px 34px!important;gap:0!important;height:40px!important;align-items:stretch!important;font-size:8px!important;border-left:1px solid #1c4c69!important}
+body[data-center="operations"] .ops-mini-btn,
+body[data-center="operations"] .ops-pause-btn{width:auto!important;height:40px!important;min-height:40px!important;border:0!important;border-right:1px solid #1c4c69!important;background:#082035!important;color:#fff!important;font-weight:950!important}
+body[data-center="operations"] .ops-mini-btn:hover,
+body[data-center="operations"] .ops-pause-btn:hover{background:rgba(var(--accent-rgb),.28)!important}
+body[data-center="operations"] .ops-pause-btn{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;line-height:1.05!important;padding:2px 5px!important}
+body[data-center="operations"] .ops-pause-btn b{display:block!important;font-size:7px!important;color:#8fd8ff!important;letter-spacing:.35px!important}
+body[data-center="operations"] .ops-pause-btn span{display:block!important;font-size:8px!important;color:#fff!important;margin-top:2px!important}
+body[data-center="operations"] .ops-count{display:flex!important;align-items:center!important;justify-content:center!important;background:#061827!important;color:#fff!important;border-right:1px solid #1c4c69!important;font-weight:950!important;white-space:nowrap!important}
+
+/* The Universal Tool Card is ONE exact component on carousel and Tools pages. */
+body[data-center="operations"] .operations-tool-carousel .live-card-v52,
+body[data-center="operations"] .update-live-card-list .live-card-v52{grid-template-columns:minmax(0,32fr) minmax(0,32fr) minmax(0,36fr)!important;gap:8px!important}
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 .sketch-status-box,
+body[data-center="operations"] .update-live-card-list .live-card-v52 .sketch-status-box{display:grid!important;grid-template-rows:112px minmax(190px,1fr) 142px 166px!important;gap:0!important;padding:12px 14px!important}
+.live-card-v52 .sketch-status-box>.sketch-status-section{justify-content:flex-start!important;padding:10px 0!important}
+.live-card-v52 .sketch-status-box .status-kicker{font-size:10px!important;line-height:1.15!important;letter-spacing:.45px!important}
+.live-card-v52 .sketch-status-box .countdown-big{font-size:28px!important;line-height:.98!important;margin-top:5px!important}
+.live-card-v52 .sketch-status-box .countdown-date{font-size:9px!important;margin-top:6px!important}
+/* FI PROCESS is an operational alarm/readiness state and gets priority. */
+.live-card-v52 .sketch-status-box .schedule-health{font-size:19px!important;line-height:1.05!important;margin:7px 0 14px!important;letter-spacing:.15px!important}
+.live-card-v52 .sketch-status-box .phase-big{font-size:17px!important;line-height:1.05!important;margin:6px 0 13px!important}
+.live-card-v52 .sketch-status-box .next-fi-standout{font-size:11px!important;line-height:1.25!important;margin-top:6px!important;max-height:none!important;overflow:visible!important}
+.live-card-v52 .sketch-status-box .sketch-section-title{font-size:15px!important;line-height:1.1!important;margin-bottom:9px!important}
+.live-card-v52 .sketch-status-box .cycle-metric{padding:7px 0!important}
+.live-card-v52 .sketch-status-box .cycle-metric span{font-size:9px!important}
+.live-card-v52 .sketch-status-box .cycle-metric strong{font-size:11px!important}
+/* Forecast is stacked: label -> selector -> label -> large date. */
+.live-card-v52 .sketch-forecast{display:flex!important;flex-direction:column!important;justify-content:flex-start!important}
+.live-card-v52 .forecast-target-stack,.live-card-v52 .forecast-date-stack{display:flex!important;flex-direction:column!important;align-items:stretch!important;width:100%!important;min-width:0!important}
+.live-card-v52 .forecast-target-stack{gap:6px!important}
+.live-card-v52 .forecast-target-button{display:flex!important;align-items:center!important;justify-content:space-between!important;width:100%!important;min-height:48px!important;max-height:58px!important;padding:7px 10px!important;font-size:12px!important;line-height:1.12!important;text-align:left!important;white-space:normal!important;overflow:hidden!important}
+.live-card-v52 .forecast-date-stack{margin-top:10px!important;gap:4px!important}
+.live-card-v52 .forecast-date-stack strong{font-size:16px!important;line-height:1.05!important;color:#fff!important;white-space:nowrap!important}
+
+/* No date/header above the tool-family jump strip. */
+body[data-center="operations"] .tool-family-jump{margin-top:0!important}
+
+@media(max-width:1100px){
+ body[data-center="operations"] .pagebar{overflow-x:auto!important}
+ body[data-center="operations"] .pagebar .subnav{min-width:620px!important}
+}
