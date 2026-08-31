@@ -3088,3 +3088,374 @@ body:not(.screenshot-mode):not(.presentation-mode) .app-footer .footer-center im
   max-height:48px !important;
   max-width:120px !important;
 }
+
+
+/* =========================================================
+   V6.0.8 — STATE-INDEPENDENT UNIVERSAL TOOL CARD
+   DESIGN-LOCK CANDIDATE.
+   Tool state may change text/colors only — never geometry.
+   Footer/navigation intentionally untouched.
+   ========================================================= */
+
+/* SAME CARD SHELL EVERYWHERE */
+body .universal-card-host.live-panel{
+  height:680px !important;
+  min-height:680px !important;
+  max-height:680px !important;
+}
+body .universal-card-host .live-card-v52{
+  display:grid !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  grid-template-rows:minmax(0,1fr) !important;
+  gap:8px !important;
+  width:100% !important;
+  height:100% !important;
+  padding:8px !important;
+  box-sizing:border-box !important;
+  align-items:stretch !important;
+}
+body .universal-card-host .live-card-v52 > .universal-tool-column{
+  display:grid !important;
+  width:auto !important;
+  min-width:0 !important;
+  max-width:none !important;
+  height:100% !important;
+  min-height:0 !important;
+  margin:0 !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+
+/* LEFT COLUMN — identical fixed vertical slots for every tool state */
+body .universal-card-host .universal-info-column{
+  grid-template-rows:minmax(0,1fr) !important;
+}
+body .universal-card-host .photo-panel{
+  position:relative !important;
+  display:grid !important;
+  grid-template-rows:72px 230px 36px 108px minmax(0,1fr) !important;
+  row-gap:7px !important;
+  width:100% !important;
+  height:100% !important;
+  padding:10px 12px 12px !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+body .universal-card-host .sketch-photo-title{
+  position:static !important;
+  grid-row:1 !important;
+  width:100% !important;
+  height:100% !important;
+  display:flex !important;
+  align-items:flex-start !important;
+  justify-content:center !important;
+  padding:4px 42px 0 !important;
+  box-sizing:border-box !important;
+}
+body .universal-card-host .sketch-photo-title > div{
+  width:100% !important;
+  text-align:center !important;
+}
+body .universal-card-host .live-codename{
+  width:100% !important;
+  margin:0 !important;
+  padding:0 !important;
+  text-align:center !important;
+  font-size:34px !important;
+  line-height:1 !important;
+}
+body .universal-card-host .tool-type-model{
+  width:100% !important;
+  margin:7px 0 0 !important;
+  padding:0 !important;
+  text-align:center !important;
+  font-size:14px !important;
+  line-height:1.05 !important;
+}
+body .universal-card-host .tool-photo-open{
+  position:absolute !important;
+  top:10px !important;
+  right:10px !important;
+  z-index:5 !important;
+}
+body .universal-card-host .live-photo{
+  grid-row:2 !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:4px 0 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:hidden !important;
+}
+body .universal-card-host .live-photo img{
+  width:auto !important;
+  height:auto !important;
+  max-width:95% !important;
+  max-height:94% !important;
+  object-fit:contain !important;
+  transform:none !important;
+}
+body .universal-card-host .sketch-reduced{
+  grid-row:3 !important;
+  width:100% !important;
+  height:36px !important;
+  min-height:36px !important;
+  margin:0 !important;
+  align-self:center !important;
+  box-sizing:border-box !important;
+}
+body .universal-card-host .six-badges{
+  grid-row:4 !important;
+  width:100% !important;
+  height:108px !important;
+  min-height:108px !important;
+  margin:0 !important;
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  grid-template-rows:repeat(3,minmax(0,1fr)) !important;
+  gap:6px !important;
+}
+body .universal-card-host .sketch-info-lines{
+  grid-row:5 !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  display:grid !important;
+  grid-template-rows:repeat(3,minmax(0,1fr)) !important;
+  align-self:stretch !important;
+  border-top:1px solid #24485d !important;
+  border-bottom:0 !important;
+}
+body .universal-card-host .sketch-info-lines .kv{
+  min-height:0 !important;
+  margin:0 !important;
+  padding:0 8px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  font-size:14px !important;
+  line-height:1.1 !important;
+}
+body .universal-card-host .sketch-info-lines .kv strong{
+  font-size:14px !important;
+  line-height:1.1 !important;
+}
+body .universal-card-host .sketch-info-lines .kv:last-child{
+  border-bottom:0 !important;
+}
+
+/* MIDDLE COLUMN — four fixed slots. Same positions for FI / Packing / Shipped. */
+body .universal-card-host .universal-status-column{
+  grid-template-rows:minmax(0,1fr) !important;
+}
+body .universal-card-host .sketch-status-box{
+  display:grid !important;
+  grid-template-rows:22% 30% 22% 26% !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  padding:10px 14px !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+body .universal-card-host .sketch-status-box > .sketch-status-section{
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:center !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:10px 0 !important;
+  border:0 !important;
+  overflow:hidden !important;
+  box-sizing:border-box !important;
+}
+body .universal-card-host .sketch-status-box > .sketch-status-section + .sketch-status-section{
+  border-top:1px solid #24485d !important;
+}
+
+/* RIGHT COLUMN — fixed 50/25/25 geometry regardless completion state */
+body .universal-card-host .universal-progress-column{
+  display:grid !important;
+  grid-template-rows:50% 25% 25% !important;
+  gap:0 !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  padding:0 !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+
+/* Progress region: all eight bars always visible and in identical slots */
+body .universal-card-host .sketch-progress{
+  grid-row:1 !important;
+  display:grid !important;
+  grid-template-rows:repeat(8,minmax(0,1fr)) !important;
+  gap:5px !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:11px 14px 12px !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+body .universal-card-host .sketch-progress .progress-item{
+  display:grid !important;
+  grid-template-rows:auto 10px auto !important;
+  align-content:center !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+body .universal-card-host .sketch-progress .progress-head{
+  margin:0 0 4px !important;
+  font-size:10.5px !important;
+  line-height:1 !important;
+}
+body .universal-card-host .sketch-progress .track{
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  width:100% !important;
+  height:10px !important;
+  min-height:10px !important;
+  margin:0 !important;
+  border:1px solid #39708e !important;
+  border-radius:5px !important;
+  background:#020c14 !important;
+  overflow:hidden !important;
+  box-sizing:border-box !important;
+}
+body .universal-card-host .sketch-progress .track .fill{
+  display:block !important;
+  height:100% !important;
+  min-height:100% !important;
+  margin:0 !important;
+  border-radius:4px !important;
+}
+body .universal-card-host .sketch-progress .progress-step{
+  min-height:8px !important;
+  margin:2px 0 0 !important;
+  font-size:7px !important;
+  line-height:1 !important;
+}
+
+/* FI Checklist region: header/body/button occupy fixed positions for every state */
+body .universal-card-host .live-fi-panel{
+  grid-row:2 !important;
+  position:relative !important;
+  display:grid !important;
+  grid-template-rows:28px minmax(0,1fr) 38px !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  padding:11px 14px 10px !important;
+  margin:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+body .universal-card-host .live-fi-panel::before{
+  content:"" !important;
+  position:absolute !important;
+  top:0 !important;
+  left:14px !important;
+  right:14px !important;
+  height:1px !important;
+  background:#24485d !important;
+}
+body .universal-card-host .live-fi-panel .live-task-head{
+  grid-row:1 !important;
+  margin:0 !important;
+  align-self:center !important;
+}
+body .universal-card-host .live-fi-panel .active-fi,
+body .universal-card-host .live-fi-panel .no-active-fi,
+body .universal-card-host .live-fi-panel .tasks-complete{
+  grid-row:2 !important;
+  align-self:center !important;
+  margin:0 !important;
+}
+body .universal-card-host .live-fi-panel .view-all-tasks{
+  grid-row:3 !important;
+  align-self:end !important;
+  margin:0 !important;
+  width:100% !important;
+}
+
+/* Lead/Admin region: same fixed slots whether active or complete */
+body .universal-card-host .live-tasks{
+  grid-row:3 !important;
+  position:relative !important;
+  display:grid !important;
+  grid-template-rows:28px minmax(0,1fr) 38px !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  padding:11px 14px 10px !important;
+  margin:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+body .universal-card-host .live-tasks::before{
+  content:"" !important;
+  position:absolute !important;
+  top:0 !important;
+  left:14px !important;
+  right:14px !important;
+  height:1px !important;
+  background:#24485d !important;
+}
+body .universal-card-host .live-tasks .live-task-head{
+  grid-row:1 !important;
+  margin:0 !important;
+  align-self:center !important;
+}
+body .universal-card-host .live-tasks .next-task,
+body .universal-card-host .live-tasks .tasks-complete{
+  grid-row:2 !important;
+  align-self:center !important;
+  margin:0 !important;
+}
+body .universal-card-host .live-tasks .view-all-tasks{
+  grid-row:3 !important;
+  align-self:end !important;
+  margin:0 !important;
+  width:100% !important;
+}
+
+/* Active and complete content must never resize its region */
+body .universal-card-host .tasks-complete{
+  min-height:0 !important;
+  padding:0 8px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+}
+body .universal-card-host .active-fi,
+body .universal-card-host .next-task{
+  max-height:54px !important;
+  overflow:hidden !important;
+}
+
+/* Desktop design-lock: do not allow legacy responsive rules to create a second card. */
+@media(min-width:1101px){
+  body .universal-card-host .live-card-v52{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  }
+  body .universal-card-host .photo-panel,
+  body .universal-card-host .sketch-status-box,
+  body .universal-card-host .universal-progress-column{
+    height:100% !important;
+  }
+}

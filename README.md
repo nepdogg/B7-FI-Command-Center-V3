@@ -71,3 +71,7 @@ Equalized all three Universal Tool Card columns, enlarged left-column data, and 
 
 ## V6.0.7
 Corrected the actual Universal Tool Card DOM grid placement, enlarged visible progress bars, improved spacing, and matched footer blue/black geometry to the header.
+
+
+## V6.0.8
+Universal Tool Card design-lock candidate. All tool states now use state-independent card geometry: identical three-column widths, fixed left/middle/right section slots, fixed checklist/task regions, and eight always-visible progress bars. Footer/navigation preserved from V6.0.7.
