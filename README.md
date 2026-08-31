@@ -1,4 +1,4 @@
-# B7 FI Command Center V6.0.2 — Equal Column Card Balance
+# B7 FI Command Center V6.0.3 — Universal Card Spacing + Centering
 
 This release is a stability rebuild of the presentation layer using the existing V5.6.7 business/data logic as the compatibility baseline.
 
@@ -22,8 +22,8 @@ This release is a stability rebuild of the presentation layer using the existing
 - Tool-family jump navigation remains available and sticky.
 
 ## Version
-- Version: 6.0.2
-- Build: `20260830-V6.0.2-EQUAL-COLUMN-CARD-BALANCE`
+- Version: 6.0.3
+- Build: `20260830-V6.0.3-CARD-SPACING-CENTERING`
 
 
 ## V6.0.1 focused stabilization
@@ -39,7 +39,7 @@ This release is a stability rebuild of the presentation layer using the existing
 - No navigation, data-schema, calculation, workflow, or localStorage behavior was intentionally changed in this release.
 
 
-## V6.0.2 focused card corrections
+## V6.0.3 focused card corrections
 
 - Universal Tool Card columns are now exactly equal width: 1/3 + 1/3 + 1/3.
 - Left-column UTID and tool type/model are hard-centered independent of the editor-arrow button.
@@ -50,3 +50,12 @@ This release is a stability rebuild of the presentation layer using the existing
 - Added one explicit divider between progress and FI Checklists, and one explicit divider between FI Checklists and Lead/Admin Tasks.
 - FI Checklists and Lead/Admin Tasks remain open sections, not nested boxed cards.
 - No navigation, storage, workflow, or calculation logic was changed.
+
+
+### V6.0.3 stabilization pass
+- Centers the UTID / tool type-model header against the full left column independent of the editor arrow.
+- Slightly increases Customer / Sales Order / Ship Date text and distributes those rows more evenly.
+- Redistributes the four middle-column sections across the full card height to reduce unused bottom space.
+- Gives all eight progress rows dedicated equal-height slots with additional label-to-bar spacing.
+- Uses one inset divider above FI Checklists and one inset divider above Lead / Admin Tasks, matching the middle-column divider style instead of touching the column border.
+- No navigation, storage schema, calculation, workflow, or page-generation logic changes.

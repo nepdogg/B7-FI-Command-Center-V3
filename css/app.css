@@ -2283,7 +2283,7 @@ html{scroll-behavior:smooth}
 /* No date/header above the tool-family jump strip. */
 
 /* ========================================================================== */
-/* V6.0.2 CANONICAL PRESENTATION SYSTEM — EQUAL COLUMN CARD BALANCE          */
+/* V6.0.3 CANONICAL PRESENTATION SYSTEM — CARD SPACING + CENTERING          */
 /* ========================================================================== */
 :root{--v6-card-h:660px;--v6-gap:8px;--v6-nav-h:40px;--v6-frame:#1a4c69}
 
@@ -2358,23 +2358,23 @@ body .universal-card-host .live-six-panel{width:100%!important;min-width:0!impor
 body .universal-card-host .universal-info-column{height:100%!important}
 body .universal-card-host .photo-panel{position:relative!important;display:grid!important;grid-template-rows:64px 210px 30px 106px minmax(0,1fr)!important;row-gap:6px!important;width:100%!important;height:100%!important;min-height:0!important;padding:10px 12px!important;border:1px solid #28516b!important;background:#061522!important;overflow:hidden!important;box-sizing:border-box!important}
 body .universal-card-host .tool-photo-open{position:absolute!important;top:8px!important;right:8px!important;z-index:10!important;display:flex!important;align-items:center!important;justify-content:center!important;width:27px!important;height:27px!important;padding:0!important;border:1px solid #34789d!important;background:#071b2a!important;color:#dff6ff!important;font-size:15px!important;font-weight:950!important;cursor:pointer!important}
-body .universal-card-host .sketch-photo-title{display:flex!important;align-items:flex-start!important;justify-content:center!important;width:100%!important;height:auto!important;padding:0 38px!important;box-sizing:border-box!important;text-align:center!important}
+body .universal-card-host .sketch-photo-title{position:absolute!important;top:11px!important;left:0!important;right:0!important;z-index:3!important;display:flex!important;align-items:flex-start!important;justify-content:center!important;width:auto!important;height:auto!important;padding:0 44px!important;box-sizing:border-box!important;text-align:center!important;pointer-events:none!important}
 body .universal-card-host .sketch-photo-title>div{width:100%!important;text-align:center!important}
-body .universal-card-host .live-codename{width:100%!important;margin:0!important;padding:0!important;font-size:32px!important;line-height:1!important;letter-spacing:1.8px!important;text-align:center!important}
-body .universal-card-host .tool-type-model{width:100%!important;margin-top:6px!important;font-size:12.5px!important;line-height:1.05!important;font-weight:950!important;letter-spacing:.45px!important;text-align:center!important;color:#8fd8ff!important}
+body .universal-card-host .live-codename{width:100%!important;margin:0!important;padding:0!important;font-size:33px!important;line-height:1!important;letter-spacing:1.8px!important;text-align:center!important}
+body .universal-card-host .tool-type-model{width:100%!important;margin-top:7px!important;font-size:13px!important;line-height:1.05!important;font-weight:950!important;letter-spacing:.5px!important;text-align:center!important;color:#8fd8ff!important}
 body .universal-card-host .live-photo{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:100%!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;overflow:hidden!important}
 body .universal-card-host .live-photo img{display:block!important;max-width:98%!important;max-height:98%!important;width:auto!important;height:auto!important;object-fit:contain!important}
 body .universal-card-host .sketch-reduced{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:30px!important;margin:0!important;box-sizing:border-box!important}
 body .universal-card-host .six-badges{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:repeat(3,minmax(0,1fr))!important;gap:5px!important;width:100%!important;height:106px!important;margin:0!important}
 body .universal-card-host .key-test-badge{min-width:0!important;min-height:0!important;overflow:hidden!important}
 body .universal-card-host .sketch-info-lines{display:flex!important;flex-direction:column!important;justify-content:space-evenly!important;width:100%!important;height:100%!important;min-height:0!important;margin:0!important}
-body .universal-card-host .sketch-info-lines .kv{display:grid!important;grid-template-columns:1fr 1.35fr!important;align-items:center!important;min-height:34px!important;padding:5px 0!important;font-size:11px!important}
-body .universal-card-host .sketch-info-lines .kv strong{font-size:11px!important;text-align:right!important;white-space:nowrap!important}
+body .universal-card-host .sketch-info-lines .kv{display:grid!important;grid-template-columns:1fr 1.35fr!important;align-items:center!important;min-height:38px!important;padding:6px 0!important;font-size:12px!important}
+body .universal-card-host .sketch-info-lines .kv strong{font-size:12.25px!important;text-align:right!important;white-space:nowrap!important}
 
 /* MIDDLE / STATUS — exactly four zones and exactly three separators. */
 body .universal-card-host .universal-status-column{height:100%!important}
-body .universal-card-host .sketch-status-box{display:grid!important;grid-template-rows:100px 155px 128px minmax(0,1fr)!important;width:100%!important;height:100%!important;min-height:0!important;padding:10px 14px!important;border:1px solid #28516b!important;background:#061522!important;overflow:hidden!important;box-sizing:border-box!important}
-body .universal-card-host .sketch-status-box>.sketch-status-section{display:flex!important;flex-direction:column!important;justify-content:flex-start!important;min-width:0!important;min-height:0!important;margin:0!important;padding:9px 0!important;border:0!important;overflow:hidden!important;box-sizing:border-box!important}
+body .universal-card-host .sketch-status-box{display:grid!important;grid-template-rows:.82fr 1.30fr 1fr 1.08fr!important;width:100%!important;height:100%!important;min-height:0!important;padding:10px 14px!important;border:1px solid #28516b!important;background:#061522!important;overflow:hidden!important;box-sizing:border-box!important}
+body .universal-card-host .sketch-status-box>.sketch-status-section{display:flex!important;flex-direction:column!important;justify-content:center!important;min-width:0!important;min-height:0!important;margin:0!important;padding:9px 0!important;border:0!important;overflow:hidden!important;box-sizing:border-box!important}
 body .universal-card-host .sketch-status-box>.sketch-status-section+.sketch-status-section{border-top:1px solid #24485d!important}
 body .universal-card-host .sketch-status-box>.sketch-status-section .cycle-metric{border:0!important;border-bottom:1px solid #183b52!important}
 body .universal-card-host .sketch-status-box>.sketch-status-section .cycle-metric:last-child{border-bottom:0!important}
@@ -2397,26 +2397,30 @@ body .universal-card-host .forecast-date-stack{margin-top:8px!important;gap:4px!
 body .universal-card-host .forecast-date-stack strong{font-size:17px!important;line-height:1!important;color:#fff!important;white-space:nowrap!important}
 
 /* RIGHT / PROGRESS — one full-height box. Internal sections use dividers, not boxes. */
-body .universal-card-host .universal-progress-column{display:grid!important;grid-template-rows:minmax(0,48fr) minmax(0,26fr) minmax(0,26fr)!important;gap:0!important;height:100%!important;padding:0!important;border:1px solid #28516b!important;background:#061522!important;overflow:hidden!important;box-sizing:border-box!important}
+body .universal-card-host .universal-progress-column{display:grid!important;grid-template-rows:minmax(0,50fr) minmax(0,25fr) minmax(0,25fr)!important;gap:0!important;height:100%!important;padding:0!important;border:1px solid #28516b!important;background:#061522!important;overflow:hidden!important;box-sizing:border-box!important}
 body .universal-card-host .universal-progress-column>.live-six-panel{width:100%!important;height:100%!important;min-height:0!important;margin:0!important;border:0!important;border-radius:0!important;background:transparent!important;overflow:hidden!important;box-sizing:border-box!important}
-body .universal-card-host .sketch-progress{display:flex!important;flex-direction:column!important;justify-content:space-evenly!important;padding:10px 12px!important}
-body .universal-card-host .sketch-progress .progress-item{display:block!important;flex:0 0 auto!important;min-height:0!important;margin:0!important;padding:0!important;overflow:visible!important}
-body .universal-card-host .sketch-progress .progress-head{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;margin-bottom:4px!important;font-size:9.5px!important;line-height:1.05!important}
+body .universal-card-host .sketch-progress{display:grid!important;grid-template-rows:repeat(8,minmax(0,1fr))!important;align-items:stretch!important;gap:4px!important;padding:10px 12px 12px!important}
+body .universal-card-host .sketch-progress .progress-item{display:flex!important;flex-direction:column!important;justify-content:center!important;min-height:0!important;margin:0!important;padding:0!important;overflow:visible!important}
+body .universal-card-host .sketch-progress .progress-head{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;margin-bottom:5px!important;font-size:9.5px!important;line-height:1.05!important}
 body .universal-card-host .sketch-progress .track{display:block!important;width:100%!important;height:7px!important;margin:0!important;overflow:hidden!important}
-body .universal-card-host .live-fi-panel,body .universal-card-host .live-tasks{display:flex!important;flex-direction:column!important;padding:10px 12px!important;border:0!important;border-top:2px solid #2f6887!important;background:transparent!important}
+body .universal-card-host .live-fi-panel,body .universal-card-host .live-tasks{position:relative!important;display:flex!important;flex-direction:column!important;padding:12px 12px 10px!important;border:0!important;background:transparent!important}
 body .universal-card-host .live-task-head{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;margin:0 0 8px!important;font-size:10px!important}
 body .universal-card-host .active-fi,body .universal-card-host .next-task{flex:0 0 auto!important;margin:0!important}
 body .universal-card-host .view-all-tasks{margin-top:auto!important;width:100%!important;border-left:0!important;border-right:0!important;border-bottom:0!important;background:#061421!important}
 
 
-/* V6.0.2 card-lock details: metadata and section dividers. */
+/* V6.0.3 card-lock details: metadata and section dividers. */
 body .universal-card-host .sketch-info-lines .kv:last-child{border-bottom:0!important;box-shadow:none!important}
-body .universal-card-host .universal-progress-column>.live-fi-panel{border-top:2px solid #2f6887!important}
-body .universal-card-host .universal-progress-column>.live-tasks{border-top:2px solid #2f6887!important}
+body .universal-card-host .universal-progress-column>.live-fi-panel{border-top:0!important}
+body .universal-card-host .universal-progress-column>.live-tasks{border-top:0!important}
 body .universal-card-host .universal-progress-column>.live-fi-panel,
 body .universal-card-host .universal-progress-column>.live-tasks{outline:0!important;box-shadow:none!important}
 
 /* Card status border */
+body .universal-card-host .universal-progress-column>.live-fi-panel::before,
+body .universal-card-host .universal-progress-column>.live-tasks::before{content:""!important;position:absolute!important;top:0!important;left:12px!important;right:12px!important;height:1px!important;background:#24485d!important} 
+body .universal-card-host .sketch-info-lines .kv:last-child{border-bottom:0!important;box-shadow:none!important}
+
 body .universal-card-host .live-card-v52.perf-red{border-color:var(--red)!important}
 body .universal-card-host .live-card-v52.perf-green{border-color:var(--green)!important}
 body .universal-card-host .live-card-v52.perf-purple{border-color:var(--purple)!important}
