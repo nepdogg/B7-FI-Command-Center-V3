@@ -4854,3 +4854,588 @@ html body:not(.screenshot-mode):not(.presentation-mode) .app-footer{
       #05080d !important;
   }
 }
+
+
+/* =========================================================
+   V6.1.0 — CLEAN UNIVERSAL TOOL CARD COMPONENT
+   Dedicated UTC classes intentionally bypass legacy card CSS.
+   This is the visual target approved from the reference mockup.
+   ========================================================= */
+
+@media (min-width:1101px){
+
+  /* host/card */
+  html body .utc-host{
+    height:680px !important;
+    min-height:680px !important;
+    max-height:680px !important;
+    margin:0 !important;
+    padding:8px !important;
+    box-sizing:border-box !important;
+    overflow:hidden !important;
+  }
+
+  html body .utc-card{
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:10px !important;
+    width:100% !important;
+    height:100% !important;
+    min-width:0 !important;
+    min-height:0 !important;
+    padding:0 !important;
+    box-sizing:border-box !important;
+  }
+
+  html body .utc-column{
+    width:100% !important;
+    min-width:0 !important;
+    max-width:none !important;
+    height:100% !important;
+    min-height:0 !important;
+    margin:0 !important;
+    padding:0 !important;
+    border:1px solid #2b607d !important;
+    background:#041725 !important;
+    box-sizing:border-box !important;
+    overflow:hidden !important;
+  }
+
+  /* ---------- LEFT ---------- */
+  html body .utc-info{
+    position:relative !important;
+    display:grid !important;
+    grid-template-rows:72px 226px 38px 110px minmax(0,1fr) !important;
+    row-gap:8px !important;
+    padding:10px 12px 10px !important;
+  }
+
+  html body .utc-info-head{
+    position:relative !important;
+    grid-row:1 !important;
+    display:block !important;
+    width:100% !important;
+    height:72px !important;
+    min-height:72px !important;
+    padding:3px 46px 0 !important;
+    margin:0 !important;
+    box-sizing:border-box !important;
+    text-align:center !important;
+    overflow:hidden !important;
+  }
+
+  html body .utc-utid{
+    width:100% !important;
+    margin:0 !important;
+    padding:0 !important;
+    font-size:34px !important;
+    line-height:1 !important;
+    font-weight:950 !important;
+    letter-spacing:1px !important;
+    text-align:center !important;
+    white-space:nowrap !important;
+  }
+
+  html body .utc-model{
+    width:100% !important;
+    margin:7px 0 0 !important;
+    font-size:14px !important;
+    line-height:1.05 !important;
+    font-weight:900 !important;
+    letter-spacing:.3px !important;
+    color:#5fd8ff !important;
+    text-align:center !important;
+  }
+
+  html body .utc-open{
+    position:absolute !important;
+    top:2px !important;
+    right:0 !important;
+    z-index:5 !important;
+  }
+
+  html body .utc-photo{
+    grid-row:2 !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    width:100% !important;
+    height:226px !important;
+    min-height:226px !important;
+    margin:0 !important;
+    padding:0 !important;
+    overflow:hidden !important;
+  }
+
+  html body .utc-photo img{
+    display:block !important;
+    width:auto !important;
+    height:auto !important;
+    max-width:96% !important;
+    max-height:96% !important;
+    object-fit:contain !important;
+  }
+
+  html body .utc-reduced{
+    grid-row:3 !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    width:100% !important;
+    height:38px !important;
+    min-height:38px !important;
+    margin:0 !important;
+    border:1px solid #324f60 !important;
+    background:#061725 !important;
+    color:#52606a !important;
+    font-size:10.5px !important;
+    font-weight:950 !important;
+    letter-spacing:.35px !important;
+    box-sizing:border-box !important;
+  }
+
+  html body .utc-reduced.active{
+    border-color:#ff2851 !important;
+    background:#bd0b32 !important;
+    color:#fff !important;
+  }
+
+  html body .utc-badges{
+    grid-row:4 !important;
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    grid-template-rows:repeat(3,minmax(0,1fr)) !important;
+    gap:6px !important;
+    width:100% !important;
+    height:110px !important;
+    min-height:110px !important;
+    margin:0 !important;
+  }
+
+  html body .utc-badges .key-test-badge{
+    min-width:0 !important;
+    min-height:0 !important;
+    padding:4px 5px !important;
+    font-size:8px !important;
+    box-sizing:border-box !important;
+  }
+
+  html body .utc-meta{
+    grid-row:5 !important;
+    display:grid !important;
+    grid-template-rows:repeat(3,minmax(0,1fr)) !important;
+    width:100% !important;
+    height:100% !important;
+    min-height:0 !important;
+    margin:0 !important;
+    border-top:1px solid #24485d !important;
+    box-sizing:border-box !important;
+  }
+
+  html body .utc-meta-row{
+    display:grid !important;
+    grid-template-columns:minmax(84px,.82fr) minmax(0,1.5fr) !important;
+    align-items:center !important;
+    column-gap:12px !important;
+    width:100% !important;
+    min-width:0 !important;
+    min-height:0 !important;
+    margin:0 !important;
+    padding:0 10px !important;
+    border-bottom:1px solid #24485d !important;
+    box-sizing:border-box !important;
+    font-size:14px !important;
+  }
+
+  html body .utc-meta-row:last-child{
+    border-bottom:0 !important;
+  }
+
+  html body .utc-meta-row span{
+    min-width:0 !important;
+    text-align:left !important;
+    white-space:nowrap !important;
+  }
+
+  html body .utc-meta-row strong{
+    min-width:0 !important;
+    width:100% !important;
+    text-align:right !important;
+    white-space:nowrap !important;
+    font-size:13px !important;
+  }
+
+  /* ---------- MIDDLE ---------- */
+  html body .utc-status{
+    display:grid !important;
+    grid-template-rows:118px 204px 146px minmax(0,1fr) !important;
+    padding:0 14px !important;
+  }
+
+  html body .utc-status-section{
+    width:100% !important;
+    min-width:0 !important;
+    min-height:0 !important;
+    padding:10px 0 !important;
+    margin:0 !important;
+    box-sizing:border-box !important;
+    overflow:hidden !important;
+  }
+
+  html body .utc-status-section + .utc-status-section{
+    border-top:1px solid #24485d !important;
+  }
+
+  html body .utc-countdown{
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:flex-start !important;
+    padding-top:10px !important;
+  }
+
+  html body .utc-kicker{
+    font-size:9.5px !important;
+    line-height:1.05 !important;
+    font-weight:900 !important;
+    letter-spacing:.35px !important;
+    color:#6fd7ff !important;
+    text-align:left !important;
+  }
+
+  html body .utc-countdown-big{
+    margin-top:8px !important;
+    font-size:28px !important;
+    line-height:1 !important;
+    font-weight:950 !important;
+    text-align:left !important;
+  }
+
+  html body .utc-countdown-date{
+    margin-top:8px !important;
+    font-size:9px !important;
+    font-weight:900 !important;
+    text-align:left !important;
+  }
+
+  html body .utc-process{
+    display:grid !important;
+    grid-template-rows:auto 1px minmax(0,1fr) !important;
+    row-gap:12px !important;
+    align-content:center !important;
+  }
+
+  html body .utc-process-block,
+  html body .utc-current-block{
+    width:100% !important;
+    min-width:0 !important;
+  }
+
+  html body .utc-process-big{
+    margin-top:8px !important;
+    font-size:20px !important;
+    line-height:1.05 !important;
+    font-weight:950 !important;
+    text-align:left !important;
+  }
+
+  html body .utc-inner-divider{
+    width:100% !important;
+    height:1px !important;
+    background:#24485d !important;
+    margin:0 !important;
+  }
+
+  html body .utc-phase-big{
+    margin-top:7px !important;
+    font-size:18px !important;
+    line-height:1.05 !important;
+    font-weight:950 !important;
+    text-align:left !important;
+  }
+
+  html body .utc-next-label{
+    margin-top:12px !important;
+  }
+
+  html body .utc-next-target{
+    margin-top:6px !important;
+    min-height:28px !important;
+    font-size:10px !important;
+    line-height:1.15 !important;
+    color:#78dcff !important;
+    text-align:left !important;
+    overflow:hidden !important;
+  }
+
+  html body .utc-cycle{
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+  }
+
+  html body .utc-section-title{
+    margin:0 0 9px !important;
+    font-size:17px !important;
+    line-height:1 !important;
+    font-weight:950 !important;
+    text-align:left !important;
+  }
+
+  html body .utc-metric{
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) auto !important;
+    align-items:center !important;
+    gap:10px !important;
+    min-height:31px !important;
+    border-bottom:1px solid #24485d !important;
+    font-size:9px !important;
+  }
+
+  html body .utc-metric:last-child{
+    border-bottom:0 !important;
+  }
+
+  html body .utc-metric span{
+    color:#71d6ff !important;
+    font-weight:900 !important;
+  }
+
+  html body .utc-metric strong{
+    text-align:right !important;
+    white-space:nowrap !important;
+  }
+
+  html body .utc-forecast{
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:flex-start !important;
+    padding-top:12px !important;
+    padding-bottom:10px !important;
+  }
+
+  html body .utc-forecast-button{
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) auto !important;
+    align-items:center !important;
+    gap:10px !important;
+    width:100% !important;
+    min-height:48px !important;
+    margin:7px 0 14px !important;
+    padding:8px 10px !important;
+    box-sizing:border-box !important;
+    text-align:left !important;
+  }
+
+  html body .utc-forecast-button > span:first-child{
+    min-width:0 !important;
+    white-space:normal !important;
+    line-height:1.1 !important;
+  }
+
+  html body .utc-forecast-date{
+    margin-top:auto !important;
+    width:100% !important;
+  }
+
+  html body .utc-forecast-date strong{
+    display:block !important;
+    margin-top:6px !important;
+    font-size:16px !important;
+    line-height:1 !important;
+    text-align:left !important;
+  }
+
+  /* ---------- RIGHT ---------- */
+  html body .utc-progress{
+    display:grid !important;
+    grid-template-rows:318px 1px 156px 1px minmax(0,1fr) !important;
+    padding:0 14px !important;
+  }
+
+  html body .utc-progress-list{
+    grid-row:1 !important;
+    display:grid !important;
+    grid-template-rows:repeat(8,minmax(0,1fr)) !important;
+    gap:7px !important;
+    width:100% !important;
+    height:318px !important;
+    min-height:318px !important;
+    padding:10px 0 !important;
+    box-sizing:border-box !important;
+  }
+
+  html body .utc-progress-list .progress-item{
+    display:grid !important;
+    grid-template-rows:auto 11px auto !important;
+    align-content:center !important;
+    width:100% !important;
+    min-width:0 !important;
+    min-height:0 !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+
+  html body .utc-progress-list .progress-head{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:10px !important;
+    width:100% !important;
+    margin:0 0 4px !important;
+    font-size:10px !important;
+    line-height:1 !important;
+    text-align:left !important;
+  }
+
+  html body .utc-progress-list .progress-head b{
+    margin-left:auto !important;
+    white-space:nowrap !important;
+  }
+
+  html body .utc-progress-list .track{
+    display:block !important;
+    width:100% !important;
+    max-width:none !important;
+    height:11px !important;
+    min-height:11px !important;
+    margin:0 !important;
+    border:1px solid #39708e !important;
+    border-radius:6px !important;
+    background:#020c14 !important;
+    box-sizing:border-box !important;
+    overflow:hidden !important;
+  }
+
+  html body .utc-progress-list .track .fill{
+    display:block !important;
+    height:100% !important;
+    min-height:100% !important;
+    border-radius:5px !important;
+  }
+
+  html body .utc-progress-list .progress-step{
+    width:100% !important;
+    min-height:8px !important;
+    margin:3px 0 0 !important;
+    font-size:7px !important;
+    line-height:1 !important;
+    text-align:left !important;
+  }
+
+  html body .utc-divider{
+    width:100% !important;
+    height:1px !important;
+    background:#2b607d !important;
+    margin:0 !important;
+  }
+
+  html body .utc-checklists{grid-row:3 !important;}
+  html body .utc-admin{grid-row:5 !important;}
+
+  html body .utc-work{
+    display:grid !important;
+    grid-template-rows:30px minmax(0,1fr) 42px !important;
+    width:100% !important;
+    height:100% !important;
+    min-height:0 !important;
+    margin:0 !important;
+    padding:10px 0 8px !important;
+    box-sizing:border-box !important;
+    overflow:hidden !important;
+  }
+
+  html body .utc-work-head{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:10px !important;
+    width:100% !important;
+    min-width:0 !important;
+    font-size:10px !important;
+    text-align:left !important;
+  }
+
+  html body .utc-work-head span{
+    margin-left:auto !important;
+    white-space:nowrap !important;
+    font-size:9px !important;
+    color:#aab8c3 !important;
+  }
+
+  html body .utc-work-body{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    width:100% !important;
+    min-width:0 !important;
+    min-height:0 !important;
+    overflow:hidden !important;
+  }
+
+  html body .utc-task-row{
+    display:grid !important;
+    grid-template-columns:auto minmax(0,1fr) auto !important;
+    align-items:center !important;
+    gap:9px !important;
+    width:100% !important;
+    min-width:0 !important;
+    margin:0 !important;
+    padding:8px 10px !important;
+    border:1px solid #e89c00 !important;
+    border-radius:4px !important;
+    box-sizing:border-box !important;
+    text-align:left !important;
+  }
+
+  html body .utc-task-row span{
+    min-width:0 !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    white-space:nowrap !important;
+  }
+
+  html body .utc-task-row em{
+    white-space:nowrap !important;
+    font-size:8px !important;
+  }
+
+  html body .utc-state-message{
+    width:100% !important;
+    margin:0 !important;
+    padding:0 !important;
+    font-size:14px !important;
+    line-height:1.15 !important;
+    font-weight:950 !important;
+    text-align:center !important;
+  }
+
+  html body .utc-work-button{
+    align-self:end !important;
+    width:100% !important;
+    height:42px !important;
+    margin:0 !important;
+    padding:0 8px !important;
+    border:0 !important;
+    background:#02111c !important;
+    font-size:14px !important;
+    font-weight:950 !important;
+    text-align:center !important;
+  }
+
+  /* page containers may place the card, never resize internals */
+  html body .operations-tool-carousel .utc-host,
+  html body .update-live-card-list .utc-host{
+    width:100% !important;
+  }
+
+  /* footer remains page-accent coordinated */
+  html body:not(.screenshot-mode):not(.presentation-mode) .app-footer{
+    background:
+      linear-gradient(115deg,var(--accent) 0 40%,transparent 40%),
+      linear-gradient(65deg,transparent 0 60%,var(--accent) 60% 100%),
+      #05080d !important;
+    height:52px !important;
+    min-height:52px !important;
+    max-height:52px !important;
+  }
+}

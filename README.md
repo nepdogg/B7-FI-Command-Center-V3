@@ -117,3 +117,15 @@ Final Universal Tool Card desktop lock:
 - full-width 12px progress bars with larger gaps
 - active/packing/shipped/complete states forced into identical geometry
 - active-page accent footer preserved at 52px
+
+## V6.1.0
+Clean Universal Tool Card Component rebuild:
+- replaced the legacy card markup with a dedicated UTC component
+- exact three equal columns
+- state-independent fixed regions
+- centered UTID/model header
+- reference-mockup layout for FI Process / Cycle / Forecast
+- full-width progress bars
+- fixed checklist/admin regions for active and completed states
+- page containers can position the card but cannot restyle its internals
+- active-page accent footer retained

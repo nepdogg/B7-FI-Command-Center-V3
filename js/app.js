@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.0.12', BUILD='20260830-V6.0.12-FINAL-UNIVERSAL-CARD-DESKTOP-LOCK';
+const VERSION='6.1.0', BUILD='20260830-V6.1.0-CLEAN-UNIVERSAL-CARD-COMPONENT';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI 200 Final Pre-Pack and QA';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -240,10 +240,156 @@ function forecastChecklistModal(id){
 }
 function cycleTimeView(){let a=activeTools().filter(t=>['FI','Engineering','Powered Down','Packing'].includes(t.toolStatus)||t.fiHandoffDate);let groups={};a.forEach(t=>(groups[t.codename]??=[]).push(t));let rows=Object.entries(groups).sort().flatMap(([f,ts])=>ts.map(t=>{let actual=actualCycleDays(t),avg=cycleAverageDays(t),pct=avg?Math.round(actual/avg*100):0,[health,cls]=cycleHealth(t);return `<tr><td><b>${esc(t.id)}</b></td><td>${esc(f)}</td><td>${esc(fmtDate(t.fiHandoffDate)||'—')}</td><td>${actual?`DAY ${actual}`:'NOT STARTED'}</td><td>${avg?avg+' DAYS':'TBD'}</td><td><div class="track"><div class="fill ${pct>100?'red':pct>=85?'amber':'green'}" style="width:${Math.min(100,pct)}%"></div></div><small>${avg?pct+'%':'TARGET TBD'}</small></td><td class="cycle-health ${cls}">${esc(health)}</td><td>${esc(nextStepLabel(t))}${forecastNextDate(t)?`<small>FORECAST ${esc(fmtDate(forecastNextDate(t)))}</small>`:''}</td></tr>`}));return `<section class="panel cycle-time-frame"><table class="data-table cycle-time-table"><thead><tr><th>TOOL</th><th>TYPE</th><th>FI HANDOFF</th><th>CURRENT CYCLE</th><th>AVG CYCLE</th><th>CYCLE PROGRESS</th><th>STATUS</th><th>NEXT STEP / FORECAST</th></tr></thead><tbody>${rows.join('')||'<tr><td colspan="8">No tools currently accumulating FI cycle time.</td></tr>'}</tbody></table></section>`}
 function liveTone(t,pf){if(t.toolStatus==='Shipped')return 'perf-green';if(t.toolStatus==='Packing')return 'perf-cyan';if(t.toolStatus==='Powered Down')return 'perf-green';if(['OPI','OI','Engineering'].includes(t.toolStatus))return t.toolStatus==='Engineering'?'perf-orange':'perf-neutral';if(t.toolStatus==='FI')return pf==='BEHIND'?'perf-red':pf==='AHEAD'?'perf-purple':'perf-green';return 'perf-neutral'}
-function liveToolCard(tool=null){let a=nonArchivedTools();if(!a.length&&!tool)return `<section class="panel"><p>No active tools.</p></section>`;let t;if(tool){t=tool}else{liveIndex=((liveIndex%a.length)+a.length)%a.length;t=a[liveIndex]}let [pf,col,cls]=performance(t),actualFi=fiProgress(t),actualMi=microProgress(t),actualLead=leadProgress(t),ship=shippingProgress(t),isShipped=t.toolStatus==='Shipped',fi=isShipped?100:actualFi,mi=isShipped?100:actualMi,leadPct=isShipped?100:actualLead,tone=liveTone(t,pf),rem=leadRemaining(t),next=nextLeadTasks(t,1),fq=fiChecklistSummary(t),working=fiWorkingRows(t,1),count=shipCountdown(t),alias=(t.alias||t.id||'TOOL').toUpperCase();let process='NOT IN FI',processClass='neutral',system=t.toolStatus.toUpperCase(),nextLine='';if(t.toolStatus==='OPI'){nextLine='NEXT: OI HANDOFF'}else if(t.toolStatus==='OI'){nextLine='NEXT: FI HANDOFF'}else if(t.toolStatus==='Engineering'){process='ENGINEERING HOLD';processClass='attention';system='ENGINEERING';nextLine='NEXT: RETURN TO FI'}else if(t.toolStatus==='FI'){process=pf==='AHEAD'?'AHEAD OF SCHEDULE':pf==='BEHIND'?'BEHIND SCHEDULE':'ON SCHEDULE';processClass=cls;system='FI TESTING';nextLine=nextFiMilestone(t)}else if(t.toolStatus==='Powered Down'){process='FI COMPLETE';processClass='complete';system='POWERED DOWN';nextLine='START PACKING'}else if(t.toolStatus==='Packing'){process='PACKING';processClass='packing';system='PACKING';nextLine=shippingStep(t)}else if(t.toolStatus==='Shipped'){process='COMPLETE';processClass='complete';system='SHIPPED';nextLine='SHIPPING COMPLETE'}let forecast=calculatedForecastDate(t),cyc=actualCycleDays(t),avgCycle=cycleAverageDays(t),cyclePct=avgCycle?Math.round(cyc/avgCycle*100):0,cycleColor=cyclePct>100?'red':cyclePct>=85?'amber':'green';let toolSub=[t.codename,t.model].filter(Boolean).join(' · ');return `<section class="panel live-panel universal-card-host" data-universal-tool-card="${esc(t.id)}"><div class="live-card live-card-v52 ${tone}">
-<div class="universal-tool-column universal-info-column"><div class="live-six-panel photo-panel ${t.reducedProcess?'reduced-photo':''}"><button class="tool-photo-open" data-open-tool="${esc(t.id)}" type="button" title="Open Tool Editor">↗</button><div class="photo-title-row sketch-photo-title"><div><div class="live-codename">${esc(t.id)}</div><div class="tool-type-model">${esc(toolSub)}</div></div></div><div class="live-photo tool-open-photo" data-open-tool="${esc(t.id)}" role="button" tabindex="0" title="Open Tool Editor"><img src="${familyImage(t)}" alt="${esc(t.codename)} tool"></div><div class="reduced-process-badge sketch-reduced ${t.reducedProcess?'active':'idle'}">REDUCED PROCESS</div><div class="key-test-badges six-badges">${keyTestBadge('IRONMAN',t.keyTests.ironman)}${keyTestBadge('AV DATA',t.keyTests.avData)}${keyTestBadge('SCC CLEANUP',t.keyTests.sccCleanup)}${keyTestBadge('BACKUP',t.keyTests.backup)}${workflowBadge('CUSTOMER SOURCE',t.sourceRequired,t.sourceStatus)}${workflowBadge('STR',t.strRequired,t.strStatus)}</div><div class="sketch-info-lines"><div class="kv"><span>Customer</span><strong>${esc(t.customer)}</strong></div><div class="kv"><span>Sales Order</span><strong>${esc(t.salesOrder||'—')}</strong></div><div class="kv"><span>Ship Date</span><strong>${esc(shipDayDate(t.shipDate)||'—')}</strong></div></div></div></div>
-<div class="universal-tool-column universal-status-column"><div class="live-six-panel tool-status-box sketch-status-box"><section class="sketch-status-section"><div class="status-kicker">${esc(alias)} SHIP COUNTDOWN</div><div class="countdown-big ${count.tone}">${esc(count.big)}</div><div class="countdown-date">${esc(count.small)}</div></section><section class="sketch-status-section"><div class="status-kicker">FI PROCESS</div><div class="schedule-health ${processClass}">${esc(process)}</div><div class="status-kicker status-current-label">CURRENT SYSTEM STATUS</div><div class="phase-big">${esc(system)}</div><div class="status-kicker status-current-label">NEXT FI TARGET</div><div class="next-milestone next-fi-standout">${esc(nextLine)}</div></section><section class="sketch-status-section"><div class="sketch-section-title">FI CYCLE TIME</div><div class="cycle-metric"><span>FI HANDOFF</span><strong>${esc(fmtDate(t.fiHandoffDate)||'—')}</strong></div><div class="cycle-metric"><span>CURRENT CYCLE TIME</span><strong>${t.fiHandoffDate?`${cyc} DAYS`:'NOT STARTED'}</strong></div><div class="cycle-metric"><span>TARGET CYCLE TIME</span><strong>${avgCycle?`${avgCycle} DAYS`:'TBD'}</strong></div></section><section class="sketch-status-section sketch-forecast"><div class="sketch-section-title">FI FORECAST</div><div class="forecast-target-stack"><span class="status-kicker">FI NEXT STEP</span><button class="forecast-target-button" data-forecast-checklist="${esc(t.id)}" title="Select FI forecast checklist">${esc(forecastTargetLabel(t))}<span>▾</span></button></div><div class="forecast-date-stack"><span class="status-kicker">FI FORECAST DATE</span><strong>${forecast?esc(fmtDate(forecast)):'CALCULATED DATE TBD'}</strong></div></section></div></div>
-<div class="universal-tool-column universal-progress-column"><div class="live-six-panel live-progress compact-progress sketch-progress">${progressItem('FI TESTING',fi,t.toolStatus==='FI'?col:isShipped?'green':(['Powered Down','Packing'].includes(t.toolStatus)?'green':'blue'))}${progressItem('MICRO SCHEDULE',mi,isShipped?'green':'cyan')}${cycleDayItem('CURRENT CYCLE TIME',t.fiHandoffDate?cyc:null,avgCycle,isShipped?'green':cycleColor,t.fiHandoffDate?`${cyc} DAYS`:'NOT STARTED')}${cycleDayItem('TARGET CYCLE TIME',avgCycle||null,avgCycle,isShipped&&avgCycle?'green':'blue',avgCycle?`${avgCycle} DAYS`:'TARGET TBD')}${progressItem('LEAD / ADMIN PROGRESS',leadPct,isShipped?'green':'amber')}${workflowProgressItem('CUSTOMER SOURCE',t.sourceRequired,t.sourceStatus,'source')}${workflowProgressItem('STR',t.strRequired,t.strStatus,'str')}${progressItem('PACKING / SHIPPING',isShipped?100:ship,isShipped?'green':'cyan')}</div><div class="live-six-panel live-fi-panel"><div class="live-task-head"><b>FI CHECKLISTS</b><span>${isShipped?'COMPLETE':`${fq.done}/${fq.total} COMPLETE`}</span></div>${isShipped?'<div class="tasks-complete">✓ ALL FI CHECKLISTS COMPLETE</div>':working.length?working.map(([c,n])=>`<div class="active-fi"><span>${esc(c)} — ${esc(n)}</span><em>${esc(t.fiChecklistStates[c]||'NEXT').toUpperCase()}</em></div>`).join(''):`<div class="${fq.incomplete?'no-active-fi':'tasks-complete'}">${fq.incomplete?`${fq.incomplete} INCOMPLETE · NO ACTIVE CHECKLISTS`:'✓ ALL FI CHECKLISTS COMPLETE'}</div>`}<button class="btn view-all-tasks" data-fi-checklists="${esc(t.id)}">${isShipped?'COMPLETE · VIEW HISTORY':`${fq.incomplete} INCOMPLETE · VIEW ALL`}</button></div><div class="live-six-panel live-tasks"><div class="live-task-head"><b>LEAD / ADMIN TASKS</b><span>${isShipped?'COMPLETE':`${rem.length} REMAINING`}</span></div>${isShipped?'<div class="tasks-complete">✓ ALL LEAD / ADMIN TASKS COMPLETE</div>':next.map((x,i)=>`<div class="next-task ${x.status==='In Progress'?'progress':x.status==='Requirement TBD'?'tbd':''}"><b>${i+1}</b><span>${esc(x.name)}</span><em>${esc(x.status).toUpperCase()}</em></div>`).join('')||'<div class="tasks-complete">✓ ALL LEAD / ADMIN TASKS COMPLETE</div>'}<button class="btn view-all-tasks" data-lead-tasks="${esc(t.id)}">${isShipped?'COMPLETE · VIEW HISTORY':`${rem.length>1?`+${rem.length-1} MORE · `:''}VIEW ALL TASKS`}</button></div></div></div></section>`}
+function liveToolCard(tool=null){
+  let a=nonArchivedTools();
+  if(!a.length&&!tool)return `<section class="panel"><p>No active tools.</p></section>`;
+  let t;
+  if(tool){t=tool}else{liveIndex=((liveIndex%a.length)+a.length)%a.length;t=a[liveIndex]}
+
+  let [pf,col,cls]=performance(t),
+      actualFi=fiProgress(t),
+      actualMi=microProgress(t),
+      actualLead=leadProgress(t),
+      ship=shippingProgress(t),
+      isShipped=t.toolStatus==='Shipped',
+      fi=isShipped?100:actualFi,
+      mi=isShipped?100:actualMi,
+      leadPct=isShipped?100:actualLead,
+      tone=liveTone(t,pf),
+      rem=leadRemaining(t),
+      next=nextLeadTasks(t,1),
+      fq=fiChecklistSummary(t),
+      working=fiWorkingRows(t,1),
+      count=shipCountdown(t),
+      alias=(t.alias||t.id||'TOOL').toUpperCase();
+
+  let process='NOT IN FI',processClass='neutral',system=t.toolStatus.toUpperCase(),nextLine='';
+  if(t.toolStatus==='OPI'){nextLine='NEXT: OI HANDOFF'}
+  else if(t.toolStatus==='OI'){nextLine='NEXT: FI HANDOFF'}
+  else if(t.toolStatus==='Engineering'){process='ENGINEERING HOLD';processClass='attention';system='ENGINEERING';nextLine='NEXT: RETURN TO FI'}
+  else if(t.toolStatus==='FI'){process=pf==='AHEAD'?'AHEAD OF SCHEDULE':pf==='BEHIND'?'BEHIND SCHEDULE':'ON SCHEDULE';processClass=cls;system='FI TESTING';nextLine=nextFiMilestone(t)}
+  else if(t.toolStatus==='Powered Down'){process='FI COMPLETE';processClass='complete';system='POWERED DOWN';nextLine='START PACKING'}
+  else if(t.toolStatus==='Packing'){process='PACKING';processClass='packing';system='PACKING';nextLine=shippingStep(t)}
+  else if(t.toolStatus==='Shipped'){process='COMPLETE';processClass='complete';system='SHIPPED';nextLine='SHIPPING COMPLETE'}
+
+  let forecast=calculatedForecastDate(t),
+      cyc=actualCycleDays(t),
+      avgCycle=cycleAverageDays(t),
+      cyclePct=avgCycle?Math.round(cyc/avgCycle*100):0,
+      cycleColor=cyclePct>100?'red':cyclePct>=85?'amber':'green',
+      toolSub=[t.codename,t.model].filter(Boolean).join(' · ');
+
+  let checklistBody=isShipped
+    ? `<div class="utc-state-message">✓ ALL FI CHECKLISTS COMPLETE</div>`
+    : working.length
+      ? working.map(([c,n])=>`<div class="utc-task-row active-fi"><span>${esc(c)} — ${esc(n)}</span><em>${esc(t.fiChecklistStates[c]||'NEXT').toUpperCase()}</em></div>`).join('')
+      : `<div class="utc-state-message ${fq.incomplete?'pending':''}">${fq.incomplete?`${fq.incomplete} INCOMPLETE · NO ACTIVE CHECKLISTS`:'✓ ALL FI CHECKLISTS COMPLETE'}</div>`;
+
+  let adminBody=isShipped
+    ? `<div class="utc-state-message">✓ ALL LEAD / ADMIN TASKS COMPLETE</div>`
+    : next.length
+      ? next.map((x,i)=>`<div class="utc-task-row next-task ${x.status==='In Progress'?'progress':x.status==='Requirement TBD'?'tbd':''}"><b>${i+1}</b><span>${esc(x.name)}</span><em>${esc(x.status).toUpperCase()}</em></div>`).join('')
+      : `<div class="utc-state-message">✓ ALL LEAD / ADMIN TASKS COMPLETE</div>`;
+
+  return `<section class="panel live-panel universal-card-host utc-host" data-universal-tool-card="${esc(t.id)}">
+    <div class="utc-card ${tone}">
+      <section class="utc-column utc-info">
+        <header class="utc-info-head">
+          <div class="utc-utid">${esc(t.id)}</div>
+          <div class="utc-model">${esc(toolSub)}</div>
+          <button class="utc-open tool-photo-open" data-open-tool="${esc(t.id)}" type="button" title="Open Tool Editor">↗</button>
+        </header>
+        <div class="utc-photo tool-open-photo" data-open-tool="${esc(t.id)}" role="button" tabindex="0" title="Open Tool Editor">
+          <img src="${familyImage(t)}" alt="${esc(t.codename)} tool">
+        </div>
+        <div class="utc-reduced ${t.reducedProcess?'active':'idle'}">REDUCED PROCESS</div>
+        <div class="utc-badges">
+          ${keyTestBadge('IRONMAN',t.keyTests.ironman)}
+          ${keyTestBadge('AV DATA',t.keyTests.avData)}
+          ${keyTestBadge('SCC CLEANUP',t.keyTests.sccCleanup)}
+          ${keyTestBadge('BACKUP',t.keyTests.backup)}
+          ${workflowBadge('CUSTOMER SOURCE',t.sourceRequired,t.sourceStatus)}
+          ${workflowBadge('STR',t.strRequired,t.strStatus)}
+        </div>
+        <div class="utc-meta">
+          <div class="utc-meta-row"><span>Customer</span><strong>${esc(t.customer||'N/A')}</strong></div>
+          <div class="utc-meta-row"><span>Sales Order</span><strong>${esc(t.salesOrder||'—')}</strong></div>
+          <div class="utc-meta-row"><span>Ship Date</span><strong>${esc(shipDayDate(t.shipDate)||'—')}</strong></div>
+        </div>
+      </section>
+
+      <section class="utc-column utc-status">
+        <div class="utc-status-section utc-countdown">
+          <div class="utc-kicker">${esc(alias)} SHIP COUNTDOWN</div>
+          <div class="utc-countdown-big ${count.tone}">${esc(count.big)}</div>
+          <div class="utc-countdown-date">${esc(count.small)}</div>
+        </div>
+
+        <div class="utc-status-section utc-process">
+          <div class="utc-process-block">
+            <div class="utc-kicker">FI PROCESS</div>
+            <div class="utc-process-big ${processClass}">${esc(process)}</div>
+          </div>
+          <div class="utc-inner-divider"></div>
+          <div class="utc-current-block">
+            <div class="utc-kicker">CURRENT SYSTEM STATUS</div>
+            <div class="utc-phase-big">${esc(system)}</div>
+            <div class="utc-kicker utc-next-label">NEXT FI TARGET</div>
+            <div class="utc-next-target">${esc(nextLine)}</div>
+          </div>
+        </div>
+
+        <div class="utc-status-section utc-cycle">
+          <div class="utc-section-title">FI CYCLE TIME</div>
+          <div class="utc-metric"><span>FI HANDOFF</span><strong>${esc(fmtDate(t.fiHandoffDate)||'—')}</strong></div>
+          <div class="utc-metric"><span>CURRENT CYCLE TIME</span><strong>${t.fiHandoffDate?`${cyc} DAYS`:'NOT STARTED'}</strong></div>
+          <div class="utc-metric"><span>TARGET CYCLE TIME</span><strong>${avgCycle?`${avgCycle} DAYS`:'TBD'}</strong></div>
+        </div>
+
+        <div class="utc-status-section utc-forecast">
+          <div class="utc-section-title">FI FORECAST</div>
+          <div class="utc-kicker">FI NEXT STEP</div>
+          <button class="utc-forecast-button forecast-target-button" data-forecast-checklist="${esc(t.id)}" title="Select FI forecast checklist">
+            <span>${esc(forecastTargetLabel(t))}</span><span>▾</span>
+          </button>
+          <div class="utc-forecast-date">
+            <div class="utc-kicker">FI FORECAST DATE</div>
+            <strong>${forecast?esc(fmtDate(forecast)):'CALCULATED DATE TBD'}</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="utc-column utc-progress">
+        <div class="utc-progress-list">
+          ${progressItem('FI TESTING',fi,t.toolStatus==='FI'?col:isShipped?'green':(['Powered Down','Packing'].includes(t.toolStatus)?'green':'blue'))}
+          ${progressItem('MICRO SCHEDULE',mi,isShipped?'green':'cyan')}
+          ${cycleDayItem('CURRENT CYCLE TIME',t.fiHandoffDate?cyc:null,avgCycle,isShipped?'green':cycleColor,t.fiHandoffDate?`${cyc} DAYS`:'NOT STARTED')}
+          ${cycleDayItem('TARGET CYCLE TIME',avgCycle||null,avgCycle,isShipped&&avgCycle?'green':'blue',avgCycle?`${avgCycle} DAYS`:'TARGET TBD')}
+          ${progressItem('LEAD / ADMIN PROGRESS',leadPct,isShipped?'green':'amber')}
+          ${workflowProgressItem('CUSTOMER SOURCE',t.sourceRequired,t.sourceStatus,'source')}
+          ${workflowProgressItem('STR',t.strRequired,t.strStatus,'str')}
+          ${progressItem('PACKING / SHIPPING',isShipped?100:ship,isShipped?'green':'cyan')}
+        </div>
+
+        <div class="utc-divider"></div>
+
+        <section class="utc-work utc-checklists">
+          <div class="utc-work-head"><b>FI CHECKLISTS</b><span>${isShipped?'COMPLETE':`${fq.done}/${fq.total} COMPLETE`}</span></div>
+          <div class="utc-work-body">${checklistBody}</div>
+          <button class="btn utc-work-button view-all-tasks" data-fi-checklists="${esc(t.id)}">${isShipped?'COMPLETE · VIEW HISTORY':`${fq.incomplete} INCOMPLETE · VIEW ALL`}</button>
+        </section>
+
+        <div class="utc-divider"></div>
+
+        <section class="utc-work utc-admin">
+          <div class="utc-work-head"><b>LEAD / ADMIN TASKS</b><span>${isShipped?'COMPLETE':`${rem.length} REMAINING`}</span></div>
+          <div class="utc-work-body">${adminBody}</div>
+          <button class="btn utc-work-button view-all-tasks" data-lead-tasks="${esc(t.id)}">${isShipped?'COMPLETE · VIEW HISTORY':`${rem.length>1?`+${rem.length-1} MORE · `:''}VIEW ALL TASKS`}</button>
+        </section>
+      </section>
+    </div>
+  </section>`;
+}
 function progressItem(name,p,color,extra='',step=''){return `<div class="progress-item"><div class="progress-head"><span>${name}${extra?' — '+extra:''}</span><b>${p}%</b></div><div class="track"><div class="fill ${color==='cyan'?'':color}" style="width:${p}%"></div></div>${step?`<div class="progress-step">${esc(step)}</div>`:''}</div>`}
 function workflowProgress(required,status,type){
   let r=String(required||'TBD').toUpperCase(),v=String(status||'').trim();
