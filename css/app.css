@@ -2453,3 +2453,312 @@ body .universal-card-host .live-card-v52.perf-cyan{border-color:var(--cyan)!impo
   body[data-center="operations"] .operations-status-carousel,
   body[data-center="operations"] .operations-tool-carousel{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important}
 }
+
+
+/* =========================================================
+   V6.0.4 CARD STRUCTURE + FOOTER RESTORE — FINAL AUTHORITY
+   Scope: Universal Tool Card + footer only.
+   ========================================================= */
+
+/* One card geometry everywhere */
+body[data-center="operations"] .operations-tool-carousel .live-panel,
+body[data-center="operations"] .update-live-card-list > .live-panel,
+.universal-card-host .live-panel{
+  height: 680px !important;
+  min-height: 680px !important;
+  max-height: 680px !important;
+  margin: 0 !important;
+}
+
+body[data-center="operations"] .operations-tool-carousel .live-card-v52,
+body[data-center="operations"] .update-live-card-list .live-card-v52,
+.universal-card-host .live-card-v52{
+  display:grid !important;
+  grid-template-columns: repeat(3,minmax(0,1fr)) !important;
+  gap: 8px !important;
+  height:100% !important;
+  min-height:0 !important;
+  align-items:stretch !important;
+}
+
+/* all three columns equal and boxed */
+body[data-center="operations"] .operations-tool-carousel .live-card-v52 > .universal-tool-column,
+body[data-center="operations"] .update-live-card-list .live-card-v52 > .universal-tool-column,
+.universal-card-host .live-card-v52 > .universal-tool-column{
+  min-width:0 !important;
+  height:100% !important;
+  border:1px solid var(--line,#24526b) !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+
+/* LEFT COLUMN: explicit vertical regions, no collisions */
+.universal-card-host .universal-info-column,
+body[data-center="operations"] .operations-tool-carousel .universal-info-column,
+body[data-center="operations"] .update-live-card-list .universal-info-column{
+  position:relative !important;
+  display:grid !important;
+  grid-template-rows: 68px 235px 34px 106px 1fr 112px !important;
+  gap:0 !important;
+  padding:10px 12px 10px !important;
+  align-content:stretch !important;
+}
+
+.universal-card-host .universal-info-column .tool-photo-open,
+body[data-center="operations"] .operations-tool-carousel .universal-info-column .tool-photo-open,
+body[data-center="operations"] .update-live-card-list .universal-info-column .tool-photo-open{
+  position:absolute !important;
+  top:10px !important;
+  right:10px !important;
+  z-index:5 !important;
+}
+
+.universal-card-host .universal-info-column .live-codename,
+body[data-center="operations"] .operations-tool-carousel .universal-info-column .live-codename,
+body[data-center="operations"] .update-live-card-list .universal-info-column .live-codename{
+  grid-row:1 !important;
+  width:100% !important;
+  text-align:center !important;
+  justify-self:center !important;
+  align-self:start !important;
+  font-size:30px !important;
+  line-height:1 !important;
+  margin:0 !important;
+  padding:2px 36px 0 !important;
+  box-sizing:border-box !important;
+}
+
+.universal-card-host .universal-info-column .tool-type-model,
+body[data-center="operations"] .operations-tool-carousel .universal-info-column .tool-type-model,
+body[data-center="operations"] .update-live-card-list .universal-info-column .tool-type-model{
+  position:absolute !important;
+  top:45px !important;
+  left:0 !important;
+  width:100% !important;
+  text-align:center !important;
+  font-size:13px !important;
+  line-height:1.1 !important;
+  margin:0 !important;
+  padding:0 34px !important;
+  box-sizing:border-box !important;
+}
+
+.universal-card-host .universal-info-column .photo-panel,
+body[data-center="operations"] .operations-tool-carousel .universal-info-column .photo-panel,
+body[data-center="operations"] .update-live-card-list .universal-info-column .photo-panel{
+  grid-row:2 !important;
+  height:100% !important;
+  min-height:0 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  margin:0 !important;
+  padding:6px 0 0 !important;
+  overflow:hidden !important;
+}
+
+.universal-card-host .universal-info-column .photo-panel img,
+body[data-center="operations"] .operations-tool-carousel .universal-info-column .photo-panel img,
+body[data-center="operations"] .update-live-card-list .universal-info-column .photo-panel img{
+  max-width:94% !important;
+  max-height:92% !important;
+  width:auto !important;
+  height:auto !important;
+  object-fit:contain !important;
+  transform:none !important;
+}
+
+.universal-card-host .universal-info-column .reduced-process,
+body[data-center="operations"] .operations-tool-carousel .universal-info-column .reduced-process,
+body[data-center="operations"] .update-live-card-list .universal-info-column .reduced-process{
+  grid-row:3 !important;
+  align-self:center !important;
+  margin:0 !important;
+}
+
+.universal-card-host .universal-info-column .key-test-grid,
+body[data-center="operations"] .operations-tool-carousel .universal-info-column .key-test-grid,
+body[data-center="operations"] .update-live-card-list .universal-info-column .key-test-grid{
+  grid-row:4 !important;
+  align-self:stretch !important;
+  margin:6px 0 0 !important;
+}
+
+.universal-card-host .universal-info-column .tool-info-lines,
+body[data-center="operations"] .operations-tool-carousel .universal-info-column .tool-info-lines,
+body[data-center="operations"] .update-live-card-list .universal-info-column .tool-info-lines{
+  grid-row:6 !important;
+  align-self:stretch !important;
+  display:grid !important;
+  grid-template-rows:repeat(3,1fr) !important;
+  margin:0 !important;
+  padding:0 !important;
+  border-bottom:0 !important;
+}
+
+.universal-card-host .universal-info-column .tool-info-line,
+body[data-center="operations"] .operations-tool-carousel .universal-info-column .tool-info-line,
+body[data-center="operations"] .update-live-card-list .universal-info-column .tool-info-line{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  font-size:13px !important;
+  line-height:1.2 !important;
+  min-height:0 !important;
+}
+.universal-card-host .universal-info-column .tool-info-line:last-child,
+body[data-center="operations"] .operations-tool-carousel .universal-info-column .tool-info-line:last-child,
+body[data-center="operations"] .update-live-card-list .universal-info-column .tool-info-line:last-child{
+  border-bottom:0 !important;
+}
+
+/* MIDDLE COLUMN: fill height more evenly, one divider only */
+.universal-card-host .universal-status-column,
+body[data-center="operations"] .operations-tool-carousel .universal-status-column,
+body[data-center="operations"] .update-live-card-list .universal-status-column{
+  padding:12px !important;
+  display:block !important;
+}
+
+.universal-card-host .universal-status-column .tool-status-box,
+body[data-center="operations"] .operations-tool-carousel .universal-status-column .tool-status-box,
+body[data-center="operations"] .update-live-card-list .universal-status-column .tool-status-box{
+  height:100% !important;
+  display:grid !important;
+  grid-template-rows: 1fr 1.35fr 1fr 1.2fr !important;
+  gap:0 !important;
+}
+
+.universal-card-host .universal-status-column .sketch-status-section,
+body[data-center="operations"] .operations-tool-carousel .universal-status-column .sketch-status-section,
+body[data-center="operations"] .update-live-card-list .universal-status-column .sketch-status-section{
+  min-height:0 !important;
+  padding:12px 0 !important;
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:flex-start !important;
+  border-top:0 !important;
+  border-bottom:1px solid var(--line,#24526b) !important;
+}
+.universal-card-host .universal-status-column .sketch-status-section:last-child,
+body[data-center="operations"] .operations-tool-carousel .universal-status-column .sketch-status-section:last-child,
+body[data-center="operations"] .update-live-card-list .universal-status-column .sketch-status-section:last-child{
+  border-bottom:0 !important;
+}
+
+/* RIGHT COLUMN: visible, spaced progress bars and inset dividers */
+.universal-card-host .universal-progress-column,
+body[data-center="operations"] .operations-tool-carousel .universal-progress-column,
+body[data-center="operations"] .update-live-card-list .universal-progress-column{
+  padding:10px 12px 10px !important;
+  display:grid !important;
+  grid-template-rows: 232px 1px 185px 1px 1fr !important;
+  row-gap:10px !important;
+  align-content:stretch !important;
+}
+
+.universal-card-host .universal-progress-column .progress-stack,
+body[data-center="operations"] .operations-tool-carousel .universal-progress-column .progress-stack,
+body[data-center="operations"] .update-live-card-list .universal-progress-column .progress-stack{
+  grid-row:1 !important;
+  display:grid !important;
+  grid-template-rows:repeat(8,1fr) !important;
+  gap:6px !important;
+  min-height:0 !important;
+  margin:0 !important;
+}
+
+.universal-card-host .universal-progress-column .progress-row,
+body[data-center="operations"] .operations-tool-carousel .universal-progress-column .progress-row,
+body[data-center="operations"] .update-live-card-list .universal-progress-column .progress-row{
+  min-height:0 !important;
+  display:grid !important;
+  grid-template-rows:auto 7px !important;
+  align-content:center !important;
+  gap:4px !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+
+.universal-card-host .universal-progress-column .progress-row .bar,
+body[data-center="operations"] .operations-tool-carousel .universal-progress-column .progress-row .bar,
+body[data-center="operations"] .update-live-card-list .universal-progress-column .progress-row .bar{
+  display:block !important;
+  height:7px !important;
+  min-height:7px !important;
+  opacity:1 !important;
+  visibility:visible !important;
+  margin:0 !important;
+}
+
+.universal-card-host .universal-progress-column .progress-divider,
+body[data-center="operations"] .operations-tool-carousel .universal-progress-column .progress-divider,
+body[data-center="operations"] .update-live-card-list .universal-progress-column .progress-divider{
+  width:calc(100% - 24px) !important;
+  justify-self:center !important;
+  height:1px !important;
+  background:var(--line,#24526b) !important;
+  margin:0 !important;
+}
+
+.universal-card-host .universal-progress-column .checklist-section,
+body[data-center="operations"] .operations-tool-carousel .universal-progress-column .checklist-section,
+body[data-center="operations"] .update-live-card-list .universal-progress-column .checklist-section{
+  grid-row:3 !important;
+  border:0 !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+
+.universal-card-host .universal-progress-column .admin-section,
+body[data-center="operations"] .operations-tool-carousel .universal-progress-column .admin-section,
+body[data-center="operations"] .update-live-card-list .universal-progress-column .admin-section{
+  grid-row:5 !important;
+  border:0 !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+
+/* Footer restore: color coding + locked placement */
+footer,
+.app-footer,
+#footer{
+  background:linear-gradient(90deg,#3b155f 0%,#4a1b75 50%,#3b155f 100%) !important;
+  border-top:2px solid #7d4dd8 !important;
+  min-height:54px !important;
+  color:#fff !important;
+}
+
+footer .footer-left,
+.app-footer .footer-left,
+#footer .footer-left{
+  display:flex !important;
+  align-items:center !important;
+  gap:14px !important;
+}
+
+footer .footer-data,
+.app-footer .footer-data,
+#footer .footer-data,
+#environmentLabel{
+  color:#25e8ff !important;
+  font-weight:800 !important;
+}
+
+footer .footer-center,
+.app-footer .footer-center,
+#footer .footer-center{
+  position:absolute !important;
+  left:50% !important;
+  transform:translateX(-50%) !important;
+}
+
+footer .footer-right,
+.app-footer .footer-right,
+#footer .footer-right{
+  margin-left:auto !important;
+  color:#b9e8ff !important;
+  white-space:nowrap !important;
+}

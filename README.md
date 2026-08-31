@@ -59,3 +59,7 @@ This release is a stability rebuild of the presentation layer using the existing
 - Gives all eight progress rows dedicated equal-height slots with additional label-to-bar spacing.
 - Uses one inset divider above FI Checklists and one inset divider above Lead / Admin Tasks, matching the middle-column divider style instead of touching the column border.
 - No navigation, storage schema, calculation, workflow, or page-generation logic changes.
+
+
+## V6.0.4
+Focused Universal Tool Card structural stabilization and footer color restoration.
