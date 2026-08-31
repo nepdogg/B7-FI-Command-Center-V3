@@ -84,3 +84,13 @@ Universal Tool Card refinement:
 - eight progress rows fill the progress region evenly
 - checklist/admin regions consume their full assigned height
 - footer design preserved from V6.0.8, height reduced to 54px
+
+## V6.0.10
+Universal Tool Card finalization pass:
+- exact equal outer boxes for all three columns
+- restored complete left-column box including bottom border
+- state-independent geometry across FI/Packing/Shipped cards
+- middle column starts at top and extends to bottom
+- larger progress region with 11px bars and more spacing
+- fixed checklist/task slots regardless tool state
+- finalized footer retained and shortened slightly to 52px
