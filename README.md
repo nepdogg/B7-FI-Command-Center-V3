@@ -184,3 +184,22 @@ Actual Tool Edit correction:
 - Presentation exit performs a stronger layout reset to prevent the normal Command Center from remaining distorted.
 - Added same-browser cross-window storage refresh so a Presentation window can receive saved data from another Command Center window.
 - NEXT FI TARGET label changed to NEXT FI TASK.
+
+## V6.1.8 — Stability / Universal Editor / Presentation
+- UPDATE COMMAND CENTER removed from Operations page-navigation buttons.
+- UPDATE COMMAND CENTER is now an Operations page action.
+- It opens the all-tools editor directly.
+- All-tools save button is now SAVE UPDATES and returns to the originating Operations page.
+- Rebuilt the all-tools editor as a much more complete universal tool editor.
+- FI Testing / Micro Schedule is restored to the correct two-column structure:
+  left = Current FI Checklist + Current Lead/Admin Task;
+  right = Micro Schedule Target + Start/Complete dates.
+- Removed Lead/Admin Progress from the editor.
+- Added a dedicated TOOL BADGES section with checkbox controls.
+- Added Key Process, Customer Source, STR, Shipping/Packing, NC/POA and complete checklist working-aid sections to the all-tools editor.
+- Improved all-tools visual separation with strong sticky tool headers.
+- Latest Status display no longer adds a second dash to lines that already have one.
+- Presentation Mode now includes the compact quarter summary, shipping progress, and days remaining.
+- Presentation controls are spread across the full action bar.
+- Universal Tool Card expands to use remaining presentation height.
+- Presentation-only overflow/line-height corrections reduce clipped text.
