@@ -203,3 +203,12 @@ Actual Tool Edit correction:
 - Presentation controls are spread across the full action bar.
 - Universal Tool Card expands to use remaining presentation height.
 - Presentation-only overflow/line-height corrections reduce clipped text.
+
+## V6.1.9
+- Update Command Center now renders the exact individual Tool Edit form for every tool.
+- Repeated forms use scoped IDs and the same authoritative Tool Edit collection/save logic.
+- Compact tool badges moved upward under the photo.
+- Open arrow moved into the upper-right corner treatment.
+- Added inset divider before Next FI Task; task value is gold.
+- Enlarged ship-date / missing-date text.
+- Screenshot Mode is full-screen with one complete center-colored outer border.
