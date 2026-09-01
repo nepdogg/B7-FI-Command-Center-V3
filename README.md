@@ -299,3 +299,13 @@ This release intentionally changes only the items confirmed still outstanding in
 - Removed unnecessary structural divider lines between the middle-column blocks.
 - Preserved useful inset row separators and all existing data/workflow behavior.
 - Presentation Mode keeps the V6.2.8 tool-only full-screen layout and text-fit corrections.
+
+## V6.3.0 — Presentation Card Fit / Spacing
+- Presentation Mode keeps the V6.2.9 single enormous Universal Tool Card layout.
+- Rebalanced left, middle, and right column spacing so card content fits without clipping.
+- Reduced presentation-only typography where necessary instead of changing normal Live Operations.
+- Long Next FI Task and FI Forecast Step text can wrap cleanly.
+- Right-column checklist/task text can wrap instead of being clipped.
+- Customer Source badge is allowed to wrap its label to two lines so the status has more room.
+- Tool photo, badge block, metadata rows, cycle rows, and forecast area were compacted only in Presentation Mode.
+- No data, workflow, calculation, or Command Center brain changes.
