@@ -7445,3 +7445,163 @@ html body .utc-status .utc-kicker,
 html body .utc-status .utc-metric span{
   text-overflow:clip !important;
 }
+
+
+/* =========================================================
+   V6.3.3 — UNIVERSAL CARD / MEETING HISTORY POLISH
+   Formatting only; no data/workflow/brain changes.
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   UNIVERSAL TOOL CARD: middle column
+   Four equal-height sections = evenly spaced divider positions.
+   --------------------------------------------------------- */
+@media (min-width:1101px){
+  html body .operations-tool-carousel .utc-status,
+  html body.presentation-mode .presentation-tool-only .utc-status{
+    display:grid !important;
+    grid-template-rows:repeat(4,minmax(0,1fr)) !important;
+    align-content:stretch !important;
+    justify-content:stretch !important;
+    gap:0 !important;
+    height:100% !important;
+    min-height:0 !important;
+    padding:0 14px !important;
+  }
+
+  html body .operations-tool-carousel .utc-status-section,
+  html body.presentation-mode .presentation-tool-only .utc-status-section{
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+    width:100% !important;
+    min-width:0 !important;
+    min-height:0 !important;
+    height:100% !important;
+    margin:0 !important;
+    padding:8px 0 !important;
+    box-sizing:border-box !important;
+    overflow:visible !important;
+  }
+
+  /* Exactly the two section dividers requested:
+     Next FI Task -> FI Cycle Time Start
+     Target Cycle Time -> FI Forecast Step */
+  html body .operations-tool-carousel .utc-cycle,
+  html body.presentation-mode .presentation-tool-only .utc-cycle,
+  html body .operations-tool-carousel .utc-forecast,
+  html body.presentation-mode .presentation-tool-only .utc-forecast{
+    border-top:1px solid #24485d !important;
+  }
+
+  /* Do not introduce an extra divider between Countdown and FI Status. */
+  html body .operations-tool-carousel .utc-process,
+  html body.presentation-mode .presentation-tool-only .utc-process{
+    border-top:0 !important;
+  }
+
+  /* Keep useful internal status dividers inset and consistent. */
+  html body .operations-tool-carousel .utc-process-block,
+  html body .operations-tool-carousel .utc-current-block,
+  html body.presentation-mode .presentation-tool-only .utc-process-block,
+  html body.presentation-mode .presentation-tool-only .utc-current-block{
+    padding:6px 0 !important;
+    margin:0 !important;
+  }
+
+  html body .operations-tool-carousel .utc-next-block,
+  html body.presentation-mode .presentation-tool-only .utc-next-block{
+    padding:6px 0 0 !important;
+    margin:0 !important;
+  }
+
+  html body .operations-tool-carousel .utc-countdown,
+  html body.presentation-mode .presentation-tool-only .utc-countdown{
+    justify-content:center !important;
+    padding:8px 0 !important;
+  }
+
+  html body .operations-tool-carousel .utc-cycle,
+  html body.presentation-mode .presentation-tool-only .utc-cycle,
+  html body .operations-tool-carousel .utc-forecast,
+  html body.presentation-mode .presentation-tool-only .utc-forecast{
+    justify-content:center !important;
+    padding:8px 0 !important;
+  }
+
+  html body .operations-tool-carousel .utc-forecast-date,
+  html body.presentation-mode .presentation-tool-only .utc-forecast-date{
+    margin-top:10px !important;
+  }
+
+  /* -------------------------------------------------------
+     PRESENTATION MODE must be the SAME three-box card.
+     Only the scale/available space changes.
+     ------------------------------------------------------- */
+  html body.presentation-mode .presentation-tool-only .utc-card{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:8px !important;
+    padding:0 !important;
+    box-sizing:border-box !important;
+  }
+
+  html body.presentation-mode .presentation-tool-only .utc-column{
+    border:1px solid #2b607d !important;
+    background:#041725 !important;
+    box-sizing:border-box !important;
+  }
+}
+
+/* ---------------------------------------------------------
+   CUSTOMER SOURCE BADGE: two-line label frees status width.
+   --------------------------------------------------------- */
+html body .workflow-badge{
+  min-width:0 !important;
+}
+html body .workflow-badge b:first-child{
+  min-width:0 !important;
+  white-space:normal !important;
+  line-height:1.02 !important;
+}
+html body .workflow-badge span{
+  min-width:0 !important;
+  white-space:normal !important;
+}
+
+/* ---------------------------------------------------------
+   MEETING HISTORY: close X fixed to POPUP upper-right.
+   Applies to both Meeting Center and Status Center because
+   both use the same meeting-history-detail renderer.
+   --------------------------------------------------------- */
+html body .modal-card:has(.meeting-history-detail){
+  position:relative !important;
+  overflow:hidden !important;
+  padding-top:18px !important;
+}
+
+html body .modal-card:has(.meeting-history-detail) > .modal-x{
+  position:absolute !important;
+  float:none !important;
+  top:8px !important;
+  right:8px !important;
+  left:auto !important;
+  margin:0 !important;
+  z-index:20000 !important;
+  width:34px !important;
+  height:34px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+
+html body .modal-card:has(.meeting-history-detail) #modalBody{
+  min-height:0 !important;
+  max-height:calc(90vh - 36px) !important;
+  overflow:auto !important;
+  padding-right:6px !important;
+}
+
+html body .modal-card:has(.meeting-history-detail) .meeting-history-detail{
+  clear:none !important;
+  padding-right:38px !important;
+}

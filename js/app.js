@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.3.2', BUILD='20260901-V6.3.2-CYCLE-LABEL-SPACING-FIX';
+const VERSION='6.3.3', BUILD='20260901-V6.3.3-UNIVERSAL-CARD-FINAL-POLISH';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI 200 Final Pre-Pack and QA';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];

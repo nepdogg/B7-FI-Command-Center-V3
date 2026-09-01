@@ -317,3 +317,14 @@ This release intentionally changes only the items confirmed still outstanding in
 - Prevents the forecast date from creating an oversized gap by keeping it inside the FI Forecast block.
 - Preserves the V6.3.1 Morning Meeting history viewer/close-button fixes.
 - No data, workflow, calculation, or Command Center brain changes.
+
+## V6.3.3 — Universal Card / Meeting History Polish
+- Added the two missing middle-column divider lines:
+  - Next FI Task -> FI Cycle Time Start
+  - Target Cycle Time -> FI Forecast Step
+- Divides the middle column into four equal-height bands so divider spacing is even.
+- Presentation Mode uses the same three individually boxed Universal Tool Card columns as Live Operations.
+- Customer Source badge label can wrap to two lines to preserve room for its status.
+- Meeting History close X is anchored to the popup upper-right and remains visible while content scrolls.
+- Applies the same meeting popup behavior from both Status Center and Meeting Center.
+- No data model, workflow, calculation, alert, or Command Center brain logic changed.
