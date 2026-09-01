@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.2.8', BUILD='20260901-V6.2.8-PRESENTATION-TEXT-FIT';
+const VERSION='6.2.9', BUILD='20260901-V6.2.9-MIDDLE-COLUMN-CLEANUP';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI 200 Final Pre-Pack and QA';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -436,7 +436,7 @@ function liveToolCard(tool=null){
         </div>
 
         <div class="utc-status-section utc-process">
-          <div class="utc-section-title utc-status-title">FI STATUS</div>
+          
           <div class="utc-process-block">
             <div class="utc-kicker">FI PROCESS</div>
             <div class="utc-process-big ${processClass}">${esc(process)}</div>
@@ -451,14 +451,14 @@ function liveToolCard(tool=null){
         </div>
 
         <div class="utc-status-section utc-cycle">
-          <div class="utc-section-title">FI CYCLE TIME</div>
+          
           <div class="utc-metric"><span>FI HANDOFF</span><strong>${esc(fmtDate(t.fiHandoffDate)||'—')}</strong></div>
           <div class="utc-metric"><span>CURRENT CYCLE TIME</span><strong>${t.fiHandoffDate?`${cyc} DAYS`:'NOT STARTED'}</strong></div>
           <div class="utc-metric"><span>TARGET CYCLE TIME</span><strong>${avgCycle?`${avgCycle} DAYS`:'TBD'}</strong></div>
         </div>
 
         <div class="utc-status-section utc-forecast">
-          <div class="utc-section-title">FI FORECAST</div>
+          
           <div class="utc-kicker">FI NEXT STEP</div>
           <button class="utc-forecast-button forecast-target-button" data-forecast-checklist="${esc(t.id)}" title="Select FI forecast checklist">
             <span>${esc(forecastTargetLabel(t))}</span><span>▾</span>

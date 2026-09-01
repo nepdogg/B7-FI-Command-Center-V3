@@ -290,3 +290,12 @@ This release intentionally changes only the items confirmed still outstanding in
 - Countdown, FI Status, Current System Status, Next FI Task and forecast text now wrap/scale within their sections.
 - Long checklist/task text can use available card width instead of being cut off.
 - No calculation, data-model, workflow, or Command Center brain changes.
+
+## V6.2.9 — Middle Column Cleanup
+- Removed the large section titles FI STATUS / FI CYCLE TIME / FI FORECAST.
+- Renamed cyan FI PROCESS label to FI STATUS.
+- Renamed cyan FI HANDOFF label to FI CYCLE TIME.
+- Renamed cyan FI NEXT STEP label to FI FORECAST STEP.
+- Removed unnecessary structural divider lines between the middle-column blocks.
+- Preserved useful inset row separators and all existing data/workflow behavior.
+- Presentation Mode keeps the V6.2.8 tool-only full-screen layout and text-fit corrections.

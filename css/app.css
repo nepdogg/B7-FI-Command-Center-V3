@@ -7065,3 +7065,62 @@ html body.presentation-mode .presentation-tool-only .utc-work-button{
   white-space:normal !important;
   overflow:visible !important;
 }
+
+
+/* =========================================================
+   V6.2.9 — MIDDLE COLUMN CLEANUP
+   Match the approved simplified hierarchy.
+   ========================================================= */
+
+/* Hide any legacy section-title remnants in the middle column. */
+html body .utc-status .utc-section-title{
+  display:none !important;
+}
+
+/* Remove unnecessary divider lines between the simplified blocks.
+   Keep only the useful row separators around status values. */
+html body .utc-status .utc-cycle{
+  border-top:0 !important;
+  padding-top:0 !important;
+}
+html body .utc-status .utc-forecast{
+  border-top:0 !important;
+  padding-top:0 !important;
+}
+html body .utc-status .utc-cycle::before,
+html body .utc-status .utc-forecast::before{
+  display:none !important;
+  content:none !important;
+}
+
+/* Tighten the middle column after removing headings. */
+html body .utc-status{
+  row-gap:8px !important;
+}
+html body .utc-status-section{
+  margin-top:0 !important;
+}
+html body .utc-status .utc-kicker{
+  margin-top:0 !important;
+}
+
+/* Presentation mode: allow the simplified middle column to breathe. */
+html body.presentation-mode .presentation-tool-only .utc-status{
+  grid-template-rows:minmax(104px,auto) minmax(198px,auto) minmax(132px,auto) minmax(0,1fr) !important;
+  row-gap:8px !important;
+}
+
+/* Forecast step label is slightly longer; keep it on one clear line. */
+html body .utc-forecast .utc-kicker{
+  white-space:nowrap !important;
+}
+
+/* Keep only inset row dividers; no full-width structural bars. */
+html body .utc-status .utc-process-block,
+html body .utc-status .utc-current-block,
+html body .utc-status .utc-next-block,
+html body .utc-status .utc-cycle-row,
+html body .utc-status .utc-forecast-date{
+  border-left:0 !important;
+  border-right:0 !important;
+}
