@@ -244,13 +244,14 @@ Implemented:
 - Presentation Mode keeps quarter summary and stretches the Universal Tool Card through the remaining viewport.
 - Screenshot Mode retains one full-page outer border.
 
-## V6.2.3 — Home Testing Fix Pass
-- Presentation Mode now uses the Screenshot-style Live Operations two-panel layout.
-- Removed divider lines below the quarter progress bars.
-- Customer Source and STR badges use Required as the master switch.
-- Powered Down active badge uses green.
-- Reduced Process no longer infers ON from legacy process text.
-- SCC Cleanup and Backup standardized to Not Started / In Progress / Completed.
+## V6.2.4 — Recovery Hotfix
+- Rebased on the known-working V6.2.2 render path after V6.2.3 blanked Live Operations.
+- Presentation Mode uses the Screenshot-style dual Live Operations layout.
+- Removed quarter progress divider lines.
+- Powered Down active chip is green.
+- Reduced Process no longer defaults ON from legacy process text.
+- SCC Cleanup / Backup use Not Started / In Progress / Completed and In Progress lights yellow.
+- Customer Source / STR Required=Yes activates the workflow badge; Complete/Approved states are green.
 - Minimized FI and Lead/Admin checklist panels collapse to header-only height.
-- Next FI Task text is white.
-- Morning Meeting save/end lifecycle patched toward one active meeting and one finalized history record.
+- Next FI Task value is white.
+- Morning Meeting code is kept on the V6.2.2 stable path for this recovery build rather than applying the V6.2.3 rewrite.
