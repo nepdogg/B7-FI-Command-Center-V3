@@ -174,3 +174,13 @@ Actual Tool Edit correction:
 - Locked boxes show lock + shipped/total count.
 - Completed families show UNLOCKED and retain the existing celebration/reveal action.
 - Preserves the V6.1.4 Tool Edit corrections and Update Progress wording.
+\n## V6.1.6\n- 14 tool-card indicators: 6 workflow badges + 8 compact on/off chips.\n- Added Tool Edit controls for WWC 1/2/3, Postmag, Foresight, OPK, Options Requested, Ship Kit Requested, Reduced Process, and NC Escalation.\n- Fixed Reduced Process normalization so an explicit unchecked state stays unchecked.\n- Existing V3 data remains compatible; new flags default OFF.\n
+## V6.1.7 — Presentation Tool Focus
+- Presentation Mode now displays one giant Universal Tool Card at a time.
+- Normal Live Operations still keeps both carousels.
+- Existing Tool carousel controls remain at the top and are active in Presentation Mode.
+- Previous / Pause-Play / Next work while Presentation Mode stays read-only.
+- ESC exits Presentation Mode.
+- Presentation exit performs a stronger layout reset to prevent the normal Command Center from remaining distorted.
+- Added same-browser cross-window storage refresh so a Presentation window can receive saved data from another Command Center window.
+- NEXT FI TARGET label changed to NEXT FI TASK.
