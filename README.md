@@ -224,7 +224,7 @@ Actual Tool Edit correction:
 - Complete FI Checklist and Complete Lead/Admin Checklist start minimized by default.
 - Screenshot Mode keeps a single full-screen outer border.
 
-## V6.2.1 — Stability / Non-Brain Fix Pass
+## V6.2.2 — Stability / Non-Brain Fix Pass
 This release intentionally does not redesign the Command Center decision/alert brain.
 
 Implemented:

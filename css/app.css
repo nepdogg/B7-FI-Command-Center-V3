@@ -6530,3 +6530,23 @@ html body.screenshot-mode #app{
   html body .verify-summary{grid-template-columns:repeat(2,minmax(0,1fr))!important}
   html body .verify-tool-card{grid-template-columns:1fr!important}
 }
+
+
+/* =========================================================
+   V6.2.2 — workflow badge + editor clarity fixes
+   ========================================================= */
+/* Next FI Task is informational, not an alert color. */
+html body .utc-next-target,
+html body.presentation-mode .presentation-tool-focus .utc-next-target{color:#fff!important;}
+
+/* Collapsed checklist panels consume only their header height. */
+html body .tool-checklist-workspace{align-items:start!important;}
+html body .tool-checklist-workspace .checklist-panel:has(.collapsible-body.collapsed){min-height:0!important;height:auto!important;}
+html body .tool-checklist-workspace .checklist-panel:has(.collapsible-body.collapsed) .panel-head{margin-bottom:0!important;}
+
+/* Customer Source and STR are separate workflows. */
+html body .customer-workflow-grid{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:14px!important;}
+html body .customer-workflow-block{border:1px solid #28546c!important;background:#061923!important;padding:10px!important;min-width:0!important;}
+html body .customer-workflow-block>h4{margin:0 0 10px!important;padding:0 0 7px!important;border-bottom:1px solid #28546c!important;color:#55d8ff!important;font-size:13px!important;letter-spacing:.06em!important;}
+html body .customer-workflow-block .form-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+@media(max-width:900px){html body .customer-workflow-grid{grid-template-columns:1fr!important;}}
