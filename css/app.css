@@ -6379,3 +6379,32 @@ html body.screenshot-mode .app-frame{width:100%!important;max-width:none!importa
 html body.screenshot-mode main{width:100%!important;max-width:none!important;min-height:calc(100vh - 16px)!important;margin:0!important;padding:0!important}
 html body.screenshot-mode #app{width:100%!important;max-width:none!important;min-height:calc(100vh - 16px)!important;height:auto!important;margin:0!important;padding:10px!important;border:2px solid var(--accent)!important;background:#020a13!important;box-sizing:border-box!important;overflow:visible!important}
 html body.screenshot-mode #app>*{max-width:none!important}
+
+/* =========================================================
+   V6.2.0 — final badge packing / presentation height / frame
+   ========================================================= */
+html body .utc-info .utc-reduced{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-height:26px!important;height:26px!important;margin:0!important;padding:3px 6px!important;box-sizing:border-box!important;border:1px solid #6c2730!important;background:#190b0f!important;color:#744b51!important;font-size:9px!important;font-weight:950!important;letter-spacing:.035em!important}
+html body .utc-info .utc-reduced.active{border-color:#ff475b!important;background:#a81827!important;color:#fff!important;box-shadow:0 0 8px rgba(255,71,91,.18)!important}
+html body .utc-info{grid-template-rows:72px 202px 26px 46px 102px minmax(0,1fr)!important;row-gap:4px!important}
+html body .utc-photo{height:202px!important;min-height:202px!important}
+html body .utc-reduced{grid-row:3!important}
+html body .utc-condition-chips{grid-row:4!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:3px!important;margin:0!important}
+html body .utc-condition-chip{min-height:20px!important;padding:3px 2px!important;font-size:7.4px!important;line-height:1!important}
+html body .utc-badges{grid-row:5!important;gap:4px!important;margin:0!important}
+html body .utc-badge{min-height:30px!important;padding:4px 5px!important}
+html body .utc-meta{grid-row:6!important;margin-top:4px!important;border-top:0!important}
+html body .utc-meta-row{min-height:42px!important;padding:7px 8px!important}
+html body .utc-meta-row:first-child{padding-top:10px!important}
+html body .utc-badges,html body .utc-condition-chips{border-bottom:0!important}
+html body .utc-meta{border-top:none!important}
+html body .quarter-live-panel .shipping-total,html body .quarter-live-panel .quarter-time-progress{border-bottom:0!important}
+html body .quarter-live-panel .shipping-total::after,html body .quarter-live-panel .quarter-time-progress::after{display:none!important;content:none!important}
+html body.presentation-mode .body-shell{height:auto!important;flex:1 1 auto!important;min-height:0!important}
+html body.presentation-mode #app{flex:1 1 auto!important;min-height:0!important;height:auto!important}
+html body.presentation-mode .presentation-tool-focus{flex:1 1 auto!important;min-height:0!important;height:auto!important;align-items:stretch!important}
+html body.presentation-mode .presentation-tool-focus>.live-panel,html body.presentation-mode .presentation-tool-focus .utc-card{flex:1 1 auto!important;height:100%!important;min-height:0!important}
+html body.presentation-mode .presentation-tool-focus .utc-card{align-self:stretch!important}
+html body.presentation-mode .presentation-tool-focus .utc-info{grid-template-rows:72px minmax(190px,1.25fr) 26px 46px 102px minmax(130px,.8fr)!important}
+html body.screenshot-mode .app-frame{border:0!important;box-shadow:none!important}
+html body.screenshot-mode #app{min-height:calc(100vh - 16px)!important;border:2px solid var(--accent)!important;border-radius:0!important}
+html body .collapsible-body.collapsed{display:none!important}

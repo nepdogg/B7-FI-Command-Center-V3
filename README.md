@@ -212,3 +212,14 @@ Actual Tool Edit correction:
 - Added inset divider before Next FI Task; task value is gold.
 - Enlarged ship-date / missing-date text.
 - Screenshot Mode is full-screen with one complete center-colored outer border.
+
+## V6.2.0
+- Added POWERED DOWN as the 15th Universal Tool Card indicator.
+- REDUCED PROCESS restored as a full-width red banner above all other badges.
+- Compact badges tightened to preserve the current card dimensions.
+- Removed divider below the badge block.
+- Shortened Customer / Sales Order / Ship Date rows slightly.
+- Removed two extra divider lines below quarter progress bars.
+- Presentation Mode tool card stretches to use the full remaining viewport height.
+- Complete FI Checklist and Complete Lead/Admin Checklist start minimized by default.
+- Screenshot Mode keeps a single full-screen outer border.
