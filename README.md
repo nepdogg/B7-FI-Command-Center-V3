@@ -275,3 +275,11 @@ This release intentionally changes only the items confirmed still outstanding in
 - Added Source Notes to Customer Requirements -> Customer Source, matching STR Notes.
 - Source Notes is persisted in the same tool record and is backward compatible with existing V3 browser data.
 - No Command Center brain/calculation rules changed.
+
+## V6.2.7 — Presentation Tool-Only Carousel
+- Presentation Mode removes the left Status/Status Pages carousel completely.
+- The Universal Tool Card carousel is now the only lower Presentation Mode panel.
+- The tool carousel expands across the full available width and height.
+- Presentation controls are simplified to Previous Tool / tool count / Tools Play-Pause / Next Tool / ESC to Exit.
+- Normal Live Operations remains unchanged with both carousels.
+- Existing quarter summary, progress bars, FI Status, Source Notes, Shipping Notes column, and V3 data compatibility are preserved.
