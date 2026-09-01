@@ -223,3 +223,23 @@ Actual Tool Edit correction:
 - Presentation Mode tool card stretches to use the full remaining viewport height.
 - Complete FI Checklist and Complete Lead/Admin Checklist start minimized by default.
 - Screenshot Mode keeps a single full-screen outer border.
+
+## V6.2.1 — Stability / Non-Brain Fix Pass
+This release intentionally does not redesign the Command Center decision/alert brain.
+
+Implemented:
+- One authoritative Tool Edit renderer/save path for individual and Update Command Center all-tools editing.
+- Update Morning Status now opens the same all-tools editor and returns to Status Center after Save Updates.
+- FI workflow membership: Morning Status and Priority lists use FI / Engineering / Powered Down / Packing tools only.
+- Operations Shipping Schedule uses FI workflow tools only.
+- Morning order corrected: all non-Regera/Celestiq tools ascending first; Regera + Celestiq combined and ascending second.
+- FI cycle time freezes at the stored Powered Down date instead of continuing after packing/shipping.
+- Powered Down badge control added; Reduced Process remains its own full-width red banner.
+- Complete FI and Lead/Admin checklists remain minimized by default.
+- Latest Status preserves pasted dash formatting instead of manufacturing another dash.
+- Morning Meeting save remains one draft; completed meeting/history is de-duplicated by type/date.
+- Morning Meeting history now displays general notes, all tool snapshots, per-tool notes, and actions.
+- VERIFY TOOLS added to Live Operations and Data Integrity expanded into a phase-aware completeness checker.
+- Same-browser cross-window refresh improved so Presentation Mode receives saved data while keeping the current tool when possible.
+- Presentation Mode keeps quarter summary and stretches the Universal Tool Card through the remaining viewport.
+- Screenshot Mode retains one full-page outer border.
