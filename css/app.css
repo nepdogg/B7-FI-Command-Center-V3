@@ -7375,3 +7375,73 @@ html body.presentation-mode .presentation-tool-only .utc-open{
   cursor:pointer!important;
 }
 .meeting-history-detail{clear:both!important}
+
+
+/* =========================================================
+   V6.3.2 — CYCLE LABEL + EVEN MIDDLE-COLUMN SPACING
+   Preserve current card design; formatting/wording only.
+   ========================================================= */
+
+/* Four logical middle-column sections use their natural height with
+   equal visual spacing between them instead of fixed-height bands. */
+html body .operations-tool-carousel .utc-status,
+html body.presentation-mode .presentation-tool-only .utc-status{
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:space-between !important;
+  gap:0 !important;
+  height:100% !important;
+  min-height:0 !important;
+}
+
+html body .operations-tool-carousel .utc-status-section,
+html body.presentation-mode .presentation-tool-only .utc-status-section{
+  flex:0 0 auto !important;
+  width:100% !important;
+  min-height:0 !important;
+  height:auto !important;
+  margin:0 !important;
+  overflow:visible !important;
+}
+
+/* Keep the inside of each section compact so the spacing exists BETWEEN
+   Ship Countdown / FI Status / FI Cycle Time / FI Forecast. */
+html body .operations-tool-carousel .utc-countdown,
+html body.presentation-mode .presentation-tool-only .utc-countdown{
+  padding-top:8px !important;
+  padding-bottom:8px !important;
+}
+html body .operations-tool-carousel .utc-process,
+html body.presentation-mode .presentation-tool-only .utc-process{
+  padding-top:6px !important;
+  padding-bottom:6px !important;
+}
+html body .operations-tool-carousel .utc-cycle,
+html body.presentation-mode .presentation-tool-only .utc-cycle{
+  padding-top:4px !important;
+  padding-bottom:4px !important;
+}
+html body .operations-tool-carousel .utc-forecast,
+html body.presentation-mode .presentation-tool-only .utc-forecast{
+  padding-top:4px !important;
+  padding-bottom:8px !important;
+}
+
+/* Forecast date should belong to the forecast block rather than being
+   pushed independently to the bottom, which distorted section spacing. */
+html body .operations-tool-carousel .utc-forecast-date,
+html body.presentation-mode .presentation-tool-only .utc-forecast-date{
+  margin-top:10px !important;
+}
+
+/* New cycle-time label is longer; keep it readable on one line where possible. */
+html body .operations-tool-carousel .utc-cycle .utc-metric:first-child span,
+html body.presentation-mode .presentation-tool-only .utc-cycle .utc-metric:first-child span{
+  white-space:nowrap !important;
+}
+
+/* Restore agreed terminology regardless of older presentation overrides. */
+html body .utc-status .utc-kicker,
+html body .utc-status .utc-metric span{
+  text-overflow:clip !important;
+}

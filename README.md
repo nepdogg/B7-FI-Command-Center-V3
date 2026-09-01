@@ -309,3 +309,11 @@ This release intentionally changes only the items confirmed still outstanding in
 - Customer Source badge is allowed to wrap its label to two lines so the status has more room.
 - Tool photo, badge block, metadata rows, cycle rows, and forecast area were compacted only in Presentation Mode.
 - No data, workflow, calculation, or Command Center brain changes.
+
+## V6.3.2 — Cycle Label / Middle Spacing Fix
+- Corrects the actual current Universal Tool Card renderer so FI HANDOFF now displays as FI CYCLE TIME START.
+- Restores the agreed cyan labels FI STATUS and FI FORECAST STEP.
+- Replaces fixed middle-column row heights with natural sections and equal spacing between Ship Countdown, FI Status, FI Cycle Time, and FI Forecast.
+- Prevents the forecast date from creating an oversized gap by keeping it inside the FI Forecast block.
+- Preserves the V6.3.1 Morning Meeting history viewer/close-button fixes.
+- No data, workflow, calculation, or Command Center brain changes.
