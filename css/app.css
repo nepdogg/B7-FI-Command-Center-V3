@@ -6651,3 +6651,178 @@ html body .utc-next-target{
   color:#fff!important;
   font-weight:900!important;
 }
+
+
+/* =========================================================
+   V6.2.5 — PRESENTATION = SCREENSHOT MODE + LIVE NAV
+   ========================================================= */
+
+/* Presentation is now the same clean framed report layout as Screenshot Mode.
+   The normal shell/status/header/pagebar are removed; the live control bar is
+   embedded directly below the two quarter progress bars. */
+html body.presentation-mode{
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  background:#02070d!important;
+}
+html body.presentation-mode .sticky-shell,
+html body.presentation-mode .app-footer{
+  display:none!important;
+}
+html body.presentation-mode .app-frame{
+  width:100vw!important;
+  height:100vh!important;
+  min-height:100vh!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:8px!important;
+  border:0!important;
+  box-sizing:border-box!important;
+  display:block!important;
+  overflow:hidden!important;
+}
+html body.presentation-mode .body-shell{
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+}
+html body.presentation-mode #app{
+  width:100%!important;
+  height:100%!important;
+  min-height:100%!important;
+  margin:0!important;
+  padding:10px!important;
+  border:2px solid var(--accent)!important;
+  background:#020a13!important;
+  box-sizing:border-box!important;
+  display:flex!important;
+  flex-direction:column!important;
+  overflow:hidden!important;
+}
+html body.presentation-mode #screenshotReportTitle{
+  display:block!important;
+  flex:0 0 auto!important;
+  margin:0 0 8px!important;
+}
+html body.presentation-mode .presentation-quarter-panel{
+  flex:0 0 auto!important;
+  width:100%!important;
+  margin:0!important;
+  padding:8px!important;
+  box-sizing:border-box!important;
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+}
+html body.presentation-mode .presentation-live-grid{
+  flex:1 1 0!important;
+  min-height:0!important;
+  width:100%!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  gap:8px!important;
+  margin-top:8px!important;
+  padding:0!important;
+  overflow:hidden!important;
+}
+html body.presentation-mode .presentation-status-carousel,
+html body.presentation-mode .presentation-tool-carousel{
+  min-width:0!important;
+  min-height:0!important;
+  width:100%!important;
+  height:100%!important;
+  overflow:hidden!important;
+}
+html body.presentation-mode .presentation-status-carousel>*,
+html body.presentation-mode .presentation-tool-carousel>*{
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  margin:0!important;
+}
+
+/* No Mystery Box strip in Presentation Mode. */
+html body.presentation-mode .quarter-mystery-strip,
+html body.presentation-mode .quarter-mystery-title,
+html body.presentation-mode .quarter-mystery-grid{
+  display:none!important;
+}
+
+/* Presentation navigation replaces the empty Mystery Box strip. */
+html body.presentation-mode .presentation-inline-nav{
+  display:grid!important;
+  grid-template-columns:1.15fr .55fr 1fr 1.15fr 1.15fr .55fr 1fr 1.15fr 1fr!important;
+  width:100%!important;
+  min-height:34px!important;
+  margin:7px 0 0!important;
+  padding:0!important;
+  border:1px solid #24536a!important;
+  background:#061722!important;
+  box-sizing:border-box!important;
+}
+html body.presentation-mode .presentation-nav-cell{
+  min-width:0!important;
+  min-height:32px!important;
+  margin:0!important;
+  padding:3px 6px!important;
+  border:0!important;
+  border-right:1px solid #24536a!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#e9f6ff!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  font-size:9px!important;
+  font-weight:900!important;
+  line-height:1!important;
+  pointer-events:auto!important;
+}
+html body.presentation-mode button.presentation-nav-cell{
+  cursor:pointer!important;
+}
+html body.presentation-mode .presentation-nav-cell:last-child{
+  border-right:0!important;
+}
+html body.presentation-mode .presentation-nav-cell b,
+html body.presentation-mode .presentation-nav-cell span{
+  display:inline!important;
+  margin:0 2px!important;
+}
+html body.presentation-mode .presentation-nav-count{
+  color:#9fdcff!important;
+}
+html body.presentation-mode .presentation-nav-exit{
+  color:#9bb2bf!important;
+}
+
+/* The lines the user identified were TOP borders on the following sections,
+   not bottom borders on the previous progress bars. Remove the real source. */
+html body .quarter-live-panel .quarter-time-progress{
+  border-top:0!important;
+  padding-top:4px!important;
+}
+html body .quarter-live-panel .quarter-mystery-strip{
+  border-top:0!important;
+  padding-top:0!important;
+}
+html body .quarter-live-panel .shipping-total,
+html body .quarter-live-panel .quarter-time-progress{
+  border-bottom:0!important;
+}
+html body .quarter-live-panel .shipping-total::after,
+html body .quarter-live-panel .quarter-time-progress::after{
+  display:none!important;
+  content:none!important;
+}
+
+/* FI Forecast Date includes weekday; allow the longer line to remain readable. */
+html body .utc-forecast-date strong{
+  white-space:nowrap!important;
+  font-size:inherit!important;
+}

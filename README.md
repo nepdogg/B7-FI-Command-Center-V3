@@ -255,3 +255,13 @@ Implemented:
 - Minimized FI and Lead/Admin checklist panels collapse to header-only height.
 - Next FI Task value is white.
 - Morning Meeting code is kept on the V6.2.2 stable path for this recovery build rather than applying the V6.2.3 rewrite.
+
+## V6.2.5 — Presentation / Screenshot Parity
+- Presentation Mode now uses the same clean full-screen framed visual structure as Screenshot Mode.
+- Normal header, alerts/status shell, and external pagebar are hidden in Presentation Mode.
+- Presentation navigation is inserted directly below the quarter progress bars in the former Mystery Box space.
+- Presentation navigation controls both Status and Tool carousels and keeps ESC-to-exit.
+- Tools Mystery Boxes are removed from Presentation Mode only.
+- Removed the actual divider-line sources: Quarter Days Remaining border-top and Mystery Box strip border-top.
+- FI Forecast Date now includes the weekday, e.g. TUESDAY · 09/15/2026.
+- Existing V6.2.4 recovery fixes and V3 storage compatibility are preserved.
