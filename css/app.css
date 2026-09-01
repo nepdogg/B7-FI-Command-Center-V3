@@ -6826,3 +6826,86 @@ html body .utc-forecast-date strong{
   white-space:nowrap!important;
   font-size:inherit!important;
 }
+
+
+/* =========================================================
+   V6.2.6 — CONTROLLED UI FIXES
+   Only confirmed outstanding items from current tested build.
+   ========================================================= */
+
+/* FI STATUS now matches FI CYCLE TIME / FI FORECAST hierarchy. */
+html body .utc-status-title{
+  margin-bottom:6px !important;
+}
+
+/* Presentation: stretch BOTH lower carousels through all remaining height. */
+html body.presentation-mode #app{
+  display:flex !important;
+  flex-direction:column !important;
+  height:100% !important;
+  min-height:0 !important;
+}
+html body.presentation-mode .presentation-quarter-panel{
+  flex:0 0 auto !important;
+}
+html body.presentation-mode .presentation-live-grid{
+  flex:1 1 0 !important;
+  min-height:0 !important;
+  height:0 !important;
+  align-items:stretch !important;
+}
+html body.presentation-mode .presentation-status-carousel,
+html body.presentation-mode .presentation-tool-carousel{
+  display:flex !important;
+  min-height:0 !important;
+  height:100% !important;
+  align-items:stretch !important;
+}
+html body.presentation-mode .presentation-status-carousel .snapshot-panel{
+  flex:1 1 0 !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:100% !important;
+  max-height:100% !important;
+  margin:0 !important;
+}
+html body.presentation-mode .presentation-status-carousel .snapshot-body,
+html body.presentation-mode .presentation-status-carousel .snapshot-scroll{
+  flex:1 1 0 !important;
+  min-height:0 !important;
+  height:100% !important;
+  max-height:none !important;
+}
+html body.presentation-mode .presentation-tool-carousel .universal-card-host.live-panel{
+  flex:1 1 0 !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:100% !important;
+  max-height:100% !important;
+  margin:0 !important;
+}
+html body.presentation-mode .presentation-tool-carousel .live-card-v52,
+html body.presentation-mode .presentation-tool-carousel .utc-card{
+  height:100% !important;
+  min-height:100% !important;
+  max-height:100% !important;
+}
+
+/* Source Notes mirrors STR Notes visually. */
+html body .customer-workflow-block textarea{
+  min-height:72px !important;
+}
+
+/* Shipping Center uses the existing Shipping Notes field. */
+html body .shipping-overview .shipping-notes-cell{
+  min-width:180px !important;
+  max-width:320px !important;
+  white-space:normal !important;
+  line-height:1.2 !important;
+  vertical-align:top !important;
+}
+
+/* Keep the full Shipping Center usable after adding Notes. */
+html body:not(.screenshot-mode):not(.presentation-mode) .shipping-frame{
+  overflow-x:auto !important;
+}

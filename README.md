@@ -265,3 +265,13 @@ Implemented:
 - Removed the actual divider-line sources: Quarter Days Remaining border-top and Mystery Box strip border-top.
 - FI Forecast Date now includes the weekday, e.g. TUESDAY · 09/15/2026.
 - Existing V6.2.4 recovery fixes and V3 storage compatibility are preserved.
+
+## V6.2.6 — Controlled UI Fixes
+This release intentionally changes only the items confirmed still outstanding in the currently tested V6.2.5 build.
+
+- Added FI STATUS as the main heading above FI Process / Current System Status / Next FI Task.
+- Presentation Mode lower Status + Universal Tool Card carousels now stretch through all remaining height to the bottom frame.
+- Shipping Center now displays the existing Shipping / Packing -> Shipping Notes field in a NOTES column.
+- Added Source Notes to Customer Requirements -> Customer Source, matching STR Notes.
+- Source Notes is persisted in the same tool record and is backward compatible with existing V3 browser data.
+- No Command Center brain/calculation rules changed.
