@@ -7353,45 +7353,25 @@ html body.presentation-mode .presentation-tool-only .utc-open{
   right:4px !important;
 }
 
-
-/* =========================================================
-   V6.3.1 — MIDDLE COLUMN SPACING + FI CYCLE TIME START
-   Formatting/wording only.
-   ========================================================= */
-
-/* Live Operations Universal Tool Card:
-   distribute the four middle-column groups evenly from top to bottom. */
-html body:not(.presentation-mode) .operations-tool-carousel .utc-status{
-  display:grid !important;
-  grid-template-rows:auto auto auto auto !important;
-  align-content:space-between !important;
-  row-gap:0 !important;
+/* V6.3.1 — unified Morning Meeting history + always-visible modal close control */
+.modal-card > .modal-x{
+  position:sticky!important;
+  float:right!important;
+  top:0!important;
+  right:0!important;
+  z-index:20000!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:34px!important;
+  height:34px!important;
+  margin:-8px -8px 4px 10px!important;
+  padding:0!important;
+  border:1px solid #5d8299!important;
+  background:#061522!important;
+  color:#fff!important;
+  font-size:28px!important;
+  line-height:1!important;
+  cursor:pointer!important;
 }
-html body:not(.presentation-mode) .operations-tool-carousel .utc-countdown,
-html body:not(.presentation-mode) .operations-tool-carousel .utc-process,
-html body:not(.presentation-mode) .operations-tool-carousel .utc-cycle,
-html body:not(.presentation-mode) .operations-tool-carousel .utc-forecast{
-  min-height:0 !important;
-  margin:0 !important;
-}
-
-/* Presentation Mode uses the same even major-section distribution,
-   while preserving the V6.3.0 fit/anti-clipping rules. */
-html body.presentation-mode .presentation-tool-only .utc-status{
-  display:grid !important;
-  grid-template-rows:auto auto auto auto !important;
-  align-content:space-between !important;
-  row-gap:0 !important;
-}
-html body.presentation-mode .presentation-tool-only .utc-countdown,
-html body.presentation-mode .presentation-tool-only .utc-process,
-html body.presentation-mode .presentation-tool-only .utc-cycle,
-html body.presentation-mode .presentation-tool-only .utc-forecast{
-  min-height:0 !important;
-  margin:0 !important;
-}
-
-/* Keep the new FI CYCLE TIME START label readable without changing card width. */
-html body .utc-cycle .utc-kicker{
-  white-space:nowrap !important;
-}
+.meeting-history-detail{clear:both!important}
