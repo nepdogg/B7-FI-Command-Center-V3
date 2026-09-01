@@ -243,3 +243,14 @@ Implemented:
 - Same-browser cross-window refresh improved so Presentation Mode receives saved data while keeping the current tool when possible.
 - Presentation Mode keeps quarter summary and stretches the Universal Tool Card through the remaining viewport.
 - Screenshot Mode retains one full-page outer border.
+
+## V6.2.3 — Home Testing Fix Pass
+- Presentation Mode now uses the Screenshot-style Live Operations two-panel layout.
+- Removed divider lines below the quarter progress bars.
+- Customer Source and STR badges use Required as the master switch.
+- Powered Down active badge uses green.
+- Reduced Process no longer infers ON from legacy process text.
+- SCC Cleanup and Backup standardized to Not Started / In Progress / Completed.
+- Minimized FI and Lead/Admin checklist panels collapse to header-only height.
+- Next FI Task text is white.
+- Morning Meeting save/end lifecycle patched toward one active meeting and one finalized history record.

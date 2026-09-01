@@ -6550,3 +6550,124 @@ html body .customer-workflow-block{border:1px solid #28546c!important;background
 html body .customer-workflow-block>h4{margin:0 0 10px!important;padding:0 0 7px!important;border-bottom:1px solid #28546c!important;color:#55d8ff!important;font-size:13px!important;letter-spacing:.06em!important;}
 html body .customer-workflow-block .form-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
 @media(max-width:900px){html body .customer-workflow-grid{grid-template-columns:1fr!important;}}
+
+
+/* =========================================================
+   V6.2.3 — HOME TESTING FIX PASS
+   ========================================================= */
+
+/* Badge state colors */
+html body .utc-badge.active{
+  border-color:#3b6f88!important;
+  background:#09202d!important;
+  color:#dceef7!important;
+}
+html body .utc-badge.warn{
+  border-color:#f1b51c!important;
+  background:rgba(241,181,28,.08)!important;
+  color:#ffd45f!important;
+}
+html body .utc-badge.good{
+  border-color:#20d89a!important;
+  background:rgba(32,216,154,.10)!important;
+  color:#20d89a!important;
+}
+html body .utc-badge.bad{
+  border-color:#ff475b!important;
+  background:rgba(255,71,91,.12)!important;
+  color:#ff6c7c!important;
+}
+html body .utc-condition-chip.on{
+  color:#dffcf3!important;
+  border-color:#20d89a!important;
+  background:rgba(32,216,154,.13)!important;
+}
+html body .utc-condition-chip.on.critical{
+  color:#ffe7e7!important;
+  border-color:#ff5656!important;
+  background:rgba(255,86,86,.16)!important;
+}
+
+/* SCC Cleanup / Backup: Not Started dim, In Progress yellow, Completed green.
+   Existing badge classes are driven by keyTestBadge text. */
+html body .utc-badge:has(b){transition:none!important}
+
+/* Minimized checklist panels collapse to header-only height. */
+html body .tool-checklist-workspace .checklist-panel:has(.collapsible-body.collapsed){
+  min-height:0!important;
+  height:auto!important;
+  align-self:start!important;
+}
+html body .tool-checklist-workspace .checklist-panel:has(.collapsible-body.collapsed) .panel-head{
+  min-height:42px!important;
+  height:auto!important;
+  margin:0!important;
+}
+html body .tool-checklist-workspace{align-items:start!important}
+
+/* Presentation Mode = Screenshot-style Live Operations + live controls. */
+html body.presentation-mode #app{
+  border:2px solid var(--accent)!important;
+  padding:8px!important;
+  box-sizing:border-box!important;
+  min-height:100%!important;
+}
+html body.presentation-mode .presentation-live-grid{
+  flex:1 1 0!important;
+  min-height:0!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  gap:8px!important;
+  padding-top:6px!important;
+}
+html body.presentation-mode .presentation-status-carousel,
+html body.presentation-mode .presentation-tool-carousel{
+  min-width:0!important;
+  min-height:0!important;
+  height:100%!important;
+  overflow:hidden!important;
+}
+html body.presentation-mode .presentation-status-carousel>*,
+html body.presentation-mode .presentation-tool-carousel>*{
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+}
+html body.presentation-mode .presentation-tool-focus{display:none!important}
+
+/* Remove divider lines below quarter progress bars everywhere. */
+html body .quarter-live-panel .shipping-total,
+html body .quarter-live-panel .quarter-time-progress{
+  border-bottom:none!important;
+}
+html body .quarter-live-panel .shipping-total::after,
+html body .quarter-live-panel .quarter-time-progress::after{
+  display:none!important;
+  content:none!important;
+}
+
+/* Next FI Task value is informational, not a warning. */
+html body .utc-next-target{
+  color:#fff!important;
+  font-weight:900!important;
+}
+
+/* Reduced Process is red only when active. */
+html body .utc-info .utc-reduced.idle{
+  background:#16090c!important;
+  border-color:#5b2730!important;
+  color:#744b51!important;
+  box-shadow:none!important;
+}
+html body .utc-info .utc-reduced.active{
+  background:#c7192d!important;
+  border-color:#ff5567!important;
+  color:#fff!important;
+}
+
+/* Screenshot and Presentation share the same full-page enclosure concept. */
+html body.presentation-mode .app-frame,
+html body.screenshot-mode .app-frame{
+  width:100%!important;
+  max-width:none!important;
+}
