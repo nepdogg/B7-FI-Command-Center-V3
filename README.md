@@ -283,3 +283,10 @@ This release intentionally changes only the items confirmed still outstanding in
 - Presentation controls are simplified to Previous Tool / tool count / Tools Play-Pause / Next Tool / ESC to Exit.
 - Normal Live Operations remains unchanged with both carousels.
 - Existing quarter summary, progress bars, FI Status, Source Notes, Shipping Notes column, and V3 data compatibility are preserved.
+
+## V6.2.8 — Presentation Tool Card Text Fit
+- Preserves the V6.2.7 single enormous Universal Tool Card Presentation Mode.
+- Prevents enlarged middle-column text from clipping/overlapping.
+- Countdown, FI Status, Current System Status, Next FI Task and forecast text now wrap/scale within their sections.
+- Long checklist/task text can use available card width instead of being cut off.
+- No calculation, data-model, workflow, or Command Center brain changes.
