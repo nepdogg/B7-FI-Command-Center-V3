@@ -7352,3 +7352,46 @@ html body.presentation-mode .presentation-tool-only .utc-open{
   top:4px !important;
   right:4px !important;
 }
+
+
+/* =========================================================
+   V6.3.1 — MIDDLE COLUMN SPACING + FI CYCLE TIME START
+   Formatting/wording only.
+   ========================================================= */
+
+/* Live Operations Universal Tool Card:
+   distribute the four middle-column groups evenly from top to bottom. */
+html body:not(.presentation-mode) .operations-tool-carousel .utc-status{
+  display:grid !important;
+  grid-template-rows:auto auto auto auto !important;
+  align-content:space-between !important;
+  row-gap:0 !important;
+}
+html body:not(.presentation-mode) .operations-tool-carousel .utc-countdown,
+html body:not(.presentation-mode) .operations-tool-carousel .utc-process,
+html body:not(.presentation-mode) .operations-tool-carousel .utc-cycle,
+html body:not(.presentation-mode) .operations-tool-carousel .utc-forecast{
+  min-height:0 !important;
+  margin:0 !important;
+}
+
+/* Presentation Mode uses the same even major-section distribution,
+   while preserving the V6.3.0 fit/anti-clipping rules. */
+html body.presentation-mode .presentation-tool-only .utc-status{
+  display:grid !important;
+  grid-template-rows:auto auto auto auto !important;
+  align-content:space-between !important;
+  row-gap:0 !important;
+}
+html body.presentation-mode .presentation-tool-only .utc-countdown,
+html body.presentation-mode .presentation-tool-only .utc-process,
+html body.presentation-mode .presentation-tool-only .utc-cycle,
+html body.presentation-mode .presentation-tool-only .utc-forecast{
+  min-height:0 !important;
+  margin:0 !important;
+}
+
+/* Keep the new FI CYCLE TIME START label readable without changing card width. */
+html body .utc-cycle .utc-kicker{
+  white-space:nowrap !important;
+}
