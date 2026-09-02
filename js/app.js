@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.3.5', BUILD='20260901-V6.3.5-AUTOMATIC-FI-INSTRUMENT-PANEL';
+const VERSION='6.3.6', BUILD='20260901-V6.3.6-TOOL-CARD-INDICATOR-LAYOUT-POLISH';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI 200 Final Pre-Pack and QA';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -367,8 +367,8 @@ function indicatorState(t,key){
 }
 const INDICATOR_KEYS=['noCustomer','noSalesOrder','options','shipKit','ironman','avData','sccCleanup','backup','ctd','ccl','source','str','nc','wwc','postmag','foresight','opk','poweredDown'];
 function indicatorLamp(t,key){let x=indicatorState(t,key);return `<div class="fi-indicator-lamp ${x.active?'on':'off'} ${x.tone}"><b>${esc(x.label)}</b><span>${esc(x.state)}</span></div>`}
-function indicatorDisplayPanel(t){return `<section class="utc-indicator-display"><div class="utc-indicator-head"><b>FI INDICATORS</b><span>${INDICATOR_KEYS.filter(k=>indicatorState(t,k).active).length} NEED ATTENTION</span></div><div class="utc-indicator-grid">${INDICATOR_KEYS.map(k=>indicatorLamp(t,k)).join('')}</div></section>`}
-function indicatorPanel(t){return `<section class="utc-indicator-panel"><div class="utc-indicator-head"><b>INDICATOR CONTROL</b><span>UPDATE FROM CARD</span></div><p class="utc-indicator-help">Select the requirement or field. Update the underlying status/value — the indicator changes automatically.</p><div class="utc-indicator-control"><div class="utc-indicator-control-row"><select data-indicator-picker="${esc(t.id)}"><option value="">Select indicator...</option>${INDICATOR_KEYS.map(k=>`<option value="${k}">${esc(indicatorState(t,k).label)}</option>`).join('')}</select><button class="btn" type="button" data-indicator-control="${esc(t.id)}">UPDATE</button></div></div></section>`}
+function indicatorDisplayPanel(t){return `<section class="utc-indicator-display"><div class="utc-indicator-grid">${INDICATOR_KEYS.map(k=>indicatorLamp(t,k)).join('')}</div></section>`}
+function indicatorPanel(t){return `<section class="utc-indicator-panel"><div class="utc-indicator-control-title">TOOL BADGE CONTROL</div><div class="utc-indicator-control"><div class="utc-indicator-control-row"><select data-indicator-picker="${esc(t.id)}"><option value="">Select badge...</option>${INDICATOR_KEYS.map(k=>`<option value="${k}">${esc(indicatorState(t,k).label)}</option>`).join('')}</select><button class="btn" type="button" data-indicator-control="${esc(t.id)}">UPDATE</button></div></div></section>`}
 function indicatorControlModal(id,key){let t=state.tools.find(x=>x.id===id);if(!t)return;let x=indicatorState(t,key),body='';
   if(key==='noCustomer')body=`<div class="form-grid indicator-data-grid">${selField('CUSTOMER STATUS','indicator-availability',selectOptions(['Not Available','Available'],t.customerAvailability||'Not Available'),t.customerAvailability||'Not Available')}${field('CUSTOMER','indicator-value',t.customer||'')}</div>`;
   else if(key==='noSalesOrder')body=`<div class="form-grid indicator-data-grid">${selField('SALES ORDER STATUS','indicator-availability',selectOptions(['Not Available','Available'],t.salesOrderAvailability||'Not Available'),t.salesOrderAvailability||'Not Available')}${field('SALES ORDER','indicator-value',t.salesOrder||'')}</div>`;
@@ -430,14 +430,14 @@ function liveToolCard(tool=null){
   return `<section class="panel live-panel universal-card-host utc-host" data-universal-tool-card="${esc(t.id)}">
     <div class="utc-card ${tone}">
       <section class="utc-column utc-info">
+        <button class="utc-open tool-photo-open" data-open-tool="${esc(t.id)}" type="button" title="Open Tool Editor">↗</button>
         <header class="utc-info-head">
           <div class="utc-utid">${esc(t.id)}</div>
           <div class="utc-model">${esc(toolSub)}</div>
-          <button class="utc-open tool-photo-open" data-open-tool="${esc(t.id)}" type="button" title="Open Tool Editor">↗</button>
         </header>
         <div class="utc-meta utc-meta-top">
-          <div class="utc-meta-row"><span>Customer</span><strong>${esc(t.customer||'NOT AVAILABLE')}</strong></div>
-          <div class="utc-meta-row"><span>Sales Order</span><strong>${esc(t.salesOrder||'NOT AVAILABLE')}</strong></div>
+          <span class="utc-customer-compact" title="${esc(t.customer||'No customer available')}">${esc(t.customer||'—')}</span>
+          <span class="utc-so-compact" title="${esc(t.salesOrder||'No sales order available')}">SO # ${esc(t.salesOrder||'—')}</span>
         </div>
         <div class="utc-photo tool-open-photo" data-open-tool="${esc(t.id)}" role="button" tabindex="0" title="Open Tool Editor">
           <img src="${familyImage(t)}" alt="${esc(t.codename)} tool">

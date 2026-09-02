@@ -341,3 +341,18 @@ This release intentionally changes only the items confirmed still outstanding in
 - Customer/Sales Order moved near the top of the card; duplicate Ship Date removed from the identity column.
 - Tool-family jump bar remains sticky. Meeting-history close button remains fixed top-right.
 - Existing localStorage key b7fi-command-center-v3 and existing production data remain compatible.
+
+
+## V6.3.6 — Universal Tool Card Indicator Layout Polish
+
+- Keeps the V3 production storage key and existing calculations/workflows intact.
+- Customer and Sales Order are compactly shown above the tool photo without field labels; Sales Order uses `SO # XXXXXXX`.
+- Removes Customer/Sales Order divider lines from the Universal Tool Card.
+- Moves the tool-open arrow to the upper-right corner of the left column.
+- All FI badges remain permanently listed in the space below the tool photo; inactive/satisfied badges remain visible in their fixed positions.
+- Removes the `FI INDICATORS` / `NEED ATTENTION` heading from the badge field.
+- Renames `INDICATOR CONTROL` to `TOOL BADGE CONTROL`, removes helper copy and `UPDATE FROM CARD`.
+- Removes the badge-control box and internal divider. Exactly one divider remains between Packing/Shipping and Tool Badge Control.
+- Distributes the eight progress rows evenly through the right column so current-step text has room and the lower column is no longer wasted.
+- Applies the same card geometry and control cleanup in Presentation Mode.
+- Adds a forecast text overflow guard so long checklist names stay inside the middle column.

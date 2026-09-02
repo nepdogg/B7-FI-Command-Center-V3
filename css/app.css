@@ -7681,3 +7681,256 @@ html body.presentation-mode .presentation-tool-only .utc-column,html body.presen
 html body.presentation-mode .presentation-tool-only .utc-indicator-control,html body.presentation-mode .presentation-tool-only .utc-indicator-control *,html body.presentation-mode .presentation-tool-only [data-indicator-control],html body.presentation-mode .presentation-tool-only [data-indicator-picker],html body.presentation-mode .presentation-tool-only [data-forecast-checklist],html body.presentation-mode .presentation-tool-focus [data-forecast-checklist]{pointer-events:auto!important}
 html body.presentation-mode .presentation-tool-only .utc-info .utc-indicator-display .utc-indicator-grid,html body.presentation-mode .presentation-tool-focus .utc-info .utc-indicator-display .utc-indicator-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
 html body.presentation-mode .presentation-tool-only .utc-info .utc-indicator-display .fi-indicator-lamp,html body.presentation-mode .presentation-tool-focus .utc-info .utc-indicator-display .fi-indicator-lamp{min-height:36px!important}
+
+
+/* =========================================================
+   V6.3.6 — UNIVERSAL TOOL CARD INDICATOR LAYOUT POLISH
+   Layout-only authority pass. Existing data/rules/calculations preserved.
+   ========================================================= */
+
+/* LEFT COLUMN: compact customer/SO above photo, no field labels/dividers.
+   Everything below the photo becomes the fixed FI badge/indicator field. */
+html body .utc-info{
+  position:relative !important;
+  display:grid !important;
+  grid-template-rows:72px 24px minmax(176px,202px) 26px minmax(0,1fr) !important;
+  row-gap:4px !important;
+  padding:10px 12px 10px !important;
+}
+html body .utc-info>.utc-open{
+  position:absolute !important;
+  top:5px !important;
+  right:5px !important;
+  left:auto !important;
+  margin:0 !important;
+  z-index:20 !important;
+}
+html body .utc-info-head{
+  grid-row:1 !important;
+  position:relative !important;
+  padding:3px 42px 0 !important;
+}
+html body .utc-info .utc-meta-top{
+  grid-row:2 !important;
+  order:initial !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:12px !important;
+  min-width:0 !important;
+  width:100% !important;
+  height:24px !important;
+  min-height:24px !important;
+  margin:0 !important;
+  padding:0 4px !important;
+  border:0 !important;
+  background:transparent !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+html body .utc-info .utc-meta-top::before,
+html body .utc-info .utc-meta-top::after{display:none !important;content:none !important;}
+html body .utc-info .utc-meta-top .utc-customer-compact,
+html body .utc-info .utc-meta-top .utc-so-compact{
+  display:block !important;
+  min-width:0 !important;
+  max-width:50% !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  color:#f3fbff !important;
+  font-size:9px !important;
+  line-height:1 !important;
+  font-weight:900 !important;
+  text-align:center !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+}
+html body .utc-info .utc-photo{
+  grid-row:3 !important;
+  order:initial !important;
+  height:100% !important;
+  min-height:0 !important;
+  margin:0 !important;
+}
+html body .utc-info .utc-reduced{
+  grid-row:4 !important;
+  order:initial !important;
+  height:26px !important;
+  min-height:26px !important;
+  margin:0 !important;
+}
+html body .utc-info .utc-indicator-display{
+  grid-row:5 !important;
+  order:initial !important;
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  overflow:hidden !important;
+}
+html body .utc-info .utc-indicator-display .utc-indicator-grid{
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  grid-auto-rows:minmax(28px,1fr) !important;
+  align-content:stretch !important;
+  gap:4px !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  overflow:auto !important;
+  padding:0 2px 0 0 !important;
+  box-sizing:border-box !important;
+}
+html body .utc-info .utc-indicator-display .fi-indicator-lamp{
+  min-height:28px !important;
+  height:auto !important;
+  padding:3px 5px !important;
+}
+html body .utc-info .utc-indicator-display .fi-indicator-lamp b{font-size:7.5px !important;}
+html body .utc-info .utc-indicator-display .fi-indicator-lamp span{font-size:6.8px !important;}
+
+/* RIGHT COLUMN: progress gauges consume the available height evenly.
+   Exactly one divider separates the gauges from Tool Badge Control. */
+html body .utc-progress{
+  display:grid !important;
+  grid-template-rows:minmax(0,1fr) 1px auto !important;
+  row-gap:0 !important;
+  padding:10px 14px !important;
+  min-height:0 !important;
+}
+html body .utc-progress-list{
+  grid-row:1 !important;
+  display:grid !important;
+  grid-template-rows:repeat(8,minmax(0,1fr)) !important;
+  align-items:stretch !important;
+  gap:5px !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  padding:0 0 8px !important;
+  box-sizing:border-box !important;
+}
+html body .utc-progress-list .progress-item{
+  min-height:0 !important;
+  align-content:center !important;
+  margin:0 !important;
+}
+html body .utc-progress>.utc-divider{
+  grid-row:2 !important;
+  display:block !important;
+  width:100% !important;
+  height:1px !important;
+  min-height:1px !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  background:#24485d !important;
+}
+html body .utc-progress>.utc-indicator-panel{
+  grid-row:3 !important;
+  display:block !important;
+  width:100% !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:9px 0 0 !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  overflow:visible !important;
+}
+html body .utc-indicator-control-title{
+  margin:0 0 7px !important;
+  padding:0 !important;
+  color:#f3fbff !important;
+  font-size:10px !important;
+  line-height:1 !important;
+  font-weight:950 !important;
+  letter-spacing:.02em !important;
+}
+html body .utc-indicator-control{
+  display:block !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+}
+html body .utc-indicator-control-row{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) auto !important;
+  gap:7px !important;
+  align-items:center !important;
+}
+html body .utc-indicator-control select{
+  width:100% !important;
+  min-width:0 !important;
+  height:30px !important;
+}
+html body .utc-indicator-control .btn{
+  min-height:30px !important;
+  height:30px !important;
+}
+
+/* Forecast target must remain readable without pushing outside the middle column. */
+html body .utc-forecast-button{overflow:hidden !important;}
+html body .utc-forecast-button>span:first-child{
+  display:block !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  white-space:normal !important;
+  overflow:hidden !important;
+  overflow-wrap:anywhere !important;
+  text-overflow:clip !important;
+}
+
+/* Presentation Mode uses the same fixed indicator panel and compact metadata. */
+html body.presentation-mode .presentation-tool-only .utc-info,
+html body.presentation-mode .presentation-tool-focus .utc-info{
+  grid-template-rows:64px 22px minmax(160px,1.05fr) 24px minmax(0,1.35fr) !important;
+  row-gap:3px !important;
+}
+html body.presentation-mode .presentation-tool-only .utc-info>.utc-open,
+html body.presentation-mode .presentation-tool-focus .utc-info>.utc-open{
+  top:4px !important;
+  right:4px !important;
+}
+html body.presentation-mode .presentation-tool-only .utc-info .utc-meta-top,
+html body.presentation-mode .presentation-tool-focus .utc-info .utc-meta-top{
+  height:22px !important;
+  min-height:22px !important;
+  gap:14px !important;
+}
+html body.presentation-mode .presentation-tool-only .utc-info .utc-meta-top span,
+html body.presentation-mode .presentation-tool-focus .utc-info .utc-meta-top span{
+  font-size:clamp(8px,.63vw,11px) !important;
+}
+html body.presentation-mode .presentation-tool-only .utc-info .utc-indicator-display .utc-indicator-grid,
+html body.presentation-mode .presentation-tool-focus .utc-info .utc-indicator-display .utc-indicator-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  grid-auto-rows:minmax(30px,1fr) !important;
+  gap:4px !important;
+  overflow:auto !important;
+}
+html body.presentation-mode .presentation-tool-only .utc-progress,
+html body.presentation-mode .presentation-tool-focus .utc-progress{
+  display:grid !important;
+  grid-template-rows:minmax(0,1fr) 1px auto !important;
+  padding:10px 12px !important;
+}
+html body.presentation-mode .presentation-tool-only .utc-progress-list,
+html body.presentation-mode .presentation-tool-focus .utc-progress-list{
+  height:100% !important;
+  min-height:0 !important;
+  grid-template-rows:repeat(8,minmax(0,1fr)) !important;
+  gap:4px !important;
+  padding:0 0 8px !important;
+}
+html body.presentation-mode .presentation-tool-only .utc-progress>.utc-indicator-panel,
+html body.presentation-mode .presentation-tool-focus .utc-progress>.utc-indicator-panel{
+  border:0 !important;
+  background:transparent !important;
+  padding:8px 0 0 !important;
+}
