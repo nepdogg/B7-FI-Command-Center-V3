@@ -10153,3 +10153,81 @@ html body.presentation-mode .presentation-tool-only .utc-status{
 html body.presentation-mode .presentation-tool-only .utc-status > .utc-status-section{
   padding:15px 12px !important;
 }
+
+/* ================================================================
+   V6.4.9 FINAL AUTHORITY — FINALIZED UTC HEIGHT + PRESENTATION CONTROL
+   Keep the approved internal proportions while making all three columns
+   stretch to the full available Tool Card height. Extra height is absorbed
+   by the existing grid/fr section distribution, never as a blank strip.
+   ================================================================ */
+@media (min-width:700px){
+  html body .operations-tool-carousel,
+  html body .presentation-tool-only,
+  html body .presentation-tool-focus{
+    align-items:stretch !important;
+  }
+
+  html body .operations-tool-carousel .utc-host,
+  html body.presentation-mode .presentation-tool-only .utc-host,
+  html body.presentation-mode .presentation-tool-focus .utc-host{
+    display:flex !important;
+    flex-direction:column !important;
+    align-self:stretch !important;
+    height:100% !important;
+    min-height:0 !important;
+  }
+
+  html body .operations-tool-carousel .utc-card,
+  html body.presentation-mode .presentation-tool-only .utc-card,
+  html body.presentation-mode .presentation-tool-focus .utc-card{
+    flex:1 1 auto !important;
+    height:100% !important;
+    min-height:0 !important;
+    max-height:none !important;
+    aspect-ratio:auto !important;
+    align-items:stretch !important;
+  }
+
+  html body .operations-tool-carousel .utc-column,
+  html body.presentation-mode .presentation-tool-only .utc-column,
+  html body.presentation-mode .presentation-tool-focus .utc-column{
+    height:100% !important;
+    min-height:0 !important;
+    align-self:stretch !important;
+  }
+
+  /* The approved spacing scales with the available column height. */
+  html body .operations-tool-carousel .utc-info,
+  html body.presentation-mode .presentation-tool-only .utc-info,
+  html body.presentation-mode .presentation-tool-focus .utc-info{
+    grid-template-rows:13.5% 40.5% 5% minmax(0,1fr) !important;
+    align-content:stretch !important;
+  }
+  html body .operations-tool-carousel .utc-status,
+  html body.presentation-mode .presentation-tool-only .utc-status,
+  html body.presentation-mode .presentation-tool-focus .utc-status{
+    grid-template-rows:1.18fr .80fr .80fr 1.10fr 1.42fr 1.08fr !important;
+    align-content:stretch !important;
+  }
+  html body .operations-tool-carousel .utc-progress,
+  html body.presentation-mode .presentation-tool-only .utc-progress,
+  html body.presentation-mode .presentation-tool-focus .utc-progress{
+    height:100% !important;
+    min-height:0 !important;
+  }
+  html body .operations-tool-carousel .utc-progress>.utc-progress-list,
+  html body.presentation-mode .presentation-tool-only .utc-progress>.utc-progress-list,
+  html body.presentation-mode .presentation-tool-focus .utc-progress>.utc-progress-list{
+    flex:1 1 auto !important;
+    min-height:0 !important;
+  }
+
+  /* Presentation badge controls must remain fully operable. */
+  html body.presentation-mode [data-indicator-picker],
+  html body.presentation-mode [data-indicator-control],
+  html body.presentation-mode [data-save-indicator],
+  html body.presentation-mode .indicator-modal,
+  html body.presentation-mode .indicator-modal *{
+    pointer-events:auto !important;
+  }
+}

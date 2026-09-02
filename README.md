@@ -1,11 +1,11 @@
-B7 FI Command Center V6.4.8
+B7 FI Command Center V6.4.9
 
 Prototype Lock + Badge Rules
 
 This release preserves the existing browser storage key:
 b7fi-command-center-v3
 
-V6.4.8 changes:
+V6.4.9 changes:
 - Universal Tool Card uses one final desktop authority block in all normal and Presentation Mode contexts.
 - Left column is locked to the approved composition: compact identity, large tool image, Reduced Process banner, fixed 2 x 10 indicator matrix.
 - Tool Type, Model, Customer, and Sales Order use distinct identity colors.
@@ -16,8 +16,15 @@ V6.4.8 changes:
 - No core FI progress, shipping, forecast, cycle-time, or localStorage key changes.
 
 
-V6.4.8 middle-column lock:
+V6.4.9 middle-column lock:
 - Matches the approved middle-column sample: countdown, FI status, current system status, current FI task, FI forecast, cycle time.
 - Prevents ship countdown clipping.
 - Adds consistent breathing room around section dividers.
 - Keeps the same middle-column geometry in normal carousel and Presentation Mode.
+
+## V6.4.9 stabilization
+- Finalized Universal Tool Card columns now stretch to the full available card height.
+- Approved left/middle/right internal spacing remains proportional as height changes.
+- Eliminates the blank strip beneath the three columns in Live Operations/Presentation Mode.
+- Tool Badge Control is explicitly interactive in full-screen Presentation Mode and uses the same badge workflow as Live Operations/Tools pages.
+- Storage key remains `b7fi-command-center-v3`; no core FI calculations were changed.

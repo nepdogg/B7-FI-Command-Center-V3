@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.4.8', BUILD='20260901-V6.4.8-MIDDLE-COLUMN-LOCK';
+const VERSION='6.4.9', BUILD='20260901-V6.4.9-FINALIZED-UTC-PRESENTATION-BADGE-CONTROL';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI 200 Final Pre-Pack and QA';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -891,6 +891,24 @@ document.addEventListener('keydown',e=>{
   if(id)return openTool(id);
   if(el.dataset.sourceCenter)return go(el.dataset.sourceCenter,el.dataset.sourceSub||undefined);
 });
+// Presentation Mode keeps the finalized Universal Tool Card interactive only where explicitly intended.
+// Handle Tool Badge Control before the presentation click shield so the same control path works
+// in Live Operations, Tools pages, and full-screen Presentation Mode.
+document.addEventListener('click',e=>{
+  if(!document.body.classList.contains('presentation-mode'))return;
+  const control=e.target.closest('[data-indicator-control]');
+  if(control){
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    const id=control.dataset.indicatorControl||'';
+    const sel=document.querySelector(`[data-indicator-picker="${CSS.escape(id)}"]`);
+    const key=sel?.value||'';
+    if(!key){toast('SELECT A BADGE FIRST');return;}
+    indicatorControlModal(id,key);
+    return;
+  }
+},true);
+
 const PRESENTATION_INTERACTIVE='[data-carousel],[data-snapshot],[data-indicator-picker],[data-indicator-control],[data-save-indicator],[data-forecast-checklist],[data-select-forecast-checklist],[data-modal-cancel],#modalClose,#indicator-state,#indicator-availability,#indicator-value,.modal-card select,.modal-card input,.modal-card button';
 document.addEventListener('click',e=>{if(document.body.classList.contains('presentation-mode')&&!e.target.closest(PRESENTATION_INTERACTIVE)){e.preventDefault();e.stopImmediatePropagation()}},true);
 document.addEventListener('pointerdown',e=>{if(document.body.classList.contains('presentation-mode')&&!e.target.closest(PRESENTATION_INTERACTIVE)){e.preventDefault();e.stopImmediatePropagation()}},true);
