@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.3.8', BUILD='20260901-V6.3.8-TOOL-CARD-FLOW-BADGE-CONTROL-FIX';
+const VERSION='6.3.9', BUILD='20260901-V6.3.9-TOOL-CARD-RIGHT-COLUMN-SPACING-FIX';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI 200 Final Pre-Pack and QA';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -509,10 +509,8 @@ function liveToolCard(tool=null){
 
       <section class="utc-column utc-progress">
         <div class="utc-progress-list">
-          ${progressItem('FI TESTING',fi,t.toolStatus==='FI'?col:isShipped?'green':(['Powered Down','Packing'].includes(t.toolStatus)?'green':'blue'),' ',checklistLabel(t,t.currentChecklist))}
+          ${progressItem('FI TESTING',fi,t.toolStatus==='FI'?col:isShipped?'green':(['Powered Down','Packing'].includes(t.toolStatus)?'green':'blue'),'',checklistLabel(t,t.currentChecklist))}
           ${progressItem('MICRO SCHEDULE',mi,isShipped?'green':'cyan','',checklistLabel(t,t.microSchedule))}
-          ${cycleDayItem('CURRENT CYCLE TIME',t.fiHandoffDate?cyc:null,avgCycle,isShipped?'green':cycleColor,t.fiHandoffDate?`${cyc} DAYS`:'NOT STARTED')}
-          ${cycleDayItem('TARGET CYCLE TIME',avgCycle||null,avgCycle,isShipped&&avgCycle?'green':'blue',avgCycle?`${avgCycle} DAYS`:'TARGET TBD')}
           ${progressItem('LEAD / ADMIN PROGRESS',leadPct,isShipped?'green':'amber','',t.currentLeadTask||'NOT SET')}
           ${workflowProgressItem('CUSTOMER SOURCE',t.sourceRequired,t.sourceStatus,'source')}
           ${workflowProgressItem('STR',t.strRequired,t.strStatus,'str')}

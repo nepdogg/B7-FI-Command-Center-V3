@@ -8213,3 +8213,51 @@ html body.presentation-mode .presentation-tool-only .utc-progress-list .progress
 html body.presentation-mode .presentation-tool-focus .utc-progress-list .progress-step{
   font-size:clamp(9px,.65vw,12px) !important;
 }
+
+
+/* === V6.3.9 FINAL AUTHORITY: MIDDLE + RIGHT COLUMN POLISH ===
+   Middle: evenly distribute the five operational groups and clearly separate
+   FI Status from Current System Status.
+   Right: Cycle Time lives only in the middle column; distribute the six
+   remaining gauges evenly above Tool Badge Control. */
+html body .utc-status{
+  display:grid !important;
+  grid-template-rows:repeat(5,minmax(0,1fr)) !important;
+  gap:0 !important;
+  min-height:0 !important;
+}
+html body .utc-status>.utc-status-section{
+  min-height:0 !important;
+  padding:12px 14px !important;
+  box-sizing:border-box !important;
+}
+html body .utc-process .utc-process-block{
+  display:grid !important;
+  grid-template-rows:auto auto 1fr auto auto !important;
+  align-content:center !important;
+  height:100% !important;
+  min-height:0 !important;
+}
+html body .utc-process .utc-system-label{
+  margin-top:0 !important;
+  align-self:end !important;
+  padding-top:16px !important;
+}
+html body .utc-process .utc-phase-big{
+  margin-top:5px !important;
+}
+html body .utc-current-task,
+html body .utc-forecast,
+html body .utc-cycle,
+html body .utc-countdown{
+  justify-content:center !important;
+}
+html body .utc-progress-list{
+  grid-template-rows:repeat(6,minmax(0,1fr)) !important;
+  gap:8px !important;
+}
+html body.presentation-mode .presentation-tool-only .utc-progress-list,
+html body.presentation-mode .presentation-tool-focus .utc-progress-list{
+  grid-template-rows:repeat(6,minmax(0,1fr)) !important;
+  gap:7px !important;
+}

@@ -1,4 +1,4 @@
-B7 FI Command Center V6.3.8
+B7 FI Command Center V6.3.9
 
 Tool Card Flow + Badge Control Fix
 
