@@ -8443,3 +8443,43 @@ html body.presentation-mode .presentation-tool-focus .utc-progress>.utc-progress
   grid-template-rows:repeat(6,minmax(0,1fr)) !important;
   gap:8px !important;
 }
+
+
+/* === V6.4.1 FINAL AUTHORITY: FI INSTRUMENT PANEL + STATUS SEPARATION === */
+/* Exact three-row identity header: UTID centered; Tool Type/Customer; Model/SO. */
+html body .utc-info-head.utc-info-head-dashboard{
+  display:grid!important;grid-template-columns:1fr!important;grid-template-rows:auto auto auto!important;
+  gap:4px!important;padding:8px 42px 8px 20px!important;min-height:86px!important;box-sizing:border-box!important;
+}
+html body .utc-info-head-dashboard .utc-utid{grid-row:1!important;text-align:center!important;width:100%!important;font-size:clamp(30px,2.55vw,44px)!important;line-height:.95!important;}
+html body .utc-info-head-dashboard .utc-identity-row{display:grid!important;grid-template-columns:1fr 1fr!important;gap:18px!important;width:100%!important;align-items:center!important;}
+html body .utc-info-head-dashboard .utc-tool-type,html body .utc-info-head-dashboard .utc-tool-model{text-align:left!important;}
+html body .utc-info-head-dashboard .utc-customer-compact,html body .utc-info-head-dashboard .utc-so-compact{text-align:right!important;}
+html body .utc-info-head-dashboard .utc-tool-type,html body .utc-info-head-dashboard .utc-customer-compact{font-size:clamp(15px,1.18vw,20px)!important;line-height:1!important;}
+html body .utc-info-head-dashboard .utc-tool-model,html body .utc-info-head-dashboard .utc-so-compact{font-size:clamp(14px,1.08vw,19px)!important;line-height:1!important;}
+/* Permanent 2x10 dashboard lamps: never scroll; one centered state message per lamp. */
+html body .utc-info .utc-indicator-display{overflow:hidden!important;min-height:0!important;}
+html body .utc-info .utc-indicator-display .utc-indicator-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:repeat(10,minmax(0,1fr))!important;gap:3px!important;height:100%!important;min-height:0!important;overflow:hidden!important;}
+html body .utc-info .utc-indicator-display .fi-indicator-lamp{display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;min-height:0!important;height:100%!important;padding:2px 5px!important;box-sizing:border-box!important;overflow:hidden!important;}
+html body .utc-info .utc-indicator-display .fi-indicator-message{display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;width:100%!important;height:100%!important;font-size:clamp(7.2px,.58vw,9.5px)!important;line-height:1.05!important;font-weight:950!important;color:#fff!important;white-space:normal!important;overflow:hidden!important;}
+html body .utc-info .utc-indicator-display .fi-indicator-lamp.off .fi-indicator-message{color:#627a88!important;opacity:.52!important;}
+/* FI STATUS and CURRENT SYSTEM STATUS are distinct dashboard sections inside the same status group. */
+html body .utc-status .utc-process-block{display:grid!important;grid-template-rows:auto auto 1px auto auto!important;align-content:center!important;row-gap:7px!important;width:100%!important;}
+html body .utc-status .utc-status-inner-divider{display:block!important;width:100%!important;height:1px!important;background:#24485d!important;margin:5px 0 3px!important;}
+html body .utc-status .utc-system-label{margin-top:0!important;padding-top:0!important;}
+/* Keep the five major middle-column groups evenly distributed top to bottom. */
+html body .utc-status{display:grid!important;grid-template-rows:repeat(5,minmax(0,1fr))!important;gap:0!important;min-height:0!important;}
+html body .utc-status>.utc-status-section{display:flex!important;flex-direction:column!important;justify-content:center!important;min-height:0!important;margin:0!important;}
+html body .utc-status>.utc-status-section+.utc-status-section{border-top:1px solid #24485d!important;}
+/* Right column stays six evenly distributed gauges plus one divider and badge control. */
+html body .utc-progress>.utc-progress-list{display:grid!important;grid-template-rows:repeat(6,minmax(0,1fr))!important;gap:8px!important;min-height:0!important;overflow:hidden!important;}
+html body .utc-progress>.utc-progress-list .progress-head span,html body .utc-progress>.utc-progress-list .progress-head b{font-size:clamp(12px,.92vw,15px)!important;}
+html body .utc-progress>.utc-progress-list .progress-step{font-size:clamp(10px,.77vw,12.5px)!important;}
+html body.presentation-mode .presentation-tool-only .utc-info-head-dashboard .utc-tool-type,
+html body.presentation-mode .presentation-tool-only .utc-info-head-dashboard .utc-customer-compact,
+html body.presentation-mode .presentation-tool-focus .utc-info-head-dashboard .utc-tool-type,
+html body.presentation-mode .presentation-tool-focus .utc-info-head-dashboard .utc-customer-compact{font-size:clamp(17px,1.22vw,22px)!important;}
+html body.presentation-mode .presentation-tool-only .utc-info-head-dashboard .utc-tool-model,
+html body.presentation-mode .presentation-tool-only .utc-info-head-dashboard .utc-so-compact,
+html body.presentation-mode .presentation-tool-focus .utc-info-head-dashboard .utc-tool-model,
+html body.presentation-mode .presentation-tool-focus .utc-info-head-dashboard .utc-so-compact{font-size:clamp(16px,1.12vw,20px)!important;}

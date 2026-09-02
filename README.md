@@ -1,4 +1,4 @@
-B7 FI Command Center V6.4.0
+B7 FI Command Center V6.4.1
 
 Tool Card Flow + Badge Control Fix
 
@@ -16,8 +16,11 @@ Changes in this build:
 - Existing FI progress, shipping, forecast, meeting, synchronization, and storage workflows preserved.
 
 
-V6.4.0 Tool Card corrections:
+V6.4.1 Tool Card corrections:
 - Left identity header now uses three rows: UTID centered; Tool Type / Customer; Model / SO #.
 - Right column is locked to six evenly distributed progress rows plus one divider and Tool Badge Control.
 - Cycle Time remains only in the middle column.
 - Badge control remains interactive in normal and Presentation Mode.
+
+
+V6.4.1: finalized 20-position badge vocabulary/default ignition states, independent WWC 1/2/3 controls, exact three-row identity header, FI Status/System Status divider, and even middle/right column spacing.
