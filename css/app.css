@@ -8483,3 +8483,208 @@ html body.presentation-mode .presentation-tool-only .utc-info-head-dashboard .ut
 html body.presentation-mode .presentation-tool-only .utc-info-head-dashboard .utc-so-compact,
 html body.presentation-mode .presentation-tool-focus .utc-info-head-dashboard .utc-tool-model,
 html body.presentation-mode .presentation-tool-focus .utc-info-head-dashboard .utc-so-compact{font-size:clamp(16px,1.12vw,20px)!important;}
+
+
+/* === V6.4.2 FINAL AUTHORITY: APPROVED UNIVERSAL TOOL CARD LEFT COLUMN ===
+   Approved visual target: compact identity, large tool image, full-width Reduced Process,
+   then a fixed 2 x 10 instrument-light matrix filling all remaining space. */
+html body .utc-info{
+  position:relative !important;
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) !important;
+  grid-template-rows:88px minmax(210px,1.05fr) 34px minmax(240px,1fr) !important;
+  row-gap:6px !important;
+  padding:10px 12px 10px !important;
+  min-height:0 !important;
+  overflow:hidden !important;
+  box-sizing:border-box !important;
+}
+html body .utc-info>.utc-open{
+  position:absolute !important;
+  top:5px !important;
+  right:5px !important;
+  left:auto !important;
+  z-index:30 !important;
+  margin:0 !important;
+}
+html body .utc-info-head.utc-info-head-dashboard{
+  grid-row:1 !important;
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) !important;
+  grid-template-rows:36px 20px 20px !important;
+  align-content:center !important;
+  gap:2px !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  padding:2px 38px 2px 10px !important;
+  margin:0 !important;
+  box-sizing:border-box !important;
+  overflow:visible !important;
+}
+html body .utc-info-head-dashboard .utc-utid{
+  grid-row:1 !important;
+  width:100% !important;
+  margin:0 !important;
+  padding:0 !important;
+  text-align:center !important;
+  color:#fff !important;
+  font-size:clamp(30px,2.25vw,38px) !important;
+  line-height:1 !important;
+  font-weight:950 !important;
+  letter-spacing:.02em !important;
+  white-space:nowrap !important;
+  overflow:visible !important;
+}
+html body .utc-info-head-dashboard .utc-identity-row{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+  align-items:center !important;
+  column-gap:16px !important;
+  width:100% !important;
+  min-width:0 !important;
+  margin:0 !important;
+}
+html body .utc-info-head-dashboard .utc-identity-row > span{
+  display:block !important;
+  min-width:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  color:#fff !important;
+  font-size:clamp(13px,1vw,17px) !important;
+  line-height:1.05 !important;
+  font-weight:900 !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+}
+html body .utc-info-head-dashboard .utc-tool-type,
+html body .utc-info-head-dashboard .utc-tool-model{text-align:left !important;}
+html body .utc-info-head-dashboard .utc-customer-compact,
+html body .utc-info-head-dashboard .utc-so-compact{text-align:right !important;}
+html body .utc-info-head-dashboard .utc-so-compact{font-size:clamp(12px,.92vw,16px) !important;}
+
+html body .utc-info .utc-photo{
+  grid-row:2 !important;
+  order:initial !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  overflow:hidden !important;
+}
+html body .utc-info .utc-photo img{
+  display:block !important;
+  width:auto !important;
+  height:auto !important;
+  max-width:98% !important;
+  max-height:98% !important;
+  object-fit:contain !important;
+  transform:none !important;
+}
+html body .utc-info .utc-reduced{
+  grid-row:3 !important;
+  order:initial !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:100% !important;
+  height:34px !important;
+  min-height:34px !important;
+  margin:0 !important;
+  box-sizing:border-box !important;
+}
+html body .utc-info .utc-indicator-display{
+  grid-row:4 !important;
+  order:initial !important;
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  overflow:hidden !important;
+  box-sizing:border-box !important;
+}
+html body .utc-info .utc-indicator-display .utc-indicator-grid{
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  grid-template-rows:repeat(10,minmax(0,1fr)) !important;
+  grid-auto-rows:unset !important;
+  align-items:stretch !important;
+  align-content:stretch !important;
+  justify-items:stretch !important;
+  gap:4px !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  overflow:hidden !important;
+  box-sizing:border-box !important;
+}
+html body .utc-info .utc-indicator-display .fi-indicator-lamp{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:100% !important;
+  height:100% !important;
+  min-width:0 !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:2px 5px !important;
+  box-sizing:border-box !important;
+  text-align:center !important;
+  overflow:hidden !important;
+}
+html body .utc-info .utc-indicator-display .fi-indicator-message{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:100% !important;
+  height:100% !important;
+  min-width:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  text-align:center !important;
+  font-size:clamp(7px,.55vw,9px) !important;
+  line-height:1.05 !important;
+  font-weight:950 !important;
+  white-space:normal !important;
+  overflow:hidden !important;
+  overflow-wrap:anywhere !important;
+}
+
+/* Presentation Mode: same exact component, scaled for the large wallboard card. */
+html body.presentation-mode .presentation-tool-only .utc-info,
+html body.presentation-mode .presentation-tool-focus .utc-info{
+  grid-template-rows:96px minmax(235px,1.08fr) 36px minmax(250px,1fr) !important;
+  row-gap:7px !important;
+  padding:12px 14px 12px !important;
+}
+html body.presentation-mode .presentation-tool-only .utc-info-head.utc-info-head-dashboard,
+html body.presentation-mode .presentation-tool-focus .utc-info-head.utc-info-head-dashboard{
+  grid-template-rows:42px 21px 21px !important;
+  gap:3px !important;
+  padding:2px 44px 2px 12px !important;
+}
+html body.presentation-mode .presentation-tool-only .utc-info-head-dashboard .utc-utid,
+html body.presentation-mode .presentation-tool-focus .utc-info-head-dashboard .utc-utid{
+  font-size:clamp(36px,2.7vw,50px) !important;
+}
+html body.presentation-mode .presentation-tool-only .utc-info-head-dashboard .utc-identity-row > span,
+html body.presentation-mode .presentation-tool-focus .utc-info-head-dashboard .utc-identity-row > span{
+  font-size:clamp(15px,1.08vw,20px) !important;
+}
+html body.presentation-mode .presentation-tool-only .utc-info-head-dashboard .utc-so-compact,
+html body.presentation-mode .presentation-tool-focus .utc-info-head-dashboard .utc-so-compact{
+  font-size:clamp(14px,1vw,18px) !important;
+}
+html body.presentation-mode .presentation-tool-only .utc-info .utc-indicator-display .fi-indicator-message,
+html body.presentation-mode .presentation-tool-focus .utc-info .utc-indicator-display .fi-indicator-message{
+  font-size:clamp(8px,.62vw,11px) !important;
+}
