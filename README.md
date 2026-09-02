@@ -1,4 +1,4 @@
-B7 FI Command Center V6.4.2
+B7 FI Command Center V6.4.3
 
 Tool Card Flow + Badge Control Fix
 
@@ -26,7 +26,7 @@ V6.4.1 Tool Card corrections:
 V6.4.1: finalized 20-position badge vocabulary/default ignition states, independent WWC 1/2/3 controls, exact three-row identity header, FI Status/System Status divider, and even middle/right column spacing.
 
 
-V6.4.2 Approved Universal Tool Card layout:
+V6.4.3 Approved Universal Tool Card layout:
 - Restored a large tool image in the left column.
 - Compact three-row identity block: centered UTID; Tool Type/Customer; Model/SO #.
 - Reduced Process remains a full-width banner immediately below the tool image.
