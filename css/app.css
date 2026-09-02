@@ -9074,3 +9074,202 @@ html body.presentation-mode .presentation-tool-focus .utc-progress>.utc-progress
     gap:7px !important;
   }
 }
+
+/* =========================================================
+   V6.4.5 FINAL AUTHORITY — LOCK UTC LEFT + MIDDLE TO APPROVED SAMPLES
+   Right column remains V6.4.4, including cycle-time gauges.
+   ========================================================= */
+@media (min-width:1101px){
+  /* Use the approved sample proportions. */
+  html body .utc-host{
+    height:790px !important;
+    min-height:790px !important;
+    max-height:790px !important;
+  }
+
+  /* LEFT SAMPLE: compact 3-row identity, large centered photo,
+     full-width Reduced Process, then 20 fixed lamps filling remainder. */
+  html body .utc-info{
+    grid-template-rows:88px 248px 30px minmax(0,1fr) !important;
+    row-gap:6px !important;
+    padding:8px 10px 8px !important;
+  }
+  html body .utc-info>.utc-open{
+    top:6px !important;
+    right:6px !important;
+    width:29px !important;
+    height:29px !important;
+  }
+  html body .utc-info-head.utc-info-head-dashboard{
+    grid-template-rows:40px 20px 20px !important;
+    gap:2px !important;
+    padding:0 38px 0 14px !important;
+    align-content:start !important;
+  }
+  html body .utc-info-head-dashboard .utc-utid{
+    font-size:clamp(31px,2.2vw,39px) !important;
+    line-height:.98 !important;
+    letter-spacing:.015em !important;
+  }
+  html body .utc-info-head-dashboard .utc-identity-row{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+    column-gap:14px !important;
+  }
+  html body .utc-info-head-dashboard .utc-identity-row>span{
+    font-size:clamp(12px,.88vw,15.5px) !important;
+    line-height:1 !important;
+    white-space:nowrap !important;
+    overflow:visible !important;
+    text-overflow:clip !important;
+  }
+  html body .utc-info-head-dashboard .utc-so-compact{
+    font-size:clamp(11.5px,.84vw,15px) !important;
+  }
+  html body .utc-info .utc-photo{
+    align-items:center !important;
+    justify-content:center !important;
+    padding:0 !important;
+  }
+  html body .utc-info .utc-photo img{
+    max-width:100% !important;
+    max-height:100% !important;
+    width:auto !important;
+    height:auto !important;
+    object-fit:contain !important;
+  }
+  html body .utc-info .utc-reduced{
+    height:30px !important;
+    min-height:30px !important;
+    font-size:clamp(9px,.68vw,11px) !important;
+  }
+  html body .utc-info .utc-indicator-display{
+    align-self:stretch !important;
+    justify-self:stretch !important;
+  }
+  html body .utc-info .utc-indicator-display .utc-indicator-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    grid-template-rows:repeat(10,minmax(0,1fr)) !important;
+    gap:4px !important;
+    width:100% !important;
+    height:100% !important;
+  }
+  html body .utc-info .utc-indicator-display .fi-indicator-lamp{
+    padding:3px 5px !important;
+    min-height:0 !important;
+  }
+  html body .utc-info .utc-indicator-display .fi-indicator-message{
+    font-size:clamp(8px,.60vw,10px) !important;
+    line-height:1.05 !important;
+    text-align:center !important;
+  }
+
+  /* MIDDLE SAMPLE: exact visual sequence and balanced vertical rhythm. */
+  html body .utc-status{
+    display:grid !important;
+    grid-template-rows:1.02fr 1.13fr .88fr 1.20fr 1.12fr !important;
+    gap:0 !important;
+    padding:0 14px !important;
+  }
+  html body .utc-status>.utc-status-section{
+    padding:10px 8px !important;
+    justify-content:center !important;
+    overflow:hidden !important;
+  }
+  html body .utc-status>.utc-status-section+.utc-status-section{
+    border-top:1px solid #24485d !important;
+  }
+  html body .utc-countdown{
+    align-items:flex-start !important;
+  }
+  html body .utc-countdown-big{
+    font-size:clamp(28px,2.05vw,35px) !important;
+    line-height:1.05 !important;
+    margin-top:6px !important;
+  }
+  html body .utc-countdown-date{
+    font-size:clamp(11px,.80vw,13px) !important;
+    margin-top:6px !important;
+  }
+  html body .utc-status .utc-process-block{
+    display:grid !important;
+    grid-template-rows:auto auto 1px auto auto !important;
+    row-gap:7px !important;
+    align-content:center !important;
+    width:100% !important;
+  }
+  html body .utc-status .utc-status-inner-divider{
+    height:1px !important;
+    margin:6px 0 !important;
+    background:#24485d !important;
+  }
+  html body .utc-process-big{
+    font-size:clamp(19px,1.35vw,23px) !important;
+    line-height:1.05 !important;
+    margin-top:2px !important;
+  }
+  html body .utc-phase-big{
+    font-size:clamp(17px,1.20vw,21px) !important;
+    line-height:1.05 !important;
+    margin-top:1px !important;
+  }
+  html body .utc-current-task{
+    align-items:flex-start !important;
+  }
+  html body .utc-current-task-value{
+    font-size:clamp(14px,1.0vw,17px) !important;
+    line-height:1.15 !important;
+    margin-top:7px !important;
+    max-width:100% !important;
+  }
+  html body .utc-forecast{
+    justify-content:center !important;
+  }
+  html body .utc-forecast-button{
+    min-height:48px !important;
+    margin-top:7px !important;
+    padding:8px 10px !important;
+    font-size:clamp(13px,.94vw,16px) !important;
+    line-height:1.1 !important;
+  }
+  html body .utc-forecast-date{
+    margin-top:14px !important;
+  }
+  html body .utc-forecast-date strong{
+    font-size:clamp(12px,.87vw,15px) !important;
+    line-height:1.05 !important;
+  }
+  html body .utc-cycle{
+    padding:8px 8px !important;
+    justify-content:space-evenly !important;
+  }
+  html body .utc-cycle .utc-metric{
+    min-height:30px !important;
+    padding:5px 0 !important;
+    font-size:clamp(10px,.72vw,12px) !important;
+  }
+
+  /* Keep V6.4.4 right column layout, explicitly retaining 8 rows. */
+  html body .utc-progress>.utc-progress-list{
+    grid-template-rows:repeat(8,minmax(0,1fr)) !important;
+  }
+
+  /* Presentation Mode uses the same approved sample structure. */
+  html body.presentation-mode .presentation-tool-only .utc-info,
+  html body.presentation-mode .presentation-tool-focus .utc-info{
+    grid-template-rows:94px minmax(250px,1fr) 32px minmax(300px,1.35fr) !important;
+    row-gap:6px !important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-info-head.utc-info-head-dashboard,
+  html body.presentation-mode .presentation-tool-focus .utc-info-head.utc-info-head-dashboard{
+    grid-template-rows:44px 22px 22px !important;
+    padding:0 44px 0 16px !important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-info-head-dashboard .utc-utid,
+  html body.presentation-mode .presentation-tool-focus .utc-info-head-dashboard .utc-utid{
+    font-size:clamp(36px,2.55vw,45px) !important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-info-head-dashboard .utc-identity-row>span,
+  html body.presentation-mode .presentation-tool-focus .utc-info-head-dashboard .utc-identity-row>span{
+    font-size:clamp(14px,.98vw,18px) !important;
+  }
+}
