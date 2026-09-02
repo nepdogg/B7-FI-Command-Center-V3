@@ -1,4 +1,4 @@
-B7 FI Command Center V6.3.9
+B7 FI Command Center V6.4.0
 
 Tool Card Flow + Badge Control Fix
 
@@ -14,3 +14,10 @@ Changes in this build:
 - Tool Badge Control update flow repaired and legacy indicator fields synchronized for compatibility.
 - Cycle Time Center now shows TARGET TBD when FI Handoff exists but no cycle target is configured, instead of NOT STARTED.
 - Existing FI progress, shipping, forecast, meeting, synchronization, and storage workflows preserved.
+
+
+V6.4.0 Tool Card corrections:
+- Left identity header now uses three rows: UTID centered; Tool Type / Customer; Model / SO #.
+- Right column is locked to six evenly distributed progress rows plus one divider and Tool Badge Control.
+- Cycle Time remains only in the middle column.
+- Badge control remains interactive in normal and Presentation Mode.

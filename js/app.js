@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.3.9', BUILD='20260901-V6.3.9-TOOL-CARD-RIGHT-COLUMN-SPACING-FIX';
+const VERSION='6.4.0', BUILD='20260901-V6.3.9-TOOL-CARD-RIGHT-COLUMN-SPACING-FIX';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI 200 Final Pre-Pack and QA';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -451,14 +451,15 @@ function liveToolCard(tool=null){
     <div class="utc-card ${tone}">
       <section class="utc-column utc-info">
         <button class="utc-open tool-photo-open" data-open-tool="${esc(t.id)}" type="button" title="Open Tool Editor">↗</button>
-        <header class="utc-info-head utc-info-head-split">
-          <div class="utc-identity-main">
-            <div class="utc-utid">${esc(t.id)}</div>
-            <div class="utc-model">${esc(toolSub)}</div>
+        <header class="utc-info-head utc-info-head-dashboard">
+          <div class="utc-utid">${esc(t.id)}</div>
+          <div class="utc-identity-row utc-identity-row-primary">
+            <span class="utc-tool-type">${esc(t.codename||'—')}</span>
+            <span class="utc-customer-compact" title="${esc(t.customer||'No customer available')}">${esc(t.customer||'N/A')}</span>
           </div>
-          <div class="utc-identity-meta">
-            <span class="utc-customer-compact" title="${esc(t.customer||'No customer available')}">${esc(t.customer||'—')}</span>
-            <span class="utc-so-compact" title="${esc(t.salesOrder||'No sales order available')}">SO # ${esc(t.salesOrder||'—')}</span>
+          <div class="utc-identity-row utc-identity-row-secondary">
+            <span class="utc-tool-model">${esc(t.model||'—')}</span>
+            <span class="utc-so-compact" title="${esc(t.salesOrder||'No sales order available')}">SO #${esc(t.salesOrder||'—')}</span>
           </div>
         </header>
         <div class="utc-photo tool-open-photo" data-open-tool="${esc(t.id)}" role="button" tabindex="0" title="Open Tool Editor">

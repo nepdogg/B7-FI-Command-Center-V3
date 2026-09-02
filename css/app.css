@@ -8261,3 +8261,185 @@ html body.presentation-mode .presentation-tool-focus .utc-progress-list{
   grid-template-rows:repeat(6,minmax(0,1fr)) !important;
   gap:7px !important;
 }
+
+/* === V6.4.0 FINAL AUTHORITY: TOOL CARD IDENTITY + RIGHT COLUMN === */
+/* Left column: exact three-row identity layout requested by FI. */
+html body .utc-info-head.utc-info-head-dashboard{
+  display:grid !important;
+  grid-template-rows:auto auto auto !important;
+  grid-template-columns:1fr !important;
+  gap:3px !important;
+  width:100% !important;
+  min-width:0 !important;
+  padding:8px 46px 7px 14px !important;
+  box-sizing:border-box !important;
+  align-content:center !important;
+}
+html body .utc-info-head-dashboard .utc-utid{
+  grid-row:1 !important;
+  width:100% !important;
+  margin:0 !important;
+  text-align:center !important;
+  font-size:clamp(28px,2.45vw,42px) !important;
+  line-height:.95 !important;
+  font-weight:950 !important;
+  letter-spacing:.02em !important;
+  color:#fff !important;
+}
+html body .utc-info-head-dashboard .utc-identity-row{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+  align-items:center !important;
+  column-gap:12px !important;
+  width:100% !important;
+  min-width:0 !important;
+}
+html body .utc-info-head-dashboard .utc-identity-row > span{
+  min-width:0 !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  white-space:nowrap !important;
+  font-weight:950 !important;
+  line-height:1.05 !important;
+}
+html body .utc-info-head-dashboard .utc-tool-type,
+html body .utc-info-head-dashboard .utc-tool-model{
+  text-align:left !important;
+}
+html body .utc-info-head-dashboard .utc-customer-compact,
+html body .utc-info-head-dashboard .utc-so-compact{
+  text-align:right !important;
+  color:#fff !important;
+}
+html body .utc-info-head-dashboard .utc-tool-type,
+html body .utc-info-head-dashboard .utc-customer-compact{
+  font-size:clamp(13px,1.08vw,18px) !important;
+}
+html body .utc-info-head-dashboard .utc-tool-model,
+html body .utc-info-head-dashboard .utc-so-compact{
+  font-size:clamp(12px,.98vw,17px) !important;
+}
+html body .utc-info>.utc-open{
+  top:5px !important;
+  right:5px !important;
+  z-index:6 !important;
+}
+
+/* Right column: six gauges use all available space evenly. */
+html body .utc-progress{
+  display:grid !important;
+  grid-template-rows:minmax(0,1fr) 1px auto !important;
+  row-gap:0 !important;
+  min-height:0 !important;
+  padding:10px 14px 12px !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+html body .utc-progress>.utc-progress-list{
+  grid-row:1 !important;
+  display:grid !important;
+  grid-template-rows:repeat(6,minmax(0,1fr)) !important;
+  align-items:stretch !important;
+  gap:8px !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  padding:0 0 10px !important;
+  margin:0 !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+html body .utc-progress>.utc-progress-list>.progress-item{
+  display:grid !important;
+  grid-template-rows:auto 10px auto !important;
+  align-content:center !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+html body .utc-progress>.utc-progress-list .progress-head{
+  margin:0 0 4px !important;
+}
+html body .utc-progress>.utc-progress-list .progress-head span,
+html body .utc-progress>.utc-progress-list .progress-head b{
+  font-size:clamp(11px,.86vw,14px) !important;
+  line-height:1.05 !important;
+  font-weight:950 !important;
+}
+html body .utc-progress>.utc-progress-list .progress-step{
+  margin-top:4px !important;
+  font-size:clamp(9px,.72vw,11.5px) !important;
+  line-height:1.08 !important;
+  min-height:1.08em !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  white-space:nowrap !important;
+}
+html body .utc-progress>.utc-divider{
+  grid-row:2 !important;
+  display:block !important;
+  width:100% !important;
+  height:1px !important;
+  min-height:1px !important;
+  margin:0 !important;
+  background:#24485d !important;
+  border:0 !important;
+}
+html body .utc-progress>.utc-indicator-panel{
+  grid-row:3 !important;
+  display:block !important;
+  width:100% !important;
+  margin:0 !important;
+  padding:10px 0 0 !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+html body .utc-progress>.utc-indicator-panel .utc-indicator-control-title{
+  margin:0 0 8px !important;
+  font-size:clamp(11px,.85vw,14px) !important;
+  line-height:1 !important;
+}
+html body .utc-progress>.utc-indicator-panel .utc-indicator-control-row{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) auto !important;
+  align-items:center !important;
+  gap:10px !important;
+}
+html body .utc-progress>.utc-indicator-panel select{
+  width:100% !important;
+  min-width:0 !important;
+  height:34px !important;
+}
+html body .utc-progress>.utc-indicator-panel .btn{
+  height:34px !important;
+  padding:0 12px !important;
+}
+
+/* Presentation Mode uses the same identity geometry, enlarged. */
+html body.presentation-mode .presentation-tool-only .utc-info-head.utc-info-head-dashboard,
+html body.presentation-mode .presentation-tool-focus .utc-info-head.utc-info-head-dashboard{
+  padding:8px 52px 7px 16px !important;
+  gap:4px !important;
+}
+html body.presentation-mode .presentation-tool-only .utc-info-head-dashboard .utc-utid,
+html body.presentation-mode .presentation-tool-focus .utc-info-head-dashboard .utc-utid{
+  font-size:clamp(34px,2.6vw,48px) !important;
+}
+html body.presentation-mode .presentation-tool-only .utc-info-head-dashboard .utc-tool-type,
+html body.presentation-mode .presentation-tool-only .utc-info-head-dashboard .utc-customer-compact,
+html body.presentation-mode .presentation-tool-focus .utc-info-head-dashboard .utc-tool-type,
+html body.presentation-mode .presentation-tool-focus .utc-info-head-dashboard .utc-customer-compact{
+  font-size:clamp(15px,1.1vw,20px) !important;
+}
+html body.presentation-mode .presentation-tool-only .utc-info-head-dashboard .utc-tool-model,
+html body.presentation-mode .presentation-tool-only .utc-info-head-dashboard .utc-so-compact,
+html body.presentation-mode .presentation-tool-focus .utc-info-head-dashboard .utc-tool-model,
+html body.presentation-mode .presentation-tool-focus .utc-info-head-dashboard .utc-so-compact{
+  font-size:clamp(14px,1vw,18px) !important;
+}
+html body.presentation-mode .presentation-tool-only .utc-progress>.utc-progress-list,
+html body.presentation-mode .presentation-tool-focus .utc-progress>.utc-progress-list{
+  grid-template-rows:repeat(6,minmax(0,1fr)) !important;
+  gap:8px !important;
+}
