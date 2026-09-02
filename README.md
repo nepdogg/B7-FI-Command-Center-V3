@@ -1,4 +1,4 @@
-B7 FI Command Center V6.4.5
+B7 FI Command Center V6.4.6
 
 Tool Card Flow + Badge Control Fix
 
@@ -43,8 +43,16 @@ V6.4.4 Prototype-match Universal Tool Card:
 - Right column keeps the approved progress/control styling and restores Current/Target Cycle Time gauges in days.
 - No data schema, storage key, FI calculations, shipping calculations, or cross-window synchronization changes.
 
-V6.4.5 Locked Sample Card:
+V6.4.6 Locked Sample Card:
 - Left column proportions locked to approved sample: compact identity, large tool image, Reduced Process, 20 fixed badge placeholders filling remaining space.
 - Middle column locked to approved sample sequence and divider rhythm.
 - Right column preserved with FI Testing, Micro Schedule, Current Cycle Time, Target Cycle Time, Lead/Admin, Customer Source, STR, Packing/Shipping, and Tool Badge Control.
 - Existing V3 storage/data and operational calculations preserved.
+
+## V6.4.6
+- Locked the Universal Tool Card to the approved prototype visual design.
+- Left identity values use distinct high-contrast colors and a larger photo area.
+- Fixed 20-position badge matrix fills the full lower-left region.
+- Middle-column divider spacing and section rhythm match the approved prototype more closely.
+- Right column retains Current/Target Cycle Time gauges plus all existing progress rows.
+- Presentation Mode uses the same Universal Tool Card geometry, enlarged rather than restyled.

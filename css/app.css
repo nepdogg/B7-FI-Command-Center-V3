@@ -9273,3 +9273,322 @@ html body.presentation-mode .presentation-tool-focus .utc-progress>.utc-progress
     font-size:clamp(14px,.98vw,18px) !important;
   }
 }
+
+/* =========================================================
+   V6.4.6 FINAL AUTHORITY — APPROVED PROTOTYPE VISUAL LOCK
+   Universal Tool Card: same geometry everywhere.
+   ========================================================= */
+@media (min-width:1101px){
+  html body .utc-host{
+    height:790px !important;
+    min-height:790px !important;
+    max-height:790px !important;
+  }
+  html body .utc-card{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:8px !important;
+  }
+
+  /* LEFT COLUMN — approved prototype */
+  html body .utc-info{
+    display:grid !important;
+    grid-template-rows:104px 300px 36px minmax(0,1fr) !important;
+    row-gap:8px !important;
+    padding:8px 10px 10px !important;
+    min-height:0 !important;
+    overflow:hidden !important;
+  }
+  html body .utc-info>.utc-open{
+    top:8px !important;
+    right:8px !important;
+    width:30px !important;
+    height:30px !important;
+    z-index:3 !important;
+  }
+  html body .utc-info-head.utc-info-head-dashboard{
+    display:grid !important;
+    grid-template-rows:50px 23px 23px !important;
+    row-gap:2px !important;
+    padding:0 42px 0 20px !important;
+    margin:0 !important;
+    align-content:start !important;
+    min-width:0 !important;
+  }
+  html body .utc-info-head-dashboard .utc-utid{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    font-size:clamp(36px,2.55vw,46px) !important;
+    line-height:.98 !important;
+    letter-spacing:.025em !important;
+    white-space:nowrap !important;
+    overflow:visible !important;
+  }
+  html body .utc-info-head-dashboard .utc-identity-row{
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+    column-gap:18px !important;
+    align-items:center !important;
+    min-width:0 !important;
+  }
+  html body .utc-info-head-dashboard .utc-identity-row>span{
+    font-size:clamp(15px,1.04vw,18px) !important;
+    font-weight:900 !important;
+    line-height:1 !important;
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+  }
+  html body .utc-info-head-dashboard .utc-tool-type{color:#25c9ff !important;text-align:left !important;}
+  html body .utc-info-head-dashboard .utc-tool-model{color:#fff !important;text-align:left !important;}
+  html body .utc-info-head-dashboard .utc-customer-compact{color:#ffd43b !important;text-align:right !important;}
+  html body .utc-info-head-dashboard .utc-so-compact{color:#ff8a1f !important;text-align:right !important;font-size:clamp(14px,.98vw,17px) !important;}
+  html body .utc-info .utc-photo{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    padding:0 !important;
+    margin:0 !important;
+    min-height:0 !important;
+    overflow:hidden !important;
+  }
+  html body .utc-info .utc-photo img{
+    width:100% !important;
+    height:100% !important;
+    max-width:100% !important;
+    max-height:100% !important;
+    object-fit:contain !important;
+    object-position:center !important;
+  }
+  html body .utc-info .utc-reduced{
+    width:100% !important;
+    height:36px !important;
+    min-height:36px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    margin:0 !important;
+    font-size:clamp(10px,.72vw,12px) !important;
+  }
+  html body .utc-info .utc-indicator-display{
+    width:100% !important;
+    height:100% !important;
+    min-height:0 !important;
+    margin:0 !important;
+    padding:0 !important;
+    overflow:hidden !important;
+  }
+  html body .utc-info .utc-indicator-display .utc-indicator-grid{
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    grid-template-rows:repeat(10,minmax(0,1fr)) !important;
+    gap:5px 6px !important;
+    width:100% !important;
+    height:100% !important;
+    min-height:0 !important;
+    overflow:hidden !important;
+  }
+  html body .utc-info .utc-indicator-display .fi-indicator-lamp{
+    width:100% !important;
+    height:100% !important;
+    min-width:0 !important;
+    min-height:0 !important;
+    margin:0 !important;
+    padding:3px 6px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    text-align:center !important;
+    box-sizing:border-box !important;
+  }
+  html body .utc-info .utc-indicator-display .fi-indicator-message{
+    width:100% !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    text-align:center !important;
+    font-size:clamp(8px,.60vw,10.5px) !important;
+    font-weight:900 !important;
+    line-height:1.04 !important;
+    overflow-wrap:anywhere !important;
+  }
+
+  /* MIDDLE COLUMN — approved prototype spacing/divider rhythm */
+  html body .utc-status{
+    display:grid !important;
+    grid-template-rows:1.05fr 1.10fr .90fr 1.18fr 1.08fr !important;
+    gap:0 !important;
+    padding:0 16px !important;
+    min-height:0 !important;
+    overflow:hidden !important;
+  }
+  html body .utc-status>.utc-status-section{
+    position:relative !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    justify-content:center !important;
+    min-height:0 !important;
+    margin:0 !important;
+    padding:18px 12px !important;
+    border-top:0 !important;
+    overflow:hidden !important;
+    text-align:left !important;
+  }
+  html body .utc-status>.utc-status-section+.utc-status-section::before{
+    content:"" !important;
+    position:absolute !important;
+    top:0 !important;
+    left:0 !important;
+    right:0 !important;
+    height:1px !important;
+    background:#24485d !important;
+  }
+  html body .utc-status .utc-kicker{
+    margin:0 0 7px !important;
+    line-height:1 !important;
+  }
+  html body .utc-countdown{
+    justify-content:center !important;
+  }
+  html body .utc-countdown-big{
+    font-size:clamp(31px,2.35vw,40px) !important;
+    line-height:1.03 !important;
+    margin:4px 0 0 !important;
+  }
+  html body .utc-countdown-date{
+    font-size:clamp(12px,.86vw,14px) !important;
+    line-height:1.05 !important;
+    margin-top:9px !important;
+  }
+  html body .utc-status .utc-process-block{
+    display:grid !important;
+    grid-template-rows:auto auto 1px auto auto !important;
+    row-gap:7px !important;
+    align-content:center !important;
+    width:100% !important;
+  }
+  html body .utc-process-big{
+    font-size:clamp(21px,1.5vw,25px) !important;
+    line-height:1.06 !important;
+    margin:0 !important;
+    text-align:left !important;
+  }
+  html body .utc-status .utc-status-inner-divider{
+    display:block !important;
+    width:100% !important;
+    height:1px !important;
+    background:#24485d !important;
+    margin:11px 0 10px !important;
+  }
+  html body .utc-status .utc-system-label{
+    margin-top:0 !important;
+  }
+  html body .utc-phase-big{
+    font-size:clamp(19px,1.32vw,22px) !important;
+    line-height:1.06 !important;
+    margin:0 !important;
+    text-align:left !important;
+  }
+  html body .utc-current-task{
+    justify-content:center !important;
+  }
+  html body .utc-current-task-value{
+    max-width:100% !important;
+    margin:2px 0 0 !important;
+    font-size:clamp(16px,1.10vw,19px) !important;
+    line-height:1.16 !important;
+    text-align:left !important;
+    overflow-wrap:anywhere !important;
+  }
+  html body .utc-forecast{
+    justify-content:center !important;
+  }
+  html body .utc-forecast-button{
+    width:100% !important;
+    min-height:52px !important;
+    margin:2px 0 0 !important;
+    padding:9px 11px !important;
+    font-size:clamp(14px,1.02vw,17px) !important;
+    line-height:1.10 !important;
+    text-align:left !important;
+  }
+  html body .utc-forecast-date{
+    width:100% !important;
+    margin-top:17px !important;
+  }
+  html body .utc-forecast-date strong{
+    font-size:clamp(13px,.94vw,16px) !important;
+    line-height:1.08 !important;
+  }
+  html body .utc-cycle{
+    justify-content:space-evenly !important;
+    padding-top:15px !important;
+    padding-bottom:12px !important;
+  }
+  html body .utc-cycle .utc-metric{
+    width:100% !important;
+    min-height:34px !important;
+    margin:0 !important;
+    padding:7px 0 !important;
+    font-size:clamp(10.5px,.76vw,12.5px) !important;
+    border-bottom:1px dotted #24485d !important;
+  }
+  html body .utc-cycle .utc-metric:last-child{border-bottom:0 !important;}
+
+  /* RIGHT COLUMN — retain approved layout + cycle-time gauges. */
+  html body .utc-progress{
+    display:grid !important;
+    grid-template-rows:minmax(0,1fr) 1px 84px !important;
+    padding:14px 14px 10px !important;
+    min-height:0 !important;
+  }
+  html body .utc-progress>.utc-progress-list{
+    display:grid !important;
+    grid-template-rows:repeat(8,minmax(0,1fr)) !important;
+    gap:6px !important;
+    min-height:0 !important;
+    overflow:hidden !important;
+  }
+  html body .utc-progress>.utc-progress-list>.progress-item{
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+    min-height:0 !important;
+    margin:0 !important;
+  }
+  html body .utc-progress>.utc-progress-list .progress-head span,
+  html body .utc-progress>.utc-progress-list .progress-head b{
+    font-size:clamp(13px,.96vw,16px) !important;
+    line-height:1 !important;
+  }
+  html body .utc-progress>.utc-progress-list .progress-step{
+    font-size:clamp(10.5px,.78vw,13px) !important;
+    line-height:1.08 !important;
+    margin-top:5px !important;
+  }
+
+  /* Presentation mode is the same card, enlarged — no alternate layout. */
+  html body.presentation-mode .presentation-tool-only .utc-card,
+  html body.presentation-mode .presentation-tool-focus .utc-card{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:8px !important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-info,
+  html body.presentation-mode .presentation-tool-focus .utc-info{
+    grid-template-rows:112px minmax(300px,1fr) 38px minmax(300px,1fr) !important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-info-head.utc-info-head-dashboard,
+  html body.presentation-mode .presentation-tool-focus .utc-info-head.utc-info-head-dashboard{
+    grid-template-rows:54px 25px 25px !important;
+    padding:0 50px 0 22px !important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-info-head-dashboard .utc-utid,
+  html body.presentation-mode .presentation-tool-focus .utc-info-head-dashboard .utc-utid{
+    font-size:clamp(42px,3vw,54px) !important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-info-head-dashboard .utc-identity-row>span,
+  html body.presentation-mode .presentation-tool-focus .utc-info-head-dashboard .utc-identity-row>span{
+    font-size:clamp(17px,1.15vw,21px) !important;
+  }
+}
