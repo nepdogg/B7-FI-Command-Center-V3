@@ -8750,3 +8750,327 @@ html body.presentation-mode .presentation-tool-only .utc-info-head-dashboard .ut
 html body.presentation-mode .presentation-tool-focus .utc-info-head-dashboard .utc-identity-row > span{font-size:clamp(14px,1vw,18px) !important;}
 html body.presentation-mode .presentation-tool-only .utc-progress>.utc-progress-list,
 html body.presentation-mode .presentation-tool-focus .utc-progress>.utc-progress-list{grid-template-rows:repeat(8,minmax(0,1fr)) !important;gap:7px !important;}
+
+/* =========================================================
+   V6.4.4 FINAL AUTHORITY — APPROVED PROTOTYPE MATCH
+   Visual-only UTC pass. Preserve V3 data + all existing logic.
+   Target: approved three-column prototype, with cycle gauges
+   restored in the right column.
+   ========================================================= */
+@media (min-width:1101px){
+  /* The approved prototype is deliberately taller than the older UTC. */
+  html body .utc-host{
+    height:800px !important;
+    min-height:800px !important;
+    max-height:800px !important;
+    padding:8px !important;
+    overflow:hidden !important;
+  }
+  html body .utc-card{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:8px !important;
+    height:100% !important;
+  }
+  html body .utc-column{
+    height:100% !important;
+    min-height:0 !important;
+    border:1px solid #2b607d !important;
+    background:#041725 !important;
+    overflow:hidden !important;
+  }
+
+  /* LEFT — exact approved hierarchy: compact identity, large image,
+     Reduced Process, then 2 x 10 fixed dashboard lamps. */
+  html body .utc-info{
+    display:grid !important;
+    grid-template-rows:100px 300px 34px minmax(0,1fr) !important;
+    row-gap:7px !important;
+    padding:10px 12px 10px !important;
+    min-height:0 !important;
+  }
+  html body .utc-info>.utc-open{
+    top:7px !important;
+    right:7px !important;
+    width:30px !important;
+    height:30px !important;
+  }
+  html body .utc-info-head.utc-info-head-dashboard{
+    grid-row:1 !important;
+    display:grid !important;
+    grid-template-rows:46px 22px 22px !important;
+    gap:2px !important;
+    padding:0 42px 0 14px !important;
+    min-height:0 !important;
+    height:100% !important;
+    align-content:center !important;
+    overflow:visible !important;
+  }
+  html body .utc-info-head-dashboard .utc-utid{
+    font-size:clamp(35px,2.65vw,46px) !important;
+    line-height:1 !important;
+    letter-spacing:.015em !important;
+    text-align:center !important;
+    white-space:nowrap !important;
+    overflow:visible !important;
+  }
+  html body .utc-info-head-dashboard .utc-identity-row{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+    column-gap:18px !important;
+    align-items:center !important;
+  }
+  html body .utc-info-head-dashboard .utc-identity-row>span{
+    font-size:clamp(14px,1.02vw,18px) !important;
+    line-height:1 !important;
+    font-weight:900 !important;
+    white-space:nowrap !important;
+    overflow:visible !important;
+    text-overflow:clip !important;
+  }
+  html body .utc-info-head-dashboard .utc-so-compact{
+    font-size:clamp(13px,.98vw,17px) !important;
+  }
+  html body .utc-info .utc-photo{
+    grid-row:2 !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    width:100% !important;
+    height:100% !important;
+    padding:0 !important;
+    margin:0 !important;
+    overflow:hidden !important;
+  }
+  html body .utc-info .utc-photo img{
+    width:auto !important;
+    height:auto !important;
+    max-width:98% !important;
+    max-height:98% !important;
+    object-fit:contain !important;
+  }
+  html body .utc-info .utc-reduced{
+    grid-row:3 !important;
+    height:34px !important;
+    min-height:34px !important;
+    margin:0 !important;
+    width:100% !important;
+  }
+  html body .utc-info .utc-indicator-display{
+    grid-row:4 !important;
+    width:100% !important;
+    height:100% !important;
+    min-height:0 !important;
+    margin:0 !important;
+    padding:0 !important;
+    overflow:hidden !important;
+  }
+  html body .utc-info .utc-indicator-display .utc-indicator-grid{
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    grid-template-rows:repeat(10,minmax(0,1fr)) !important;
+    gap:4px !important;
+    width:100% !important;
+    height:100% !important;
+    min-height:0 !important;
+    overflow:hidden !important;
+  }
+  html body .utc-info .utc-indicator-display .fi-indicator-lamp{
+    width:100% !important;
+    height:100% !important;
+    min-height:0 !important;
+    padding:2px 6px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    text-align:center !important;
+  }
+  html body .utc-info .utc-indicator-display .fi-indicator-message{
+    font-size:clamp(8px,.61vw,10.5px) !important;
+    line-height:1.05 !important;
+    width:100% !important;
+    height:100% !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    text-align:center !important;
+  }
+
+  /* MIDDLE — approved prototype rhythm and divider placement. */
+  html body .utc-status{
+    display:grid !important;
+    grid-template-rows:145px 175px 125px 210px minmax(0,1fr) !important;
+    gap:0 !important;
+    padding:0 14px !important;
+    min-height:0 !important;
+  }
+  html body .utc-status>.utc-status-section{
+    min-height:0 !important;
+    padding:12px 0 !important;
+    margin:0 !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+    overflow:hidden !important;
+  }
+  html body .utc-status>.utc-status-section+.utc-status-section{
+    border-top:1px solid #24485d !important;
+  }
+  html body .utc-countdown{
+    justify-content:center !important;
+  }
+  html body .utc-countdown-big{
+    font-size:clamp(31px,2.4vw,40px) !important;
+    margin-top:8px !important;
+  }
+  html body .utc-countdown-date{
+    font-size:clamp(11px,.86vw,14px) !important;
+    margin-top:8px !important;
+  }
+  html body .utc-status .utc-process-block{
+    display:grid !important;
+    grid-template-rows:auto auto 1px auto auto !important;
+    row-gap:8px !important;
+    align-content:center !important;
+    width:100% !important;
+  }
+  html body .utc-status .utc-status-inner-divider{
+    height:1px !important;
+    width:100% !important;
+    background:#24485d !important;
+    margin:8px 0 !important;
+  }
+  html body .utc-process-big{
+    font-size:clamp(20px,1.55vw,25px) !important;
+    margin-top:5px !important;
+  }
+  html body .utc-phase-big{
+    font-size:clamp(18px,1.35vw,22px) !important;
+    margin-top:4px !important;
+  }
+  html body .utc-current-task-value{
+    font-size:clamp(15px,1.15vw,19px) !important;
+    line-height:1.12 !important;
+    margin-top:8px !important;
+  }
+  html body .utc-forecast-button{
+    min-height:54px !important;
+    margin-top:8px !important;
+    font-size:clamp(14px,1.05vw,18px) !important;
+  }
+  html body .utc-forecast-date{
+    margin-top:18px !important;
+  }
+  html body .utc-forecast-date strong{
+    font-size:clamp(13px,.96vw,16px) !important;
+  }
+  html body .utc-cycle{
+    justify-content:center !important;
+    padding-top:10px !important;
+    padding-bottom:10px !important;
+  }
+  html body .utc-cycle .utc-metric{
+    min-height:36px !important;
+    font-size:clamp(10px,.76vw,12.5px) !important;
+  }
+
+  /* RIGHT — approved prototype styling, plus the two cycle-time gauges. */
+  html body .utc-progress{
+    display:grid !important;
+    grid-template-rows:minmax(0,1fr) 1px 82px !important;
+    padding:12px 14px 10px !important;
+    min-height:0 !important;
+  }
+  html body .utc-progress>.utc-progress-list{
+    display:grid !important;
+    grid-template-rows:repeat(8,minmax(0,1fr)) !important;
+    gap:6px !important;
+    min-height:0 !important;
+    overflow:hidden !important;
+  }
+  html body .utc-progress>.utc-progress-list>.progress-item{
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+    min-height:0 !important;
+    margin:0 !important;
+  }
+  html body .utc-progress>.utc-progress-list .progress-head{
+    margin:0 0 5px !important;
+  }
+  html body .utc-progress>.utc-progress-list .progress-head span,
+  html body .utc-progress>.utc-progress-list .progress-head b{
+    font-size:clamp(12px,.94vw,15.5px) !important;
+    line-height:1 !important;
+  }
+  html body .utc-progress>.utc-progress-list .track{
+    height:10px !important;
+    min-height:10px !important;
+  }
+  html body .utc-progress>.utc-progress-list .progress-step{
+    font-size:clamp(10px,.76vw,12.5px) !important;
+    line-height:1.08 !important;
+    margin-top:5px !important;
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+  }
+  html body .utc-progress>.utc-divider{
+    width:100% !important;
+    height:1px !important;
+    margin:0 !important;
+    background:#24485d !important;
+  }
+  html body .utc-progress>.utc-indicator-panel{
+    border:0 !important;
+    background:transparent !important;
+    padding:10px 0 0 !important;
+    margin:0 !important;
+    min-height:0 !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:flex-start !important;
+  }
+  html body .utc-indicator-control-title{
+    font-size:clamp(13px,1vw,16px) !important;
+    margin:0 0 10px !important;
+  }
+  html body .utc-indicator-control-row{
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) auto !important;
+    gap:10px !important;
+    width:100% !important;
+  }
+  html body .utc-indicator-control-row select,
+  html body .utc-indicator-control-row .btn{
+    min-height:38px !important;
+  }
+
+  /* Presentation uses exactly the same component geometry, scaled by its host. */
+  html body.presentation-mode .presentation-tool-only .utc-card,
+  html body.presentation-mode .presentation-tool-focus .utc-card{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:8px !important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-info,
+  html body.presentation-mode .presentation-tool-focus .utc-info{
+    grid-template-rows:104px minmax(300px,1.08fr) 36px minmax(300px,1fr) !important;
+    row-gap:8px !important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-info-head.utc-info-head-dashboard,
+  html body.presentation-mode .presentation-tool-focus .utc-info-head.utc-info-head-dashboard{
+    grid-template-rows:48px 24px 24px !important;
+    padding:0 48px 0 16px !important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-info-head-dashboard .utc-utid,
+  html body.presentation-mode .presentation-tool-focus .utc-info-head-dashboard .utc-utid{
+    font-size:clamp(40px,2.9vw,52px) !important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-info-head-dashboard .utc-identity-row>span,
+  html body.presentation-mode .presentation-tool-focus .utc-info-head-dashboard .utc-identity-row>span{
+    font-size:clamp(16px,1.15vw,21px) !important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-progress>.utc-progress-list,
+  html body.presentation-mode .presentation-tool-focus .utc-progress>.utc-progress-list{
+    grid-template-rows:repeat(8,minmax(0,1fr)) !important;
+    gap:7px !important;
+  }
+}

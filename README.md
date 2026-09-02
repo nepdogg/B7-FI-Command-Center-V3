@@ -1,4 +1,4 @@
-B7 FI Command Center V6.4.3
+B7 FI Command Center V6.4.4
 
 Tool Card Flow + Badge Control Fix
 
@@ -34,3 +34,11 @@ V6.4.3 Approved Universal Tool Card layout:
 - Indicator matrix is exactly 2 columns x 10 rows, centered, fixed-position, and never scrolls.
 - Badge text remains one centered state message per indicator.
 - Existing V3 production storage, indicator states, progress logic, presentation sync, and tool workflows remain unchanged.
+
+
+V6.4.4 Prototype-match Universal Tool Card:
+- Desktop UTC proportions now match the approved prototype more closely: taller card, balanced three-column layout.
+- Left identity block, large tool image, Reduced Process banner, and fixed 20-position badge matrix match the approved visual hierarchy.
+- Middle column spacing/dividers follow the approved prototype layout.
+- Right column keeps the approved progress/control styling and restores Current/Target Cycle Time gauges in days.
+- No data schema, storage key, FI calculations, shipping calculations, or cross-window synchronization changes.
