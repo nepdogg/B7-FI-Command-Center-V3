@@ -318,7 +318,7 @@ This release intentionally changes only the items confirmed still outstanding in
 - Preserves the V6.3.1 Morning Meeting history viewer/close-button fixes.
 - No data, workflow, calculation, or Command Center brain changes.
 
-## V6.3.3 — Universal Card / Meeting History Polish
+## V6.3.5 — Universal Card / Meeting History Polish
 - Added the two missing middle-column divider lines:
   - Next FI Task -> FI Cycle Time Start
   - Target Cycle Time -> FI Forecast Step
@@ -328,3 +328,16 @@ This release intentionally changes only the items confirmed still outstanding in
 - Meeting History close X is anchored to the popup upper-right and remains visible while content scrolls.
 - Applies the same meeting popup behavior from both Status Center and Meeting Center.
 - No data model, workflow, calculation, alert, or Command Center brain logic changed.
+
+
+## V6.3.5 — Automatic FI Instrument Panel
+- Universal Tool Card keeps the same three-column architecture.
+- FI indicators are generated from underlying tool facts/statuses; manual badge checkboxes were removed from Tool Edit.
+- Customer and Sales Order now have explicit availability + value controls. Missing values automatically illuminate NO CUSTOMER / NO SALES ORDER.
+- Visual FI indicators live on the tool identity column; the lower progress-column workspace is the quick Indicator Control.
+- Indicator Control works from the Universal Tool Card and Presentation Mode.
+- CTD and CCL state workflows included, with N/A support.
+- Current-step text remains under progress gauges.
+- Customer/Sales Order moved near the top of the card; duplicate Ship Date removed from the identity column.
+- Tool-family jump bar remains sticky. Meeting-history close button remains fixed top-right.
+- Existing localStorage key b7fi-command-center-v3 and existing production data remain compatible.

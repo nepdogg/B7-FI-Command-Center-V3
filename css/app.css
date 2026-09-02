@@ -7605,3 +7605,79 @@ html body .modal-card:has(.meeting-history-detail) .meeting-history-detail{
   clear:none !important;
   padding-right:38px !important;
 }
+
+/* =========================================================
+   V6.3.4 — FI INDICATOR PANEL / QUICK CARD CONTROLS
+   Universal Tool Card keeps its 3-column architecture.
+   ========================================================= */
+html body .utc-indicator-panel{display:flex;flex-direction:column;gap:7px;min-height:0;flex:1 1 auto;overflow:hidden}
+html body .utc-indicator-head{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;color:#eaf8ff;letter-spacing:.02em}
+html body .utc-indicator-head span{font-size:9px;color:#6fdcff;font-weight:900}
+html body .utc-indicator-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;min-height:0;overflow:auto;padding-right:2px}
+html body .fi-indicator-lamp{min-width:0;min-height:34px;border:1px solid #173e51;background:#061a25;padding:4px 5px;display:flex;flex-direction:column;justify-content:center;gap:2px;opacity:.42;box-sizing:border-box}
+html body .fi-indicator-lamp b{font-size:8px;line-height:1.05;color:#7193a2;white-space:normal;overflow-wrap:anywhere}
+html body .fi-indicator-lamp span{font-size:7px;line-height:1.08;color:#76909b;font-weight:900;white-space:normal;overflow-wrap:anywhere}
+html body .fi-indicator-lamp.on{opacity:1;box-shadow:inset 0 0 12px rgba(255,255,255,.025)}
+html body .fi-indicator-lamp.on.attention{border-color:#ffd400;background:#201b00}
+html body .fi-indicator-lamp.on.attention b,html body .fi-indicator-lamp.on.attention span{color:#ffe65a}
+html body .fi-indicator-lamp.on.warning{border-color:#ff9d00;background:#251500}
+html body .fi-indicator-lamp.on.warning b,html body .fi-indicator-lamp.on.warning span{color:#ffbf47}
+html body .fi-indicator-lamp.on.critical{border-color:#ff385d;background:#2b0710}
+html body .fi-indicator-lamp.on.critical b,html body .fi-indicator-lamp.on.critical span{color:#ff718b}
+html body .fi-indicator-lamp.on.complete{border-color:#35e395;background:#06251b}
+html body .fi-indicator-lamp.on.complete b,html body .fi-indicator-lamp.on.complete span{color:#78f4bd}
+html body .fi-indicator-lamp.off.complete{border-color:#184c3c}
+html body .utc-indicator-control{border-top:1px solid #16455a;padding-top:6px;display:flex;flex-direction:column;gap:4px;flex:0 0 auto}
+html body .utc-indicator-control>label{font-size:8px;color:#4fdcff;font-weight:950}
+html body .utc-indicator-control-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px}
+html body .utc-indicator-control select{min-width:0;height:28px;background:#061b27;color:#eaf8ff;border:1px solid #176181;padding:2px 6px;font-size:9px;font-weight:800}
+html body .utc-indicator-control .btn{min-height:28px;height:28px;padding:3px 9px;font-size:8px}
+html body .utc-indicator-control small{font-size:7px;line-height:1.15;color:#668896}
+html body .indicator-modal{max-width:620px}
+html body .indicator-modal select{font-weight:900}
+
+/* Presentation Mode: indicator controls are intentionally live operator controls. */
+html body.presentation-mode .presentation-tool-focus .utc-indicator-control,
+html body.presentation-mode .presentation-tool-focus .utc-indicator-control *,
+html body.presentation-mode .presentation-tool-focus [data-indicator-control],
+html body.presentation-mode .presentation-tool-focus [data-indicator-picker]{pointer-events:auto !important}
+html body.presentation-mode .presentation-tool-focus .utc-indicator-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:5px!important}
+html body.presentation-mode .presentation-tool-focus .fi-indicator-lamp{min-height:38px!important;padding:4px 6px!important}
+html body.presentation-mode .presentation-tool-focus .fi-indicator-lamp b{font-size:clamp(8px,.68vw,12px)!important}
+html body.presentation-mode .presentation-tool-focus .fi-indicator-lamp span{font-size:clamp(7px,.58vw,10px)!important}
+html body.presentation-mode .presentation-tool-focus .utc-indicator-control select{height:32px!important;font-size:clamp(8px,.62vw,11px)!important}
+html body.presentation-mode .presentation-tool-focus .utc-indicator-control .btn{height:32px!important;min-height:32px!important}
+
+/* Current step is part of every applicable progress gauge. */
+html body .utc-progress .progress-step{display:block!important;margin-top:2px!important;font-size:7px!important;line-height:1.1!important;color:#83a8b8!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+
+
+/* =========================================================
+   V6.3.5 — AUTOMATIC FI INSTRUMENT PANEL
+   Facts/statuses drive indicators. No manual badge checkboxes.
+   ========================================================= */
+html body .utc-info .utc-meta-top{order:2!important;margin:4px 12px 5px!important;border-top:1px solid #16455a!important;border-bottom:1px solid #16455a!important;padding:2px 0!important;flex:0 0 auto!important}
+html body .utc-info .utc-meta-top .utc-meta-row{min-height:24px!important;padding:3px 7px!important}
+html body .utc-info .utc-meta-top .utc-meta-row span{font-size:9px!important}
+html body .utc-info .utc-meta-top .utc-meta-row strong{font-size:10px!important}
+html body .utc-info .utc-photo{order:3!important}
+html body .utc-info .utc-reduced{order:4!important}
+html body .utc-info .utc-indicator-display{order:5!important;display:flex!important;flex-direction:column!important;gap:5px!important;min-height:0!important;flex:1 1 auto!important;margin:0 12px 10px!important;overflow:hidden!important}
+html body .utc-info .utc-indicator-display .utc-indicator-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;overflow:auto!important;align-content:start!important}
+html body .utc-info .utc-indicator-display .fi-indicator-lamp{min-height:31px!important}
+html body .utc-progress>.utc-divider{margin-top:6px!important}
+html body .utc-progress>.utc-indicator-panel{flex:1 1 auto!important;min-height:118px!important;justify-content:flex-start!important;overflow:visible!important;border:1px solid #17465a!important;background:#041621!important;padding:9px!important}
+html body .utc-indicator-help{margin:0!important;font-size:8px!important;line-height:1.25!important;color:#83a8b8!important}
+html body .indicator-data-grid{grid-template-columns:1fr 1.4fr!important}
+html body .indicator-status-editor{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:8px!important}
+html body .indicator-status-editor>.field{min-width:0!important}
+/* Middle column section boundaries + even distribution */
+html body .utc-status{display:flex!important;flex-direction:column!important}
+html body .utc-status>.utc-status-section{flex:1 1 0!important;min-height:0!important;display:flex!important;flex-direction:column!important;justify-content:center!important}
+html body .utc-status>.utc-cycle,html body .utc-status>.utc-forecast{border-top:1px solid #16455a!important;padding-top:9px!important}
+/* Presentation: exact same three boxed columns and live indicator/forecast controls. */
+html body.presentation-mode .presentation-tool-only .utc-card,html body.presentation-mode .presentation-tool-focus .utc-card{display:grid!important;grid-template-columns:1fr 1fr 1fr!important;gap:10px!important}
+html body.presentation-mode .presentation-tool-only .utc-column,html body.presentation-mode .presentation-tool-focus .utc-column{border:1px solid var(--accent)!important;min-width:0!important}
+html body.presentation-mode .presentation-tool-only .utc-indicator-control,html body.presentation-mode .presentation-tool-only .utc-indicator-control *,html body.presentation-mode .presentation-tool-only [data-indicator-control],html body.presentation-mode .presentation-tool-only [data-indicator-picker],html body.presentation-mode .presentation-tool-only [data-forecast-checklist],html body.presentation-mode .presentation-tool-focus [data-forecast-checklist]{pointer-events:auto!important}
+html body.presentation-mode .presentation-tool-only .utc-info .utc-indicator-display .utc-indicator-grid,html body.presentation-mode .presentation-tool-focus .utc-info .utc-indicator-display .utc-indicator-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+html body.presentation-mode .presentation-tool-only .utc-info .utc-indicator-display .fi-indicator-lamp,html body.presentation-mode .presentation-tool-focus .utc-info .utc-indicator-display .fi-indicator-lamp{min-height:36px!important}
