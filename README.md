@@ -343,7 +343,7 @@ This release intentionally changes only the items confirmed still outstanding in
 - Existing localStorage key b7fi-command-center-v3 and existing production data remain compatible.
 
 
-## V6.3.6 — Universal Tool Card Indicator Layout Polish
+## V6.3.7 — Universal Tool Card Indicator Layout Polish
 
 - Keeps the V3 production storage key and existing calculations/workflows intact.
 - Customer and Sales Order are compactly shown above the tool photo without field labels; Sales Order uses `SO # XXXXXXX`.
@@ -356,3 +356,6 @@ This release intentionally changes only the items confirmed still outstanding in
 - Distributes the eight progress rows evenly through the right column so current-step text has room and the lower column is no longer wasted.
 - Applies the same card geometry and control cleanup in Presentation Mode.
 - Adds a forecast text overflow guard so long checklist names stay inside the middle column.
+
+
+V6.3.7: Universal Tool Card indicator panel is now a fixed 20-position, 2-column x 10-row grid beneath Reduced Process. No indicator scrollbar. Each badge renders one centered state message. WWC has three visual placeholder positions (WWC 1/2/3) while existing stored data remains compatible.
