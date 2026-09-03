@@ -10493,3 +10493,71 @@ html body.presentation-mode .presentation-tool-focus .utc-driver-ribbon small{ma
     font-weight:900!important;
   }
 }
+
+
+/* =========================================================
+   V6.5.5 FINAL AUTHORITY — 9/3 FIELD TEST CORRECTIONS
+   Left-column lock, wallboard typography, one-line mystery boxes,
+   modal interaction/X convention, and quarter movement UI.
+   ========================================================= */
+@media (min-width:700px){
+  /* Final left-column sequence: PRIORITY / IDENTITY / PHOTO+DRIVER / REDUCED / 2x12 BADGES */
+  html body .utc-info,
+  html body .operations-tool-carousel .utc-info,
+  html body .update-live-card-list .utc-info,
+  html body.presentation-mode .presentation-tool-only .utc-info,
+  html body.presentation-mode .presentation-tool-focus .utc-info{
+    grid-template-rows:4.8% 13.2% 32.8% 4.8% minmax(0,1fr)!important;
+    gap:0!important; row-gap:0!important; align-content:stretch!important;
+  }
+  html body .utc-info > .utc-priority-ribbon{
+    position:relative!important; inset:auto!important; left:auto!important; right:auto!important; top:auto!important; bottom:auto!important;
+    width:100%!important; height:100%!important; min-height:0!important; transform:none!important;
+    border-radius:0!important; margin:0!important; padding:0 7px!important; box-sizing:border-box!important;
+    display:flex!important; flex-direction:row!important; align-items:center!important; justify-content:center!important; gap:7px!important;
+    z-index:2!important; overflow:hidden!important;
+  }
+  html body .utc-info > .utc-priority-ribbon>span{font-size:clamp(9px,.85cqw,13px)!important;line-height:1!important}
+  html body .utc-info > .utc-priority-ribbon small{font-size:clamp(5px,.45cqw,7px)!important;line-height:1!important}
+  html body .utc-photo{position:relative!important;overflow:hidden!important;height:100%!important;min-height:0!important;margin:0!important}
+  html body .utc-photo img{height:100%!important;max-height:100%!important;object-fit:contain!important;padding-bottom:30px!important;box-sizing:border-box!important}
+  html body .utc-photo .utc-driver-ribbon,
+  html body .utc-photo .utc-driver-ribbon.unassigned{
+    position:absolute!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;width:100%!important;height:30px!important;
+    transform:none!important;margin:0!important;border-radius:0!important;z-index:8!important;
+  }
+  html body .utc-reduced{height:100%!important;min-height:0!important;margin:0!important;padding:0 5px!important;display:flex!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important}
+  html body .utc-indicator-display{height:100%!important;min-height:0!important;margin:0!important;padding:2px 0 0!important;overflow:hidden!important}
+
+  /* Presentation mode uses the exact same Reduced Process row geometry as the normal shared card. */
+  html body.presentation-mode .presentation-tool-only .utc-reduced,
+  html body.presentation-mode .presentation-tool-focus .utc-reduced{
+    height:100%!important;min-height:0!important;margin:0!important;padding:0 5px!important;font-size:clamp(10px,.78vw,14px)!important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-indicator-display,
+  html body.presentation-mode .presentation-tool-focus .utc-indicator-display{padding-top:2px!important;margin-top:0!important}
+
+  /* Presentation live-status boxes and navigation use matching wallboard-sized text. */
+  html body.presentation-mode .presentation-quarter-panel .summary-box span{font-size:clamp(13px,1.02vw,18px)!important;font-weight:900!important;line-height:1.05!important}
+  html body.presentation-mode .presentation-quarter-panel .summary-box b{font-size:clamp(20px,1.55vw,29px)!important;font-weight:1000!important;line-height:1!important}
+  html body.presentation-mode .presentation-carousel-controls,
+  html body.presentation-mode .presentation-carousel-controls *,
+  html body.presentation-mode [data-carousel]{font-size:clamp(16px,1.2vw,22px)!important;font-weight:950!important;line-height:1!important}
+
+  /* Mystery boxes are always one responsive line; number of families determines width. */
+  html body .quarter-mystery-grid{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(0,1fr))!important;grid-auto-flow:column!important;grid-auto-columns:minmax(0,1fr)!important;gap:5px!important;width:100%!important;overflow:hidden!important}
+  html body .quarter-mystery-box{min-width:0!important;width:100%!important;padding:4px 3px!important}
+  html body .quarter-mystery-box b{font-size:clamp(7px,.7vw,10px)!important;overflow:hidden!important;text-overflow:ellipsis!important;max-width:100%!important}
+  html body .quarter-mystery-box small{font-size:clamp(6px,.58vw,8px)!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;max-width:100%!important}
+}
+@media(max-width:1300px) and (min-width:700px){html body .quarter-mystery-grid{grid-template-columns:none!important;grid-auto-flow:column!important;grid-auto-columns:minmax(0,1fr)!important}}
+
+/* Every closable popup uses a persistent upper-right X. */
+html body .modal-card{position:relative!important}
+html body .modal-card > .modal-x{position:sticky!important;float:right!important;right:0!important;top:0!important;margin:-8px -8px 0 8px!important;z-index:50000!important;width:38px!important;height:38px!important;display:flex!important;align-items:center!important;justify-content:center!important;background:#071a29!important;border:1px solid #3d708f!important;color:#fff!important;font-size:28px!important;line-height:1!important;cursor:pointer!important;pointer-events:auto!important}
+html body .modal:not(.hidden),html body .modal:not(.hidden) .modal-card,html body .modal:not(.hidden) #modalBody,html body .modal:not(.hidden) .forecast-picker-list,html body .modal:not(.hidden) .forecast-picker-row{pointer-events:auto!important}
+html body.presentation-mode .modal{z-index:50000!important;pointer-events:auto!important}
+html body.presentation-mode .modal-card{z-index:50001!important;pointer-events:auto!important}
+html body.presentation-mode .forecast-picker-row{pointer-events:auto!important;cursor:pointer!important;position:relative!important;z-index:50002!important}
+
+.quarter-movement-readout .readonly-value{min-height:31px;display:flex;align-items:center;font-weight:950;color:#9edcff}
