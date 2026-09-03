@@ -72,3 +72,11 @@ V6.5.9 field-test changes:
 - Selecting a family jumps directly to that family section without consuming permanent vertical space.
 - The menu remains one-row friendly and is hidden outside the Current Tools page.
 - Existing V3 localStorage key and production data compatibility are unchanged.
+
+
+## V6.5.13 — Tool Type Action Menu + Presentation Carousel Control
+- Moved TOOL TYPE out of the left page-navigation section and into the right Page Actions section on Current Tools.
+- TOOL TYPE now opens a vertical tool-family submenu without adding a second navigation row.
+- The separate floating family strip remains removed.
+- Presentation carousel toggle now renders TOOLS and PLAY/PAUSE at the same font size and weight with stable button geometry.
+- Preserves V3 localStorage key/data compatibility and all V6.5.12 lifecycle/brain behavior.
