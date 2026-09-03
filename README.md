@@ -19,3 +19,13 @@ V6.5.6 TOOL CARD SAMPLE LOCK
 - Presentation summary-box typography was moderated while the actual Presentation tool-navigation controls were enlarged for wallboard readability.
 - Removed the redundant TOOLS MYSTERY BOXES heading; responsive one-row mystery boxes remain.
 - Existing V3 storage/data compatibility and V6.5.5 logic are preserved.
+
+
+V6.5.7 FIELD TEST POLISH
+- Universal Tool Card no longer opens from the photo/card surface; only the upper-right arrow opens Tool Edit.
+- Priority bar shortened to protect the open-arrow area and enlarged for readability.
+- Driver banner now uses one same-size DRIVER: NAME line.
+- Added spacing between Driver and Reduced Process.
+- 2x12 operational badge rows forced to equal height.
+- Priority Center source helper sentence removed and comparison rows compacted.
+- V3 storage key/data compatibility unchanged.

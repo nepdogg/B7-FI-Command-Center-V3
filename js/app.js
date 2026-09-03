@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.6', BUILD='20260903-V6.5.6-TOOL-CARD-SAMPLE-LOCK';
+const VERSION='6.5.7', BUILD='20260903-V6.5.7-TOOL-CARD-PRIORITY-POLISH';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI 200 Final Pre-Pack and QA';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -126,7 +126,7 @@ function priorityTier(rank,total){
 }
 function priorityBadgeInfo(t){let source=state.config?.priorityBadgeSource||'lead',ranks=source==='commandCenter'?commandCenterPriorityRanks():leadPriorityRanks(),rank=ranks.get(String(t.id))||0,total=ranks.size;return{rank,total,tier:priorityTier(rank,total),source,label:source==='commandCenter'?'COMMAND CENTER':'LEADS / MANAGERS'}}
 function priorityRibbon(t){let p=priorityBadgeInfo(t);return p.rank?`<div class="utc-priority-ribbon ${p.rank===1?'top-priority':''}" title="${esc(p.label)} · #${p.rank} ${esc(p.tier)}"><span>#${p.rank} ${esc(p.tier)}</span><small>${esc(p.source==='commandCenter'?'COMMAND CENTER':'LEAD')}</small></div>`:''}
-function driverRibbon(t){let d=String(t.driver||'').trim();if(!d||/^unassigned$/i.test(d))return `<div class="utc-driver-ribbon unassigned" title="DRIVER NOT ASSIGNED">DRIVER<small>UNASSIGNED</small></div>`;return `<div class="utc-driver-ribbon" title="DRIVER: ${esc(d)}">DRIVER<small>${esc(d.toUpperCase())}</small></div>`}
+function driverRibbon(t){let d=String(t.driver||'').trim();if(!d||/^unassigned$/i.test(d))return `<div class="utc-driver-ribbon unassigned" title="DRIVER NOT ASSIGNED"><span>DRIVER: UNASSIGNED</span></div>`;return `<div class="utc-driver-ribbon" title="DRIVER: ${esc(d)}"><span>DRIVER: ${esc(d.toUpperCase())}</span></div>`}
 
 function requiresMST(t){return ['regera','celestiq'].includes(String(t.codename||'').toLowerCase())}
 function shippingKeys(t){return requiresMST(t)?[['subsystems','Subsystems'],['accessories','Accessories'],['cables','Cables'],['mat','MST Installation'],['is','IS']]:[['subsystems','Subsystems'],['accessories','Accessories'],['cables','Cables'],['is','IS']]}
@@ -567,7 +567,7 @@ function liveToolCard(tool=null){
             <span class="utc-so-compact" title="${esc(t.salesOrder||'No sales order available')}">SO #${esc(t.salesOrder||'—')}</span>
           </div>
         </header>
-        <div class="utc-photo tool-open-photo" data-open-tool="${esc(t.id)}" role="button" tabindex="0" title="Open Tool Editor">
+        <div class="utc-photo">
           <img src="${familyImage(t)}" alt="${esc(t.codename)} tool">
           ${driverRibbon(t)}
         </div>
@@ -720,7 +720,7 @@ function priorityTitle(kind){let meta=state.priorityMeta[kind]||{},[a,b]=weekRan
 function syncPriorityList(kind){let existing=new Map((state.priorities[kind]||[]).map(p=>[p.tool,p])),tools=morningSortTools(workloadTools());let rows=tools.map((t,i)=>{let p=existing.get(t.id)||{};return{tool:t.id,priority:p.priority||i+1,assignment:p.assignment||t.driver||'Unassigned',notes:p.notes||'',autoScore:p.autoScore||0}});state.priorities[kind]=rows;return rows}
 function volunteerTable(day,arr){return `<div class="volunteer-panel"><div class="volunteer-head"><b>${day.toUpperCase()} VOLUNTEERS</b><button class="btn" type="button" data-add-volunteer="${day.toLowerCase()}">+ ADD ${day.toUpperCase()} VOLUNTEER</button></div>${arr.map((v,i)=>`<div class="volunteer-row" data-volunteer="${day.toLowerCase()}-${i}"><input data-vf="name" placeholder="Name" value="${esc(v.name||'')}"><input data-vf="hours" placeholder="Hours" value="${esc(v.hours||'')}"><textarea data-vf="notes" placeholder="Notes">${esc(v.notes||'')}</textarea><button type="button" class="btn danger-mini" data-remove-volunteer="${day.toLowerCase()}" data-volunteer-index="${i}">×</button></div>`).join('')||'<p class="muted">No volunteers entered.</p>'}</div>`}
 function volunteerDisplay(day,arr){return `<div class="volunteer-panel"><div class="volunteer-head"><b>${day.toUpperCase()} VOLUNTEERS</b></div>${arr.map(v=>`<div class="volunteer-display-row"><b>${esc(v.name||'—')}</b><span>${esc(v.hours||'')}</span><span>${esc(v.notes||'')}</span></div>`).join('')||'<p class="muted">No volunteers entered.</p>'}</div>`}
-function prioritySourceControl(){let s=state.config?.priorityBadgeSource||'lead';return `<div class="priority-source-control"><div><b>TOOL CARD PRIORITY BADGE SOURCE</b><small>Both rankings remain independent. This switch only controls which red PRIORITY # ribbon appears on every Tool Card.</small></div><div class="priority-source-buttons"><button class="btn ${s==='commandCenter'?'active':''}" data-priority-source="commandCenter">COMMAND CENTER</button><button class="btn ${s==='lead'?'active':''}" data-priority-source="lead">LEADS / MANAGERS</button></div></div>`}
+function prioritySourceControl(){let s=state.config?.priorityBadgeSource||'lead';return `<div class="priority-source-control"><div><b>TOOL CARD PRIORITY BADGE SOURCE</b></div><div class="priority-source-buttons"><button class="btn ${s==='commandCenter'?'active':''}" data-priority-source="commandCenter">COMMAND CENTER</button><button class="btn ${s==='lead'?'active':''}" data-priority-source="lead">LEADS / MANAGERS</button></div></div>`}
 function priorityView(kind,heading=true){
   let list=syncPriorityList(kind),map=new Map(nonArchivedTools().map(t=>[t.id,t])),meta=state.priorityMeta[kind]||{},ccRanks=commandCenterPriorityRanks(),ccById=new Map(commandCenterPriorityList().map(x=>[x.tool.id,x]));
   let vols=kind==='weekend'?`<div class="volunteer-display">${volunteerDisplay('Saturday',meta.saturday||[])}${volunteerDisplay('Sunday',meta.sunday||[])}</div>`:'';

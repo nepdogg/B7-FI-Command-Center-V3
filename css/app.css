@@ -10770,3 +10770,145 @@ html body.presentation-mode .forecast-picker-row{pointer-events:auto!important;c
   html body .quarter-mystery-strip{margin-top:4px!important;padding-top:0!important;}
   html body .quarter-mystery-title{display:none!important;}
 }
+
+
+/* =========================================================
+   V6.5.7 FINAL AUTHORITY — TOOL CARD FINISH + PRIORITY DENSITY
+   Lock the approved UTC geometry. Only the arrow opens Tool Edit.
+   Equal-height 2x12 badges, readable Driver/Priority bars, compact Priority Center.
+   ========================================================= */
+@media (min-width:700px){
+  /* Priority bar: leave a protected zone for the open-tool arrow. */
+  html body .utc-info>.utc-priority-ribbon,
+  html body.presentation-mode .presentation-tool-only .utc-info>.utc-priority-ribbon,
+  html body.presentation-mode .presentation-tool-focus .utc-info>.utc-priority-ribbon{
+    width:calc(100% - 48px)!important;
+    max-width:calc(100% - 48px)!important;
+    justify-self:start!important;
+    margin:0!important;
+    padding:0 8px!important;
+    overflow:hidden!important;
+  }
+  html body .utc-info>.utc-priority-ribbon>span,
+  html body .utc-info>.utc-priority-ribbon.top-priority>span{
+    font-size:clamp(12px,1.02cqw,16px)!important;
+    font-weight:1000!important;
+  }
+  html body .utc-info>.utc-priority-ribbon small{
+    font-size:clamp(7px,.58cqw,9px)!important;
+    font-weight:950!important;
+  }
+
+  /* Driver is one clear, same-size label/name line. */
+  html body .utc-photo>.utc-driver-ribbon,
+  html body .utc-photo>.utc-driver-ribbon.unassigned{
+    font-size:clamp(12px,1.02cqw,16px)!important;
+    font-weight:1000!important;
+    letter-spacing:.025em!important;
+  }
+  html body .utc-photo>.utc-driver-ribbon span,
+  html body .utc-photo>.utc-driver-ribbon.unassigned span{
+    display:block!important;
+    font:inherit!important;
+    line-height:1!important;
+    color:inherit!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    max-width:100%!important;
+  }
+  html body .utc-photo>.utc-driver-ribbon small{font-size:inherit!important;font-weight:inherit!important;}
+
+  /* Small breathing space between Driver/photo and Reduced Process. */
+  html body .utc-info>.utc-reduced{
+    margin-top:3px!important;
+    height:calc(100% - 3px)!important;
+    align-self:end!important;
+  }
+
+  /* Exactly 24 operational positions: 2 x 12, every row exactly equal height. */
+  html body .utc-info>.utc-indicator-display .utc-indicator-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    grid-template-rows:repeat(12,minmax(0,1fr))!important;
+    grid-auto-rows:minmax(0,1fr)!important;
+    align-items:stretch!important;
+    align-content:stretch!important;
+    gap:3px!important;
+  }
+  html body .utc-info>.utc-indicator-display .fi-indicator-lamp{
+    min-height:0!important;
+    height:auto!important;
+    align-self:stretch!important;
+    margin:0!important;
+    padding:1px 4px!important;
+    box-sizing:border-box!important;
+  }
+
+  /* The shared UTC itself is not a navigation target. Only .utc-open has data-open-tool. */
+  html body .utc-card,
+  html body .utc-info,
+  html body .utc-photo,
+  html body .utc-photo img{cursor:default!important;}
+  html body .utc-open{cursor:pointer!important;}
+
+  /* Presentation keeps the same bars, only scaled for viewing distance. */
+  html body.presentation-mode .presentation-tool-only .utc-info>.utc-priority-ribbon>span,
+  html body.presentation-mode .presentation-tool-focus .utc-info>.utc-priority-ribbon>span,
+  html body.presentation-mode .presentation-tool-only .utc-info>.utc-priority-ribbon.top-priority>span,
+  html body.presentation-mode .presentation-tool-focus .utc-info>.utc-priority-ribbon.top-priority>span{
+    font-size:clamp(15px,1.05vw,20px)!important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-photo>.utc-driver-ribbon,
+  html body.presentation-mode .presentation-tool-focus .utc-photo>.utc-driver-ribbon{
+    font-size:clamp(14px,.96vw,19px)!important;
+  }
+}
+
+/* Priority Center: compact control and dense, one-tool-per-row comparison table. */
+html body .priority-source-control{
+  min-height:42px!important;
+  margin:0 0 7px!important;
+  padding:7px 10px!important;
+  gap:12px!important;
+}
+html body .priority-source-control>div:first-child{display:block!important;}
+html body .priority-source-control small{display:none!important;}
+html body .priority-source-buttons{display:flex!important;gap:7px!important;align-items:center!important;}
+html body .priority-source-buttons .btn{min-height:30px!important;padding:5px 12px!important;}
+html body .priority-frame{padding-top:8px!important;}
+html body .priority-frame .priority-compare-table{
+  table-layout:fixed!important;
+  width:100%!important;
+  border-collapse:collapse!important;
+}
+html body .priority-frame .priority-compare-table th,
+html body .priority-frame .priority-compare-table td{
+  padding:7px 6px!important;
+  height:38px!important;
+  min-height:38px!important;
+  vertical-align:middle!important;
+  line-height:1.08!important;
+  box-sizing:border-box!important;
+}
+html body .priority-frame .priority-compare-table tbody tr{height:38px!important;min-height:38px!important;}
+html body .priority-frame .priority-compare-table th{font-size:10px!important;white-space:normal!important;}
+html body .priority-frame .priority-compare-table td{font-size:11px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;}
+html body .priority-frame .priority-compare-table td.priority-why{
+  white-space:nowrap!important;
+  font-size:10px!important;
+  line-height:1.08!important;
+  max-width:none!important;
+}
+html body .priority-frame .priority-compare-table th:nth-child(1){width:6%!important;}
+html body .priority-frame .priority-compare-table th:nth-child(2){width:9%!important;}
+html body .priority-frame .priority-compare-table th:nth-child(3){width:8%!important;}
+html body .priority-frame .priority-compare-table th:nth-child(4){width:8%!important;}
+html body .priority-frame .priority-compare-table th:nth-child(5){width:8%!important;}
+html body .priority-frame .priority-compare-table th:nth-child(6){width:9%!important;}
+html body .priority-frame .priority-compare-table th:nth-child(7){width:10%!important;}
+html body .priority-frame .priority-compare-table th:nth-child(8){width:10%!important;}
+html body .priority-frame .priority-compare-table th:nth-child(9){width:10%!important;}
+html body .priority-frame .priority-compare-table th:nth-child(10){width:22%!important;}
+html body .priority-edit-full th,
+html body .priority-edit-full td{padding:6px!important;vertical-align:middle!important;}
+html body .priority-edit-full textarea{min-height:42px!important;height:42px!important;}
