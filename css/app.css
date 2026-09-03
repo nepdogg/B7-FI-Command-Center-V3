@@ -10231,3 +10231,106 @@ html body.presentation-mode .presentation-tool-only .utc-status > .utc-status-se
     pointer-events:auto !important;
   }
 }
+
+
+/* ================================================================
+   V6.5.1 FINAL AUTHORITY — 9/2 FIELD TEST FIXES + 2x12 BADGES + PRIORITY
+   ================================================================ */
+@media (min-width:700px){
+  /* Tools page: the shared UTC must consume the full card host height just like Live Operations. */
+  html body .update-live-card-list{align-items:stretch!important;}
+  html body .update-live-card-list .utc-host{display:flex!important;flex-direction:column!important;align-self:stretch!important;height:100%!important;min-height:0!important;}
+  html body .update-live-card-list .utc-card{flex:1 1 auto!important;height:100%!important;min-height:0!important;max-height:none!important;aspect-ratio:auto!important;align-items:stretch!important;}
+  html body .update-live-card-list .utc-column{height:100%!important;min-height:0!important;align-self:stretch!important;}
+
+  /* Left column now reserves space for Reduced Process + permanent 2 x 12 matrix without growing the card. */
+  html body .utc-info,
+  html body .operations-tool-carousel .utc-info,
+  html body .update-live-card-list .utc-info,
+  html body.presentation-mode .presentation-tool-only .utc-info,
+  html body.presentation-mode .presentation-tool-focus .utc-info{
+    grid-template-rows:13.5% 36% 4.6% minmax(0,1fr)!important;
+    gap:0!important;
+    align-content:stretch!important;
+  }
+  html body .utc-info .utc-photo{min-height:0!important;height:100%!important;}
+  html body .utc-info .utc-photo img{max-height:100%!important;width:100%!important;height:100%!important;object-fit:contain!important;}
+  html body .utc-info .utc-reduced{
+    height:100%!important;min-height:0!important;margin:0!important;padding:2px 6px!important;
+    display:flex!important;align-items:center!important;justify-content:center!important;
+    font-size:clamp(8px,.7cqw,11px)!important;line-height:1!important;
+  }
+  html body .utc-info .utc-indicator-display{height:100%!important;min-height:0!important;margin:0!important;padding:3px 0 0!important;overflow:hidden!important;}
+  html body .utc-info .utc-indicator-display .utc-indicator-grid{
+    display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:repeat(12,minmax(0,1fr))!important;
+    gap:3px!important;height:100%!important;min-height:0!important;overflow:hidden!important;align-content:stretch!important;padding:0!important;
+  }
+  html body .utc-info .utc-indicator-display .fi-indicator-lamp{height:100%!important;min-height:0!important;margin:0!important;padding:1px 4px!important;box-sizing:border-box!important;display:flex!important;align-items:center!important;justify-content:center!important;}
+  html body .utc-info .utc-indicator-display .fi-indicator-message{font-size:clamp(7px,.62cqw,9.5px)!important;line-height:1!important;text-align:center!important;white-space:normal!important;}
+
+  /* Priority is a fleet-level ribbon, separate from the 25 operational indicators. */
+  html body .utc-photo{position:relative!important;overflow:hidden!important;}
+  html body .utc-priority-ribbon{
+    position:absolute!important;z-index:6!important;top:20px!important;left:-45px!important;width:190px!important;height:34px!important;
+    transform:rotate(-45deg)!important;transform-origin:center!important;background:linear-gradient(180deg,#ff3549,#b70e20)!important;
+    border:1px solid #ff7b86!important;box-shadow:0 3px 12px rgba(0,0,0,.55),0 0 10px rgba(255,35,55,.34)!important;
+    color:#fff!important;font-size:15px!important;font-weight:1000!important;letter-spacing:.035em!important;line-height:1!important;
+    display:flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;text-shadow:0 1px 2px #5b0008!important;pointer-events:none!important;
+  }
+  html body .utc-priority-ribbon small{display:block!important;font-size:6px!important;line-height:1!important;letter-spacing:.04em!important;color:#ffd8dc!important;}
+
+  /* Presentation wallboard readability. */
+  html body.presentation-mode .presentation-quarter-panel .mini-stat,
+  html body.presentation-mode .presentation-quarter-panel .quarter-stat,
+  html body.presentation-mode .presentation-quarter-panel small{font-size:clamp(12px,1vw,18px)!important;}
+  html body.presentation-mode .presentation-quarter-panel b{font-size:clamp(15px,1.25vw,23px)!important;}
+  html body.presentation-mode .presentation-tool-only .utc-progress-list .progress-head span,
+  html body.presentation-mode .presentation-tool-only .utc-progress-list .progress-head b,
+  html body.presentation-mode .presentation-tool-focus .utc-progress-list .progress-head span,
+  html body.presentation-mode .presentation-tool-focus .utc-progress-list .progress-head b{font-size:clamp(14px,1.15vw,20px)!important;line-height:1!important;}
+  html body.presentation-mode .presentation-tool-only .utc-progress-list .progress-step,
+  html body.presentation-mode .presentation-tool-focus .utc-progress-list .progress-step{font-size:clamp(12px,.95vw,17px)!important;line-height:1.08!important;}
+  html body.presentation-mode .presentation-tool-only .utc-progress-list .track,
+  html body.presentation-mode .presentation-tool-focus .utc-progress-list .track{min-height:8px!important;}
+  html body.presentation-mode .presentation-tool-only .utc-priority-ribbon,
+  html body.presentation-mode .presentation-tool-focus .utc-priority-ribbon{top:26px!important;left:-52px!important;width:225px!important;height:42px!important;font-size:19px!important;}
+  html body.presentation-mode .presentation-tool-only .utc-priority-ribbon small,
+  html body.presentation-mode .presentation-tool-focus .utc-priority-ribbon small{font-size:7px!important;}
+  html body.presentation-mode .presentation-tool-only .utc-info .utc-reduced,
+  html body.presentation-mode .presentation-tool-focus .utc-info .utc-reduced{font-size:clamp(10px,.78vw,14px)!important;}
+  html body.presentation-mode .presentation-tool-only .utc-info .utc-indicator-display,
+  html body.presentation-mode .presentation-tool-focus .utc-info .utc-indicator-display{padding-top:2px!important;}
+  html body.presentation-mode .presentation-tool-only .utc-info .utc-indicator-display .fi-indicator-message,
+  html body.presentation-mode .presentation-tool-focus .utc-info .utc-indicator-display .fi-indicator-message{font-size:clamp(8px,.68vw,12px)!important;}
+}
+
+/* Priority page: human benchmark vs independently calculated Command Center ranking. */
+html body .priority-source-control{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:0 0 14px;padding:12px 14px;border:1px solid rgba(212,167,44,.55);background:rgba(212,167,44,.08);}
+html body .priority-source-control>div:first-child{display:flex;flex-direction:column;gap:4px;}
+html body .priority-source-control small{color:#9fb7c6;font-size:11px;}
+html body .priority-source-buttons{display:flex;gap:8px;flex:0 0 auto;}
+html body .priority-source-buttons .btn.active{background:#d4a72c!important;color:#07111a!important;border-color:#ffd96b!important;box-shadow:0 0 12px rgba(212,167,44,.28)!important;}
+html body .priority-compare-table .priority-diff.match{color:#54e890;font-weight:900;}
+html body .priority-compare-table .priority-diff.large{color:#ff596c;font-weight:900;}
+html body .priority-compare-table .priority-why{max-width:330px;font-size:11px;line-height:1.25;}
+
+
+/* =========================================================
+   V6.5.2 FINAL AUTHORITY — DRIVER RIBBON + FI-ONLY UPDATE
+   ========================================================= */
+html body .utc-driver-ribbon{
+  position:absolute!important;z-index:6!important;right:-47px!important;bottom:21px!important;width:194px!important;height:34px!important;
+  transform:rotate(-45deg)!important;transform-origin:center!important;
+  background:linear-gradient(180deg,#2389ff,#0b3f9f)!important;border:1px solid #6bb4ff!important;
+  box-shadow:0 3px 12px rgba(0,0,0,.55),0 0 10px rgba(35,137,255,.32)!important;
+  color:#fff!important;font-size:12px!important;font-weight:1000!important;letter-spacing:.045em!important;line-height:1!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;gap:5px!important;
+  text-shadow:0 1px 2px #001e55!important;pointer-events:none!important;white-space:nowrap!important;overflow:hidden!important;
+}
+html body .utc-driver-ribbon small{display:block!important;max-width:118px!important;overflow:hidden!important;text-overflow:ellipsis!important;font-size:8px!important;line-height:1!important;letter-spacing:.025em!important;color:#d9edff!important;}
+html body .utc-driver-ribbon.unassigned{background:linear-gradient(180deg,#4d6474,#263944)!important;border-color:#7893a4!important;color:#dbe5eb!important;box-shadow:0 3px 10px rgba(0,0,0,.5)!important;}
+html body.presentation-mode .presentation-tool-only .utc-driver-ribbon,
+html body.presentation-mode .presentation-tool-focus .utc-driver-ribbon{right:-55px!important;bottom:27px!important;width:230px!important;height:42px!important;font-size:16px!important;}
+html body.presentation-mode .presentation-tool-only .utc-driver-ribbon small,
+html body.presentation-mode .presentation-tool-focus .utc-driver-ribbon small{max-width:145px!important;font-size:10px!important;}
+\n\n/* =========================================================\n   V6.5.3 FINAL AUTHORITY — PRIORITY RIBBON SEMANTIC TIERS\n   Exact rank remains visible; wording adds weekend/resource-allocation meaning.\n   All priority ribbons remain red and separate from operational badges.\n   ========================================================= */\nhtml body .utc-priority-ribbon{\n  flex-direction:column!important;gap:2px!important;text-align:center!important;\n}\nhtml body .utc-priority-ribbon>span{display:block!important;white-space:nowrap!important;font-size:13px!important;line-height:1!important;font-weight:1000!important;}\nhtml body .utc-priority-ribbon small{font-size:6px!important;line-height:1!important;}\nhtml body .utc-priority-ribbon.top-priority{\n  background:linear-gradient(180deg,#ff3b4f,#a80016)!important;\n  box-shadow:0 3px 12px rgba(0,0,0,.58),0 0 15px rgba(255,35,55,.52)!important;\n}\nhtml body .utc-priority-ribbon.top-priority>span{font-size:14px!important;}\nhtml body.presentation-mode .presentation-tool-only .utc-priority-ribbon>span,\nhtml body.presentation-mode .presentation-tool-focus .utc-priority-ribbon>span{font-size:17px!important;}\nhtml body.presentation-mode .presentation-tool-only .utc-priority-ribbon.top-priority>span,\nhtml body.presentation-mode .presentation-tool-focus .utc-priority-ribbon.top-priority>span{font-size:18px!important;}\nhtml body.presentation-mode .presentation-tool-only .utc-priority-ribbon small,\nhtml body.presentation-mode .presentation-tool-focus .utc-priority-ribbon small{font-size:7px!important;}\n
