@@ -11010,3 +11010,39 @@ html body .priority-edit-full textarea{min-height:42px!important;height:42px!imp
     transform:scale(.965)!important;
   }
 }
+
+
+/* =========================================================
+   V6.5.9 FINAL AUTHORITY — FIELD TEST POLISH
+   ========================================================= */
+@media (min-width:700px){
+  /* Presentation: same breathing room between Driver and Reduced Process as normal cards. */
+  html body.presentation-mode .presentation-tool-only .utc-info>.utc-reduced,
+  html body.presentation-mode .presentation-tool-focus .utc-info>.utc-reduced{
+    margin-top:4px!important;
+    height:calc(100% - 4px)!important;
+  }
+  /* Only the photo is an edit navigation target on operational Live/Tools pages. */
+  html body:not(.presentation-mode):not(.screenshot-mode) .utc-photo[data-photo-open-tool]{cursor:pointer!important;}
+  html body:not(.presentation-mode):not(.screenshot-mode) .utc-photo[data-photo-open-tool] img{cursor:pointer!important;}
+  html body.presentation-mode .utc-photo[data-photo-open-tool],
+  html body.presentation-mode .utc-photo[data-photo-open-tool] img,
+  html body.screenshot-mode .utc-photo[data-photo-open-tool],
+  html body.screenshot-mode .utc-photo[data-photo-open-tool] img{cursor:default!important;}
+
+  /* Priority comparison: give Difference enough room and never clip it. */
+  html body .priority-frame .priority-compare-table th:nth-child(1){width:6%!important;}
+  html body .priority-frame .priority-compare-table th:nth-child(2){width:10%!important;}
+  html body .priority-frame .priority-compare-table th:nth-child(3){width:11%!important;}
+  html body .priority-frame .priority-compare-table th:nth-child(4){width:7%!important;}
+  html body .priority-frame .priority-compare-table th:nth-child(5){width:7%!important;}
+  html body .priority-frame .priority-compare-table th:nth-child(6){width:8%!important;}
+  html body .priority-frame .priority-compare-table th:nth-child(7){width:9%!important;}
+  html body .priority-frame .priority-compare-table th:nth-child(8){width:9%!important;}
+  html body .priority-frame .priority-compare-table th:nth-child(9){width:9%!important;}
+  html body .priority-frame .priority-compare-table th:nth-child(10){width:24%!important;}
+  html body .priority-frame .priority-compare-table td.priority-diff{
+    overflow:visible!important;text-overflow:clip!important;white-space:nowrap!important;font-size:10px!important;
+  }
+  html body .priority-edit .priority-rank-select{width:100%!important;min-width:74px!important;height:32px!important;font-weight:900!important;}
+}

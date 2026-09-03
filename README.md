@@ -30,10 +30,20 @@ V6.5.7 FIELD TEST POLISH
 - Priority Center source helper sentence removed and comparison rows compacted.
 - V3 storage key/data compatibility unchanged.
 
-V6.5.8 APPROVED UNIVERSAL TOOL CARD POLISH
+V6.5.9 APPROVED UNIVERSAL TOOL CARD POLISH
 - Removed the upper-right open-tool arrow from the shared Universal Tool Card.
 - Priority bar now uses the full top width in Live Operations, Tools, Presentation, and Screenshot contexts.
 - Tool image is slightly reduced/repositioned upward so the full bottom of the equipment remains visible above Driver.
 - Customer/Sales Order identity layout widened so long Sales Orders no longer truncate under normal card widths.
 - Tools-page family navigation is reinforced as a sticky, always-visible, one-row responsive jump bar.
 - Preserves the approved Driver / Reduced Process / 2x12 badge layout and all V3 production data compatibility.
+
+
+V6.5.9 field-test changes:
+- Presentation carousel follows selected priority source in ascending priority order.
+- Priority Difference column widened and uses MATCH / CC N HIGHER / CC N LOWER wording.
+- Priority edit uses 1..N dropdown rankings and reorders/renumbers automatically.
+- Live status box renamed UPDATED CY26Q3 TOOLS.
+- Tool photo is the only edit navigation target on Live Operations and Tools pages; disabled in Presentation/Screenshot.
+- Presentation Driver-to-Reduced-Process spacing matched to normal card.
+- Forecast Target popup uses the universal top-right X only.
