@@ -11046,3 +11046,44 @@ html body .priority-edit-full textarea{min-height:42px!important;height:42px!imp
   }
   html body .priority-edit .priority-rank-select{width:100%!important;min-width:74px!important;height:32px!important;font-weight:900!important;}
 }
+
+/* =========================================================
+   V6.5.11 FINAL AUTHORITY — FLOATING TOOL TYPE NAVIGATION
+   The Tools-page family bar is viewport-fixed below the application shell so
+   it remains available while scrolling long tool-family sections.
+   ========================================================= */
+body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) .tool-family-jump{
+  position:fixed!important;
+  top:calc(var(--sticky-shell-height,0px) + var(--framework-gap,6px) + 1px)!important;
+  left:calc(var(--app-edge-gutter,6px) + var(--framework-gap,6px) + 1px)!important;
+  right:calc(var(--app-edge-gutter,6px) + var(--framework-gap,6px) + 1px)!important;
+  width:auto!important;
+  z-index:4990!important;
+  margin:0!important;
+  display:grid!important;
+  grid-auto-flow:column!important;
+  grid-auto-columns:minmax(0,1fr)!important;
+  grid-template-rows:1fr!important;
+  overflow:hidden!important;
+  gap:4px!important;
+  padding:5px 6px!important;
+  border:1px solid var(--accent)!important;
+  background:#03101c!important;
+  box-shadow:0 5px 12px rgba(0,0,0,.55)!important;
+}
+body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) .tool-family-jump + .fleet-frame{
+  margin-top:49px!important;
+}
+body.screenshot-mode .tool-family-jump,
+body.presentation-mode .tool-family-jump{
+  position:static!important;
+  top:auto!important;
+  left:auto!important;
+  right:auto!important;
+  width:100%!important;
+  margin:0 0 8px!important;
+}
+body.screenshot-mode .tool-family-jump + .fleet-frame,
+body.presentation-mode .tool-family-jump + .fleet-frame{
+  margin-top:0!important;
+}
