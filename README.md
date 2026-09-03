@@ -47,3 +47,12 @@ V6.5.9 field-test changes:
 - Tool photo is the only edit navigation target on Live Operations and Tools pages; disabled in Presentation/Screenshot.
 - Presentation Driver-to-Reduced-Process spacing matched to normal card.
 - Forecast Target popup uses the universal top-right X only.
+
+## V6.5.10 — Shipped Tool Lifecycle Lock
+- Shipped tools remain visible on Operations Center > Current Tools / Tools family pages until explicitly archived.
+- Shipped tools are removed from Live Operations tool carousel and Presentation Mode.
+- Shipped tools are removed from Lead/Manager and Command Center priority rankings and no longer receive a Priority badge.
+- Shipped tools are removed from Morning/Daily active status, Cycle Time, active Shipping, Update Command Center, and active tool search results.
+- Quarter summary still counts shipped tools for shipped totals and quarter shipping progress.
+- Archived tools remain visible only in Tool Archive.
+- Existing b7fi-command-center-v3 storage compatibility is preserved.
