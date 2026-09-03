@@ -10561,3 +10561,212 @@ html body.presentation-mode .modal-card{z-index:50001!important;pointer-events:a
 html body.presentation-mode .forecast-picker-row{pointer-events:auto!important;cursor:pointer!important;position:relative!important;z-index:50002!important}
 
 .quarter-movement-readout .readonly-value{min-height:31px;display:flex;align-items:center;font-weight:950;color:#9edcff}
+
+/* =========================================================
+   V6.5.6 FINAL AUTHORITY — APPROVED TOOL CARD SAMPLE LOCK
+   One shared left-column geometry on Live Operations, Tools and Presentation.
+   Priority is a horizontal top bar; Driver is a horizontal photo-bottom bar;
+   Reduced Process is one normal-height full-width row directly above 2x12 badges.
+   ========================================================= */
+@media (min-width:700px){
+  html body .utc-info,
+  html body .operations-tool-carousel .utc-info,
+  html body .update-live-card-list .utc-info,
+  html body.presentation-mode .presentation-tool-only .utc-info,
+  html body.presentation-mode .presentation-tool-focus .utc-info{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    grid-template-rows:5% 13% 34% 4.6% minmax(0,1fr)!important;
+    grid-template-areas:"priority" "identity" "photo" "reduced" "badges"!important;
+    gap:0!important;
+    row-gap:0!important;
+    align-content:stretch!important;
+    min-height:0!important;
+    height:100%!important;
+    overflow:hidden!important;
+  }
+  html body .utc-info>.utc-open{
+    position:absolute!important;
+    top:7px!important;
+    right:7px!important;
+    z-index:40!important;
+    margin:0!important;
+  }
+  html body .utc-info>.utc-priority-ribbon{
+    grid-area:priority!important;
+    position:relative!important;
+    inset:auto!important;
+    width:100%!important;
+    height:100%!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:0 8px!important;
+    transform:none!important;
+    border-radius:0!important;
+    box-sizing:border-box!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    flex-direction:row!important;
+    gap:7px!important;
+    z-index:3!important;
+    overflow:hidden!important;
+  }
+  html body .utc-info>.utc-priority-ribbon>span,
+  html body .utc-info>.utc-priority-ribbon.top-priority>span{
+    font-size:clamp(10px,.9cqw,14px)!important;
+    line-height:1!important;
+    white-space:nowrap!important;
+  }
+  html body .utc-info>.utc-priority-ribbon small{
+    font-size:clamp(5px,.48cqw,7px)!important;
+    line-height:1!important;
+  }
+  html body .utc-info>.utc-info-head.utc-info-head-dashboard{
+    grid-area:identity!important;
+    height:100%!important;
+    min-height:0!important;
+    margin:0!important;
+    padding-top:2px!important;
+    box-sizing:border-box!important;
+    align-self:stretch!important;
+  }
+  html body .utc-info>.utc-photo{
+    grid-area:photo!important;
+    position:relative!important;
+    height:100%!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:0!important;
+    overflow:hidden!important;
+    box-sizing:border-box!important;
+  }
+  html body .utc-info>.utc-photo img{
+    display:block!important;
+    width:100%!important;
+    height:calc(100% - 30px)!important;
+    max-height:none!important;
+    margin:0!important;
+    padding:0!important;
+    object-fit:contain!important;
+    box-sizing:border-box!important;
+  }
+  html body .utc-photo>.utc-driver-ribbon,
+  html body .utc-photo>.utc-driver-ribbon.unassigned{
+    position:absolute!important;
+    left:0!important;
+    right:0!important;
+    top:auto!important;
+    bottom:0!important;
+    width:100%!important;
+    height:30px!important;
+    min-height:30px!important;
+    margin:0!important;
+    padding:0 8px!important;
+    transform:none!important;
+    border-radius:0!important;
+    box-sizing:border-box!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    flex-direction:row!important;
+    gap:6px!important;
+    z-index:10!important;
+  }
+  html body .utc-info>.utc-reduced{
+    grid-area:reduced!important;
+    width:100%!important;
+    height:100%!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:0 5px!important;
+    box-sizing:border-box!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    font-size:clamp(8px,.72cqw,11px)!important;
+    line-height:1!important;
+    overflow:hidden!important;
+  }
+  html body .utc-info>.utc-indicator-display{
+    grid-area:badges!important;
+    height:100%!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:2px 0 0!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+  }
+  html body .utc-info>.utc-indicator-display .utc-indicator-grid{
+    height:100%!important;
+    min-height:0!important;
+  }
+
+  /* Presentation uses the same card geometry; only type scales for wallboard distance. */
+  html body.presentation-mode .presentation-tool-only .utc-info>.utc-priority-ribbon,
+  html body.presentation-mode .presentation-tool-focus .utc-info>.utc-priority-ribbon{
+    height:100%!important;
+    width:100%!important;
+    position:relative!important;
+    inset:auto!important;
+    transform:none!important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-photo>.utc-driver-ribbon,
+  html body.presentation-mode .presentation-tool-focus .utc-photo>.utc-driver-ribbon,
+  html body.presentation-mode .presentation-tool-only .utc-photo>.utc-driver-ribbon.unassigned,
+  html body.presentation-mode .presentation-tool-focus .utc-photo>.utc-driver-ribbon.unassigned{
+    height:34px!important;
+    min-height:34px!important;
+    bottom:0!important;
+    left:0!important;
+    right:0!important;
+    width:100%!important;
+    transform:none!important;
+    font-size:clamp(12px,.92vw,17px)!important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-photo img,
+  html body.presentation-mode .presentation-tool-focus .utc-photo img{
+    height:calc(100% - 34px)!important;
+    padding:0!important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-reduced,
+  html body.presentation-mode .presentation-tool-focus .utc-reduced{
+    height:100%!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:0 5px!important;
+    font-size:clamp(8px,.66vw,12px)!important;
+  }
+
+  /* Top live-status boxes: slightly smaller than V6.5.5, but still wallboard-readable. */
+  html body.presentation-mode .presentation-quarter-panel .summary-grid .summary-box span{
+    font-size:clamp(10px,.78vw,14px)!important;
+    font-weight:900!important;
+    line-height:1.02!important;
+  }
+  html body.presentation-mode .presentation-quarter-panel .summary-grid .summary-box b{
+    font-size:clamp(16px,1.18vw,22px)!important;
+    font-weight:1000!important;
+    line-height:1!important;
+  }
+
+  /* Actual Presentation navigation row — explicit class used by the renderer. */
+  html body.presentation-mode .presentation-inline-nav.presentation-tool-nav,
+  html body.presentation-mode .presentation-inline-nav.presentation-tool-nav .presentation-nav-cell,
+  html body.presentation-mode .presentation-inline-nav.presentation-tool-nav button,
+  html body.presentation-mode .presentation-inline-nav.presentation-tool-nav span{
+    font-size:clamp(16px,1.18vw,22px)!important;
+    font-weight:950!important;
+    line-height:1!important;
+  }
+  html body.presentation-mode .presentation-inline-nav.presentation-tool-nav button b{
+    font-size:clamp(18px,1.35vw,25px)!important;
+  }
+  html body.presentation-mode .presentation-inline-nav.presentation-tool-nav button span{
+    font-size:clamp(14px,1.0vw,19px)!important;
+  }
+
+  /* Mystery boxes remain one responsive row; heading intentionally removed. */
+  html body .quarter-mystery-strip{margin-top:4px!important;padding-top:0!important;}
+  html body .quarter-mystery-title{display:none!important;}
+}

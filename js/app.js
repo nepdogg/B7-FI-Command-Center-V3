@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.5', BUILD='20260903-V6.5.5-FIELD-TEST-CORRECTIONS';
+const VERSION='6.5.6', BUILD='20260903-V6.5.6-TOOL-CARD-SAMPLE-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI 200 Final Pre-Pack and QA';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -282,7 +282,6 @@ function quarterPanel(){
       <div class="track"><div class="fill quarter-days" style="width:${qt.remainingPct}%"></div></div>
     </div>
     <div class="quarter-mystery-strip">
-      <div class="quarter-mystery-title">TOOLS MYSTERY BOXES</div>
       <div class="quarter-mystery-grid">${mystery||'<span class="muted">No active tool families.</span>'}</div>
     </div>
   </section>`;
@@ -556,6 +555,7 @@ function liveToolCard(tool=null){
     <div class="utc-card ${tone}">
       <section class="utc-column utc-info">
         <button class="utc-open tool-photo-open" data-open-tool="${esc(t.id)}" type="button" title="Open Tool Editor">↗</button>
+        ${priorityRibbon(t)}
         <header class="utc-info-head utc-info-head-dashboard">
           <div class="utc-utid">${esc(t.id)}</div>
           <div class="utc-identity-row utc-identity-row-primary">
@@ -567,7 +567,6 @@ function liveToolCard(tool=null){
             <span class="utc-so-compact" title="${esc(t.salesOrder||'No sales order available')}">SO #${esc(t.salesOrder||'—')}</span>
           </div>
         </header>
-        ${priorityRibbon(t)}
         <div class="utc-photo tool-open-photo" data-open-tool="${esc(t.id)}" role="button" tabindex="0" title="Open Tool Editor">
           <img src="${familyImage(t)}" alt="${esc(t.codename)} tool">
           ${driverRibbon(t)}
