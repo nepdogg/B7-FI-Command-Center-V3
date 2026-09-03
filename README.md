@@ -74,9 +74,16 @@ V6.5.9 field-test changes:
 - Existing V3 localStorage key and production data compatibility are unchanged.
 
 
-## V6.5.13 — Tool Type Action Menu + Presentation Carousel Control
+## V6.5.14 — Tool Type Action Menu + Presentation Carousel Control
 - Moved TOOL TYPE out of the left page-navigation section and into the right Page Actions section on Current Tools.
 - TOOL TYPE now opens a vertical tool-family submenu without adding a second navigation row.
 - The separate floating family strip remains removed.
 - Presentation carousel toggle now renders TOOLS and PLAY/PAUSE at the same font size and weight with stable button geometry.
 - Preserves V3 localStorage key/data compatibility and all V6.5.12 lifecycle/brain behavior.
+
+
+V6.5.14 FIELD TEST UPDATES
+- TOOL TYPE is a working dynamic Page Actions dropdown generated from tool families actually visible on the current Tools page.
+- TOOL TYPE supports click/hover and jumps to the selected family section without adding a navigation row.
+- Universal popup convention: one close X at the upper-right of the popup and kept visible while popup content scrolls.
+- Structured editable text fields now expose saved-value pull-down suggestions while retaining direct manual text entry. Existing constrained workflow/status fields remain dropdown selections to protect Command Center Brain logic.
