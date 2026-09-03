@@ -48,7 +48,7 @@ V6.5.9 field-test changes:
 - Presentation Driver-to-Reduced-Process spacing matched to normal card.
 - Forecast Target popup uses the universal top-right X only.
 
-## V6.5.11 — Shipped Tool Lifecycle Lock
+## V6.5.12 — Shipped Tool Lifecycle Lock
 - Shipped tools remain visible on Operations Center > Current Tools / Tools family pages until explicitly archived.
 - Shipped tools are removed from Live Operations tool carousel and Presentation Mode.
 - Shipped tools are removed from Lead/Manager and Command Center priority rankings and no longer receive a Priority badge.
@@ -57,9 +57,18 @@ V6.5.9 field-test changes:
 - Archived tools remain visible only in Tool Archive.
 - Existing b7fi-command-center-v3 storage compatibility is preserved.
 
-## V6.5.11 test updates
+## V6.5.12 test updates
 - Tool-family navigation on the Operations Center Tools page is now fixed below the main Command Center shell during normal scrolling, so BOXSTER / CELESTIQ / MACAN / PANAMERA / REGERA / TARGA / ZEPHYR remain available at all times.
 - The final reserved Tool Card badge is now the automatic REQUEST LAMP badge, immediately to the right of the automatic Lamp badge.
 - REQUEST LAMP is off normally, turns red when the Lamp badge first reaches the yellow warning range (50 hours remaining), remains latched through the red swap-now range, and clears only when lamp hours are reset to 0 after the lamp swap.
 - REQUEST LAMP is brain-derived and is not exposed as a manual Tool Badge Control selection.
 - Existing V3 localStorage compatibility and shipped-tool lifecycle rules are preserved.
+
+
+## V6.5.12 — Tool Type Pagebar Menu
+- Removed the full-width floating Tool Type navigation strip from the Tools page.
+- Added a compact TOOL TYPE control directly in the Operations page navigation bar.
+- Hovering or focusing/clicking TOOL TYPE opens the available tool families for the selected quarter.
+- Selecting a family jumps directly to that family section without consuming permanent vertical space.
+- The menu remains one-row friendly and is hidden outside the Current Tools page.
+- Existing V3 localStorage key and production data compatibility are unchanged.
