@@ -10912,3 +10912,101 @@ html body .priority-frame .priority-compare-table th:nth-child(10){width:22%!imp
 html body .priority-edit-full th,
 html body .priority-edit-full td{padding:6px!important;vertical-align:middle!important;}
 html body .priority-edit-full textarea{min-height:42px!important;height:42px!important;}
+
+/* =========================================================
+   V6.5.8 FINAL AUTHORITY — APPROVED UNIVERSAL TOOL CARD POLISH
+   Sample lock: full-width Priority bar, complete photo above Driver,
+   readable identity/SO, sticky one-row tool-family navigation.
+   ========================================================= */
+@media (min-width:700px){
+  /* The approved card has no open-arrow control. Priority owns the full top row. */
+  html body .utc-info>.utc-open{display:none!important;}
+  html body .utc-info>.utc-priority-ribbon,
+  html body.presentation-mode .presentation-tool-only .utc-info>.utc-priority-ribbon,
+  html body.presentation-mode .presentation-tool-focus .utc-info>.utc-priority-ribbon{
+    width:100%!important;
+    max-width:100%!important;
+    margin:0!important;
+    padding:0 8px!important;
+    justify-self:stretch!important;
+  }
+
+  /* Identity rows must show customer / full sales order instead of clipping. */
+  html body .utc-info-head.utc-info-head-dashboard{
+    padding-left:12px!important;
+    padding-right:12px!important;
+  }
+  html body .utc-info-head-dashboard .utc-identity-row{
+    grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr)!important;
+    gap:8px!important;
+  }
+  html body .utc-info-head-dashboard .utc-customer-compact,
+  html body .utc-info-head-dashboard .utc-so-compact{
+    min-width:0!important;
+    max-width:none!important;
+    overflow:visible!important;
+    text-overflow:clip!important;
+    white-space:nowrap!important;
+    font-size:clamp(12px,1.42cqw,18px)!important;
+  }
+  html body .utc-info-head-dashboard .utc-so-compact{
+    font-size:clamp(11px,1.30cqw,17px)!important;
+    letter-spacing:-.01em!important;
+  }
+
+  /* Keep the entire tool image visible above the Driver bar. */
+  html body .utc-info>.utc-photo img{
+    width:96%!important;
+    height:calc(100% - 32px)!important;
+    margin:-1px auto 0!important;
+    object-fit:contain!important;
+    object-position:center top!important;
+    transform:scale(.965)!important;
+    transform-origin:center top!important;
+  }
+  html body .utc-photo>.utc-driver-ribbon,
+  html body .utc-photo>.utc-driver-ribbon.unassigned{
+    height:30px!important;
+    min-height:30px!important;
+    bottom:0!important;
+  }
+
+  /* Keep the approved small visual breathing room before Reduced Process. */
+  html body .utc-info>.utc-reduced{
+    margin-top:3px!important;
+    height:calc(100% - 3px)!important;
+  }
+
+  /* Tools-page family jump stays visible and remains a single responsive row. */
+  html body .tool-family-jump{
+    position:sticky!important;
+    top:calc(var(--sticky-shell-height,0px) + 2px)!important;
+    z-index:4900!important;
+    display:grid!important;
+    grid-auto-flow:column!important;
+    grid-auto-columns:minmax(0,1fr)!important;
+    grid-template-rows:1fr!important;
+    width:100%!important;
+    overflow:hidden!important;
+    gap:4px!important;
+    background:#03101c!important;
+    box-shadow:0 5px 12px rgba(0,0,0,.55)!important;
+  }
+  html body .tool-family-jump .tool-jump-btn{
+    min-width:0!important;
+    width:auto!important;
+    padding:8px 5px!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+
+  /* Presentation uses the same approved card proportions. */
+  html body.presentation-mode .presentation-tool-only .utc-photo img,
+  html body.presentation-mode .presentation-tool-focus .utc-photo img{
+    width:96%!important;
+    height:calc(100% - 36px)!important;
+    margin:-1px auto 0!important;
+    object-position:center top!important;
+    transform:scale(.965)!important;
+  }
+}

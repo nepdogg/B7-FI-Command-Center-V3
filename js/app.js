@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.7', BUILD='20260903-V6.5.7-TOOL-CARD-PRIORITY-POLISH';
+const VERSION='6.5.8', BUILD='20260903-V6.5.8-APPROVED-UTC-FINAL-POLISH';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI 200 Final Pre-Pack and QA';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -554,7 +554,6 @@ function liveToolCard(tool=null){
   return `<section class="panel live-panel universal-card-host utc-host" data-universal-tool-card="${esc(t.id)}">
     <div class="utc-card ${tone}">
       <section class="utc-column utc-info">
-        <button class="utc-open tool-photo-open" data-open-tool="${esc(t.id)}" type="button" title="Open Tool Editor">↗</button>
         ${priorityRibbon(t)}
         <header class="utc-info-head utc-info-head-dashboard">
           <div class="utc-utid">${esc(t.id)}</div>

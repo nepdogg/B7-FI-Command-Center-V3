@@ -29,3 +29,11 @@ V6.5.7 FIELD TEST POLISH
 - 2x12 operational badge rows forced to equal height.
 - Priority Center source helper sentence removed and comparison rows compacted.
 - V3 storage key/data compatibility unchanged.
+
+V6.5.8 APPROVED UNIVERSAL TOOL CARD POLISH
+- Removed the upper-right open-tool arrow from the shared Universal Tool Card.
+- Priority bar now uses the full top width in Live Operations, Tools, Presentation, and Screenshot contexts.
+- Tool image is slightly reduced/repositioned upward so the full bottom of the equipment remains visible above Driver.
+- Customer/Sales Order identity layout widened so long Sales Orders no longer truncate under normal card widths.
+- Tools-page family navigation is reinforced as a sticky, always-visible, one-row responsive jump bar.
+- Preserves the approved Driver / Reduced Process / 2x12 badge layout and all V3 production data compatibility.
