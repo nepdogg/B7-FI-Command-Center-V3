@@ -72,3 +72,11 @@ V6.4.9 middle-column lock:
 - Driver ribbon remains lower-right on the tool photo and continues to use the Driver / Tool Assignment field.
 - Update Command Center remains FI-only.
 - Storage key and production-data compatibility remain unchanged.
+
+
+## V6.5.4
+- Finalized Universal Tool Card photo framing: horizontal Priority ribbon at the top of the tool photo and horizontal Driver ribbon at the bottom.
+- Priority tier wording remains dynamic (#1 TOP PRIORITY / HIGH PRIORITY / PRIORITY / LOW PRIORITY).
+- Reduced Process is locked to a full-width badge row directly above the permanent 2x12 badge matrix.
+- Presentation Mode fleet-status boxes and carousel/navigation controls use larger wallboard-readable typography.
+- Preserves V3 production storage compatibility and all V6.5.3 brain/priority/badge behavior.
