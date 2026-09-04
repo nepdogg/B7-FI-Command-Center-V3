@@ -196,7 +196,7 @@ V6.5.14 FIELD TEST UPDATES
 - Preserves localStorage key b7fi-command-center-v3 and existing production-data compatibility.
 
 
-## V6.5.27 — Unified Interactive Brain Card
+## V6.5.28 — Unified Interactive Brain Card
 - Unified legacy Tool Card rendering onto the Universal Tool Card path.
 - FI Testing and Micro Schedule progress blocks now open their checklist quick-update controls.
 - Current Cycle Time opens FI Handoff / Cycle Start date.
@@ -210,10 +210,21 @@ V6.5.14 FIELD TEST UPDATES
 - Preserves b7fi-command-center-v3 browser data compatibility.
 
 
-## V6.5.27 — One Universal Tool Card + Live Brain Control
+## V6.5.28 — One Universal Tool Card + Live Brain Control
 - One fixed Tool Card skeleton everywhere; Priority always renders with PRIORITY TBD placeholder when unranked.
 - FI Forecast moved to the interactive progress area; progress reflects forecast checklist position and shows forecast date below.
 - Middle column expanded for official Latest Status, actual open NC/escalation records, and separate Lead Notes/Reminders.
 - Live status reads the tool record's authoritative latestStatus/ncs fields used by Status Center; closed/completed/resolved NCs are excluded.
 - Lead Notes are directly editable without replacing official Latest Status.
 - Existing V3 localStorage key/data compatibility preserved.
+
+
+## V6.5.28 — Universal Tool Card finalization / quick-edit audit
+- Presentation Play/Pause control now says only PLAY or PAUSE.
+- Live System Status uses the authoritative Latest Status field; structured open NCs are read separately from each tool's NC / Escalations / POA records.
+- Live System Status area expanded; Lead Notes / Reminders moved lower; internal card scrollbars removed.
+- FI Forecast progress heading now includes the forecast date; selected checklist is shown below the bar.
+- Final FI checklist canonicalized to FI_200 — Final QA and PrePack with compatibility mapping from the previous name.
+- Tool Card quick-edit popups standardized: one field/control per simple update, history-backed datalist where useful, one Badge Status selector for status badges.
+- Customer and Sales Order quick editors derive missing-data badges automatically from the single authoritative field.
+- Existing b7fi-command-center-v3 localStorage compatibility retained.
