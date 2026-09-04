@@ -11846,3 +11846,38 @@ html body .fi-indicator-lamp.automatic-badge{cursor:default!important;}
     pointer-events:none!important;
   }
 }
+
+/* =========================================================
+   V6.5.19 — PRESENTATION IDENTITY / DIRECT CONTROLS / HYBRID FIELDS
+   ========================================================= */
+html body .hybrid-field-control{display:grid!important;grid-template-columns:minmax(120px,.9fr) minmax(0,1.35fr)!important;gap:6px!important;align-items:stretch!important}
+html body .hybrid-field-control>select,html body .hybrid-field-control>input{width:100%!important;min-width:0!important;margin:0!important}
+html body .hybrid-field-control>select{cursor:pointer!important}
+html body .field-choice-hint{display:block!important;margin-top:3px!important}
+
+/* Direct edit affordances are active in regular and Presentation cards. */
+html body .utc-driver-ribbon.direct-editable,html body .utc-priority-ribbon.direct-editable,html body .fi-indicator-lamp.direct-editable,html body .utc-reduced.direct-editable{cursor:pointer!important;pointer-events:auto!important}
+html body.presentation-mode .presentation-tool-only [data-direct-indicator],
+html body.presentation-mode .presentation-tool-focus [data-direct-indicator],
+html body.presentation-mode .presentation-tool-only [data-direct-priority],
+html body.presentation-mode .presentation-tool-focus [data-direct-priority],
+html body.presentation-mode .presentation-tool-only .utc-driver-ribbon,
+html body.presentation-mode .presentation-tool-focus .utc-driver-ribbon,
+html body.presentation-mode .presentation-tool-only .utc-priority-ribbon,
+html body.presentation-mode .presentation-tool-focus .utc-priority-ribbon{pointer-events:auto!important;cursor:pointer!important}
+
+/* Keep Powered Down readable even while inactive so the badge never looks missing. */
+html body .fi-indicator-lamp[aria-label^="POWERED DOWN"].off,
+html body .fi-indicator-lamp[title^="POWERED DOWN"].off{opacity:.72!important;color:#8aa6b3!important;border-color:#244757!important}
+
+/* Presentation left identity zone: larger photo, identity pushed right, no wasted gap. */
+html body.presentation-mode .presentation-tool-only .utc-identity-zone,
+html body.presentation-mode .presentation-tool-focus .utc-identity-zone{grid-template-columns:minmax(0,1.18fr) minmax(0,.92fr)!important;column-gap:18px!important;align-items:center!important;overflow:visible!important}
+html body.presentation-mode .presentation-tool-only .utc-photo,
+html body.presentation-mode .presentation-tool-focus .utc-photo{width:100%!important;max-width:none!important;overflow:visible!important;padding:0!important;margin:0!important;display:flex!important;align-items:center!important;justify-content:flex-start!important}
+html body.presentation-mode .presentation-tool-only .utc-photo img,
+html body.presentation-mode .presentation-tool-focus .utc-photo img{width:112%!important;max-width:112%!important;height:100%!important;object-fit:contain!important;object-position:left center!important;transform:none!important}
+html body.presentation-mode .presentation-tool-only .utc-info-head-dashboard,
+html body.presentation-mode .presentation-tool-focus .utc-info-head-dashboard{min-width:0!important;padding-left:10px!important;padding-right:2px!important;overflow:visible!important}
+html body.presentation-mode .presentation-tool-only .utc-info-head-dashboard>*,
+html body.presentation-mode .presentation-tool-focus .utc-info-head-dashboard>*{max-width:100%!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}

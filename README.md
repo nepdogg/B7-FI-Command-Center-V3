@@ -1,3 +1,13 @@
+# B7 FI Command Center V6.5.19
+
+## 9/3/26 late field-test update
+- Presentation Mode left identity zone enlarged: larger tool photo, identity text moved farther right, no wasted gap.
+- Driver bar is directly editable by clicking it in Presentation Mode and regular Universal Tool Cards.
+- Priority badge is directly editable in Presentation Mode: Lead/Manager rank can be changed and Tool Card priority source can be switched; Command Center rank remains brain-controlled.
+- Powered Down badge remains present and is made more legible when inactive.
+- Structured fields now use a visible hybrid selection + manual-entry control: predefined choices, N/A, and free typing are all available while preserving saved custom values.
+- Existing b7fi-command-center-v3 production data compatibility is preserved.
+
 # B7 FI Command Center V6.5.18
 
 ## 9/3/26 field-test update
