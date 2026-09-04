@@ -165,3 +165,13 @@ V6.5.14 FIELD TEST UPDATES
 - Added a Presentation-only true black wallboard theme to improve text/status contrast and blend the KLA+ logo background into the card.
 - Removed the divider line above the KLA+ logo.
 - Preserved b7fi-command-center-v3 production storage compatibility.
+
+
+## V6.5.22 — System Wafers Final Badge
+- Filled the final open 2x14 badge slot with SYSTEM WAFERS.
+- Default SYSTEM WAFERS state is red.
+- REQUEST SYSTEM WAFERS is yellow/attention.
+- SYSTEM WAFER KIT ISSUED is green/complete.
+- SYSTEM WAFERS is directly editable anywhere manual badges are editable, including Presentation Mode.
+- The badge matrix is now fully populated: 28 operational badges in a 2 x 14 grid, plus the separate Reduced Process badge.
+- Preserved b7fi-command-center-v3 production storage compatibility.
