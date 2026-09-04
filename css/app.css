@@ -11700,3 +11700,149 @@ html body .utc-reduced.direct-editable:focus-visible{
   outline-offset:-1px!important;
 }
 html body .fi-indicator-lamp.automatic-badge{cursor:default!important;}
+
+/* =========================================================
+   V6.5.18 FINAL AUTHORITY — CLEAN IDENTITY ZONE + PRESENTATION BADGE PARITY
+   - Photo left / identity right
+   - Remove inner photo and identity boxes
+   - Prevent identity text clipping in Presentation Mode
+   - Direct manual badge editing remains active in Presentation Mode
+   ========================================================= */
+@media (min-width:700px){
+  html body .utc-info > .utc-identity-zone,
+  html body .operations-tool-carousel .utc-info > .utc-identity-zone,
+  html body .update-live-card-list .utc-info > .utc-identity-zone,
+  html body.presentation-mode .presentation-tool-only .utc-info > .utc-identity-zone,
+  html body.presentation-mode .presentation-tool-focus .utc-info > .utc-identity-zone{
+    display:flex!important;
+    flex-direction:row!important;
+    flex-wrap:nowrap!important;
+    align-items:stretch!important;
+    gap:8px!important;
+    padding:3px 4px 2px!important;
+    overflow:visible!important;
+  }
+
+  html body .utc-info > .utc-identity-zone > .utc-photo,
+  html body.presentation-mode .presentation-tool-only .utc-info > .utc-identity-zone > .utc-photo,
+  html body.presentation-mode .presentation-tool-focus .utc-info > .utc-identity-zone > .utc-photo{
+    order:1!important;
+    flex:0 0 calc(47% - 4px)!important;
+    width:calc(47% - 4px)!important;
+    max-width:calc(47% - 4px)!important;
+    min-width:0!important;
+    height:100%!important;
+    border:0!important;
+    outline:0!important;
+    box-shadow:none!important;
+    background:transparent!important;
+    overflow:hidden!important;
+  }
+
+  html body .utc-info > .utc-identity-zone > .utc-info-head.utc-info-head-dashboard,
+  html body.presentation-mode .presentation-tool-only .utc-info > .utc-identity-zone > .utc-info-head.utc-info-head-dashboard,
+  html body.presentation-mode .presentation-tool-focus .utc-info > .utc-identity-zone > .utc-info-head.utc-info-head-dashboard{
+    order:2!important;
+    flex:1 1 53%!important;
+    width:auto!important;
+    max-width:none!important;
+    min-width:0!important;
+    height:100%!important;
+    padding:3px 2px!important;
+    border:0!important;
+    outline:0!important;
+    box-shadow:none!important;
+    background:transparent!important;
+    overflow:visible!important;
+  }
+
+  html body .utc-identity-zone .utc-utid{
+    min-width:0!important;
+    max-width:100%!important;
+    font-size:clamp(12px,1.05cqw,16px)!important;
+    line-height:1.02!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+  html body .utc-identity-zone .utc-tool-type{
+    min-width:0!important;
+    max-width:100%!important;
+    font-size:clamp(13px,1.35cqw,19px)!important;
+    line-height:1.02!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+  html body .utc-identity-zone .utc-tool-model{
+    min-width:0!important;
+    max-width:100%!important;
+    font-size:clamp(11px,1.12cqw,16px)!important;
+    line-height:1.02!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+  html body .utc-identity-zone .utc-customer-compact,
+  html body .utc-identity-zone .utc-so-compact{
+    min-width:0!important;
+    max-width:100%!important;
+    font-size:clamp(9px,.82cqw,13px)!important;
+    line-height:1.05!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+
+  /* Presentation gets a little more identity width and hard caps oversized legacy text. */
+  html body.presentation-mode .presentation-tool-only .utc-info > .utc-identity-zone > .utc-photo,
+  html body.presentation-mode .presentation-tool-focus .utc-info > .utc-identity-zone > .utc-photo{
+    flex-basis:43%!important;
+    width:43%!important;
+    max-width:43%!important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-info > .utc-identity-zone > .utc-info-head.utc-info-head-dashboard,
+  html body.presentation-mode .presentation-tool-focus .utc-info > .utc-identity-zone > .utc-info-head.utc-info-head-dashboard{
+    flex:1 1 57%!important;
+    width:auto!important;
+    max-width:none!important;
+    min-width:0!important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-identity-zone .utc-utid,
+  html body.presentation-mode .presentation-tool-focus .utc-identity-zone .utc-utid{
+    font-size:clamp(16px,1.45vw,25px)!important;
+    text-align:left!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-identity-zone .utc-tool-type,
+  html body.presentation-mode .presentation-tool-focus .utc-identity-zone .utc-tool-type{
+    font-size:clamp(15px,1.25vw,22px)!important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-identity-zone .utc-tool-model,
+  html body.presentation-mode .presentation-tool-focus .utc-identity-zone .utc-tool-model{
+    font-size:clamp(14px,1.05vw,19px)!important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-identity-zone .utc-customer-compact,
+  html body.presentation-mode .presentation-tool-only .utc-identity-zone .utc-so-compact,
+  html body.presentation-mode .presentation-tool-focus .utc-identity-zone .utc-customer-compact,
+  html body.presentation-mode .presentation-tool-focus .utc-identity-zone .utc-so-compact{
+    font-size:clamp(12px,.9vw,16px)!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+
+  /* Presentation-mode direct badge editing parity with Live Operations. */
+  html body.presentation-mode .presentation-tool-only [data-direct-indicator],
+  html body.presentation-mode .presentation-tool-focus [data-direct-indicator]{
+    pointer-events:auto!important;
+    cursor:pointer!important;
+    position:relative!important;
+    z-index:25!important;
+  }
+  html body.presentation-mode .presentation-tool-only .automatic-badge,
+  html body.presentation-mode .presentation-tool-focus .automatic-badge{
+    cursor:default!important;
+    pointer-events:none!important;
+  }
+}

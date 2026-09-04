@@ -1,3 +1,13 @@
+# B7 FI Command Center V6.5.18
+
+## 9/3/26 field-test update
+- Universal Tool Card identity zone cleaned up: tool photo stays left; UTID / type / model / customer / Sales Order stay right.
+- Removed the visible inner border boxes around the tool photo and identity information.
+- Presentation Mode gives the identity panel more width and caps text sizing so UTID/customer/model/type/SO no longer clip.
+- Direct manual badge editing is explicitly enabled in Presentation Mode with the same badge-specific popup workflow used in Live Operations.
+- Automatic Lamp and Request Lamp badges remain read-only brain outputs.
+- Existing b7fi-command-center-v3 production data compatibility is preserved.
+
 # B7 FI Command Center V6.5.17
 
 ## V6.5.17 field-test changes
