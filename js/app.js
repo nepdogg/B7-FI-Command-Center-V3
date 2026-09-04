@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.24', BUILD='20260904-V6.5.24-PRESENTATION-LIVE-QUICK-UPDATE';
+const VERSION='6.5.25', BUILD='20260904-V6.5.25-PRESENTATION-QUICK-EDIT-MICRO-FIX';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI 200 Final Pre-Pack and QA';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -499,7 +499,7 @@ function saveDirectPriority(id){
   let kind=currentPriorityKind(),rows=syncPriorityList(kind),idx=rows.findIndex(p=>String(p.tool)===String(id));if(idx<0)return;let target=Math.max(1,Math.min(rows.length,Number(document.querySelector('#direct-priority-rank')?.value)||1)),item=rows.splice(idx,1)[0];rows.sort((a,b)=>(Number(a.priority)||9999)-(Number(b.priority)||9999));rows.splice(target-1,0,item);rows.forEach((p,i)=>p.priority=i+1);state.priorities[kind]=rows;state.config.priorityBadgeSource=document.querySelector('#direct-priority-source')?.value==='commandCenter'?'commandCenter':'lead';saveState('PRIORITY UPDATED');closeModal();render();if(presentationActive)requestAnimationFrame(()=>requestAnimationFrame(fitPresentation));
 }
 function indicatorControlModal(id,key){let t=state.tools.find(x=>x.id===id);if(!t)return;let sourceKey=key,x=key==='reduced'?{label:'REDUCED PROCESS',state:t.reducedProcess?'Reduced Process':'Off'}:indicatorStateForSlot(t,key),body='';
-  if(key==='driver'){x={label:'DRIVER',state:t.driver||'Unassigned'};body=`<div class="field"><label>DRIVER(S)</label><input id="indicator-driver" type="text" value="${esc(t.driver||'Unassigned')}" list="indicator-driver-list"><datalist id="indicator-driver-list">${driverOptions(t.driver||'Unassigned')}</datalist><small class="field-choice-hint">Choose a saved driver or type names manually. Use / between multiple drivers.</small></div>`;}
+  if(key==='driver'){x={label:'DRIVER',state:t.driver||'Unassigned'};body=hybridField('DRIVER(S)','indicator-driver',t.driver||'Unassigned',driverChoices(t.driver||'Unassigned'));body=body.replace('Select a known value, choose N/A, or type a new entry.','Select a saved driver, choose Unassigned, or type names manually. Use / between multiple drivers.');}
   else if(key==='noCustomer')body=`<div class="form-grid indicator-data-grid">${selField('CUSTOMER STATUS','indicator-availability',selectOptions(['Not Available','Available'],t.customerAvailability||'Not Available'),t.customerAvailability||'Not Available')}${field('CUSTOMER','indicator-value',t.customer||'')}</div>`;
   else if(key==='noSalesOrder')body=`<div class="form-grid indicator-data-grid">${selField('SALES ORDER STATUS','indicator-availability',selectOptions(['Not Available','Available'],t.salesOrderAvailability||'Not Available'),t.salesOrderAvailability||'Not Available')}${field('SALES ORDER','indicator-value',t.salesOrder||'')}</div>`;
   else {let cfg={
@@ -565,17 +565,18 @@ function setIndicatorState(t,key,v){
 function quickCardFieldModal(id,key){
   let t=state.tools.find(x=>String(x.id)===String(id));if(!t)return;
   let title='',body='';
-  const listInput=(label,value,values,inputId='quick-field-value')=>`<div class="field"><label>${esc(label)}</label><input id="${inputId}" type="text" value="${esc(value||'')}" list="${inputId}-list"><datalist id="${inputId}-list">${[...new Set([...values,'N/A'])].map(v=>`<option value="${esc(v)}"></option>`).join('')}</datalist><small class="field-choice-hint">Choose a known selection or type a new value manually.</small></div>`;
+  const strictSelect=(label,value,values,inputId='quick-field-value')=>`<div class="field"><label>${esc(label)}</label><select id="${inputId}">${[...new Set(values)].map(v=>`<option value="${esc(v)}" ${String(value)===String(v)?'selected':''}>${esc(v)}</option>`).join('')}</select><small class="field-choice-hint">Choose a value from the pull-down menu.</small></div>`;
+  const hybridQuick=(label,value,values,inputId='quick-field-value')=>hybridField(label,inputId,value,[...new Set(values)]);
   if(key==='shipDate'){title='SHIP DATE';body=`<div class="field"><label>SHIP DATE</label><input id="quick-field-value" type="date" value="${esc(t.shipDate||'')}"></div>`}
-  else if(key==='toolStatus'){title='CURRENT SYSTEM STATUS';body=listInput(title,t.toolStatus,['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped'])}
-  else if(key==='currentChecklist'){title='CURRENT FI TASK';body=listInput(title,t.currentChecklist,routeFor(t).map(x=>x[0]))}
-  else if(key==='microSchedule'){title='MICRO SCHEDULE';body=listInput(title,t.microSchedule,routeFor(t).map(x=>x[0]))}
-  else if(key==='currentLeadTask'){title='CURRENT LEAD / ADMIN TASK';body=listInput(title,t.currentLeadTask,LEAD_TASKS)}
+  else if(key==='toolStatus'){title='CURRENT SYSTEM STATUS';body=strictSelect(title,t.toolStatus,['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped'])}
+  else if(key==='currentChecklist'){title='CURRENT FI TASK';body=hybridQuick(title,t.currentChecklist,routeFor(t).map(x=>x[0]))}
+  else if(key==='microSchedule'){title='CURRENT MICRO SCHEDULE';body=hybridQuick(title,t.microSchedule,routeFor(t).map(x=>x[0]))}
+  else if(key==='currentLeadTask'){title='CURRENT LEAD / ADMIN TASK';body=hybridQuick(title,t.currentLeadTask,LEAD_TASKS)}
   else if(key==='fiHandoffDate'){title='FI HANDOFF / CYCLE START';body=`<div class="field"><label>${title}</label><input id="quick-field-value" type="date" value="${esc(t.fiHandoffDate||'')}"></div>`}
   else if(key==='forecastDate'){title='FI FORECAST DATE';body=`<div class="field"><label>${title}</label><input id="quick-field-value" type="date" value="${esc(t.nextForecastDate||calculatedForecastDate(t)||'')}"></div>`}
   else if(key==='lampHours'){title='LAMP HOURS';body=`<div class="field"><label>LAMP HOURS</label><input id="quick-field-value" type="number" min="0" step="1" value="${Number(t.lamp)||0}"></div>`}
   else return;
-  modal(`<div class="modal-form quick-card-field-modal"><h2>${esc(title)} — ${esc(t.id)}</h2>${body}<div class="modal-actions"><button class="btn save" data-save-quick-field="${esc(t.id)}" data-quick-key="${esc(key)}">SAVE UPDATE</button></div></div>`)
+  modal(`<div class="modal-form quick-card-field-modal"><h2>${esc(title)} — ${esc(t.id)}</h2>${body}<div class="modal-actions"><button class="btn" data-modal-cancel>CANCEL</button><button class="btn save" data-save-quick-field="${esc(t.id)}" data-quick-key="${esc(key)}">SAVE UPDATE</button></div></div>`)
 }
 function saveQuickCardField(id,key){
   let i=state.tools.findIndex(x=>String(x.id)===String(id));if(i<0)return;let t=state.tools[i],v=document.querySelector('#quick-field-value')?.value??'';
@@ -651,7 +652,7 @@ function liveToolCard(tool=null){
           ${identityRibbon(t,'customer','CUSTOMER',t.customer||'N/A')}
           ${identityRibbon(t,'salesOrder','SALES ORDER',t.salesOrder?`SO #${t.salesOrder}`:'N/A')}
         </div>
-        <button class="utc-edit-tool-bar direct-editable" type="button" data-open-tool="${esc(t.id)}" title="Open the complete editor for this tool"><span>✎ UPDATED TOOL STATUS</span><b>›</b></button>
+        <button class="utc-edit-tool-bar direct-editable" type="button" data-open-tool="${esc(t.id)}" title="Open the complete editor for this tool"><span>✎ UPDATE TOOL STATUS</span><b>›</b></button>
         ${driverRibbon(t)}
         <div class="utc-reduced ${t.reducedProcess?'active':'idle'} direct-editable" data-direct-indicator="reduced" data-indicator-tool="${esc(t.id)}" role="button" tabindex="0" title="REDUCED PROCESS — click to update">REDUCED PROCESS</div>
         ${indicatorDisplayPanel(t)}
@@ -679,6 +680,11 @@ function liveToolCard(tool=null){
           <div class="utc-current-task-value">${esc(checklistLabel(t,t.currentChecklist))}</div>
         </div>
 
+        <div class="utc-status-section utc-current-micro utc-quick-edit direct-editable" data-quick-field="microSchedule" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" title="Click to update current Micro Schedule checklist">
+          <div class="utc-kicker">CURRENT MICRO SCHEDULE</div>
+          <div class="utc-current-task-value">${esc(checklistLabel(t,t.microSchedule))}</div>
+        </div>
+
         <div class="utc-status-section utc-forecast">
           <div class="utc-kicker">FI FORECAST STEP</div>
           <button class="utc-forecast-button forecast-target-button" data-forecast-checklist="${esc(t.id)}" title="Select FI forecast checklist">
@@ -690,15 +696,12 @@ function liveToolCard(tool=null){
           </div>
         </div>
 
-        <div class="utc-status-section utc-cycle utc-quick-edit direct-editable" data-quick-field="fiHandoffDate" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" title="Click to update FI handoff / cycle start date">
-          <div class="utc-metric"><span>FI HANDOFF / CYCLE START</span><strong>${esc(fmtDate(t.fiHandoffDate)||'—')}</strong></div>
-        </div>
       </section>
 
       <section class="utc-column utc-progress">
         <div class="utc-progress-list">
           ${progressItem('FI TESTING',fi,t.toolStatus==='FI'?col:isShipped?'green':(['Powered Down','Packing'].includes(t.toolStatus)?'green':'blue'),'',checklistLabel(t,t.currentChecklist))}
-          <div class="utc-progress-quick direct-editable" data-quick-field="microSchedule" data-quick-tool="${esc(t.id)}" role="button" tabindex="0">${progressItem('MICRO SCHEDULE',mi,isShipped?'green':'cyan','',checklistLabel(t,t.microSchedule))}</div>
+          ${progressItem('MICRO SCHEDULE',mi,isShipped?'green':'cyan','',checklistLabel(t,t.microSchedule))}
           ${cycleDayItem('CURRENT CYCLE TIME',t.fiHandoffDate?cyc:null,avgCycle,cycleColor,t.fiHandoffDate?`${cyc} DAYS`:'NOT STARTED')}
           ${cycleDayItem('TARGET CYCLE TIME',avgCycle||null,avgCycle,'cyan',avgCycle?`TARGET ${avgCycle} DAYS`:'TARGET TBD')}
           <div class="utc-progress-quick direct-editable" data-quick-field="currentLeadTask" data-quick-tool="${esc(t.id)}" role="button" tabindex="0">${progressItem('LEAD / ADMIN PROGRESS',leadPct,isShipped?'green':'amber','',t.currentLeadTask||'NOT SET')}</div>

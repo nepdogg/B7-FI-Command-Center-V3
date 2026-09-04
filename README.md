@@ -184,3 +184,13 @@ V6.5.14 FIELD TEST UPDATES
 - Keeps the divider above the KLA logo removed.
 - Normal Live Operations / Tools card KLA sizing remains unchanged.
 - Preserves the V6.5.22 System Wafers final badge and existing `b7fi-command-center-v3` data compatibility.
+
+
+## V6.5.25 — Presentation Quick Edit / Current Micro Schedule
+- Presentation quick-edit popups now use visible pull-down menus for known selections, with manual entry retained where appropriate.
+- Driver quick edit now provides a visible saved-driver pull-down plus manual multi-driver entry.
+- Renamed UPDATED TOOL STATUS to UPDATE TOOL STATUS.
+- Replaced the middle-column FI handoff/cycle-start section with CURRENT MICRO SCHEDULE directly below CURRENT FI TASK.
+- Current Micro Schedule is directly editable; the right-column Micro Schedule remains a progress visualization.
+- Removed the Presentation Mode phantom gap above Driver and explicitly keeps UPDATE TOOL STATUS visible in the left-column stack.
+- Preserves localStorage key b7fi-command-center-v3 and existing production-data compatibility.

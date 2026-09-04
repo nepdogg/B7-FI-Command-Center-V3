@@ -12155,3 +12155,79 @@ html body.presentation-mode .presentation-tool-only [data-open-tool],
 html body.presentation-mode .presentation-tool-focus [data-open-tool],
 html body.presentation-mode .presentation-tool-only [data-handoffs],
 html body.presentation-mode .presentation-tool-focus [data-handoffs]{pointer-events:auto!important;cursor:pointer!important;position:relative!important;z-index:31!important}
+
+
+/* =========================================================
+   V6.5.25 FINAL AUTHORITY — PRESENTATION QUICK EDIT + MICRO
+   - eliminate left-column phantom gap
+   - keep UPDATE TOOL STATUS visible in Presentation Mode
+   - place Current Micro Schedule in middle column
+   - use real visible pull-down controls in quick-edit modals
+   ========================================================= */
+html body .utc-info{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-start!important;
+  align-content:stretch!important;
+  gap:3px!important;
+}
+html body .utc-info>.utc-identity-badges,
+html body .utc-info>.utc-edit-tool-bar,
+html body .utc-info>.utc-driver-ribbon,
+html body .utc-info>.utc-driver-ribbon.unassigned,
+html body .utc-info>.utc-reduced,
+html body .utc-info>.utc-indicator-display{
+  margin-top:0!important;
+  margin-bottom:0!important;
+}
+html body.presentation-mode .presentation-tool-only .utc-info>.utc-edit-tool-bar,
+html body.presentation-mode .presentation-tool-focus .utc-info>.utc-edit-tool-bar{
+  display:flex!important;
+  visibility:visible!important;
+  opacity:1!important;
+  position:relative!important;
+  inset:auto!important;
+  transform:none!important;
+  width:100%!important;
+  flex:0 0 32px!important;
+  height:32px!important;
+  min-height:32px!important;
+  margin:0!important;
+  z-index:32!important;
+}
+html body.presentation-mode .presentation-tool-only .utc-info>.utc-driver-ribbon,
+html body.presentation-mode .presentation-tool-focus .utc-info>.utc-driver-ribbon,
+html body.presentation-mode .presentation-tool-only .utc-info>.utc-driver-ribbon.unassigned,
+html body.presentation-mode .presentation-tool-focus .utc-info>.utc-driver-ribbon.unassigned{
+  position:relative!important;
+  inset:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  transform:none!important;
+  width:100%!important;
+  flex:0 0 32px!important;
+  height:32px!important;
+  min-height:32px!important;
+  margin:0!important;
+}
+html body .utc-current-micro{
+  border-top:1px solid #16455a!important;
+  padding-top:9px!important;
+}
+html body .quick-card-field-modal .hybrid-field-control,
+html body .indicator-modal .hybrid-field-control{
+  display:grid!important;
+  grid-template-columns:minmax(190px,.8fr) minmax(280px,1.2fr)!important;
+  gap:8px!important;
+  align-items:center!important;
+}
+html body .quick-card-field-modal .hybrid-choice,
+html body .indicator-modal .hybrid-choice{
+  display:block!important;
+  width:100%!important;
+  min-height:34px!important;
+}
+@media(max-width:760px){
+  html body .quick-card-field-modal .hybrid-field-control,
+  html body .indicator-modal .hybrid-field-control{grid-template-columns:1fr!important}
+}
