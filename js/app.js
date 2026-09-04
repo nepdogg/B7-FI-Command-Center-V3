@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.20', BUILD='20260904-V6.5.20-IDENTITY-BARS-DIRECT-EDIT-KLA';
+const VERSION='6.5.21', BUILD='20260904-V6.5.21-PRESENTATION-DIRECT-EDIT-BLACK-WALLBOARD';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI 200 Final Pre-Pack and QA';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -993,6 +993,21 @@ function bindCoreInteractions(){
   document.querySelectorAll('#pageActions [data-act="addTool"]').forEach(btn=>{
     btn.addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation();addTool();},{capture:true});
   });
+  // Direct-edit controls are bound on the rendered Universal Tool Card itself so
+  // Live Operations and full-screen Presentation Mode use the exact same interaction path.
+  document.querySelectorAll('[data-direct-identity][data-identity-tool]').forEach(el=>{
+    el.addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation();identityEditModal(el.dataset.identityTool,el.dataset.directIdentity);},{capture:true});
+    el.addEventListener('keydown',e=>{if(!['Enter',' '].includes(e.key))return;e.preventDefault();e.stopImmediatePropagation();identityEditModal(el.dataset.identityTool,el.dataset.directIdentity);},{capture:true});
+  });
+  document.querySelectorAll('[data-direct-indicator][data-indicator-tool]').forEach(el=>{
+    el.addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation();indicatorControlModal(el.dataset.indicatorTool,el.dataset.directIndicator);},{capture:true});
+    el.addEventListener('keydown',e=>{if(!['Enter',' '].includes(e.key))return;e.preventDefault();e.stopImmediatePropagation();indicatorControlModal(el.dataset.indicatorTool,el.dataset.directIndicator);},{capture:true});
+  });
+  document.querySelectorAll('[data-direct-priority]').forEach(el=>{
+    el.addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation();directPriorityModal(el.dataset.directPriority);},{capture:true});
+    el.addEventListener('keydown',e=>{if(!['Enter',' '].includes(e.key))return;e.preventDefault();e.stopImmediatePropagation();directPriorityModal(el.dataset.directPriority);},{capture:true});
+  });
+
   document.querySelectorAll('[data-open-tool],[data-tool],[data-search-tool],[data-alert-tool]').forEach(el=>{
     if(el.matches('button,input,select,textarea,a'))return;
     el.addEventListener('click',e=>{

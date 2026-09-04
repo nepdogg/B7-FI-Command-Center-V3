@@ -11896,3 +11896,165 @@ body.presentation-mode .utc-identity-ribbon small{font-size:11px}
 body.presentation-mode .utc-identity-ribbon span{font-size:17px}
 body.presentation-mode .utc-kla-brand img{max-width:58%;max-height:92px}
 body.screenshot-mode .utc-identity-ribbon{cursor:default}
+
+
+/* =========================================================
+   V6.5.21 FINAL AUTHORITY — PRESENTATION DIRECT EDIT + BLACK WALLBOARD
+   - Same direct-edit behavior in Live Operations and Presentation Mode
+   - 2 x 14 badges use equal rows/gaps with no overlap or clipping
+   - Presentation Mode uses a true black wallboard background
+   - KLA card finish has no divider above it
+   ========================================================= */
+
+/* Left column uses one predictable vertical flow everywhere. */
+html body .utc-info{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  justify-content:flex-start!important;
+  gap:4px!important;
+  min-height:0!important;
+  overflow:hidden!important;
+  padding:8px 10px!important;
+}
+html body .utc-info>.utc-priority-ribbon{
+  flex:0 0 34px!important;
+  min-height:34px!important;
+  height:34px!important;
+  margin:0!important;
+}
+html body .utc-info>.utc-identity-badges{
+  flex:0 0 auto!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:repeat(5,32px)!important;
+  gap:4px!important;
+  width:100%!important;
+  margin:0!important;
+  min-height:0!important;
+}
+html body .utc-info>.utc-identity-badges .utc-identity-ribbon{
+  height:32px!important;
+  min-height:32px!important;
+  margin:0!important;
+  padding:3px 9px!important;
+  box-sizing:border-box!important;
+}
+html body .utc-info>.utc-driver-ribbon,
+html body .utc-info>.utc-driver-ribbon.unassigned{
+  flex:0 0 34px!important;
+  min-height:34px!important;
+  height:34px!important;
+  margin:0!important;
+}
+html body .utc-info>.utc-reduced{
+  flex:0 0 30px!important;
+  min-height:30px!important;
+  height:30px!important;
+  margin:0!important;
+}
+html body .utc-info>.utc-indicator-display{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  height:auto!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+}
+html body .utc-info>.utc-indicator-display .utc-indicator-grid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-template-rows:repeat(14,minmax(0,1fr))!important;
+  grid-auto-flow:row!important;
+  gap:3px 4px!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  overflow:hidden!important;
+  align-content:stretch!important;
+}
+html body .utc-info>.utc-indicator-display .fi-indicator-lamp{
+  min-width:0!important;
+  min-height:0!important;
+  width:100%!important;
+  height:100%!important;
+  margin:0!important;
+  padding:1px 4px!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+html body .utc-info>.utc-indicator-display .fi-indicator-message{
+  width:100%!important;
+  max-height:100%!important;
+  margin:0!important;
+  padding:0!important;
+  font-size:clamp(6.6px,.48vw,8.5px)!important;
+  line-height:1!important;
+  text-align:center!important;
+  white-space:normal!important;
+  overflow:hidden!important;
+}
+
+/* Every manual card control uses the same pointer behavior in Presentation Mode. */
+html body.presentation-mode .presentation-tool-only .direct-editable,
+html body.presentation-mode .presentation-tool-focus .direct-editable,
+html body.presentation-mode .presentation-tool-only [data-direct-identity],
+html body.presentation-mode .presentation-tool-focus [data-direct-identity],
+html body.presentation-mode .presentation-tool-only [data-direct-indicator],
+html body.presentation-mode .presentation-tool-focus [data-direct-indicator],
+html body.presentation-mode .presentation-tool-only [data-direct-priority],
+html body.presentation-mode .presentation-tool-focus [data-direct-priority]{
+  pointer-events:auto!important;
+  cursor:pointer!important;
+  position:relative!important;
+  z-index:30!important;
+}
+html body.presentation-mode .presentation-tool-only .automatic-badge,
+html body.presentation-mode .presentation-tool-focus .automatic-badge{
+  pointer-events:none!important;
+  cursor:default!important;
+  z-index:auto!important;
+}
+
+/* Presentation Mode black wallboard theme: high contrast while retaining Command Center accents. */
+html body.presentation-mode,
+html body.presentation-mode .app-frame,
+html body.presentation-mode .body-shell,
+html body.presentation-mode .body-workspace,
+html body.presentation-mode #app,
+html body.presentation-mode .presentation-quarter-panel,
+html body.presentation-mode .presentation-tool-only,
+html body.presentation-mode .utc-host,
+html body.presentation-mode .utc-card,
+html body.presentation-mode .utc-column,
+html body.presentation-mode .utc-status-section,
+html body.presentation-mode .utc-progress-list,
+html body.presentation-mode .progress-item{
+  background:#000!important;
+}
+html body.presentation-mode .presentation-quarter-panel,
+html body.presentation-mode .utc-host,
+html body.presentation-mode .utc-column{
+  box-shadow:none!important;
+}
+html body.presentation-mode .utc-identity-ribbon{
+  background:linear-gradient(180deg,#062f4b,#041d2e)!important;
+}
+html body.presentation-mode .utc-identity-ribbon:hover,
+html body.presentation-mode .utc-identity-ribbon:focus{
+  background:linear-gradient(180deg,#0a4b72,#062d45)!important;
+}
+html body.presentation-mode .utc-kla-brand{
+  background:#000!important;
+}
+
+/* KLA branding is a clean finish, not another card section. */
+html body .utc-progress>.utc-divider{display:none!important;}
+html body .utc-kla-brand{
+  border-top:0!important;
+  margin-top:0!important;
+  padding-top:8px!important;
+}

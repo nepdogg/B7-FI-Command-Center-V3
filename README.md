@@ -156,3 +156,12 @@ V6.5.14 FIELD TEST UPDATES
 - Removed redundant Tool Badge Control from the Universal Tool Card.
 - Added centered KLA+ branding in the freed lower-right card area.
 - Preserved direct badge, Driver, Reduced Process, and Priority editing plus the 2x14 operational badge matrix.
+
+
+## V6.5.21 field-test changes
+- Rebound all Universal Tool Card direct-edit controls at render time so Presentation Mode uses the exact same direct-edit path as Live Operations.
+- Priority, Driver, identity bars, Reduced Process, and every manual operational badge are directly editable in Presentation Mode; automatic Lamp and Request Lamp remain read-only.
+- Normalized the left badge matrix to a fixed 2 x 14 layout with equal row heights and equal gaps so badges do not overlap or clip.
+- Added a Presentation-only true black wallboard theme to improve text/status contrast and blend the KLA+ logo background into the card.
+- Removed the divider line above the KLA+ logo.
+- Preserved b7fi-command-center-v3 production storage compatibility.
