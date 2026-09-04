@@ -1,4 +1,4 @@
-# B7 FI Command Center V6.5.19
+# B7 FI Command Center V6.5.20
 
 ## 9/3/26 late field-test update
 - Presentation Mode left identity zone enlarged: larger tool photo, identity text moved farther right, no wasted gap.
@@ -147,3 +147,12 @@ V6.5.14 FIELD TEST UPDATES
 - Current 27 operational badges use 27 positions; one position remains reserved for a future badge.
 - Lamp and Request Lamp remain paired on the final row.
 - The same left-column geometry is used on Live Operations, Tools, and Presentation Mode.
+
+
+## V6.5.20 field-test changes
+- Removed tool photo from Universal Tool Card left column.
+- Added full-width directly editable UTID, Tool Type, Model, Customer, and Sales Order identity bars.
+- Identity bars support known selections, N/A, and manual entry; Presentation Mode editing stays in place.
+- Removed redundant Tool Badge Control from the Universal Tool Card.
+- Added centered KLA+ branding in the freed lower-right card area.
+- Preserved direct badge, Driver, Reduced Process, and Priority editing plus the 2x14 operational badge matrix.

@@ -11881,3 +11881,18 @@ html body.presentation-mode .presentation-tool-only .utc-info-head-dashboard,
 html body.presentation-mode .presentation-tool-focus .utc-info-head-dashboard{min-width:0!important;padding-left:10px!important;padding-right:2px!important;overflow:visible!important}
 html body.presentation-mode .presentation-tool-only .utc-info-head-dashboard>*,
 html body.presentation-mode .presentation-tool-focus .utc-info-head-dashboard>*{max-width:100%!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+
+/* V6.5.20 — photo-free operational identity stack + KLA card finish */
+.utc-info .utc-identity-zone,.utc-info .utc-photo,.utc-info .utc-info-head-dashboard{display:none!important}
+.utc-identity-badges{display:grid!important;grid-template-columns:1fr!important;gap:4px!important;width:100%!important;margin:4px 0!important}
+.utc-identity-ribbon{min-height:34px;border:1px solid #176fa8;background:linear-gradient(180deg,#0b4268,#082d49);display:grid;grid-template-columns:minmax(88px,.34fr) 1fr;align-items:center;padding:4px 10px;cursor:pointer;overflow:hidden}
+.utc-identity-ribbon:hover,.utc-identity-ribbon:focus{outline:none;box-shadow:0 0 0 2px rgba(25,185,209,.55) inset;background:linear-gradient(180deg,#105985,#0a3b5d)}
+.utc-identity-ribbon small{font-size:10px;font-weight:900;color:#77dcff;letter-spacing:.5px;white-space:nowrap}
+.utc-identity-ribbon span{font-size:15px;font-weight:1000;color:#fff;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.utc-kla-brand{flex:1;min-height:70px;display:flex;align-items:center;justify-content:center;padding:12px;border-top:1px solid rgba(23,111,168,.55)}
+.utc-kla-brand img{display:block;max-width:64%;max-height:78px;width:auto;height:auto;object-fit:contain;opacity:.9}
+body.presentation-mode .utc-identity-ribbon{min-height:38px;grid-template-columns:minmax(100px,.32fr) 1fr;padding:5px 12px}
+body.presentation-mode .utc-identity-ribbon small{font-size:11px}
+body.presentation-mode .utc-identity-ribbon span{font-size:17px}
+body.presentation-mode .utc-kla-brand img{max-width:58%;max-height:92px}
+body.screenshot-mode .utc-identity-ribbon{cursor:default}
