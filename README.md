@@ -1,3 +1,13 @@
+# B7 FI Command Center V6.5.17
+
+## V6.5.17 field-test changes
+- Corrected Universal Tool Card identity zone: tool photo is locked on the left and UTID / tool type / model / customer / sales order are locked on the right.
+- Added direct badge editing from the Universal Tool Card. Click any manual operational badge to open that badge's own valid status choices directly, including in Presentation Mode.
+- Reduced Process is also directly editable from its badge.
+- Automatic Lamp Hours and Request Lamp badges remain read-only/brain-driven and cannot be manually changed.
+- Existing Tool Badge Control is preserved as a fallback.
+- Preserves `b7fi-command-center-v3` browser data compatibility.
+
 # B7 FI Command Center V6.5.16
 
 9/3/26 field-test build.
