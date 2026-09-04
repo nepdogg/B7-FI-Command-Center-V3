@@ -1,8 +1,8 @@
-# B7 FI Command Center V6.5.15
+# B7 FI Command Center V6.5.16
 
 9/3/26 field-test build.
 
-Changes in V6.5.15:
+Changes in V6.5.16:
 - Added VERIFY LASER badge: default red; V3 Laser Connected green; Need V3 Laser red.
 - Added REQUEST CAL CHIPS badge: default red; Cal Chips Requested green.
 - Added VERIFY THERMAL RACK badge: default red; Gen 2 Thermal Rack / Gen 3 Thermal Rack green and display the selected rack generation.
@@ -104,3 +104,16 @@ V6.5.14 FIELD TEST UPDATES
 - TOOL TYPE supports click/hover and jumps to the selected family section without adding a navigation row.
 - Universal popup convention: one close X at the upper-right of the popup and kept visible while popup content scrolls.
 - Structured editable text fields now expose saved-value pull-down suggestions while retaining direct manual text entry. Existing constrained workflow/status fields remain dropdown selections to protect Command Center Brain logic.
+
+
+## V6.5.16 — Left Column 2x14 Redesign
+- Rebuilt the Universal Tool Card left column from the 9/3 hand sketch.
+- Priority remains a full-width top bar.
+- Tool photo and identity now share one horizontal section, approximately 50/50.
+- Identity stack shows UTID, tool type, model, customer, and sales order beside the photo.
+- Driver is now its own full-width bar below the photo/identity section and supports multiple names.
+- Reduced Process remains its own full-width badge below Driver.
+- Operational badges remain a fixed 2-column x 14-row matrix (28 positions).
+- Current 27 operational badges use 27 positions; one position remains reserved for a future badge.
+- Lamp and Request Lamp remain paired on the final row.
+- The same left-column geometry is used on Live Operations, Tools, and Presentation Mode.

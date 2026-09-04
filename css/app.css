@@ -11374,3 +11374,270 @@ html body.presentation-mode .presentation-tool-playpause span{
   color:#fff!important;
 }
 html body[data-center="operations"] .pagebar{overflow:visible!important;}
+
+/* =========================================================
+   V6.5.16 FINAL AUTHORITY — 9/3 HAND-SKETCH LEFT COLUMN
+   Priority / photo+identity / Driver / Reduced Process / 2x14 badges.
+   Same Universal Tool Card geometry across Live, Tools and Presentation.
+   ========================================================= */
+@media (min-width:700px){
+  html body .utc-info,
+  html body .operations-tool-carousel .utc-info,
+  html body .update-live-card-list .utc-info,
+  html body.presentation-mode .presentation-tool-only .utc-info,
+  html body.presentation-mode .presentation-tool-focus .utc-info{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    grid-template-rows:5.2% 27.8% 5.2% 4.8% minmax(0,1fr)!important;
+    grid-template-areas:"priority" "identityzone" "driver" "reduced" "badges"!important;
+    gap:0!important;
+    row-gap:2px!important;
+    height:100%!important;
+    min-height:0!important;
+    overflow:hidden!important;
+  }
+
+  html body .utc-info>.utc-priority-ribbon,
+  html body.presentation-mode .presentation-tool-only .utc-info>.utc-priority-ribbon,
+  html body.presentation-mode .presentation-tool-focus .utc-info>.utc-priority-ribbon{
+    grid-area:priority!important;
+    position:relative!important;
+    inset:auto!important;
+    width:100%!important;
+    max-width:100%!important;
+    height:100%!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:0 7px!important;
+    transform:none!important;
+    border-radius:0!important;
+    box-sizing:border-box!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    overflow:hidden!important;
+  }
+
+  html body .utc-info>.utc-identity-zone{
+    grid-area:identityzone!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+    gap:6px!important;
+    width:100%!important;
+    height:100%!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:3px 4px 2px!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+  }
+
+  html body .utc-identity-zone>.utc-photo{
+    position:relative!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:100%!important;
+    height:100%!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:0!important;
+    border:1px solid #23536f!important;
+    background:#020b13!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+  }
+  html body .utc-identity-zone>.utc-photo img,
+  html body.presentation-mode .presentation-tool-only .utc-identity-zone>.utc-photo img,
+  html body.presentation-mode .presentation-tool-focus .utc-identity-zone>.utc-photo img{
+    display:block!important;
+    width:96%!important;
+    height:96%!important;
+    max-width:96%!important;
+    max-height:96%!important;
+    margin:0 auto!important;
+    padding:0!important;
+    object-fit:contain!important;
+    object-position:center center!important;
+    transform:none!important;
+    box-sizing:border-box!important;
+  }
+
+  html body .utc-identity-zone>.utc-info-head.utc-info-head-dashboard{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    justify-content:space-evenly!important;
+    gap:2px!important;
+    width:100%!important;
+    height:100%!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:4px 6px!important;
+    border:1px solid #23536f!important;
+    background:#061624!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+    text-align:left!important;
+  }
+  html body .utc-identity-zone .utc-utid{
+    width:100%!important;
+    margin:0!important;
+    padding:0 0 2px!important;
+    border-bottom:1px solid #23536f!important;
+    font-size:clamp(12px,1.2cqw,17px)!important;
+    font-weight:1000!important;
+    line-height:1!important;
+    text-align:center!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+  html body .utc-identity-zone .utc-tool-type{
+    display:block!important;
+    font-size:clamp(14px,1.6cqw,22px)!important;
+    font-weight:1000!important;
+    line-height:1!important;
+    color:#fff!important;
+    text-align:left!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+  html body .utc-identity-zone .utc-tool-model{
+    display:block!important;
+    font-size:clamp(12px,1.35cqw,19px)!important;
+    font-weight:950!important;
+    line-height:1!important;
+    color:#bfeaff!important;
+    text-align:left!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+  html body .utc-identity-zone .utc-customer-compact,
+  html body .utc-identity-zone .utc-so-compact{
+    display:block!important;
+    min-width:0!important;
+    max-width:100%!important;
+    margin:0!important;
+    padding:0!important;
+    font-size:clamp(9px,.92cqw,14px)!important;
+    font-weight:900!important;
+    line-height:1.05!important;
+    color:#dceeff!important;
+    text-align:left!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+  html body .utc-identity-zone .utc-so-compact{color:#8ed9ff!important;}
+
+  html body .utc-info>.utc-driver-ribbon,
+  html body .utc-info>.utc-driver-ribbon.unassigned,
+  html body.presentation-mode .presentation-tool-only .utc-info>.utc-driver-ribbon,
+  html body.presentation-mode .presentation-tool-focus .utc-info>.utc-driver-ribbon{
+    grid-area:driver!important;
+    position:relative!important;
+    inset:auto!important;
+    width:100%!important;
+    max-width:100%!important;
+    height:100%!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:0 8px!important;
+    transform:none!important;
+    border-radius:0!important;
+    box-sizing:border-box!important;
+    display:flex!important;
+    flex-direction:row!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:5px!important;
+    overflow:hidden!important;
+    font-size:clamp(8px,.72cqw,11px)!important;
+    line-height:1!important;
+    white-space:nowrap!important;
+  }
+  html body .utc-info>.utc-driver-ribbon span,
+  html body .utc-info>.utc-driver-ribbon.unassigned span{
+    display:block!important;
+    min-width:0!important;
+    max-width:100%!important;
+    font:inherit!important;
+    font-weight:1000!important;
+    line-height:1!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
+  }
+
+  html body .utc-info>.utc-reduced,
+  html body.presentation-mode .presentation-tool-only .utc-info>.utc-reduced,
+  html body.presentation-mode .presentation-tool-focus .utc-info>.utc-reduced{
+    grid-area:reduced!important;
+    width:100%!important;
+    height:100%!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:0 6px!important;
+    box-sizing:border-box!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    overflow:hidden!important;
+    font-size:clamp(8px,.72cqw,11px)!important;
+    line-height:1!important;
+  }
+
+  html body .utc-info>.utc-indicator-display{
+    grid-area:badges!important;
+    width:100%!important;
+    height:100%!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:1px 0 0!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+  }
+  html body .utc-info>.utc-indicator-display .utc-indicator-grid{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    grid-template-rows:repeat(14,minmax(0,1fr))!important;
+    grid-auto-flow:row!important;
+    width:100%!important;
+    height:100%!important;
+    min-height:0!important;
+    gap:2px 4px!important;
+  }
+  html body .utc-info>.utc-indicator-display .fi-indicator-lamp{
+    width:100%!important;
+    height:100%!important;
+    min-width:0!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:1px 3px!important;
+    box-sizing:border-box!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    overflow:hidden!important;
+  }
+  html body .utc-info>.utc-indicator-display .fi-indicator-message{
+    font-size:clamp(6.5px,.46vw,8.2px)!important;
+    line-height:1!important;
+    text-align:center!important;
+    white-space:normal!important;
+    overflow:hidden!important;
+  }
+
+  /* Photo remains the only direct edit target on normal Live/Tools views. */
+  html body:not(.presentation-mode):not(.screenshot-mode) .utc-identity-zone>.utc-photo[data-photo-open-tool],
+  html body:not(.presentation-mode):not(.screenshot-mode) .utc-identity-zone>.utc-photo[data-photo-open-tool] img{cursor:pointer!important;}
+  html body.presentation-mode .utc-identity-zone>.utc-photo[data-photo-open-tool],
+  html body.presentation-mode .utc-identity-zone>.utc-photo[data-photo-open-tool] img,
+  html body.screenshot-mode .utc-identity-zone>.utc-photo[data-photo-open-tool],
+  html body.screenshot-mode .utc-identity-zone>.utc-photo[data-photo-open-tool] img{cursor:default!important;}
+}
+/* V6.5.16: the former full-width family strip stays retired. */
+html body .tool-family-jump{display:none!important;}

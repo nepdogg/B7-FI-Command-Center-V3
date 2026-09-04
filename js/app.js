@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.15', BUILD='20260903-V6.5.15-93-FIELD-TEST-BADGES-DRIVERS-TOOLS-NAV';
+const VERSION='6.5.16', BUILD='20260903-V6.5.16-LEFT-COLUMN-2X14-IDENTITY-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI 200 Final Pre-Pack and QA';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -603,21 +603,19 @@ function liveToolCard(tool=null){
     <div class="utc-card ${tone}">
       <section class="utc-column utc-info">
         ${priorityRibbon(t)}
-        <header class="utc-info-head utc-info-head-dashboard">
-          <div class="utc-utid">${esc(t.id)}</div>
-          <div class="utc-identity-row utc-identity-row-primary">
-            <span class="utc-tool-type">${esc(t.codename||'—')}</span>
-            <span class="utc-customer-compact" title="${esc(t.customer||'No customer available')}">${esc(t.customer||'N/A')}</span>
+        <div class="utc-identity-zone">
+          <div class="utc-photo" data-photo-open-tool="${esc(t.id)}">
+            <img src="${familyImage(t)}" alt="${esc(t.codename)} tool">
           </div>
-          <div class="utc-identity-row utc-identity-row-secondary">
-            <span class="utc-tool-model">${esc(t.model||'—')}</span>
-            <span class="utc-so-compact" title="${esc(t.salesOrder||'No sales order available')}">SO #${esc(t.salesOrder||'—')}</span>
-          </div>
-        </header>
-        <div class="utc-photo" data-photo-open-tool="${esc(t.id)}">
-          <img src="${familyImage(t)}" alt="${esc(t.codename)} tool">
-          ${driverRibbon(t)}
+          <header class="utc-info-head utc-info-head-dashboard">
+            <div class="utc-utid">${esc(t.id)}</div>
+            <div class="utc-tool-type">${esc(t.codename||'—')}</div>
+            <div class="utc-tool-model">${esc(t.model||'—')}</div>
+            <div class="utc-customer-compact" title="${esc(t.customer||'No customer available')}">${esc(t.customer||'N/A')}</div>
+            <div class="utc-so-compact" title="${esc(t.salesOrder||'No sales order available')}">SO #${esc(t.salesOrder||'—')}</div>
+          </header>
         </div>
+        ${driverRibbon(t)}
         <div class="utc-reduced ${t.reducedProcess?'active':'idle'}">REDUCED PROCESS</div>
         ${indicatorDisplayPanel(t)}
       </section>
