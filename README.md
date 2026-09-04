@@ -230,10 +230,17 @@ V6.5.14 FIELD TEST UPDATES
 - Existing b7fi-command-center-v3 localStorage compatibility retained.
 
 
-## V6.5.29 — Universal Tool Card final layout parity
+## V6.5.30 — Universal Tool Card final layout parity
 - FI Forecast heading keeps the forecast date on one line; selected checklist remains below the progress bar.
 - Current Cycle Time is now CYCLE TIME. The progress bar tracks elapsed time while the detail line shows only FI handoff start date and Brain cycle status.
 - Driver and Reduced Process use matched full-width spacing.
 - Live System Status text is smaller and the Live Status / Lead Notes areas consume the full middle-column remainder with no card scrollbars.
 - Presentation Mode removes connector-line framing and uses the same 2×14 badge matrix spacing and three-column geometry as Live Operations.
 - Existing localStorage key `b7fi-command-center-v3` is unchanged.
+
+
+## V6.5.30
+- Presentation Mode now uses a fixed 1920×1080 internal canvas scaled uniformly to fit any monitor, so the same wallboard/card composition appears on laptop and large displays.
+- Tool Edit fields were simplified to one control per field. Structured fields use one select; free/history-backed fields use one editable datalist input. Redundant Customer Status and Sales Order Status controls were removed and are now derived automatically.
+- Driver and Reduced Process spacing corrected; FI Forecast heading constrained to one line; Cycle Time shows elapsed days at the top-right and status only below the bar.
+- KLA branding added to the bottom of the middle UTC column without changing Brain data.
