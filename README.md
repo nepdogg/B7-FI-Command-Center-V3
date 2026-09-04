@@ -194,3 +194,17 @@ V6.5.14 FIELD TEST UPDATES
 - Current Micro Schedule is directly editable; the right-column Micro Schedule remains a progress visualization.
 - Removed the Presentation Mode phantom gap above Driver and explicitly keeps UPDATE TOOL STATUS visible in the left-column stack.
 - Preserves localStorage key b7fi-command-center-v3 and existing production-data compatibility.
+
+
+## V6.5.26 — Unified Interactive Brain Card
+- Unified legacy Tool Card rendering onto the Universal Tool Card path.
+- FI Testing and Micro Schedule progress blocks now open their checklist quick-update controls.
+- Current Cycle Time opens FI Handoff / Cycle Start date.
+- Target Cycle Time opens the management target editor.
+- Lead/Admin progress opens the full admin task list.
+- Customer Source and STR progress open workflow state/date editors.
+- Packing/Shipping progress opens milestone controls.
+- FI Status supports Brain AUTO plus visible manual override.
+- Removed redundant middle-column Current FI Task and Current Micro Schedule sections.
+- Added Live System Status / open NC summary in the recovered middle-column space.
+- Preserves b7fi-command-center-v3 browser data compatibility.
