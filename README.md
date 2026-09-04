@@ -1,3 +1,20 @@
+# B7 FI Command Center V6.5.15
+
+9/3/26 field-test build.
+
+Changes in V6.5.15:
+- Added VERIFY LASER badge: default red; V3 Laser Connected green; Need V3 Laser red.
+- Added REQUEST CAL CHIPS badge: default red; Cal Chips Requested green.
+- Added VERIFY THERMAL RACK badge: default red; Gen 2 Thermal Rack / Gen 3 Thermal Rack green and display the selected rack generation.
+- Expanded the Universal Tool Card indicator matrix to 2 x 14 while keeping LAMP and REQUEST LAMP together on the final row.
+- Added the full 29-person FI driver roster plus Unassigned. Driver fields remain editable and can hold multiple names separated by /.
+- Customer and all other short structured fields now use editable pull-down suggestions: select a known value or type a manual value.
+- Reasserted the Tools page two-card desktop view.
+- Rebuilt TOOL TYPE as a dynamic page-action dropdown generated from the tool types actually visible on the current Tools page; viewport positioning prevents clipping and each selection scrolls to that family section.
+- Presentation Mode Tool control now explicitly switches between PLAY and PAUSE with matching text size.
+- Reasserted the universal popup convention: one X pinned to the extreme upper-right while popup content scrolls.
+- Preserves b7fi-command-center-v3 localStorage compatibility and existing production records.
+
 # B7 FI Command Center V6.5.6
 
 Field-test correction build based on V6.5.4.
