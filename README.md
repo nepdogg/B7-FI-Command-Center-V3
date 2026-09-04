@@ -175,3 +175,12 @@ V6.5.14 FIELD TEST UPDATES
 - SYSTEM WAFERS is directly editable anywhere manual badges are editable, including Presentation Mode.
 - The badge matrix is now fully populated: 28 operational badges in a 2 x 14 grid, plus the separate Reduced Process badge.
 - Preserved b7fi-command-center-v3 production storage compatibility.
+
+
+## V6.5.24 — Presentation KLA Fit Fix
+- Keeps the black Presentation Mode wallboard theme.
+- Reserves a dedicated bottom-right KLA logo row in Presentation Mode.
+- Uses contain-fit sizing so the KLA logo remains fully visible and centered instead of being cropped.
+- Keeps the divider above the KLA logo removed.
+- Normal Live Operations / Tools card KLA sizing remains unchanged.
+- Preserves the V6.5.22 System Wafers final badge and existing `b7fi-command-center-v3` data compatibility.

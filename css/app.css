@@ -12058,3 +12058,100 @@ html body .utc-kla-brand{
   margin-top:0!important;
   padding-top:8px!important;
 }
+
+
+/* =========================================================
+   V6.5.23 FINAL AUTHORITY — PRESENTATION KLA FIT FIX
+   - Keep the regular Tool Card KLA treatment unchanged
+   - Reserve a dedicated logo row in Presentation Mode
+   - Scale the logo to contain so it is never cropped/cut off
+   - Keep black wallboard blending and no divider above logo
+   ========================================================= */
+html body.presentation-mode .presentation-tool-only .utc-progress,
+html body.presentation-mode .presentation-tool-focus .utc-progress{
+  display:grid!important;
+  grid-template-rows:minmax(0,1fr) clamp(62px,9vh,92px)!important;
+  row-gap:0!important;
+  overflow:hidden!important;
+  min-height:0!important;
+}
+html body.presentation-mode .presentation-tool-only .utc-progress>.utc-progress-list,
+html body.presentation-mode .presentation-tool-focus .utc-progress>.utc-progress-list{
+  grid-row:1!important;
+  min-height:0!important;
+  height:100%!important;
+  padding-bottom:4px!important;
+  overflow:hidden!important;
+}
+html body.presentation-mode .presentation-tool-only .utc-progress>.utc-divider,
+html body.presentation-mode .presentation-tool-focus .utc-progress>.utc-divider{
+  display:none!important;
+}
+html body.presentation-mode .presentation-tool-only .utc-kla-brand,
+html body.presentation-mode .presentation-tool-focus .utc-kla-brand{
+  grid-row:2!important;
+  min-height:0!important;
+  height:100%!important;
+  width:100%!important;
+  margin:0!important;
+  padding:6px 12px 8px!important;
+  border:0!important;
+  background:#000!important;
+  overflow:hidden!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+}
+html body.presentation-mode .presentation-tool-only .utc-kla-brand img,
+html body.presentation-mode .presentation-tool-focus .utc-kla-brand img{
+  display:block!important;
+  width:auto!important;
+  height:auto!important;
+  max-width:min(58%,240px)!important;
+  max-height:100%!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  margin:auto!important;
+  transform:none!important;
+  opacity:.95!important;
+}
+
+/* =========================================================
+   V6.5.24 FINAL AUTHORITY — LIVE QUICK UPDATE TOOL CARD
+   ========================================================= */
+html body .utc-info{gap:3px!important}
+html body .utc-info>.utc-priority-ribbon,
+html body .utc-info>.utc-driver-ribbon,
+html body .utc-info>.utc-driver-ribbon.unassigned,
+html body .utc-info>.utc-reduced,
+html body .utc-edit-tool-bar{flex:0 0 32px!important;height:32px!important;min-height:32px!important;margin:0!important;box-sizing:border-box!important}
+html body .utc-info>.utc-identity-badges{grid-template-rows:repeat(5,32px)!important;gap:3px!important}
+html body .utc-info>.utc-identity-badges .utc-identity-ribbon{height:32px!important;min-height:32px!important}
+html body .utc-priority-ribbon span,html body .utc-driver-ribbon span,html body .utc-reduced{font-size:13px!important;font-weight:1000!important}
+html body .utc-identity-ribbon small{font-size:11px!important}
+html body .utc-identity-ribbon span{font-size:15px!important}
+html body.presentation-mode .utc-priority-ribbon span,html body.presentation-mode .utc-driver-ribbon span,html body.presentation-mode .utc-reduced{font-size:clamp(13px,.9vw,17px)!important}
+html body.presentation-mode .utc-identity-ribbon small{font-size:clamp(11px,.72vw,14px)!important}
+html body.presentation-mode .utc-identity-ribbon span{font-size:clamp(14px,.9vw,18px)!important}
+html body .utc-edit-tool-bar{width:100%;border:1px solid #1b8fc5;background:linear-gradient(180deg,#0d4c75,#08324f);color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:1000;font-size:13px;letter-spacing:.35px;cursor:pointer;padding:0 10px}
+html body .utc-edit-tool-bar:hover,html body .utc-edit-tool-bar:focus-visible{outline:none;background:linear-gradient(180deg,#11628f,#0a4164);box-shadow:0 0 0 2px rgba(25,185,209,.45) inset}
+html body .utc-edit-tool-bar b{font-size:20px;line-height:1}
+html body .utc-info>.utc-indicator-display .utc-indicator-grid{gap:3px 4px!important}
+html body .utc-info>.utc-indicator-display .fi-indicator-message{font-size:clamp(6.8px,.5vw,9px)!important}
+html body .utc-quick-edit,html body .utc-progress-quick{cursor:pointer!important;pointer-events:auto!important;position:relative}
+html body .utc-quick-edit:hover,html body .utc-progress-quick:hover{box-shadow:0 0 0 1px rgba(34,205,238,.65) inset}
+html body .utc-progress-quick>.progress-item{height:100%;box-sizing:border-box}
+html body .utc-progress{display:block!important;overflow:hidden!important}
+html body .utc-progress>.utc-progress-list{height:100%!important;min-height:0!important;overflow:hidden!important;padding-bottom:0!important}
+html body .utc-kla-brand,html body .utc-progress>.utc-divider{display:none!important}
+html body.presentation-mode .presentation-tool-only .utc-progress,
+html body.presentation-mode .presentation-tool-focus .utc-progress{display:block!important;overflow:hidden!important}
+html body.presentation-mode .presentation-tool-only .utc-progress>.utc-progress-list,
+html body.presentation-mode .presentation-tool-focus .utc-progress>.utc-progress-list{height:100%!important;min-height:0!important;padding-bottom:0!important}
+html body.presentation-mode .presentation-tool-only [data-quick-field],
+html body.presentation-mode .presentation-tool-focus [data-quick-field],
+html body.presentation-mode .presentation-tool-only [data-open-tool],
+html body.presentation-mode .presentation-tool-focus [data-open-tool],
+html body.presentation-mode .presentation-tool-only [data-handoffs],
+html body.presentation-mode .presentation-tool-focus [data-handoffs]{pointer-events:auto!important;cursor:pointer!important;position:relative!important;z-index:31!important}
