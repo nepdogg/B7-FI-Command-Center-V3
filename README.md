@@ -196,7 +196,7 @@ V6.5.14 FIELD TEST UPDATES
 - Preserves localStorage key b7fi-command-center-v3 and existing production-data compatibility.
 
 
-## V6.5.26 — Unified Interactive Brain Card
+## V6.5.27 — Unified Interactive Brain Card
 - Unified legacy Tool Card rendering onto the Universal Tool Card path.
 - FI Testing and Micro Schedule progress blocks now open their checklist quick-update controls.
 - Current Cycle Time opens FI Handoff / Cycle Start date.
@@ -208,3 +208,12 @@ V6.5.14 FIELD TEST UPDATES
 - Removed redundant middle-column Current FI Task and Current Micro Schedule sections.
 - Added Live System Status / open NC summary in the recovered middle-column space.
 - Preserves b7fi-command-center-v3 browser data compatibility.
+
+
+## V6.5.27 — One Universal Tool Card + Live Brain Control
+- One fixed Tool Card skeleton everywhere; Priority always renders with PRIORITY TBD placeholder when unranked.
+- FI Forecast moved to the interactive progress area; progress reflects forecast checklist position and shows forecast date below.
+- Middle column expanded for official Latest Status, actual open NC/escalation records, and separate Lead Notes/Reminders.
+- Live status reads the tool record's authoritative latestStatus/ncs fields used by Status Center; closed/completed/resolved NCs are excluded.
+- Lead Notes are directly editable without replacing official Latest Status.
+- Existing V3 localStorage key/data compatibility preserved.

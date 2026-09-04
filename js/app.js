@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.26', BUILD='20260904-V6.5.26-UNIFIED-INTERACTIVE-BRAIN-CARD';
+const VERSION='6.5.27', BUILD='20260904-V6.5.27-ONE-UTC-LIVE-BRAIN-CONTROL';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI 200 Final Pre-Pack and QA';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -128,7 +128,7 @@ function priorityTier(rank,total){
   return 'PRIORITY';
 }
 function priorityBadgeInfo(t){let source=state.config?.priorityBadgeSource||'lead',ranks=source==='commandCenter'?commandCenterPriorityRanks():leadPriorityRanks(),rank=ranks.get(String(t.id))||0,total=ranks.size;return{rank,total,tier:priorityTier(rank,total),source,label:source==='commandCenter'?'COMMAND CENTER':'LEADS / MANAGERS'}}
-function priorityRibbon(t){if(!t||t.toolStatus==='Shipped'||t.toolStatus==='Archived')return'';let p=priorityBadgeInfo(t);return p.rank?`<div class="utc-priority-ribbon ${p.rank===1?'top-priority':''} direct-editable" data-direct-priority="${esc(t.id)}" role="button" tabindex="0" title="${esc(p.label)} · #${p.rank} ${esc(p.tier)} — click to update Lead priority/source"><span>#${p.rank} ${esc(p.tier)}</span><small>${esc(p.source==='commandCenter'?'COMMAND CENTER':'LEAD')}</small></div>`:''}
+function priorityRibbon(t){if(!t)return'';let p=priorityBadgeInfo(t),rank=Number(p.rank)||0,label=rank?`#${rank} ${p.tier}`:'PRIORITY TBD',src=p.source==='commandCenter'?'COMMAND CENTER':'LEAD';return `<div class="utc-priority-ribbon ${rank===1?'top-priority':''} ${rank?'':'priority-placeholder'} direct-editable" data-direct-priority="${esc(t.id)}" role="button" tabindex="0" title="${rank?esc(p.label)+' · #'+rank+' '+esc(p.tier):'No priority rank assigned'} — click to update Lead priority/source"><span>${esc(label)}</span><small>${esc(src)}</small></div>`}
 function driverRibbon(t){let d=String(t.driver||'').trim();if(!d||/^unassigned$/i.test(d))return `<div class="utc-driver-ribbon unassigned direct-editable" data-direct-indicator="driver" data-indicator-tool="${esc(t.id)}" role="button" tabindex="0" title="DRIVER NOT ASSIGNED — click to update"><span>DRIVER: UNASSIGNED</span></div>`;let multi=d.split('/').map(x=>x.trim()).filter(Boolean).length>1,label=multi?'DRIVERS':'DRIVER';return `<div class="utc-driver-ribbon direct-editable" data-direct-indicator="driver" data-indicator-tool="${esc(t.id)}" role="button" tabindex="0" title="${label}: ${esc(d)} — click to update"><span>${label}: ${esc(d.toUpperCase())}</span></div>`}
 function identityRibbon(t,key,label,value){return `<div class="utc-identity-ribbon direct-editable" data-direct-identity="${esc(key)}" data-identity-tool="${esc(t.id)}" role="button" tabindex="0" title="${esc(label)} — click to update"><small>${esc(label)}</small><span>${esc(String(value||'N/A').toUpperCase())}</span></div>`}
 function identityChoices(key,t){let vals=[];if(key==='toolType')vals=[...FAMILIES,...state.tools.map(x=>x.codename)];else if(key==='model')vals=state.tools.map(x=>x.model);else if(key==='customer')vals=state.tools.map(x=>x.customer);else if(key==='salesOrder')vals=state.tools.map(x=>x.salesOrder);else if(key==='utid')vals=state.tools.map(x=>x.id);return [...new Set(['N/A',...vals.map(v=>String(v||'').trim()).filter(Boolean)])]}
@@ -576,6 +576,7 @@ function quickCardFieldModal(id,key){
   else if(key==='forecastDate'){title='FI FORECAST DATE';body=`<div class="field"><label>${title}</label><input id="quick-field-value" type="date" value="${esc(t.nextForecastDate||calculatedForecastDate(t)||'')}"></div>`}
   else if(key==='fiStatus'){title='FI STATUS';let auto=(t.toolStatus==='FI'?(performance(t)[0]==='AHEAD'?'AHEAD OF SCHEDULE':performance(t)[0]==='BEHIND'?'BEHIND SCHEDULE':'ON SCHEDULE'):(t.toolStatus==='Engineering'?'ENGINEERING HOLD':t.toolStatus==='Powered Down'?'FI COMPLETE':t.toolStatus==='Packing'?'PACKING':t.toolStatus==='Shipped'?'COMPLETE':'NOT IN FI'));body=strictSelect('FI STATUS MODE',t.fiStatusOverride||'AUTO',['AUTO','AHEAD OF SCHEDULE','ON SCHEDULE','BEHIND SCHEDULE','AT RISK','FI HOLD','ENGINEERING HOLD','WAITING FOR PARTS']);body+=`<div class="field"><label>BRAIN CALCULATION</label><div class="quick-readonly-value">${esc(auto)}</div><small class="field-choice-hint">AUTO follows the Command Center Brain. Select another value only when an operational override is needed.</small></div>`}
   else if(key==='latestStatus'){title='LIVE SYSTEM STATUS';let open=(t.ncs||[]).filter(n=>n.state!=='Closed');body=`<div class="field"><label>LATEST SYSTEM STATUS</label><textarea id="quick-field-value" rows="5">${esc(t.latestStatus||'')}</textarea></div><div class="field"><label>OPEN NC / ESCALATIONS</label><div class="quick-readonly-value">${open.length?open.map(n=>`${esc(n.id||'NC')} — ${esc(n.description||n.state||'OPEN')}`).join('<br>'):'NO OPEN NC / ESCALATION'}</div><small class="field-choice-hint">Use UPDATE TOOL STATUS for full NC / escalation editing.</small></div>`}
+  else if(key==='leadNotes'){title='LEAD NOTES';body=`<div class="field"><label>LEAD NOTES / REMINDERS</label><textarea id="quick-field-value" rows="7">${esc(t.notes||'')}</textarea><small class="field-choice-hint">Lead-only reminders and context. This is separate from Latest System Status.</small></div>`}
   else if(key==='targetCycle'){title='TARGET CYCLE TIME';body=`<div class="field"><label>MANAGEMENT TARGET — ${esc(t.codename)}</label><input id="quick-field-value" type="number" min="0" step="1" value="${cycleAverageDays(t)||''}"></div><small class="field-choice-hint">Updates the current management cycle-time target for this tool type.</small>`}
   else if(key==='sourceWorkflow'){title='CUSTOMER SOURCE';body=`${strictSelect('CUSTOMER SOURCE REQUIRED',t.sourceRequired,['TBD','Yes','No'],'quick-source-required')}${strictSelect('CUSTOMER SOURCE STATUS',t.sourceStatus,['Not Started','Preparing','Pre-Source In Progress','Ready for CA','With CA Team','Source Complete','Returned to FI'],'quick-source-status')}<div class="form-grid"><div class="field"><label>CA HANDOFF</label><input id="quick-source-handoff" type="date" value="${esc(t.sourceHandoff||'')}"></div><div class="field"><label>SOURCE START</label><input id="quick-source-start" type="date" value="${esc(t.sourceStart||'')}"></div><div class="field"><label>SOURCE COMPLETE</label><input id="quick-source-complete" type="date" value="${esc(t.sourceComplete||'')}"></div></div>`}
   else if(key==='strWorkflow'){title='STR';body=`${strictSelect('STR REQUIRED',t.strRequired,['TBD','Yes','No'],'quick-str-required')}${strictSelect('STR STATUS',t.strStatus,['Not Started','Requirements Pending','Requirements Received','Testing','Submitted to CA','Customer Approval Pending','Complete','Approved'],'quick-str-status')}<div class="field"><label>STR DUE</label><input id="quick-str-due" type="date" value="${esc(t.strDue||'')}"></div>`}
@@ -594,6 +595,7 @@ function saveQuickCardField(id,key){
   else if(key==='forecastDate')t.nextForecastDate=v;
   else if(key==='fiStatus')t.fiStatusOverride=v==='AUTO'?'':v;
   else if(key==='latestStatus')t.latestStatus=v;
+  else if(key==='leadNotes')t.notes=v;
   else if(key==='targetCycle'){state.config.cycleAverages=state.config.cycleAverages||{};state.config.cycleAverages[t.codename]=Math.max(0,Number(v)||0)}
   else if(key==='sourceWorkflow'){t.sourceRequired=document.querySelector('#quick-source-required')?.value||'TBD';t.sourceStatus=document.querySelector('#quick-source-status')?.value||'Not Started';t.sourceHandoff=document.querySelector('#quick-source-handoff')?.value||'';t.sourceStart=document.querySelector('#quick-source-start')?.value||'';t.sourceComplete=document.querySelector('#quick-source-complete')?.value||''}
   else if(key==='strWorkflow'){t.strRequired=document.querySelector('#quick-str-required')?.value||'TBD';t.strStatus=document.querySelector('#quick-str-status')?.value||'Not Started';t.strDue=document.querySelector('#quick-str-due')?.value||''}
@@ -686,21 +688,15 @@ function liveToolCard(tool=null){
           <div class="utc-phase-big">${esc(system)}</div>
         </div>
 
-        <div class="utc-status-section utc-live-system-status utc-quick-edit direct-editable" data-quick-field="latestStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" title="Click to update latest system status">
-          <div class="utc-kicker">LIVE SYSTEM STATUS</div>
+        <div class="utc-status-section utc-live-system-status utc-quick-edit direct-editable" data-quick-field="latestStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" title="Click to update the official Latest Status field">
+          <div class="utc-kicker">LIVE SYSTEM STATUS · OFFICIAL LATEST STATUS</div>
           <div class="utc-live-status-text">${esc(t.latestStatus||'NO LATEST STATUS ENTERED')}</div>
-          <div class="utc-nc-summary ${(t.ncs||[]).some(n=>n.state!=='Closed')?'has-open':'clear'}">${(()=>{let n=(t.ncs||[]).filter(x=>x.state!=='Closed');return n.length?`${n.length} OPEN NC / ESCALATION${n.length===1?'':'S'}`:'NO OPEN NC / ESCALATION'})()}</div>
+          <div class="utc-open-nc-list">${(()=>{let n=(t.ncs||[]).filter(x=>!['closed','complete','completed','resolved'].includes(String(x.state||'').toLowerCase()));return n.length?n.map(x=>`<div class="utc-open-nc"><b>${esc(x.id||'NC')}</b><span>${esc(x.description||x.state||'OPEN')}</span><em>${esc(String(x.state||'OPEN').toUpperCase())}</em></div>`).join(''):'<div class="utc-nc-summary clear">NO OPEN NC / ESCALATION</div>'})()}</div>
         </div>
 
-        <div class="utc-status-section utc-forecast">
-          <div class="utc-kicker">FI FORECAST STEP</div>
-          <button class="utc-forecast-button forecast-target-button" data-forecast-checklist="${esc(t.id)}" title="Select FI forecast checklist">
-            <span>${esc(forecastTargetLabel(t))}</span><span>▾</span>
-          </button>
-          <div class="utc-forecast-date utc-quick-edit direct-editable" data-quick-field="forecastDate" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" title="Click to update forecast date">
-            <div class="utc-kicker">FI FORECAST DATE</div>
-            <strong>${forecast?esc(fmtDayDate(forecast)):'CALCULATED DATE TBD'}</strong>
-          </div>
+        <div class="utc-status-section utc-lead-notes utc-quick-edit direct-editable" data-quick-field="leadNotes" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" title="Click to update lead notes / reminders">
+          <div class="utc-kicker">LEAD NOTES / REMINDERS</div>
+          <div class="utc-lead-notes-text">${esc(t.notes||'NO LEAD NOTES ENTERED')}</div>
         </div>
 
       </section>
@@ -709,6 +705,7 @@ function liveToolCard(tool=null){
         <div class="utc-progress-list">
           <div class="utc-progress-quick direct-editable" data-quick-field="currentChecklist" data-quick-tool="${esc(t.id)}" role="button" tabindex="0">${progressItem('FI TESTING',fi,t.toolStatus==='FI'?col:isShipped?'green':(['Powered Down','Packing'].includes(t.toolStatus)?'green':'blue'),'',checklistLabel(t,t.currentChecklist))}</div>
           <div class="utc-progress-quick direct-editable" data-quick-field="microSchedule" data-quick-tool="${esc(t.id)}" role="button" tabindex="0">${progressItem('MICRO SCHEDULE',mi,isShipped?'green':'cyan','',checklistLabel(t,t.microSchedule))}</div>
+          <div class="utc-progress-quick direct-editable" data-forecast-checklist="${esc(t.id)}" role="button" tabindex="0" title="Click to update FI forecast checklist">${progressItem('FI FORECAST',Math.max(0,Math.min(100,Math.round(((checklistIndex(t,t.forecastChecklist||t.currentChecklist)+1)/Math.max(1,routeFor(t).length))*100))), 'purple','',`${forecastTargetLabel(t)} · ${forecast?fmtDayDate(forecast):'FORECAST DATE TBD'}`)}</div>
           <div class="utc-progress-quick direct-editable" data-quick-field="fiHandoffDate" data-quick-tool="${esc(t.id)}" role="button" tabindex="0">${cycleDayItem('CURRENT CYCLE TIME',t.fiHandoffDate?cyc:null,avgCycle,cycleColor,t.fiHandoffDate?`${cyc} DAYS · START ${fmtDate(t.fiHandoffDate)}`:'NOT STARTED · SET FI HANDOFF')}</div>
           <div class="utc-progress-quick direct-editable" data-quick-field="targetCycle" data-quick-tool="${esc(t.id)}" role="button" tabindex="0">${cycleDayItem('TARGET CYCLE TIME',avgCycle||null,avgCycle,'cyan',avgCycle?`MANAGEMENT TARGET ${avgCycle} DAYS`:'TARGET TBD · CLICK TO SET')}</div>
           <div class="utc-progress-quick direct-editable" data-lead-tasks="${esc(t.id)}" role="button" tabindex="0">${progressItem('LEAD / ADMIN PROGRESS',leadPct,isShipped?'green':'amber','',t.currentLeadTask||'NOT SET')}</div>
