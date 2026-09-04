@@ -228,3 +228,12 @@ V6.5.14 FIELD TEST UPDATES
 - Tool Card quick-edit popups standardized: one field/control per simple update, history-backed datalist where useful, one Badge Status selector for status badges.
 - Customer and Sales Order quick editors derive missing-data badges automatically from the single authoritative field.
 - Existing b7fi-command-center-v3 localStorage compatibility retained.
+
+
+## V6.5.29 — Universal Tool Card final layout parity
+- FI Forecast heading keeps the forecast date on one line; selected checklist remains below the progress bar.
+- Current Cycle Time is now CYCLE TIME. The progress bar tracks elapsed time while the detail line shows only FI handoff start date and Brain cycle status.
+- Driver and Reduced Process use matched full-width spacing.
+- Live System Status text is smaller and the Live Status / Lead Notes areas consume the full middle-column remainder with no card scrollbars.
+- Presentation Mode removes connector-line framing and uses the same 2×14 badge matrix spacing and three-column geometry as Live Operations.
+- Existing localStorage key `b7fi-command-center-v3` is unchanged.
