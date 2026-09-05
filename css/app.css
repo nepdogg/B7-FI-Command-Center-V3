@@ -12389,3 +12389,27 @@ html body.presentation-mode #app{min-width:0!important;width:100%!important;max-
 html body .utc-info>.utc-indicator-display .utc-indicator-grid,
 html body.presentation-mode .presentation-tool-only .utc-info>.utc-indicator-display .utc-indicator-grid,
 html body.presentation-mode .presentation-tool-focus .utc-info>.utc-indicator-display .utc-indicator-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:repeat(14,minmax(0,1fr))!important;gap:2px 4px!important;align-content:stretch!important;height:100%!important}
+
+
+/* =========================================================
+   V6.5.31 FINAL AUTHORITY — UTC CONTROLS + FINAL SPACING
+   ========================================================= */
+/* Full-width operational badges use the exact same vertical rhythm as badge rows. */
+html body .utc-info>.utc-driver-ribbon,
+html body .utc-info>.utc-driver-ribbon.unassigned{margin:0 0 3px 0!important}
+html body .utc-info>.utc-reduced{margin:0 0 3px 0!important}
+
+/* Forecast label/date must never wrap or clip; reserve the percentage column. */
+html body .utc-forecast-progress .progress-head{display:grid!important;grid-template-columns:minmax(0,1fr) 42px!important;column-gap:4px!important;align-items:center!important}
+html body .utc-forecast-progress .progress-head span{display:block!important;min-width:0!important;white-space:nowrap!important;overflow:visible!important;text-overflow:clip!important;font-size:clamp(6.6px,.47vw,9px)!important;letter-spacing:-.18px!important;line-height:1!important}
+html body .utc-forecast-progress .progress-head b{text-align:right!important;white-space:nowrap!important;font-size:clamp(8px,.55vw,11px)!important}
+
+/* Notes start immediately after their divider; live/notes fill the usable middle column above KLA. */
+html body .utc-status>.utc-live-system-status{flex:2.7 1 0!important;min-height:0!important}
+html body .utc-status>.utc-lead-notes{flex:1.15 1 0!important;min-height:0!important;margin:0!important;padding-top:8px!important}
+html body .utc-status>.utc-lead-notes .utc-kicker{margin-top:0!important;padding-top:0!important}
+html body .utc-middle-kla{margin-top:0!important}
+
+/* Tool Edit and card quick-select controls are true single controls. */
+html body .tool-editor select,
+html body .quick-single-modal select{width:100%!important;min-height:36px!important;box-sizing:border-box!important}
