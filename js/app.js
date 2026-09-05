@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.37', BUILD='20260905-V6.5.37-UTC-STRUCTURAL-RESET';
+const VERSION='6.5.38', BUILD='20260905-V6.5.38-UTC-TYPOGRAPHY-REFINEMENT';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -633,7 +633,7 @@ function liveToolCard(tool=null){
       : `<div class="utc-state-message">✓ ALL LEAD / ADMIN TASKS COMPLETE</div>`;
 
   return `<section class="panel live-panel universal-card-host utc-host" data-universal-tool-card="${esc(t.id)}">
-    <div class="utc-card utc-v6537 ${tone}">
+    <div class="utc-card utc-v6538 ${tone}">
       <section class="utc-column utc-info">
         ${priorityRibbon(t)}
         <div class="utc-identity-badges" aria-label="Tool identity controls">
