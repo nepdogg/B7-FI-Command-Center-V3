@@ -13230,3 +13230,87 @@ html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon.unassigned>sp
 
 /* Empty lead notes are truly empty; retain the section heading only. */
 html body.presentation-mode .utc-card.utc-v6538 .utc-lead-notes-text:empty{min-height:0!important}
+
+/* =========================================================
+   V6.5.42 — UNIVERSAL SPACING + TRUE BLACK PRESENTATION FRAME
+   ========================================================= */
+
+/* Regular Live Operations uses the same middle-column section geometry as
+   Presentation Mode.  Keep the mode-specific typography, but not a second
+   spacing system. */
+html body:not(.presentation-mode) .utc-card.utc-v6538 .utc-status>.utc-live-system-status,
+html body:not(.presentation-mode) .utc-card.utc-v6538 .utc-status>.utc-lead-notes{
+  padding:8px 12px 6px!important;
+  justify-content:flex-start!important;
+  overflow:hidden!important;
+}
+html body:not(.presentation-mode) .utc-card.utc-v6538 .utc-status>.utc-live-system-status .utc-kicker,
+html body:not(.presentation-mode) .utc-card.utc-v6538 .utc-status>.utc-lead-notes .utc-kicker{
+  margin:0 0 7px!important;
+  padding:0!important;
+  line-height:1.1!important;
+}
+html body:not(.presentation-mode) .utc-card.utc-v6538 .utc-live-status-text,
+html body:not(.presentation-mode) .utc-card.utc-v6538 .utc-lead-notes-text{
+  margin:0!important;
+  padding:0!important;
+}
+
+/* Presentation Mode wallboard: true black everywhere behind the operational
+   information.  Bright cyan frames define the three major columns while
+   internal dividers are deliberately darker so they do not compete with data. */
+html body.presentation-mode .presentation-tool-only,
+html body.presentation-mode .presentation-tool-focus,
+html body.presentation-mode .utc-host,
+html body.presentation-mode .utc-card,
+html body.presentation-mode .utc-card.utc-v6538,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info,
+html body.presentation-mode .utc-card.utc-v6538 .utc-status,
+html body.presentation-mode .utc-card.utc-v6538 .utc-progress,
+html body.presentation-mode .utc-card.utc-v6538 .utc-status>*,
+html body.presentation-mode .utc-card.utc-v6538 .utc-progress>*,
+html body.presentation-mode .utc-card.utc-v6538 .utc-progress-list,
+html body.presentation-mode .utc-card.utc-v6538 .utc-progress-quick,
+html body.presentation-mode .utc-card.utc-v6538 .progress-item{
+  background-color:#000!important;
+  background-image:none!important;
+}
+
+/* Major structure: bright cyan. */
+html body.presentation-mode .utc-card.utc-v6538>.utc-column{
+  border-color:#18d8ff!important;
+}
+html body.presentation-mode .utc-card.utc-v6538{
+  border-color:#18d8ff!important;
+}
+
+/* Internal structure: darker cyan/blue. */
+html body.presentation-mode .utc-card.utc-v6538 .utc-status>* ,
+html body.presentation-mode .utc-card.utc-v6538 .utc-progress .progress-item,
+html body.presentation-mode .utc-card.utc-v6538 .utc-progress-quick,
+html body.presentation-mode .utc-card.utc-v6538 .utc-progress-list{
+  border-color:#245d78!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 hr,
+html body.presentation-mode .utc-card.utc-v6538 .utc-divider,
+html body.presentation-mode .utc-card.utc-v6538 .section-divider{
+  border-color:#245d78!important;
+  background:#245d78!important;
+}
+
+/* Keep interactive identity/action controls visually blue on the black wallboard. */
+html body.presentation-mode .utc-card.utc-v6538 .utc-identity-row,
+html body.presentation-mode .utc-card.utc-v6538 [data-direct-identity],
+html body.presentation-mode .utc-card.utc-v6538 .utc-update-tool-status,
+html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon{
+  background-image:inherit;
+}
+
+/* Complete upper Presentation status/control enclosure: bright structural cyan
+   with its top and bottom edges explicitly protected from earlier overrides. */
+html body.presentation-mode .presentation-quarter-panel{
+  border:1px solid #18d8ff!important;
+  border-top:1px solid #18d8ff!important;
+  border-bottom:1px solid #18d8ff!important;
+  background:#000!important;
+}

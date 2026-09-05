@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.41', BUILD='20260904-V6.5.40-PRESENTATION-BLACK-ALIAS-FINAL';
+const VERSION='6.5.42', BUILD='20260905-V6.5.42-TRUE-BLACK-UNIVERSAL-SPACING';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
