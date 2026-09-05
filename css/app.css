@@ -12693,3 +12693,169 @@ html body.presentation-mode .presentation-tool-only .utc-info>.utc-edit-tool-bar
 html body.presentation-mode .presentation-tool-focus .utc-info>.utc-edit-tool-bar{order:4!important}
 html body.presentation-mode .presentation-tool-only .utc-info>.utc-indicator-display .utc-indicator-grid,
 html body.presentation-mode .presentation-tool-focus .utc-info>.utc-indicator-display .utc-indicator-grid{gap:4px!important}
+
+/* =========================================================
+   V6.5.35 FINAL AUTHORITY — SOURCE-ORDER UTC + FORECAST FIT
+   The DOM is now authoritative. CSS must not reorder card rows.
+   ========================================================= */
+html body .utc-info{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:4px!important;
+  min-height:0!important;
+  overflow:hidden!important;
+}
+html body .utc-info>.utc-priority-ribbon,
+html body .utc-info>.utc-identity-badges,
+html body .utc-info>.utc-edit-tool-bar,
+html body .utc-info>.utc-major-badges,
+html body .utc-info>.utc-indicator-display{
+  order:initial!important;
+}
+html body .utc-info>.utc-priority-ribbon{flex:0 0 34px!important;margin:0!important}
+html body .utc-info>.utc-identity-badges{flex:0 0 auto!important;margin:0!important}
+html body .utc-info>.utc-edit-tool-bar{
+  flex:0 0 32px!important;
+  height:32px!important;
+  min-height:32px!important;
+  width:100%!important;
+  margin:0!important;
+  box-sizing:border-box!important;
+}
+html body .utc-info>.utc-major-badges{
+  flex:0 0 68px!important;
+  height:68px!important;
+  min-height:68px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:32px 32px!important;
+  gap:4px!important;
+  margin:0!important;
+  padding:0!important;
+  width:100%!important;
+  overflow:visible!important;
+  box-sizing:border-box!important;
+}
+html body .utc-info>.utc-major-badges>.utc-driver-ribbon,
+html body .utc-info>.utc-major-badges>.utc-driver-ribbon.unassigned,
+html body .utc-info>.utc-major-badges>.utc-reduced{
+  position:static!important;
+  inset:auto!important;
+  transform:none!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:100%!important;
+  height:32px!important;
+  min-height:32px!important;
+  max-height:32px!important;
+  margin:0!important;
+  padding:0 6px!important;
+  box-sizing:border-box!important;
+}
+html body .utc-info>.utc-indicator-display{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  margin:0!important;
+  overflow:hidden!important;
+}
+html body .utc-info>.utc-indicator-display .utc-indicator-grid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-template-rows:repeat(14,minmax(0,1fr))!important;
+  grid-auto-flow:row!important;
+  gap:4px!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  align-content:stretch!important;
+}
+html body .utc-info>.utc-indicator-display .fi-indicator-lamp{
+  min-width:0!important;
+  min-height:0!important;
+  height:100%!important;
+  margin:0!important;
+}
+
+/* FI Forecast: one unbroken date line plus a permanently reserved percentage cell. */
+html body .utc-forecast-progress .forecast-progress-head,
+html body .utc-forecast-progress .progress-head{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 30px!important;
+  column-gap:4px!important;
+  align-items:center!important;
+  width:100%!important;
+  min-width:0!important;
+  overflow:hidden!important;
+}
+html body .utc-forecast-progress .forecast-progress-title,
+html body .utc-forecast-progress .progress-head span{
+  display:block!important;
+  min-width:0!important;
+  max-width:100%!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:clip!important;
+  font-size:7px!important;
+  line-height:1!important;
+  letter-spacing:-.18px!important;
+}
+html body .utc-forecast-progress .forecast-progress-pct,
+html body .utc-forecast-progress .progress-head b{
+  display:block!important;
+  width:30px!important;
+  min-width:30px!important;
+  max-width:30px!important;
+  text-align:right!important;
+  white-space:nowrap!important;
+  overflow:visible!important;
+  font-size:9px!important;
+  line-height:1!important;
+}
+
+/* Presentation uses the exact finished UTC internals; it may scale the whole canvas only. */
+html body.presentation-mode .presentation-tool-only .utc-info,
+html body.presentation-mode .presentation-tool-focus .utc-info{gap:4px!important}
+html body.presentation-mode .presentation-tool-only .utc-info>.utc-priority-ribbon,
+html body.presentation-mode .presentation-tool-focus .utc-info>.utc-priority-ribbon,
+html body.presentation-mode .presentation-tool-only .utc-info>.utc-identity-badges,
+html body.presentation-mode .presentation-tool-focus .utc-info>.utc-identity-badges,
+html body.presentation-mode .presentation-tool-only .utc-info>.utc-edit-tool-bar,
+html body.presentation-mode .presentation-tool-focus .utc-info>.utc-edit-tool-bar,
+html body.presentation-mode .presentation-tool-only .utc-info>.utc-major-badges,
+html body.presentation-mode .presentation-tool-focus .utc-info>.utc-major-badges,
+html body.presentation-mode .presentation-tool-only .utc-info>.utc-indicator-display,
+html body.presentation-mode .presentation-tool-focus .utc-info>.utc-indicator-display{
+  order:initial!important;
+  position:relative!important;
+  inset:auto!important;
+  transform:none!important;
+  width:100%!important;
+}
+html body.presentation-mode .presentation-tool-only .utc-info>.utc-major-badges,
+html body.presentation-mode .presentation-tool-focus .utc-info>.utc-major-badges{
+  height:68px!important;
+  min-height:68px!important;
+  gap:4px!important;
+}
+html body.presentation-mode .presentation-tool-only .utc-info>.utc-indicator-display .utc-indicator-grid,
+html body.presentation-mode .presentation-tool-focus .utc-info>.utc-indicator-display .utc-indicator-grid{gap:4px!important}
+
+/* =========================================================
+   V6.5.36 HARD LOCK — UTC critical geometry only
+   Render-time inline !important rules are authoritative.
+   This block only normalizes descendants that legacy rules targeted.
+   ========================================================= */
+html body .utc-major-badges > div:first-child > .utc-driver-ribbon,
+html body .utc-major-badges > div:first-child > .utc-driver-ribbon.unassigned{
+  position:static!important;inset:auto!important;transform:none!important;
+  width:100%!important;height:32px!important;min-height:32px!important;max-height:32px!important;
+  margin:0!important;padding:0 6px!important;box-sizing:border-box!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+}
+html body .utc-info > div[style*="order:5"] > .utc-indicator-display{
+  height:100%!important;min-height:0!important;margin:0!important;overflow:hidden!important;
+}
+html body .utc-forecast-progress .forecast-progress-head{overflow:visible!important}
+html body .utc-forecast-progress .forecast-progress-title{font-size:6px!important;white-space:nowrap!important;overflow:visible!important}
+html body .utc-forecast-progress .forecast-progress-pct{width:34px!important;min-width:34px!important;text-align:right!important;overflow:visible!important}

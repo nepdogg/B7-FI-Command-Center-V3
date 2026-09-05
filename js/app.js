@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.34', BUILD='20260905-V6.5.34-UTC-STRUCTURAL-PARITY-FIX';
+const VERSION='6.5.36', BUILD='20260905-V6.5.36-UTC-HARD-LOCK-FIX';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -634,21 +634,21 @@ function liveToolCard(tool=null){
 
   return `<section class="panel live-panel universal-card-host utc-host" data-universal-tool-card="${esc(t.id)}">
     <div class="utc-card ${tone}">
-      <section class="utc-column utc-info">
-        ${priorityRibbon(t)}
-        <div class="utc-identity-badges" aria-label="Tool identity controls">
+      <section class="utc-column utc-info" style="display:flex!important;flex-direction:column!important;gap:4px!important;">
+        <div style="order:1!important;display:contents!important">${priorityRibbon(t)}</div>
+        <div class="utc-identity-badges" style="order:2!important" aria-label="Tool identity controls">
           ${identityRibbon(t,'utid','UTID',t.id||'N/A')}
           ${identityRibbon(t,'toolType','TOOL TYPE',t.codename||'N/A')}
           ${identityRibbon(t,'model','MODEL',t.model||'N/A')}
           ${identityRibbon(t,'customer','CUSTOMER',t.customer||'N/A')}
           ${identityRibbon(t,'salesOrder','SALES ORDER',t.salesOrder?`SO #${t.salesOrder}`:'N/A')}
         </div>
-        <div class="utc-major-badges">
-          ${driverRibbon(t)}
-          <div class="utc-reduced ${t.reducedProcess?'active':'idle'} direct-editable" data-direct-indicator="reduced" data-indicator-tool="${esc(t.id)}" role="button" tabindex="0" title="REDUCED PROCESS — click to update">REDUCED PROCESS</div>
+        <button class="utc-edit-tool-bar direct-editable" style="order:3!important;flex:0 0 32px!important;height:32px!important;margin:0!important" type="button" data-open-tool="${esc(t.id)}" title="Open the complete editor for this tool"><span>✎ UPDATE TOOL STATUS</span><b>›</b></button>
+        <div class="utc-major-badges" style="order:4!important;display:grid!important;grid-template-rows:32px 32px!important;grid-template-columns:1fr!important;gap:4px!important;height:68px!important;min-height:68px!important;margin:0!important;padding:0!important;position:static!important;">
+          <div style="height:32px!important;min-height:32px!important;margin:0!important;position:static!important;">${driverRibbon(t)}</div>
+          <div class="utc-reduced ${t.reducedProcess?'active':'idle'} direct-editable" data-direct-indicator="reduced" data-indicator-tool="${esc(t.id)}" role="button" tabindex="0" title="REDUCED PROCESS — click to update" style="position:static!important;display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:32px!important;min-height:32px!important;margin:0!important;padding:0 6px!important;box-sizing:border-box!important;">REDUCED PROCESS</div>
         </div>
-        ${indicatorDisplayPanel(t)}
-        <button class="utc-edit-tool-bar direct-editable" type="button" data-open-tool="${esc(t.id)}" title="Open the complete editor for this tool"><span>✎ UPDATE TOOL STATUS</span><b>›</b></button>
+        <div style="order:5!important;display:contents!important">${indicatorDisplayPanel(t)}</div>
       </section>
 
       <section class="utc-column utc-status">
@@ -699,7 +699,7 @@ function liveToolCard(tool=null){
   </section>`;
 }
 function progressItem(name,p,color,extra='',step=''){return `<div class="progress-item"><div class="progress-head"><span>${name}${extra?' — '+extra:''}</span><b>${p}%</b></div><div class="track"><div class="fill ${color==='cyan'?'':color}" style="width:${p}%"></div></div>${step?`<div class="progress-step">${esc(step)}</div>`:''}</div>`}
-function forecastProgressItem(t,forecast){let p=Math.max(0,Math.min(100,Math.round(((checklistIndex(t,t.forecastChecklist||t.currentChecklist)+1)/Math.max(1,routeFor(t).length))*100))),date=forecast?fmtDayDate(forecast):'FORECAST DATE TBD';return `<div class="progress-item forecast-progress-item"><div class="progress-head forecast-progress-head"><span class="forecast-progress-title">FI FORECAST — ${esc(date)}</span><b class="forecast-progress-pct">${p}%</b></div><div class="track"><div class="fill purple" style="width:${p}%"></div></div><div class="progress-step">${esc(forecastTargetLabel(t))}</div></div>`}
+function forecastProgressItem(t,forecast){let p=Math.max(0,Math.min(100,Math.round(((checklistIndex(t,t.forecastChecklist||t.currentChecklist)+1)/Math.max(1,routeFor(t).length))*100))),date=forecast?fmtDayDate(forecast):'FORECAST DATE TBD';return `<div class="progress-item forecast-progress-item"><div class="progress-head forecast-progress-head" style="display:grid!important;grid-template-columns:minmax(0,1fr) 34px!important;column-gap:4px!important;align-items:center!important;width:100%!important;min-width:0!important;overflow:visible!important;"><span class="forecast-progress-title" style="display:block!important;min-width:0!important;white-space:nowrap!important;overflow:visible!important;text-overflow:clip!important;font-size:6px!important;line-height:1!important;letter-spacing:-.15px!important;">FI FORECAST — ${esc(date)}</span><b class="forecast-progress-pct" style="display:block!important;width:34px!important;min-width:34px!important;text-align:right!important;white-space:nowrap!important;overflow:visible!important;font-size:9px!important;line-height:1!important;">${p}%</b></div><div class="track"><div class="fill purple" style="width:${p}%"></div></div><div class="progress-step">${esc(forecastTargetLabel(t))}</div></div>`}
 function workflowProgress(required,status,type){
   let r=String(required||'TBD').toUpperCase(),v=String(status||'').trim();
   if(r==='NO')return{pct:0,label:'N/A',step:'NOT REQUIRED',color:'blue'};

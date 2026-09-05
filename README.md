@@ -272,3 +272,20 @@ V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit
 - FI Forecast uses dedicated title/date and percentage cells so the percentage cannot overwrite the forecast date.
 - Presentation Mode no longer has its own ordering for the UTC left column or badge matrix.
 - Preserves `b7fi-command-center-v3` production data compatibility.
+
+
+## V6.5.36 — Universal Tool Card renderer + FI Forecast correction
+- Corrected the Universal Tool Card DOM order itself instead of relying on CSS reordering.
+- Authoritative left-column order is Priority → UTID → Tool Type → Model → Customer → Sales Order → UPDATE TOOL STATUS → Driver → Reduced Process → 2×14 operational badges.
+- Driver and Reduced Process remain two separate full-width rows with the same 4px gap used by the badge matrix.
+- FI Forecast header uses separate title/date and percentage cells with a reserved percentage width so the date and percentage cannot overlap.
+- Live Operations and Presentation Mode use the same card geometry; Presentation Mode only scales the completed card.
+- Existing b7fi-command-center-v3 production data remains compatible.
+
+
+## V6.5.36 UTC hard-lock correction
+- Hard-locks the Universal Tool Card left-column source order at render time: Priority, identity, Update Tool Status, Driver, Reduced Process, operational badges.
+- Driver and Reduced Process are isolated in dedicated 32px rows with the same 4px badge gap.
+- FI Forecast uses a dedicated 34px percentage cell and a smaller one-line date label so date and percentage cannot collide.
+- The same rendered structure is used in Live Operations and Presentation Mode.
+- Storage key remains b7fi-command-center-v3.
