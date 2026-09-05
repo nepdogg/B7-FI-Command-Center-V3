@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.31', BUILD='20260904-V6.5.31-UTC-FINAL-CONTROLS-LAYOUT';
+const VERSION='6.5.32', BUILD='20260904-V6.5.32-UTC-STATUS-PARITY-SPACING';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -668,8 +668,7 @@ function liveToolCard(tool=null){
 
         <div class="utc-status-section utc-live-system-status utc-quick-edit direct-editable" data-quick-field="latestStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" title="Click to update the official Latest Status field">
           <div class="utc-kicker">LIVE SYSTEM STATUS</div>
-          <div class="utc-live-status-text">${esc(t.latestStatus||'NO LATEST STATUS ENTERED')}</div>
-          <div class="utc-open-nc-list">${(()=>{let n=(t.ncs||[]).filter(x=>!['closed','complete','completed','resolved'].includes(String(x.state||x.status||'open').toLowerCase()));return n.length?n.map(x=>`<div class="utc-open-nc"><b>${esc(displayNcId(x.id))}</b><span>${esc(x.description||x.state||x.status||'OPEN')}</span><em>${esc(String(x.state||x.status||'OPEN').toUpperCase())}</em></div>`).join(''):'<div class="utc-nc-summary clear">NO OPEN NC / ESCALATION</div>'})()}</div>
+          <div class="utc-live-status-text utc-daily-status-block">${(()=>{let latest=esc(t.latestStatus||'NO LATEST STATUS ENTERED').replace(/\n/g,'<br>');let n=(t.ncs||[]).filter(x=>!['closed','complete','completed','resolved'].includes(String(x.state||x.status||'open').toLowerCase()));let lines=n.map(x=>`<div class="utc-daily-nc-line">- ${esc(displayNcId(x.id))}: ${esc(x.description||'No NC description entered.')}</div>${x.poa?`<div class="utc-daily-poa-line">- POA: ${esc(x.poa)}</div>`:''}`).join('');return `${latest}${lines?`<div class="utc-daily-nc-lines">${lines}</div>`:''}`})()}</div>
         </div>
 
         <div class="utc-status-section utc-lead-notes utc-quick-edit direct-editable" data-quick-field="leadNotes" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" title="Click to update lead notes / reminders">

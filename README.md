@@ -230,7 +230,7 @@ V6.5.14 FIELD TEST UPDATES
 - Existing b7fi-command-center-v3 localStorage compatibility retained.
 
 
-## V6.5.31 — Universal Tool Card final layout parity
+## V6.5.32 — Universal Tool Card final layout parity
 - FI Forecast heading keeps the forecast date on one line; selected checklist remains below the progress bar.
 - Current Cycle Time is now CYCLE TIME. The progress bar tracks elapsed time while the detail line shows only FI handoff start date and Brain cycle status.
 - Driver and Reduced Process use matched full-width spacing.
@@ -239,11 +239,18 @@ V6.5.14 FIELD TEST UPDATES
 - Existing localStorage key `b7fi-command-center-v3` is unchanged.
 
 
-## V6.5.31
+## V6.5.32
 - Presentation Mode now uses a fixed 1920×1080 internal canvas scaled uniformly to fit any monitor, so the same wallboard/card composition appears on laptop and large displays.
 - Tool Edit fields were simplified to one control per field. Structured fields use one select; free/history-backed fields use one editable datalist input. Redundant Customer Status and Sales Order Status controls were removed and are now derived automatically.
 - Driver and Reduced Process spacing corrected; FI Forecast heading constrained to one line; Cycle Time shows elapsed days at the top-right and status only below the bar.
 - KLA branding added to the bottom of the middle UTC column without changing Brain data.
 
 
-V6.5.31: Final UTC control/layout cleanup: target wording, forecast one-line fit, Driver/Reduced spacing, Lead Notes spacing, and true single-select structured quick-edit/Tool Edit controls with ENTER NEW support.
+V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit, Driver/Reduced spacing, Lead Notes spacing, and true single-select structured quick-edit/Tool Edit controls with ENTER NEW support.
+
+
+## V6.5.32
+- Live System Status now uses the same Latest Status + open NC/POA line composition as Status Center/Daily Status.
+- Driver and Reduced Process spacing normalized to the operational badge gap.
+- FI Forecast heading/date reduced to fit on one line with percentage.
+- Lead Notes/Reminders anchored directly below its divider.
