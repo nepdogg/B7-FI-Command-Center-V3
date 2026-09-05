@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.39', BUILD='20260905-V6.5.39-PRESENTATION-FINALIZATION';
+const VERSION='6.5.40', BUILD='20260904-V6.5.40-PRESENTATION-BLACK-ALIAS-FINAL';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -352,7 +352,7 @@ function presentationQuarterPanel(){
     <nav class="presentation-inline-nav presentation-tool-nav" aria-label="Presentation tool controls">
       <button class="presentation-nav-cell" data-carousel="prev" type="button" ${n?'':'disabled'}>◀ PREVIOUS TOOL</button>
       <span class="presentation-nav-cell presentation-nav-count">${n?liveIndex+1:0} / ${n}</span>
-      <button class="presentation-nav-cell presentation-tool-playpause" data-carousel="${livePaused?'play':'pause'}" type="button" ${n?'':'disabled'}><span>${livePaused?'PLAY':'PAUSE'}</span></button>
+      <button class="presentation-nav-cell presentation-tool-playpause" data-carousel="${livePaused?'play':'pause'}" type="button" ${n?'':'disabled'}><span>${livePaused?'PLAY TOOLS':'PAUSE TOOLS'}</span></button>
       <button class="presentation-nav-cell" data-carousel="next" type="button" ${n?'':'disabled'}>NEXT TOOL ▶</button>
       <span class="presentation-nav-cell presentation-nav-exit">ESC TO EXIT</span>
     </nav>
@@ -681,15 +681,15 @@ function liveToolCard(tool=null){
 
       <section class="utc-column utc-progress">
         <div class="utc-progress-list">
-          <div class="utc-progress-quick direct-editable" data-quick-field="currentChecklist" data-quick-tool="${esc(t.id)}" role="button" tabindex="0">${progressItem('FI TESTING',fi,t.toolStatus==='FI'?col:isShipped?'green':(['Powered Down','Packing'].includes(t.toolStatus)?'green':'blue'),'',checklistLabel(t,t.currentChecklist))}</div>
+          <div class="utc-progress-quick direct-editable" data-quick-field="currentChecklist" data-quick-tool="${esc(t.id)}" role="button" tabindex="0">${progressItem(`${alias} FI PROGRESS`,fi,t.toolStatus==='FI'?col:isShipped?'green':(['Powered Down','Packing'].includes(t.toolStatus)?'green':'blue'),'',checklistLabel(t,t.currentChecklist))}</div>
           <div class="utc-progress-quick direct-editable" data-quick-field="microSchedule" data-quick-tool="${esc(t.id)}" role="button" tabindex="0">${progressItem('MICRO SCHEDULE',mi,isShipped?'green':'cyan','',checklistLabel(t,t.microSchedule))}</div>
           <div class="utc-progress-quick utc-forecast-progress direct-editable" data-forecast-checklist="${esc(t.id)}" role="button" tabindex="0" title="Click to update FI forecast checklist">${forecastProgressItem(t,forecast)}</div>
-          <div class="utc-progress-quick direct-editable" data-quick-field="fiHandoffDate" data-quick-tool="${esc(t.id)}" role="button" tabindex="0">${cycleStatusItem(t,avgCycle,cycleColor)}</div>
+          <div class="utc-progress-quick direct-editable" data-quick-field="fiHandoffDate" data-quick-tool="${esc(t.id)}" role="button" tabindex="0">${cycleStatusItem(t,avgCycle,cycleColor,`${alias} CYCLE TIME`)}</div>
           <div class="utc-progress-quick direct-editable" data-quick-field="targetCycle" data-quick-tool="${esc(t.id)}" role="button" tabindex="0">${cycleDayItem('TARGET CYCLE TIME',avgCycle||null,avgCycle,'cyan',avgCycle?`TARGET SET TO ${avgCycle} DAYS`:'TARGET TBD · CLICK TO SET')}</div>
           <div class="utc-progress-quick direct-editable" data-lead-tasks="${esc(t.id)}" role="button" tabindex="0">${progressItem('LEAD / ADMIN PROGRESS',leadPct,isShipped?'green':'amber','',t.currentLeadTask||'NOT SET')}</div>
-          <div class="utc-progress-quick direct-editable" data-quick-field="sourceWorkflow" data-quick-tool="${esc(t.id)}" role="button" tabindex="0">${workflowProgressItem('CUSTOMER SOURCE',t.sourceRequired,t.sourceStatus,'source')}</div>
-          <div class="utc-progress-quick direct-editable" data-quick-field="strWorkflow" data-quick-tool="${esc(t.id)}" role="button" tabindex="0">${workflowProgressItem('STR',t.strRequired,t.strStatus,'str')}</div>
-          <div class="utc-progress-quick direct-editable" data-handoffs="${esc(t.id)}" role="button" tabindex="0">${progressItem('PACKING / SHIPPING',isShipped?100:ship,isShipped?'green':'cyan','',shippingStep(t))}</div>
+          <div class="utc-progress-quick direct-editable" data-quick-field="sourceWorkflow" data-quick-tool="${esc(t.id)}" role="button" tabindex="0">${workflowProgressItem(`${alias} CUSTOMER SOURCE`,t.sourceRequired,t.sourceStatus,'source')}</div>
+          <div class="utc-progress-quick direct-editable" data-quick-field="strWorkflow" data-quick-tool="${esc(t.id)}" role="button" tabindex="0">${workflowProgressItem(`${alias} STR`,t.strRequired,t.strStatus,'str')}</div>
+          <div class="utc-progress-quick direct-editable" data-handoffs="${esc(t.id)}" role="button" tabindex="0">${progressItem(`${alias} PACKING / SHIPPING`,isShipped?100:ship,isShipped?'green':'cyan','',shippingStep(t))}</div>
         </div>
 
       </section>
@@ -697,7 +697,8 @@ function liveToolCard(tool=null){
   </section>`;
 }
 function progressItem(name,p,color,extra='',step=''){return `<div class="progress-item"><div class="progress-head"><span>${name}${extra?' — '+extra:''}</span><b>${p}%</b></div><div class="track"><div class="fill ${color==='cyan'?'':color}" style="width:${p}%"></div></div>${step?`<div class="progress-step">${esc(step)}</div>`:''}</div>`}
-function forecastProgressItem(t,forecast){let p=Math.max(0,Math.min(100,Math.round(((checklistIndex(t,t.forecastChecklist||t.currentChecklist)+1)/Math.max(1,routeFor(t).length))*100))),date=forecast?fmtDayDate(forecast):'FORECAST DATE TBD';return `<div class="progress-item forecast-progress-item"><div class="progress-head forecast-progress-head"><span class="forecast-progress-title">FI FORECAST — ${esc(date)}</span><b class="forecast-progress-pct">${p}%</b></div><div class="track"><div class="fill purple" style="width:${p}%"></div></div><div class="progress-step">${esc(forecastTargetLabel(t))}</div></div>`}
+function fmtForecastHeaderDate(x){if(!x)return'FORECAST DATE TBD';let p=String(x).slice(0,10).split('-');if(p.length!==3)return String(x);let y=Number(p[0]),m=Number(p[1]),d=Number(p[2]),day=['SUN','MON','TUE','WED','THU','FRI','SAT'][new Date(y,m-1,d).getDay()];return `${day} · ${p[1]}/${p[2]}/${p[0].slice(-2)}`}
+function forecastProgressItem(t,forecast){let p=Math.max(0,Math.min(100,Math.round(((checklistIndex(t,t.forecastChecklist||t.currentChecklist)+1)/Math.max(1,routeFor(t).length))*100))),date=forecast?fmtForecastHeaderDate(forecast):'FORECAST DATE TBD',fullDate=forecast?fmtDayDate(forecast):'FORECAST DATE TBD';return `<div class="progress-item forecast-progress-item"><div class="progress-head forecast-progress-head"><span class="forecast-progress-title" title="FI FORECAST — ${esc(fullDate)}">FI FORECAST — ${esc(date)}</span><b class="forecast-progress-pct">${p}%</b></div><div class="track"><div class="fill purple" style="width:${p}%"></div></div><div class="progress-step">${esc(forecastTargetLabel(t))}</div></div>`}
 function workflowProgress(required,status,type){
   let r=String(required||'TBD').toUpperCase(),v=String(status||'').trim();
   if(r==='NO')return{pct:0,label:'N/A',step:'NOT REQUIRED',color:'blue'};
@@ -709,7 +710,7 @@ function workflowProgress(required,status,type){
 }
 function workflowProgressItem(name,required,status,type){let w=workflowProgress(required,status,type);return `<div class="progress-item workflow-progress-item"><div class="progress-head"><span>${name}</span><b>${esc(w.label)}</b></div><div class="track"><div class="fill ${w.color==='cyan'?'':w.color}" style="width:${w.pct}%"></div></div><div class="progress-step">${esc(w.step)}</div></div>`}
 function cycleDayItem(name,days,target,color,step=''){let p=(days!=null&&target)?Math.min(100,Math.round(days/target*100)):0,label=days==null?'—':`${days} DAYS`;return `<div class="progress-item cycle-day-item"><div class="progress-head"><span>${name}</span><b>${label}</b></div><div class="track"><div class="fill ${color==='cyan'?'':color}" style="width:${p}%"></div></div>${step?`<div class="progress-step">${esc(step)}</div>`:''}</div>`}
-function cycleStatusItem(t,target,color){let days=t.fiHandoffDate?actualCycleDays(t):null,p=(days!=null&&target)?Math.min(100,Math.round(days/target*100)):0,[health]=cycleHealth(t),status=String(health||'').replace('WITHIN AVERAGE','ON TARGET').replace('APPROACHING AVERAGE','APPROACHING TARGET').replace('OVER AVERAGE','OVER TARGET'),label=days==null?'NOT STARTED':`${days} DAYS`,step=t.fiHandoffDate?`START ${fmtDate(t.fiHandoffDate)} · ${status}`:'SET FI HANDOFF · NOT STARTED';return `<div class="progress-item cycle-day-item"><div class="progress-head"><span>CYCLE TIME</span><b>${esc(label)}</b></div><div class="track"><div class="fill ${color==='cyan'?'':color}" style="width:${p}%"></div></div><div class="progress-step">${esc(step)}</div></div>`}
+function cycleStatusItem(t,target,color,name='CYCLE TIME'){let days=t.fiHandoffDate?actualCycleDays(t):null,p=(days!=null&&target)?Math.min(100,Math.round(days/target*100)):0,[health]=cycleHealth(t),status=String(health||'').replace('WITHIN AVERAGE','ON TARGET').replace('APPROACHING AVERAGE','APPROACHING TARGET').replace('OVER AVERAGE','OVER TARGET'),label=days==null?'NOT STARTED':`${days} DAYS`,step=t.fiHandoffDate?`START ${fmtDate(t.fiHandoffDate)} · ${status}`:'SET FI HANDOFF · NOT STARTED';return `<div class="progress-item cycle-day-item"><div class="progress-head"><span>${esc(name)}</span><b>${esc(label)}</b></div><div class="track"><div class="fill ${color==='cyan'?'':color}" style="width:${p}%"></div></div><div class="progress-step">${esc(step)}</div></div>`}
 function keyTestBadge(name,status){let v=String(status||'').toUpperCase(),tone=(v==='PASSED'||v==='COMPLETED & APPROVED'||v==='COMPLETED')?'done':(v==='FAILED'?'failed':(v==='RUNNING'||v==='UNDER WAY'||v==='IN PROGRESS'?'active':'idle'));return `<div class="key-test-badge ${tone}"><b>${esc(name)}</b><span>${esc(v||'NOT STARTED')}</span></div>`}
 function conditionChip(name,on,tone='active'){return `<div class="utc-condition-chip ${on?'on '+tone:'off'}">${esc(name)}</div>`}
 function workflowBadge(name,required,status){let r=String(required||'TBD').toUpperCase(),v=String(status||'NOT STARTED').toUpperCase(),tone='idle',label=v;if(r==='NO'){label='NOT REQUIRED';tone='idle'}else if(r==='TBD'){label='REQUIREMENT TBD';tone='idle'}else if(v.includes('COMPLETE')||v.includes('APPROV')||v.includes('RETURNED TO FI'))tone='done';else{tone='active';label=v||'NOT STARTED'}return `<div class="key-test-badge workflow-badge ${tone}"><b>${esc(name)}</b><span>${esc(label)}</span></div>`}

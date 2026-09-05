@@ -13002,3 +13002,122 @@ html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon.unassigned>sp
 html body.presentation-mode .utc-card.utc-v6538 .utc-forecast-progress .forecast-progress-title{font-size:10px!important}
 html body.presentation-mode .utc-card.utc-v6538 .utc-forecast-progress .forecast-progress-pct{font-size:11px!important}
 \n\n/* =========================================================\n   V6.5.39 PRESENTATION + UNIVERSAL TOOL CARD FINALIZATION\n   ========================================================= */\n/* Presentation forecast: readable without clipping. */\nhtml body.presentation-mode .utc-card.utc-v6538 .utc-forecast-progress .forecast-progress-head{\n  grid-template-columns:minmax(0,1fr) 52px!important;\n  column-gap:8px!important;\n  align-items:center!important;\n}\nhtml body.presentation-mode .utc-card.utc-v6538 .utc-forecast-progress .forecast-progress-title{\n  font-size:14px!important;\n  line-height:1!important;\n  letter-spacing:-.15px!important;\n  white-space:nowrap!important;\n  overflow:hidden!important;\n  text-overflow:clip!important;\n}\nhtml body.presentation-mode .utc-card.utc-v6538 .utc-forecast-progress .forecast-progress-pct{\n  width:52px!important;min-width:52px!important;max-width:52px!important;\n  font-size:15px!important;line-height:1!important;text-align:right!important;white-space:nowrap!important;\n}\n\n/* Middle column: both live status and lead notes start close to their divider and share space evenly. */\nhtml body .utc-card.utc-v6538 .utc-status>.utc-live-system-status,\nhtml body .utc-card.utc-v6538 .utc-status>.utc-lead-notes{\n  justify-content:flex-start!important;\n  padding-top:4px!important;\n  padding-bottom:4px!important;\n  margin:0!important;\n  min-height:0!important;\n  overflow:hidden!important;\n}\nhtml body .utc-card.utc-v6538 .utc-status>.utc-live-system-status{flex:1.45 1 0!important}\nhtml body .utc-card.utc-v6538 .utc-status>.utc-lead-notes{flex:1.05 1 0!important}\nhtml body .utc-card.utc-v6538 .utc-status>.utc-live-system-status .utc-kicker,\nhtml body .utc-card.utc-v6538 .utc-status>.utc-lead-notes .utc-kicker{\n  margin:0 0 4px 0!important;\n  padding:0!important;\n  font-size:clamp(9px,.64vw,11px)!important;\n  line-height:1.15!important;\n}\nhtml body .utc-card.utc-v6538 .utc-daily-status-block,\nhtml body .utc-card.utc-v6538 .utc-lead-notes-text{\n  margin:0!important;padding:0!important;\n  font-size:clamp(10px,.72vw,13px)!important;\n  line-height:1.16!important;\n}\n\n/* Presentation play/pause is text-only. */\nhtml body.presentation-mode .presentation-tool-playpause span{font-size:inherit!important;font-weight:1000!important}\n
+/* =========================================================
+   V6.5.40 — PRESENTATION BLACK / ALIAS PROGRESS FINALIZATION
+   ========================================================= */
+
+/* Header KLA center uses the same visible horizontal border treatment as the footer band. */
+html body:not(.screenshot-mode):not(.presentation-mode) .hero-center{
+  border-top:1px solid color-mix(in srgb,var(--accent) 72%,#173d57)!important;
+  border-bottom:1px solid color-mix(in srgb,var(--accent) 72%,#173d57)!important;
+  box-sizing:border-box!important;
+}
+
+/* Middle-column status and notes: equalized space and tight divider-to-heading rhythm. */
+html body .utc-card.utc-v6538 .utc-status>.utc-live-system-status,
+html body .utc-card.utc-v6538 .utc-status>.utc-lead-notes{
+  flex:1 1 0!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:2px 10px 3px!important;
+  justify-content:flex-start!important;
+  overflow:hidden!important;
+}
+html body .utc-card.utc-v6538 .utc-status>.utc-live-system-status .utc-kicker,
+html body .utc-card.utc-v6538 .utc-status>.utc-lead-notes .utc-kicker{
+  margin:0 0 3px!important;
+  padding:0!important;
+}
+html body .utc-card.utc-v6538 .utc-status>.utc-live-system-status .utc-live-status-text,
+html body .utc-card.utc-v6538 .utc-status>.utc-lead-notes .utc-lead-notes-text{
+  margin:0!important;
+  padding:0!important;
+}
+
+/* FI Forecast: large, readable text with guaranteed reserved percentage column. */
+html body .utc-card.utc-v6538 .utc-forecast-progress .forecast-progress-head{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 44px!important;
+  column-gap:6px!important;
+  align-items:center!important;
+  min-width:0!important;
+}
+html body .utc-card.utc-v6538 .utc-forecast-progress .forecast-progress-title{
+  min-width:0!important;
+  font-size:12px!important;
+  line-height:1!important;
+  letter-spacing:-.08px!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:clip!important;
+  font-weight:950!important;
+}
+html body .utc-card.utc-v6538 .utc-forecast-progress .forecast-progress-pct{
+  width:44px!important;
+  min-width:44px!important;
+  max-width:44px!important;
+  font-size:13px!important;
+  line-height:1!important;
+  text-align:right!important;
+  white-space:nowrap!important;
+  font-weight:1000!important;
+}
+
+/* Presentation uses a true black wallboard. Only the finished UTC columns retain their own borders. */
+html body.presentation-mode,
+html body.presentation-mode .app-frame,
+html body.presentation-mode .body-shell,
+html body.presentation-mode .body-workspace,
+html body.presentation-mode #app,
+html body.presentation-mode .presentation-quarter-panel,
+html body.presentation-mode .presentation-tool-only,
+html body.presentation-mode .presentation-tool-focus,
+html body.presentation-mode .utc-host,
+html body.presentation-mode .utc-card,
+html body.presentation-mode .utc-column,
+html body.presentation-mode .utc-status-section,
+html body.presentation-mode .utc-progress-list,
+html body.presentation-mode .utc-progress-quick,
+html body.presentation-mode .progress-item{
+  background:#000!important;
+}
+html body.presentation-mode .presentation-quarter-panel,
+html body.presentation-mode .presentation-tool-only,
+html body.presentation-mode .presentation-tool-focus,
+html body.presentation-mode .utc-host,
+html body.presentation-mode .utc-card{
+  border-top:0!important;
+  border-bottom:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+}
+html body.presentation-mode .utc-card{
+  gap:10px!important;
+}
+html body.presentation-mode .utc-column{
+  border:1px solid #2b607d!important;
+  box-shadow:none!important;
+}
+
+/* Presentation Forecast matches the scale of the other progress headings without clipping. */
+html body.presentation-mode .utc-card.utc-v6538 .utc-forecast-progress .forecast-progress-head{
+  grid-template-columns:minmax(0,1fr) 48px!important;
+  column-gap:7px!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-forecast-progress .forecast-progress-title{
+  font-size:15px!important;
+  letter-spacing:-.12px!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-forecast-progress .forecast-progress-pct{
+  width:48px!important;
+  min-width:48px!important;
+  max-width:48px!important;
+  font-size:16px!important;
+}
+
+/* Presentation carousel uses text-only PLAY TOOLS / PAUSE TOOLS. */
+html body.presentation-mode .presentation-tool-playpause span{
+  font-size:inherit!important;
+  font-weight:1000!important;
+  white-space:nowrap!important;
+}
