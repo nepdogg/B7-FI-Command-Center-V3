@@ -12842,20 +12842,95 @@ html body.presentation-mode .presentation-tool-only .utc-info>.utc-indicator-dis
 html body.presentation-mode .presentation-tool-focus .utc-info>.utc-indicator-display .utc-indicator-grid{gap:4px!important}
 
 /* =========================================================
-   V6.5.36 HARD LOCK — UTC critical geometry only
-   Render-time inline !important rules are authoritative.
-   This block only normalizes descendants that legacy rules targeted.
+   V6.5.37 AUTHORITATIVE UTC STRUCTURAL RESET
+   One DOM order. One geometry. No CSS reordering.
    ========================================================= */
-html body .utc-major-badges > div:first-child > .utc-driver-ribbon,
-html body .utc-major-badges > div:first-child > .utc-driver-ribbon.unassigned{
-  position:static!important;inset:auto!important;transform:none!important;
-  width:100%!important;height:32px!important;min-height:32px!important;max-height:32px!important;
-  margin:0!important;padding:0 6px!important;box-sizing:border-box!important;
-  display:flex!important;align-items:center!important;justify-content:center!important;
+html body .utc-card.utc-v6537,
+html body .utc-card.utc-v6537 *{box-sizing:border-box}
+
+html body .utc-card.utc-v6537 .utc-info{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:34px auto 32px 32px 32px minmax(0,1fr)!important;
+  row-gap:4px!important;
+  align-content:stretch!important;
+  min-height:0!important;
+  overflow:hidden!important;
 }
-html body .utc-info > div[style*="order:5"] > .utc-indicator-display{
-  height:100%!important;min-height:0!important;margin:0!important;overflow:hidden!important;
+html body .utc-card.utc-v6537 .utc-info>.utc-priority-ribbon,
+html body .utc-card.utc-v6537 .utc-info>.utc-identity-badges,
+html body .utc-card.utc-v6537 .utc-info>.utc-edit-tool-bar,
+html body .utc-card.utc-v6537 .utc-info>.utc-driver-ribbon,
+html body .utc-card.utc-v6537 .utc-info>.utc-reduced,
+html body .utc-card.utc-v6537 .utc-info>.utc-indicator-display{
+  order:initial!important;
+  position:static!important;
+  inset:auto!important;
+  transform:none!important;
+  margin:0!important;
+  width:100%!important;
+  min-width:0!important;
 }
-html body .utc-forecast-progress .forecast-progress-head{overflow:visible!important}
-html body .utc-forecast-progress .forecast-progress-title{font-size:6px!important;white-space:nowrap!important;overflow:visible!important}
-html body .utc-forecast-progress .forecast-progress-pct{width:34px!important;min-width:34px!important;text-align:right!important;overflow:visible!important}
+html body .utc-card.utc-v6537 .utc-info>.utc-priority-ribbon{grid-row:1!important;height:34px!important;min-height:34px!important}
+html body .utc-card.utc-v6537 .utc-info>.utc-identity-badges{grid-row:2!important}
+html body .utc-card.utc-v6537 .utc-info>.utc-edit-tool-bar{grid-row:3!important;height:32px!important;min-height:32px!important}
+html body .utc-card.utc-v6537 .utc-info>.utc-driver-ribbon,
+html body .utc-card.utc-v6537 .utc-info>.utc-driver-ribbon.unassigned{grid-row:4!important;height:32px!important;min-height:32px!important;max-height:32px!important}
+html body .utc-card.utc-v6537 .utc-info>.utc-reduced{grid-row:5!important;height:32px!important;min-height:32px!important;max-height:32px!important}
+html body .utc-card.utc-v6537 .utc-info>.utc-indicator-display{grid-row:6!important;min-height:0!important;overflow:hidden!important}
+html body .utc-card.utc-v6537 .utc-info>.utc-indicator-display .utc-indicator-grid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-template-rows:repeat(14,minmax(0,1fr))!important;
+  grid-auto-flow:row!important;
+  gap:4px!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  align-content:stretch!important;
+}
+html body .utc-card.utc-v6537 .utc-info>.utc-indicator-display .fi-indicator-lamp{
+  min-width:0!important;
+  min-height:0!important;
+  height:100%!important;
+  margin:0!important;
+  padding:1px 4px!important;
+}
+
+/* FI Forecast: full date is one line, percentage has a dedicated non-overlapping cell. */
+html body .utc-card.utc-v6537 .utc-forecast-progress .forecast-progress-head{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 32px!important;
+  column-gap:4px!important;
+  align-items:center!important;
+  width:100%!important;
+  min-width:0!important;
+  overflow:hidden!important;
+}
+html body .utc-card.utc-v6537 .utc-forecast-progress .forecast-progress-title{
+  min-width:0!important;
+  width:100%!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:clip!important;
+  font-size:6.4px!important;
+  line-height:1!important;
+  letter-spacing:-.22px!important;
+}
+html body .utc-card.utc-v6537 .utc-forecast-progress .forecast-progress-pct{
+  width:32px!important;
+  min-width:32px!important;
+  max-width:32px!important;
+  text-align:right!important;
+  white-space:nowrap!important;
+  overflow:visible!important;
+  font-size:9px!important;
+  line-height:1!important;
+}
+
+/* Presentation is allowed to scale the card, never reorder or resize internal UTC rows. */
+html body.presentation-mode .utc-card.utc-v6537 .utc-info{
+  grid-template-rows:34px auto 32px 32px 32px minmax(0,1fr)!important;
+  row-gap:4px!important;
+}
+html body.presentation-mode .utc-card.utc-v6537 .utc-info>.utc-indicator-display .utc-indicator-grid{gap:4px!important}
