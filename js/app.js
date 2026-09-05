@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.33', BUILD='20260904-V6.5.33-UTC-CONSOLIDATED-LAYOUT';
+const VERSION='6.5.34', BUILD='20260905-V6.5.34-UTC-STRUCTURAL-PARITY-FIX';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -643,12 +643,12 @@ function liveToolCard(tool=null){
           ${identityRibbon(t,'customer','CUSTOMER',t.customer||'N/A')}
           ${identityRibbon(t,'salesOrder','SALES ORDER',t.salesOrder?`SO #${t.salesOrder}`:'N/A')}
         </div>
-        <button class="utc-edit-tool-bar direct-editable" type="button" data-open-tool="${esc(t.id)}" title="Open the complete editor for this tool"><span>✎ UPDATE TOOL STATUS</span><b>›</b></button>
         <div class="utc-major-badges">
           ${driverRibbon(t)}
           <div class="utc-reduced ${t.reducedProcess?'active':'idle'} direct-editable" data-direct-indicator="reduced" data-indicator-tool="${esc(t.id)}" role="button" tabindex="0" title="REDUCED PROCESS — click to update">REDUCED PROCESS</div>
         </div>
         ${indicatorDisplayPanel(t)}
+        <button class="utc-edit-tool-bar direct-editable" type="button" data-open-tool="${esc(t.id)}" title="Open the complete editor for this tool"><span>✎ UPDATE TOOL STATUS</span><b>›</b></button>
       </section>
 
       <section class="utc-column utc-status">
@@ -685,7 +685,7 @@ function liveToolCard(tool=null){
         <div class="utc-progress-list">
           <div class="utc-progress-quick direct-editable" data-quick-field="currentChecklist" data-quick-tool="${esc(t.id)}" role="button" tabindex="0">${progressItem('FI TESTING',fi,t.toolStatus==='FI'?col:isShipped?'green':(['Powered Down','Packing'].includes(t.toolStatus)?'green':'blue'),'',checklistLabel(t,t.currentChecklist))}</div>
           <div class="utc-progress-quick direct-editable" data-quick-field="microSchedule" data-quick-tool="${esc(t.id)}" role="button" tabindex="0">${progressItem('MICRO SCHEDULE',mi,isShipped?'green':'cyan','',checklistLabel(t,t.microSchedule))}</div>
-          <div class="utc-progress-quick utc-forecast-progress direct-editable" data-forecast-checklist="${esc(t.id)}" role="button" tabindex="0" title="Click to update FI forecast checklist">${progressItem('FI FORECAST',Math.max(0,Math.min(100,Math.round(((checklistIndex(t,t.forecastChecklist||t.currentChecklist)+1)/Math.max(1,routeFor(t).length))*100))), 'purple',forecast?fmtDayDate(forecast):'FORECAST DATE TBD',forecastTargetLabel(t))}</div>
+          <div class="utc-progress-quick utc-forecast-progress direct-editable" data-forecast-checklist="${esc(t.id)}" role="button" tabindex="0" title="Click to update FI forecast checklist">${forecastProgressItem(t,forecast)}</div>
           <div class="utc-progress-quick direct-editable" data-quick-field="fiHandoffDate" data-quick-tool="${esc(t.id)}" role="button" tabindex="0">${cycleStatusItem(t,avgCycle,cycleColor)}</div>
           <div class="utc-progress-quick direct-editable" data-quick-field="targetCycle" data-quick-tool="${esc(t.id)}" role="button" tabindex="0">${cycleDayItem('TARGET CYCLE TIME',avgCycle||null,avgCycle,'cyan',avgCycle?`TARGET SET TO ${avgCycle} DAYS`:'TARGET TBD · CLICK TO SET')}</div>
           <div class="utc-progress-quick direct-editable" data-lead-tasks="${esc(t.id)}" role="button" tabindex="0">${progressItem('LEAD / ADMIN PROGRESS',leadPct,isShipped?'green':'amber','',t.currentLeadTask||'NOT SET')}</div>
@@ -699,6 +699,7 @@ function liveToolCard(tool=null){
   </section>`;
 }
 function progressItem(name,p,color,extra='',step=''){return `<div class="progress-item"><div class="progress-head"><span>${name}${extra?' — '+extra:''}</span><b>${p}%</b></div><div class="track"><div class="fill ${color==='cyan'?'':color}" style="width:${p}%"></div></div>${step?`<div class="progress-step">${esc(step)}</div>`:''}</div>`}
+function forecastProgressItem(t,forecast){let p=Math.max(0,Math.min(100,Math.round(((checklistIndex(t,t.forecastChecklist||t.currentChecklist)+1)/Math.max(1,routeFor(t).length))*100))),date=forecast?fmtDayDate(forecast):'FORECAST DATE TBD';return `<div class="progress-item forecast-progress-item"><div class="progress-head forecast-progress-head"><span class="forecast-progress-title">FI FORECAST — ${esc(date)}</span><b class="forecast-progress-pct">${p}%</b></div><div class="track"><div class="fill purple" style="width:${p}%"></div></div><div class="progress-step">${esc(forecastTargetLabel(t))}</div></div>`}
 function workflowProgress(required,status,type){
   let r=String(required||'TBD').toUpperCase(),v=String(status||'').trim();
   if(r==='NO')return{pct:0,label:'N/A',step:'NOT REQUIRED',color:'blue'};

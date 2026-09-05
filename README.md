@@ -264,3 +264,11 @@ V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit
 - Live System Status continues to use Latest Status plus the structured open NC/POA records from the same tool record used by Status Center.
 - Presentation Mode keeps the same Universal Tool Card geometry and only scales the wallboard canvas.
 - Production storage key remains b7fi-command-center-v3.
+
+## V6.5.34 — Universal Tool Card structural parity fix
+- Restored one authoritative left-column structure in Live Operations and Presentation Mode.
+- Left column order is now Priority, identity bars, Driver, Reduced Process, full 2x14 badge matrix, then Update Tool Status.
+- Driver and Reduced Process use the same fixed 4px vertical rhythm as the operational badge matrix.
+- FI Forecast uses dedicated title/date and percentage cells so the percentage cannot overwrite the forecast date.
+- Presentation Mode no longer has its own ordering for the UTC left column or badge matrix.
+- Preserves `b7fi-command-center-v3` production data compatibility.
