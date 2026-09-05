@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.40', BUILD='20260904-V6.5.40-PRESENTATION-BLACK-ALIAS-FINAL';
+const VERSION='6.5.41', BUILD='20260904-V6.5.40-PRESENTATION-BLACK-ALIAS-FINAL';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -673,7 +673,7 @@ function liveToolCard(tool=null){
 
         <div class="utc-status-section utc-lead-notes utc-quick-edit direct-editable" data-quick-field="leadNotes" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" title="Click to update lead notes / reminders">
           <div class="utc-kicker">LEAD NOTES / REMINDERS</div>
-          <div class="utc-lead-notes-text">${esc(t.notes||'NO LEAD NOTES ENTERED')}</div>
+          <div class="utc-lead-notes-text">${esc(t.notes||'')}</div>
         </div>
         <div class="utc-middle-kla" aria-hidden="true"><img src="assets/kla-plus-official.png" alt=""></div>
 

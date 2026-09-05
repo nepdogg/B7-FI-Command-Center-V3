@@ -13121,3 +13121,112 @@ html body.presentation-mode .presentation-tool-playpause span{
   font-weight:1000!important;
   white-space:nowrap!important;
 }
+
+/* =========================================================
+   V6.5.41 — PRESENTATION READABILITY LOCK
+   - Preserve the approved black wallboard
+   - Restore complete top status/control enclosure
+   - Strengthen operational typography at presentation distance
+   - Keep status colors semantic; no glow/shadow effects
+   ========================================================= */
+
+/* The quarter/status/control block is one complete enclosed panel. */
+html body.presentation-mode .presentation-quarter-panel{
+  border:1px solid #2b607d!important;
+  outline:0!important;
+  box-shadow:none!important;
+  box-sizing:border-box!important;
+}
+
+/* Keep the wallboard true black while retaining crisp column separation. */
+html body.presentation-mode,
+html body.presentation-mode .app-frame,
+html body.presentation-mode .body-shell,
+html body.presentation-mode .body-workspace,
+html body.presentation-mode #app,
+html body.presentation-mode .presentation-tool-only,
+html body.presentation-mode .presentation-tool-focus,
+html body.presentation-mode .utc-host,
+html body.presentation-mode .utc-card,
+html body.presentation-mode .utc-column,
+html body.presentation-mode .utc-status-section,
+html body.presentation-mode .utc-progress-list,
+html body.presentation-mode .utc-progress-quick,
+html body.presentation-mode .progress-item{
+  background:#000!important;
+}
+
+/* Presentation hierarchy: cyan labels, bright white operational values, bright supporting detail. */
+html body.presentation-mode .utc-card.utc-v6538 .utc-kicker,
+html body.presentation-mode .utc-card.utc-v6538 .progress-label,
+html body.presentation-mode .utc-card.utc-v6538 .utc-progress-label{
+  color:#18d8ff!important;
+  font-weight:950!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-live-status-text,
+html body.presentation-mode .utc-card.utc-v6538 .utc-lead-notes-text,
+html body.presentation-mode .utc-card.utc-v6538 .utc-status-value{
+  color:#fff!important;
+  font-weight:850!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-progress-sub,
+html body.presentation-mode .utc-card.utc-v6538 .progress-sub,
+html body.presentation-mode .utc-card.utc-v6538 .utc-progress-detail{
+  color:#79d8ff!important;
+  font-weight:800!important;
+}
+
+/* Live status / lead notes: readable from the wallboard and evenly inset from divider lines. */
+html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-live-system-status,
+html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-lead-notes{
+  padding:8px 12px 6px!important;
+  justify-content:flex-start!important;
+  overflow:hidden!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-live-system-status .utc-kicker,
+html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-lead-notes .utc-kicker{
+  margin:0 0 7px!important;
+  font-size:12px!important;
+  line-height:1.1!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-live-status-text,
+html body.presentation-mode .utc-card.utc-v6538 .utc-lead-notes-text{
+  font-size:14px!important;
+  line-height:1.2!important;
+}
+
+/* Forecast is a first-class progress heading, not fine print. */
+html body.presentation-mode .utc-card.utc-v6538 .utc-forecast-progress .forecast-progress-head{
+  grid-template-columns:minmax(0,1fr) 58px!important;
+  column-gap:8px!important;
+  align-items:center!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-forecast-progress .forecast-progress-title{
+  font-size:17px!important;
+  line-height:1!important;
+  letter-spacing:-.18px!important;
+  font-weight:1000!important;
+  color:#fff!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:clip!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-forecast-progress .forecast-progress-pct{
+  width:58px!important;
+  min-width:58px!important;
+  max-width:58px!important;
+  font-size:17px!important;
+  line-height:1!important;
+  font-weight:1000!important;
+  color:#fff!important;
+  text-align:right!important;
+  white-space:nowrap!important;
+}
+
+/* Important card identity/action text remains readable at presentation distance. */
+html body.presentation-mode .utc-card.utc-v6538 .utc-priority-ribbon>span{font-size:17px!important}
+html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon>span,
+html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon.unassigned>span{font-size:16px!important}
+
+/* Empty lead notes are truly empty; retain the section heading only. */
+html body.presentation-mode .utc-card.utc-v6538 .utc-lead-notes-text:empty{min-height:0!important}

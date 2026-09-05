@@ -283,22 +283,22 @@ V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit
 - Existing b7fi-command-center-v3 production data remains compatible.
 
 
-## V6.5.40 — Universal Tool Card structural reset
+## V6.5.41 — Universal Tool Card structural reset
 - Rolled back from the V6.5.36 regression to the V6.5.35 data/feature base.
 - Removed the Driver/Reduced Process wrapper from the Tool Card DOM so the source order is authoritative: Priority, identity, Update Tool Status, Driver, Reduced Process, badge matrix.
-- Added one V6.5.40-scoped card layout block so legacy UTC CSS can no longer reorder these rows.
+- Added one V6.5.41-scoped card layout block so legacy UTC CSS can no longer reorder these rows.
 - Rebuilt FI Forecast header sizing with a dedicated percentage column and smaller single-line date text.
 - Presentation Mode inherits the same card DOM/layout and only scales the completed card.
 - Preserves localStorage key b7fi-command-center-v3.
 
-## V6.5.40 — Universal Tool Card typography refinement
+## V6.5.41 — Universal Tool Card typography refinement
 - Preserves the stabilized V6.5.37 Universal Tool Card structure.
 - Enlarges Priority and Driver text without changing card geometry.
 - Restores FI Forecast to readable one-line text while retaining a dedicated percentage column.
 - Matches Lead Notes / Reminders typography to Live System Status.
 
 
-## V6.5.40 — Presentation / Tool Card finalization
+## V6.5.41 — Presentation / Tool Card finalization
 - Increased FI Forecast title/date and percentage readability in Presentation Mode without overlap.
 - Rebalanced Live System Status and Lead Notes spacing close to dividers.
 - Lamp Hours quick edit is directly bound in Presentation Mode.
@@ -306,7 +306,7 @@ V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit
 - Presentation exit now fully clears scale/transform/overflow state so normal layout returns without refresh.
 
 
-## V6.5.40 — Presentation Black / Alias Progress Finalization
+## V6.5.41 — Presentation Black / Alias Progress Finalization
 - Presentation Mode uses a true black wallboard background and removes inter-column connector lines.
 - Presentation tool control reads PLAY TOOLS / PAUSE TOOLS.
 - Tool alias personalizes FI Progress, Cycle Time, Customer Source, STR, and Packing / Shipping progress headings.
