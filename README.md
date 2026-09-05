@@ -254,3 +254,13 @@ V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit
 - Driver and Reduced Process spacing normalized to the operational badge gap.
 - FI Forecast heading/date reduced to fit on one line with percentage.
 - Lead Notes/Reminders anchored directly below its divider.
+
+
+## V6.5.33 — Universal Tool Card CSS consolidation
+- Consolidated the final Universal Tool Card layout authority instead of stacking another conflicting spacing patch.
+- Driver and Reduced Process are now wrapped in one shared two-row badge container with the same 4px rhythm as the operational badge matrix.
+- FI Forecast reserves a fixed percentage column and uses a smaller one-line date label so weekday/date/percentage cannot collide.
+- Lead Notes / Reminders starts directly under its divider while Live System Status and Notes consume the available middle-column space above the KLA logo.
+- Live System Status continues to use Latest Status plus the structured open NC/POA records from the same tool record used by Status Center.
+- Presentation Mode keeps the same Universal Tool Card geometry and only scales the wallboard canvas.
+- Production storage key remains b7fi-command-center-v3.
