@@ -13682,3 +13682,69 @@ html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon,
 html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon.unassigned{
   background:linear-gradient(180deg,#1686e5,#0c4f9c)!important;
 }
+
+
+/* =========================================================
+   V6.5.45 UTC COLOR + ACTION LOCK
+   Final left-column semantic language shared by regular UTC
+   and Presentation Mode.
+   ========================================================= */
+html body .utc-card.utc-v6538 .utc-info{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:34px auto 32px 32px minmax(0,1fr) 36px!important;
+  row-gap:4px!important;
+  align-content:stretch!important;
+  min-height:0!important;
+  overflow:hidden!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-priority-ribbon{grid-row:1!important}
+html body .utc-card.utc-v6538 .utc-info>.utc-identity-badges{grid-row:2!important}
+html body .utc-card.utc-v6538 .utc-info>.utc-driver-ribbon,
+html body .utc-card.utc-v6538 .utc-info>.utc-driver-ribbon.unassigned{grid-row:3!important}
+html body .utc-card.utc-v6538 .utc-info>.utc-reduced{grid-row:4!important}
+html body .utc-card.utc-v6538 .utc-info>.utc-indicator-display{grid-row:5!important;min-height:0!important;overflow:hidden!important}
+html body .utc-card.utc-v6538 .utc-info>.utc-edit-tool-bar{grid-row:6!important;height:36px!important;min-height:36px!important;margin:0!important}
+
+/* Purple = ownership / assigned driver. */
+html body .utc-card.utc-v6538 .utc-driver-ribbon:not(.unassigned){
+  background:linear-gradient(180deg,#8f5cf4,#5b2db7)!important;
+  border-color:#bd9aff!important;
+  color:#fff!important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)!important;
+}
+/* Neutral gray = no owner assigned yet. */
+html body .utc-card.utc-v6538 .utc-driver-ribbon.unassigned{
+  background:linear-gradient(180deg,#4d5963,#2d353c)!important;
+  border-color:#82919c!important;
+  color:#fff!important;
+  box-shadow:none!important;
+}
+
+/* Gold = explicit action. It is intentionally not a status color. */
+html body .utc-card.utc-v6538 .utc-edit-tool-bar,
+html body .utc-card.utc-v6538 .utc-update-tool-status{
+  background:linear-gradient(180deg,#d58b00,#8c5700)!important;
+  border-color:#ffc33d!important;
+  color:#fff!important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.09)!important;
+}
+html body .utc-card.utc-v6538 .utc-edit-tool-bar:hover,
+html body .utc-card.utc-v6538 .utc-update-tool-status:hover{
+  background:linear-gradient(180deg,#eca117,#a96800)!important;
+}
+
+/* Presentation Mode uses the identical semantic colors. */
+html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon:not(.unassigned){
+  background:linear-gradient(180deg,#8f5cf4,#5b2db7)!important;
+  border-color:#bd9aff!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon.unassigned{
+  background:linear-gradient(180deg,#4d5963,#2d353c)!important;
+  border-color:#82919c!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-edit-tool-bar,
+html body.presentation-mode .utc-card.utc-v6538 .utc-update-tool-status{
+  background:linear-gradient(180deg,#d58b00,#8c5700)!important;
+  border-color:#ffc33d!important;
+}

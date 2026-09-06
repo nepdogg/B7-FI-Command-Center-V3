@@ -316,14 +316,14 @@ V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit
 - Existing localStorage key b7fi-command-center-v3 is unchanged.
 
 
-## V6.5.44 — True Black Presentation Surface Lock
+## V6.5.45 — True Black Presentation Surface Lock
 - Presentation Mode structural surfaces are now pure black, including the title/status panel, summary/navigation surfaces, identity rows, Update Tool Status, Driver, and all three UTC column backgrounds.
 - Bright cyan remains the major structural frame/border color; darker cyan remains for internal dividers.
 - Semantic status colors (priority, Reduced Process, operational badges, progress fills) remain intact so status meaning is not lost.
 - Existing `b7fi-command-center-v3` production data compatibility is unchanged.
 
 
-## V6.5.44 — Global Black Design System / Universal Tool Card Color Code
+## V6.5.45 — Global Black Design System / Universal Tool Card Color Code
 
 - Global Command Center canvas standardized to true black across all Centers/pages.
 - Existing Center color remains the page identity through header/footer borders, active navigation, and structural accents.
@@ -334,3 +334,12 @@ V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit
 - Forms, tables, modals, panels, and workspace surfaces use black backgrounds while preserving Center-color borders and focus states.
 - Presentation Mode remains true black and uses the same UTC semantic colors as all other pages.
 - No storage/schema changes. Existing `b7fi-command-center-v3` production data remains compatible.
+
+
+## V6.5.45 — Universal Tool Card semantic color/action lock
+- Moved UPDATE TOOL STATUS to the bottom of the left column, below the complete operational badge matrix.
+- Driver now uses purple when assigned (ownership/assignment) and neutral gray when unassigned.
+- UPDATE TOOL STATUS now uses gold/amber as a dedicated action color so it no longer competes with Driver.
+- Priority retains urgency-driven colors; identity rows remain black/cyan; operational badges retain semantic state colors.
+- Same color language applies to regular Universal Tool Cards and Presentation Mode.
+- Preserves `b7fi-command-center-v3` production data compatibility.

@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.44', BUILD='20260905-V6.5.44-GLOBAL-BLACK-COLOR-SYSTEM';
+const VERSION='6.5.45', BUILD='20260905-V6.5.45-UTC-COLOR-ACTION-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -643,10 +643,10 @@ function liveToolCard(tool=null){
           ${identityRibbon(t,'customer','CUSTOMER',t.customer||'N/A')}
           ${identityRibbon(t,'salesOrder','SALES ORDER',t.salesOrder?`SO #${t.salesOrder}`:'N/A')}
         </div>
-        <button class="utc-edit-tool-bar direct-editable" type="button" data-open-tool="${esc(t.id)}" title="Open the complete editor for this tool"><span>✎ UPDATE TOOL STATUS</span><b>›</b></button>
         ${driverRibbon(t)}
         <div class="utc-reduced ${t.reducedProcess?'active':'idle'} direct-editable" data-direct-indicator="reduced" data-indicator-tool="${esc(t.id)}" role="button" tabindex="0" title="REDUCED PROCESS — click to update">REDUCED PROCESS</div>
         ${indicatorDisplayPanel(t)}
+        <button class="utc-edit-tool-bar direct-editable" type="button" data-open-tool="${esc(t.id)}" title="Open the complete editor for this tool"><span>✎ UPDATE TOOL STATUS</span><b>›</b></button>
       </section>
 
       <section class="utc-column utc-status">
