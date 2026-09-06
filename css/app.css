@@ -13776,3 +13776,74 @@ html body .utc-card.utc-v6538 .utc-middle-tool-photo img{
 /* On Track is overview-only. It has no Action Center visual/action state. */
 html body .action-system-helper .ontrack,
 html body .system-action-card.ontrack{display:none!important}
+
+/* ================================================================
+   V6.5.52 — UNIVERSAL TOOL CARD FINAL LEFT-RAIL / PHOTO LOCK
+   Authoritative across Live Operations, Tools pages and Presentation.
+   ================================================================ */
+/* The left rail follows DOM order. Do not let legacy grid-row rules pull
+   UPDATE TOOL STATUS back between Sales Order and Driver. */
+html body .utc-card.utc-v6538 .utc-info{
+  display:flex!important;
+  flex-direction:column!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-priority-ribbon,
+html body .utc-card.utc-v6538 .utc-info>.utc-identity-badges,
+html body .utc-card.utc-v6538 .utc-info>.utc-driver-ribbon,
+html body .utc-card.utc-v6538 .utc-info>.utc-reduced,
+html body .utc-card.utc-v6538 .utc-info>.utc-indicator-panel,
+html body .utc-card.utc-v6538 .utc-info>.utc-major-badges,
+html body .utc-card.utc-v6538 .utc-info>.utc-edit-tool-bar-bottom{
+  grid-row:auto!important;
+}
+/* Driver = personnel/assignment control: purple, distinct from identity/action. */
+html body .utc-card.utc-v6538 .utc-driver-ribbon,
+html body .utc-card.utc-v6538 .utc-driver-ribbon.unassigned,
+html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon,
+html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon.unassigned{
+  order:30!important;
+  background:linear-gradient(180deg,#8b5cf6,#5b21b6)!important;
+  border-color:#c4b5fd!important;
+  color:#fff!important;
+}
+html body .utc-card.utc-v6538 .utc-reduced{order:40!important}
+html body .utc-card.utc-v6538 .utc-indicator-panel,
+html body .utc-card.utc-v6538 .utc-major-badges{order:50!important}
+/* Full editor action = cyan/blue action control, always after all badges. */
+html body .utc-card.utc-v6538 .utc-edit-tool-bar-bottom,
+html body.presentation-mode .utc-card.utc-v6538 .utc-edit-tool-bar-bottom{
+  order:9999!important;
+  position:static!important;
+  inset:auto!important;
+  margin-top:5px!important;
+  flex:0 0 32px!important;
+  width:100%!important;
+  min-height:32px!important;
+  height:32px!important;
+  background:linear-gradient(180deg,#00b9df,#006c99)!important;
+  border:1px solid #5eeaff!important;
+  color:#fff!important;
+  box-shadow:inset 0 0 10px rgba(70,230,255,.16)!important;
+}
+/* Give the individual tool image a deliberate identity zone and more air. */
+html body .utc-card.utc-v6538 .utc-middle-tool-photo,
+html body.presentation-mode .utc-card.utc-v6538 .utc-middle-tool-photo{
+  min-height:104px!important;
+  height:104px!important;
+  padding:8px 10px 10px!important;
+  box-sizing:border-box!important;
+  margin-top:auto!important;
+  background:#000!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  overflow:hidden!important;
+}
+html body .utc-card.utc-v6538 .utc-middle-tool-photo img,
+html body.presentation-mode .utc-card.utc-v6538 .utc-middle-tool-photo img{
+  max-width:86%!important;
+  max-height:92px!important;
+  width:auto!important;
+  height:auto!important;
+  object-fit:contain!important;
+}

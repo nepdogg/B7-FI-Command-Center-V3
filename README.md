@@ -1,6 +1,6 @@
-# B7 FI Command Center V6.5.51
+# B7 FI Command Center V6.5.52
 
-Build: 20260906-V6.5.51-PRIORITY-ORDER-STABILITY-LOCK
+Build: 20260906-V6.5.52-PRIORITY-ORDER-STABILITY-LOCK
 
 ## V6.5.50 recovery changes
 - Rebuilt from the last known-good V6.5.44 full application tree; V6.5.48 is discarded because it accidentally removed core view/render functions.
@@ -357,8 +357,15 @@ V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit
 - Production storage key remains b7fi-command-center-v3.
 
 
-## V6.5.51
+## V6.5.52
 - Priority Center edit mode now opens in the exact same Lead/Manager ranked order as the read-only Priority Center.
 - Changing a rank immediately reorders the edit rows and normalizes the visible sequence.
 - Preserves V6.5.50 tool-photo, footer/header, automatic Action Center, On Track behavior, true-black card/presentation styling, and existing production storage compatibility.
 - No storage-key or schema-breaking changes.
+
+
+## V6.5.52 — Universal Tool Card left-rail lock
+- Driver is purple and visually distinct from tool identity/action controls.
+- UPDATE TOOL STATUS is locked below the full badge matrix and uses cyan/blue action styling.
+- Tool photo identity zone is larger with additional breathing room.
+- Same Universal Tool Card ordering/styling applies to regular and Presentation Mode.
