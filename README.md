@@ -1,3 +1,5 @@
+B7 FI COMMAND CENTER V6.5.47 — PAGE RECOVERY / SORT / NAV FIX
+
 # B7 FI Command Center V6.5.20
 
 ## 9/3/26 late field-test update
@@ -316,14 +318,14 @@ V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit
 - Existing localStorage key b7fi-command-center-v3 is unchanged.
 
 
-## V6.5.45 — True Black Presentation Surface Lock
+## V6.5.47 — True Black Presentation Surface Lock
 - Presentation Mode structural surfaces are now pure black, including the title/status panel, summary/navigation surfaces, identity rows, Update Tool Status, Driver, and all three UTC column backgrounds.
 - Bright cyan remains the major structural frame/border color; darker cyan remains for internal dividers.
 - Semantic status colors (priority, Reduced Process, operational badges, progress fills) remain intact so status meaning is not lost.
 - Existing `b7fi-command-center-v3` production data compatibility is unchanged.
 
 
-## V6.5.45 — Global Black Design System / Universal Tool Card Color Code
+## V6.5.47 — Global Black Design System / Universal Tool Card Color Code
 
 - Global Command Center canvas standardized to true black across all Centers/pages.
 - Existing Center color remains the page identity through header/footer borders, active navigation, and structural accents.
@@ -336,19 +338,10 @@ V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit
 - No storage/schema changes. Existing `b7fi-command-center-v3` production data remains compatible.
 
 
-## V6.5.45 — Universal Tool Card semantic color/action lock
+## V6.5.47 — Universal Tool Card semantic color/action lock
 - Moved UPDATE TOOL STATUS to the bottom of the left column, below the complete operational badge matrix.
 - Driver now uses purple when assigned (ownership/assignment) and neutral gray when unassigned.
 - UPDATE TOOL STATUS now uses gold/amber as a dedicated action color so it no longer competes with Driver.
 - Priority retains urgency-driven colors; identity rows remain black/cyan; operational badges retain semantic state colors.
 - Same color language applies to regular Universal Tool Cards and Presentation Mode.
 - Preserves `b7fi-command-center-v3` production data compatibility.
-
-
-## V6.5.46 — Presentation parity, standard tool ordering, priority edit ordering
-- Restores Presentation Mode to the same Universal Tool Card geometry used by Live Operations.
-- Removes vertical KLA side lines in header/footer and restores header top/bottom frame lines.
-- Tool Type action submenu retracts immediately after a tool family is selected.
-- Shipping Center and Cycle Time Center use the Daily Status standard order: non-Regera/Celestiq ascending, then Regera/Celestiq ascending.
-- Priority Center remains rank-driven; Edit Priorities now opens in the same active priority order shown before editing (Lead/Manager or Command Center source).
-- Storage key remains b7fi-command-center-v3.
