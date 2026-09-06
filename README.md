@@ -1,6 +1,6 @@
-# B7 FI Command Center V6.5.50
+# B7 FI Command Center V6.5.51
 
-Build: 20260906-V6.5.50-PHOTO-FOOTER-ONTRACK
+Build: 20260906-V6.5.51-PRIORITY-ORDER-STABILITY-LOCK
 
 ## V6.5.50 recovery changes
 - Rebuilt from the last known-good V6.5.44 full application tree; V6.5.48 is discarded because it accidentally removed core view/render functions.
@@ -355,3 +355,10 @@ V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit
 - Removed left/right vertical seams around the footer KLA center section.
 - Confirmed On Track systems remain overview-only and are excluded from alert/action generation; only Critical and Attention Brain conditions feed Action Center.
 - Production storage key remains b7fi-command-center-v3.
+
+
+## V6.5.51
+- Priority Center edit mode now opens in the exact same Lead/Manager ranked order as the read-only Priority Center.
+- Changing a rank immediately reorders the edit rows and normalizes the visible sequence.
+- Preserves V6.5.50 tool-photo, footer/header, automatic Action Center, On Track behavior, true-black card/presentation styling, and existing production storage compatibility.
+- No storage-key or schema-breaking changes.
