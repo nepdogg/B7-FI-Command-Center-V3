@@ -1,8 +1,8 @@
-# B7 FI Command Center V6.5.49
+# B7 FI Command Center V6.5.50
 
-Build: 20260906-V6.5.49-RECOVERY-PHOTO-ACTIONS-HEADER
+Build: 20260906-V6.5.50-PHOTO-FOOTER-ONTRACK
 
-## V6.5.49 recovery changes
+## V6.5.50 recovery changes
 - Rebuilt from the last known-good V6.5.44 full application tree; V6.5.48 is discarded because it accidentally removed core view/render functions.
 - Restores Live Operations, Presentation Mode, Action Center, Archive, Search, Reference, Administration, and the normal render path.
 - UPDATE TOOL STATUS is below the complete badge matrix and uses violet; Driver remains blue.
@@ -348,3 +348,10 @@ V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit
 - Forms, tables, modals, panels, and workspace surfaces use black backgrounds while preserving Center-color borders and focus states.
 - Presentation Mode remains true black and uses the same UTC semantic colors as all other pages.
 - No storage/schema changes. Existing `b7fi-command-center-v3` production data remains compatible.
+
+
+## V6.5.50
+- Universal Tool Card photo zone now shows the individual tool photo when assigned, with the existing family image as a safe fallback until a per-tool image is selected.
+- Removed left/right vertical seams around the footer KLA center section.
+- Confirmed On Track systems remain overview-only and are excluded from alert/action generation; only Critical and Attention Brain conditions feed Action Center.
+- Production storage key remains b7fi-command-center-v3.

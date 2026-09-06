@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.49', BUILD='20260906-V6.5.49-RECOVERY-PHOTO-ACTIONS-HEADER';
+const VERSION='6.5.50', BUILD='20260906-V6.5.50-PHOTO-FOOTER-ONTRACK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -676,7 +676,7 @@ function liveToolCard(tool=null){
           <div class="utc-kicker">LEAD NOTES / REMINDERS</div>
           <div class="utc-lead-notes-text">${esc(t.notes||'')}</div>
         </div>
-        <div class="utc-middle-tool-photo">${individualToolPhoto(t)?`<img src="${esc(individualToolPhoto(t))}" alt="Tool ${esc(t.id)}">`:``}</div>
+        <div class="utc-middle-tool-photo">${(()=>{let src=individualToolPhoto(t)||familyImage(t);return src?`<img src="${esc(src)}" alt="Tool ${esc(t.id)}">`:``})()}</div>
 
       </section>
 

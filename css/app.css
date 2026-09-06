@@ -13741,3 +13741,38 @@ html body .action-system-helper{border:1px solid #374d83!important;padding:8px 1
 
 /* Empty official status / notes areas remain truly empty. */
 html body .utc-live-status-text:empty,html body .utc-lead-notes-text:empty{min-height:0!important}
+
+
+/* ================================================================
+   V6.5.50 — TOOL PHOTO / FOOTER SEAM / ACTION SOURCE LOCK
+   ================================================================ */
+/* Footer matches the clean KLA header treatment: horizontal framing only.
+   No vertical seams immediately beside the centered KLA mark. */
+html body .app-footer .footer-left,
+html body .app-footer .footer-center,
+html body .app-footer .footer-right{
+  border-left:0!important;
+  border-right:0!important;
+  box-shadow:none!important;
+}
+html body .app-footer .footer-center{
+  border-left:0!important;
+  border-right:0!important;
+}
+
+/* The UTC image zone always has useful visual identity. A per-tool image wins;
+   when none is assigned yet, the existing tool-family image is used until the
+   user assigns that tool's individual photo in Tool Edit. */
+html body .utc-card.utc-v6538 .utc-middle-tool-photo{
+  background:#000!important;
+  border-left:0!important;
+  border-right:0!important;
+}
+html body .utc-card.utc-v6538 .utc-middle-tool-photo img{
+  max-width:78%!important;
+  max-height:80px!important;
+}
+
+/* On Track is overview-only. It has no Action Center visual/action state. */
+html body .action-system-helper .ontrack,
+html body .system-action-card.ontrack{display:none!important}
