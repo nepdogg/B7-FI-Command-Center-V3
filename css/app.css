@@ -13683,150 +13683,122 @@ html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon.unassigned{
   background:linear-gradient(180deg,#1686e5,#0c4f9c)!important;
 }
 
+/* ================================================================
+   V6.5.48 — UTC PHOTO / ACTION CENTER / HEADER LOCK
+   ================================================================ */
 
-/* =========================================================
-   V6.5.45 UTC COLOR + ACTION LOCK
-   Final left-column semantic language shared by regular UTC
-   and Presentation Mode.
-   ========================================================= */
-html body .utc-card.utc-v6538 .utc-info{
-  display:grid!important;
-  grid-template-columns:minmax(0,1fr)!important;
-  grid-template-rows:34px auto 32px 32px minmax(0,1fr) 36px!important;
-  row-gap:4px!important;
-  align-content:stretch!important;
-  min-height:0!important;
-  overflow:hidden!important;
-}
-html body .utc-card.utc-v6538 .utc-info>.utc-priority-ribbon{grid-row:1!important}
-html body .utc-card.utc-v6538 .utc-info>.utc-identity-badges{grid-row:2!important}
-html body .utc-card.utc-v6538 .utc-info>.utc-driver-ribbon,
-html body .utc-card.utc-v6538 .utc-info>.utc-driver-ribbon.unassigned{grid-row:3!important}
-html body .utc-card.utc-v6538 .utc-info>.utc-reduced{grid-row:4!important}
-html body .utc-card.utc-v6538 .utc-info>.utc-indicator-display{grid-row:5!important;min-height:0!important;overflow:hidden!important}
-html body .utc-card.utc-v6538 .utc-info>.utc-edit-tool-bar{grid-row:6!important;height:36px!important;min-height:36px!important;margin:0!important}
-
-/* Purple = ownership / assigned driver. */
-html body .utc-card.utc-v6538 .utc-driver-ribbon:not(.unassigned){
-  background:linear-gradient(180deg,#8f5cf4,#5b2db7)!important;
-  border-color:#bd9aff!important;
-  color:#fff!important;
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)!important;
-}
-/* Neutral gray = no owner assigned yet. */
-html body .utc-card.utc-v6538 .utc-driver-ribbon.unassigned{
-  background:linear-gradient(180deg,#4d5963,#2d353c)!important;
-  border-color:#82919c!important;
-  color:#fff!important;
-  box-shadow:none!important;
-}
-
-/* Gold = explicit action. It is intentionally not a status color. */
-html body .utc-card.utc-v6538 .utc-edit-tool-bar,
-html body .utc-card.utc-v6538 .utc-update-tool-status{
-  background:linear-gradient(180deg,#d58b00,#8c5700)!important;
-  border-color:#ffc33d!important;
-  color:#fff!important;
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.09)!important;
-}
-html body .utc-card.utc-v6538 .utc-edit-tool-bar:hover,
-html body .utc-card.utc-v6538 .utc-update-tool-status:hover{
-  background:linear-gradient(180deg,#eca117,#a96800)!important;
-}
-
-/* Presentation Mode uses the identical semantic colors. */
-html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon:not(.unassigned){
-  background:linear-gradient(180deg,#8f5cf4,#5b2db7)!important;
-  border-color:#bd9aff!important;
-}
-html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon.unassigned{
-  background:linear-gradient(180deg,#4d5963,#2d353c)!important;
-  border-color:#82919c!important;
-}
-html body.presentation-mode .utc-card.utc-v6538 .utc-edit-tool-bar,
-html body.presentation-mode .utc-card.utc-v6538 .utc-update-tool-status{
-  background:linear-gradient(180deg,#d58b00,#8c5700)!important;
-  border-color:#ffc33d!important;
-}
-
-/* =========================================================
-   V6.5.47 FINAL AUTHORITY — PRESENTATION PARITY / NAV / SHELL
-   ========================================================= */
-/* Tool Type submenu: once a selection is made, retract even while the pointer
-   remains over the originating menu. It can reopen after the pointer leaves. */
-html body #pageActions .tool-type-menu.selection-closed>.tool-type-dropdown,
-html body #pageActions .tool-type-menu.selection-closed:hover>.tool-type-dropdown,
-html body #pageActions .tool-type-menu.selection-closed:focus-within>.tool-type-dropdown{
-  display:none!important;
-}
-
-/* Header/footer KLA treatment: horizontal frame only, no vertical bars beside logo. */
-html body .hero-center,
-html body .footer-center,
-html body .app-footer .footer-center{
+/* Header and footer are matched horizontal frames. No vertical seams
+   beside the centered KLA mark. */
+html body .hero{
+  border-top:2px solid var(--accent)!important;
+  border-bottom:2px solid var(--accent)!important;
   border-left:0!important;
   border-right:0!important;
 }
-html body .hero{
-  border-top:1px solid var(--accent)!important;
-  border-bottom:1px solid var(--accent)!important;
-}
-html body .app-footer{
-  border-top:1px solid var(--accent)!important;
-  border-bottom:1px solid var(--accent)!important;
+html body .hero-left,
+html body .hero-center,
+html body .hero-right{
+  border-left:0!important;
+  border-right:0!important;
+  box-shadow:none!important;
 }
 
-/* Presentation Mode must use the same finished UTC geometry as Live Operations.
-   Only scale/background treatment is presentation-specific. */
-html body.presentation-mode .presentation-tool-only .utc-card.utc-v6538,
-html body.presentation-mode .presentation-tool-focus .utc-card.utc-v6538{
-  height:100%!important;
-  min-height:0!important;
+/* The single-tool editor action is intentionally separated from Driver.
+   Violet = full tool editor/action; blue remains assignment/Driver. */
+html body .utc-card.utc-v6538 .utc-edit-tool-bar,
+html body .utc-card.utc-v6538 .utc-update-tool-status,
+html body .utc-card.utc-v6538 .utc-edit-tool-bar-bottom{
+  background:linear-gradient(180deg,#8b5cf6,#5b21b6)!important;
+  border:1px solid #b9a0ff!important;
+  color:#fff!important;
+  min-height:32px!important;
+  margin-top:4px!important;
 }
-html body.presentation-mode .presentation-tool-only .utc-card.utc-v6538 .utc-column,
-html body.presentation-mode .presentation-tool-focus .utc-card.utc-v6538 .utc-column{
-  height:100%!important;
-  min-height:0!important;
+html body .utc-card.utc-v6538 .utc-driver-ribbon,
+html body .utc-card.utc-v6538 .utc-driver-ribbon.unassigned{
+  background:linear-gradient(180deg,#1686e5,#0c4f9c)!important;
+  border-color:#58c8ff!important;
 }
-html body.presentation-mode .utc-card.utc-v6538 .utc-info{
+
+/* Individual tool photo replaces duplicated KLA branding inside the UTC.
+   It is deliberately a fixed, non-layout-shifting zone. */
+html body .utc-card.utc-v6538 .utc-middle-tool-photo{
+  margin-top:auto!important;
+  min-height:86px!important;
+  height:86px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  overflow:hidden!important;
+  background:#000!important;
+  border-top:1px solid #1b556e!important;
+}
+html body .utc-card.utc-v6538 .utc-middle-tool-photo:empty{
+  border-top-color:#123747!important;
+}
+html body .utc-card.utc-v6538 .utc-middle-tool-photo img{
+  display:block!important;
+  max-width:72%!important;
+  max-height:76px!important;
+  width:auto!important;
+  height:auto!important;
+  object-fit:contain!important;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,.55));
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-middle-tool-photo{
+  background:#000!important;
+  border-top-color:#1b556e!important;
+}
+
+/* Tool-specific photo editing. */
+html body .tool-specific-photo-editor{
   display:grid!important;
-  height:100%!important;
-  min-height:0!important;
-  grid-template-columns:minmax(0,1fr)!important;
-  grid-template-rows:34px auto 32px 32px minmax(0,1fr) 36px!important;
-  row-gap:4px!important;
-  align-content:stretch!important;
+  grid-template-columns:170px 1fr!important;
+  gap:14px!important;
+  align-items:center!important;
+  margin:8px 0 14px!important;
+  padding:10px!important;
+  border:1px solid #245f7b!important;
+  background:#000!important;
+}
+html body .tool-specific-photo-preview{
+  height:110px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border:1px solid #1d4e67!important;
+  background:#000!important;
   overflow:hidden!important;
 }
-html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-priority-ribbon{grid-row:1!important}
-html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-identity-badges{grid-row:2!important}
-html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-driver-ribbon,
-html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-driver-ribbon.unassigned{grid-row:3!important}
-html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-reduced{grid-row:4!important}
-html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display{
-  grid-row:5!important;
-  min-height:0!important;
-  height:100%!important;
-  overflow:hidden!important;
+html body .tool-specific-photo-preview img{max-width:100%!important;max-height:104px!important;object-fit:contain!important}
+html body .tool-photo-empty{font-size:11px!important;color:#6d91a6!important;text-align:center!important}
+html body .tool-specific-photo-actions{display:flex!important;gap:8px!important;align-items:center!important;flex-wrap:wrap!important}
+html body .tool-specific-photo-editor>small{grid-column:2!important;color:#8fb6c9!important}
+
+/* Brain-generated Action Center rows are live system conditions, not
+   manually closable action records. */
+html body .system-action-card{
+  border-style:solid!important;
+  background:#000!important;
 }
-html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-edit-tool-bar{
-  grid-row:6!important;
-  height:36px!important;
-  min-height:36px!important;
-  margin:0!important;
+html body .system-action-card.critical{border-color:#ff4059!important}
+html body .system-action-card.attention{border-color:#ffbd22!important}
+html body .system-action-chip{
+  display:inline-block!important;
+  margin-left:8px!important;
+  padding:2px 6px!important;
+  border:1px solid #7a59dc!important;
+  color:#cdbdff!important;
+  font-size:10px!important;
+  letter-spacing:.04em!important;
 }
-html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display .utc-indicator-grid{
-  display:grid!important;
-  grid-template-columns:repeat(2,minmax(0,1fr))!important;
-  grid-template-rows:repeat(14,minmax(0,1fr))!important;
-  gap:4px!important;
-  height:100%!important;
-  min-height:0!important;
-  align-content:stretch!important;
+html body .action-system-helper{
+  border:1px solid #374d83!important;
+  padding:8px 10px!important;
+  margin:8px 0!important;
+  background:#000!important;
 }
-html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-lamp{
-  height:100%!important;
-  min-height:0!important;
-  margin:0!important;
-  padding:1px 4px!important;
-}
+
+/* Empty official status / notes areas stay visually empty. */
+html body .utc-live-status-text:empty,
+html body .utc-lead-notes-text:empty{min-height:0!important}

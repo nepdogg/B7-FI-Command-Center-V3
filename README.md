@@ -1,4 +1,14 @@
-B7 FI COMMAND CENTER V6.5.47 — PAGE RECOVERY / SORT / NAV FIX
+# B7 FI Command Center V6.5.48
+
+Build: 20260906-V6.5.48-UTC-PHOTO-ACTION-HEADER-LOCK
+
+## V6.5.48 changes
+- Universal Tool Card UPDATE TOOL STATUS moved below the full badge matrix and given a distinct violet action color; Driver remains blue.
+- Tool-specific photo support added to each tool record and Tool Edit page. The individual photo replaces the repeated KLA logo at the bottom of the middle Tool Card column; no photo means the area remains black.
+- Action Center now includes live Command Center Brain Critical and Attention conditions from Systems Requiring Attention as AUTO / SYSTEM actions. These clear automatically when the source condition clears; On Track tools are not actions.
+- Header top and bottom accent borders are locked and the vertical seams beside the KLA logo are removed.
+- Empty Latest Status and Lead Notes areas display no artificial placeholder text.
+- Existing localStorage key b7fi-command-center-v3 is unchanged.
 
 # B7 FI Command Center V6.5.20
 
@@ -318,14 +328,14 @@ V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit
 - Existing localStorage key b7fi-command-center-v3 is unchanged.
 
 
-## V6.5.47 — True Black Presentation Surface Lock
+## V6.5.44 — True Black Presentation Surface Lock
 - Presentation Mode structural surfaces are now pure black, including the title/status panel, summary/navigation surfaces, identity rows, Update Tool Status, Driver, and all three UTC column backgrounds.
 - Bright cyan remains the major structural frame/border color; darker cyan remains for internal dividers.
 - Semantic status colors (priority, Reduced Process, operational badges, progress fills) remain intact so status meaning is not lost.
 - Existing `b7fi-command-center-v3` production data compatibility is unchanged.
 
 
-## V6.5.47 — Global Black Design System / Universal Tool Card Color Code
+## V6.5.44 — Global Black Design System / Universal Tool Card Color Code
 
 - Global Command Center canvas standardized to true black across all Centers/pages.
 - Existing Center color remains the page identity through header/footer borders, active navigation, and structural accents.
@@ -336,12 +346,3 @@ V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit
 - Forms, tables, modals, panels, and workspace surfaces use black backgrounds while preserving Center-color borders and focus states.
 - Presentation Mode remains true black and uses the same UTC semantic colors as all other pages.
 - No storage/schema changes. Existing `b7fi-command-center-v3` production data remains compatible.
-
-
-## V6.5.47 — Universal Tool Card semantic color/action lock
-- Moved UPDATE TOOL STATUS to the bottom of the left column, below the complete operational badge matrix.
-- Driver now uses purple when assigned (ownership/assignment) and neutral gray when unassigned.
-- UPDATE TOOL STATUS now uses gold/amber as a dedicated action color so it no longer competes with Driver.
-- Priority retains urgency-driven colors; identity rows remain black/cyan; operational badges retain semantic state colors.
-- Same color language applies to regular Universal Tool Cards and Presentation Mode.
-- Preserves `b7fi-command-center-v3` production data compatibility.
