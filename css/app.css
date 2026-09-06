@@ -13402,3 +13402,283 @@ html body.presentation-mode .presentation-quarter-panel{
   border-top:1px solid #18d8ff!important;
   border-bottom:1px solid #18d8ff!important;
 }
+
+/* =========================================================
+   V6.5.44 — GLOBAL TRUE-BLACK DESIGN SYSTEM + UTC COLOR CODE
+   Black is the neutral canvas on every page.  Center/page color is carried by
+   headers, footers, active navigation, and structural borders.  Semantic
+   colors remain reserved for operational meaning.
+   ========================================================= */
+
+/* ---------- Global canvas ---------- */
+html,body,
+html body .app-frame,
+html body .sticky-shell,
+html body .body-shell,
+html body .body-workspace,
+html body main,
+html body .status-stack,
+html body .pagebar,
+html body .subnav,
+html body .page-actions,
+html body .panel,
+html body .panel-head,
+html body .snapshot-panel,
+html body .snapshot-body,
+html body .snapshot-scroll,
+html body .operations-dual-grid,
+html body .operations-status-carousel,
+html body .operations-tool-carousel,
+html body .archive-quarter,
+html body .email-status,
+html body .email-row,
+html body .meeting-card,
+html body .action-card,
+html body .ref-card,
+html body .ref-row,
+html body .search-result,
+html body .system-card,
+html body .family-cell,
+html body .meeting-ready-tool,
+html body .meeting-placeholder,
+html body .oncall-preview,
+html body .modal-card,
+html body .lead-modal,
+html body .lead-modal .modal-actions{
+  background:#000!important;
+  background-color:#000!important;
+  background-image:none!important;
+}
+html,body{color:#f7fbff!important}
+
+/* ---------- Center color = page identity ---------- */
+html body .hero,
+html body .main-nav,
+html body .pagebar,
+html body .app-footer{
+  background:#000!important;
+  background-image:none!important;
+  border-color:var(--accent)!important;
+}
+html body .hero{
+  border-top:2px solid var(--accent)!important;
+  border-bottom:2px solid var(--accent)!important;
+  box-shadow:inset 0 0 0 1px rgba(var(--accent-rgb),.18)!important;
+}
+html body .hero-left,
+html body .hero-center,
+html body .hero-right{
+  background:#000!important;
+  background-image:none!important;
+}
+html body .hero-left{border-right:1px solid rgba(var(--accent-rgb),.65)!important}
+html body .hero-right{border-left:1px solid rgba(var(--accent-rgb),.65)!important}
+html body .hero-left,
+html body .hero-right{color:#fff!important}
+html body .app-footer{
+  border-top:2px solid var(--accent)!important;
+  border-bottom:2px solid var(--accent)!important;
+  box-shadow:inset 0 0 0 1px rgba(var(--accent-rgb),.18)!important;
+}
+html body .footer-left,
+html body .footer-center,
+html body .footer-right{background:#000!important}
+html body .footer-center{border-left:1px solid rgba(var(--accent-rgb),.65)!important;border-right:1px solid rgba(var(--accent-rgb),.65)!important}
+html body .footer-data,
+html body .footer-right span{color:#c9deeb!important}
+
+/* ---------- Navigation/action surfaces ---------- */
+html body .main-nav button,
+html body .subnav button,
+html body .page-actions button,
+html body footer button,
+html body .btn,
+html body .ops-mini-btn,
+html body .ops-pause-btn{
+  background:#000!important;
+  color:#eaf7ff!important;
+  border-color:#214d67!important;
+}
+html body .main-nav button.active,
+html body .subnav button.active,
+html body .page-actions button.primary{
+  background:rgba(var(--accent-rgb),.18)!important;
+  color:#fff!important;
+  box-shadow:inset 0 -3px var(--accent)!important;
+}
+html body .main-nav button:hover,
+html body .subnav button:hover,
+html body .page-actions button:hover,
+html body .btn:hover{
+  background:rgba(var(--accent-rgb),.12)!important;
+  border-color:var(--accent)!important;
+}
+
+/* ---------- Panels/tables/forms: black surfaces, colored structure ---------- */
+html body .panel,
+html body .archive-quarter,
+html body .email-status,
+html body .meeting-card,
+html body .action-card,
+html body .ref-card,
+html body .ref-row,
+html body .search-result,
+html body .system-card,
+html body .family-cell,
+html body .meeting-ready-tool,
+html body .oncall-preview{
+  border-color:rgba(var(--accent-rgb),.62)!important;
+}
+html body .panel h1,
+html body .panel h2,
+html body .panel h3{color:#fff!important}
+html body .helper,
+html body .muted{color:#9fc4d9!important}
+html body .data-table th{color:#89dfff!important}
+html body .data-table td{color:#f5fbff!important}
+html body .data-table tr:hover td{background:rgba(var(--accent-rgb),.08)!important}
+html body .field input,
+html body .field select,
+html body .field textarea,
+html body .nc-row input,
+html body .nc-row select,
+html body .data-table textarea,
+html body .search-box,
+html body input,
+html body select,
+html body textarea{
+  background:#000!important;
+  color:#fff!important;
+  border-color:#2c607c!important;
+}
+html body .field input:focus,
+html body .field select:focus,
+html body .field textarea:focus,
+html body input:focus,
+html body select:focus,
+html body textarea:focus{
+  outline:none!important;
+  border-color:var(--accent)!important;
+  box-shadow:0 0 0 1px rgba(var(--accent-rgb),.4)!important;
+}
+html body .field label{color:#8edcff!important}
+
+/* Summary/stat tiles stay black; their semantic border colors remain the signal. */
+html body .summary-box,
+html body .mini-stat{
+  background:#000!important;
+  background-image:none!important;
+}
+
+/* ---------- Universal Tool Card color language ---------- */
+html body .utc-card.utc-v6538,
+html body .utc-card.utc-v6538>.utc-column,
+html body .utc-card.utc-v6538 .utc-info,
+html body .utc-card.utc-v6538 .utc-status,
+html body .utc-card.utc-v6538 .utc-progress,
+html body .utc-card.utc-v6538 .utc-status>*,
+html body .utc-card.utc-v6538 .utc-progress>*,
+html body .utc-card.utc-v6538 .utc-progress-list,
+html body .utc-card.utc-v6538 .utc-progress-quick,
+html body .utc-card.utc-v6538 .progress-item{
+  background:#000!important;
+  background-image:none!important;
+}
+html body .utc-card.utc-v6538{
+  border-color:#18d8ff!important;
+}
+html body .utc-card.utc-v6538>.utc-column{
+  border-color:#2d7897!important;
+}
+
+/* Identity/reference = black + cyan frame + white value. */
+html body .utc-card.utc-v6538 .utc-identity-ribbon,
+html body .utc-card.utc-v6538 .utc-identity-row,
+html body .utc-card.utc-v6538 [data-direct-identity]{
+  background:#000!important;
+  background-image:none!important;
+  border-color:#18d8ff!important;
+  color:#fff!important;
+}
+html body .utc-card.utc-v6538 .utc-identity-ribbon small,
+html body .utc-card.utc-v6538 .utc-identity-row small{color:#5fe8ff!important}
+html body .utc-card.utc-v6538 .utc-identity-ribbon span,
+html body .utc-card.utc-v6538 .utc-identity-row span{color:#fff!important}
+
+/* Blue = action / editable assignment. */
+html body .utc-card.utc-v6538 .utc-update-tool-status,
+html body .utc-card.utc-v6538 .utc-edit-tool-bar,
+html body .utc-card.utc-v6538 .utc-driver-ribbon,
+html body .utc-card.utc-v6538 .utc-driver-ribbon.unassigned{
+  background:linear-gradient(180deg,#1686e5,#0c4f9c)!important;
+  border-color:#58c8ff!important;
+  color:#fff!important;
+}
+
+/* Priority = urgency, identical everywhere the UTC is rendered. */
+html body .utc-card.utc-v6538 .utc-priority-ribbon.priority-top,
+html body .utc-card.utc-v6538 .utc-priority-ribbon.priority-high{
+  background:linear-gradient(180deg,#f02743,#bd1028)!important;
+  border-color:#ff6378!important;
+  color:#fff!important;
+}
+html body .utc-card.utc-v6538 .utc-priority-ribbon.priority-medium{
+  background:linear-gradient(180deg,#d79c12,#956700)!important;
+  border-color:#ffd45a!important;
+  color:#fff!important;
+}
+html body .utc-card.utc-v6538 .utc-priority-ribbon.priority-low{
+  background:linear-gradient(180deg,#1686e5,#0c4f9c)!important;
+  border-color:#58c8ff!important;
+  color:#fff!important;
+}
+html body .utc-card.utc-v6538 .utc-priority-ribbon.priority-tbd,
+html body .utc-card.utc-v6538 .utc-priority-ribbon.priority-placeholder{
+  background:#101820!important;
+  border-color:#526b79!important;
+  color:#c6d3db!important;
+  box-shadow:none!important;
+}
+html body .utc-card.utc-v6538 .utc-priority-ribbon small{color:rgba(255,255,255,.86)!important}
+
+/* Reduced Process remains semantic: red when active, near-black when off. */
+html body .utc-card.utc-v6538 .utc-reduced,
+html body .utc-card.utc-v6538 .utc-reduced-ribbon,
+html body .utc-card.utc-v6538 .reduced-process-badge{
+  border-color:#5d1d28!important;
+}
+html body .utc-card.utc-v6538 .utc-reduced.active,
+html body .utc-card.utc-v6538 .utc-reduced-ribbon.active,
+html body .utc-card.utc-v6538 .reduced-process-badge.active{
+  background:#c91632!important;
+  border-color:#ff5067!important;
+  color:#fff!important;
+}
+
+/* Primary information hierarchy on black. */
+html body .utc-card.utc-v6538 .utc-progress .progress-head,
+html body .utc-card.utc-v6538 .utc-progress .progress-head b,
+html body .utc-card.utc-v6538 .utc-progress .progress-head span,
+html body .utc-card.utc-v6538 .utc-status-value,
+html body .utc-card.utc-v6538 .utc-countdown-value{
+  color:#fff!important;
+}
+html body .utc-card.utc-v6538 .utc-kicker,
+html body .utc-card.utc-v6538 .progress-step,
+html body .utc-card.utc-v6538 .utc-live-system-status .utc-kicker,
+html body .utc-card.utc-v6538 .utc-lead-notes .utc-kicker{
+  color:#31dcff!important;
+}
+html body .utc-card.utc-v6538 .utc-live-status-text,
+html body .utc-card.utc-v6538 .utc-lead-notes-text,
+html body .utc-card.utc-v6538 .utc-daily-status-block{
+  color:#fff!important;
+}
+
+/* Presentation remains the same semantic system; only the wallboard shell/scaling differs. */
+html body.presentation-mode .utc-card.utc-v6538 .utc-update-tool-status,
+html body.presentation-mode .utc-card.utc-v6538 .utc-edit-tool-bar,
+html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon,
+html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon.unassigned{
+  background:linear-gradient(180deg,#1686e5,#0c4f9c)!important;
+}

@@ -316,8 +316,21 @@ V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit
 - Existing localStorage key b7fi-command-center-v3 is unchanged.
 
 
-## V6.5.43 — True Black Presentation Surface Lock
+## V6.5.44 — True Black Presentation Surface Lock
 - Presentation Mode structural surfaces are now pure black, including the title/status panel, summary/navigation surfaces, identity rows, Update Tool Status, Driver, and all three UTC column backgrounds.
 - Bright cyan remains the major structural frame/border color; darker cyan remains for internal dividers.
 - Semantic status colors (priority, Reduced Process, operational badges, progress fills) remain intact so status meaning is not lost.
 - Existing `b7fi-command-center-v3` production data compatibility is unchanged.
+
+
+## V6.5.44 — Global Black Design System / Universal Tool Card Color Code
+
+- Global Command Center canvas standardized to true black across all Centers/pages.
+- Existing Center color remains the page identity through header/footer borders, active navigation, and structural accents.
+- Universal Tool Card now uses one semantic color language everywhere: identity/reference = black/cyan, action/assignment = blue, priority = urgency color, status badges retain semantic red/yellow/green/purple/off states.
+- Priority colors: Top/High red, middle-range priority amber, Low blue, TBD neutral.
+- Update Tool Status and Driver use blue action/assignment treatment in both regular and Presentation cards.
+- Tool identity rows use black surfaces, cyan borders/labels, and white values.
+- Forms, tables, modals, panels, and workspace surfaces use black backgrounds while preserving Center-color borders and focus states.
+- Presentation Mode remains true black and uses the same UTC semantic colors as all other pages.
+- No storage/schema changes. Existing `b7fi-command-center-v3` production data remains compatible.
