@@ -13314,3 +13314,91 @@ html body.presentation-mode .presentation-quarter-panel{
   border-bottom:1px solid #18d8ff!important;
   background:#000!important;
 }
+
+/* =========================================================
+   V6.5.43 — TRUE BLACK PRESENTATION SURFACE LOCK
+   Every non-semantic Presentation Mode surface is pure black.
+   Color is reserved for structure, status, and progress meaning.
+   ========================================================= */
+html body.presentation-mode,
+html body.presentation-mode .app-frame,
+html body.presentation-mode .body-shell,
+html body.presentation-mode .body-workspace,
+html body.presentation-mode #app,
+html body.presentation-mode .screenshot-report-title,
+html body.presentation-mode .panel,
+html body.presentation-mode .quarter-live-panel,
+html body.presentation-mode .presentation-quarter-panel,
+html body.presentation-mode .presentation-quarter-panel .summary-grid,
+html body.presentation-mode .presentation-quarter-panel .shipping-total,
+html body.presentation-mode .presentation-quarter-panel .quarter-time-progress,
+html body.presentation-mode .presentation-inline-nav,
+html body.presentation-mode .presentation-nav-cell,
+html body.presentation-mode .presentation-tool-only,
+html body.presentation-mode .presentation-tool-focus,
+html body.presentation-mode .utc-host,
+html body.presentation-mode .utc-card,
+html body.presentation-mode .utc-card.utc-v6538,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info,
+html body.presentation-mode .utc-card.utc-v6538 .utc-status,
+html body.presentation-mode .utc-card.utc-v6538 .utc-progress,
+html body.presentation-mode .utc-card.utc-v6538 .utc-status > *,
+html body.presentation-mode .utc-card.utc-v6538 .utc-progress > *,
+html body.presentation-mode .utc-card.utc-v6538 .utc-progress-list,
+html body.presentation-mode .utc-card.utc-v6538 .utc-progress-quick,
+html body.presentation-mode .utc-card.utc-v6538 .progress-item,
+html body.presentation-mode .utc-card.utc-v6538 .utc-identity-ribbon,
+html body.presentation-mode .utc-card.utc-v6538 .utc-identity-row,
+html body.presentation-mode .utc-card.utc-v6538 [data-direct-identity],
+html body.presentation-mode .utc-card.utc-v6538 .utc-update-tool-status,
+html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon,
+html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon.unassigned{
+  background:#000!important;
+  background-color:#000!important;
+  background-image:none!important;
+}
+
+/* Summary tiles keep their semantic border colors, but their surfaces are black. */
+html body.presentation-mode .presentation-quarter-panel .summary-box,
+html body.presentation-mode .presentation-quarter-panel .summary-box.summary-disabled{
+  background:#000!important;
+  background-color:#000!important;
+  background-image:none!important;
+}
+
+/* Cyan frame system on black. */
+html body.presentation-mode .screenshot-report-title,
+html body.presentation-mode .presentation-quarter-panel,
+html body.presentation-mode .presentation-inline-nav,
+html body.presentation-mode .presentation-nav-cell,
+html body.presentation-mode .utc-card.utc-v6538,
+html body.presentation-mode .utc-card.utc-v6538 > .utc-column,
+html body.presentation-mode .utc-card.utc-v6538 .utc-identity-ribbon,
+html body.presentation-mode .utc-card.utc-v6538 .utc-identity-row,
+html body.presentation-mode .utc-card.utc-v6538 [data-direct-identity],
+html body.presentation-mode .utc-card.utc-v6538 .utc-update-tool-status,
+html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon{
+  border-color:#18d8ff!important;
+}
+
+/* Keep semantic controls/statuses colored; do not black out their meaning. */
+html body.presentation-mode .utc-card.utc-v6538 .utc-priority-ribbon,
+html body.presentation-mode .utc-card.utc-v6538 .utc-reduced-ribbon,
+html body.presentation-mode .utc-card.utc-v6538 .reduced-process-badge,
+html body.presentation-mode .utc-card.utc-v6538 .utc-indicator,
+html body.presentation-mode .utc-card.utc-v6538 .utc-indicator-badge,
+html body.presentation-mode .utc-card.utc-v6538 .badge,
+html body.presentation-mode .utc-card.utc-v6538 .fill{
+  background-image:initial!important;
+}
+
+/* Top presentation title/panel are fully enclosed black surfaces. */
+html body.presentation-mode .screenshot-report-title{
+  border:1px solid #18d8ff!important;
+  color:#fff!important;
+}
+html body.presentation-mode .presentation-quarter-panel{
+  border:1px solid #18d8ff!important;
+  border-top:1px solid #18d8ff!important;
+  border-bottom:1px solid #18d8ff!important;
+}

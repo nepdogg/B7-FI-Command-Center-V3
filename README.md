@@ -314,3 +314,10 @@ V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit
 - Live System Status and Lead Notes / Reminders use equalized vertical space with tighter divider spacing.
 - Header KLA band gains the same top/bottom border treatment as the footer.
 - Existing localStorage key b7fi-command-center-v3 is unchanged.
+
+
+## V6.5.43 — True Black Presentation Surface Lock
+- Presentation Mode structural surfaces are now pure black, including the title/status panel, summary/navigation surfaces, identity rows, Update Tool Status, Driver, and all three UTC column backgrounds.
+- Bright cyan remains the major structural frame/border color; darker cyan remains for internal dividers.
+- Semantic status colors (priority, Reduced Process, operational badges, progress fills) remain intact so status meaning is not lost.
+- Existing `b7fi-command-center-v3` production data compatibility is unchanged.
