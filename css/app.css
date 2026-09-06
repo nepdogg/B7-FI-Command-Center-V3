@@ -13684,35 +13684,33 @@ html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon.unassigned{
 }
 
 /* ================================================================
-   V6.5.48 — UTC PHOTO / ACTION CENTER / HEADER LOCK
+   V6.5.49 — RECOVERY / PHOTO / ACTION CENTER / HEADER LOCK
    ================================================================ */
-
-/* Header and footer are matched horizontal frames. No vertical seams
-   beside the centered KLA mark. */
+/* Header frame: guaranteed continuous top/bottom accent lines, no KLA-side seams. */
 html body .hero{
+  position:relative!important;
+  border-left:0!important;
+  border-right:0!important;
   border-top:2px solid var(--accent)!important;
   border-bottom:2px solid var(--accent)!important;
-  border-left:0!important;
-  border-right:0!important;
+  box-shadow:inset 0 2px 0 var(--accent),inset 0 -2px 0 var(--accent)!important;
+  overflow:hidden!important;
 }
-html body .hero-left,
-html body .hero-center,
-html body .hero-right{
-  border-left:0!important;
-  border-right:0!important;
-  box-shadow:none!important;
+html body .hero::before,html body .hero::after{
+  content:""!important;position:absolute!important;left:0!important;right:0!important;height:2px!important;background:var(--accent)!important;z-index:20!important;pointer-events:none!important;
 }
+html body .hero::before{top:0!important} html body .hero::after{bottom:0!important}
+html body .hero-left,html body .hero-center,html body .hero-right{border-left:0!important;border-right:0!important;box-shadow:none!important}
 
-/* The single-tool editor action is intentionally separated from Driver.
-   Violet = full tool editor/action; blue remains assignment/Driver. */
-html body .utc-card.utc-v6538 .utc-edit-tool-bar,
-html body .utc-card.utc-v6538 .utc-update-tool-status,
+/* Full tool editor action lives after the entire badge matrix and is visually distinct from Driver. */
 html body .utc-card.utc-v6538 .utc-edit-tool-bar-bottom{
+  order:999!important;
+  width:100%!important;
+  min-height:32px!important;
+  margin-top:4px!important;
   background:linear-gradient(180deg,#8b5cf6,#5b21b6)!important;
   border:1px solid #b9a0ff!important;
   color:#fff!important;
-  min-height:32px!important;
-  margin-top:4px!important;
 }
 html body .utc-card.utc-v6538 .utc-driver-ribbon,
 html body .utc-card.utc-v6538 .utc-driver-ribbon.unassigned{
@@ -13720,85 +13718,26 @@ html body .utc-card.utc-v6538 .utc-driver-ribbon.unassigned{
   border-color:#58c8ff!important;
 }
 
-/* Individual tool photo replaces duplicated KLA branding inside the UTC.
-   It is deliberately a fixed, non-layout-shifting zone. */
+/* Individual tool-specific photo replaces duplicate KLA branding in UTC middle column. */
 html body .utc-card.utc-v6538 .utc-middle-tool-photo{
-  margin-top:auto!important;
-  min-height:86px!important;
-  height:86px!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  overflow:hidden!important;
-  background:#000!important;
-  border-top:1px solid #1b556e!important;
+  margin-top:auto!important;min-height:86px!important;height:86px!important;display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;background:#000!important;border-top:1px solid #1b556e!important;
 }
-html body .utc-card.utc-v6538 .utc-middle-tool-photo:empty{
-  border-top-color:#123747!important;
-}
-html body .utc-card.utc-v6538 .utc-middle-tool-photo img{
-  display:block!important;
-  max-width:72%!important;
-  max-height:76px!important;
-  width:auto!important;
-  height:auto!important;
-  object-fit:contain!important;
-  filter:drop-shadow(0 2px 4px rgba(0,0,0,.55));
-}
-html body.presentation-mode .utc-card.utc-v6538 .utc-middle-tool-photo{
-  background:#000!important;
-  border-top-color:#1b556e!important;
-}
+html body .utc-card.utc-v6538 .utc-middle-tool-photo:empty{border-top-color:#123747!important}
+html body .utc-card.utc-v6538 .utc-middle-tool-photo img{display:block!important;max-width:72%!important;max-height:76px!important;width:auto!important;height:auto!important;object-fit:contain!important;filter:drop-shadow(0 2px 4px rgba(0,0,0,.55))}
 
-/* Tool-specific photo editing. */
-html body .tool-specific-photo-editor{
-  display:grid!important;
-  grid-template-columns:170px 1fr!important;
-  gap:14px!important;
-  align-items:center!important;
-  margin:8px 0 14px!important;
-  padding:10px!important;
-  border:1px solid #245f7b!important;
-  background:#000!important;
-}
-html body .tool-specific-photo-preview{
-  height:110px!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  border:1px solid #1d4e67!important;
-  background:#000!important;
-  overflow:hidden!important;
-}
+html body .tool-specific-photo-editor{display:grid!important;grid-template-columns:170px 1fr!important;gap:14px!important;align-items:center!important;margin:8px 0 14px!important;padding:10px!important;border:1px solid #245f7b!important;background:#000!important}
+html body .tool-specific-photo-preview{height:110px!important;display:flex!important;align-items:center!important;justify-content:center!important;border:1px solid #1d4e67!important;background:#000!important;overflow:hidden!important}
 html body .tool-specific-photo-preview img{max-width:100%!important;max-height:104px!important;object-fit:contain!important}
 html body .tool-photo-empty{font-size:11px!important;color:#6d91a6!important;text-align:center!important}
 html body .tool-specific-photo-actions{display:flex!important;gap:8px!important;align-items:center!important;flex-wrap:wrap!important}
 html body .tool-specific-photo-editor>small{grid-column:2!important;color:#8fb6c9!important}
 
-/* Brain-generated Action Center rows are live system conditions, not
-   manually closable action records. */
-html body .system-action-card{
-  border-style:solid!important;
-  background:#000!important;
-}
+/* Brain-generated Action Center conditions. */
+html body .system-action-card{border-style:solid!important;background:#000!important}
 html body .system-action-card.critical{border-color:#ff4059!important}
 html body .system-action-card.attention{border-color:#ffbd22!important}
-html body .system-action-chip{
-  display:inline-block!important;
-  margin-left:8px!important;
-  padding:2px 6px!important;
-  border:1px solid #7a59dc!important;
-  color:#cdbdff!important;
-  font-size:10px!important;
-  letter-spacing:.04em!important;
-}
-html body .action-system-helper{
-  border:1px solid #374d83!important;
-  padding:8px 10px!important;
-  margin:8px 0!important;
-  background:#000!important;
-}
+html body .system-action-chip{display:inline-block!important;margin-left:8px!important;padding:2px 6px!important;border:1px solid #7a59dc!important;color:#cdbdff!important;font-size:10px!important;letter-spacing:.04em!important}
+html body .action-system-helper{border:1px solid #374d83!important;padding:8px 10px!important;margin:8px 0!important;background:#000!important}
 
-/* Empty official status / notes areas stay visually empty. */
-html body .utc-live-status-text:empty,
-html body .utc-lead-notes-text:empty{min-height:0!important}
+/* Empty official status / notes areas remain truly empty. */
+html body .utc-live-status-text:empty,html body .utc-lead-notes-text:empty{min-height:0!important}

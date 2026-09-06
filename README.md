@@ -1,14 +1,16 @@
-# B7 FI Command Center V6.5.48
+# B7 FI Command Center V6.5.49
 
-Build: 20260906-V6.5.48-UTC-PHOTO-ACTION-HEADER-LOCK
+Build: 20260906-V6.5.49-RECOVERY-PHOTO-ACTIONS-HEADER
 
-## V6.5.48 changes
-- Universal Tool Card UPDATE TOOL STATUS moved below the full badge matrix and given a distinct violet action color; Driver remains blue.
-- Tool-specific photo support added to each tool record and Tool Edit page. The individual photo replaces the repeated KLA logo at the bottom of the middle Tool Card column; no photo means the area remains black.
-- Action Center now includes live Command Center Brain Critical and Attention conditions from Systems Requiring Attention as AUTO / SYSTEM actions. These clear automatically when the source condition clears; On Track tools are not actions.
-- Header top and bottom accent borders are locked and the vertical seams beside the KLA logo are removed.
-- Empty Latest Status and Lead Notes areas display no artificial placeholder text.
-- Existing localStorage key b7fi-command-center-v3 is unchanged.
+## V6.5.49 recovery changes
+- Rebuilt from the last known-good V6.5.44 full application tree; V6.5.48 is discarded because it accidentally removed core view/render functions.
+- Restores Live Operations, Presentation Mode, Action Center, Archive, Search, Reference, Administration, and the normal render path.
+- UPDATE TOOL STATUS is below the complete badge matrix and uses violet; Driver remains blue.
+- Adds one tool-specific photo per individual tool record; it replaces the repeated KLA logo at the bottom of that tool's Universal Tool Card. No photo means a black empty image zone.
+- Action Center includes live Command Center Brain Critical/Attention conditions as AUTO / SYSTEM rows; they clear automatically and On Track systems are excluded.
+- Header uses continuous top/bottom center-color lines and removes vertical seams beside the centered KLA logo.
+- Empty Latest Status / Lead Notes do not display artificial placeholder text.
+- Existing b7fi-command-center-v3 production data compatibility is unchanged.
 
 # B7 FI Command Center V6.5.20
 
