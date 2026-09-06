@@ -13748,3 +13748,85 @@ html body.presentation-mode .utc-card.utc-v6538 .utc-update-tool-status{
   background:linear-gradient(180deg,#d58b00,#8c5700)!important;
   border-color:#ffc33d!important;
 }
+
+/* =========================================================
+   V6.5.46 FINAL AUTHORITY — PRESENTATION PARITY / NAV / SHELL
+   ========================================================= */
+/* Tool Type submenu: once a selection is made, retract even while the pointer
+   remains over the originating menu. It can reopen after the pointer leaves. */
+html body #pageActions .tool-type-menu.selection-closed>.tool-type-dropdown,
+html body #pageActions .tool-type-menu.selection-closed:hover>.tool-type-dropdown,
+html body #pageActions .tool-type-menu.selection-closed:focus-within>.tool-type-dropdown{
+  display:none!important;
+}
+
+/* Header/footer KLA treatment: horizontal frame only, no vertical bars beside logo. */
+html body .hero-center,
+html body .footer-center,
+html body .app-footer .footer-center{
+  border-left:0!important;
+  border-right:0!important;
+}
+html body .hero{
+  border-top:1px solid var(--accent)!important;
+  border-bottom:1px solid var(--accent)!important;
+}
+html body .app-footer{
+  border-top:1px solid var(--accent)!important;
+  border-bottom:1px solid var(--accent)!important;
+}
+
+/* Presentation Mode must use the same finished UTC geometry as Live Operations.
+   Only scale/background treatment is presentation-specific. */
+html body.presentation-mode .presentation-tool-only .utc-card.utc-v6538,
+html body.presentation-mode .presentation-tool-focus .utc-card.utc-v6538{
+  height:100%!important;
+  min-height:0!important;
+}
+html body.presentation-mode .presentation-tool-only .utc-card.utc-v6538 .utc-column,
+html body.presentation-mode .presentation-tool-focus .utc-card.utc-v6538 .utc-column{
+  height:100%!important;
+  min-height:0!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-info{
+  display:grid!important;
+  height:100%!important;
+  min-height:0!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:34px auto 32px 32px minmax(0,1fr) 36px!important;
+  row-gap:4px!important;
+  align-content:stretch!important;
+  overflow:hidden!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-priority-ribbon{grid-row:1!important}
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-identity-badges{grid-row:2!important}
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-driver-ribbon,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-driver-ribbon.unassigned{grid-row:3!important}
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-reduced{grid-row:4!important}
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display{
+  grid-row:5!important;
+  min-height:0!important;
+  height:100%!important;
+  overflow:hidden!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-edit-tool-bar{
+  grid-row:6!important;
+  height:36px!important;
+  min-height:36px!important;
+  margin:0!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display .utc-indicator-grid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-template-rows:repeat(14,minmax(0,1fr))!important;
+  gap:4px!important;
+  height:100%!important;
+  min-height:0!important;
+  align-content:stretch!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-lamp{
+  height:100%!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:1px 4px!important;
+}

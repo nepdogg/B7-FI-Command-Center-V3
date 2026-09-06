@@ -343,3 +343,12 @@ V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit
 - Priority retains urgency-driven colors; identity rows remain black/cyan; operational badges retain semantic state colors.
 - Same color language applies to regular Universal Tool Cards and Presentation Mode.
 - Preserves `b7fi-command-center-v3` production data compatibility.
+
+
+## V6.5.46 — Presentation parity, standard tool ordering, priority edit ordering
+- Restores Presentation Mode to the same Universal Tool Card geometry used by Live Operations.
+- Removes vertical KLA side lines in header/footer and restores header top/bottom frame lines.
+- Tool Type action submenu retracts immediately after a tool family is selected.
+- Shipping Center and Cycle Time Center use the Daily Status standard order: non-Regera/Celestiq ascending, then Regera/Celestiq ascending.
+- Priority Center remains rank-driven; Edit Priorities now opens in the same active priority order shown before editing (Lead/Manager or Command Center source).
+- Storage key remains b7fi-command-center-v3.
