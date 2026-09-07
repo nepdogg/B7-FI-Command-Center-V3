@@ -13847,3 +13847,168 @@ html body.presentation-mode .utc-card.utc-v6538 .utc-middle-tool-photo img{
   height:auto!important;
   object-fit:contain!important;
 }
+
+
+/* ================================================================
+   V6.5.53 — UTC LEFT-COLUMN NORMALIZATION LOCK
+   Locked sequence:
+   Priority / UTID / Tool Type / Model / Customer / Sales Order /
+   Driver / Reduced Process / 2x14 Badge Matrix / Update Tool Status.
+   This block intentionally overrides legacy grid-row/order rules.
+   ================================================================ */
+html body .utc-card.utc-v6538 .utc-info,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  justify-content:flex-start!important;
+  gap:4px!important;
+  min-height:0!important;
+  overflow:hidden!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-priority-ribbon,
+html body .utc-card.utc-v6538 .utc-info>.utc-identity-badges,
+html body .utc-card.utc-v6538 .utc-info>.utc-driver-ribbon,
+html body .utc-card.utc-v6538 .utc-info>.utc-reduced,
+html body .utc-card.utc-v6538 .utc-info>.utc-indicator-display,
+html body .utc-card.utc-v6538 .utc-info>.utc-edit-tool-bar-bottom{
+  position:static!important;
+  inset:auto!important;
+  transform:none!important;
+  grid-row:auto!important;
+  width:100%!important;
+  min-width:0!important;
+  margin:0!important;
+  box-sizing:border-box!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-priority-ribbon{
+  order:10!important;
+  flex:0 0 36px!important;
+  height:36px!important;
+  min-height:36px!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-identity-badges{
+  order:20!important;
+  flex:0 0 auto!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:repeat(5,34px)!important;
+  gap:4px!important;
+  height:auto!important;
+  min-height:0!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-identity-badges>.utc-identity-ribbon{
+  display:grid!important;
+  grid-template-columns:minmax(82px,.34fr) minmax(0,1fr)!important;
+  align-items:center!important;
+  height:34px!important;
+  min-height:34px!important;
+  padding:3px 9px!important;
+  margin:0!important;
+}
+html body .utc-card.utc-v6538 .utc-identity-ribbon small{
+  font-size:12px!important;
+  line-height:1!important;
+  font-weight:950!important;
+}
+html body .utc-card.utc-v6538 .utc-identity-ribbon span{
+  font-size:16px!important;
+  line-height:1!important;
+  font-weight:1000!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-driver-ribbon,
+html body .utc-card.utc-v6538 .utc-info>.utc-driver-ribbon.unassigned{
+  order:30!important;
+  flex:0 0 34px!important;
+  height:34px!important;
+  min-height:34px!important;
+  max-height:34px!important;
+  margin:0!important;
+  background:linear-gradient(180deg,#8b5cf6,#5b21b6)!important;
+  border-color:#c4b5fd!important;
+  color:#fff!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-driver-ribbon span{
+  font-size:15px!important;
+  font-weight:1000!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-reduced{
+  order:40!important;
+  flex:0 0 34px!important;
+  height:34px!important;
+  min-height:34px!important;
+  max-height:34px!important;
+  margin:0!important;
+  font-size:13px!important;
+  font-weight:1000!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-indicator-display{
+  order:50!important;
+  flex:1 1 auto!important;
+  min-height:280px!important;
+  overflow:hidden!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-indicator-display .utc-indicator-grid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-template-rows:repeat(14,minmax(18px,1fr))!important;
+  grid-auto-flow:row!important;
+  gap:4px!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  align-content:stretch!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-lamp{
+  min-width:0!important;
+  min-height:18px!important;
+  height:100%!important;
+  margin:0!important;
+  padding:2px 4px!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-message{
+  font-size:clamp(7px,.49vw,9px)!important;
+  line-height:1.05!important;
+  font-weight:950!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-edit-tool-bar-bottom,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-edit-tool-bar-bottom{
+  order:60!important;
+  flex:0 0 34px!important;
+  height:34px!important;
+  min-height:34px!important;
+  margin:0!important;
+  background:linear-gradient(180deg,#00b9df,#006c99)!important;
+  border:1px solid #5eeaff!important;
+  color:#fff!important;
+}
+/* Presentation uses the same locked geometry with larger identity type. */
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-identity-badges{
+  grid-template-rows:repeat(5,38px)!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-identity-badges>.utc-identity-ribbon{
+  height:38px!important;
+  min-height:38px!important;
+  grid-template-columns:minmax(105px,.34fr) minmax(0,1fr)!important;
+  padding:4px 12px!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-identity-ribbon small{font-size:13px!important}
+html body.presentation-mode .utc-card.utc-v6538 .utc-identity-ribbon span{font-size:18px!important}
+html body.presentation-mode .utc-card.utc-v6538 .utc-priority-ribbon>span{font-size:17px!important}
+html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon>span{font-size:16px!important}
+/* Preserve the approved larger black-background tool photo treatment. */
+html body .utc-card.utc-v6538 .utc-middle-tool-photo,
+html body.presentation-mode .utc-card.utc-v6538 .utc-middle-tool-photo{
+  min-height:104px!important;
+  height:104px!important;
+  padding:8px 10px 10px!important;
+  background:#000!important;
+}
+html body .utc-card.utc-v6538 .utc-middle-tool-photo img,
+html body.presentation-mode .utc-card.utc-v6538 .utc-middle-tool-photo img{
+  max-width:86%!important;
+  max-height:92px!important;
+  width:auto!important;
+  height:auto!important;
+  object-fit:contain!important;
+}

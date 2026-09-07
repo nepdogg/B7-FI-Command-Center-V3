@@ -369,3 +369,12 @@ V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit
 - UPDATE TOOL STATUS is locked below the full badge matrix and uses cyan/blue action styling.
 - Tool photo identity zone is larger with additional breathing room.
 - Same Universal Tool Card ordering/styling applies to regular and Presentation Mode.
+
+
+## V6.5.53 — 2026-09-06
+- Locked Universal Tool Card left-column order and vertical normalization.
+- Increased Priority, UTID, Tool Type, Model, Customer, Sales Order, Driver and Reduced Process readability.
+- Preserved purple Driver and blue UPDATE TOOL STATUS treatments.
+- Locked 28 operational badges to a 2 x 14 matrix with no cutoff/overlap.
+- Preserved the approved larger tool-photo treatment.
+- Preserved System Wafers, Verify Thermal Rack, Request Cal Chips, Verify Laser and Powered Down badge behavior from V6.5.52.
