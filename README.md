@@ -378,3 +378,14 @@ V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit
 - Locked 28 operational badges to a 2 x 14 matrix with no cutoff/overlap.
 - Preserved the approved larger tool-photo treatment.
 - Preserved System Wafers, Verify Thermal Rack, Request Cal Chips, Verify Laser and Powered Down badge behavior from V6.5.52.
+
+
+## V6.5.54 — 2026-09-07
+- Locked the completed 27-badge operational master set into the 2 × 14 Universal Tool Card matrix, leaving one reserved future-badge placeholder.
+- Removed duplicate Customer/Sales Order operational indicators because their identity badges now show missing values directly in red.
+- Consolidated WWC into one multi-state badge and Foresight into IMC Config.
+- Added the final state definitions for FACTD, Options Testing, Thermal Rack, Laser, AV Data, CCL, STR, WWC, IMC Config, System Power, Ship Meeting, Cal Chips, System Wafers, NC closure and EQ Checklists.
+- Lamp Hours and Request Lamp remain automatic from lamp-hour logic.
+- UPDATE TOOL STATUS is now a smart data-health control: green when required identity/assignment data is complete, red with a missing-item count when required data is missing, and always opens Tool Edit.
+- Customer and Sales Order identity badges turn red and display NO CUSTOMER / NO SALES ORDER when missing. Driver remains purple when assigned and red when UNASSIGNED.
+- Preserved V6.5.53 Universal Tool Card geometry and the fixed 28-slot badge capacity.

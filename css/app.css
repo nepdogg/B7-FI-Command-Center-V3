@@ -14012,3 +14012,11 @@ html body.presentation-mode .utc-card.utc-v6538 .utc-middle-tool-photo img{
   height:auto!important;
   object-fit:contain!important;
 }
+
+
+/* V6.5.54 — Badge Master Specification + smart tool-data health */
+html body .utc-card.utc-v6538 .utc-identity-ribbon.missing{background:rgba(116,12,18,.96)!important;border-color:#ff5d67!important;color:#fff!important;box-shadow:inset 0 0 0 1px rgba(255,93,103,.35),0 0 12px rgba(255,45,58,.24)!important}
+html body .utc-card.utc-v6538 .utc-reduced.idle{opacity:.72!important}
+html body .utc-card.utc-v6538 .utc-edit-tool-bar-bottom.data-missing{background:linear-gradient(180deg,#8d111b,#5e0910)!important;border-color:#ff5d67!important;color:#fff!important;box-shadow:0 0 12px rgba(255,45,58,.28)!important}
+html body .utc-card.utc-v6538 .utc-edit-tool-bar-bottom.data-complete{background:linear-gradient(180deg,#087a43,#04562f)!important;border-color:#4be69b!important;color:#fff!important;box-shadow:0 0 10px rgba(40,200,120,.20)!important}
+html body .utc-card.utc-v6538 .fi-indicator-lamp.reserved{visibility:hidden!important;pointer-events:none!important}
