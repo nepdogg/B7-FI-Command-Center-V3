@@ -397,3 +397,11 @@ V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit
 - Preserved all 28 badge positions in the 2 × 14 matrix.
 - Made the unused slot visible as an inactive **FUTURE BADGE** placeholder.
 - Kept the V6.5.54 badge state-machine definitions and Universal Tool Card ordering unchanged.
+
+
+## V6.5.56 — All 28 Badges Visible Lock
+- Universal Tool Card minimum desktop height increased modestly so the complete 2 × 14 badge matrix remains inside the card.
+- All 28 positions render at once; no lower badge rows may be pushed below the card.
+- Badge labels use up to two readable lines.
+- Slot 28 remains visible as the inactive FUTURE BADGE placeholder.
+- The bottom control is now labeled UPDATED TOOL STATUS at all times; only its validation color changes.

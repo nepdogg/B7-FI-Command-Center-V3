@@ -14093,3 +14093,122 @@ html body.presentation-mode .utc-card.utc-v6538 .utc-edit-tool-bar-bottom>span{
   font-weight:1000!important;
   letter-spacing:.15px!important;
 }
+
+
+/* ================================================================
+   V6.5.56 — ALL 28 BADGES VISIBLE LOCK
+   - Keep the complete 2 x 14 matrix inside the Universal Tool Card.
+   - Badge copy may use two lines; no row is allowed to grow and push
+     lower rows outside the card.
+   - Slot 28 remains visible as the OFF FUTURE BADGE placeholder.
+   - UPDATED TOOL STATUS wording is constant; health changes color only.
+   ================================================================ */
+@media (min-width:700px){
+  html body .utc-host{
+    min-height:690px!important;
+    height:auto!important;
+    max-height:none!important;
+  }
+  html body .utc-card,
+  html body .utc-card.utc-v6538{
+    min-height:690px!important;
+    height:690px!important;
+    max-height:none!important;
+    aspect-ratio:auto!important;
+  }
+}
+
+html body .utc-card.utc-v6538 .utc-info,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info{
+  gap:2px!important;
+  padding-top:8px!important;
+  padding-bottom:8px!important;
+  overflow:hidden!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-priority-ribbon,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-priority-ribbon{
+  flex:0 0 34px!important;
+  height:34px!important;
+  min-height:34px!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-identity-badges,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-identity-badges{
+  grid-template-rows:repeat(5,29px)!important;
+  gap:3px!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-identity-badges>.utc-identity-ribbon,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-identity-badges>.utc-identity-ribbon{
+  height:29px!important;
+  min-height:29px!important;
+  padding-top:2px!important;
+  padding-bottom:2px!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-driver-ribbon,
+html body .utc-card.utc-v6538 .utc-info>.utc-driver-ribbon.unassigned,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-driver-ribbon,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-driver-ribbon.unassigned,
+html body .utc-card.utc-v6538 .utc-info>.utc-reduced,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-reduced{
+  flex:0 0 32px!important;
+  height:32px!important;
+  min-height:32px!important;
+  max-height:32px!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-indicator-display,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display{
+  flex:0 0 334px!important;
+  height:334px!important;
+  min-height:334px!important;
+  max-height:334px!important;
+  overflow:hidden!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-indicator-display .utc-indicator-grid,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display .utc-indicator-grid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-template-rows:repeat(14,22px)!important;
+  grid-auto-rows:22px!important;
+  gap:2px 4px!important;
+  height:334px!important;
+  min-height:334px!important;
+  max-height:334px!important;
+  align-content:start!important;
+  overflow:hidden!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-lamp,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-lamp{
+  height:22px!important;
+  min-height:22px!important;
+  max-height:22px!important;
+  padding:1px 4px!important;
+  overflow:hidden!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-message,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-message{
+  display:-webkit-box!important;
+  -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:2!important;
+  line-clamp:2!important;
+  width:100%!important;
+  font-size:8px!important;
+  line-height:9px!important;
+  font-weight:950!important;
+  white-space:normal!important;
+  overflow:hidden!important;
+  text-overflow:clip!important;
+  overflow-wrap:anywhere!important;
+  word-break:normal!important;
+  text-align:center!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-edit-tool-bar-bottom,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-edit-tool-bar-bottom{
+  flex:0 0 34px!important;
+  height:34px!important;
+  min-height:34px!important;
+  max-height:34px!important;
+}
+html body .utc-card.utc-v6538 .fi-indicator-lamp.reserved,
+html body.presentation-mode .utc-card.utc-v6538 .fi-indicator-lamp.reserved{
+  visibility:visible!important;
+  opacity:.42!important;
+}
