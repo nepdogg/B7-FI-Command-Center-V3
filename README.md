@@ -413,3 +413,12 @@ V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit
 - Missing Sales Order identity badge displays only NO SALES ORDER.
 - Driver UNASSIGNED is inactive gray; assigned Driver remains purple.
 - All 28 badge positions remain visible, including the OFF FUTURE BADGE placeholder.
+
+
+V6.5.58 — Presentation Semantics + Readability Lock
+- Unified Customer/Sales Order information badge structure in Live Operations and Presentation.
+- Missing Customer = CUSTOMER | NO CUSTOMER, full badge red.
+- Missing Sales Order = SALES ORDER | NO SALES ORDER, full badge red.
+- Unassigned Driver is gray in all modes; assigned Driver is purple.
+- UPDATE TOOL STATUS wording remains constant; red/green health color now wins in Presentation.
+- Increased Presentation Mode Universal Tool Card typography for readability while preserving the same card DOM/semantics.
