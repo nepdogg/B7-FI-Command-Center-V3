@@ -399,9 +399,17 @@ V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit
 - Kept the V6.5.54 badge state-machine definitions and Universal Tool Card ordering unchanged.
 
 
-## V6.5.56 — All 28 Badges Visible Lock
+## V6.5.57 — All 28 Badges Visible Lock
 - Universal Tool Card minimum desktop height increased modestly so the complete 2 × 14 badge matrix remains inside the card.
 - All 28 positions render at once; no lower badge rows may be pushed below the card.
 - Badge labels use up to two readable lines.
 - Slot 28 remains visible as the inactive FUTURE BADGE placeholder.
 - The bottom control is now labeled UPDATED TOOL STATUS at all times; only its validation color changes.
+
+
+## V6.5.57 — Presentation Badge Fill / Label Semantics Lock
+- Presentation Mode left column now uses the full available card height; the 28 badge rows stretch evenly so there is no dead space below the badges/status control.
+- UPDATE TOOL STATUS wording is fixed in every state; only the badge color changes based on data completeness.
+- Missing Sales Order identity badge displays only NO SALES ORDER.
+- Driver UNASSIGNED is inactive gray; assigned Driver remains purple.
+- All 28 badge positions remain visible, including the OFF FUTURE BADGE placeholder.

@@ -14212,3 +14212,66 @@ html body.presentation-mode .utc-card.utc-v6538 .fi-indicator-lamp.reserved{
   visibility:visible!important;
   opacity:.42!important;
 }
+
+
+/* ================================================================
+   V6.5.57 — PRESENTATION BADGE FILL / LABEL SEMANTICS LOCK
+   - Presentation left rail uses all available vertical space.
+   - All 28 slots remain visible; badge rows stretch evenly in Presentation.
+   - UPDATE TOOL STATUS wording is fixed; only health color changes.
+   - Unassigned Driver is inactive gray; assigned Driver remains purple.
+   - Missing Sales Order displays only NO SALES ORDER.
+   ================================================================ */
+html body .utc-card.utc-v6538 .utc-driver-ribbon.unassigned,
+html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon.unassigned{
+  background:linear-gradient(180deg,#242a30,#14191e)!important;
+  border-color:#56616b!important;
+  color:#aeb8c2!important;
+  box-shadow:none!important;
+}
+html body .utc-card.utc-v6538 .utc-identity-ribbon.missing-value-only{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  padding-left:8px!important;
+  padding-right:8px!important;
+}
+html body .utc-card.utc-v6538 .utc-identity-ribbon.missing-value-only small{display:none!important}
+html body .utc-card.utc-v6538 .utc-identity-ribbon.missing-value-only span{
+  width:100%!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+}
+
+/* Presentation cards are taller than the standard Live Operations card.
+   Let the 28-slot matrix absorb the extra height instead of leaving a
+   dead black area below UPDATE TOOL STATUS. */
+html body.presentation-mode .utc-card.utc-v6538 .utc-info{
+  height:100%!important;
+  min-height:100%!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display{
+  flex:1 1 auto!important;
+  height:auto!important;
+  min-height:334px!important;
+  max-height:none!important;
+  overflow:hidden!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display .utc-indicator-grid{
+  height:100%!important;
+  min-height:334px!important;
+  max-height:none!important;
+  grid-template-rows:repeat(14,minmax(22px,1fr))!important;
+  grid-auto-rows:minmax(22px,1fr)!important;
+  align-content:stretch!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-lamp{
+  height:auto!important;
+  min-height:22px!important;
+  max-height:none!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-edit-tool-bar-bottom{
+  flex:0 0 34px!important;
+  margin-top:2px!important;
+}
