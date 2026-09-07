@@ -389,3 +389,11 @@ V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit
 - UPDATE TOOL STATUS is now a smart data-health control: green when required identity/assignment data is complete, red with a missing-item count when required data is missing, and always opens Tool Edit.
 - Customer and Sales Order identity badges turn red and display NO CUSTOMER / NO SALES ORDER when missing. Driver remains purple when assigned and red when UNASSIGNED.
 - Preserved V6.5.53 Universal Tool Card geometry and the fixed 28-slot badge capacity.
+
+
+## V6.5.55 — 2026-09-07
+- Renamed the smart card control display to **UPDATE TOOL STATUS** in every state; validation now changes only the badge color (green when required tool data is complete, red when required data is missing).
+- Increased the operational badge matrix row height and enabled two-line wrapping so long badge text remains readable instead of being clipped.
+- Preserved all 28 badge positions in the 2 × 14 matrix.
+- Made the unused slot visible as an inactive **FUTURE BADGE** placeholder.
+- Kept the V6.5.54 badge state-machine definitions and Universal Tool Card ordering unchanged.

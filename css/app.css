@@ -14020,3 +14020,76 @@ html body .utc-card.utc-v6538 .utc-reduced.idle{opacity:.72!important}
 html body .utc-card.utc-v6538 .utc-edit-tool-bar-bottom.data-missing{background:linear-gradient(180deg,#8d111b,#5e0910)!important;border-color:#ff5d67!important;color:#fff!important;box-shadow:0 0 12px rgba(255,45,58,.28)!important}
 html body .utc-card.utc-v6538 .utc-edit-tool-bar-bottom.data-complete{background:linear-gradient(180deg,#087a43,#04562f)!important;border-color:#4be69b!important;color:#fff!important;box-shadow:0 0 10px rgba(40,200,120,.20)!important}
 html body .utc-card.utc-v6538 .fi-indicator-lamp.reserved{visibility:hidden!important;pointer-events:none!important}
+
+
+/* ================================================================
+   V6.5.55 — BADGE READABILITY + UPDATE TOOL STATUS LOCK
+   - Every operational badge may wrap to two lines without clipping.
+   - All 28 matrix positions remain visible.
+   - Slot 28 is a visible OFF placeholder labeled FUTURE BADGE.
+   - UPDATE TOOL STATUS keeps one label; only its health color changes.
+   ================================================================ */
+html body .utc-card.utc-v6538 .utc-info{
+  overflow:visible!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-indicator-display,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display{
+  flex:0 0 auto!important;
+  min-height:0!important;
+  height:auto!important;
+  overflow:visible!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-indicator-display .utc-indicator-grid,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display .utc-indicator-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-template-rows:repeat(14,minmax(28px,auto))!important;
+  grid-auto-rows:minmax(28px,auto)!important;
+  gap:4px!important;
+  height:auto!important;
+  overflow:visible!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-lamp,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-lamp{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-height:28px!important;
+  height:auto!important;
+  max-height:none!important;
+  padding:3px 5px!important;
+  overflow:visible!important;
+  box-sizing:border-box!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-message,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-message{
+  display:block!important;
+  width:100%!important;
+  font-size:9px!important;
+  line-height:1.08!important;
+  font-weight:950!important;
+  white-space:normal!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+  word-break:normal!important;
+  overflow-wrap:anywhere!important;
+  text-align:center!important;
+}
+html body .utc-card.utc-v6538 .fi-indicator-lamp.reserved,
+html body.presentation-mode .utc-card.utc-v6538 .fi-indicator-lamp.reserved{
+  visibility:visible!important;
+  pointer-events:none!important;
+  opacity:.42!important;
+  background:#071016!important;
+  border-color:#28404b!important;
+  color:#718995!important;
+  box-shadow:none!important;
+}
+html body .utc-card.utc-v6538 .fi-indicator-lamp.reserved .fi-indicator-message{
+  color:#718995!important;
+}
+html body .utc-card.utc-v6538 .utc-edit-tool-bar-bottom>span,
+html body.presentation-mode .utc-card.utc-v6538 .utc-edit-tool-bar-bottom>span{
+  font-size:14px!important;
+  font-weight:1000!important;
+  letter-spacing:.15px!important;
+}
