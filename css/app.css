@@ -15503,3 +15503,107 @@ html body[data-center="operations"][data-sub="tools"] #pageActions .tool-type-dr
   html body[data-center="operations"][data-sub="live"] .nav69-live-actions{grid-template-columns:84px 140px 76px!important;width:300px!important;min-width:300px!important}
   html body[data-center="operations"][data-sub="tools"] #pageActions.page-actions{grid-template-columns:92px 140px 82px 78px!important;width:392px!important;min-width:392px!important}
 }
+
+/* =========================================================
+   V6.5.70 FINAL AUTHORITY — TOOLS NAV + LIVE HOVER LOCK
+   Universal Tool Card remains frozen.  Operations navigation only.
+   ========================================================= */
+html body[data-center="operations"][data-sub="live"]:not(.screenshot-mode):not(.presentation-mode) .pagebar{
+  grid-template-columns:minmax(0,1fr) 588px!important;
+}
+html body[data-center="operations"][data-sub="tools"]:not(.screenshot-mode):not(.presentation-mode) .pagebar{
+  grid-template-columns:minmax(0,1fr) 500px!important;
+}
+html body[data-center="operations"][data-sub="tools"]:not(.screenshot-mode):not(.presentation-mode) #pageActions.page-actions{
+  display:grid!important;
+  grid-template-columns:112px 184px 102px 102px!important;
+  width:500px!important;
+  min-width:500px!important;
+  max-width:500px!important;
+  height:100%!important;
+  overflow:visible!important;
+  border-left:3px solid var(--accent)!important;
+  background:#061421!important;
+}
+html body[data-center="operations"][data-sub="tools"] #pageActions>.nav70-action,
+html body[data-center="operations"][data-sub="tools"] #pageActions>.nav70-tool-type-select{
+  width:100%!important;
+  min-width:0!important;
+  height:100%!important;
+  margin:0!important;
+  box-sizing:border-box!important;
+}
+html body[data-center="operations"][data-sub="tools"] #pageActions>.nav70-action{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:0 7px!important;
+  border:0!important;
+  border-right:1px solid #1c4c69!important;
+  border-radius:0!important;
+  background:#082035!important;
+  color:#fff!important;
+  font-size:8px!important;
+  font-weight:950!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+  cursor:pointer!important;
+  pointer-events:auto!important;
+}
+html body[data-center="operations"][data-sub="tools"] #pageActions>.nav70-action.primary{
+  background:rgba(var(--accent-rgb),.24)!important;
+  box-shadow:inset 0 -3px var(--accent)!important;
+}
+html body[data-center="operations"][data-sub="tools"] #pageActions>.nav70-action:hover,
+html body[data-center="operations"][data-sub="tools"] #pageActions>.nav70-action:focus-visible{
+  background:rgba(var(--accent-rgb),.52)!important;
+  color:#fff!important;
+  box-shadow:inset 0 -4px var(--accent), inset 0 0 0 1px rgba(255,255,255,.28)!important;
+  outline:none!important;
+}
+html body[data-center="operations"][data-sub="tools"] .nav70-tool-type-select{
+  display:block!important;
+  border-right:1px solid #1c4c69!important;
+  background:#082035!important;
+  position:relative!important;
+  overflow:hidden!important;
+  cursor:pointer!important;
+}
+html body[data-center="operations"][data-sub="tools"] .nav70-tool-type-select select{
+  appearance:none!important;
+  -webkit-appearance:none!important;
+  width:100%!important;
+  height:100%!important;
+  padding:0 8px!important;
+  border:0!important;
+  outline:0!important;
+  background:#082035!important;
+  color:#fff!important;
+  font-size:8px!important;
+  font-weight:950!important;
+  text-align:center!important;
+  text-align-last:center!important;
+  cursor:pointer!important;
+}
+html body[data-center="operations"][data-sub="tools"] .nav70-tool-type-select:hover select,
+html body[data-center="operations"][data-sub="tools"] .nav70-tool-type-select:focus-within select{
+  background:rgba(var(--accent-rgb),.52)!important;
+  box-shadow:inset 0 -4px var(--accent)!important;
+}
+/* Live action hover must visually override the persistent primary-state fill. */
+html body[data-center="operations"][data-sub="live"] .nav69-live-actions>.nav70-action:hover,
+html body[data-center="operations"][data-sub="live"] .nav69-live-actions>.nav70-action:focus-visible{
+  background:rgba(var(--accent-rgb),.58)!important;
+  color:#fff!important;
+  box-shadow:inset 0 -4px var(--accent), inset 0 0 0 1px rgba(255,255,255,.30)!important;
+  outline:none!important;
+}
+html body[data-center="operations"][data-sub="live"] .nav69-live-actions>.nav70-action{
+  transition:background .12s ease,box-shadow .12s ease!important;
+}
+@media(max-width:1200px){
+  html body[data-center="operations"][data-sub="tools"]:not(.screenshot-mode):not(.presentation-mode) .pagebar{grid-template-columns:minmax(0,1fr) 430px!important}
+  html body[data-center="operations"][data-sub="tools"]:not(.screenshot-mode):not(.presentation-mode) #pageActions.page-actions{grid-template-columns:96px 156px 88px 90px!important;width:430px!important;min-width:430px!important;max-width:430px!important}
+  html body[data-center="operations"][data-sub="tools"] #pageActions>.nav70-action,
+  html body[data-center="operations"][data-sub="tools"] .nav70-tool-type-select select{font-size:7px!important}
+}

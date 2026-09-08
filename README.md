@@ -522,3 +522,11 @@ V6.5.60 — Presentation Semantics + Readability Lock
 - Tools pagebar: protected Tool Type / Update Command Center / Add Tool / Screenshot cells.
 - Replaced overlapping inline/direct/delegated page-action behavior with one capture-phase Operations navigation router.
 - Tool Type dropdown uses the same single router and fixed-position menu so it cannot be clipped by the pagebar.
+
+
+## V6.5.70 — Tools Navigation + Live Hover Lock
+- Universal Tool Card remains frozen/unchanged.
+- Tools page action bar rebuilt with a fixed right-side action region following the page-navigation convention.
+- Tool Type uses a native, reliable jump selector; Update Command Center, Add Tool, and Screenshot use direct action handlers.
+- Live Operations Verify Tools, Update Command Center, and Screenshot use direct handlers and now have a visible hover/focus state.
+- Operations pagebar reserves explicit action width so Tools actions cannot collapse or overlap.

@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.69', BUILD='20260908-V6.5.69-NAVIGATION-CLEAN-REWRITE-LOCK';
+const VERSION='6.5.70', BUILD='20260908-V6.5.70-TOOLS-NAV-HOVER-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -235,11 +235,16 @@ function actionButtonHtml(x){
 function renderActions(){
   let host=document.querySelector('#pageActions');
   let normal=actionsFor().map(actionButtonHtml).join('');
-  if(route.center==='operations'&&route.sub==='tools'&&mode==='view')normal=toolTypeMenu()+normal;
+  if(route.center==='operations'&&route.sub==='tools'&&mode==='view'){
+    let fams=toolTypeFamiliesForCurrentView();
+    let opts=fams.map(f=>{let id='tool-family-'+String(f).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');return `<option value="${esc(id)}">${esc(f).toUpperCase()}</option>`}).join('');
+    host.innerHTML=`<label class="nav70-tool-type-select" title="Jump to tool type"><select aria-label="Tool Type" onchange="return window.B7Nav70.jumpToolType(this)"><option value="" selected>TOOL TYPE ▼</option>${opts}</select></label><button type="button" class="primary nav70-action" onclick="return window.B7Nav70.action(event,'updateAll')">UPDATE COMMAND CENTER</button><button type="button" class="primary nav70-action" onclick="return window.B7Nav70.action(event,'addTool')">ADD TOOL</button><button type="button" class="nav70-action" onclick="return window.B7Nav70.action(event,'shot')">SCREENSHOT</button>`;
+    return;
+  }
   if(route.center==='operations'&&route.sub==='live'&&mode==='view'){
     let n=nonArchivedTools().length||0;
     if(document.body.classList.contains('presentation-mode')){host.innerHTML='';return}
-    host.innerHTML=`<div class="nav69-live-controls"><div class="nav69-control-group"><button type="button" class="nav69-mini" data-snapshot="prev">◀</button><span class="nav69-count">${snapshotIndex+1} / 6</span><button type="button" class="nav69-pause" data-snapshot="pause"><b>STATUS</b><span>${snapshotPaused?'PLAY':'PAUSE'}</span></button><button type="button" class="nav69-mini" data-snapshot="next">▶</button></div><div class="nav69-control-group"><button type="button" class="nav69-mini" data-carousel="prev" ${n?'':'disabled'}>◀</button><span class="nav69-count">${n?liveIndex+1:0} / ${n}</span><button type="button" class="nav69-pause" data-carousel="${livePaused?'play':'pause'}" ${n?'':'disabled'}><b>TOOLS</b><span>${livePaused?'PLAY':'PAUSE'}</span></button><button type="button" class="nav69-mini" data-carousel="next" ${n?'':'disabled'}>▶</button></div></div><div class="nav69-live-actions">${normal}</div>`;
+    host.innerHTML=`<div class="nav69-live-controls"><div class="nav69-control-group"><button type="button" class="nav69-mini" data-snapshot="prev">◀</button><span class="nav69-count">${snapshotIndex+1} / 6</span><button type="button" class="nav69-pause" data-snapshot="pause"><b>STATUS</b><span>${snapshotPaused?'PLAY':'PAUSE'}</span></button><button type="button" class="nav69-mini" data-snapshot="next">▶</button></div><div class="nav69-control-group"><button type="button" class="nav69-mini" data-carousel="prev" ${n?'':'disabled'}>◀</button><span class="nav69-count">${n?liveIndex+1:0} / ${n}</span><button type="button" class="nav69-pause" data-carousel="${livePaused?'play':'pause'}" ${n?'':'disabled'}><b>TOOLS</b><span>${livePaused?'PLAY':'PAUSE'}</span></button><button type="button" class="nav69-mini" data-carousel="next" ${n?'':'disabled'}>▶</button></div></div><div class="nav69-live-actions"><button type="button" class="primary nav70-action" onclick="return window.B7Nav70.action(event,'verifyTools')">VERIFY TOOLS</button><button type="button" class="primary nav70-action" onclick="return window.B7Nav70.action(event,'updateAll')">UPDATE COMMAND CENTER</button><button type="button" class="nav70-action" onclick="return window.B7Nav70.action(event,'shot')">SCREENSHOT</button></div>`;
     return;
   }
   host.innerHTML=normal;
@@ -1024,6 +1029,20 @@ window.B7Core={
 // V6.5.68 hard-routed page action API. These handlers are called directly by
 // Operations pagebar buttons, bypassing legacy delegated click paths entirely.
 // This makes the Tools and Live Operations action bars deterministic.
+
+
+// V6.5.70 authoritative Operations page-action API.  Live Operations and Tools
+// use direct controls so their actions do not depend on legacy delegated routing.
+window.B7Nav70={
+  action:(e,a)=>{e?.preventDefault?.();e?.stopImmediatePropagation?.();
+    if(a==='verifyTools'){route={center:'admin',sub:'audit'};mode='view';toolEditorMode='view';draft=null;selected=null;meetingDraft=null;dirty=false;returnRoute=null;render();return false}
+    if(a==='updateAll'){returnRoute=clone(route);dailyContext='weekday';route={center:'operations',sub:'daily'};mode='edit';toolEditorMode='view';draft=clone(state.tools);selected=null;meetingDraft=null;dirty=false;render();return false}
+    if(a==='addTool'){addTool();return false}
+    if(a==='shot'){screenshot();return false}
+    return false;
+  },
+  jumpToolType:(select)=>{let id=String(select?.value||'');if(!id)return false;let target=document.getElementById(id);if(target){let shellH=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--sticky-shell-height'))||0;let y=target.getBoundingClientRect().top+window.scrollY-shellH-8;window.scrollTo({top:Math.max(0,y),behavior:'smooth'})}select.value='';return false}
+};
 window.B7PageActions={
   verifyTools:(e)=>{e?.preventDefault?.();e?.stopPropagation?.();route={center:'admin',sub:'audit'};mode='view';toolEditorMode='view';draft=null;selected=null;meetingDraft=null;dirty=false;returnRoute=null;render();return false},
   updateAll:(e)=>{e?.preventDefault?.();e?.stopPropagation?.();returnRoute=clone(route);dailyContext='weekday';route={center:'operations',sub:'daily'};mode='edit';toolEditorMode='view';draft=clone(state.tools);selected=null;meetingDraft=null;dirty=false;render();return false},
