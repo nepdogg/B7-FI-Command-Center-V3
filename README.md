@@ -450,3 +450,14 @@ V6.5.60 — Presentation Semantics + Readability Lock
 - Rebalanced the six middle-column rows to preserve Live System Status and Lead Notes / Reminders.
 - Restored visible bottom boundaries on all three Universal Tool Card columns and removed carousel clipping at the bottom edge.
 - Presentation Mode keeps the same task logic and receives larger task text.
+
+
+## V6.5.62 — UTC Bottom Boundary + Sales Order + Notes Lock
+- Restores the original 660px desktop Universal Tool Card envelope, removing the later 690px height growth that caused all three columns to extend below the visible Live Operations card boundary.
+- Keeps the three UTC columns at one exact visible height and restores their complete bottom borders.
+- Reflows the 28-slot operational badge matrix inside the restored card height without removing the FUTURE BADGE placeholder.
+- Protects the full `SALES ORDER` label and reduces only the Sales Order value/missing-state text enough for `NO SALES ORDER` to fit cleanly.
+- Reasserts gray `DRIVER: UNASSIGNED` and purple assigned-driver semantics.
+- Rebalances the middle column so Next System Tasks stays capped at three entries while Live System Status and Lead Notes / Reminders receive protected flexible space.
+- Lead Notes is constrained inside its section instead of extending below the card.
+- Presentation Mode uses the available wallboard tool area instead of forcing a second oversized card height.

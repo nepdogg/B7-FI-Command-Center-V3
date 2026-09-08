@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.61', BUILD='20260907-V6.5.61-NEXT-SYSTEM-TASKS-MANUAL-OVERRIDE-LAYOUT-LOCK';
+const VERSION='6.5.62', BUILD='20260908-V6.5.62-UTC-BOTTOM-BOUNDARY-SALES-ORDER-NOTES-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];

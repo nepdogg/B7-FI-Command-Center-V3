@@ -14577,3 +14577,214 @@ html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-next-actions-bl
 html body.presentation-mode .utc-card.utc-v6538 .utc-next-action{font-size:clamp(13px,.90vw,16px)!important;line-height:1.12!important}
 html body.presentation-mode .utc-card.utc-v6538 .utc-next-actions-empty{font-size:clamp(12px,.82vw,15px)!important}
 html body.presentation-mode .utc-card.utc-v6538 .utc-lead-notes-text{-webkit-line-clamp:8!important}
+
+
+/* ============================================================
+   V6.5.62 — UTC BOTTOM BOUNDARY + SALES ORDER + NOTES LOCK
+   Final stability pass for the Universal Tool Card:
+   - Restore the original 660px desktop UTC envelope so the card no longer
+     extends below the Live Operations / Presentation viewport.
+   - Keep all three columns at one exact visible height with their bottom
+     borders inside the card.
+   - Preserve all 28 operational badge positions within that envelope.
+   - Keep SALES ORDER label visible and NO SALES ORDER readable.
+   - Give Lead Notes / Reminders a protected bottom row.
+   ============================================================ */
+
+/* Undo the later 690px growth that caused the card to extend below the
+   original V6 660px carousel envelope.  The host, card, and columns now use
+   one geometry again. */
+@media (min-width:700px){
+  html body .operations-tool-carousel,
+  html body .operations-tool-carousel>.utc-host,
+  html body .operations-tool-carousel>.universal-card-host,
+  html body .utc-host,
+  html body .universal-card-host.live-panel{
+    height:660px!important;
+    min-height:660px!important;
+    max-height:660px!important;
+    box-sizing:border-box!important;
+  }
+  html body .utc-card,
+  html body .utc-card.utc-v6538,
+  html body .operations-tool-carousel .utc-card.utc-v6538{
+    height:100%!important;
+    min-height:0!important;
+    max-height:100%!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+    aspect-ratio:auto!important;
+  }
+  html body .utc-card.utc-v6538>.utc-column{
+    height:100%!important;
+    min-height:0!important;
+    max-height:100%!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+    border-bottom-width:1px!important;
+    border-bottom-style:solid!important;
+  }
+}
+
+/* Presentation uses the available wallboard tool area instead of imposing a
+   second fixed card height.  This prevents the lower border from falling
+   below the viewport on shorter displays. */
+@media (min-width:700px){
+  html body.presentation-mode .presentation-tool-only,
+  html body.presentation-mode .presentation-tool-focus{
+    min-height:0!important;
+    overflow:hidden!important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-host,
+  html body.presentation-mode .presentation-tool-focus .utc-host{
+    height:100%!important;
+    min-height:0!important;
+    max-height:100%!important;
+    overflow:hidden!important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-card.utc-v6538,
+  html body.presentation-mode .presentation-tool-focus .utc-card.utc-v6538{
+    height:100%!important;
+    min-height:0!important;
+    max-height:100%!important;
+    overflow:hidden!important;
+  }
+}
+
+/* LEFT COLUMN: all 28 slots fit inside the restored 660px card. */
+html body .utc-card.utc-v6538 .utc-info,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info{
+  gap:2px!important;
+  padding:7px 8px!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-indicator-display,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display{
+  flex:1 1 auto!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow:hidden!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-indicator-display .utc-indicator-grid,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display .utc-indicator-grid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-template-rows:repeat(14,minmax(0,1fr))!important;
+  grid-auto-rows:minmax(0,1fr)!important;
+  gap:2px 4px!important;
+  height:100%!important;
+  min-height:0!important;
+  max-height:100%!important;
+  align-content:stretch!important;
+  overflow:hidden!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-lamp,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-lamp{
+  height:100%!important;
+  min-height:0!important;
+  max-height:none!important;
+  padding:1px 4px!important;
+  overflow:hidden!important;
+}
+
+/* Identity rows: protect the full SALES ORDER label while leaving enough
+   value width for NO SALES ORDER. */
+html body .utc-card.utc-v6538 .utc-identity-ribbon,
+html body.presentation-mode .utc-card.utc-v6538 .utc-identity-ribbon{
+  grid-template-columns:minmax(106px,106px) minmax(0,1fr)!important;
+  column-gap:7px!important;
+}
+html body .utc-card.utc-v6538 .utc-identity-ribbon small,
+html body.presentation-mode .utc-card.utc-v6538 .utc-identity-ribbon small{
+  overflow:visible!important;
+  text-overflow:clip!important;
+  white-space:nowrap!important;
+}
+html body .utc-card.utc-v6538 .utc-identity-ribbon[data-direct-identity="salesOrder"] span{
+  font-size:15px!important;
+  letter-spacing:-.15px!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-identity-ribbon[data-direct-identity="salesOrder"] span{
+  font-size:17px!important;
+  letter-spacing:-.25px!important;
+}
+html body .utc-card.utc-v6538 .utc-identity-ribbon[data-direct-identity="salesOrder"].missing span{
+  font-size:14px!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-identity-ribbon[data-direct-identity="salesOrder"].missing span{
+  font-size:16px!important;
+}
+
+/* Reassert Driver semantics after all older presentation/color rules. */
+html body .utc-card.utc-v6538 .utc-driver-ribbon.unassigned,
+html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon.unassigned{
+  background:linear-gradient(180deg,#242a30,#14191e)!important;
+  border-color:#56616b!important;
+  color:#aeb8c2!important;
+  box-shadow:none!important;
+}
+html body .utc-card.utc-v6538 .utc-driver-ribbon:not(.unassigned),
+html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon:not(.unassigned){
+  background:linear-gradient(180deg,#8b5cf6,#5b21b6)!important;
+  border-color:#c4b5fd!important;
+  color:#fff!important;
+}
+
+/* MIDDLE COLUMN: fixed upper sections + flexible Live Status / Lead Notes.
+   The protected notes row ends before the visible bottom border. */
+html body .utc-card.utc-v6538 .utc-status{
+  display:grid!important;
+  grid-template-rows:94px 66px 66px 88px minmax(126px,1fr) minmax(142px,1.12fr)!important;
+  height:100%!important;
+  min-height:0!important;
+  max-height:100%!important;
+  overflow:hidden!important;
+  box-sizing:border-box!important;
+}
+html body .utc-card.utc-v6538 .utc-status>.utc-status-section{
+  min-height:0!important;
+  max-height:100%!important;
+  overflow:hidden!important;
+  box-sizing:border-box!important;
+}
+html body .utc-card.utc-v6538 .utc-status>.utc-countdown{padding:9px 14px 8px!important}
+html body .utc-card.utc-v6538 .utc-status>.utc-fi-status,
+html body .utc-card.utc-v6538 .utc-status>.utc-system-status{padding:8px 14px!important}
+html body .utc-card.utc-v6538 .utc-status>.utc-next-actions-blockers{padding:8px 14px!important}
+html body .utc-card.utc-v6538 .utc-status>.utc-live-system-status{padding:8px 14px 7px!important}
+html body .utc-card.utc-v6538 .utc-status>.utc-lead-notes{padding:8px 14px 10px!important}
+html body .utc-card.utc-v6538 .utc-lead-notes-text{
+  display:-webkit-box!important;
+  -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:8!important;
+  line-clamp:8!important;
+  white-space:pre-line!important;
+  max-height:calc(100% - 24px)!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+/* Presentation keeps the same geometry while using its larger readable type. */
+html body.presentation-mode .utc-card.utc-v6538 .utc-status{
+  grid-template-rows:94px 66px 66px 92px minmax(120px,1fr) minmax(136px,1.08fr)!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-lead-notes-text{
+  -webkit-line-clamp:7!important;
+  line-clamp:7!important;
+}
+
+/* The card and carousel own their bottom boundary.  No descendant may make
+   the three-column grid taller than the visible UTC. */
+html body .operations-tool-carousel,
+html body .operations-tool-carousel .utc-host,
+html body .operations-tool-carousel .utc-card.utc-v6538,
+html body.presentation-mode .presentation-tool-only,
+html body.presentation-mode .presentation-tool-focus,
+html body.presentation-mode .presentation-tool-only .utc-host,
+html body.presentation-mode .presentation-tool-focus .utc-host{
+  box-sizing:border-box!important;
+}
+html body .operations-tool-carousel{padding-bottom:0!important;overflow:hidden!important}
+html body .operations-tool-carousel .utc-host{padding-bottom:0!important;overflow:hidden!important}
