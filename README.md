@@ -496,3 +496,11 @@ V6.5.60 — Presentation Semantics + Readability Lock
 - Direct editor supports AUTO or MANUAL mode and up to three manual tasks.
 - Returning to AUTO restores the calculated top three tasks without changing operational badge states.
 - No other card geometry or badge-state logic changed in this stability build.
+
+
+## V6.5.67 — Navigation Stability Lock
+- Universal Tool Card intentionally unchanged from V6.5.66.
+- Live Operations right-side page actions no longer overlap: VERIFY TOOLS, UPDATE COMMAND CENTER, and SCREENSHOT have protected cells.
+- Status and Tool carousel control groups remain compact and on one line.
+- Tools page actions use protected cells for TOOL TYPE, UPDATE COMMAND CENTER, ADD TOOL, and SCREENSHOT.
+- Added direct post-render bindings for VERIFY TOOLS, UPDATE COMMAND CENTER, ADD TOOL, SCREENSHOT, TOOL TYPE toggle, and Tool Type family jumps so page actions do not depend on legacy delegated click routing.

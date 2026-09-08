@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.66', BUILD='20260908-V6.5.66-NEXT-TASKS-DIRECT-EDIT-COLUMN-BORDER-LOCK';
+const VERSION='6.5.67', BUILD='20260908-V6.5.67-NAVIGATION-STABILITY-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -182,7 +182,7 @@ function defaultFamilyImageName(f){if(f==='Zephyr')return 'tool-zephyr.png';retu
 function familyImage(t){let f=t.codename||t.family||'Panamera';return state.config?.toolPhotos?.[f]||('assets/'+defaultFamilyImageName(f))}
 function individualToolPhoto(t){return String(t?.toolPhoto||'').trim()}
 function normalizeConsolidatedRoute(){if(route.center==='update'){route.center='operations';if(!['tools','tool','daily'].includes(route.sub))route.sub='tools'}else if(route.center==='archive'){route.center='operations';route.sub='archive'}if(route.center==='operations'&&!route.sub)route.sub='live'}
-function setTheme(){let [name,color,rgb]=THEMES[route.center]||THEMES.operations;document.body.dataset.center=route.center;document.documentElement.style.setProperty('--accent',color);document.documentElement.style.setProperty('--accent-rgb',rgb);let title=`${name} — ${state.quarter}`;if(route.center==='operations'&&route.sub==='tool'){if(route.toolId==='new')title=`ADD TOOL — ${state.quarter}`;else{let t=(draft&&String(draft.id)===String(route.toolId))?draft:state.tools.find(x=>x.id===route.toolId);title=`${route.toolId}${t?.codename?` — ${String(t.codename).toUpperCase()}`:''} — ${state.quarter}`}}document.querySelector('#pageTitle').textContent=title;document.title=`B7 FI Command Center V${VERSION}`;document.querySelector('#versionLabel').textContent=`B7 FI COMMAND CENTER V${VERSION}`;let envLabel=document.querySelector('#environmentLabel');if(envLabel)envLabel.textContent=`DATA: ${String(state.environment||'PRODUCTION').toUpperCase()}`}
+function setTheme(){let [name,color,rgb]=THEMES[route.center]||THEMES.operations;document.body.dataset.center=route.center;document.body.dataset.sub=route.sub||'';document.documentElement.style.setProperty('--accent',color);document.documentElement.style.setProperty('--accent-rgb',rgb);let title=`${name} — ${state.quarter}`;if(route.center==='operations'&&route.sub==='tool'){if(route.toolId==='new')title=`ADD TOOL — ${state.quarter}`;else{let t=(draft&&String(draft.id)===String(route.toolId))?draft:state.tools.find(x=>x.id===route.toolId);title=`${route.toolId}${t?.codename?` — ${String(t.codename).toUpperCase()}`:''} — ${state.quarter}`}}document.querySelector('#pageTitle').textContent=title;document.title=`B7 FI Command Center V${VERSION}`;document.querySelector('#versionLabel').textContent=`B7 FI COMMAND CENTER V${VERSION}`;let envLabel=document.querySelector('#environmentLabel');if(envLabel)envLabel.textContent=`DATA: ${String(state.environment||'PRODUCTION').toUpperCase()}`}
 function toolTypeFamiliesForCurrentView(){
   let q=toolViewQuarter(),visible=q==='ALL'?nonArchivedTools():toolsForQuarter(q);
   return [...new Set(visible.map(t=>String(t.codename||t.family||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
@@ -1004,8 +1004,36 @@ window.B7Core={
 // depend on delegated navigation state.  They stop propagation before the document-level
 // handlers can switch centers without preserving the selected tool/editor mode.
 function bindCoreInteractions(){
-  document.querySelectorAll('#pageActions [data-act="addTool"]').forEach(btn=>{
-    btn.addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation();addTool();},{capture:true});
+  // V6.5.67 navigation stability: bind Operations page actions directly after every
+  // render so they do not depend on the legacy document-level delegate or stacking
+  // order in the compact one-line pagebar.
+  const bindPageAction=(selector,handler)=>{
+    document.querySelectorAll(selector).forEach(btn=>{
+      btn.addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation();handler();},{capture:true});
+    });
+  };
+  bindPageAction('#pageActions [data-act="verifyTools"]',()=>{route={center:'admin',sub:'audit'};mode='view';dirty=false;render()});
+  bindPageAction('#pageActions [data-act="updateAll"]',()=>{returnRoute=clone(route);dailyContext='weekday';route={center:'operations',sub:'daily'};mode='edit';draft=clone(state.tools);dirty=false;render()});
+  bindPageAction('#pageActions [data-act="shot"]',()=>screenshot());
+  bindPageAction('#pageActions [data-act="addTool"]',()=>addTool());
+  // Tool Type is a page action on the Tools page. Bind its menu directly too,
+  // including family jump targets, so every action in the right-hand group works.
+  document.querySelectorAll('#pageActions [data-tool-type-toggle]').forEach(toggle=>{
+    toggle.addEventListener('click',e=>{
+      e.preventDefault();e.stopImmediatePropagation();
+      const menu=toggle.closest('[data-tool-type-menu]'); if(!menu)return;
+      const open=!menu.classList.contains('open');
+      document.querySelectorAll('[data-tool-type-menu].open').forEach(x=>{x.classList.remove('open');x.querySelector('[data-tool-type-toggle]')?.setAttribute('aria-expanded','false')});
+      if(open){positionToolTypeMenu(menu);menu.classList.add('open');toggle.setAttribute('aria-expanded','true')}
+    },{capture:true});
+  });
+  document.querySelectorAll('#pageActions [data-tool-type-target]').forEach(item=>{
+    item.addEventListener('click',e=>{
+      e.preventDefault();e.stopImmediatePropagation();
+      const target=document.getElementById(item.dataset.toolTypeTarget);
+      const menu=item.closest('[data-tool-type-menu]'); menu?.classList.remove('open'); menu?.querySelector('[data-tool-type-toggle]')?.setAttribute('aria-expanded','false');
+      if(target){const shellH=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--sticky-shell-height'))||0;const y=target.getBoundingClientRect().top+window.scrollY-shellH-8;window.scrollTo({top:Math.max(0,y),behavior:'smooth'})}
+    },{capture:true});
   });
   // Direct-edit controls are bound on the rendered Universal Tool Card itself so
   // Live Operations and full-screen Presentation Mode use the exact same interaction path.
