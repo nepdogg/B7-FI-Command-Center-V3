@@ -468,3 +468,13 @@ V6.5.60 — Presentation Semantics + Readability Lock
 - Reasserts UNASSIGNED Driver as gray/inactive in every mode; assigned Driver remains purple.
 - Presentation Mode now reuses the exact six-row middle-column geometry/order from the base UTC and cannot vertically center/reorder those sections.
 - No new features; this is a narrow stability correction over V6.5.62.
+
+
+## V6.5.64 — UTC Viewport + Presentation + MFG Ship Date Lock
+- Restores a protected visible floor below the three Live Operations UTC columns so their bottom borders are never clipped by the carousel.
+- Rebuilds Presentation Mode as a two-row layout: quarter controls above, one flexible UTC tool area below. Presentation uses the same six middle-column sections without alternate centering/reordering.
+- Adds an explicit MFG SHIP DATE line to the Ship Countdown section; the date is always shown when set and NOT SET when missing.
+- Rebalances the Ship Countdown typography/height so the countdown and manufacturing ship date are both visible.
+- Keeps Driver UNASSIGNED gray and assigned drivers purple.
+- Keeps all 28 badge positions, three Next System Tasks, Live System Status, and Lead Notes inside the visible UTC boundary.
+- Updates asset cache keys to V6.5.64 so the browser cannot reuse older V6.5.62/V6.5.63 CSS or JavaScript.

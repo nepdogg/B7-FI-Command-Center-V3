@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.63', BUILD='20260908-V6.5.63-UTC-CAROUSEL-GAP-DRIVER-PRESENTATION-MIDDLE-LOCK';
+const VERSION='6.5.64', BUILD='20260908-V6.5.64-UTC-VIEWPORT-PRESENTATION-SHIP-DATE-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -624,7 +624,7 @@ function liveToolCard(tool=null){
         <div class="utc-status-section utc-countdown utc-quick-edit direct-editable" data-quick-field="shipDate" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" title="Click to update ship date">
           <div class="utc-kicker">${esc(alias)} SHIP COUNTDOWN</div>
           <div class="utc-countdown-big ${count.tone}">${esc(count.big)}</div>
-          <div class="utc-countdown-date">${esc(count.small)}</div>
+          <div class="utc-countdown-date"><span>MFG SHIP DATE</span><b>${esc(t.shipDate?shipDayDate(t.shipDate):'NOT SET')}</b></div>
         </div>
 
         <div class="utc-status-section utc-fi-status utc-quick-edit direct-editable" data-quick-field="fiStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" title="Click to use Brain AUTO status or set an operational override">

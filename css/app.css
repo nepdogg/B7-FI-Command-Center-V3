@@ -14864,3 +14864,208 @@ html body .operations-tool-carousel .utc-host{padding-bottom:0!important;overflo
   html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-live-system-status{grid-row:5!important}
   html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-lead-notes{grid-row:6!important}
 }
+
+/* ============================================================
+   V6.5.64 — UTC VIEWPORT + PRESENTATION + MFG SHIP DATE LOCK
+   Final authority: visible card floor, shared middle geometry,
+   explicit manufacturing ship date.
+   ============================================================ */
+@media (min-width:700px){
+  /* LIVE OPERATIONS: preserve an unmistakable floor under the card.
+     The card is intentionally 10px shorter than V6.5.63 so the
+     carousel border can never cover the UTC bottom borders. */
+  html body:not(.presentation-mode) .operations-tool-carousel{
+    height:668px!important;
+    min-height:668px!important;
+    max-height:668px!important;
+    padding:0 0 16px!important;
+    overflow:hidden!important;
+    box-sizing:border-box!important;
+  }
+  html body:not(.presentation-mode) .operations-tool-carousel>.utc-host,
+  html body:not(.presentation-mode) .operations-tool-carousel>.universal-card-host{
+    height:650px!important;
+    min-height:650px!important;
+    max-height:650px!important;
+    margin:0!important;
+    padding:0!important;
+    overflow:hidden!important;
+    box-sizing:border-box!important;
+  }
+  html body:not(.presentation-mode) .operations-tool-carousel .utc-card.utc-v6538,
+  html body:not(.presentation-mode) .operations-tool-carousel .utc-card.utc-v6538>.utc-column{
+    height:650px!important;
+    min-height:650px!important;
+    max-height:650px!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+    border-bottom-width:1px!important;
+    border-bottom-style:solid!important;
+  }
+
+  /* SHARED middle-column geometry.  Fixed upper rows plus protected
+     flexible Live Status and Lead Notes areas. */
+  html body .utc-card.utc-v6538 .utc-status{
+    display:grid!important;
+    grid-template-rows:106px 60px 60px 80px minmax(124px,1fr) minmax(150px,1.18fr)!important;
+    height:100%!important;
+    min-height:0!important;
+    max-height:100%!important;
+    align-content:stretch!important;
+    overflow:hidden!important;
+    box-sizing:border-box!important;
+  }
+  html body .utc-card.utc-v6538 .utc-status>.utc-status-section{
+    min-height:0!important;
+    height:auto!important;
+    max-height:none!important;
+    overflow:hidden!important;
+    box-sizing:border-box!important;
+    position:relative!important;
+    inset:auto!important;
+    transform:none!important;
+  }
+  html body .utc-card.utc-v6538 .utc-status>.utc-countdown{grid-row:1!important;padding:8px 14px 7px!important}
+  html body .utc-card.utc-v6538 .utc-status>.utc-fi-status{grid-row:2!important;padding:7px 14px!important}
+  html body .utc-card.utc-v6538 .utc-status>.utc-system-status{grid-row:3!important;padding:7px 14px!important}
+  html body .utc-card.utc-v6538 .utc-status>.utc-next-actions-blockers{grid-row:4!important;padding:7px 14px!important}
+  html body .utc-card.utc-v6538 .utc-status>.utc-live-system-status{grid-row:5!important;padding:7px 14px!important}
+  html body .utc-card.utc-v6538 .utc-status>.utc-lead-notes{grid-row:6!important;padding:7px 14px 9px!important}
+
+  /* Countdown must never consume the MFG date line. */
+  html body .utc-card.utc-v6538 .utc-countdown-big{
+    font-size:clamp(34px,3.0vw,48px)!important;
+    line-height:.88!important;
+    margin:4px 0 5px!important;
+    white-space:normal!important;
+  }
+  html body .utc-card.utc-v6538 .utc-countdown-date{
+    display:flex!important;
+    align-items:center!important;
+    gap:7px!important;
+    min-height:15px!important;
+    margin:0!important;
+    font-size:11px!important;
+    line-height:1.05!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+  }
+  html body .utc-card.utc-v6538 .utc-countdown-date span{
+    flex:0 0 auto!important;
+    color:#18d8ff!important;
+    font-size:9px!important;
+    font-weight:950!important;
+  }
+  html body .utc-card.utc-v6538 .utc-countdown-date b{
+    min-width:0!important;
+    color:#fff!important;
+    font-size:11px!important;
+    font-weight:950!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+
+  /* Driver semantics are shared by every rendering mode. */
+  html body .utc-card.utc-v6538 .utc-driver-ribbon.unassigned,
+  html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon.unassigned{
+    background:#171c21!important;
+    background-image:none!important;
+    border-color:#56616b!important;
+    color:#9aa4ad!important;
+    box-shadow:none!important;
+    filter:none!important;
+  }
+  html body .utc-card.utc-v6538 .utc-driver-ribbon.unassigned span,
+  html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon.unassigned span{color:#9aa4ad!important}
+
+  /* PRESENTATION: the 1920x1080 virtual frame is exactly two rows.
+     This removes the old presentation-only sizing chain that allowed the
+     tool card/middle column to extend below the available wallboard area. */
+  html body.presentation-mode #app{
+    display:grid!important;
+    grid-template-rows:auto minmax(0,1fr)!important;
+    height:100%!important;
+    min-height:0!important;
+    max-height:100%!important;
+    overflow:hidden!important;
+    box-sizing:border-box!important;
+  }
+  html body.presentation-mode .presentation-quarter-panel{
+    grid-row:1!important;
+    min-height:0!important;
+    flex:none!important;
+  }
+  html body.presentation-mode .presentation-tool-only,
+  html body.presentation-mode .presentation-tool-focus{
+    grid-row:2!important;
+    display:flex!important;
+    align-items:stretch!important;
+    min-height:0!important;
+    height:auto!important;
+    max-height:100%!important;
+    padding:8px 0 14px!important;
+    overflow:hidden!important;
+    box-sizing:border-box!important;
+  }
+  html body.presentation-mode .presentation-tool-only>.utc-host,
+  html body.presentation-mode .presentation-tool-focus>.utc-host,
+  html body.presentation-mode .presentation-tool-only>.universal-card-host,
+  html body.presentation-mode .presentation-tool-focus>.universal-card-host{
+    flex:1 1 auto!important;
+    height:auto!important;
+    min-height:0!important;
+    max-height:100%!important;
+    margin:0!important;
+    overflow:hidden!important;
+    box-sizing:border-box!important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-card.utc-v6538,
+  html body.presentation-mode .presentation-tool-focus .utc-card.utc-v6538,
+  html body.presentation-mode .presentation-tool-only .utc-card.utc-v6538>.utc-column,
+  html body.presentation-mode .presentation-tool-focus .utc-card.utc-v6538>.utc-column{
+    height:100%!important;
+    min-height:0!important;
+    max-height:100%!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+    border-bottom-width:1px!important;
+    border-bottom-style:solid!important;
+  }
+
+  /* Presentation keeps the SAME six middle rows, expressed as percentages
+     so every section scales together with the available wallboard height. */
+  html body.presentation-mode .utc-card.utc-v6538 .utc-status{
+    display:grid!important;
+    grid-template-rows:17% 10% 10% 13% 22% 28%!important;
+    height:100%!important;
+    min-height:0!important;
+    max-height:100%!important;
+    align-content:stretch!important;
+    overflow:hidden!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-status-section{
+    position:relative!important;
+    inset:auto!important;
+    transform:none!important;
+    min-height:0!important;
+    height:auto!important;
+    max-height:none!important;
+    overflow:hidden!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-countdown-big{
+    font-size:clamp(42px,3.15vw,58px)!important;
+    line-height:.88!important;
+    margin:5px 0 7px!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-countdown-date{
+    font-size:14px!important;
+    gap:9px!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-countdown-date span{font-size:12px!important}
+  html body.presentation-mode .utc-card.utc-v6538 .utc-countdown-date b{font-size:14px!important}
+  html body.presentation-mode .utc-card.utc-v6538 .utc-live-status-text,
+  html body.presentation-mode .utc-card.utc-v6538 .utc-lead-notes-text{
+    max-height:calc(100% - 24px)!important;
+    overflow:hidden!important;
+  }
+}
