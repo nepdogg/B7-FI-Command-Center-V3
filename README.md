@@ -415,7 +415,7 @@ V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit
 - All 28 badge positions remain visible, including the OFF FUTURE BADGE placeholder.
 
 
-V6.5.59 — Presentation Semantics + Readability Lock
+V6.5.60 — Presentation Semantics + Readability Lock
 - Unified Customer/Sales Order information badge structure in Live Operations and Presentation.
 - Missing Customer = CUSTOMER | NO CUSTOMER, full badge red.
 - Missing Sales Order = SALES ORDER | NO SALES ORDER, full badge red.
@@ -424,10 +424,19 @@ V6.5.59 — Presentation Semantics + Readability Lock
 - Increased Presentation Mode Universal Tool Card typography for readability while preserving the same card DOM/semantics.
 
 
-## V6.5.59 — Next Actions / Blockers Lock
+## V6.5.60 — Next Actions / Blockers Lock
 - Removed the decorative tool photo from the Universal Tool Card middle column.
 - Added an automatic NEXT ACTIONS / BLOCKERS section immediately after CURRENT SYSTEM STATUS.
 - Actions are derived from unresolved red/yellow operational badge states and update automatically as badge states change.
 - NC Escalation is prioritized as a blocker; red action-required items precede yellow waiting/in-progress items.
 - Completed/green and inactive badges do not appear in the action list.
 - Live System Status and Lead Notes / Reminders remain separate below the automatic action section.
+
+
+## V6.5.60 — Middle Column + Presentation Readability Lock
+- Repairs the Universal Tool Card middle column in both Live Operations and Presentation Mode.
+- Locks the middle column to six visible sections in order: Ship Countdown, FI Status, Current System Status, Next Actions / Blockers, Live System Status, Lead Notes / Reminders.
+- Removes legacy flex/centering behavior that could collapse or push middle-column sections out of view.
+- Keeps Next Actions / Blockers automatic and directly below Current System Status.
+- Enlarges Presentation Mode operational badge text while preserving all 28 badge positions, two-line wrapping, FUTURE BADGE, and Update Tool Status.
+- Keeps Live Operations and Presentation Mode on the same Universal Tool Card semantics; Presentation Mode only increases readability.

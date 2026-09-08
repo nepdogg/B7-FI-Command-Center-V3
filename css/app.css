@@ -14397,3 +14397,109 @@ html body.presentation-mode .utc-card.utc-v6538 .utc-next-action{font-size:14px!
 html body.presentation-mode .utc-card.utc-v6538 .utc-next-action-dot{width:8px!important;height:8px!important;flex-basis:8px!important;margin-top:4px!important}
 html body.presentation-mode .utc-card.utc-v6538 .utc-next-actions-more,
 html body.presentation-mode .utc-card.utc-v6538 .utc-next-actions-empty{font-size:13px!important}
+
+/* ============================================================
+   V6.5.60 — MIDDLE COLUMN + PRESENTATION READABILITY AUTHORITY LOCK
+   ============================================================ */
+/* One middle-column geometry for Live Operations and Presentation Mode.
+   Six sections are always visible and remain in operational reading order. */
+html body .utc-card.utc-v6538 .utc-status{
+  display:grid!important;
+  grid-template-rows:
+    minmax(104px,auto)
+    minmax(72px,auto)
+    minmax(76px,auto)
+    minmax(112px,1.15fr)
+    minmax(118px,1.35fr)
+    minmax(90px,1fr)!important;
+  align-content:stretch!important;
+  justify-content:stretch!important;
+  gap:0!important;
+  min-height:0!important;
+  height:100%!important;
+  overflow:hidden!important;
+}
+html body .utc-card.utc-v6538 .utc-status>.utc-status-section{
+  display:block!important;
+  position:relative!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:none!important;
+  height:auto!important;
+  max-height:none!important;
+  flex:none!important;
+  margin:0!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+  justify-content:flex-start!important;
+  align-content:start!important;
+}
+html body .utc-card.utc-v6538 .utc-status>.utc-countdown{grid-row:1!important;padding:12px 14px 10px!important}
+html body .utc-card.utc-v6538 .utc-status>.utc-fi-status{grid-row:2!important;padding:10px 14px!important;border-top:1px solid #245d78!important}
+html body .utc-card.utc-v6538 .utc-status>.utc-system-status{grid-row:3!important;padding:10px 14px!important;border-top:1px solid #245d78!important}
+html body .utc-card.utc-v6538 .utc-status>.utc-next-actions-blockers{grid-row:4!important;padding:10px 14px!important;border-top:1px solid #245d78!important;border-bottom:0!important;min-height:0!important;max-height:none!important}
+html body .utc-card.utc-v6538 .utc-status>.utc-live-system-status{grid-row:5!important;padding:10px 14px!important;border-top:1px solid #245d78!important;min-height:0!important;max-height:none!important}
+html body .utc-card.utc-v6538 .utc-status>.utc-lead-notes{grid-row:6!important;padding:10px 14px!important;border-top:1px solid #245d78!important;min-height:0!important;max-height:none!important}
+html body .utc-card.utc-v6538 .utc-status>.utc-status-section .utc-kicker{margin:0 0 6px!important;padding:0!important}
+html body .utc-card.utc-v6538 .utc-next-actions-list{margin-top:5px!important;max-height:calc(100% - 22px)!important;overflow:hidden!important}
+html body .utc-card.utc-v6538 .utc-live-status-text,
+html body .utc-card.utc-v6538 .utc-lead-notes-text{margin:0!important;padding:0!important;max-height:calc(100% - 24px)!important;overflow:hidden!important}
+
+/* Presentation Mode uses the same card, with larger readable operational type. */
+html body.presentation-mode .utc-card.utc-v6538 .utc-status{
+  grid-template-rows:
+    minmax(112px,auto)
+    minmax(78px,auto)
+    minmax(82px,auto)
+    minmax(124px,1.18fr)
+    minmax(128px,1.32fr)
+    minmax(96px,1fr)!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-status-section{padding-left:16px!important;padding-right:16px!important}
+html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-status-section .utc-kicker{font-size:clamp(11px,.78vw,14px)!important;line-height:1.08!important}
+html body.presentation-mode .utc-card.utc-v6538 .utc-countdown-big{font-size:clamp(36px,3vw,54px)!important;line-height:.92!important}
+html body.presentation-mode .utc-card.utc-v6538 .utc-countdown-date{font-size:clamp(12px,.92vw,16px)!important;line-height:1.05!important}
+html body.presentation-mode .utc-card.utc-v6538 .utc-process-big,
+html body.presentation-mode .utc-card.utc-v6538 .utc-phase-big{font-size:clamp(22px,1.75vw,31px)!important;line-height:1!important}
+html body.presentation-mode .utc-card.utc-v6538 .utc-next-action{font-size:clamp(12px,.86vw,15px)!important;line-height:1.12!important}
+html body.presentation-mode .utc-card.utc-v6538 .utc-live-status-text,
+html body.presentation-mode .utc-card.utc-v6538 .utc-lead-notes-text{font-size:clamp(12px,.84vw,15px)!important;line-height:1.16!important}
+
+/* 28 operational badges remain visible, but wallboard text uses the available
+   row height instead of shrinking to legacy micro-text. */
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display{
+  min-height:0!important;
+  overflow:hidden!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display .utc-indicator-grid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-template-rows:repeat(14,minmax(0,1fr))!important;
+  gap:3px 5px!important;
+  height:100%!important;
+  min-height:0!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-lamp{
+  min-height:0!important;
+  height:100%!important;
+  padding:2px 4px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  overflow:hidden!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-message{
+  display:-webkit-box!important;
+  -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:2!important;
+  white-space:normal!important;
+  overflow:hidden!important;
+  text-overflow:clip!important;
+  text-align:center!important;
+  font-size:clamp(10.5px,.72vw,13px)!important;
+  line-height:1.02!important;
+  font-weight:950!important;
+  letter-spacing:-.12px!important;
+}
+html body.presentation-mode .utc-card.utc-v6538 .fi-indicator-lamp.reserved .fi-indicator-message{font-size:clamp(9.5px,.66vw,12px)!important}
+html body.presentation-mode .utc-card.utc-v6538 .utc-edit-tool-bar-bottom>span{font-size:clamp(16px,1.05vw,19px)!important}
