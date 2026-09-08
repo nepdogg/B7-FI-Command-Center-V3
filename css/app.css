@@ -15069,3 +15069,185 @@ html body .operations-tool-carousel .utc-host{padding-bottom:0!important;overflo
     overflow:hidden!important;
   }
 }
+
+/* ============================================================
+   V6.5.65 — LIVE CAROUSEL + COUNTDOWN + NAV CONTROL LOCK
+   Final authority for equal Live Operations carousel frames,
+   protected MFG ship date, compact page controls, and stable
+   Presentation middle-column geometry.
+   ============================================================ */
+@media (min-width:901px){
+  /* Equal left/right Live Operations carousel frames. */
+  html body:not(.presentation-mode)[data-center="operations"] .operations-dual-grid{
+    align-items:stretch!important;
+    gap:8px!important;
+  }
+  html body:not(.presentation-mode)[data-center="operations"] .operations-status-carousel,
+  html body:not(.presentation-mode)[data-center="operations"] .operations-tool-carousel{
+    height:680px!important;
+    min-height:680px!important;
+    max-height:680px!important;
+    padding:8px!important;
+    margin:0!important;
+    border:1px solid rgba(var(--accent-rgb),.72)!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+    background:#000!important;
+  }
+  html body:not(.presentation-mode)[data-center="operations"] .operations-status-carousel>.snapshot-panel,
+  html body:not(.presentation-mode)[data-center="operations"] .operations-status-carousel .snapshot-panel,
+  html body:not(.presentation-mode)[data-center="operations"] .operations-tool-carousel>.utc-host,
+  html body:not(.presentation-mode)[data-center="operations"] .operations-tool-carousel>.universal-card-host{
+    width:100%!important;
+    height:100%!important;
+    min-height:0!important;
+    max-height:100%!important;
+    margin:0!important;
+    padding:0!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+  }
+  html body:not(.presentation-mode)[data-center="operations"] .operations-tool-carousel .utc-card.utc-v6538,
+  html body:not(.presentation-mode)[data-center="operations"] .operations-tool-carousel .utc-card.utc-v6538>.utc-column{
+    height:100%!important;
+    min-height:0!important;
+    max-height:100%!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+  }
+
+  /* Shared middle column: protect countdown + MFG date and give Next Tasks room. */
+  html body .utc-card.utc-v6538 .utc-status{
+    grid-template-rows:118px 60px 60px 92px minmax(120px,1fr) minmax(142px,1.12fr)!important;
+  }
+  html body .utc-card.utc-v6538 .utc-status>.utc-countdown{
+    display:grid!important;
+    grid-template-rows:15px minmax(0,1fr) 18px!important;
+    align-content:stretch!important;
+    padding:7px 14px 6px!important;
+    overflow:hidden!important;
+  }
+  html body .utc-card.utc-v6538 .utc-countdown .utc-kicker{
+    align-self:center!important;
+    margin:0!important;
+    line-height:1!important;
+  }
+  html body .utc-card.utc-v6538 .utc-countdown-big{
+    align-self:center!important;
+    font-size:clamp(32px,2.45vw,42px)!important;
+    line-height:.90!important;
+    margin:0!important;
+    max-height:78px!important;
+    overflow:hidden!important;
+    white-space:normal!important;
+  }
+  html body .utc-card.utc-v6538 .utc-countdown-date{
+    align-self:end!important;
+    min-height:18px!important;
+    height:18px!important;
+    line-height:18px!important;
+    overflow:visible!important;
+  }
+  html body .utc-card.utc-v6538 .utc-countdown-date span{font-size:9px!important}
+  html body .utc-card.utc-v6538 .utc-countdown-date b{
+    font-size:11px!important;
+    text-overflow:clip!important;
+    overflow:visible!important;
+  }
+  html body .utc-card.utc-v6538 .utc-next-actions-blockers{
+    padding:8px 14px!important;
+  }
+  html body .utc-card.utc-v6538 .utc-next-actions-blockers .utc-kicker{
+    margin-bottom:5px!important;
+  }
+  html body .utc-card.utc-v6538 .utc-next-actions-list,
+  html body .utc-card.utc-v6538 .utc-next-actions-blockers ul{
+    line-height:1.24!important;
+  }
+
+  /* Compact Live Operations page controls so all actions remain on one row. */
+  html body[data-center="operations"] #pageActions.page-actions{
+    min-width:0!important;
+    overflow:hidden!important;
+  }
+  html body[data-center="operations"] .ops-action-controls{
+    flex:0 0 auto!important;
+    min-width:0!important;
+  }
+  html body[data-center="operations"] .ops-control-group{
+    display:grid!important;
+    grid-template-columns:24px 42px 48px 24px!important;
+    width:138px!important;
+    min-width:138px!important;
+    flex:0 0 138px!important;
+  }
+  html body[data-center="operations"] .ops-mini-btn{
+    width:24px!important;
+    min-width:24px!important;
+    padding:0!important;
+    font-size:9px!important;
+  }
+  html body[data-center="operations"] .ops-count{
+    width:42px!important;
+    min-width:42px!important;
+    padding:0 2px!important;
+    font-size:7px!important;
+  }
+  html body[data-center="operations"] .ops-pause-btn{
+    width:48px!important;
+    min-width:48px!important;
+    padding:1px 2px!important;
+  }
+  html body[data-center="operations"] .ops-pause-btn b{font-size:6px!important}
+  html body[data-center="operations"] .ops-pause-btn span{font-size:7px!important}
+  html body[data-center="operations"] .ops-action-right{
+    flex:1 1 auto!important;
+    min-width:0!important;
+    display:flex!important;
+    overflow:hidden!important;
+  }
+  html body[data-center="operations"] .ops-action-right>button{
+    min-width:0!important;
+    flex:1 1 0!important;
+    padding:0 5px!important;
+    font-size:clamp(6px,.48vw,8px)!important;
+    letter-spacing:0!important;
+    white-space:nowrap!important;
+  }
+}
+
+@media (min-width:700px){
+  /* Presentation uses the same protected countdown anatomy. */
+  html body.presentation-mode .utc-card.utc-v6538 .utc-status{
+    grid-template-rows:120px 62px 62px 100px minmax(118px,1fr) minmax(128px,1fr)!important;
+    height:100%!important;
+    min-height:0!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-countdown{
+    display:grid!important;
+    grid-template-rows:16px minmax(0,1fr) 20px!important;
+    padding:7px 14px 6px!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-countdown-big{
+    font-size:clamp(36px,2.75vw,48px)!important;
+    line-height:.90!important;
+    margin:0!important;
+    max-height:82px!important;
+    overflow:hidden!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-countdown-date{
+    display:flex!important;
+    height:20px!important;
+    min-height:20px!important;
+    line-height:20px!important;
+    overflow:visible!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-countdown-date span{font-size:10px!important}
+  html body.presentation-mode .utc-card.utc-v6538 .utc-countdown-date b{font-size:12px!important;overflow:visible!important;text-overflow:clip!important}
+  html body.presentation-mode .utc-card.utc-v6538 .utc-next-actions-blockers{
+    padding:9px 14px!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-next-actions-blockers .utc-kicker{
+    margin-bottom:6px!important;
+  }
+}

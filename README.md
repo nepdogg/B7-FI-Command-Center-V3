@@ -478,3 +478,12 @@ V6.5.60 — Presentation Semantics + Readability Lock
 - Keeps Driver UNASSIGNED gray and assigned drivers purple.
 - Keeps all 28 badge positions, three Next System Tasks, Live System Status, and Lead Notes inside the visible UTC boundary.
 - Updates asset cache keys to V6.5.64 so the browser cannot reuse older V6.5.62/V6.5.63 CSS or JavaScript.
+
+## V6.5.65 — Live Carousel / Countdown / Navigation Stability Lock
+- Live Operations Status and Tool carousel frames now share the same fixed height, padding, border, and inner fill behavior.
+- Universal Tool Card remains fully inside the Tool carousel frame instead of extending below it.
+- Ship Countdown now reserves a dedicated MFG Ship Date line, even when countdown text wraps to two lines or shows NO SHIP DATE.
+- Countdown typography reduced enough to preserve the MFG Ship Date without sacrificing readability.
+- Next System Tasks receives more vertical room and line spacing while remaining limited to three tasks.
+- Presentation Mode uses the same protected countdown/date structure and stable six-section middle column.
+- Live Operations page action controls are compacted so the two carousel control clusters plus page action buttons remain on one line.
