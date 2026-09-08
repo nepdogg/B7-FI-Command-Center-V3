@@ -513,3 +513,12 @@ V6.5.60 — Presentation Semantics + Readability Lock
 - CY26Q3 Tools actions use direct hard-routed handlers for Tool Type, Update Command Center, Add Tool, and Screenshot.
 - Live Operations Verify Tools, Update Command Center, and Screenshot use the same hard-routed action API.
 - Tool Type dropdown toggle and family jumps bypass the legacy delegated navigation path.
+
+## V6.5.69 — Navigation Clean Rewrite Lock
+- Universal Tool Card intentionally unchanged from V6.5.68.
+- Removed the failed V6.5.67/V6.5.68 navigation override layers.
+- Rebuilt the Operations pagebar as one authoritative layout system.
+- Live Operations pagebar: compact Status controls + Tool controls + protected Verify Tools / Update Command Center / Screenshot cells.
+- Tools pagebar: protected Tool Type / Update Command Center / Add Tool / Screenshot cells.
+- Replaced overlapping inline/direct/delegated page-action behavior with one capture-phase Operations navigation router.
+- Tool Type dropdown uses the same single router and fixed-position menu so it cannot be clipped by the pagebar.

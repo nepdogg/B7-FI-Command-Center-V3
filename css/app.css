@@ -15297,132 +15297,209 @@ html body .utc-card.utc-v6538 .utc-next-actions-blockers[data-next-system-tasks]
 .next-system-tasks-modal .form-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
 .next-system-tasks-modal input,.next-system-tasks-modal select{width:100%!important}
 \n\n/* =========================================================\n   V6.5.67 FINAL AUTHORITY — OPERATIONS NAVIGATION STABILITY LOCK\n   Preserve the locked Universal Tool Card. Repair only the one-line\n   Operations pagebar: no overlapping actions and reliable click targets.\n   ========================================================= */\n@media (min-width:1000px){\n  html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) .pagebar{\n    display:flex!important;\n    align-items:stretch!important;\n    overflow:visible!important;\n  }\n  html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) #subnav.subnav{\n    flex:1 1 auto!important;\n    min-width:360px!important;\n    overflow:hidden!important;\n  }\n  html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) #pageActions.page-actions{\n    flex:0 0 auto!important;\n    width:auto!important;\n    min-width:0!important;\n    max-width:none!important;\n    overflow:visible!important;\n    position:relative!important;\n    z-index:9000!important;\n    pointer-events:auto!important;\n  }\n  /* Live Operations: two compact carousel groups + three protected action buttons. */\n  html body[data-center="operations"][data-sub="live"] #pageActions.page-actions{\n    display:grid!important;\n    grid-template-columns:276px 330px!important;\n    width:606px!important;\n  }\n  html body[data-center="operations"][data-sub="live"] .ops-action-controls{\n    display:grid!important;\n    grid-template-columns:138px 138px!important;\n    width:276px!important;\n    min-width:276px!important;\n    overflow:hidden!important;\n  }\n  html body[data-center="operations"][data-sub="live"] .ops-action-right{\n    display:grid!important;\n    grid-template-columns:92px 156px 82px!important;\n    width:330px!important;\n    min-width:330px!important;\n    overflow:hidden!important;\n  }\n  html body[data-center="operations"][data-sub="live"] .ops-action-right>button{\n    width:100%!important;\n    min-width:0!important;\n    max-width:none!important;\n    padding:0 4px!important;\n    font-size:7px!important;\n    line-height:1!important;\n    overflow:hidden!important;\n    text-overflow:clip!important;\n    white-space:nowrap!important;\n    pointer-events:auto!important;\n    position:relative!important;\n    z-index:2!important;\n  }\n  /* Tools page: Tool Type + Update + Add + Screenshot each own a real cell. */\n  html body[data-center="operations"][data-sub="tools"] #pageActions.page-actions{\n    display:grid!important;\n    grid-template-columns:110px 160px 105px 95px!important;\n    width:470px!important;\n    overflow:visible!important;\n  }\n  html body[data-center="operations"][data-sub="tools"] #pageActions.page-actions>.tool-type-menu,\n  html body[data-center="operations"][data-sub="tools"] #pageActions.page-actions>button{\n    width:100%!important;\n    min-width:0!important;\n    max-width:none!important;\n    height:100%!important;\n    overflow:visible!important;\n    pointer-events:auto!important;\n    position:relative!important;\n  }\n  html body[data-center="operations"][data-sub="tools"] #pageActions.page-actions>button{\n    overflow:hidden!important;\n    padding:0 5px!important;\n    font-size:7px!important;\n    white-space:nowrap!important;\n  }\n  html body[data-center="operations"] #pageActions button{cursor:pointer!important;}\n}\n\n@media (min-width:700px) and (max-width:999px){\n  html body[data-center="operations"] #pageActions.page-actions{overflow-x:auto!important;overflow-y:visible!important;max-width:58vw!important;}\n  html body[data-center="operations"] .ops-action-right>button,\n  html body[data-center="operations"] #pageActions.page-actions>button{min-width:92px!important;font-size:7px!important;}\n}\n
+
+
 /* =========================================================
-   V6.5.68 FINAL AUTHORITY — OPERATIONS PAGEBAR HARD ROUTE LOCK
-   Geometry and hit-target repair only. Universal Tool Card untouched.
+   V6.5.69 FINAL AUTHORITY — OPERATIONS NAVIGATION CLEAN REWRITE
+   One layout system. No inherited min-width fight. Universal Tool Card untouched.
    ========================================================= */
-@media (min-width:1000px){
-  html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) .pagebar{
-    display:grid!important;
-    grid-template-columns:minmax(0,1fr) max-content!important;
-    align-items:stretch!important;
-    width:100%!important;
-    overflow:visible!important;
-    position:relative!important;
-    isolation:isolate!important;
-  }
-  html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) #subnav.subnav{
-    display:flex!important;
-    width:auto!important;
-    min-width:0!important;
-    overflow:hidden!important;
-    position:relative!important;
-    z-index:1!important;
-  }
-  html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) #pageActions.page-actions{
-    display:flex!important;
-    width:max-content!important;
-    min-width:0!important;
-    overflow:visible!important;
-    position:relative!important;
-    z-index:20!important;
-    pointer-events:auto!important;
-    isolation:isolate!important;
-  }
-  html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) #pageActions,
-  html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) #pageActions *{
-    pointer-events:auto!important;
-  }
+html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) .pagebar{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  align-items:stretch!important;
+  width:100%!important;
+  height:var(--v6-nav-h)!important;
+  min-height:var(--v6-nav-h)!important;
+  gap:0!important;
+  overflow:visible!important;
+  border:1px solid var(--v6-frame)!important;
+  background:#05121e!important;
+}
+html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) #subnav.subnav{
+  display:grid!important;
+  grid-auto-flow:column!important;
+  grid-auto-columns:minmax(0,1fr)!important;
+  min-width:0!important;
+  width:100%!important;
+  height:100%!important;
+  overflow:hidden!important;
+}
+html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) #subnav.subnav>button{
+  min-width:0!important;
+  width:100%!important;
+  padding:0 7px!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+}
+html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) #pageActions.page-actions{
+  display:flex!important;
+  flex:0 0 auto!important;
+  width:auto!important;
+  min-width:0!important;
+  height:100%!important;
+  overflow:visible!important;
+  position:relative!important;
+  z-index:10000!important;
+  pointer-events:auto!important;
+}
+html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) #pageActions button{
+  box-sizing:border-box!important;
+  height:100%!important;
+  min-width:0!important;
+  max-width:none!important;
+  margin:0!important;
+  border:0!important;
+  border-left:1px solid #1c4c69!important;
+  border-radius:0!important;
+  background:#082035!important;
+  color:#fff!important;
+  font-weight:950!important;
+  white-space:nowrap!important;
+  cursor:pointer!important;
+  pointer-events:auto!important;
+}
+html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) #pageActions button:hover{
+  background:rgba(var(--accent-rgb),.28)!important;
+}
+html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) #pageActions button.primary{
+  background:rgba(var(--accent-rgb),.24)!important;
+  box-shadow:inset 0 -3px var(--accent)!important;
+}
 
-  /* LIVE OPERATIONS: 2 compact carousel groups + 3 clearly separated actions. */
-  html body[data-center="operations"][data-sub="live"] #pageActions.page-actions{
-    display:grid!important;
-    grid-template-columns:256px 390px!important;
-    width:646px!important;
-    min-width:646px!important;
-  }
-  html body[data-center="operations"][data-sub="live"] .ops-action-controls{
-    display:grid!important;
-    grid-template-columns:128px 128px!important;
-    width:256px!important;
-    min-width:256px!important;
-    overflow:hidden!important;
-    border-left:2px solid var(--accent)!important;
-  }
-  html body[data-center="operations"][data-sub="live"] .ops-control-group{
-    display:grid!important;
-    grid-template-columns:20px 38px 50px 20px!important;
-    width:128px!important;
-    min-width:128px!important;
-    overflow:hidden!important;
-  }
-  html body[data-center="operations"][data-sub="live"] .ops-mini-btn{width:20px!important;min-width:20px!important;padding:0!important}
-  html body[data-center="operations"][data-sub="live"] .ops-count{width:38px!important;min-width:38px!important;font-size:7px!important;padding:0!important}
-  html body[data-center="operations"][data-sub="live"] .ops-pause-btn{width:50px!important;min-width:50px!important;padding:1px 2px!important}
-  html body[data-center="operations"][data-sub="live"] .ops-action-right{
-    display:grid!important;
-    grid-template-columns:112px 178px 100px!important;
-    width:390px!important;
-    min-width:390px!important;
-    overflow:hidden!important;
-    border-left:2px solid var(--accent)!important;
-  }
-  html body[data-center="operations"][data-sub="live"] .ops-action-right>button{
-    display:flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    width:100%!important;
-    min-width:0!important;
-    max-width:none!important;
-    padding:0 7px!important;
-    font-size:8px!important;
-    line-height:1!important;
-    white-space:nowrap!important;
-    overflow:hidden!important;
-    border-left:1px solid #2b607d!important;
-    position:relative!important;
-    z-index:30!important;
-    cursor:pointer!important;
-  }
-  html body[data-center="operations"][data-sub="live"] .ops-action-right>button:first-child{border-left:0!important}
+/* Live Operations: compact controls + three non-overlapping page actions. */
+html body[data-center="operations"][data-sub="live"] #pageActions.page-actions{
+  display:grid!important;
+  grid-template-columns:244px 344px!important;
+  width:588px!important;
+  min-width:588px!important;
+}
+html body[data-center="operations"][data-sub="live"] .nav69-live-controls{
+  display:grid!important;
+  grid-template-columns:122px 122px!important;
+  width:244px!important;
+  min-width:244px!important;
+  height:100%!important;
+  overflow:hidden!important;
+  border-left:2px solid var(--accent)!important;
+}
+html body[data-center="operations"][data-sub="live"] .nav69-control-group{
+  display:grid!important;
+  grid-template-columns:18px 36px 50px 18px!important;
+  width:122px!important;
+  min-width:122px!important;
+  height:100%!important;
+  overflow:hidden!important;
+}
+html body[data-center="operations"][data-sub="live"] .nav69-mini,
+html body[data-center="operations"][data-sub="live"] .nav69-count,
+html body[data-center="operations"][data-sub="live"] .nav69-pause{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-width:0!important;
+  width:100%!important;
+  height:100%!important;
+  padding:0!important;
+  font-size:7px!important;
+  line-height:1!important;
+  overflow:hidden!important;
+  border-left:1px solid #1c4c69!important;
+}
+html body[data-center="operations"][data-sub="live"] .nav69-count{
+  background:#071827!important;
+  color:#fff!important;
+  font-weight:950!important;
+}
+html body[data-center="operations"][data-sub="live"] .nav69-pause{
+  flex-direction:column!important;
+  gap:1px!important;
+}
+html body[data-center="operations"][data-sub="live"] .nav69-pause b{font-size:6px!important;line-height:1!important}
+html body[data-center="operations"][data-sub="live"] .nav69-pause span{font-size:7px!important;line-height:1!important}
+html body[data-center="operations"][data-sub="live"] .nav69-live-actions{
+  display:grid!important;
+  grid-template-columns:96px 158px 90px!important;
+  width:344px!important;
+  min-width:344px!important;
+  height:100%!important;
+  overflow:hidden!important;
+  border-left:2px solid var(--accent)!important;
+}
+html body[data-center="operations"][data-sub="live"] .nav69-live-actions>button{
+  width:100%!important;
+  padding:0 5px!important;
+  font-size:7px!important;
+  line-height:1!important;
+  overflow:hidden!important;
+  text-overflow:clip!important;
+}
 
-  /* TOOLS PAGE: four independent action hit targets. */
-  html body[data-center="operations"][data-sub="tools"] #pageActions.page-actions{
-    display:grid!important;
-    grid-template-columns:118px 178px 104px 100px!important;
-    width:500px!important;
-    min-width:500px!important;
-    overflow:visible!important;
-    border-left:2px solid var(--accent)!important;
-  }
-  html body[data-center="operations"][data-sub="tools"] #pageActions.page-actions>.tool-type-menu,
-  html body[data-center="operations"][data-sub="tools"] #pageActions.page-actions>button{
-    width:100%!important;
-    min-width:0!important;
-    max-width:none!important;
-    height:100%!important;
-    position:relative!important;
-    z-index:30!important;
-    cursor:pointer!important;
-  }
-  html body[data-center="operations"][data-sub="tools"] #pageActions.page-actions>button,
-  html body[data-center="operations"][data-sub="tools"] #pageActions .tool-type-menu-button{
-    display:flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    padding:0 7px!important;
-    font-size:8px!important;
-    white-space:nowrap!important;
-    overflow:hidden!important;
-    border-left:1px solid #2b607d!important;
-  }
-  html body[data-center="operations"][data-sub="tools"] #pageActions .tool-type-menu-button{border-left:0!important}
-  html body[data-center="operations"][data-sub="tools"] #pageActions .tool-type-dropdown{
-    z-index:50000!important;
-    pointer-events:auto!important;
-  }
-  html body[data-center="operations"][data-sub="tools"] #pageActions .tool-type-dropdown>button{
-    pointer-events:auto!important;
-    cursor:pointer!important;
-  }
+/* Tools page: four independent, reliable action cells. */
+html body[data-center="operations"][data-sub="tools"] #pageActions.page-actions{
+  display:grid!important;
+  grid-template-columns:104px 158px 92px 90px!important;
+  width:444px!important;
+  min-width:444px!important;
+  height:100%!important;
+  overflow:visible!important;
+  border-left:2px solid var(--accent)!important;
+}
+html body[data-center="operations"][data-sub="tools"] #pageActions.page-actions>.tool-type-menu,
+html body[data-center="operations"][data-sub="tools"] #pageActions.page-actions>button{
+  width:100%!important;
+  min-width:0!important;
+  height:100%!important;
+  position:relative!important;
+}
+html body[data-center="operations"][data-sub="tools"] #pageActions.page-actions>button,
+html body[data-center="operations"][data-sub="tools"] #pageActions .tool-type-menu-button{
+  width:100%!important;
+  min-width:0!important;
+  height:100%!important;
+  padding:0 5px!important;
+  font-size:7px!important;
+  line-height:1!important;
+  overflow:hidden!important;
+  white-space:nowrap!important;
+}
+html body[data-center="operations"][data-sub="tools"] #pageActions .tool-type-menu-button{
+  border-left:0!important;
+}
+html body[data-center="operations"][data-sub="tools"] #pageActions .tool-type-dropdown{
+  display:none!important;
+  position:fixed!important;
+  left:var(--tool-menu-left,6px)!important;
+  top:var(--tool-menu-top,44px)!important;
+  width:var(--tool-menu-width,190px)!important;
+  min-width:190px!important;
+  max-width:260px!important;
+  z-index:50000!important;
+  padding:4px!important;
+  border:1px solid var(--accent)!important;
+  background:#03101c!important;
+  box-shadow:0 8px 18px rgba(0,0,0,.62)!important;
+}
+html body[data-center="operations"][data-sub="tools"] #pageActions .tool-type-menu.open>.tool-type-dropdown{
+  display:grid!important;
+}
+html body[data-center="operations"][data-sub="tools"] #pageActions .tool-type-dropdown>button{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  min-width:180px!important;
+  height:32px!important;
+  padding:0 10px!important;
+  font-size:9px!important;
+  border-left:0!important;
+  border-bottom:1px solid #1c4c69!important;
+}
+html body[data-center="operations"][data-sub="tools"] #pageActions .tool-type-dropdown>button:last-child{border-bottom:0!important}
+
+@media(max-width:1200px){
+  html body[data-center="operations"][data-sub="live"] #pageActions.page-actions{grid-template-columns:220px 300px!important;width:520px!important;min-width:520px!important}
+  html body[data-center="operations"][data-sub="live"] .nav69-live-controls{grid-template-columns:110px 110px!important;width:220px!important;min-width:220px!important}
+  html body[data-center="operations"][data-sub="live"] .nav69-control-group{grid-template-columns:16px 32px 46px 16px!important;width:110px!important;min-width:110px!important}
+  html body[data-center="operations"][data-sub="live"] .nav69-live-actions{grid-template-columns:84px 140px 76px!important;width:300px!important;min-width:300px!important}
+  html body[data-center="operations"][data-sub="tools"] #pageActions.page-actions{grid-template-columns:92px 140px 82px 78px!important;width:392px!important;min-width:392px!important}
 }

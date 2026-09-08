@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.68', BUILD='20260908-V6.5.68-NAVIGATION-HARD-ROUTE-LOCK';
+const VERSION='6.5.69', BUILD='20260908-V6.5.69-NAVIGATION-CLEAN-REWRITE-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -191,7 +191,7 @@ function toolTypeMenu(){
   if(route.center!=='operations'||route.sub!=='tools'||mode!=='view')return'';
   let fams=toolTypeFamiliesForCurrentView();
   if(!fams.length)return'';
-  return `<div class="tool-type-menu" data-tool-type-menu><button type="button" class="tool-type-menu-button" data-tool-type-toggle aria-haspopup="true" aria-expanded="false" onclick="return window.B7PageActions.toggleToolType(event,this)">TOOL TYPE <span class="tool-type-chevron">▼</span></button><div class="tool-type-dropdown" role="menu">${fams.map(f=>{let id='tool-family-'+String(f).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');return `<button type="button" role="menuitem" data-tool-type-target="${esc(id)}" onclick="return window.B7PageActions.jumpToolType(event,this)">${esc(f).toUpperCase()}</button>`}).join('')}</div></div>`;
+  return `<div class="tool-type-menu nav69-tool-type" data-tool-type-menu><button type="button" class="tool-type-menu-button" data-tool-type-toggle aria-haspopup="true" aria-expanded="false">TOOL TYPE <span class="tool-type-chevron">▼</span></button><div class="tool-type-dropdown" role="menu">${fams.map(f=>{let id='tool-family-'+String(f).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');return `<button type="button" role="menuitem" data-tool-type-target="${esc(id)}">${esc(f).toUpperCase()}</button>`}).join('')}</div></div>`;
 }
 function positionToolTypeMenu(menu){let btn=menu?.querySelector('[data-tool-type-toggle]'),drop=menu?.querySelector('.tool-type-dropdown');if(!btn||!drop)return;let r=btn.getBoundingClientRect(),w=Math.max(190,Math.ceil(r.width));drop.style.setProperty('--tool-menu-left',Math.max(6,Math.min(window.innerWidth-w-6,r.left))+'px');drop.style.setProperty('--tool-menu-top',Math.min(window.innerHeight-40,r.bottom+1)+'px');drop.style.setProperty('--tool-menu-width',w+'px');}
 function nav(){
@@ -222,19 +222,15 @@ function actionsFor(){let a=[];const shot=['SCREENSHOT','shot'];if(mode==='edit'
 
  else a.push(shot);return a}
 function actionButtonHtml(x){
-  let act=x[1],cls=x[2]||'',onclick='';
-  if(route.center==='operations'&&mode==='view'){
-    if(act==='verifyTools')onclick=` onclick="return window.B7PageActions.verifyTools(event)"`;
-    else if(act==='updateAll')onclick=` onclick="return window.B7PageActions.updateAll(event)"`;
-    else if(act==='addTool')onclick=` onclick="return window.B7PageActions.addTool(event)"`;
-    else if(act==='shot')onclick=` onclick="return window.B7PageActions.screenshot(event)"`;
-  }
-  if(!onclick){
+  let act=x[1],cls=x[2]||'';
+  let nav69=(route.center==='operations'&&mode==='view'&&['verifyTools','updateAll','addTool','shot'].includes(act))?` data-nav69-action="${act}"`:'';
+  let onclick='';
+  if(!nav69){
     if(act==='addTool')onclick=` onclick="event.stopPropagation();window.B7Core.addTool();return false"`;
     else if(act==='save'&&route.center==='operations'&&route.sub==='tool')onclick=` onclick="event.stopPropagation();window.B7Core.saveTool();return false"`;
     else if(act==='cancel'&&route.center==='operations'&&route.sub==='tool')onclick=` onclick="event.stopPropagation();window.B7Core.cancelTool();return false"`;
   }
-  return `<button type="button" data-act="${act}" class="${cls}"${onclick}>${x[0]}</button>`;
+  return `<button type="button" data-act="${act}" class="${cls}"${nav69}${onclick}>${x[0]}</button>`;
 }
 function renderActions(){
   let host=document.querySelector('#pageActions');
@@ -243,7 +239,7 @@ function renderActions(){
   if(route.center==='operations'&&route.sub==='live'&&mode==='view'){
     let n=nonArchivedTools().length||0;
     if(document.body.classList.contains('presentation-mode')){host.innerHTML='';return}
-    host.innerHTML=`<div class="ops-action-controls"><div class="ops-control-group"><button type="button" class="ops-mini-btn" data-snapshot="prev">◀</button><span class="ops-count">${snapshotIndex+1} / 6</span><button type="button" class="ops-pause-btn" data-snapshot="pause"><b>STATUS</b><span>${snapshotPaused?'PLAY':'PAUSE'}</span></button><button type="button" class="ops-mini-btn" data-snapshot="next">▶</button></div><div class="ops-control-group"><button type="button" class="ops-mini-btn" data-carousel="prev" ${n?'':'disabled'}>◀</button><span class="ops-count">${n?liveIndex+1:0} / ${n}</span><button type="button" class="ops-pause-btn" data-carousel="${livePaused?'play':'pause'}" ${n?'':'disabled'}><b>TOOLS</b><span>${livePaused?'PLAY':'PAUSE'}</span></button><button type="button" class="ops-mini-btn" data-carousel="next" ${n?'':'disabled'}>▶</button></div></div><div class="ops-action-right">${normal}</div>`;
+    host.innerHTML=`<div class="nav69-live-controls"><div class="nav69-control-group"><button type="button" class="nav69-mini" data-snapshot="prev">◀</button><span class="nav69-count">${snapshotIndex+1} / 6</span><button type="button" class="nav69-pause" data-snapshot="pause"><b>STATUS</b><span>${snapshotPaused?'PLAY':'PAUSE'}</span></button><button type="button" class="nav69-mini" data-snapshot="next">▶</button></div><div class="nav69-control-group"><button type="button" class="nav69-mini" data-carousel="prev" ${n?'':'disabled'}>◀</button><span class="nav69-count">${n?liveIndex+1:0} / ${n}</span><button type="button" class="nav69-pause" data-carousel="${livePaused?'play':'pause'}" ${n?'':'disabled'}><b>TOOLS</b><span>${livePaused?'PLAY':'PAUSE'}</span></button><button type="button" class="nav69-mini" data-carousel="next" ${n?'':'disabled'}>▶</button></div></div><div class="nav69-live-actions">${normal}</div>`;
     return;
   }
   host.innerHTML=normal;
@@ -1042,37 +1038,6 @@ window.B7PageActions={
 // depend on delegated navigation state.  They stop propagation before the document-level
 // handlers can switch centers without preserving the selected tool/editor mode.
 function bindCoreInteractions(){
-  // V6.5.67 navigation stability: bind Operations page actions directly after every
-  // render so they do not depend on the legacy document-level delegate or stacking
-  // order in the compact one-line pagebar.
-  const bindPageAction=(selector,handler)=>{
-    document.querySelectorAll(selector).forEach(btn=>{
-      btn.addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation();handler();},{capture:true});
-    });
-  };
-  bindPageAction('#pageActions [data-act="verifyTools"]',()=>{route={center:'admin',sub:'audit'};mode='view';dirty=false;render()});
-  bindPageAction('#pageActions [data-act="updateAll"]',()=>{returnRoute=clone(route);dailyContext='weekday';route={center:'operations',sub:'daily'};mode='edit';draft=clone(state.tools);dirty=false;render()});
-  bindPageAction('#pageActions [data-act="shot"]',()=>screenshot());
-  bindPageAction('#pageActions [data-act="addTool"]',()=>addTool());
-  // Tool Type is a page action on the Tools page. Bind its menu directly too,
-  // including family jump targets, so every action in the right-hand group works.
-  document.querySelectorAll('#pageActions [data-tool-type-toggle]').forEach(toggle=>{
-    toggle.addEventListener('click',e=>{
-      e.preventDefault();e.stopImmediatePropagation();
-      const menu=toggle.closest('[data-tool-type-menu]'); if(!menu)return;
-      const open=!menu.classList.contains('open');
-      document.querySelectorAll('[data-tool-type-menu].open').forEach(x=>{x.classList.remove('open');x.querySelector('[data-tool-type-toggle]')?.setAttribute('aria-expanded','false')});
-      if(open){positionToolTypeMenu(menu);menu.classList.add('open');toggle.setAttribute('aria-expanded','true')}
-    },{capture:true});
-  });
-  document.querySelectorAll('#pageActions [data-tool-type-target]').forEach(item=>{
-    item.addEventListener('click',e=>{
-      e.preventDefault();e.stopImmediatePropagation();
-      const target=document.getElementById(item.dataset.toolTypeTarget);
-      const menu=item.closest('[data-tool-type-menu]'); menu?.classList.remove('open'); menu?.querySelector('[data-tool-type-toggle]')?.setAttribute('aria-expanded','false');
-      if(target){const shellH=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--sticky-shell-height'))||0;const y=target.getBoundingClientRect().top+window.scrollY-shellH-8;window.scrollTo({top:Math.max(0,y),behavior:'smooth'})}
-    },{capture:true});
-  });
   // Direct-edit controls are bound on the rendered Universal Tool Card itself so
   // Live Operations and full-screen Presentation Mode use the exact same interaction path.
   document.querySelectorAll('[data-direct-identity][data-identity-tool]').forEach(el=>{
@@ -1167,6 +1132,40 @@ document.addEventListener('click',e=>{
     const key=sel?.value||'';
     if(!key){toast('SELECT A BADGE FIRST');return;}
     indicatorControlModal(id,key);
+    return;
+  }
+},true);
+
+
+/* V6.5.69 Operations Navigation Clean Rewrite
+   One capture-phase router owns Operations page-action clicks.  The legacy
+   document delegate remains for the rest of the application but never sees
+   these nav69 actions. */
+document.addEventListener('click',e=>{
+  const action=e.target.closest?.('[data-nav69-action]');
+  if(action){
+    e.preventDefault();e.stopImmediatePropagation();
+    const a=action.dataset.nav69Action;
+    if(a==='verifyTools'){route={center:'admin',sub:'audit'};mode='view';toolEditorMode='view';draft=null;selected=null;meetingDraft=null;dirty=false;returnRoute=null;render();return;}
+    if(a==='updateAll'){returnRoute=clone(route);dailyContext='weekday';route={center:'operations',sub:'daily'};mode='edit';toolEditorMode='view';draft=clone(state.tools);selected=null;meetingDraft=null;dirty=false;render();return;}
+    if(a==='addTool'){addTool();return;}
+    if(a==='shot'){screenshot();return;}
+  }
+  const toggle=e.target.closest?.('#pageActions [data-tool-type-toggle]');
+  if(toggle){
+    e.preventDefault();e.stopImmediatePropagation();
+    const menu=toggle.closest('[data-tool-type-menu]'); if(!menu)return;
+    const open=!menu.classList.contains('open');
+    document.querySelectorAll('[data-tool-type-menu].open').forEach(x=>{x.classList.remove('open');x.querySelector('[data-tool-type-toggle]')?.setAttribute('aria-expanded','false')});
+    if(open){positionToolTypeMenu(menu);menu.classList.add('open');toggle.setAttribute('aria-expanded','true')}
+    return;
+  }
+  const item=e.target.closest?.('#pageActions [data-tool-type-target]');
+  if(item){
+    e.preventDefault();e.stopImmediatePropagation();
+    const target=document.getElementById(item.dataset.toolTypeTarget||'');
+    const menu=item.closest('[data-tool-type-menu]');menu?.classList.remove('open');menu?.querySelector('[data-tool-type-toggle]')?.setAttribute('aria-expanded','false');
+    if(target){const shellH=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--sticky-shell-height'))||0;const y=target.getBoundingClientRect().top+window.scrollY-shellH-8;window.scrollTo({top:Math.max(0,y),behavior:'smooth'})}
     return;
   }
 },true);
