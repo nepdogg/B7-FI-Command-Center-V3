@@ -14788,3 +14788,79 @@ html body.presentation-mode .presentation-tool-focus .utc-host{
 }
 html body .operations-tool-carousel{padding-bottom:0!important;overflow:hidden!important}
 html body .operations-tool-carousel .utc-host{padding-bottom:0!important;overflow:hidden!important}
+
+/* ============================================================
+   V6.5.63 — UTC CAROUSEL GAP + DRIVER + PRESENTATION MIDDLE LOCK
+   Narrow stability correction only.
+   ============================================================ */
+@media (min-width:700px){
+  /* The carousel owns an 8px protected floor below the 660px UTC. */
+  html body .operations-tool-carousel{
+    height:668px!important;
+    min-height:668px!important;
+    max-height:668px!important;
+    padding:0 0 8px 0!important;
+    overflow:hidden!important;
+    box-sizing:border-box!important;
+  }
+  html body .operations-tool-carousel>.utc-host,
+  html body .operations-tool-carousel>.universal-card-host{
+    height:660px!important;
+    min-height:660px!important;
+    max-height:660px!important;
+    padding-bottom:0!important;
+    overflow:hidden!important;
+    box-sizing:border-box!important;
+  }
+  html body .operations-tool-carousel .utc-card.utc-v6538,
+  html body .operations-tool-carousel .utc-card.utc-v6538>.utc-column{
+    height:660px!important;
+    min-height:660px!important;
+    max-height:660px!important;
+    box-sizing:border-box!important;
+  }
+
+  /* Driver state is semantic, not presentation-dependent. */
+  html body .utc-card.utc-v6538 .utc-driver-ribbon.unassigned,
+  html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon.unassigned{
+    background:#171c21!important;
+    background-image:none!important;
+    border-color:#56616b!important;
+    color:#9aa4ad!important;
+    box-shadow:none!important;
+    filter:none!important;
+  }
+  html body .utc-card.utc-v6538 .utc-driver-ribbon.unassigned span,
+  html body.presentation-mode .utc-card.utc-v6538 .utc-driver-ribbon.unassigned span{
+    color:#9aa4ad!important;
+  }
+
+  /* Presentation reuses the SAME six-row middle-column geometry as UTC.
+     No presentation-only flex/centering is allowed to reorder/collapse it. */
+  html body.presentation-mode .presentation-tool-only .utc-status,
+  html body.presentation-mode .presentation-tool-focus .utc-status,
+  html body.presentation-mode .utc-card.utc-v6538 .utc-status{
+    display:grid!important;
+    grid-template-rows:94px 66px 66px 88px minmax(126px,1fr) minmax(142px,1.12fr)!important;
+    align-content:stretch!important;
+    justify-content:stretch!important;
+    height:100%!important;
+    min-height:0!important;
+    max-height:100%!important;
+    overflow:hidden!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-status-section{
+    position:relative!important;
+    inset:auto!important;
+    transform:none!important;
+    min-height:0!important;
+    overflow:hidden!important;
+    box-sizing:border-box!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-countdown{grid-row:1!important}
+  html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-fi-status{grid-row:2!important}
+  html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-system-status{grid-row:3!important}
+  html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-next-actions-blockers{grid-row:4!important}
+  html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-live-system-status{grid-row:5!important}
+  html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-lead-notes{grid-row:6!important}
+}

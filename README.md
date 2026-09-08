@@ -461,3 +461,10 @@ V6.5.60 — Presentation Semantics + Readability Lock
 - Rebalances the middle column so Next System Tasks stays capped at three entries while Live System Status and Lead Notes / Reminders receive protected flexible space.
 - Lead Notes is constrained inside its section instead of extending below the card.
 - Presentation Mode uses the available wallboard tool area instead of forcing a second oversized card height.
+
+## V6.5.63 — UTC Carousel Gap + Driver + Presentation Middle Lock
+- Adds a protected 8px gap below the 660px Universal Tool Card inside the Live Operations carousel.
+- Keeps all three UTC columns on the same 660px bottom boundary.
+- Reasserts UNASSIGNED Driver as gray/inactive in every mode; assigned Driver remains purple.
+- Presentation Mode now reuses the exact six-row middle-column geometry/order from the base UTC and cannot vertically center/reorder those sections.
+- No new features; this is a narrow stability correction over V6.5.62.
