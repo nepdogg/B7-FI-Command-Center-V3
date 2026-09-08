@@ -498,9 +498,18 @@ V6.5.60 — Presentation Semantics + Readability Lock
 - No other card geometry or badge-state logic changed in this stability build.
 
 
-## V6.5.67 — Navigation Stability Lock
+## V6.5.68 — Navigation Stability Lock
 - Universal Tool Card intentionally unchanged from V6.5.66.
 - Live Operations right-side page actions no longer overlap: VERIFY TOOLS, UPDATE COMMAND CENTER, and SCREENSHOT have protected cells.
 - Status and Tool carousel control groups remain compact and on one line.
 - Tools page actions use protected cells for TOOL TYPE, UPDATE COMMAND CENTER, ADD TOOL, and SCREENSHOT.
 - Added direct post-render bindings for VERIFY TOOLS, UPDATE COMMAND CENTER, ADD TOOL, SCREENSHOT, TOOL TYPE toggle, and Tool Type family jumps so page actions do not depend on legacy delegated click routing.
+
+
+## V6.5.68 Navigation Hard Route Lock
+- Preserves the locked V6.5.66 Universal Tool Card.
+- Rebuilds the Operations pagebar geometry as a deterministic grid so sub-navigation and page actions cannot overlap.
+- Live Operations action buttons receive protected cells and visible separators.
+- CY26Q3 Tools actions use direct hard-routed handlers for Tool Type, Update Command Center, Add Tool, and Screenshot.
+- Live Operations Verify Tools, Update Command Center, and Screenshot use the same hard-routed action API.
+- Tool Type dropdown toggle and family jumps bypass the legacy delegated navigation path.

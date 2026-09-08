@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.67', BUILD='20260908-V6.5.67-NAVIGATION-STABILITY-LOCK';
+const VERSION='6.5.68', BUILD='20260908-V6.5.68-NAVIGATION-HARD-ROUTE-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -191,7 +191,7 @@ function toolTypeMenu(){
   if(route.center!=='operations'||route.sub!=='tools'||mode!=='view')return'';
   let fams=toolTypeFamiliesForCurrentView();
   if(!fams.length)return'';
-  return `<div class="tool-type-menu" data-tool-type-menu><button type="button" class="tool-type-menu-button" data-tool-type-toggle aria-haspopup="true" aria-expanded="false">TOOL TYPE <span class="tool-type-chevron">▼</span></button><div class="tool-type-dropdown" role="menu">${fams.map(f=>{let id='tool-family-'+String(f).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');return `<button type="button" role="menuitem" data-tool-type-target="${esc(id)}">${esc(f).toUpperCase()}</button>`}).join('')}</div></div>`;
+  return `<div class="tool-type-menu" data-tool-type-menu><button type="button" class="tool-type-menu-button" data-tool-type-toggle aria-haspopup="true" aria-expanded="false" onclick="return window.B7PageActions.toggleToolType(event,this)">TOOL TYPE <span class="tool-type-chevron">▼</span></button><div class="tool-type-dropdown" role="menu">${fams.map(f=>{let id='tool-family-'+String(f).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');return `<button type="button" role="menuitem" data-tool-type-target="${esc(id)}" onclick="return window.B7PageActions.jumpToolType(event,this)">${esc(f).toUpperCase()}</button>`}).join('')}</div></div>`;
 }
 function positionToolTypeMenu(menu){let btn=menu?.querySelector('[data-tool-type-toggle]'),drop=menu?.querySelector('.tool-type-dropdown');if(!btn||!drop)return;let r=btn.getBoundingClientRect(),w=Math.max(190,Math.ceil(r.width));drop.style.setProperty('--tool-menu-left',Math.max(6,Math.min(window.innerWidth-w-6,r.left))+'px');drop.style.setProperty('--tool-menu-top',Math.min(window.innerHeight-40,r.bottom+1)+'px');drop.style.setProperty('--tool-menu-width',w+'px');}
 function nav(){
@@ -221,7 +221,33 @@ function actionsFor(){let a=[];const shot=['SCREENSHOT','shot'];if(mode==='edit'
  else if(route.center==='reference'){a.push(['ADD REFERENCE','createReference','primary'],shot)}
 
  else a.push(shot);return a}
-function renderActions(){let host=document.querySelector('#pageActions');let normal=actionsFor().map(x=>{let core=x[1]==='addTool'?` onclick="event.stopPropagation();window.B7Core.addTool();return false"`:x[1]==='save'&&route.center==='operations'&&route.sub==='tool'?` onclick="event.stopPropagation();window.B7Core.saveTool();return false"`:x[1]==='cancel'&&route.center==='operations'&&route.sub==='tool'?` onclick="event.stopPropagation();window.B7Core.cancelTool();return false"`:'';return `<button data-act="${x[1]}" class="${x[2]||''}"${core}>${x[0]}</button>`}).join('');if(route.center==='operations'&&route.sub==='tools'&&mode==='view')normal=toolTypeMenu()+normal;if(route.center==='operations'&&route.sub==='live'&&mode==='view'){let n=nonArchivedTools().length||0;if(document.body.classList.contains('presentation-mode')){host.innerHTML='';return}host.innerHTML=`<div class="ops-action-controls"><div class="ops-control-group"><button class="ops-mini-btn" data-snapshot="prev">◀</button><span class="ops-count">${snapshotIndex+1} / 6</span><button class="ops-pause-btn" data-snapshot="pause"><b>STATUS</b><span>${snapshotPaused?'PLAY':'PAUSE'}</span></button><button class="ops-mini-btn" data-snapshot="next">▶</button></div><div class="ops-control-group"><button class="ops-mini-btn" data-carousel="prev" ${n?'':'disabled'}>◀</button><span class="ops-count">${n?liveIndex+1:0} / ${n}</span><button class="ops-pause-btn" data-carousel="${livePaused?'play':'pause'}" ${n?'':'disabled'}><b>TOOLS</b><span>${livePaused?'PLAY':'PAUSE'}</span></button><button class="ops-mini-btn" data-carousel="next" ${n?'':'disabled'}>▶</button></div></div><div class="ops-action-right">${normal}</div>`;return}host.innerHTML=normal}
+function actionButtonHtml(x){
+  let act=x[1],cls=x[2]||'',onclick='';
+  if(route.center==='operations'&&mode==='view'){
+    if(act==='verifyTools')onclick=` onclick="return window.B7PageActions.verifyTools(event)"`;
+    else if(act==='updateAll')onclick=` onclick="return window.B7PageActions.updateAll(event)"`;
+    else if(act==='addTool')onclick=` onclick="return window.B7PageActions.addTool(event)"`;
+    else if(act==='shot')onclick=` onclick="return window.B7PageActions.screenshot(event)"`;
+  }
+  if(!onclick){
+    if(act==='addTool')onclick=` onclick="event.stopPropagation();window.B7Core.addTool();return false"`;
+    else if(act==='save'&&route.center==='operations'&&route.sub==='tool')onclick=` onclick="event.stopPropagation();window.B7Core.saveTool();return false"`;
+    else if(act==='cancel'&&route.center==='operations'&&route.sub==='tool')onclick=` onclick="event.stopPropagation();window.B7Core.cancelTool();return false"`;
+  }
+  return `<button type="button" data-act="${act}" class="${cls}"${onclick}>${x[0]}</button>`;
+}
+function renderActions(){
+  let host=document.querySelector('#pageActions');
+  let normal=actionsFor().map(actionButtonHtml).join('');
+  if(route.center==='operations'&&route.sub==='tools'&&mode==='view')normal=toolTypeMenu()+normal;
+  if(route.center==='operations'&&route.sub==='live'&&mode==='view'){
+    let n=nonArchivedTools().length||0;
+    if(document.body.classList.contains('presentation-mode')){host.innerHTML='';return}
+    host.innerHTML=`<div class="ops-action-controls"><div class="ops-control-group"><button type="button" class="ops-mini-btn" data-snapshot="prev">◀</button><span class="ops-count">${snapshotIndex+1} / 6</span><button type="button" class="ops-pause-btn" data-snapshot="pause"><b>STATUS</b><span>${snapshotPaused?'PLAY':'PAUSE'}</span></button><button type="button" class="ops-mini-btn" data-snapshot="next">▶</button></div><div class="ops-control-group"><button type="button" class="ops-mini-btn" data-carousel="prev" ${n?'':'disabled'}>◀</button><span class="ops-count">${n?liveIndex+1:0} / ${n}</span><button type="button" class="ops-pause-btn" data-carousel="${livePaused?'play':'pause'}" ${n?'':'disabled'}><b>TOOLS</b><span>${livePaused?'PLAY':'PAUSE'}</span></button><button type="button" class="ops-mini-btn" data-carousel="next" ${n?'':'disabled'}>▶</button></div></div><div class="ops-action-right">${normal}</div>`;
+    return;
+  }
+  host.innerHTML=normal;
+}
 function syncStickyShellHeight(){if(document.body.classList.contains('screenshot-mode')||document.body.classList.contains('presentation-mode')){document.documentElement.style.setProperty('--sticky-shell-height','0px');return}let sh=document.querySelector('#stickyShell');if(sh)document.documentElement.style.setProperty('--sticky-shell-height',Math.ceil(sh.getBoundingClientRect().height)+'px')}
 function shell(){normalizeConsolidatedRoute();setTheme();document.body.dataset.build=BUILD;nav();statusBars();renderActions()}
 function render(){allRules();shell();let titleMode=document.body.classList.contains('screenshot-mode')||document.body.classList.contains('presentation-mode');let title=titleMode?`<div id="screenshotReportTitle" class="screenshot-report-title">${esc(screenshotReportTitle())}</div>`:'';document.querySelector('#app').innerHTML=title+(VIEWS[route.center]||VIEWS.operations)();bindInputs();bindCoreInteractions();persistRoute();requestAnimationFrame(syncStickyShellHeight);if(document.body.classList.contains('presentation-mode'))requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}
@@ -997,6 +1023,18 @@ window.B7Core={
   addTool:()=>addTool(),
   saveTool:()=>saveCurrent(),
   cancelTool:()=>cancelEdit()
+};
+
+// V6.5.68 hard-routed page action API. These handlers are called directly by
+// Operations pagebar buttons, bypassing legacy delegated click paths entirely.
+// This makes the Tools and Live Operations action bars deterministic.
+window.B7PageActions={
+  verifyTools:(e)=>{e?.preventDefault?.();e?.stopPropagation?.();route={center:'admin',sub:'audit'};mode='view';toolEditorMode='view';draft=null;selected=null;meetingDraft=null;dirty=false;returnRoute=null;render();return false},
+  updateAll:(e)=>{e?.preventDefault?.();e?.stopPropagation?.();returnRoute=clone(route);dailyContext='weekday';route={center:'operations',sub:'daily'};mode='edit';toolEditorMode='view';draft=clone(state.tools);selected=null;meetingDraft=null;dirty=false;render();return false},
+  addTool:(e)=>{e?.preventDefault?.();e?.stopPropagation?.();addTool();return false},
+  screenshot:(e)=>{e?.preventDefault?.();e?.stopPropagation?.();screenshot();return false},
+  toggleToolType:(e,btn)=>{e?.preventDefault?.();e?.stopPropagation?.();let menu=btn?.closest?.('[data-tool-type-menu]');if(!menu)return false;let open=!menu.classList.contains('open');document.querySelectorAll('[data-tool-type-menu].open').forEach(x=>{x.classList.remove('open');x.querySelector('[data-tool-type-toggle]')?.setAttribute('aria-expanded','false')});if(open){positionToolTypeMenu(menu);menu.classList.add('open');btn.setAttribute('aria-expanded','true')}return false},
+  jumpToolType:(e,btn)=>{e?.preventDefault?.();e?.stopPropagation?.();let target=document.getElementById(btn?.dataset?.toolTypeTarget||'');let menu=btn?.closest?.('[data-tool-type-menu]');menu?.classList.remove('open');menu?.querySelector('[data-tool-type-toggle]')?.setAttribute('aria-expanded','false');if(target){let shellH=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--sticky-shell-height'))||0;let y=target.getBoundingClientRect().top+window.scrollY-shellH-8;window.scrollTo({top:Math.max(0,y),behavior:'smooth'})}return false}
 };
 
 // V4.1 direct bindings for the two highest-priority workflows.
