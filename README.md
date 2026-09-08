@@ -440,3 +440,13 @@ V6.5.60 — Presentation Semantics + Readability Lock
 - Keeps Next Actions / Blockers automatic and directly below Current System Status.
 - Enlarges Presentation Mode operational badge text while preserving all 28 badge positions, two-line wrapping, FUTURE BADGE, and Update Tool Status.
 - Keeps Live Operations and Presentation Mode on the same Universal Tool Card semantics; Presentation Mode only increases readability.
+
+
+## V6.5.61 — Next System Tasks Manual Override + Layout Lock
+- Sales Order on the Universal Tool Card now displays the saved order number/value only; the `SO #` presentation prefix was removed.
+- Renamed the automatic middle-column section to `NEXT SYSTEM TASKS`.
+- Universal Tool Card shows only the next three calculated system tasks.
+- Added Tool Edit controls for `AUTO` / `MANUAL` Next System Tasks and three manual task entries. Manual mode overrides the card display only; selecting AUTO restores calculated tasks.
+- Rebalanced the six middle-column rows to preserve Live System Status and Lead Notes / Reminders.
+- Restored visible bottom boundaries on all three Universal Tool Card columns and removed carousel clipping at the bottom edge.
+- Presentation Mode keeps the same task logic and receives larger task text.
