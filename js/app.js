@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.58', BUILD='20260907-V6.5.58-PRESENTATION-SEMANTICS-READABILITY-LOCK';
+const VERSION='6.5.59', BUILD='20260907-V6.5.59-NEXT-ACTIONS-BLOCKERS-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -482,6 +482,18 @@ function indicatorStateForSlot(t,key){return indicatorState(t,key)}
 function indicatorMessage(t,key){return indicatorStateForSlot(t,key).state}
 function indicatorLamp(t,key){let x=indicatorStateForSlot(t,key),editable=!['requestLamp'].includes(key),attrs=key==='lamp'?` data-quick-field="lampHours" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" aria-label="Update lamp hours"`:editable?` data-direct-indicator="${esc(key)}" data-indicator-tool="${esc(t.id)}" role="button" tabindex="0" aria-label="Update ${esc(x.label)}"`:` aria-label="${esc(x.label)} automatic status"`;return `<div class="fi-indicator-lamp ${x.active?'on':'off'} ${x.tone} ${editable?'direct-editable':'automatic-badge'}" title="${esc(x.label)}${editable?' — click to update':' — automatic'}"${attrs}><span class="fi-indicator-message">${esc(indicatorMessage(t,key))}</span></div>`}
 function indicatorDisplayPanel(t){return `<section class="utc-indicator-display"><div class="utc-indicator-grid">${INDICATOR_SLOT_KEYS.map(k=>k==='__reserved__'?'<div class="fi-indicator-lamp off reserved" aria-label="Reserved future badge"><span class="fi-indicator-message">FUTURE BADGE</span></div>':indicatorLamp(t,k)).join('')}</div></section>`}
+function nextActionsBlockers(t){
+  let ev=evaluateTool(t), rows=[];
+  const skip=new Set(['lamp','requestLamp','poweredDown']);
+  const actionText={
+    options:'Request options',shipKit:'Request ship kit',ironman:'Run Ironman',sccCleanup:'Complete SCC cleanup',backup:'Complete SCC backup',ctd:'Complete / advance CTD data',source:'Complete customer source requirement',ncEscalation:'BLOCKER — NC escalation',postmag:'Remove Postmag',opk:'Resolve OPK requirement',factd:'Complete FACTD',optionsTesting:'Complete options testing',thermalRack:'Verify thermal rack',laser:'Verify laser',avData:'Complete / advance AV data',ccl:'Verify / advance CCL requirement',str:'Verify / advance STR requirement',wwc:'Verify WWC requirement',imc:'Verify IMC configuration',shipMeeting:'Schedule / complete ship meeting',calChips:'Request cal chips',systemWafers:'Complete system wafer kit action',ncClose:'Close all NCs',eqChecklists:'Complete all EQ checklists'
+  };
+  ev.badgeList.forEach(x=>{if(skip.has(x.key)||!x.active||!['critical','attention'].includes(x.tone))return; rows.push({key:x.key,tone:x.tone,text:actionText[x.key]||x.state,state:x.state})});
+  rows.sort((a,b)=>{let ab=a.key==='ncEscalation'?0:a.tone==='critical'?1:2,bb=b.key==='ncEscalation'?0:b.tone==='critical'?1:2;return ab-bb});
+  if(!rows.length)return `<div class="utc-next-actions-empty">✓ NO OPEN ACTIONS / BLOCKERS</div>`;
+  return rows.slice(0,7).map(x=>`<div class="utc-next-action ${x.tone}"><span class="utc-next-action-dot"></span><span>${esc(x.text)}</span></div>`).join('')+(rows.length>7?`<div class="utc-next-actions-more">+${rows.length-7} MORE OPEN ITEMS</div>`:'');
+}
+
 function indicatorControlLabel(t,key){if(key==='driver')return 'DRIVER';if(key==='reduced')return 'REDUCED PROCESS';return indicatorStateForSlot(t,key).label}
 function indicatorPanel(t){return `<section class="utc-indicator-panel"><div class="utc-indicator-control-title">TOOL BADGE CONTROL</div><div class="utc-indicator-control"><div class="utc-indicator-control-row"><select data-indicator-picker="${esc(t.id)}"><option value="">Select badge...</option>${INDICATOR_CONTROL_KEYS.map(k=>`<option value="${k}">${esc(indicatorControlLabel(t,k))}</option>`).join('')}</select><button class="btn" type="button" data-indicator-control="${esc(t.id)}">UPDATE</button></div></div></section>`}
 function indicatorControlModal(id,key){let t=state.tools.find(x=>String(x.id)===String(id));if(!t)return;let x=key==='reduced'?{label:'REDUCED PROCESS',state:t.reducedProcess?'Reduced Process':'Normal Process'}:indicatorStateForSlot(t,key),body='';if(key==='driver'){x={label:'DRIVER',state:t.driver||'Unassigned'};body=singleSelectNewField('DRIVER(S)','indicator-driver',t.driver||'Unassigned',driverChoices(t.driver||'Unassigned'),['UNASSIGNED'],true)}else{let cfg={reduced:['Reduced Process','Normal Process'],options:['Need to Request Options','Options Requested'],shipKit:['Need to Request Ship Kit','Ship Kit Requested'],ironman:['Need to Run Ironman','Ironman Failed','Ironman Passed'],sccCleanup:['Need to Cleanup SCC','SCC Cleanup Completed'],backup:['Need to Backup SCC','SCC Backup Completed'],ctd:['Need to Complete CTD Data','CTD Sent to CA','CA Reviewed CTD','CTD Data Approved'],source:['Customer Source Required','Customer Source Not Required','Customer Source In Progress','Customer Source Completed'],ncEscalation:['No NC Escalation','NC Escalation'],postmag:['Need to Remove Postmag','Postmag Required'],opk:['OPK Required','OPK Not Required','OPK Installed and Tested'],factd:['Need to Complete FACTD','FACTD Completed'],optionsTesting:['Need to Complete Options Testing','Options Testing Completed'],thermalRack:['Verify Thermal Rack','Gen 2 Thermal Rack','Gen 3 Thermal Rack'],laser:['Verify Laser','V2 Laser','V3 Laser'],avData:['Need to Complete AV Data','AV Data Sent to CA','AV Data Completed and Approved'],ccl:['Verify CCL Required','CCL Not Required','CCL Sent to CA','CCL Completed and Approved'],str:['Verify STR Required','STR Required','STR Sent to CA','STR Complete and Approved'],wwc:['Verify WWC Required','WWC Not Required','WWC 3 Required','WWC 2 Required'],imc:['Verify IMC Config','Foresight Config','4 Column','3 Column'],poweredDown:['System Powered On','System Powered Down'],shipMeeting:['Need Ship Meeting','Ship Meeting Scheduled','Ship Meeting Completed'],calChips:['Need to Request Cal Chips','Cal Chips Requested'],systemWafers:['Need to Issue System Wafer Kit','System Wafer Kit Issued','Need to Transact System Wafer Kit','Need to Update Wafer Log'],ncClose:['Need to Close All NCs','All NCs Closed'],eqChecklists:['Need to Complete All EQ Checklists','All EQ Checklists Completed']};let opts=cfg[key]||['N/A'];body=`<div class="field span4 quick-single-field"><label>BADGE STATUS</label><select id="indicator-state">${opts.map(o=>`<option value="${esc(o)}">${esc(o)}</option>`).join('')}</select></div>`}modal(`<div class="modal-form indicator-modal quick-single-modal"><h2>${esc(x.label)} — ${esc(t.id)}</h2>${body}<div class="modal-actions"><button class="btn" data-modal-cancel>CANCEL</button><button class="btn save" data-save-indicator="${esc(id)}" data-indicator-key="${esc(key)}">SAVE UPDATE</button></div></div>`)}
@@ -614,6 +626,11 @@ function liveToolCard(tool=null){
           <div class="utc-phase-big">${esc(system)}</div>
         </div>
 
+        <div class="utc-status-section utc-next-actions-blockers" aria-label="Automatically calculated next actions and blockers">
+          <div class="utc-kicker">NEXT ACTIONS / BLOCKERS · AUTO</div>
+          <div class="utc-next-actions-list">${nextActionsBlockers(t)}</div>
+        </div>
+
         <div class="utc-status-section utc-live-system-status utc-quick-edit direct-editable" data-quick-field="latestStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" title="Click to update the official Latest Status field">
           <div class="utc-kicker">LIVE SYSTEM STATUS</div>
           <div class="utc-live-status-text utc-daily-status-block">${(()=>{let latest=esc(t.latestStatus||'').replace(/\n/g,'<br>');let n=(t.ncs||[]).filter(x=>!['closed','complete','completed','resolved'].includes(String(x.state||x.status||'open').toLowerCase()));let lines=n.map(x=>`<div class="utc-daily-nc-line">- ${esc(displayNcId(x.id))}: ${esc(x.description||'No NC description entered.')}</div>${x.poa?`<div class="utc-daily-poa-line">- POA: ${esc(x.poa)}</div>`:''}`).join('');return `${latest}${lines?`<div class="utc-daily-nc-lines">${lines}</div>`:''}`})()}</div>
@@ -623,7 +640,6 @@ function liveToolCard(tool=null){
           <div class="utc-kicker">LEAD NOTES / REMINDERS</div>
           <div class="utc-lead-notes-text">${esc(t.notes||'')}</div>
         </div>
-        <div class="utc-middle-tool-photo">${(()=>{let src=individualToolPhoto(t)||familyImage(t);return src?`<img src="${esc(src)}" alt="Tool ${esc(t.id)}">`:``})()}</div>
 
       </section>
 

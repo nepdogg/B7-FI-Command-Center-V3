@@ -415,10 +415,19 @@ V6.5.32: Final UTC control/layout cleanup: target wording, forecast one-line fit
 - All 28 badge positions remain visible, including the OFF FUTURE BADGE placeholder.
 
 
-V6.5.58 — Presentation Semantics + Readability Lock
+V6.5.59 — Presentation Semantics + Readability Lock
 - Unified Customer/Sales Order information badge structure in Live Operations and Presentation.
 - Missing Customer = CUSTOMER | NO CUSTOMER, full badge red.
 - Missing Sales Order = SALES ORDER | NO SALES ORDER, full badge red.
 - Unassigned Driver is gray in all modes; assigned Driver is purple.
 - UPDATE TOOL STATUS wording remains constant; red/green health color now wins in Presentation.
 - Increased Presentation Mode Universal Tool Card typography for readability while preserving the same card DOM/semantics.
+
+
+## V6.5.59 — Next Actions / Blockers Lock
+- Removed the decorative tool photo from the Universal Tool Card middle column.
+- Added an automatic NEXT ACTIONS / BLOCKERS section immediately after CURRENT SYSTEM STATUS.
+- Actions are derived from unresolved red/yellow operational badge states and update automatically as badge states change.
+- NC Escalation is prioritized as a blocker; red action-required items precede yellow waiting/in-progress items.
+- Completed/green and inactive badges do not appear in the action list.
+- Live System Status and Lead Notes / Reminders remain separate below the automatic action section.
