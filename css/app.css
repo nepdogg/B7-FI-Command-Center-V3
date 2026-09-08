@@ -15607,3 +15607,131 @@ html body[data-center="operations"][data-sub="live"] .nav69-live-actions>.nav70-
   html body[data-center="operations"][data-sub="tools"] #pageActions>.nav70-action,
   html body[data-center="operations"][data-sub="tools"] .nav70-tool-type-select select{font-size:7px!important}
 }
+
+/* =========================================================
+   V6.5.71 FINAL AUTHORITY — PRESENTATION POLISH + PRIORITY + NAV
+   - Regular Live Operations Universal Tool Card stays frozen.
+   - Presentation only: independent column edges + more section breathing room.
+   - Operations navigation: restore readable type and uniform hover feedback.
+   ========================================================= */
+
+/* Navigation typography and hover: every clickable pagebar control uses one visual language. */
+html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) #subnav.subnav>button,
+html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) #pageActions.page-actions button,
+html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) #pageActions.page-actions select{
+  font-size:9px!important;
+  font-weight:950!important;
+  color:#fff!important;
+  letter-spacing:.05px!important;
+  cursor:pointer!important;
+  transition:background .12s ease,box-shadow .12s ease,color .12s ease!important;
+}
+html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) #subnav.subnav>button:hover,
+html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) #subnav.subnav>button:focus-visible,
+html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) #pageActions.page-actions button:hover,
+html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) #pageActions.page-actions button:focus-visible,
+html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) #pageActions.page-actions .nav70-tool-type-select:hover select,
+html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) #pageActions.page-actions .nav70-tool-type-select:focus-within select{
+  background:rgba(var(--accent-rgb),.56)!important;
+  color:#fff!important;
+  box-shadow:inset 0 -4px var(--accent),inset 0 0 0 1px rgba(255,255,255,.28)!important;
+  outline:none!important;
+}
+/* Live carousel mini-controls get the same hover confirmation without changing their geometry. */
+html body[data-center="operations"][data-sub="live"] .nav69-mini:hover,
+html body[data-center="operations"][data-sub="live"] .nav69-mini:focus-visible,
+html body[data-center="operations"][data-sub="live"] .nav69-pause:hover,
+html body[data-center="operations"][data-sub="live"] .nav69-pause:focus-visible{
+  background:rgba(var(--accent-rgb),.48)!important;
+  color:#fff!important;
+  box-shadow:inset 0 -3px var(--accent)!important;
+  outline:none!important;
+}
+html body[data-center="operations"][data-sub="tools"] .nav70-tool-type-select select{
+  font-size:9px!important;
+  color:#fff!important;
+  background:#082035!important;
+}
+html body[data-center="operations"][data-sub="tools"] .nav70-tool-type-select select option{
+  font-size:12px!important;
+  font-weight:850!important;
+  color:#fff!important;
+  background:#061421!important;
+}
+@media(max-width:1200px){
+  html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) #subnav.subnav>button,
+  html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) #pageActions.page-actions button,
+  html body[data-center="operations"]:not(.screenshot-mode):not(.presentation-mode) #pageActions.page-actions select{font-size:8px!important}
+}
+
+/* Priority is a first-class direct-edit control on every UTC. */
+html body .utc-card.utc-v6538 .utc-priority-ribbon[data-direct-priority]{
+  pointer-events:auto!important;
+  cursor:pointer!important;
+  position:relative!important;
+  z-index:8!important;
+}
+html body .utc-card.utc-v6538 .utc-priority-ribbon[data-direct-priority]:hover,
+html body .utc-card.utc-v6538 .utc-priority-ribbon[data-direct-priority]:focus-visible{
+  filter:brightness(1.14)!important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.48),0 0 8px rgba(255,255,255,.15)!important;
+  outline:none!important;
+}
+.direct-priority-modal .form-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+.direct-priority-modal select{width:100%!important}
+
+/* PRESENTATION MODE ONLY.  Do not alter the regular Live Operations UTC. */
+@media (min-width:700px){
+  html body.presentation-mode .presentation-tool-only .utc-host,
+  html body.presentation-mode .presentation-tool-focus .utc-host,
+  html body.presentation-mode .presentation-tool-only .utc-card.utc-v6538,
+  html body.presentation-mode .presentation-tool-focus .utc-card.utc-v6538{
+    border:0!important;
+    border-top:0!important;
+    border-bottom:0!important;
+    outline:0!important;
+    box-shadow:none!important;
+    background:transparent!important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-card.utc-v6538,
+  html body.presentation-mode .presentation-tool-focus .utc-card.utc-v6538{
+    gap:10px!important;
+  }
+  html body.presentation-mode .presentation-tool-only .utc-card.utc-v6538>.utc-column,
+  html body.presentation-mode .presentation-tool-focus .utc-card.utc-v6538>.utc-column{
+    border:1px solid #2b607d!important;
+    box-shadow:none!important;
+    background:#000!important;
+  }
+  /* Slightly more breathing room between middle-column sections without changing order. */
+  html body.presentation-mode .utc-card.utc-v6538 .utc-status{
+    grid-template-rows:120px 64px 64px 104px minmax(120px,1fr) minmax(126px,1fr)!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-fi-status,
+  html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-system-status,
+  html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-next-actions-blockers,
+  html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-live-system-status,
+  html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-lead-notes{
+    padding-top:10px!important;
+    padding-bottom:10px!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-status-section .utc-kicker{
+    margin-bottom:7px!important;
+  }
+  /* Presentation divider lines are inset so they never visually connect to the column edge. */
+  html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-status-section{
+    border-top:0!important;
+    border-bottom:0!important;
+    position:relative!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-status-section:not(:first-child)::before{
+    content:""!important;
+    position:absolute!important;
+    left:14px!important;
+    right:14px!important;
+    top:0!important;
+    height:1px!important;
+    background:#245d78!important;
+    pointer-events:none!important;
+  }
+}

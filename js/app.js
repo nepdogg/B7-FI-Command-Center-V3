@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.70', BUILD='20260908-V6.5.70-TOOLS-NAV-HOVER-LOCK';
+const VERSION='6.5.71', BUILD='20260908-V6.5.71-PRESENTATION-POLISH-PRIORITY-NAV-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -130,6 +130,29 @@ function priorityTier(rank,total){
 }
 function priorityBadgeInfo(t){let source=state.config?.priorityBadgeSource||'lead',ranks=source==='commandCenter'?commandCenterPriorityRanks():leadPriorityRanks(),rank=ranks.get(String(t.id))||0,total=ranks.size;return{rank,total,tier:priorityTier(rank,total),source,label:source==='commandCenter'?'COMMAND CENTER':'LEADS / MANAGERS'}}
 function priorityRibbon(t){if(!t)return'';let p=priorityBadgeInfo(t),rank=Number(p.rank)||0,label=rank?`#${rank} ${p.tier}`:'PRIORITY TBD',src=p.source==='commandCenter'?'COMMAND CENTER':'LEAD',tierClass=!rank?'priority-tbd':p.tier==='TOP PRIORITY'?'priority-top':p.tier==='HIGH PRIORITY'?'priority-high':p.tier==='LOW PRIORITY'?'priority-low':'priority-medium';return `<div class="utc-priority-ribbon ${tierClass} ${rank===1?'top-priority':''} ${rank?'':'priority-placeholder'} direct-editable" data-direct-priority="${esc(t.id)}" role="button" tabindex="0" title="${rank?esc(p.label)+' · #'+rank+' '+esc(p.tier):'No priority rank assigned'} — click to update Lead priority/source"><span>${esc(label)}</span><small>${esc(src)}</small></div>`}
+
+function directPriorityModal(id){
+  let t=state.tools.find(x=>String(x.id)===String(id));if(!t)return;
+  let kind=currentPriorityKind(),eligible=priorityEligibleTools(),total=eligible.length,
+      source=state.config?.priorityBadgeSource||'lead',leadRank=leadPriorityRanks(kind).get(String(t.id))||0,
+      ccRank=commandCenterPriorityRanks().get(String(t.id))||0;
+  let rankOptions=Array.from({length:Math.max(1,total)},(_,i)=>`<option value="${i+1}" ${(leadRank||1)===i+1?'selected':''}>#${i+1} — ${esc(priorityTier(i+1,total))}</option>`).join('');
+  modal(`<div class="modal-form direct-priority-modal"><h2>PRIORITY — ${esc(t.id)}</h2><p class="helper">Edit the priority source used by every Universal Tool Card. LEADS / MANAGERS lets you set this tool's rank directly. COMMAND CENTER keeps the calculated rank from the Priority Center.</p><div class="form-grid"><div class="field span4"><label>PRIORITY SOURCE</label><select id="direct-priority-source"><option value="lead" ${source==='lead'?'selected':''}>LEADS / MANAGERS</option><option value="commandCenter" ${source==='commandCenter'?'selected':''}>COMMAND CENTER · AUTO</option></select></div><div class="field span4"><label>LEAD PRIORITY RANK</label><select id="direct-priority-rank">${rankOptions}</select></div><div class="field span4"><div class="helper">Current Lead rank: <b>${leadRank?`#${leadRank} ${esc(priorityTier(leadRank,total))}`:'PRIORITY TBD'}</b> · Command Center rank: <b>${ccRank?`#${ccRank} ${esc(priorityTier(ccRank,total))}`:'PRIORITY TBD'}</b></div></div></div><div class="modal-actions"><button class="btn" data-modal-cancel>CANCEL</button><button class="btn save" data-save-direct-priority="${esc(t.id)}">SAVE PRIORITY</button></div></div>`);
+}
+function saveDirectPriority(id){
+  let t=state.tools.find(x=>String(x.id)===String(id));if(!t)return;
+  let source=document.querySelector('#direct-priority-source')?.value==='commandCenter'?'commandCenter':'lead';
+  state.config=state.config||{};state.config.priorityBadgeSource=source;
+  if(source==='lead'){
+    let kind=currentPriorityKind(),list=syncPriorityList(kind),rank=Math.max(1,Number(document.querySelector('#direct-priority-rank')?.value)||1),
+        target=list.find(p=>String(p.tool)===String(id));
+    if(!target){target={tool:t.id,priority:rank,assignment:t.driver||'Unassigned',notes:'',autoScore:0};list.push(target)}
+    let others=list.filter(p=>String(p.tool)!==String(id)).sort((a,b)=>(Number(a.priority)||9999)-(Number(b.priority)||9999));
+    rank=Math.min(rank,others.length+1);others.splice(rank-1,0,target);others.forEach((p,i)=>p.priority=i+1);state.priorities[kind]=others;
+  }
+  saveState(`PRIORITY UPDATED — ${source==='lead'?'LEADS / MANAGERS':'COMMAND CENTER AUTO'}`);closeModal();render();
+  if(presentationActive)requestAnimationFrame(()=>requestAnimationFrame(fitPresentation));
+}
 function driverRibbon(t){let d=String(t.driver||'').trim();if(!d||/^unassigned$/i.test(d))return `<div class="utc-driver-ribbon unassigned direct-editable" data-direct-indicator="driver" data-indicator-tool="${esc(t.id)}" role="button" tabindex="0" title="DRIVER NOT ASSIGNED — click to update"><span>DRIVER: UNASSIGNED</span></div>`;let multi=d.split('/').map(x=>x.trim()).filter(Boolean).length>1,label=multi?'DRIVERS':'DRIVER';return `<div class="utc-driver-ribbon direct-editable" data-direct-indicator="driver" data-indicator-tool="${esc(t.id)}" role="button" tabindex="0" title="${label}: ${esc(d)} — click to update"><span>${label}: ${esc(d.toUpperCase())}</span></div>`}
 function identityRibbon(t,key,label,value){let missing=['customer','salesOrder'].includes(key)&&(!String(key==='customer'?t.customer:t.salesOrder).trim());let shown=missing?(key==='customer'?'NO CUSTOMER':'NO SALES ORDER'):value;return `<div class="utc-identity-ribbon ${missing?'missing':''} direct-editable" data-direct-identity="${esc(key)}" data-identity-tool="${esc(t.id)}" role="button" tabindex="0" title="${esc(label)} — click to update"><small>${esc(label)}</small><span>${esc(String(shown||'N/A').toUpperCase())}</span></div>`}
 function identityChoices(key,t){let vals=[];if(key==='toolType')vals=[...FAMILIES,...state.tools.map(x=>x.codename)];else if(key==='model')vals=state.tools.map(x=>x.model);else if(key==='customer')vals=state.tools.map(x=>x.customer);else if(key==='salesOrder')vals=state.tools.map(x=>x.salesOrder);return [...new Set(vals.map(v=>String(v||'').trim()).filter(Boolean))]}

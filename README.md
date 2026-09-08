@@ -530,3 +530,11 @@ V6.5.60 — Presentation Semantics + Readability Lock
 - Tool Type uses a native, reliable jump selector; Update Command Center, Add Tool, and Screenshot use direct action handlers.
 - Live Operations Verify Tools, Update Command Center, and Screenshot use direct handlers and now have a visible hover/focus state.
 - Operations pagebar reserves explicit action width so Tools actions cannot collapse or overlap.
+
+## V6.5.71 — Presentation Polish + Priority Direct Edit + Navigation Hover Lock
+- Regular Live Operations Universal Tool Card remains frozen and unchanged.
+- Presentation Mode only: removes host/card connector borders, keeps each of the three columns independently boxed, and adds slightly more vertical spacing between middle-column sections.
+- Presentation middle-column dividers are inset so section lines do not visually connect to the outer column edges.
+- Restores larger Operations navigation text and consistent hover/focus feedback across page navigation, Live carousel controls, and page-action buttons.
+- Tool Type selector/submenu typography is restored to white, larger text for consistency.
+- Priority badge is now a working direct-edit control. The compact editor supports LEADS / MANAGERS rank changes or COMMAND CENTER automatic priority source, and saves back to the shared Priority data used by every card view.
