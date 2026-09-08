@@ -15251,3 +15251,48 @@ html body .operations-tool-carousel .utc-host{padding-bottom:0!important;overflo
     margin-bottom:6px!important;
   }
 }
+
+/* ============================================================
+   V6.5.66 — UTC COLUMN BORDER + DIRECT NEXT TASKS EDIT LOCK
+   - Remove host/card connector lines across the three UTC columns.
+   - Keep each column's own border and inter-column gap.
+   - Make Next System Tasks directly editable from the UTC.
+   ============================================================ */
+@media (min-width:901px){
+  html body:not(.presentation-mode)[data-center="operations"] .operations-tool-carousel>.utc-host,
+  html body:not(.presentation-mode)[data-center="operations"] .operations-tool-carousel>.universal-card-host,
+  html body:not(.presentation-mode)[data-center="operations"] .operations-tool-carousel .utc-card.utc-v6538{
+    border:0!important;
+    outline:0!important;
+    box-shadow:none!important;
+    background:transparent!important;
+  }
+  html body:not(.presentation-mode)[data-center="operations"] .operations-tool-carousel>.utc-host::before,
+  html body:not(.presentation-mode)[data-center="operations"] .operations-tool-carousel>.utc-host::after,
+  html body:not(.presentation-mode)[data-center="operations"] .operations-tool-carousel .utc-card.utc-v6538::before,
+  html body:not(.presentation-mode)[data-center="operations"] .operations-tool-carousel .utc-card.utc-v6538::after{
+    display:none!important;
+    content:none!important;
+  }
+  html body:not(.presentation-mode)[data-center="operations"] .operations-tool-carousel .utc-card.utc-v6538>.utc-column{
+    border:1px solid #2b607d!important;
+    box-shadow:none!important;
+  }
+}
+html body .utc-card.utc-v6538 .utc-next-actions-blockers[data-next-system-tasks]{
+  cursor:pointer!important;
+  position:relative!important;
+}
+html body .utc-card.utc-v6538 .utc-next-actions-blockers[data-next-system-tasks]:hover,
+html body .utc-card.utc-v6538 .utc-next-actions-blockers[data-next-system-tasks]:focus-visible{
+  background:rgba(0,209,255,.055)!important;
+  outline:1px solid rgba(0,209,255,.35)!important;
+  outline-offset:-2px!important;
+}
+html body .utc-card.utc-v6538 .utc-next-actions-blockers[data-next-system-tasks] .utc-kicker::after{
+  content:'  ›'!important;
+  color:#fff!important;
+  opacity:.85!important;
+}
+.next-system-tasks-modal .form-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+.next-system-tasks-modal input,.next-system-tasks-modal select{width:100%!important}

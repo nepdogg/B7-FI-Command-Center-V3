@@ -487,3 +487,12 @@ V6.5.60 — Presentation Semantics + Readability Lock
 - Next System Tasks receives more vertical room and line spacing while remaining limited to three tasks.
 - Presentation Mode uses the same protected countdown/date structure and stable six-section middle column.
 - Live Operations page action controls are compacted so the two carousel control clusters plus page action buttons remain on one line.
+
+
+## V6.5.66 — Next System Tasks Direct Edit + Column Border Lock
+- Removed the Universal Tool Card host/card top and bottom connector lines so the three boxed columns remain visually separate.
+- Preserved each column's own border and the normal inter-column gap.
+- Made the entire NEXT SYSTEM TASKS section directly clickable/editable from the Universal Tool Card.
+- Direct editor supports AUTO or MANUAL mode and up to three manual tasks.
+- Returning to AUTO restores the calculated top three tasks without changing operational badge states.
+- No other card geometry or badge-state logic changed in this stability build.
