@@ -15757,3 +15757,26 @@ html body.presentation-mode .modal:not(.hidden) .modal-actions button{
   z-index:50010!important;
   cursor:pointer!important;
 }
+
+/* =========================================================
+   V6.5.75 TOOL EDIT COMBO + PRESENTATION SCROLL LOCK
+   Functional repair only; locked Universal Tool Card geometry unchanged.
+   ========================================================= */
+.editable-combo{display:grid!important;grid-template-columns:minmax(0,1fr) 32px!important;align-items:stretch!important;width:100%!important;min-width:0!important}
+.editable-combo>input{grid-column:1!important;border-top-right-radius:0!important;border-bottom-right-radius:0!important;min-width:0!important}
+.editable-combo-toggle{grid-column:2!important;width:32px!important;min-width:32px!important;padding:0!important;border:1px solid #2b5873!important;border-left:0!important;background:#071722!important;color:#d9f5ff!important;cursor:pointer!important;font-size:12px!important;border-radius:0 3px 3px 0!important;pointer-events:auto!important}
+.editable-combo-toggle:hover,.editable-combo-toggle:focus{border-color:var(--accent)!important;background:rgba(var(--accent-rgb),.18)!important;color:#fff!important}
+.editable-combo-menu{position:fixed!important;z-index:65000!important;max-height:300px!important;overflow-y:auto!important;background:#03101a!important;border:1px solid #3b7899!important;box-shadow:0 10px 30px rgba(0,0,0,.65)!important;padding:3px!important;pointer-events:auto!important}
+.editable-combo-option{display:block!important;width:100%!important;text-align:left!important;padding:7px 9px!important;border:0!important;border-bottom:1px solid #17384c!important;background:#03101a!important;color:#fff!important;font-size:10px!important;cursor:pointer!important;pointer-events:auto!important}
+.editable-combo-option:hover,.editable-combo-option:focus{background:rgba(var(--accent-rgb),.22)!important;color:#fff!important;outline:1px solid var(--accent)!important}
+
+/* Presentation Mode: Update Tool Status opens a long Tool Edit page. Keep the wallboard
+   fixed, but give the editor workspace its own vertical scrolling surface. */
+html body.presentation-mode[data-center="operations"][data-sub="tool"] .app-frame{height:1080px!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="tool"] .body-shell{height:1080px!important;max-height:1080px!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain!important;pointer-events:auto!important;scrollbar-width:auto!important}
+html body.presentation-mode[data-center="operations"][data-sub="tool"] #app,
+html body.presentation-mode[data-center="operations"][data-sub="tool"] .tool-editor,
+html body.presentation-mode[data-center="operations"][data-sub="tool"] .tool-editor *{pointer-events:auto!important}
+html body.presentation-mode[data-center="operations"][data-sub="tool"] .body-shell::-webkit-scrollbar{display:block!important;width:14px!important}
+html body.presentation-mode[data-center="operations"][data-sub="tool"] .body-shell::-webkit-scrollbar-thumb{background:#245d78!important;border:2px solid #03101a!important;border-radius:7px!important}
+html body.presentation-mode[data-center="operations"][data-sub="tool"] .body-shell::-webkit-scrollbar-track{background:#020a13!important}

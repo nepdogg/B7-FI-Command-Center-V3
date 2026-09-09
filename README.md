@@ -1,3 +1,13 @@
+# B7 FI Command Center V6.5.75 — Tool Edit Combo + Presentation Scroll Lock
+
+## 9/8/26 testing fixes
+- Tool Edit flexible fields now use a real editable combo control: type a new value directly or press the visible dropdown arrow to choose from predefined/saved values.
+- Tool Type includes the full family list including Zephyr plus saved custom tool types.
+- Model remains free-entry and its dropdown includes family models, all catalog models, and models already saved on tools. Changing Tool Type no longer erases or auto-replaces Model.
+- Existing tools and newly added tools use the same Tool Type / Model controls.
+- Presentation Mode Update Tool Status now has its own vertical editor scroll surface so the full Tool Edit page and lower sections remain reachable.
+- No Universal Tool Card geometry changes.
+
 # B7 FI Command Center V6.5.74 — Presentation Editor Parity Lock
 
 ## 9/8/26 test fix
