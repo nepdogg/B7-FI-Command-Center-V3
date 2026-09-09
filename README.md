@@ -1,4 +1,16 @@
-# B7 FI Command Center V6.5.72
+# B7 FI Command Center V6.5.73
+
+## V6.5.73 — Presentation Badge Save + Single-Step Entry + FI Status Terminology Lock
+
+- All operational Universal Tool Card badges now use the same save path from Live Operations and Presentation Mode. Badge editors open with the current state selected and save directly back to the shared tool record.
+- Added direct save binding for badge and quick-field modals so Presentation Mode no longer depends on the legacy delegated click path.
+- Lamp Status remains a combined badge and its Lamp Hours editor uses the same direct-save path in Presentation Mode.
+- Replaced the FI Status manual choices FI HOLD / ENGINEERING HOLD with SYSTEM LINE DOWN. Older saved hold overrides normalize automatically to SYSTEM LINE DOWN.
+- Engineering no longer automatically displays ENGINEERING HOLD in FI Status. AUTO shows ENGINEERING when the overall Tool Status is Engineering; SYSTEM LINE DOWN remains an explicit lead override.
+- FI Status AUTO continues to calculate Ahead / On Schedule / Behind Schedule only for tools actively in FI. AT RISK, SYSTEM LINE DOWN, and WAITING FOR PARTS are deliberate lead overrides.
+- Driver, Customer, Sales Order, Tool Type, Model, Cleanroom, Bay, SW Version and similar structured text fields now use a single editable combo-box pattern: type a value directly or select a saved/suggested value. Removed the ENTER NEW secondary prompt workflow.
+- The regular Universal Tool Card geometry remains locked.
+
 
 ## 9/8/26 Badge + Workflow Lock
 - Combined Lamp Hours + Request Lamp into one automatic Lamp Status badge.
