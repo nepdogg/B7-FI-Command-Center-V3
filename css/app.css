@@ -15807,30 +15807,33 @@ html body.presentation-mode[data-center="operations"][data-sub="tool"] .tool-edi
 }
 
 /* =========================================================
-   V6.5.77 UNIVERSAL EDITOR CLEAN REWRITE LOCK
-   One editable combo component is shared by Tool Edit,
-   regular Universal Tool Card direct editors, and Presentation Mode.
+   V6.5.80 NATIVE COMBO CLEAN REWRITE LOCK
+   One field implementation everywhere: editable input + native SELECT.
+   Browser-owned SELECT popups cannot be clipped by cards/modals/fullscreen.
    ========================================================= */
-.universal-combo{
+html body .universal-combo.native-combo{
   position:relative!important;
   display:grid!important;
-  grid-template-columns:minmax(0,1fr) 34px!important;
+  grid-template-columns:minmax(0,1fr) 38px!important;
   width:100%!important;
   min-width:0!important;
   overflow:visible!important;
 }
-.universal-combo>input{
+html body .universal-combo.native-combo > input{
   grid-column:1!important;
-  width:100%!important;
   min-width:0!important;
+  width:100%!important;
   border-top-right-radius:0!important;
   border-bottom-right-radius:0!important;
 }
-.universal-combo-toggle{
+html body .universal-combo.native-combo > .universal-combo-select{
   grid-column:2!important;
-  width:34px!important;
-  min-width:34px!important;
-  padding:0!important;
+  width:38px!important;
+  min-width:38px!important;
+  height:100%!important;
+  min-height:32px!important;
+  padding:0 2px!important;
+  margin:0!important;
   border:1px solid #2b5873!important;
   border-left:0!important;
   border-radius:0 3px 3px 0!important;
@@ -15840,90 +15843,18 @@ html body.presentation-mode[data-center="operations"][data-sub="tool"] .tool-edi
   font-weight:900!important;
   cursor:pointer!important;
   pointer-events:auto!important;
+  appearance:auto!important;
+  -webkit-appearance:menulist!important;
 }
-.universal-combo-toggle:hover,.universal-combo-toggle:focus{
+html body .universal-combo.native-combo > .universal-combo-select:hover,
+html body .universal-combo.native-combo > .universal-combo-select:focus{
   border-color:var(--accent)!important;
-  background:rgba(var(--accent-rgb),.22)!important;
-  color:#fff!important;
-  outline:none!important;
-}
-.universal-combo-menu{
-  position:absolute!important;
-  z-index:90000!important;
-  left:0!important;
-  right:0!important;
-  top:calc(100% + 2px)!important;
-  max-height:330px!important;
-  overflow-y:auto!important;
-  overflow-x:hidden!important;
-  padding:3px!important;
-  border:1px solid #3b7899!important;
-  background:#03101a!important;
-  box-shadow:0 12px 34px rgba(0,0,0,.72)!important;
-  pointer-events:auto!important;
-}
-.universal-combo-menu[hidden]{display:none!important}
-.universal-combo-option{
-  display:block!important;
-  width:100%!important;
-  padding:8px 10px!important;
-  border:0!important;
-  border-bottom:1px solid #17384c!important;
-  background:#03101a!important;
-  color:#fff!important;
-  text-align:left!important;
-  font-size:11px!important;
-  line-height:1.25!important;
-  cursor:pointer!important;
-  pointer-events:auto!important;
-}
-.universal-combo-option:hover,.universal-combo-option:focus{
-  background:rgba(var(--accent-rgb),.25)!important;
+  background:#0b2231!important;
   color:#fff!important;
   outline:1px solid var(--accent)!important;
 }
-.universal-combo-empty{
-  padding:9px 10px!important;
-  color:#89a8b9!important;
-  font-size:10px!important;
-  font-weight:700!important;
-  letter-spacing:.04em!important;
-}
-.tool-editor .field:has(.universal-combo),
-.modal-form .field:has(.universal-combo){position:relative!important;overflow:visible!important}
-html body.presentation-mode .universal-combo,
-html body.presentation-mode .universal-combo *,
-html body.presentation-mode .universal-combo-menu,
-html body.presentation-mode .universal-combo-menu *{pointer-events:auto!important}
-html body.presentation-mode[data-center="operations"][data-sub="tool"] .tool-editor .universal-combo-menu{
-  z-index:95000!important;
-}
-
-
-/* =========================================================
-   V6.5.78 COMPACT COMBO PORTAL OVERFLOW LOCK
-   Compact Universal Tool Card / Presentation menus are rendered
-   at body level so modal/card overflow cannot clip the choices.
-   ========================================================= */
-html body #universalComboPortal.universal-combo-menu-portal{
-  position:fixed!important;
-  right:auto!important;
-  bottom:auto!important;
-  z-index:1000000!important;
-  display:block!important;
-  overflow-y:auto!important;
-  overflow-x:hidden!important;
-  overscroll-behavior:contain!important;
-  scrollbar-width:thin!important;
-  box-sizing:border-box!important;
+html body.presentation-mode .universal-combo.native-combo,
+html body.presentation-mode .universal-combo.native-combo > input,
+html body.presentation-mode .universal-combo.native-combo > select{
   pointer-events:auto!important;
-}
-html body #universalComboPortal.universal-combo-menu-portal .universal-combo-option,
-html body #universalComboPortal.universal-combo-menu-portal .universal-combo-empty{
-  pointer-events:auto!important;
-}
-/* The in-component menu is now only the authoritative option template.
-   The visible menu is the portal above. */
-html body .universal-combo > .universal-combo-menu:not(.universal-combo-menu-portal){
-  display:none!important;
 }

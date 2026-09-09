@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.79', BUILD='20260908-V6.5.79-COMPACT-COMBO-DIRECT-BINDING-LOCK';
+const VERSION='6.5.80', BUILD='20260908-V6.5.80-NATIVE-COMBO-CLEAN-REWRITE-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -157,8 +157,12 @@ function driverRibbon(t){let d=String(t.driver||'').trim();if(!d||/^unassigned$/
 function identityRibbon(t,key,label,value){let missing=['customer','salesOrder'].includes(key)&&(!String(key==='customer'?t.customer:t.salesOrder).trim());let shown=missing?(key==='customer'?'NO CUSTOMER':'NO SALES ORDER'):value;return `<div class="utc-identity-ribbon ${missing?'missing':''} direct-editable" data-direct-identity="${esc(key)}" data-identity-tool="${esc(t.id)}" role="button" tabindex="0" title="${esc(label)} — click to update"><small>${esc(label)}</small><span>${esc(String(shown||'N/A').toUpperCase())}</span></div>`}
 function catalogModelsForType(type){
   type=String(type||'').trim();
-  if(Object.prototype.hasOwnProperty.call(PRODUCT_CATALOG,type))return [...PRODUCT_CATALOG[type]];
+  if(Object.prototype.hasOwnProperty.call(PRODUCT_CATALOG,type)&&PRODUCT_CATALOG[type].length)return [...PRODUCT_CATALOG[type]];
   return [...new Set(state.tools.filter(x=>String(x.codename||'').trim()===type).map(x=>String(x.model||'').trim()).filter(Boolean))];
+}
+function hasStrictModelCatalog(type){
+  type=String(type||'').trim();
+  return Object.prototype.hasOwnProperty.call(PRODUCT_CATALOG,type)&&Array.isArray(PRODUCT_CATALOG[type])&&PRODUCT_CATALOG[type].length>0;
 }
 function identityChoices(key,t){
   let vals=[];
@@ -171,17 +175,22 @@ function identityChoices(key,t){
 function universalComboMarkup(id,value,choices=[],opts={}){
   const all=[...new Set((choices||[]).map(v=>String(v??'').trim()).filter(Boolean))];
   const role=opts.role?` data-tool-field="${esc(opts.role)}"`:'';
+  const dataF=opts.dataF?` data-f="${esc(opts.dataF)}"`:'';
   const placeholder=opts.placeholder?` placeholder="${esc(opts.placeholder)}"`:'';
-  const menu=all.length?all.map(v=>`<button type="button" class="universal-combo-option" data-universal-combo-choice="${esc(id)}" data-universal-combo-value="${esc(v)}">${esc(v)}</button>`).join(''):`<div class="universal-combo-empty">NO PREDEFINED SELECTIONS</div>`;
-  return `<div class="universal-combo" data-universal-combo-root="${esc(id)}"><input id="${esc(id)}" type="text" value="${esc(value??'')}" autocomplete="off" data-universal-combo-input="${esc(id)}"${role}${placeholder}><button type="button" class="universal-combo-toggle" data-universal-combo-toggle="${esc(id)}" aria-label="Show choices" aria-expanded="false">▼</button><div class="universal-combo-menu" data-universal-combo-menu="${esc(id)}" hidden>${menu}</div></div>`;
+  // V6.5.80 CLEAN REWRITE: use a native SELECT as the pull-down trigger next to
+  // the editable text input. The browser owns the option popup, so it cannot be
+  // clipped by the card/modal or intercepted by Presentation Mode click routing.
+  const options=all.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('');
+  return `<div class="universal-combo native-combo" data-universal-combo-root="${esc(id)}"><input id="${esc(id)}" type="text" value="${esc(value??'')}" autocomplete="off" data-universal-combo-input="${esc(id)}"${role}${dataF}${placeholder}><select class="universal-combo-select" data-universal-combo-select="${esc(id)}" aria-label="Show predefined selections"><option value="" selected>▼</option>${options}</select></div>`;
 }
 function updateUniversalComboChoices(input,choices){
   if(!input)return;
   const root=input.closest('[data-universal-combo-root]');
-  const menu=root?.querySelector('[data-universal-combo-menu]');
-  if(!menu)return;
+  const select=root?.querySelector('[data-universal-combo-select]');
+  if(!select)return;
   const vals=[...new Set((choices||[]).map(v=>String(v??'').trim()).filter(Boolean))];
-  menu.innerHTML=vals.length?vals.map(v=>`<button type="button" class="universal-combo-option" data-universal-combo-choice="${esc(input.id)}" data-universal-combo-value="${esc(v)}">${esc(v)}</button>`).join(''):`<div class="universal-combo-empty">NO PREDEFINED SELECTIONS</div>`;
+  select.innerHTML=`<option value="" selected>▼</option>`+vals.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('');
+  select.value='';
 }
 function modelInputForToolTypeInput(typeInput){
   const root=typeInput?.closest('.tool-editor,.modal-form')||document;
@@ -192,7 +201,7 @@ function refreshModelChoicesForType(typeInput,{clearInvalid=false}={}){
   const model=modelInputForToolTypeInput(typeInput);if(!model)return;
   const type=String(typeInput.value||'').trim(),allowed=catalogModelsForType(type);
   updateUniversalComboChoices(model,allowed);
-  if(clearInvalid&&Object.prototype.hasOwnProperty.call(PRODUCT_CATALOG,type)&&model.value&&!allowed.includes(String(model.value).trim())){
+  if(clearInvalid&&hasStrictModelCatalog(type)&&model.value&&!allowed.includes(String(model.value).trim())){
     model.value='';
     model.dispatchEvent(new Event('input',{bubbles:true}));
   }
@@ -219,7 +228,7 @@ function saveDirectIdentity(id,key){
   let t=state.tools[i],v=String(document.querySelector('#direct-identity-value')?.value||'').trim(),map={utid:'id',toolType:'codename',model:'model',customer:'customer',salesOrder:'salesOrder'},prop=map[key];if(!prop)return;
   if(key==='model'){
     const allowed=catalogModelsForType(t.codename);
-    if(Object.prototype.hasOwnProperty.call(PRODUCT_CATALOG,String(t.codename||'').trim())&&v&&!allowed.includes(v))return alert(`MODEL ${v} is not valid for ${t.codename}. Select one of: ${allowed.join(', ')||'no predefined models'}.`);
+    if(hasStrictModelCatalog(t.codename)&&v&&!allowed.includes(v))return alert(`MODEL ${v} is not valid for ${t.codename}. Select one of: ${allowed.join(', ')||'no predefined models'}.`);
   }
   if(key==='utid'){
     if(!v)return alert('UTID / Serial is required.');
@@ -230,7 +239,7 @@ function saveDirectIdentity(id,key){
     t[prop]=(clearCustomer||clearSO||v==='N/A')?'':v;
     if(key==='toolType'){
       const allowed=catalogModelsForType(t.codename);
-      if(Object.prototype.hasOwnProperty.call(PRODUCT_CATALOG,String(t.codename||'').trim())&&t.model&&!allowed.includes(String(t.model).trim()))t.model='';
+      if(hasStrictModelCatalog(t.codename)&&t.model&&!allowed.includes(String(t.model).trim()))t.model='';
     }
     if(key==='customer')t.customerAvailability=t.customer?'Available':'Not Available';if(key==='salesOrder')t.salesOrderAvailability=t.salesOrder?'Available':'Not Available';
   }
@@ -256,16 +265,16 @@ function dailyReadonly(label,value){return `<div class="field daily-readonly"><l
 function dailySelect(label,f,html,cls=''){return `<label class="field ${cls}">${label}<select data-f="${esc(f)}">${html}</select></label>`}
 function dailyInput(label,f,value,type='text',cls=''){
   if(type==='text'){
-    let lid=`daily-${String(f).replace(/[^a-z0-9]+/gi,'-')}-${Math.random().toString(36).slice(2,8)}`;
+    let id=`daily-${String(f).replace(/[^a-z0-9]+/gi,'-')}-${Math.random().toString(36).slice(2,8)}`;
     let vals=[...new Set(state.tools.map(t=>t?.[f]).concat([value]).map(v=>String(v??'').trim()).filter(Boolean))].slice(0,40);
-    return `<label class="field ${cls}">${label}<input data-f="${esc(f)}" type="text" value="${esc(value??'')}" list="${esc(lid)}"><datalist id="${esc(lid)}">${vals.map(v=>`<option value="${esc(v)}"></option>`).join('')}</datalist><small class="field-choice-hint">Choose or type manually.</small></label>`;
+    return `<label class="field ${cls}">${label}${universalComboMarkup(id,value,vals,{dataF:f})}<small class="field-choice-hint">Type a value or use the pull-down list.</small></label>`;
   }
   return `<label class="field ${cls}">${label}<input data-f="${esc(f)}" type="${type}" value="${esc(value??'')}"></label>`;
 }
 function scopedToolForm(t,i){
   let prefix=`tfu-${i}`,h=toolForm(t,false);
   h=h.replace(/id="tf-/g,`id="${prefix}-`);
-  h=h.replace(/data-universal-combo-(root|input|toggle|menu|choice)="tf-/g,(m,k)=>`data-universal-combo-${k}="${prefix}-`);
+  h=h.replace(/data-universal-combo-(root|input|select|toggle|menu|choice)="tf-/g,(m,k)=>`data-universal-combo-${k}="${prefix}-`);
   h=h.replace(/data-collapse-target="fi-checklist-full"/g,`data-collapse-target="fi-checklist-full-${i}"`);
   h=h.replace(/id="fi-checklist-full"/g,`id="fi-checklist-full-${i}"`);
   h=h.replace(/data-collapse-target="lead-checklist-full"/g,`data-collapse-target="lead-checklist-full-${i}"`);
@@ -393,7 +402,7 @@ function shipCountdown(t){
 function nextFiMilestone(t){let r=routeFor(t),i=checklistIndex(t,t.currentChecklist);if(!r.length)return'NOT SET';if(i<0)return checklistLabel(t,r[0][0]);if(i>=r.length-1)return'FINAL FI CHECKLIST';return checklistLabel(t,r[i+1][0])}
 function snapshotDisplay(html){return String(html).replace(/\sdata-tool="[^"]*"/g,'').replace(/\sdata-alert-tool="[^"]*"/g,'').replace(/\sdata-search-tool="[^"]*"/g,'')}
 function toolTypeOptions(sel){let arr=FAMILIES.slice();if(sel&&!arr.includes(sel))arr.push(sel);return selectOptions(arr,sel)}
-function modelOptions(t,sel){let arr=(PRODUCT_CATALOG[t.codename]||[]).slice();if(sel&&!arr.includes(sel))arr.unshift(sel);if(!arr.length)arr=['TBD'];return arr.map(x=>option(x,x,sel||arr[0])).join('')}
+function modelOptions(t,sel){let arr=catalogModelsForType(t.codename);if(!arr.length)arr=['TBD'];let chosen=arr.includes(sel)?sel:arr[0];return arr.map(x=>option(x,x,chosen)).join('')}
 function quarterBounds(q){let m=String(q||'').match(/^CY(\d{2})Q([1-4])$/i);if(!m)return null;let y=2000+Number(m[1]),qn=Number(m[2]),sm=(qn-1)*3;return{start:new Date(y,sm,1,12),end:new Date(y,sm+3,0,12)}}
 function quarterTimeProgress(){let b=quarterBounds(state.quarter);if(!b)return{pct:0,remainingPct:0,remaining:0,text:'QUARTER DATES NOT SET',tone:'normal'};let now=dateOnly(today()),total=Math.max(1,Math.round((b.end-b.start)/86400000)+1),elapsed=Math.min(total,Math.max(0,Math.round((now-b.start)/86400000)+1)),remaining=Math.max(0,Math.round((b.end-now)/86400000));let pct=Math.max(0,Math.min(100,Math.round(elapsed/total*100))),remainingPct=now>b.end?0:Math.max(0,Math.min(100,100-pct)),text=now>b.end?'QUARTER COMPLETE':remaining===0?'FINAL DAY':`${remaining} DAY${remaining===1?'':'S'} REMAINING`;return{pct,remainingPct,remaining,text,tone:remaining<=7?'critical':remaining<=21?'attention':'normal'}}
 function fiSummaryStatus(t){if(['OPI','OI'].includes(t.toolStatus))return'Waiting';if(['FI','Powered Down'].includes(t.toolStatus))return'In FI';if(t.toolStatus==='Packing')return'Packing';if(t.toolStatus==='Shipped')return'Shipped';if(t.toolStatus==='Engineering')return'Engineering';return'Waiting'}
@@ -1092,7 +1101,7 @@ function captureDailyEditor(){
   if(ids.length)state.config.dailyOrder=ids;
   return ids;
 }
-function saveCurrent(){if(route.center==='operations'&&route.sub==='tool'&&draft&&(mode==='create'||mode==='edit')){let t=draft;collectToolForm(t);if(!t.id)return alert('UTID / Serial is required.');let allowedModels=catalogModelsForType(t.codename);if(Object.prototype.hasOwnProperty.call(PRODUCT_CATALOG,String(t.codename||'').trim())&&t.model&&!allowedModels.includes(String(t.model).trim()))return alert(`MODEL ${t.model} is not valid for ${t.codename}. Select one of: ${allowedModels.join(', ')||'no predefined models'}.`);let duplicate=state.tools.find(x=>x.id.toLowerCase()===t.id.toLowerCase()&&x.id!==selected);if(duplicate)return alert(`DUPLICATE TOOL — ${t.id} already exists. Open the existing tool instead.`);if(mode==='create')state.tools.push(normalizeTool(t));else{let i=state.tools.findIndex(x=>x.id===selected);if(i>=0)state.tools[i]=normalizeTool(t)}saveState(mode==='create'?`TOOL ${t.id} ADDED`:`TOOL ${t.id} SAVED`);mode='view';toolEditorMode='view';draft=null;selected=null;let dest=returnRoute;returnRoute=null;route=dest||{center:'operations',sub:'tools'};render();return}
+function saveCurrent(){if(route.center==='operations'&&route.sub==='tool'&&draft&&(mode==='create'||mode==='edit')){let t=draft;collectToolForm(t);if(!t.id)return alert('UTID / Serial is required.');let allowedModels=catalogModelsForType(t.codename);if(hasStrictModelCatalog(t.codename)&&t.model&&!allowedModels.includes(String(t.model).trim()))return alert(`MODEL ${t.model} is not valid for ${t.codename}. Select one of: ${allowedModels.join(', ')||'no predefined models'}.`);let duplicate=state.tools.find(x=>x.id.toLowerCase()===t.id.toLowerCase()&&x.id!==selected);if(duplicate)return alert(`DUPLICATE TOOL — ${t.id} already exists. Open the existing tool instead.`);if(mode==='create')state.tools.push(normalizeTool(t));else{let i=state.tools.findIndex(x=>x.id===selected);if(i>=0)state.tools[i]=normalizeTool(t)}saveState(mode==='create'?`TOOL ${t.id} ADDED`:`TOOL ${t.id} SAVED`);mode='view';toolEditorMode='view';draft=null;selected=null;let dest=returnRoute;returnRoute=null;route=dest||{center:'operations',sub:'tools'};render();return}
  if(mode==='edit'&&route.center==='operations'&&route.sub==='daily'){captureDailyEditor();let snap={id:`${dailyContext}-${today()}`,kind:dailyContext==='weekend'?'Weekend Morning Status':'Weekday Morning Status',date:today(),savedAt:nowISO(),tools:clone(updateCommandCenterTools())};let si=state.statusRecords.findIndex(x=>x.id===snap.id);if(si>=0)state.statusRecords[si]=snap;else state.statusRecords.unshift(snap);saveState('COMMAND CENTER UPDATES SAVED');mode='view';draft=null;dirty=false;let dest=returnRoute;returnRoute=null;route=dest||{center:'operations',sub:'live'};render();return}
  if(mode==='edit'&&route.center==='priority'){let list=[];document.querySelectorAll('[data-priority]').forEach(r=>{let v=f=>r.querySelector(`[data-pf="${f}"]`)?.value||'',tool=state.tools.find(t=>t.id===r.dataset.priority),p=Number(v('priority'));if(tool){tool.salesOrder=v('salesOrder');tool.customer=v('customer');tool.shipDate=v('shipDate');tool.cleanroom=v('cleanroom');tool.driver=v('assignment')||tool.driver}if(p)list.push({tool:r.dataset.priority,priority:p,assignment:v('assignment'),notes:v('notes')})});state.priorities[route.sub]=list;state.priorityMeta[route.sub].anchor=document.querySelector('#priorityAnchor')?.value||state.priorityMeta[route.sub].anchor||today();if(route.sub==='weekend'){for(let day of ['saturday','sunday'])state.priorityMeta.weekend[day]=[...document.querySelectorAll(`[data-volunteer^="${day}-"]`)].map(r=>({name:r.querySelector('[data-vf="name"]')?.value||'',hours:r.querySelector('[data-vf="hours"]')?.value||'',notes:r.querySelector('[data-vf="notes"]')?.value||''}))}saveState(`${route.sub.toUpperCase()} PRIORITIES SAVED`);mode='view';let dest=returnRoute;returnRoute=null;route=dest||route;render();return}
  if(mode==='edit'&&route.center==='shipping'){document.querySelectorAll('[data-shipping]').forEach(r=>{let t=state.tools.find(x=>x.id===r.dataset.shipping);if(!t)return;let v=f=>r.querySelector(`[data-sf="${f}"]`)?.value||'';t.shipping.scheduleStatus=v('scheduleStatus');t.shipping.scheduleSent=v('scheduleSent')==='Yes';t.shipping.notes=v('notes');t.shipping.completed=t.shipping.completed||{};r.querySelectorAll('[data-ms-plan]').forEach(el=>t.shipping[el.dataset.msPlan]=el.value||'');r.querySelectorAll('[data-ms-actual]').forEach(el=>t.shipping.completed[el.dataset.msActual]=el.value||'');r.querySelectorAll('[data-ms-complete]').forEach(el=>{let k=el.dataset.msComplete;if(!el.checked)t.shipping.completed[k]='';else if(!t.shipping.completed[k])t.shipping.completed[k]=today()});applyRules(t)});saveState('SHIPPING SCHEDULES SAVED');mode='view';let dest=returnRoute;returnRoute=null;route=dest||{center:'shipping',sub:'home'};render();return}
@@ -1118,84 +1127,37 @@ function closeModal(){document.querySelector('#modal').classList.add('hidden');d
 function handoffModal(id){let t=state.tools.find(x=>x.id===id);if(!t)return;modal(`<div class="modal-form handoff-modal"><h2>PACKING / SHIPPING MILESTONES — ${esc(t.id)}</h2><p class="helper">Update the live Packing / Shipping milestones. MST Installation appears only for REGERA and CELESTIQ.</p><div class="field"><label>CURRENT SYSTEM STATUS</label><select id="handoff-tool-status">${selectOptions(['FI','Powered Down','Packing','Shipped'],t.toolStatus)}</select></div><div class="shipping-milestone-editor modal-milestones">${shippingKeys(t).map(([k,l])=>milestoneEditor(t,k,l)).join('')}</div><label class="modal-notes-label">Shipping Notes<textarea id="handoff-notes">${esc(t.shipping.notes||'')}</textarea></label><div class="modal-actions"><button class="btn" data-modal-cancel>CANCEL</button><button class="btn save" data-save-handoffs="${esc(t.id)}">SAVE MILESTONES</button></div></div>`)}
 function modal(html){document.querySelector('#modalBody').innerHTML=html;let x=document.querySelector('#modalClose');if(x){x.textContent='×';x.title='Close';x.setAttribute('aria-label','Close popup')}document.querySelector('#modal').classList.remove('hidden');requestAnimationFrame(()=>{bindEditableComboControls();x?.focus({preventScroll:true})})}
 
-function removeUniversalComboPortal(){
-  document.querySelector('#universalComboPortal')?.remove();
-}
-function positionUniversalComboPortal(root,portal){
-  if(!root||!portal)return;
-  const r=root.getBoundingClientRect(),vw=window.innerWidth||document.documentElement.clientWidth,vh=window.innerHeight||document.documentElement.clientHeight;
-  const gap=3,minH=120,maxH=330,below=Math.max(0,vh-r.bottom-gap-6),above=Math.max(0,r.top-gap-6);
-  const openDown=below>=minH||below>=above;
-  const available=Math.max(72,openDown?below:above);
-  const h=Math.min(maxH,available);
-  const width=Math.max(220,Math.min(r.width,vw-12));
-  const left=Math.max(6,Math.min(vw-width-6,r.left));
-  const top=openDown?Math.min(vh-h-6,r.bottom+gap):Math.max(6,r.top-gap-h);
-  portal.style.left=left+'px';portal.style.top=top+'px';portal.style.width=width+'px';portal.style.maxHeight=h+'px';
-  portal.dataset.comboPlacement=openDown?'down':'up';
-}
-function applyUniversalComboChoice(input,value){
-  if(!input)return;
-  input.value=String(value??'');
-  input.dispatchEvent(new Event('input',{bubbles:true}));
-  input.dispatchEvent(new Event('change',{bubbles:true}));
-  if(input.dataset.toolField==='toolType')refreshModelChoicesForType(input,{clearInvalid:true});
-  closeUniversalComboMenus();
-  input.focus({preventScroll:true});
-}
-function openUniversalComboPortal(root){
-  removeUniversalComboPortal();
-  const source=root?.querySelector('[data-universal-combo-menu]'),input=root?.querySelector('[data-universal-combo-input]');
-  if(!source||!input)return;
-  const portal=document.createElement('div');
-  portal.id='universalComboPortal';
-  portal.className='universal-combo-menu universal-combo-menu-portal';
-  portal.dataset.universalComboPortal=input.id;
-  portal.innerHTML=source.innerHTML;
-  // The visible portal owns its interactions directly.  Do not depend on the
-  // legacy document-level click router or the Presentation click shield.
-  portal.addEventListener('pointerdown',e=>{
-    if(e.target.closest('[data-universal-combo-choice]')){e.preventDefault();e.stopPropagation();}
-  });
-  portal.querySelectorAll('[data-universal-combo-choice]').forEach(choice=>{
-    choice.addEventListener('click',e=>{
-      e.preventDefault();e.stopPropagation();
-      applyUniversalComboChoice(input,choice.dataset.universalComboValue||'');
-    });
-  });
-  document.body.appendChild(portal);
-  positionUniversalComboPortal(root,portal);
-}
-function closeUniversalComboMenus(except=null){
-  removeUniversalComboPortal();
-  document.querySelectorAll('[data-universal-combo-root].open').forEach(root=>{if(root===except)return;root.classList.remove('open');root.querySelector('[data-universal-combo-menu]')?.setAttribute('hidden','');root.querySelector('[data-universal-combo-toggle]')?.setAttribute('aria-expanded','false')});
-}
 function bindEditableComboControls(){
   document.querySelectorAll('[data-universal-combo-root]').forEach(root=>{
     if(root.dataset.comboBound==='1')return;
     root.dataset.comboBound='1';
-    const toggle=root.querySelector('[data-universal-combo-toggle]');
     const input=root.querySelector('[data-universal-combo-input]');
-    if(toggle)toggle.addEventListener('click',e=>{
-      e.preventDefault();e.stopPropagation();
-      const wasOpen=root.classList.contains('open');
-      closeUniversalComboMenus();
-      if(wasOpen)return;
-      root.classList.add('open');
-      toggle.setAttribute('aria-expanded','true');
-      openUniversalComboPortal(root);
+    const select=root.querySelector('[data-universal-combo-select]');
+    if(!input||!select)return;
+
+    // Selecting a predefined value is a single action: the native menu writes
+    // directly into the editable input. Reset the selector to its arrow so the
+    // same choice can be selected again later if needed.
+    select.addEventListener('change',()=>{
+      const v=String(select.value||'');
+      if(v!==''){
+        input.value=v;
+        input.dispatchEvent(new Event('input',{bubbles:true}));
+        input.dispatchEvent(new Event('change',{bubbles:true}));
+        if(input.dataset.toolField==='toolType')refreshModelChoicesForType(input,{clearInvalid:true});
+      }
+      select.value='';
     });
-    if(input){
-      input.addEventListener('focus',()=>{});
-      input.addEventListener('keydown',e=>{
-        if(e.key==='ArrowDown'&&!document.querySelector('#universalComboPortal')){
-          e.preventDefault();root.classList.add('open');toggle?.setAttribute('aria-expanded','true');openUniversalComboPortal(root);
-        }else if(e.key==='Escape'){closeUniversalComboMenus();}
-      });
+
+    // Manual entry remains available. For Tool Type, refresh Model choices as
+    // the value changes, and clear an incompatible model only when committed.
+    if(input.dataset.toolField==='toolType'){
+      input.addEventListener('input',()=>refreshModelChoicesForType(input,{clearInvalid:false}));
+      input.addEventListener('change',()=>refreshModelChoicesForType(input,{clearInvalid:true}));
     }
   });
 }
-function bindInputs(){bindEditableComboControls();document.querySelectorAll('input,select,textarea').forEach(x=>x.addEventListener('input',()=>{if(mode!=='view')dirty=true}));let tsp=document.querySelector('[data-tool-specific-photo-upload]');if(tsp)tsp.onchange=()=>{let file=tsp.files&&tsp.files[0];if(!file)return;if(file.size>1200000){alert('Please use a tool photo smaller than 1.2 MB.');tsp.value='';return}let reader=new FileReader();reader.onload=()=>{if(!draft)return;draft.toolPhoto=String(reader.result||'');dirty=true;renderToolEditorPage()};reader.readAsDataURL(file)};let tsc=document.querySelector('[data-tool-specific-photo-clear]');if(tsc)tsc.onclick=()=>{if(!draft)return;draft.toolPhoto='';dirty=true;renderToolEditorPage()};document.querySelectorAll('[data-tool-field="toolType"]').forEach(code=>{code.addEventListener('input',()=>refreshModelChoicesForType(code));code.addEventListener('change',()=>{dirty=true;refreshModelChoicesForType(code,{clearInvalid:true})})});let add=document.querySelector('#addNc');if(add)add.onclick=()=>{collectToolForm(draft);draft.ncs.push({id:'',description:'',state:'Open',days:0,blocking:false,poa:'',owner:'',opened:today()});dirty=true;render()};document.querySelectorAll('[data-add-nc-tool]').forEach(b=>b.onclick=()=>{let card=b.closest('[data-daily]'),list=card?.querySelector('[id^="ncList-"]');if(!card||!list)return;let blankNc={id:'',description:'',state:'Open',days:0,blocking:false,poa:'',owner:'',opened:today()};if(list.querySelector('.nc-empty'))list.innerHTML='';list.insertAdjacentHTML('beforeend',ncFormRows({ncs:[blankNc]}));dirty=true;bindScopedNcButtons(card)});let bindScopedNcButtons=card=>card.querySelectorAll('[data-remove-nc]').forEach(b=>b.onclick=()=>{if(!confirm('Remove this NC from the tool update?'))return;b.closest('.nc-edit-row')?.remove();dirty=true});document.querySelectorAll('[data-daily]').forEach(bindScopedNcButtons);document.querySelectorAll('.tool-editor:not(.universal-all-tool-editor) [data-remove-nc]').forEach(b=>b.onclick=()=>{if(!confirm('Remove this NC?'))return;collectToolForm(draft);draft.ncs.splice(Number(b.dataset.removeNc),1);dirty=true;render()});let g=document.querySelector('#globalSearch');if(g){g.value=window.__b7Search||'';let run=()=>{let q=g.value.toLowerCase().trim(),out=[];window.__b7Search=g.value;if(q){operationalTools().forEach(t=>{if(JSON.stringify(t).toLowerCase().includes(q))out.push(`<div class="search-result" role="button" tabindex="0" data-search-tool="${esc(t.id)}" onclick="event.stopPropagation();window.B7Core.openTool(this.dataset.searchTool);return false"><b>TOOL ${esc(t.id)}</b> · ${esc(t.codename)} · ${esc(t.customer)} · ${esc(t.toolStatus)}</div>`)});state.meetings.forEach(m=>{if(JSON.stringify(m).toLowerCase().includes(q))out.push(`<div class="search-result" role="button" tabindex="0" data-search-meeting="${esc(m.id)}"><b>MEETING</b> · ${esc(m.type)} · ${esc(m.tool||fmtDate(m.date)||'')}</div>`)});state.actions.forEach(a=>{if(JSON.stringify(a).toLowerCase().includes(q))out.push(`<div class="search-result" role="button" tabindex="0" data-search-action="${esc(a.id)}"><b>ACTION</b> · ${esc(a.text)}</div>`)});state.references.forEach(r=>{if(JSON.stringify(r).toLowerCase().includes(q))out.push(`<div class="search-result" role="button" tabindex="0" data-search-ref="${esc(r.id)}"><b>REFERENCE</b> · ${esc(r.title)}</div>`)})}document.querySelector('#searchResults').innerHTML=out.join('')||(q?'<p>No results.</p>':'')};g.oninput=run;run()}let pa=document.querySelector('#priorityAnchor');if(pa)pa.onchange=()=>{state.priorityMeta[route.sub].anchor=pa.value;dirty=true;let t=document.querySelector('#priorityRangeTitle');if(t)t.textContent=priorityTitle(route.sub)};let rs=document.querySelector('#refSearch');if(rs)rs.oninput=()=>{let q=rs.value.toLowerCase();document.querySelectorAll('.ref-row').forEach(r=>r.style.display=r.textContent.toLowerCase().includes(q)?'':'none')};let ah=document.querySelector('#actionHistorySearch');if(ah)ah.oninput=()=>{let q=ah.value.toLowerCase();document.querySelectorAll('.action-list .action-card').forEach(r=>r.style.display=r.textContent.toLowerCase().includes(q)?'':'none')};let f=document.querySelector('#importFile');if(f)f.onchange=async()=>{try{state=normalize(JSON.parse(await f.files[0].text()));saveState('JSON DATA IMPORTED');render()}catch(e){alert('Import failed: '+e.message)}}}
+function bindInputs(){bindEditableComboControls();document.querySelectorAll('input,select,textarea').forEach(x=>x.addEventListener('input',()=>{if(mode!=='view')dirty=true}));let tsp=document.querySelector('[data-tool-specific-photo-upload]');if(tsp)tsp.onchange=()=>{let file=tsp.files&&tsp.files[0];if(!file)return;if(file.size>1200000){alert('Please use a tool photo smaller than 1.2 MB.');tsp.value='';return}let reader=new FileReader();reader.onload=()=>{if(!draft)return;draft.toolPhoto=String(reader.result||'');dirty=true;renderToolEditorPage()};reader.readAsDataURL(file)};let tsc=document.querySelector('[data-tool-specific-photo-clear]');if(tsc)tsc.onclick=()=>{if(!draft)return;draft.toolPhoto='';dirty=true;renderToolEditorPage()};let add=document.querySelector('#addNc');if(add)add.onclick=()=>{collectToolForm(draft);draft.ncs.push({id:'',description:'',state:'Open',days:0,blocking:false,poa:'',owner:'',opened:today()});dirty=true;render()};document.querySelectorAll('[data-add-nc-tool]').forEach(b=>b.onclick=()=>{let card=b.closest('[data-daily]'),list=card?.querySelector('[id^="ncList-"]');if(!card||!list)return;let blankNc={id:'',description:'',state:'Open',days:0,blocking:false,poa:'',owner:'',opened:today()};if(list.querySelector('.nc-empty'))list.innerHTML='';list.insertAdjacentHTML('beforeend',ncFormRows({ncs:[blankNc]}));dirty=true;bindScopedNcButtons(card)});let bindScopedNcButtons=card=>card.querySelectorAll('[data-remove-nc]').forEach(b=>b.onclick=()=>{if(!confirm('Remove this NC from the tool update?'))return;b.closest('.nc-edit-row')?.remove();dirty=true});document.querySelectorAll('[data-daily]').forEach(bindScopedNcButtons);document.querySelectorAll('.tool-editor:not(.universal-all-tool-editor) [data-remove-nc]').forEach(b=>b.onclick=()=>{if(!confirm('Remove this NC?'))return;collectToolForm(draft);draft.ncs.splice(Number(b.dataset.removeNc),1);dirty=true;render()});let g=document.querySelector('#globalSearch');if(g){g.value=window.__b7Search||'';let run=()=>{let q=g.value.toLowerCase().trim(),out=[];window.__b7Search=g.value;if(q){operationalTools().forEach(t=>{if(JSON.stringify(t).toLowerCase().includes(q))out.push(`<div class="search-result" role="button" tabindex="0" data-search-tool="${esc(t.id)}" onclick="event.stopPropagation();window.B7Core.openTool(this.dataset.searchTool);return false"><b>TOOL ${esc(t.id)}</b> · ${esc(t.codename)} · ${esc(t.customer)} · ${esc(t.toolStatus)}</div>`)});state.meetings.forEach(m=>{if(JSON.stringify(m).toLowerCase().includes(q))out.push(`<div class="search-result" role="button" tabindex="0" data-search-meeting="${esc(m.id)}"><b>MEETING</b> · ${esc(m.type)} · ${esc(m.tool||fmtDate(m.date)||'')}</div>`)});state.actions.forEach(a=>{if(JSON.stringify(a).toLowerCase().includes(q))out.push(`<div class="search-result" role="button" tabindex="0" data-search-action="${esc(a.id)}"><b>ACTION</b> · ${esc(a.text)}</div>`)});state.references.forEach(r=>{if(JSON.stringify(r).toLowerCase().includes(q))out.push(`<div class="search-result" role="button" tabindex="0" data-search-ref="${esc(r.id)}"><b>REFERENCE</b> · ${esc(r.title)}</div>`)})}document.querySelector('#searchResults').innerHTML=out.join('')||(q?'<p>No results.</p>':'')};g.oninput=run;run()}let pa=document.querySelector('#priorityAnchor');if(pa)pa.onchange=()=>{state.priorityMeta[route.sub].anchor=pa.value;dirty=true;let t=document.querySelector('#priorityRangeTitle');if(t)t.textContent=priorityTitle(route.sub)};let rs=document.querySelector('#refSearch');if(rs)rs.oninput=()=>{let q=rs.value.toLowerCase();document.querySelectorAll('.ref-row').forEach(r=>r.style.display=r.textContent.toLowerCase().includes(q)?'':'none')};let ah=document.querySelector('#actionHistorySearch');if(ah)ah.oninput=()=>{let q=ah.value.toLowerCase();document.querySelectorAll('.action-list .action-card').forEach(r=>r.style.display=r.textContent.toLowerCase().includes(q)?'':'none')};let f=document.querySelector('#importFile');if(f)f.onchange=async()=>{try{state=normalize(JSON.parse(await f.files[0].text()));saveState('JSON DATA IMPORTED');render()}catch(e){alert('Import failed: '+e.message)}}}
 
 // V4.2 hard routing bridge. Inline card/button handlers call this object directly,
 // then the editor functions re-assert their state on the next event-loop tick. This prevents
@@ -1385,13 +1347,6 @@ document.addEventListener('click',e=>{
   }
 },true);
 
-// V6.5.79 COMPACT COMBO DIRECT BINDING LOCK
-// Combo toggles and portal choices are bound directly by bindEditableComboControls().
-// This avoids competing capture-phase click routers in Live Operations and Presentation Mode.
-document.addEventListener('click',e=>{
-  if(!e.target.closest('[data-universal-combo-root],#universalComboPortal'))closeUniversalComboMenus();
-});
-
 // V6.5.74 Presentation editor action parity lock.
 // Modal SAVE/CANCEL actions are handled in capture phase before the Presentation
 // click shield. This guarantees that tool-information fields, Lamp Hours,
@@ -1413,7 +1368,7 @@ document.addEventListener('click',e=>{
   if(tasksSave){e.preventDefault();e.stopImmediatePropagation();saveNextSystemTasks(tasksSave.dataset.saveNextSystemTasks);return;}
 },true);
 
-const PRESENTATION_INTERACTIVE='[data-carousel],[data-snapshot],[data-indicator-picker],[data-indicator-control],[data-direct-indicator],[data-direct-identity],[data-direct-priority],[data-save-direct-priority],[data-save-direct-identity],[data-save-indicator],[data-quick-field],[data-save-quick-field],[data-open-tool],[data-handoffs],[data-forecast-checklist],[data-select-forecast-checklist],[data-modal-cancel],#modalClose,#indicator-state,#indicator-availability,#indicator-value,#indicator-driver,.modal,.modal-card,.modal-card #modalBody,.modal-card select,.modal-card input,.modal-card button,[data-universal-combo-toggle],[data-universal-combo-input],[data-universal-combo-root],.universal-combo-menu,.universal-combo-option,.forecast-picker-list,.forecast-picker-row';
+const PRESENTATION_INTERACTIVE='[data-carousel],[data-snapshot],[data-indicator-picker],[data-indicator-control],[data-direct-indicator],[data-direct-identity],[data-direct-priority],[data-save-direct-priority],[data-save-direct-identity],[data-save-indicator],[data-quick-field],[data-save-quick-field],[data-open-tool],[data-handoffs],[data-forecast-checklist],[data-select-forecast-checklist],[data-modal-cancel],#modalClose,#indicator-state,#indicator-availability,#indicator-value,#indicator-driver,.modal,.modal-card,.modal-card #modalBody,.modal-card select,.modal-card input,.modal-card button,[data-universal-combo-select],[data-universal-combo-input],[data-universal-combo-root],.forecast-picker-list,.forecast-picker-row';
 document.addEventListener('click',e=>{if(document.body.classList.contains('presentation-mode')&&!e.target.closest(PRESENTATION_INTERACTIVE)){e.preventDefault();e.stopImmediatePropagation()}},true);
 document.addEventListener('pointerdown',e=>{if(document.body.classList.contains('presentation-mode')&&!e.target.closest(PRESENTATION_INTERACTIVE)){e.preventDefault();e.stopImmediatePropagation()}},true);
 document.addEventListener('click',e=>{
@@ -1453,7 +1408,7 @@ document.addEventListener('change',e=>{let sel=e.target.closest('.priority-rank-
 document.addEventListener('change',e=>{let input=e.target.closest('[data-tool-photo-upload]');if(!input||!input.files||!input.files[0])return;let f=input.dataset.toolPhotoUpload,file=input.files[0];if(file.size>2500000){alert('Please use an image smaller than 2.5 MB.');input.value='';return}let reader=new FileReader();reader.onload=()=>{state.config.toolPhotos=state.config.toolPhotos||{};state.config.toolPhotos[f]=String(reader.result||'');saveState('TOOL PHOTO UPDATED — '+String(f).toUpperCase());render()};reader.readAsDataURL(file)});
 document.addEventListener('click',e=>{let b=e.target.closest('[data-tool-photo-reset]');if(!b)return;e.preventDefault();let f=b.dataset.toolPhotoReset;if(state.config?.toolPhotos)delete state.config.toolPhotos[f];saveState('DEFAULT TOOL PHOTO RESTORED — '+String(f).toUpperCase());render()});
 document.addEventListener('fullscreenchange',()=>{if(presentationActive&&!document.fullscreenElement){presentationActive=false;clearPresentationLayout();if(presentationRestore){livePaused=!!presentationRestore.livePaused;snapshotPaused=!!presentationRestore.snapshotPaused;presentationRestore=null}document.querySelector('#exitScreenshot')?.classList.add('hidden');render();requestAnimationFrame(()=>requestAnimationFrame(()=>{syncStickyShellHeight();window.dispatchEvent(new Event('resize'));window.scrollTo(0,0)}))}else if(presentationActive&&document.fullscreenElement){requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}});document.querySelector('#adminButton').onclick=()=>go('admin','data');document.querySelector('#modalClose').onclick=closeModal;document.querySelector('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!document.querySelector('#modal').classList.contains('hidden'))closeModal()});document.querySelector('#exitScreenshot').onclick=exitDisplayMode;document.addEventListener('click',e=>{if(e.target.id==='importJson'){document.querySelector('#importFile')?.click()}});window.addEventListener('storage',e=>{if(e.key!==KEY||!e.newValue)return;try{let currentId=carouselTools()[liveIndex]?.id||'';state=normalize(JSON.parse(e.newValue));allRules();let list=carouselTools(),ni=list.findIndex(t=>t.id===currentId);if(ni>=0)liveIndex=ni;else if(liveIndex>=list.length)liveIndex=Math.max(0,list.length-1);render();if(presentationActive)requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}catch(err){console.warn('Cross-window Command Center refresh failed',err)}});
-window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});window.addEventListener('resize',()=>{syncStickyShellHeight();if(presentationActive)fitPresentation();const portal=document.querySelector('#universalComboPortal');if(portal){const input=document.getElementById(portal.dataset.universalComboPortal||'');const root=input?.closest('[data-universal-combo-root]');if(root)positionUniversalComboPortal(root,portal);else closeUniversalComboMenus()}});window.addEventListener('scroll',()=>{const portal=document.querySelector('#universalComboPortal');if(!portal)return;const input=document.getElementById(portal.dataset.universalComboPortal||'');const root=input?.closest('[data-universal-combo-root]');if(root)positionUniversalComboPortal(root,portal);else closeUniversalComboMenus()},true);setInterval(()=>{if(!livePaused&&mode==='view'&&route.center==='operations'&&route.sub==='live'&&carouselTools().length>1){liveIndex=(liveIndex+1)%carouselTools().length;render()}},8000);setInterval(()=>{if(!snapshotPaused&&mode==='view'&&route.center==='operations'&&route.sub==='live'){snapshotIndex=(snapshotIndex+1)%6;render()}},12000);render();
+window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});window.addEventListener('resize',()=>{syncStickyShellHeight();if(presentationActive)fitPresentation();});setInterval(()=>{if(!livePaused&&mode==='view'&&route.center==='operations'&&route.sub==='live'&&carouselTools().length>1){liveIndex=(liveIndex+1)%carouselTools().length;render()}},8000);setInterval(()=>{if(!snapshotPaused&&mode==='view'&&route.center==='operations'&&route.sub==='live'){snapshotIndex=(snapshotIndex+1)%6;render()}},12000);render();
 })();
 
 
@@ -1469,6 +1424,4 @@ document.addEventListener('click',e=>{
   b.textContent=collapsed?'EXPAND':'MINIMIZE';
 });
 
-// V6.5.78 COMPACT COMBO PORTAL OVERFLOW LOCK: compact-card option menus render in a body-level fixed portal so Live Operations and Presentation Mode cannot clip them.
-
-// V6.5.79 COMPACT COMBO DIRECT BINDING LOCK: compact card dropdowns use direct toggle/portal option listeners instead of capture-phase routing.
+// V6.5.80 NATIVE COMBO CLEAN REWRITE LOCK: one editable text input + native pull-down selector is used everywhere. No datalist, portal, or custom dropdown event layer remains.
