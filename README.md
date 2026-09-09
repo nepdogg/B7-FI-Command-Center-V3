@@ -1,3 +1,16 @@
+# B7 FI Command Center V6.5.72
+
+## 9/8/26 Badge + Workflow Lock
+- Combined Lamp Hours + Request Lamp into one automatic Lamp Status badge.
+- Added Chiller badge: Verify / 50Hz / 29xx / Regera / Celestiq.
+- Added Option Files badge with MFG, IMPACT, RC, Customer stages and completed state.
+- Added STR Not Required green state.
+- Preserved 2 x 14 (28) operational badge matrix.
+- Badge direct-edit save path supports the new badge states in normal and Presentation Mode.
+- Added explicit cycle-time completion confirmation.
+- Moved NC / Escalations / POA directly below Latest Status in Tool Edit.
+- Priority and Status workload now includes tools handed to FI even when their quarter is not the active shipping quarter. Live Operations quarter totals remain current-quarter scoped.
+
 # B7 FI Command Center V6.5.52
 
 Build: 20260906-V6.5.52-PRIORITY-ORDER-STABILITY-LOCK
