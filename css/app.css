@@ -15780,3 +15780,28 @@ html body.presentation-mode[data-center="operations"][data-sub="tool"] .tool-edi
 html body.presentation-mode[data-center="operations"][data-sub="tool"] .body-shell::-webkit-scrollbar{display:block!important;width:14px!important}
 html body.presentation-mode[data-center="operations"][data-sub="tool"] .body-shell::-webkit-scrollbar-thumb{background:#245d78!important;border:2px solid #03101a!important;border-radius:7px!important}
 html body.presentation-mode[data-center="operations"][data-sub="tool"] .body-shell::-webkit-scrollbar-track{background:#020a13!important}
+
+/* =========================================================
+   V6.5.76 TOOL TYPE / MODEL FINAL PARITY LOCK
+   Model choices are scoped to the selected Tool Type. Combo menus stay
+   inside the editor DOM so Presentation Mode and regular mode behave alike.
+   ========================================================= */
+.field:has(.editable-combo){position:relative!important;overflow:visible!important}
+.editable-combo-menu.editable-combo-menu-local{
+  position:absolute!important;
+  left:0!important;
+  right:0!important;
+  top:calc(100% + 2px)!important;
+  width:auto!important;
+  z-index:70000!important;
+  max-height:320px!important;
+  overflow-y:auto!important;
+}
+html body.presentation-mode .editable-combo-menu.editable-combo-menu-local,
+html body.presentation-mode .editable-combo-menu.editable-combo-menu-local *{
+  pointer-events:auto!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="tool"] .tool-editor .field,
+html body.presentation-mode[data-center="operations"][data-sub="tool"] .tool-editor .editable-combo{
+  overflow:visible!important;
+}

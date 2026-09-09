@@ -1,4 +1,4 @@
-# B7 FI Command Center V6.5.75 — Tool Edit Combo + Presentation Scroll Lock
+# B7 FI Command Center V6.5.76 — Tool Edit Combo + Presentation Scroll Lock
 
 ## 9/8/26 testing fixes
 - Tool Edit flexible fields now use a real editable combo control: type a new value directly or press the visible dropdown arrow to choose from predefined/saved values.
@@ -583,3 +583,14 @@ V6.5.60 — Presentation Semantics + Readability Lock
 - Restores larger Operations navigation text and consistent hover/focus feedback across page navigation, Live carousel controls, and page-action buttons.
 - Tool Type selector/submenu typography is restored to white, larger text for consistency.
 - Priority badge is now a working direct-edit control. The compact editor supports LEADS / MANAGERS rank changes or COMMAND CENTER automatic priority source, and saves back to the shared Priority data used by every card view.
+
+
+## V6.5.76 — Tool Type / Model Final Parity Lock
+- Added Zephyr model catalog: C200, C205, C300, C305.
+- Model dropdown choices are filtered to the selected Tool Type only; models from other tool families no longer appear.
+- Same-family saved model values remain available for that family.
+- Changing Tool Type immediately rebuilds the Model choice list for that Tool Type only.
+- Direct Model editing from the Universal Tool Card uses the same Tool Type-scoped model choices.
+- Editable combo menus now render inside the editor DOM instead of as a body-level portal, fixing Tool Type/Model selection in Presentation Mode.
+- Regular and Presentation Mode use the same combo selection/save path.
+- Universal Tool Card geometry remains unchanged.
