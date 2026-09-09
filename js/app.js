@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.78', BUILD='20260908-V6.5.78-COMPACT-COMBO-PORTAL-OVERFLOW-LOCK';
+const VERSION='6.5.79', BUILD='20260908-V6.5.79-COMPACT-COMBO-DIRECT-BINDING-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -1116,7 +1116,7 @@ function exitPresentation(){presentationActive=false;clearPresentationLayout();i
 function exitDisplayMode(){if(document.body.classList.contains('presentation-mode'))return exitPresentation();return exitScreenshot()}
 function closeModal(){document.querySelector('#modal').classList.add('hidden');document.querySelector('#modalBody').innerHTML=''}
 function handoffModal(id){let t=state.tools.find(x=>x.id===id);if(!t)return;modal(`<div class="modal-form handoff-modal"><h2>PACKING / SHIPPING MILESTONES — ${esc(t.id)}</h2><p class="helper">Update the live Packing / Shipping milestones. MST Installation appears only for REGERA and CELESTIQ.</p><div class="field"><label>CURRENT SYSTEM STATUS</label><select id="handoff-tool-status">${selectOptions(['FI','Powered Down','Packing','Shipped'],t.toolStatus)}</select></div><div class="shipping-milestone-editor modal-milestones">${shippingKeys(t).map(([k,l])=>milestoneEditor(t,k,l)).join('')}</div><label class="modal-notes-label">Shipping Notes<textarea id="handoff-notes">${esc(t.shipping.notes||'')}</textarea></label><div class="modal-actions"><button class="btn" data-modal-cancel>CANCEL</button><button class="btn save" data-save-handoffs="${esc(t.id)}">SAVE MILESTONES</button></div></div>`)}
-function modal(html){document.querySelector('#modalBody').innerHTML=html;let x=document.querySelector('#modalClose');if(x){x.textContent='×';x.title='Close';x.setAttribute('aria-label','Close popup')}document.querySelector('#modal').classList.remove('hidden');requestAnimationFrame(()=>{x?.focus({preventScroll:true})})}
+function modal(html){document.querySelector('#modalBody').innerHTML=html;let x=document.querySelector('#modalClose');if(x){x.textContent='×';x.title='Close';x.setAttribute('aria-label','Close popup')}document.querySelector('#modal').classList.remove('hidden');requestAnimationFrame(()=>{bindEditableComboControls();x?.focus({preventScroll:true})})}
 
 function removeUniversalComboPortal(){
   document.querySelector('#universalComboPortal')?.remove();
@@ -1134,6 +1134,15 @@ function positionUniversalComboPortal(root,portal){
   portal.style.left=left+'px';portal.style.top=top+'px';portal.style.width=width+'px';portal.style.maxHeight=h+'px';
   portal.dataset.comboPlacement=openDown?'down':'up';
 }
+function applyUniversalComboChoice(input,value){
+  if(!input)return;
+  input.value=String(value??'');
+  input.dispatchEvent(new Event('input',{bubbles:true}));
+  input.dispatchEvent(new Event('change',{bubbles:true}));
+  if(input.dataset.toolField==='toolType')refreshModelChoicesForType(input,{clearInvalid:true});
+  closeUniversalComboMenus();
+  input.focus({preventScroll:true});
+}
 function openUniversalComboPortal(root){
   removeUniversalComboPortal();
   const source=root?.querySelector('[data-universal-combo-menu]'),input=root?.querySelector('[data-universal-combo-input]');
@@ -1143,6 +1152,17 @@ function openUniversalComboPortal(root){
   portal.className='universal-combo-menu universal-combo-menu-portal';
   portal.dataset.universalComboPortal=input.id;
   portal.innerHTML=source.innerHTML;
+  // The visible portal owns its interactions directly.  Do not depend on the
+  // legacy document-level click router or the Presentation click shield.
+  portal.addEventListener('pointerdown',e=>{
+    if(e.target.closest('[data-universal-combo-choice]')){e.preventDefault();e.stopPropagation();}
+  });
+  portal.querySelectorAll('[data-universal-combo-choice]').forEach(choice=>{
+    choice.addEventListener('click',e=>{
+      e.preventDefault();e.stopPropagation();
+      applyUniversalComboChoice(input,choice.dataset.universalComboValue||'');
+    });
+  });
   document.body.appendChild(portal);
   positionUniversalComboPortal(root,portal);
 }
@@ -1151,8 +1171,29 @@ function closeUniversalComboMenus(except=null){
   document.querySelectorAll('[data-universal-combo-root].open').forEach(root=>{if(root===except)return;root.classList.remove('open');root.querySelector('[data-universal-combo-menu]')?.setAttribute('hidden','');root.querySelector('[data-universal-combo-toggle]')?.setAttribute('aria-expanded','false')});
 }
 function bindEditableComboControls(){
-  // Universal combo boxes use one delegated capture-phase handler for both
-  // regular and Presentation Mode. No per-view or datalist handlers are attached here.
+  document.querySelectorAll('[data-universal-combo-root]').forEach(root=>{
+    if(root.dataset.comboBound==='1')return;
+    root.dataset.comboBound='1';
+    const toggle=root.querySelector('[data-universal-combo-toggle]');
+    const input=root.querySelector('[data-universal-combo-input]');
+    if(toggle)toggle.addEventListener('click',e=>{
+      e.preventDefault();e.stopPropagation();
+      const wasOpen=root.classList.contains('open');
+      closeUniversalComboMenus();
+      if(wasOpen)return;
+      root.classList.add('open');
+      toggle.setAttribute('aria-expanded','true');
+      openUniversalComboPortal(root);
+    });
+    if(input){
+      input.addEventListener('focus',()=>{});
+      input.addEventListener('keydown',e=>{
+        if(e.key==='ArrowDown'&&!document.querySelector('#universalComboPortal')){
+          e.preventDefault();root.classList.add('open');toggle?.setAttribute('aria-expanded','true');openUniversalComboPortal(root);
+        }else if(e.key==='Escape'){closeUniversalComboMenus();}
+      });
+    }
+  });
 }
 function bindInputs(){bindEditableComboControls();document.querySelectorAll('input,select,textarea').forEach(x=>x.addEventListener('input',()=>{if(mode!=='view')dirty=true}));let tsp=document.querySelector('[data-tool-specific-photo-upload]');if(tsp)tsp.onchange=()=>{let file=tsp.files&&tsp.files[0];if(!file)return;if(file.size>1200000){alert('Please use a tool photo smaller than 1.2 MB.');tsp.value='';return}let reader=new FileReader();reader.onload=()=>{if(!draft)return;draft.toolPhoto=String(reader.result||'');dirty=true;renderToolEditorPage()};reader.readAsDataURL(file)};let tsc=document.querySelector('[data-tool-specific-photo-clear]');if(tsc)tsc.onclick=()=>{if(!draft)return;draft.toolPhoto='';dirty=true;renderToolEditorPage()};document.querySelectorAll('[data-tool-field="toolType"]').forEach(code=>{code.addEventListener('input',()=>refreshModelChoicesForType(code));code.addEventListener('change',()=>{dirty=true;refreshModelChoicesForType(code,{clearInvalid:true})})});let add=document.querySelector('#addNc');if(add)add.onclick=()=>{collectToolForm(draft);draft.ncs.push({id:'',description:'',state:'Open',days:0,blocking:false,poa:'',owner:'',opened:today()});dirty=true;render()};document.querySelectorAll('[data-add-nc-tool]').forEach(b=>b.onclick=()=>{let card=b.closest('[data-daily]'),list=card?.querySelector('[id^="ncList-"]');if(!card||!list)return;let blankNc={id:'',description:'',state:'Open',days:0,blocking:false,poa:'',owner:'',opened:today()};if(list.querySelector('.nc-empty'))list.innerHTML='';list.insertAdjacentHTML('beforeend',ncFormRows({ncs:[blankNc]}));dirty=true;bindScopedNcButtons(card)});let bindScopedNcButtons=card=>card.querySelectorAll('[data-remove-nc]').forEach(b=>b.onclick=()=>{if(!confirm('Remove this NC from the tool update?'))return;b.closest('.nc-edit-row')?.remove();dirty=true});document.querySelectorAll('[data-daily]').forEach(bindScopedNcButtons);document.querySelectorAll('.tool-editor:not(.universal-all-tool-editor) [data-remove-nc]').forEach(b=>b.onclick=()=>{if(!confirm('Remove this NC?'))return;collectToolForm(draft);draft.ncs.splice(Number(b.dataset.removeNc),1);dirty=true;render()});let g=document.querySelector('#globalSearch');if(g){g.value=window.__b7Search||'';let run=()=>{let q=g.value.toLowerCase().trim(),out=[];window.__b7Search=g.value;if(q){operationalTools().forEach(t=>{if(JSON.stringify(t).toLowerCase().includes(q))out.push(`<div class="search-result" role="button" tabindex="0" data-search-tool="${esc(t.id)}" onclick="event.stopPropagation();window.B7Core.openTool(this.dataset.searchTool);return false"><b>TOOL ${esc(t.id)}</b> · ${esc(t.codename)} · ${esc(t.customer)} · ${esc(t.toolStatus)}</div>`)});state.meetings.forEach(m=>{if(JSON.stringify(m).toLowerCase().includes(q))out.push(`<div class="search-result" role="button" tabindex="0" data-search-meeting="${esc(m.id)}"><b>MEETING</b> · ${esc(m.type)} · ${esc(m.tool||fmtDate(m.date)||'')}</div>`)});state.actions.forEach(a=>{if(JSON.stringify(a).toLowerCase().includes(q))out.push(`<div class="search-result" role="button" tabindex="0" data-search-action="${esc(a.id)}"><b>ACTION</b> · ${esc(a.text)}</div>`)});state.references.forEach(r=>{if(JSON.stringify(r).toLowerCase().includes(q))out.push(`<div class="search-result" role="button" tabindex="0" data-search-ref="${esc(r.id)}"><b>REFERENCE</b> · ${esc(r.title)}</div>`)})}document.querySelector('#searchResults').innerHTML=out.join('')||(q?'<p>No results.</p>':'')};g.oninput=run;run()}let pa=document.querySelector('#priorityAnchor');if(pa)pa.onchange=()=>{state.priorityMeta[route.sub].anchor=pa.value;dirty=true;let t=document.querySelector('#priorityRangeTitle');if(t)t.textContent=priorityTitle(route.sub)};let rs=document.querySelector('#refSearch');if(rs)rs.oninput=()=>{let q=rs.value.toLowerCase();document.querySelectorAll('.ref-row').forEach(r=>r.style.display=r.textContent.toLowerCase().includes(q)?'':'none')};let ah=document.querySelector('#actionHistorySearch');if(ah)ah.oninput=()=>{let q=ah.value.toLowerCase();document.querySelectorAll('.action-list .action-card').forEach(r=>r.style.display=r.textContent.toLowerCase().includes(q)?'':'none')};let f=document.querySelector('#importFile');if(f)f.onchange=async()=>{try{state=normalize(JSON.parse(await f.files[0].text()));saveState('JSON DATA IMPORTED');render()}catch(e){alert('Import failed: '+e.message)}}}
 
@@ -1344,32 +1385,12 @@ document.addEventListener('click',e=>{
   }
 },true);
 
-// V6.5.77 UNIVERSAL EDITOR CLEAN REWRITE
-// One combo-box interaction path is shared by the regular Tool Card, Tool Edit,
-// and Presentation Mode. It intentionally runs before the Presentation click shield.
+// V6.5.79 COMPACT COMBO DIRECT BINDING LOCK
+// Combo toggles and portal choices are bound directly by bindEditableComboControls().
+// This avoids competing capture-phase click routers in Live Operations and Presentation Mode.
 document.addEventListener('click',e=>{
-  const toggle=e.target.closest('[data-universal-combo-toggle]');
-  if(toggle){
-    e.preventDefault();e.stopImmediatePropagation();
-    const root=toggle.closest('[data-universal-combo-root]');if(!root)return;
-    const open=!root.classList.contains('open');closeUniversalComboMenus(root);
-    root.classList.toggle('open',open);const menu=root.querySelector('[data-universal-combo-menu]');
-    if(menu)menu.setAttribute('hidden','');
-    if(open)openUniversalComboPortal(root);else removeUniversalComboPortal();
-    toggle.setAttribute('aria-expanded',open?'true':'false');return;
-  }
-  const choice=e.target.closest('[data-universal-combo-choice]');
-  if(choice){
-    e.preventDefault();e.stopImmediatePropagation();
-    const input=document.getElementById(choice.dataset.universalComboChoice);if(!input)return;
-    input.value=choice.dataset.universalComboValue||'';
-    input.dispatchEvent(new Event('input',{bubbles:true}));
-    input.dispatchEvent(new Event('change',{bubbles:true}));
-    if(input.dataset.toolField==='toolType')refreshModelChoicesForType(input,{clearInvalid:true});
-    closeUniversalComboMenus();input.focus();return;
-  }
-  if(!e.target.closest('[data-universal-combo-root]'))closeUniversalComboMenus();
-},true);
+  if(!e.target.closest('[data-universal-combo-root],#universalComboPortal'))closeUniversalComboMenus();
+});
 
 // V6.5.74 Presentation editor action parity lock.
 // Modal SAVE/CANCEL actions are handled in capture phase before the Presentation
@@ -1449,3 +1470,5 @@ document.addEventListener('click',e=>{
 });
 
 // V6.5.78 COMPACT COMBO PORTAL OVERFLOW LOCK: compact-card option menus render in a body-level fixed portal so Live Operations and Presentation Mode cannot clip them.
+
+// V6.5.79 COMPACT COMBO DIRECT BINDING LOCK: compact card dropdowns use direct toggle/portal option listeners instead of capture-phase routing.

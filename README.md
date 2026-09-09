@@ -1,4 +1,4 @@
-# B7 FI Command Center V6.5.78 — Compact Combo Portal Overflow Lock
+# B7 FI Command Center V6.5.79 — Compact Combo Portal Overflow Lock
 
 ## 9/8/26 focused clean rewrite
 - Replaced the layered Tool Type / Model datalist + custom-menu patches with one universal editable-combo component.
@@ -611,7 +611,7 @@ V6.5.60 — Presentation Semantics + Readability Lock
 - Universal Tool Card geometry remains unchanged.
 
 
-## V6.5.78 — Compact Combo Portal Overflow Lock
+## V6.5.79 — Compact Combo Portal Overflow Lock
 
 - Fixed the shared compact-card combo dropdown used by Live Operations and Presentation Mode.
 - Dropdown choices are now rendered in a body-level fixed portal instead of inside the clipped card/modal container.
@@ -620,3 +620,12 @@ V6.5.60 — Presentation Semantics + Readability Lock
 - The working full Tool Edit page control path is intentionally unchanged.
 - Strict Tool Type → Model filtering from V6.5.77 remains intact, including Zephyr C200/C205/C300/C305.
 - Universal Tool Card geometry/layout remains locked.
+
+
+## V6.5.79 — Compact Combo Direct Binding Lock
+- Reworked the compact-card editable combo interaction path rather than layering another capture-phase router.
+- Live Operations and Presentation Mode now bind Tool Type/Model combo toggles directly to the rendered controls.
+- Body-level portal option buttons own their own click handlers, avoiding interference from Presentation Mode click shielding.
+- Dropdown options remain outside clipped card/modal containers and retain viewport-aware up/down positioning and scrolling.
+- Tool Edit page behavior remains unchanged.
+- Tool Type → Model filtering remains strict; Zephyr = C200 / C205 / C300 / C305.
