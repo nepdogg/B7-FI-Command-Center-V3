@@ -15805,3 +15805,96 @@ html body.presentation-mode[data-center="operations"][data-sub="tool"] .tool-edi
 html body.presentation-mode[data-center="operations"][data-sub="tool"] .tool-editor .editable-combo{
   overflow:visible!important;
 }
+
+/* =========================================================
+   V6.5.77 UNIVERSAL EDITOR CLEAN REWRITE LOCK
+   One editable combo component is shared by Tool Edit,
+   regular Universal Tool Card direct editors, and Presentation Mode.
+   ========================================================= */
+.universal-combo{
+  position:relative!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 34px!important;
+  width:100%!important;
+  min-width:0!important;
+  overflow:visible!important;
+}
+.universal-combo>input{
+  grid-column:1!important;
+  width:100%!important;
+  min-width:0!important;
+  border-top-right-radius:0!important;
+  border-bottom-right-radius:0!important;
+}
+.universal-combo-toggle{
+  grid-column:2!important;
+  width:34px!important;
+  min-width:34px!important;
+  padding:0!important;
+  border:1px solid #2b5873!important;
+  border-left:0!important;
+  border-radius:0 3px 3px 0!important;
+  background:#071722!important;
+  color:#e7f8ff!important;
+  font-size:12px!important;
+  font-weight:900!important;
+  cursor:pointer!important;
+  pointer-events:auto!important;
+}
+.universal-combo-toggle:hover,.universal-combo-toggle:focus{
+  border-color:var(--accent)!important;
+  background:rgba(var(--accent-rgb),.22)!important;
+  color:#fff!important;
+  outline:none!important;
+}
+.universal-combo-menu{
+  position:absolute!important;
+  z-index:90000!important;
+  left:0!important;
+  right:0!important;
+  top:calc(100% + 2px)!important;
+  max-height:330px!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  padding:3px!important;
+  border:1px solid #3b7899!important;
+  background:#03101a!important;
+  box-shadow:0 12px 34px rgba(0,0,0,.72)!important;
+  pointer-events:auto!important;
+}
+.universal-combo-menu[hidden]{display:none!important}
+.universal-combo-option{
+  display:block!important;
+  width:100%!important;
+  padding:8px 10px!important;
+  border:0!important;
+  border-bottom:1px solid #17384c!important;
+  background:#03101a!important;
+  color:#fff!important;
+  text-align:left!important;
+  font-size:11px!important;
+  line-height:1.25!important;
+  cursor:pointer!important;
+  pointer-events:auto!important;
+}
+.universal-combo-option:hover,.universal-combo-option:focus{
+  background:rgba(var(--accent-rgb),.25)!important;
+  color:#fff!important;
+  outline:1px solid var(--accent)!important;
+}
+.universal-combo-empty{
+  padding:9px 10px!important;
+  color:#89a8b9!important;
+  font-size:10px!important;
+  font-weight:700!important;
+  letter-spacing:.04em!important;
+}
+.tool-editor .field:has(.universal-combo),
+.modal-form .field:has(.universal-combo){position:relative!important;overflow:visible!important}
+html body.presentation-mode .universal-combo,
+html body.presentation-mode .universal-combo *,
+html body.presentation-mode .universal-combo-menu,
+html body.presentation-mode .universal-combo-menu *{pointer-events:auto!important}
+html body.presentation-mode[data-center="operations"][data-sub="tool"] .tool-editor .universal-combo-menu{
+  z-index:95000!important;
+}

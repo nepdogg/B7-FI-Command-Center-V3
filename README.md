@@ -1,3 +1,18 @@
+# B7 FI Command Center V6.5.77 — Universal Editor Clean Rewrite Lock
+
+## 9/8/26 focused clean rewrite
+- Replaced the layered Tool Type / Model datalist + custom-menu patches with one universal editable-combo component.
+- The same combo component and event path is now used by regular Live Operations direct editing, Tool Edit, and Presentation Mode.
+- Tool Type dropdown is sourced from the authoritative family list. Free text remains available for exceptional/custom entries.
+- Model dropdown is strictly scoped to the selected Tool Type. Known families use only their PRODUCT_CATALOG models.
+- Zephyr is locked to: C200, C205, C300, C305.
+- Selecting a new Tool Type immediately rebuilds the Model choices; an incompatible old model is cleared so a valid model must be selected.
+- Tool saves validate known Tool Type / Model combinations and block invalid combinations.
+- Presentation Mode uses the same capture-phase combo interaction path as regular mode, before the Presentation click shield.
+- Existing Presentation long-editor scrolling behavior remains in place.
+- Universal Tool Card geometry and visual layout remain locked.
+- Scoped all-tools editors also remap the universal combo IDs/targets, so the same component works in single-tool and all-tool edit views.
+
 # B7 FI Command Center V6.5.76 — Tool Edit Combo + Presentation Scroll Lock
 
 ## 9/8/26 testing fixes
