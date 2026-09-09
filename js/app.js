@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.77', BUILD='20260908-V6.5.77-UNIVERSAL-EDITOR-CLEAN-REWRITE-LOCK';
+const VERSION='6.5.78', BUILD='20260908-V6.5.78-COMPACT-COMBO-PORTAL-OVERFLOW-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -1118,7 +1118,36 @@ function closeModal(){document.querySelector('#modal').classList.add('hidden');d
 function handoffModal(id){let t=state.tools.find(x=>x.id===id);if(!t)return;modal(`<div class="modal-form handoff-modal"><h2>PACKING / SHIPPING MILESTONES — ${esc(t.id)}</h2><p class="helper">Update the live Packing / Shipping milestones. MST Installation appears only for REGERA and CELESTIQ.</p><div class="field"><label>CURRENT SYSTEM STATUS</label><select id="handoff-tool-status">${selectOptions(['FI','Powered Down','Packing','Shipped'],t.toolStatus)}</select></div><div class="shipping-milestone-editor modal-milestones">${shippingKeys(t).map(([k,l])=>milestoneEditor(t,k,l)).join('')}</div><label class="modal-notes-label">Shipping Notes<textarea id="handoff-notes">${esc(t.shipping.notes||'')}</textarea></label><div class="modal-actions"><button class="btn" data-modal-cancel>CANCEL</button><button class="btn save" data-save-handoffs="${esc(t.id)}">SAVE MILESTONES</button></div></div>`)}
 function modal(html){document.querySelector('#modalBody').innerHTML=html;let x=document.querySelector('#modalClose');if(x){x.textContent='×';x.title='Close';x.setAttribute('aria-label','Close popup')}document.querySelector('#modal').classList.remove('hidden');requestAnimationFrame(()=>{x?.focus({preventScroll:true})})}
 
+function removeUniversalComboPortal(){
+  document.querySelector('#universalComboPortal')?.remove();
+}
+function positionUniversalComboPortal(root,portal){
+  if(!root||!portal)return;
+  const r=root.getBoundingClientRect(),vw=window.innerWidth||document.documentElement.clientWidth,vh=window.innerHeight||document.documentElement.clientHeight;
+  const gap=3,minH=120,maxH=330,below=Math.max(0,vh-r.bottom-gap-6),above=Math.max(0,r.top-gap-6);
+  const openDown=below>=minH||below>=above;
+  const available=Math.max(72,openDown?below:above);
+  const h=Math.min(maxH,available);
+  const width=Math.max(220,Math.min(r.width,vw-12));
+  const left=Math.max(6,Math.min(vw-width-6,r.left));
+  const top=openDown?Math.min(vh-h-6,r.bottom+gap):Math.max(6,r.top-gap-h);
+  portal.style.left=left+'px';portal.style.top=top+'px';portal.style.width=width+'px';portal.style.maxHeight=h+'px';
+  portal.dataset.comboPlacement=openDown?'down':'up';
+}
+function openUniversalComboPortal(root){
+  removeUniversalComboPortal();
+  const source=root?.querySelector('[data-universal-combo-menu]'),input=root?.querySelector('[data-universal-combo-input]');
+  if(!source||!input)return;
+  const portal=document.createElement('div');
+  portal.id='universalComboPortal';
+  portal.className='universal-combo-menu universal-combo-menu-portal';
+  portal.dataset.universalComboPortal=input.id;
+  portal.innerHTML=source.innerHTML;
+  document.body.appendChild(portal);
+  positionUniversalComboPortal(root,portal);
+}
 function closeUniversalComboMenus(except=null){
+  removeUniversalComboPortal();
   document.querySelectorAll('[data-universal-combo-root].open').forEach(root=>{if(root===except)return;root.classList.remove('open');root.querySelector('[data-universal-combo-menu]')?.setAttribute('hidden','');root.querySelector('[data-universal-combo-toggle]')?.setAttribute('aria-expanded','false')});
 }
 function bindEditableComboControls(){
@@ -1325,7 +1354,8 @@ document.addEventListener('click',e=>{
     const root=toggle.closest('[data-universal-combo-root]');if(!root)return;
     const open=!root.classList.contains('open');closeUniversalComboMenus(root);
     root.classList.toggle('open',open);const menu=root.querySelector('[data-universal-combo-menu]');
-    if(menu){if(open)menu.removeAttribute('hidden');else menu.setAttribute('hidden','')}
+    if(menu)menu.setAttribute('hidden','');
+    if(open)openUniversalComboPortal(root);else removeUniversalComboPortal();
     toggle.setAttribute('aria-expanded',open?'true':'false');return;
   }
   const choice=e.target.closest('[data-universal-combo-choice]');
@@ -1402,7 +1432,7 @@ document.addEventListener('change',e=>{let sel=e.target.closest('.priority-rank-
 document.addEventListener('change',e=>{let input=e.target.closest('[data-tool-photo-upload]');if(!input||!input.files||!input.files[0])return;let f=input.dataset.toolPhotoUpload,file=input.files[0];if(file.size>2500000){alert('Please use an image smaller than 2.5 MB.');input.value='';return}let reader=new FileReader();reader.onload=()=>{state.config.toolPhotos=state.config.toolPhotos||{};state.config.toolPhotos[f]=String(reader.result||'');saveState('TOOL PHOTO UPDATED — '+String(f).toUpperCase());render()};reader.readAsDataURL(file)});
 document.addEventListener('click',e=>{let b=e.target.closest('[data-tool-photo-reset]');if(!b)return;e.preventDefault();let f=b.dataset.toolPhotoReset;if(state.config?.toolPhotos)delete state.config.toolPhotos[f];saveState('DEFAULT TOOL PHOTO RESTORED — '+String(f).toUpperCase());render()});
 document.addEventListener('fullscreenchange',()=>{if(presentationActive&&!document.fullscreenElement){presentationActive=false;clearPresentationLayout();if(presentationRestore){livePaused=!!presentationRestore.livePaused;snapshotPaused=!!presentationRestore.snapshotPaused;presentationRestore=null}document.querySelector('#exitScreenshot')?.classList.add('hidden');render();requestAnimationFrame(()=>requestAnimationFrame(()=>{syncStickyShellHeight();window.dispatchEvent(new Event('resize'));window.scrollTo(0,0)}))}else if(presentationActive&&document.fullscreenElement){requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}});document.querySelector('#adminButton').onclick=()=>go('admin','data');document.querySelector('#modalClose').onclick=closeModal;document.querySelector('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!document.querySelector('#modal').classList.contains('hidden'))closeModal()});document.querySelector('#exitScreenshot').onclick=exitDisplayMode;document.addEventListener('click',e=>{if(e.target.id==='importJson'){document.querySelector('#importFile')?.click()}});window.addEventListener('storage',e=>{if(e.key!==KEY||!e.newValue)return;try{let currentId=carouselTools()[liveIndex]?.id||'';state=normalize(JSON.parse(e.newValue));allRules();let list=carouselTools(),ni=list.findIndex(t=>t.id===currentId);if(ni>=0)liveIndex=ni;else if(liveIndex>=list.length)liveIndex=Math.max(0,list.length-1);render();if(presentationActive)requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}catch(err){console.warn('Cross-window Command Center refresh failed',err)}});
-window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});window.addEventListener('resize',()=>{syncStickyShellHeight();if(presentationActive)fitPresentation()});setInterval(()=>{if(!livePaused&&mode==='view'&&route.center==='operations'&&route.sub==='live'&&carouselTools().length>1){liveIndex=(liveIndex+1)%carouselTools().length;render()}},8000);setInterval(()=>{if(!snapshotPaused&&mode==='view'&&route.center==='operations'&&route.sub==='live'){snapshotIndex=(snapshotIndex+1)%6;render()}},12000);render();
+window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});window.addEventListener('resize',()=>{syncStickyShellHeight();if(presentationActive)fitPresentation();const portal=document.querySelector('#universalComboPortal');if(portal){const input=document.getElementById(portal.dataset.universalComboPortal||'');const root=input?.closest('[data-universal-combo-root]');if(root)positionUniversalComboPortal(root,portal);else closeUniversalComboMenus()}});window.addEventListener('scroll',()=>{const portal=document.querySelector('#universalComboPortal');if(!portal)return;const input=document.getElementById(portal.dataset.universalComboPortal||'');const root=input?.closest('[data-universal-combo-root]');if(root)positionUniversalComboPortal(root,portal);else closeUniversalComboMenus()},true);setInterval(()=>{if(!livePaused&&mode==='view'&&route.center==='operations'&&route.sub==='live'&&carouselTools().length>1){liveIndex=(liveIndex+1)%carouselTools().length;render()}},8000);setInterval(()=>{if(!snapshotPaused&&mode==='view'&&route.center==='operations'&&route.sub==='live'){snapshotIndex=(snapshotIndex+1)%6;render()}},12000);render();
 })();
 
 
@@ -1417,3 +1447,5 @@ document.addEventListener('click',e=>{
   const collapsed=el.classList.toggle('collapsed');
   b.textContent=collapsed?'EXPAND':'MINIMIZE';
 });
+
+// V6.5.78 COMPACT COMBO PORTAL OVERFLOW LOCK: compact-card option menus render in a body-level fixed portal so Live Operations and Presentation Mode cannot clip them.

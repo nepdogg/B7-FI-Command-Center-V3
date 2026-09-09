@@ -15898,3 +15898,32 @@ html body.presentation-mode .universal-combo-menu *{pointer-events:auto!importan
 html body.presentation-mode[data-center="operations"][data-sub="tool"] .tool-editor .universal-combo-menu{
   z-index:95000!important;
 }
+
+
+/* =========================================================
+   V6.5.78 COMPACT COMBO PORTAL OVERFLOW LOCK
+   Compact Universal Tool Card / Presentation menus are rendered
+   at body level so modal/card overflow cannot clip the choices.
+   ========================================================= */
+html body #universalComboPortal.universal-combo-menu-portal{
+  position:fixed!important;
+  right:auto!important;
+  bottom:auto!important;
+  z-index:1000000!important;
+  display:block!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  overscroll-behavior:contain!important;
+  scrollbar-width:thin!important;
+  box-sizing:border-box!important;
+  pointer-events:auto!important;
+}
+html body #universalComboPortal.universal-combo-menu-portal .universal-combo-option,
+html body #universalComboPortal.universal-combo-menu-portal .universal-combo-empty{
+  pointer-events:auto!important;
+}
+/* The in-component menu is now only the authoritative option template.
+   The visible menu is the portal above. */
+html body .universal-combo > .universal-combo-menu:not(.universal-combo-menu-portal){
+  display:none!important;
+}
