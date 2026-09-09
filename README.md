@@ -1,4 +1,14 @@
-# B7 FI Command Center V6.5.73
+# B7 FI Command Center V6.5.74 — Presentation Editor Parity Lock
+
+## 9/8/26 test fix
+- Fixed Presentation Mode editing parity for all Universal Tool Card tool-information fields.
+- Sales Order, Customer, UTID, Tool Type, Model, Driver, Reduced Process, Priority and other direct card controls now route through the same editor/save functions used by the regular Live Operations card.
+- Lamp Hours / combined Lamp Status now uses the same quick-field editor and save path in Presentation Mode.
+- Added an authoritative Presentation capture-phase modal action router so SAVE cannot be swallowed by the Presentation click shield.
+- Added CANCEL to the direct identity editor and wired Presentation CANCEL directly to the same close-without-save behavior as the X.
+- No Universal Tool Card layout or Presentation layout redesign in this build; this is a functional parity repair only.
+
+# B7 FI Command Center V6.5.74
 
 ## V6.5.73 — Presentation Badge Save + Single-Step Entry + FI Status Terminology Lock
 

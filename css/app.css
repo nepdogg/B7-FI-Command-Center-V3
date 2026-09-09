@@ -15735,3 +15735,25 @@ html body .utc-card.utc-v6538 .utc-priority-ribbon[data-direct-priority]:focus-v
     pointer-events:none!important;
   }
 }
+
+
+/* =========================================================
+   V6.5.74 PRESENTATION EDITOR PARITY LOCK
+   Functional only: keep the locked UTC geometry unchanged.
+   ========================================================= */
+html body.presentation-mode .modal:not(.hidden),
+html body.presentation-mode .modal:not(.hidden) .modal-card,
+html body.presentation-mode .modal:not(.hidden) #modalBody,
+html body.presentation-mode .modal:not(.hidden) .modal-form,
+html body.presentation-mode .modal:not(.hidden) .modal-actions,
+html body.presentation-mode .modal:not(.hidden) button,
+html body.presentation-mode .modal:not(.hidden) input,
+html body.presentation-mode .modal:not(.hidden) select,
+html body.presentation-mode .modal:not(.hidden) textarea{
+  pointer-events:auto!important;
+}
+html body.presentation-mode .modal:not(.hidden) .modal-actions button{
+  position:relative!important;
+  z-index:50010!important;
+  cursor:pointer!important;
+}
