@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.80', BUILD='20260908-V6.5.80-NATIVE-COMBO-CLEAN-REWRITE-LOCK';
+const VERSION='6.5.81', BUILD='20260909-V6.5.81-EDITOR-CONTROL-SCROLL-REBUILD-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -177,11 +177,10 @@ function universalComboMarkup(id,value,choices=[],opts={}){
   const role=opts.role?` data-tool-field="${esc(opts.role)}"`:'';
   const dataF=opts.dataF?` data-f="${esc(opts.dataF)}"`:'';
   const placeholder=opts.placeholder?` placeholder="${esc(opts.placeholder)}"`:'';
-  // V6.5.80 CLEAN REWRITE: use a native SELECT as the pull-down trigger next to
-  // the editable text input. The browser owns the option popup, so it cannot be
-  // clipped by the card/modal or intercepted by Presentation Mode click routing.
+  // V6.5.81: one reliable field = editable value + full-width native predefined list.
+  // Nothing is overlaid or portaled, so Live, Presentation, and Tool Edit use the same DOM.
   const options=all.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('');
-  return `<div class="universal-combo native-combo" data-universal-combo-root="${esc(id)}"><input id="${esc(id)}" type="text" value="${esc(value??'')}" autocomplete="off" data-universal-combo-input="${esc(id)}"${role}${dataF}${placeholder}><select class="universal-combo-select" data-universal-combo-select="${esc(id)}" aria-label="Show predefined selections"><option value="" selected>▼</option>${options}</select></div>`;
+  return `<div class="universal-combo native-combo" data-universal-combo-root="${esc(id)}"><input id="${esc(id)}" type="text" value="${esc(value??'')}" autocomplete="off" data-universal-combo-input="${esc(id)}"${role}${dataF}${placeholder}><select class="universal-combo-select" data-universal-combo-select="${esc(id)}" aria-label="Predefined selections"><option value="" selected>SELECT PREDEFINED ▼</option>${options}</select></div>`;
 }
 function updateUniversalComboChoices(input,choices){
   if(!input)return;
@@ -189,7 +188,7 @@ function updateUniversalComboChoices(input,choices){
   const select=root?.querySelector('[data-universal-combo-select]');
   if(!select)return;
   const vals=[...new Set((choices||[]).map(v=>String(v??'').trim()).filter(Boolean))];
-  select.innerHTML=`<option value="" selected>▼</option>`+vals.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('');
+  select.innerHTML=`<option value="" selected>SELECT PREDEFINED ▼</option>`+vals.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('');
   select.value='';
 }
 function modelInputForToolTypeInput(typeInput){
@@ -1059,6 +1058,9 @@ function renderToolEditorPage(){
   }
   bindInputs();
   bindCoreInteractions();
+  // openTool() renders this page directly rather than through render(). Re-fit immediately
+  // so Presentation Mode drops the wallboard transform and enables normal editor scrolling.
+  if(presentationActive||document.body.classList.contains('presentation-mode'))requestAnimationFrame(()=>requestAnimationFrame(fitPresentation));
 }
 function addTool(){
   const origin=clone(route);
@@ -1118,8 +1120,26 @@ function exportData(){let blob=new Blob([JSON.stringify(state,null,2)],{type:'ap
 function screenshotReportTitle(){let date=fmtDate(today());if(route.center==='status')return `${route.sub==='weekend'?'WEEKEND':'WEEKDAY'} MORNING STATUS · ${date}`;if(route.center==='shipping')return `${state.quarter} SHIPPING SCHEDULE · ${date}`;if(route.center==='priority')return `${route.sub==='weekend'?'WEEKEND':'WEEKDAY'} PRIORITIES · ${date}`;if(route.center==='action')return `ACTION CENTER · ${date}`;if(route.center==='reference')return `REFERENCE LIBRARY · ${date}`;if(route.center==='archive')return `ARCHIVE · ${date}`;if(route.center==='search')return `SEARCH · ${date}`;if(route.center==='meeting')return `MEETINGS · ${date}`;if(route.center==='update')return `${route.sub==='daily'?'COMMAND CENTER DAILY UPDATE':'UPDATE'} · ${date}`;if(route.center==='operations'){if(route.sub==='tools'||route.sub==='tool')return `TOOLS · ${date}`;if(route.sub==='daily')return `UPDATE COMMAND CENTER · ${date}`;if(route.sub==='archive')return `TOOL ARCHIVE · ${date}`;return `LIVE OPERATIONS · ${date}`;}return `${String(route.center||'COMMAND CENTER').toUpperCase()} · ${date}`}
 function screenshot(){if(document.body.classList.contains('presentation-mode'))exitPresentation();screenshotRestore={livePaused,snapshotPaused};livePaused=true;snapshotPaused=true;document.body.classList.add('screenshot-mode');let x=document.querySelector('#exitScreenshot');x.textContent='×';x.setAttribute('aria-label','Exit screenshot mode');x.title='Exit screenshot mode';x.classList.remove('hidden');window.scrollTo(0,0);render()}
 function exitScreenshot(){document.body.classList.remove('screenshot-mode');if(screenshotRestore){livePaused=!!screenshotRestore.livePaused;snapshotPaused=!!screenshotRestore.snapshotPaused;screenshotRestore=null}document.querySelector('#exitScreenshot').classList.add('hidden');document.querySelector('#screenshotReportTitle')?.remove();render()}
-function fitPresentation(){if(!document.body.classList.contains('presentation-mode'))return;let frame=document.querySelector('.app-frame');if(!frame)return;const DW=1920,DH=1080;let vw=window.innerWidth||document.documentElement.clientWidth,vh=window.innerHeight||document.documentElement.clientHeight,scale=Math.min(vw/DW,vh/DH),x=Math.max(0,(vw-DW*scale)/2),y=Math.max(0,(vh-DH*scale)/2);frame.style.zoom='';frame.style.width=DW+'px';frame.style.height=DH+'px';frame.style.transformOrigin='top left';frame.style.transform=`translate(${x/scale}px,${y/scale}px) scale(${scale})`;if(route.center==='operations'&&route.sub==='tool'){document.documentElement.style.overflow='hidden';document.body.style.overflow='hidden'}else{document.documentElement.style.overflow='hidden';document.body.style.overflow='hidden'}}
-function clearPresentationLayout(){document.body.classList.remove('presentation-mode');let frame=document.querySelector('.app-frame');if(frame){frame.style.removeProperty('zoom');frame.style.removeProperty('transform');frame.style.removeProperty('transform-origin');frame.style.removeProperty('width');frame.style.removeProperty('height');frame.style.removeProperty('left');frame.style.removeProperty('top');frame.style.removeProperty('position')}document.documentElement.style.removeProperty('zoom');document.body.style.removeProperty('zoom');document.documentElement.style.removeProperty('overflow');document.body.style.removeProperty('overflow');document.documentElement.style.removeProperty('width');document.documentElement.style.removeProperty('height');document.body.style.removeProperty('width');document.body.style.removeProperty('height')}
+function fitPresentation(){
+  if(!document.body.classList.contains('presentation-mode'))return;
+  let frame=document.querySelector('.app-frame');if(!frame)return;
+  // Tool Edit is intentionally NOT scaled like the wallboard. In fullscreen Presentation
+  // it becomes a normal scrollable editor so every field and Save/Cancel can be reached.
+  if(route.center==='operations'&&route.sub==='tool'){
+    document.documentElement.classList.add('presentation-tool-edit');
+    frame.classList.add('presentation-tool-scroll');
+    frame.style.zoom='';frame.style.width='100%';frame.style.height='auto';
+    frame.style.transform='none';frame.style.transformOrigin='top left';
+    document.documentElement.style.overflow='auto';document.body.style.overflow='auto';
+    return;
+  }
+  document.documentElement.classList.remove('presentation-tool-edit');
+  frame.classList.remove('presentation-tool-scroll');frame.scrollTop=0;
+  const DW=1920,DH=1080;let vw=window.innerWidth||document.documentElement.clientWidth,vh=window.innerHeight||document.documentElement.clientHeight,scale=Math.min(vw/DW,vh/DH),x=Math.max(0,(vw-DW*scale)/2),y=Math.max(0,(vh-DH*scale)/2);
+  frame.style.zoom='';frame.style.width=DW+'px';frame.style.height=DH+'px';frame.style.transformOrigin='top left';frame.style.transform=`translate(${x/scale}px,${y/scale}px) scale(${scale})`;
+  document.documentElement.style.overflow='hidden';document.body.style.overflow='hidden';
+}
+function clearPresentationLayout(){document.body.classList.remove('presentation-mode');document.documentElement.classList.remove('presentation-tool-edit');let frame=document.querySelector('.app-frame');if(frame){frame.classList.remove('presentation-tool-scroll');frame.style.removeProperty('zoom');frame.style.removeProperty('transform');frame.style.removeProperty('transform-origin');frame.style.removeProperty('width');frame.style.removeProperty('height');frame.style.removeProperty('left');frame.style.removeProperty('top');frame.style.removeProperty('position')}document.documentElement.style.removeProperty('zoom');document.body.style.removeProperty('zoom');document.documentElement.style.removeProperty('overflow');document.body.style.removeProperty('overflow');document.documentElement.style.removeProperty('width');document.documentElement.style.removeProperty('height');document.body.style.removeProperty('width');document.body.style.removeProperty('height')}
 async function presentation(){if(route.center!=='operations')return;if(document.body.classList.contains('screenshot-mode'))exitScreenshot();presentationRestore={livePaused,snapshotPaused};livePaused=false;snapshotPaused=false;presentationActive=true;document.body.classList.add('presentation-mode');let x=document.querySelector('#exitScreenshot');x.classList.add('hidden');try{if(!document.fullscreenElement&&document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen()}catch(e){}window.scrollTo(0,0);render();requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}
 function exitPresentation(){presentationActive=false;clearPresentationLayout();if(presentationRestore){livePaused=!!presentationRestore.livePaused;snapshotPaused=!!presentationRestore.snapshotPaused;presentationRestore=null}document.querySelector('#exitScreenshot').classList.add('hidden');document.querySelector('#screenshotReportTitle')?.remove();if(document.fullscreenElement&&document.exitFullscreen){try{document.exitFullscreen()}catch(e){}}render();requestAnimationFrame(()=>requestAnimationFrame(()=>{syncStickyShellHeight();window.dispatchEvent(new Event('resize'));window.scrollTo(0,0)}))}
 function exitDisplayMode(){if(document.body.classList.contains('presentation-mode'))return exitPresentation();return exitScreenshot()}
@@ -1127,33 +1147,30 @@ function closeModal(){document.querySelector('#modal').classList.add('hidden');d
 function handoffModal(id){let t=state.tools.find(x=>x.id===id);if(!t)return;modal(`<div class="modal-form handoff-modal"><h2>PACKING / SHIPPING MILESTONES — ${esc(t.id)}</h2><p class="helper">Update the live Packing / Shipping milestones. MST Installation appears only for REGERA and CELESTIQ.</p><div class="field"><label>CURRENT SYSTEM STATUS</label><select id="handoff-tool-status">${selectOptions(['FI','Powered Down','Packing','Shipped'],t.toolStatus)}</select></div><div class="shipping-milestone-editor modal-milestones">${shippingKeys(t).map(([k,l])=>milestoneEditor(t,k,l)).join('')}</div><label class="modal-notes-label">Shipping Notes<textarea id="handoff-notes">${esc(t.shipping.notes||'')}</textarea></label><div class="modal-actions"><button class="btn" data-modal-cancel>CANCEL</button><button class="btn save" data-save-handoffs="${esc(t.id)}">SAVE MILESTONES</button></div></div>`)}
 function modal(html){document.querySelector('#modalBody').innerHTML=html;let x=document.querySelector('#modalClose');if(x){x.textContent='×';x.title='Close';x.setAttribute('aria-label','Close popup')}document.querySelector('#modal').classList.remove('hidden');requestAnimationFrame(()=>{bindEditableComboControls();x?.focus({preventScroll:true})})}
 
+function applyUniversalComboSelection(select){
+  if(!select)return;
+  const root=select.closest('[data-universal-combo-root]');
+  const input=root?.querySelector('[data-universal-combo-input]');
+  const value=String(select.value||'');
+  if(!input||!value){select.value='';return;}
+  input.value=value;
+  input.dispatchEvent(new Event('input',{bubbles:true}));
+  input.dispatchEvent(new Event('change',{bubbles:true}));
+  if(input.dataset.toolField==='toolType')refreshModelChoicesForType(input,{clearInvalid:true});
+  dirty=true;
+  select.value='';
+}
+window.B7ComboPick=applyUniversalComboSelection;
 function bindEditableComboControls(){
   document.querySelectorAll('[data-universal-combo-root]').forEach(root=>{
-    if(root.dataset.comboBound==='1')return;
-    root.dataset.comboBound='1';
     const input=root.querySelector('[data-universal-combo-input]');
     const select=root.querySelector('[data-universal-combo-select]');
     if(!input||!select)return;
-
-    // Selecting a predefined value is a single action: the native menu writes
-    // directly into the editable input. Reset the selector to its arrow so the
-    // same choice can be selected again later if needed.
-    select.addEventListener('change',()=>{
-      const v=String(select.value||'');
-      if(v!==''){
-        input.value=v;
-        input.dispatchEvent(new Event('input',{bubbles:true}));
-        input.dispatchEvent(new Event('change',{bubbles:true}));
-        if(input.dataset.toolField==='toolType')refreshModelChoicesForType(input,{clearInvalid:true});
-      }
-      select.value='';
-    });
-
-    // Manual entry remains available. For Tool Type, refresh Model choices as
-    // the value changes, and clear an incompatible model only when committed.
+    // Assign properties instead of stacking listeners across repeated renders/modals.
+    select.onchange=()=>applyUniversalComboSelection(select);
     if(input.dataset.toolField==='toolType'){
-      input.addEventListener('input',()=>refreshModelChoicesForType(input,{clearInvalid:false}));
-      input.addEventListener('change',()=>refreshModelChoicesForType(input,{clearInvalid:true}));
+      input.oninput=()=>refreshModelChoicesForType(input,{clearInvalid:false});
+      input.onchange=()=>refreshModelChoicesForType(input,{clearInvalid:true});
     }
   });
 }
@@ -1424,4 +1441,5 @@ document.addEventListener('click',e=>{
   b.textContent=collapsed?'EXPAND':'MINIMIZE';
 });
 
-// V6.5.80 NATIVE COMBO CLEAN REWRITE LOCK: one editable text input + native pull-down selector is used everywhere. No datalist, portal, or custom dropdown event layer remains.
+// V6.5.81 EDITOR CONTROL + PRESENTATION SCROLL REBUILD LOCK:
+// full-width native predefined lists synchronize directly to editable values; Presentation Tool Edit uses normal page scrolling.

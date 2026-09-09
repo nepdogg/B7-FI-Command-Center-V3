@@ -15858,3 +15858,145 @@ html body.presentation-mode .universal-combo.native-combo > input,
 html body.presentation-mode .universal-combo.native-combo > select{
   pointer-events:auto!important;
 }
+
+/* =========================================================
+   V6.5.81 UNIVERSAL COMBO + PRESENTATION SCROLL HARD LOCK
+   Functional repair only. Universal Tool Card geometry unchanged.
+   ========================================================= */
+/* Native selector is a real, clickable companion to the editable field. */
+html body .universal-combo.native-combo > .universal-combo-select{
+  position:relative!important;
+  z-index:25!important;
+  pointer-events:auto!important;
+  touch-action:manipulation!important;
+}
+html body .universal-combo.native-combo > input{
+  position:relative!important;
+  z-index:24!important;
+  pointer-events:auto!important;
+}
+
+/* Full Tool Edit opened while Presentation Mode is active: the 1920x1080 frame,
+   not html/body, becomes the scroll container. This avoids the old overflow:hidden trap. */
+html body.presentation-mode[data-center="operations"][data-sub="tool"] .app-frame.presentation-tool-scroll{
+  display:block!important;
+  height:1080px!important;
+  max-height:1080px!important;
+  min-height:1080px!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  overscroll-behavior:contain!important;
+  scrollbar-width:auto!important;
+  pointer-events:auto!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="tool"] .app-frame.presentation-tool-scroll .sticky-shell{
+  position:sticky!important;
+  top:0!important;
+  z-index:1000!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="tool"] .app-frame.presentation-tool-scroll .body-shell,
+html body.presentation-mode[data-center="operations"][data-sub="tool"] .app-frame.presentation-tool-scroll #app{
+  display:block!important;
+  height:auto!important;
+  max-height:none!important;
+  min-height:0!important;
+  overflow:visible!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="tool"] .app-frame.presentation-tool-scroll .tool-editor{
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="tool"] .app-frame.presentation-tool-scroll::-webkit-scrollbar{
+  display:block!important;
+  width:16px!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="tool"] .app-frame.presentation-tool-scroll::-webkit-scrollbar-track{
+  background:#020a13!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="tool"] .app-frame.presentation-tool-scroll::-webkit-scrollbar-thumb{
+  background:#245d78!important;
+  border:2px solid #03101a!important;
+  border-radius:8px!important;
+}
+
+/* =========================================================
+   V6.5.81 EDITOR CONTROL REBUILD — final override
+   Full-width native list below the editable value. No overlay, portal or tiny selector.
+   ========================================================= */
+html body .universal-combo.native-combo{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:auto auto!important;
+  gap:4px!important;
+  overflow:visible!important;
+}
+html body .universal-combo.native-combo > input{
+  grid-column:1!important;
+  grid-row:1!important;
+  width:100%!important;
+  min-width:0!important;
+  border-radius:3px!important;
+}
+html body .universal-combo.native-combo > .universal-combo-select{
+  grid-column:1!important;
+  grid-row:2!important;
+  width:100%!important;
+  min-width:0!important;
+  height:30px!important;
+  min-height:30px!important;
+  padding:3px 8px!important;
+  border:1px solid #2b5873!important;
+  border-radius:3px!important;
+  background:#071722!important;
+  color:#dff4ff!important;
+  font-size:10px!important;
+  font-weight:900!important;
+  cursor:pointer!important;
+  pointer-events:auto!important;
+  appearance:auto!important;
+  -webkit-appearance:menulist!important;
+}
+html body .universal-combo.native-combo > .universal-combo-select:hover,
+html body .universal-combo.native-combo > .universal-combo-select:focus{
+  border-color:var(--accent)!important;
+  background:#0b2231!important;
+  outline:1px solid var(--accent)!important;
+}
+
+/* Presentation > Update Tool Status: temporarily use a normal full-screen scrolling editor.
+   Returning to Live Presentation restores the scaled wallboard automatically. */
+html.presentation-tool-edit,
+html.presentation-tool-edit body{
+  width:100%!important;
+  height:auto!important;
+  min-height:100%!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+}
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .app-frame,
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .app-frame.presentation-tool-scroll{
+  width:100%!important;
+  max-width:none!important;
+  height:auto!important;
+  min-height:100vh!important;
+  max-height:none!important;
+  margin:0!important;
+  transform:none!important;
+  overflow:visible!important;
+}
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .sticky-shell{
+  position:sticky!important;
+  top:0!important;
+  z-index:1000!important;
+}
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .body-shell,
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] #app,
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .tool-editor{
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  max-height:none!important;
+  min-height:0!important;
+  overflow:visible!important;
+}
