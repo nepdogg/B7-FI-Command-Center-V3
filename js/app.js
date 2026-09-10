@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.81', BUILD='20260909-V6.5.82-EDITOR-CONTROL-SCROLL-REBUILD-LOCK';
+const VERSION='6.5.83', BUILD='20260909-V6.5.83-RENDER-RECOVERY-PRESENTATION-SCROLL-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -623,6 +623,7 @@ function indicatorLamp(t,key){let x=indicatorStateForSlot(t,key),editable=true;i
 function indicatorDisplayPanel(t){return `<section class="utc-indicator-display"><div class="utc-indicator-grid">${INDICATOR_SLOT_KEYS.map(k=>indicatorLamp(t,k)).join('')}</div></section>`}
 function nextSystemTasksAuto(t){
   let ev=evaluateTool(t), rows=[];
+  const optTest=String(t?.indicatorStates?.completeOptions||'Need to Complete Options Testing');
   const skip=new Set(['lamp','requestLamp','poweredDown','future']);
   const actionText={
     options:'Request options',shipKit:'Request ship kit',ironman:'Run Ironman',sccCleanup:'Complete SCC cleanup',backup:'Complete SCC backup',ctd:'Complete / advance CTD data',source:'Complete customer source requirement',ncEscalation:'BLOCKER — NC escalation',postmag:'Remove Postmag',opk:'Resolve OPK requirement',optionsTesting:optTest==='Need to Complete FACTD'?'Complete FACTD':'Complete options testing',thermalRack:'Verify thermal rack',laser:'Verify laser',avData:'Complete / advance AV data',ccl:'Verify / advance CCL requirement',str:'Verify / advance STR requirement',wwc:'Verify WWC requirement',imc:'Verify IMC configuration',shipMeeting:'Schedule / complete ship meeting',calChips:'Request cal chips',systemWafers:'Complete system wafer kit action',ncClose:'Close all NCs',eqChecklists:'Complete all EQ checklists',chiller:'Verify chiller',optionFiles:'Create / complete option files'
@@ -1444,5 +1445,5 @@ document.addEventListener('click',e=>{
   b.textContent=collapsed?'EXPAND':'MINIMIZE';
 });
 
-// V6.5.82 EDITOR CONTROL + PRESENTATION SCROLL REBUILD LOCK:
-// full-width native predefined lists synchronize directly to editable values; Presentation Tool Edit uses normal page scrolling.
+// V6.5.83 RENDER RECOVERY + PRESENTATION SCROLL LOCK:
+// fixes Next System Tasks FACTD scope error and forces Presentation Tool Edit to use browser-page scrolling.

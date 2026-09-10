@@ -1,35 +1,16 @@
-# B7 FI Command Center V6.5.82 — Badge Source-of-Truth + Presentation Scroll Lock
+# B7 FI Command Center V6.5.83 — Render Recovery + Presentation Scroll Lock
 
-This build is based on V6.5.81 and focuses on the 9/9 work-testing findings.
+This build is based on V6.5.82 and repairs the render-stopping regression found during Presentation Mode testing.
 
-- FACTD standalone badge removed. FACTD is now a yellow intermediate state of Options Testing: NEED TO COMPLETE FACTD.
-- The freed 28th matrix position is retained as FUTURE BADGE for the new badge definition coming next.
-- Lamp is one shared Lamp Status control: hours plus ON/OFF state. LAMP OFF is red and displays LAMP OFF.
-- System Power semantics: System Powered Down is red; System Powered On renders green as SYSTEM POWERED UP.
-- Customer Source and STR badges continue to write the same authoritative workflow fields used by Tool Edit; no separate badge-only status is introduced.
-- Presentation Mode > Update Tool Status uses a fixed full-viewport independent vertical scroll container so the entire Tool Edit page is reachable.
-- Universal Tool Card geometry remains unchanged.
+## Fixes
+- Repairs the `nextSystemTasksAuto()` FACTD / Options Testing scope error that could stop Live Operations / Presentation tool cards from rendering.
+- Keeps FACTD merged into Options Testing and preserves the open Future Badge position.
+- Preserves Lamp Off, System Power semantics, shared STR / Customer Source / Lamp source-of-truth behavior, and the V6.5.81 editor controls.
+- Presentation Mode > Update Tool Status now uses normal browser-page scrolling instead of trapping the full Tool Edit page inside the scaled wallboard frame.
+- Internal version/build identifiers and cache-busting references updated to V6.5.83.
+- Universal Tool Card layout remains unchanged.
 
-# B7 FI Command Center V6.5.82
-## Editor Control + Presentation Scroll Rebuild Lock
-
-This build is a focused reliability rebuild of the Tool Information editing controls and Presentation Tool Edit scrolling. The Universal Tool Card layout is unchanged.
-
-### Editor control rebuild
-- Flexible fields now show the editable value and a full-width `SELECT PREDEFINED` native pull-down in the same field.
-- The same component is used by Tool Edit, Live Operations card editors, and Presentation Mode card editors.
-- A single direct selection function copies a predefined selection into the editable value; no overlay/portal menu is used.
-- Tool Type immediately refreshes Model selections.
-- Models are strictly filtered to the selected Tool Type when that Tool Type has a defined model catalog.
-- Zephyr models are exactly: C200, C205, C300, C305.
-- Manual/custom text entry remains available where the field allows it.
-
-### Presentation Tool Edit scrolling
-- `Update Tool Status` opened from Presentation Mode now switches the editor to a normal full-screen scrolling workspace while Presentation Mode remains active.
-- The 1920x1080 wallboard transform is removed while Tool Edit is open so the browser can scroll the entire editor normally.
-- Returning to Live Operations automatically restores the Presentation wallboard scaling.
-- `renderToolEditorPage()` now explicitly re-applies the Presentation layout change when Tool Edit is opened directly from a card.
-
-### Validation
-- JavaScript syntax checked with Node.
-- Static checks confirm the Zephyr model catalog, strict Tool Type → Model filtering, shared universal combo component, and Presentation Tool Edit re-fit path.
+## Validation
+- JavaScript syntax check passed.
+- Static render-path review confirms `nextSystemTasksAuto()` now defines the combined Options Testing / FACTD state locally before use.
+- Automated browser execution was not available in this environment, so please validate the live UI interaction in your normal browser during testing.
