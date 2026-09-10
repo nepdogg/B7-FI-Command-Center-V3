@@ -1,4 +1,4 @@
-# B7 FI Command Center V6.5.86
+# B7 FI Command Center V6.5.87
 
 **Presentation Full-Screen Tool Edit Lock** — Presentation Tool Edit now uses true browser/document scrolling instead of a nested popup scroller. Save Updates, Cancel, and X remain fixed while all editor fields can be reached.
 
@@ -28,10 +28,14 @@ This build is based on V6.5.82 and repairs the render-stopping regression found 
 - Presentation click shielding is disabled while the full Tool Edit route is active, so all Tool Edit fields and action buttons remain interactive.
 - Regular Live Operations Universal Tool Card layout is unchanged.
 
-## V6.5.86 — Presentation Tool Edit Internal Scroll Lock
+## V6.5.87 — Presentation Tool Edit Internal Scroll Lock
 - Fixes the regression where Presentation Mode showed SAVE UPDATES / CANCEL / X but the Tool Edit content could no longer scroll.
 - Presentation Tool Edit is now split into two independent layers: a fixed 56px action bar and a dedicated `#app` editor scroll viewport below it.
 - The normal Presentation header/footer are hidden only while the full Tool Edit overlay is open so they cannot consume or lock scroll space.
 - The outer page remains overflow-locked; only the Tool Edit workspace scrolls. This prevents Presentation wallboard scaling/overflow rules from taking control again.
 - SAVE UPDATES, CANCEL, and X remain visible at all scroll positions and still return to the originating Presentation view.
 - Regular Live Operations and Universal Tool Card geometry are unchanged.
+
+
+## V6.5.87 Presentation Tool Edit scroll fix
+Presentation-launched Tool Edit is now detached from the `presentation-mode` wallboard CSS while editing. Fullscreen remains active, the browser document owns vertical scrolling, and Save/Cancel/X restore the same Presentation Mode view.

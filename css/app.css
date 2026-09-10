@@ -16262,3 +16262,125 @@ html.presentation-tool-edit body.presentation-mode[data-center="operations"][dat
   position:fixed!important;left:0!important;right:0!important;top:0!important;height:58px!important;margin:0!important;
   z-index:2147483000!important;pointer-events:auto!important;
 }
+
+
+/* =========================================================
+   V6.5.87 PRESENTATION-LAUNCHED TOOL EDIT — DETACHED DOCUMENT SCROLL
+   Presentation wallboard CSS is deliberately inactive while editing.
+   The browser document is the only vertical scroll owner.
+   ========================================================= */
+html.presentation-editor-document{
+  width:100%!important;
+  height:auto!important;
+  min-height:100%!important;
+  max-height:none!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+}
+html.presentation-editor-document body.presentation-editor-mode{
+  position:static!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:100vh!important;
+  max-height:none!important;
+  margin:0!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+  background:#020a13!important;
+}
+body.presentation-editor-mode .app-frame{
+  position:static!important;
+  inset:auto!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:100vh!important;
+  max-height:none!important;
+  margin:0!important;
+  transform:none!important;
+  transform-origin:top left!important;
+  zoom:1!important;
+  overflow:visible!important;
+  background:#020a13!important;
+}
+body.presentation-editor-mode .sticky-shell,
+body.presentation-editor-mode .app-footer{
+  display:none!important;
+}
+body.presentation-editor-mode .body-shell{
+  position:static!important;
+  inset:auto!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:100vh!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:visible!important;
+}
+body.presentation-editor-mode #app{
+  position:static!important;
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:100vh!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:72px 12px 72px!important;
+  box-sizing:border-box!important;
+  overflow:visible!important;
+  pointer-events:auto!important;
+}
+body.presentation-editor-mode #app > .tool-editor{
+  position:relative!important;
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  margin:0 auto!important;
+  overflow:visible!important;
+  padding-bottom:80px!important;
+  pointer-events:auto!important;
+}
+body.presentation-editor-mode .presentation-tool-edit-actions{
+  position:fixed!important;
+  left:0!important;
+  right:0!important;
+  top:0!important;
+  height:58px!important;
+  margin:0!important;
+  z-index:2147483000!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  padding:8px 14px!important;
+  box-sizing:border-box!important;
+  border-bottom:2px solid var(--accent)!important;
+  background:#03101a!important;
+  pointer-events:auto!important;
+}
+body.presentation-editor-mode .presentation-tool-edit-actions__identity{
+  display:flex!important;
+  align-items:center!important;
+  gap:12px!important;
+  color:#fff!important;
+}
+body.presentation-editor-mode .presentation-tool-edit-actions__buttons{
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+}
+body.presentation-editor-mode .presentation-tool-edit-actions button{
+  min-height:40px!important;
+  pointer-events:auto!important;
+}
+body.presentation-editor-mode .presentation-tool-edit-close{
+  width:42px!important;
+  height:42px!important;
+  border:1px solid var(--accent)!important;
+  background:#0a2332!important;
+  color:#fff!important;
+  font-size:27px!important;
+  font-weight:900!important;
+  line-height:1!important;
+}
