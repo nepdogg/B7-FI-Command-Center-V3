@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.85', BUILD='20260909-V6.5.85-PRESENTATION-TOOL-EDIT-INTERNAL-SCROLL-LOCK';
+const VERSION='6.5.86', BUILD='20260909-V6.5.86-PRESENTATION-FULL-SCREEN-TOOL-EDIT-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -1143,13 +1143,16 @@ function fitPresentation(){
   if(route.center==='operations'&&route.sub==='tool'){
     document.documentElement.classList.add('presentation-tool-edit');
     frame.classList.add('presentation-tool-scroll');
-    frame.style.zoom='';frame.style.width='100%';frame.style.height='100vh';
+    // V6.5.86: Tool Edit temporarily leaves the scaled wallboard layout and becomes a
+    // true full-browser document. The browser/body owns vertical scrolling; there is no
+    // nested editor scroller. The fixed action bar remains available above the document.
+    frame.style.zoom='';frame.style.width='100%';frame.style.height='auto';
     frame.style.transform='none';frame.style.transformOrigin='top left';
-    // Presentation Tool Edit uses an internal scrolling workspace. Keep the page itself
-    // locked so the fixed action bar and editor viewport cannot fight browser scrolling.
-    document.documentElement.style.overflow='hidden';document.body.style.overflow='hidden';
-    const editorScroll=document.querySelector('body.presentation-mode[data-center="operations"][data-sub="tool"] #app');
-    if(editorScroll&&!editorScroll.dataset.scrollInitialized){editorScroll.scrollTop=0;editorScroll.dataset.scrollInitialized='1';}
+    document.documentElement.style.overflowX='hidden';document.documentElement.style.overflowY='auto';
+    document.body.style.overflowX='hidden';document.body.style.overflowY='auto';
+    if(!document.documentElement.dataset.presentationEditorScrollInitialized){
+      window.scrollTo(0,0);document.documentElement.dataset.presentationEditorScrollInitialized='1';
+    }
     return;
   }
   document.documentElement.classList.remove('presentation-tool-edit');
@@ -1158,7 +1161,7 @@ function fitPresentation(){
   frame.style.zoom='';frame.style.width=DW+'px';frame.style.height=DH+'px';frame.style.transformOrigin='top left';frame.style.transform=`translate(${x/scale}px,${y/scale}px) scale(${scale})`;
   document.documentElement.style.overflow='hidden';document.body.style.overflow='hidden';
 }
-function clearPresentationLayout(){document.body.classList.remove('presentation-mode');document.documentElement.classList.remove('presentation-tool-edit');let frame=document.querySelector('.app-frame');if(frame){frame.classList.remove('presentation-tool-scroll');frame.style.removeProperty('zoom');frame.style.removeProperty('transform');frame.style.removeProperty('transform-origin');frame.style.removeProperty('width');frame.style.removeProperty('height');frame.style.removeProperty('left');frame.style.removeProperty('top');frame.style.removeProperty('position')}document.documentElement.style.removeProperty('zoom');document.body.style.removeProperty('zoom');document.documentElement.style.removeProperty('overflow');document.body.style.removeProperty('overflow');document.documentElement.style.removeProperty('width');document.documentElement.style.removeProperty('height');document.body.style.removeProperty('width');document.body.style.removeProperty('height')}
+function clearPresentationLayout(){delete document.documentElement.dataset.presentationEditorScrollInitialized;document.body.classList.remove('presentation-mode');document.documentElement.classList.remove('presentation-tool-edit');let frame=document.querySelector('.app-frame');if(frame){frame.classList.remove('presentation-tool-scroll');frame.style.removeProperty('zoom');frame.style.removeProperty('transform');frame.style.removeProperty('transform-origin');frame.style.removeProperty('width');frame.style.removeProperty('height');frame.style.removeProperty('left');frame.style.removeProperty('top');frame.style.removeProperty('position')}document.documentElement.style.removeProperty('zoom');document.body.style.removeProperty('zoom');document.documentElement.style.removeProperty('overflow');document.body.style.removeProperty('overflow');document.documentElement.style.removeProperty('overflow-x');document.documentElement.style.removeProperty('overflow-y');document.body.style.removeProperty('overflow-x');document.body.style.removeProperty('overflow-y');document.documentElement.style.removeProperty('width');document.documentElement.style.removeProperty('height');document.body.style.removeProperty('width');document.body.style.removeProperty('height')}
 async function presentation(){if(route.center!=='operations')return;if(document.body.classList.contains('screenshot-mode'))exitScreenshot();presentationRestore={livePaused,snapshotPaused};livePaused=false;snapshotPaused=false;presentationActive=true;document.body.classList.add('presentation-mode');let x=document.querySelector('#exitScreenshot');x.classList.add('hidden');try{if(!document.fullscreenElement&&document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen()}catch(e){}window.scrollTo(0,0);render();requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}
 function exitPresentation(){presentationActive=false;clearPresentationLayout();if(presentationRestore){livePaused=!!presentationRestore.livePaused;snapshotPaused=!!presentationRestore.snapshotPaused;presentationRestore=null}document.querySelector('#exitScreenshot').classList.add('hidden');document.querySelector('#screenshotReportTitle')?.remove();if(document.fullscreenElement&&document.exitFullscreen){try{document.exitFullscreen()}catch(e){}}render();requestAnimationFrame(()=>requestAnimationFrame(()=>{syncStickyShellHeight();window.dispatchEvent(new Event('resize'));window.scrollTo(0,0)}))}
 function exitDisplayMode(){if(document.body.classList.contains('presentation-mode'))return exitPresentation();return exitScreenshot()}
