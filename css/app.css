@@ -16384,3 +16384,160 @@ body.presentation-editor-mode .presentation-tool-edit-close{
   font-weight:900!important;
   line-height:1!important;
 }
+
+/* =========================================================
+   V6.5.88 PRESENTATION TOOL EDIT — TRUE OVERLAY SCROLL LOCK
+   Presentation wallboard remains untouched in the background.
+   This dedicated overlay has exactly one vertical scroll owner.
+   ========================================================= */
+#presentationToolOverlay.presentation-tool-overlay{
+  position:fixed!important;
+  inset:0!important;
+  z-index:2147483600!important;
+  display:block!important;
+  width:100vw!important;
+  height:100vh!important;
+  max-width:none!important;
+  max-height:none!important;
+  padding:0!important;
+  margin:0!important;
+  overflow:hidden!important;
+  background:rgba(0,0,0,.88)!important;
+  pointer-events:auto!important;
+  transform:none!important;
+  zoom:1!important;
+}
+#presentationToolOverlay .presentation-tool-overlay-shell{
+  position:absolute!important;
+  inset:18px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  min-width:0!important;
+  min-height:0!important;
+  width:auto!important;
+  height:auto!important;
+  max-width:none!important;
+  max-height:none!important;
+  overflow:hidden!important;
+  border:2px solid var(--accent)!important;
+  background:#020a13!important;
+  box-shadow:0 0 36px rgba(0,0,0,.8)!important;
+  pointer-events:auto!important;
+}
+#presentationToolOverlay .presentation-tool-overlay-actions{
+  position:relative!important;
+  flex:0 0 62px!important;
+  height:62px!important;
+  min-height:62px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:16px!important;
+  padding:8px 12px!important;
+  margin:0!important;
+  box-sizing:border-box!important;
+  border-bottom:2px solid var(--accent)!important;
+  background:#03101a!important;
+  z-index:3!important;
+  pointer-events:auto!important;
+}
+#presentationToolOverlay .presentation-tool-overlay-identity{
+  display:flex!important;
+  align-items:center!important;
+  gap:14px!important;
+  min-width:0!important;
+  color:#fff!important;
+}
+#presentationToolOverlay .presentation-tool-overlay-identity b{
+  font-size:16px!important;
+  letter-spacing:.7px!important;
+}
+#presentationToolOverlay .presentation-tool-overlay-identity span{
+  font-size:14px!important;
+  color:#9edcff!important;
+  font-weight:900!important;
+}
+#presentationToolOverlay .presentation-tool-overlay-buttons{
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+  flex:0 0 auto!important;
+  pointer-events:auto!important;
+}
+#presentationToolOverlay .presentation-tool-overlay-buttons .btn{
+  min-width:128px!important;
+  min-height:42px!important;
+  font-size:11px!important;
+  pointer-events:auto!important;
+}
+#presentationToolOverlay .presentation-tool-overlay-close{
+  width:44px!important;
+  min-width:44px!important;
+  height:44px!important;
+  border:1px solid #ff8080!important;
+  background:#521d1d!important;
+  color:#fff!important;
+  font-size:30px!important;
+  font-weight:900!important;
+  line-height:1!important;
+  cursor:pointer!important;
+  pointer-events:auto!important;
+}
+#presentationToolOverlay .presentation-tool-overlay-scroll{
+  position:relative!important;
+  flex:1 1 auto!important;
+  min-height:0!important;
+  width:100%!important;
+  height:auto!important;
+  max-height:none!important;
+  overflow-x:hidden!important;
+  overflow-y:scroll!important;
+  overscroll-behavior:contain!important;
+  -webkit-overflow-scrolling:touch!important;
+  scrollbar-gutter:stable!important;
+  pointer-events:auto!important;
+  background:#020a13!important;
+}
+#presentationToolOverlay .presentation-tool-overlay-content{
+  position:relative!important;
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:max-content!important;
+  max-height:none!important;
+  padding:12px 12px 90px!important;
+  box-sizing:border-box!important;
+  overflow:visible!important;
+  pointer-events:auto!important;
+}
+#presentationToolOverlay .tool-editor{
+  position:relative!important;
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow:visible!important;
+  transform:none!important;
+  zoom:1!important;
+  pointer-events:auto!important;
+}
+#presentationToolOverlay .tool-editor *,
+#presentationToolOverlay input,
+#presentationToolOverlay select,
+#presentationToolOverlay textarea,
+#presentationToolOverlay button,
+#presentationToolOverlay label{
+  pointer-events:auto!important;
+}
+#presentationToolOverlay .presentation-tool-overlay-scroll::-webkit-scrollbar{display:block!important;width:16px!important}
+#presentationToolOverlay .presentation-tool-overlay-scroll::-webkit-scrollbar-track{background:#01070d!important}
+#presentationToolOverlay .presentation-tool-overlay-scroll::-webkit-scrollbar-thumb{background:#285f7b!important;border:3px solid #01070d!important;border-radius:9px!important}
+@media(max-width:800px){
+  #presentationToolOverlay .presentation-tool-overlay-shell{inset:4px!important}
+  #presentationToolOverlay .presentation-tool-overlay-actions{flex:0 0 58px!important;height:58px!important;min-height:58px!important;padding:6px!important}
+  #presentationToolOverlay .presentation-tool-overlay-identity span{display:none!important}
+  #presentationToolOverlay .presentation-tool-overlay-buttons{gap:5px!important}
+  #presentationToolOverlay .presentation-tool-overlay-buttons .btn{min-width:92px!important;padding:0 6px!important;font-size:9px!important}
+  #presentationToolOverlay .presentation-tool-overlay-close{width:40px!important;min-width:40px!important;height:40px!important}
+}

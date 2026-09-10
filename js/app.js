@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.87', BUILD='20260909-V6.5.87-PRESENTATION-DETACHED-EDITOR-SCROLL-LOCK';
+const VERSION='6.5.88', BUILD='20260909-V6.5.88-PRESENTATION-TOOL-EDIT-OVERLAY-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -53,7 +53,7 @@ function load(){try{let x=JSON.parse(localStorage.getItem(KEY));if(x)return norm
 function loadSavedRoute(){try{let r=JSON.parse(localStorage.getItem(ROUTE_KEY)||'null');if(r&&typeof r.center==='string'&&typeof r.sub==='string')return r}catch(e){}return{center:'operations',sub:'live'}}
 function persistRoute(){try{localStorage.setItem(ROUTE_KEY,JSON.stringify({center:route.center,sub:route.sub,toolId:route.toolId||''}))}catch(e){}}
 let state=load();let route=loadSavedRoute(), mode='view', toolEditorMode='view', draft=null, selected=null, dirty=false, meetingDraft=null, dailyContext='weekday', returnRoute=null, liveIndex=0, livePaused=false, snapshotIndex=0, snapshotPaused=false;
-let screenshotRestore=null, presentationRestore=null, presentationActive=false, presentationEditorActive=false;
+let screenshotRestore=null, presentationRestore=null, presentationActive=false, presentationEditorActive=false, presentationToolOverlayActive=false, presentationToolOverlayId='';
 function saveState(msg='CHANGES SAVED'){try{state.version=VERSION;state.audit.unshift({at:nowISO(),message:msg});localStorage.setItem(KEY,JSON.stringify(state));dirty=false;toast('✓ SAVED SUCCESSFULLY · '+msg);return true}catch(err){toast('✕ SAVE FAILED · '+err.message);return false}}
 function toast(t){let e=document.querySelector('#toast');e.textContent=t;e.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('show'),2400)}
 function applyRules(t){if(t.toolStatus==='Packing'&&['Not Started','Complete'].includes(t.shipping.scheduleStatus))t.shipping.scheduleStatus='Active';if(t.toolStatus==='Shipped')t.shipping.scheduleStatus='Complete';if(['OPI','OI','FI','Powered Down'].includes(t.toolStatus)&&t.shipping.scheduleStatus==='Complete')t.shipping.scheduleStatus=t.shipping.scheduleSent?'Sent':'Not Started'}
@@ -1122,10 +1122,107 @@ function addTool(){
   renderToolEditorPage();
   requestAnimationFrame(()=>{window.scrollTo(0,0);document.querySelector('.tool-editor')?.focus();});
 }
+function openPresentationToolOverlay(id){
+  id=String(id||'');
+  const t=state.tools.find(x=>x.id===id);
+  if(!t){toast('TOOL NOT FOUND');return false;}
+  // V6.5.88: Presentation editing is a true overlay. Do not change route, wallboard
+  // scale, fullscreen state, or Presentation Mode CSS. The overlay owns its own scroll.
+  presentationToolOverlayActive=true;
+  presentationToolOverlayId=id;
+  selected=id;
+  draft=clone(t);
+  mode='edit';
+  toolEditorMode='edit';
+  dirty=false;
+  renderPresentationToolOverlay(0);
+  return true;
+}
+function presentationToolOverlayMarkup(){
+  if(!presentationToolOverlayActive||!draft)return '';
+  return `<div id="presentationToolOverlay" class="presentation-tool-overlay" data-presentation-tool-overlay role="dialog" aria-modal="true" aria-label="Tool Edit ${esc(draft.id||presentationToolOverlayId)}">
+    <div class="presentation-tool-overlay-shell">
+      <div class="presentation-tool-overlay-actions">
+        <div class="presentation-tool-overlay-identity"><b>TOOL EDIT</b><span>${esc(draft.id||presentationToolOverlayId)}</span></div>
+        <div class="presentation-tool-overlay-buttons">
+          <button type="button" class="btn presentation-tool-overlay-cancel" data-presentation-tool-cancel>CANCEL</button>
+          <button type="button" class="btn save presentation-tool-overlay-save" data-presentation-tool-save>SAVE UPDATES</button>
+          <button type="button" class="presentation-tool-overlay-close" data-presentation-tool-cancel aria-label="Close Tool Edit" title="Close and return to Presentation Mode">×</button>
+        </div>
+      </div>
+      <div class="presentation-tool-overlay-scroll" data-presentation-tool-scroll>
+        <div class="presentation-tool-overlay-content">${toolForm(draft,false)}</div>
+      </div>
+    </div>
+  </div>`;
+}
+function renderPresentationToolOverlay(scrollTop=0){
+  let root=document.querySelector('#presentationToolOverlay');
+  if(!root){
+    document.body.insertAdjacentHTML('beforeend',presentationToolOverlayMarkup());
+    root=document.querySelector('#presentationToolOverlay');
+  }else root.outerHTML=presentationToolOverlayMarkup();
+  root=document.querySelector('#presentationToolOverlay');
+  if(!root)return;
+  bindPresentationToolOverlay();
+  requestAnimationFrame(()=>{
+    const scroller=document.querySelector('#presentationToolOverlay [data-presentation-tool-scroll]');
+    if(scroller)scroller.scrollTop=Math.max(0,Number(scrollTop)||0);
+    document.querySelector('#presentationToolOverlay .tool-editor')?.focus({preventScroll:true});
+  });
+}
+function bindPresentationToolOverlay(){
+  const root=document.querySelector('#presentationToolOverlay');
+  if(!root)return;
+  bindEditableComboControls();
+  root.querySelectorAll('input,select,textarea').forEach(x=>{
+    x.addEventListener('input',()=>{dirty=true});
+    x.addEventListener('change',()=>{dirty=true});
+  });
+  root.querySelectorAll('[data-presentation-tool-save]').forEach(b=>b.onclick=e=>{e.preventDefault();e.stopImmediatePropagation();savePresentationToolOverlay()});
+  root.querySelectorAll('[data-presentation-tool-cancel]').forEach(b=>b.onclick=e=>{e.preventDefault();e.stopImmediatePropagation();cancelPresentationToolOverlay()});
+  const add=root.querySelector('#addNc');
+  if(add)add.onclick=e=>{e.preventDefault();e.stopImmediatePropagation();let sc=root.querySelector('[data-presentation-tool-scroll]')?.scrollTop||0;collectToolForm(draft);draft.ncs.push({id:'',description:'',state:'Open',days:0,blocking:false,poa:'',owner:'',opened:today()});dirty=true;renderPresentationToolOverlay(sc)};
+  root.querySelectorAll('[data-remove-nc]').forEach(b=>b.onclick=e=>{e.preventDefault();e.stopImmediatePropagation();if(!confirm('Remove this NC?'))return;let sc=root.querySelector('[data-presentation-tool-scroll]')?.scrollTop||0;collectToolForm(draft);draft.ncs.splice(Number(b.dataset.removeNc),1);dirty=true;renderPresentationToolOverlay(sc)});
+  const upload=root.querySelector('[data-tool-specific-photo-upload]');
+  if(upload)upload.onchange=()=>{let file=upload.files&&upload.files[0];if(!file)return;if(file.size>1200000){alert('Please use a tool photo smaller than 1.2 MB.');upload.value='';return}let sc=root.querySelector('[data-presentation-tool-scroll]')?.scrollTop||0;collectToolForm(draft);let reader=new FileReader();reader.onload=()=>{draft.toolPhoto=String(reader.result||'');dirty=true;renderPresentationToolOverlay(sc)};reader.readAsDataURL(file)};
+  const clear=root.querySelector('[data-tool-specific-photo-clear]');
+  if(clear)clear.onclick=e=>{e.preventDefault();e.stopImmediatePropagation();let sc=root.querySelector('[data-presentation-tool-scroll]')?.scrollTop||0;collectToolForm(draft);draft.toolPhoto='';dirty=true;renderPresentationToolOverlay(sc)};
+}
+function closePresentationToolOverlay(){
+  document.querySelector('#presentationToolOverlay')?.remove();
+  presentationToolOverlayActive=false;
+  presentationToolOverlayId='';
+  mode='view';toolEditorMode='view';draft=null;selected=null;dirty=false;
+}
+function cancelPresentationToolOverlay(){
+  if(!presentationToolOverlayActive)return;
+  if(dirty&&!confirm('Discard unsaved changes?'))return;
+  closePresentationToolOverlay();
+}
+function savePresentationToolOverlay(){
+  if(!presentationToolOverlayActive||!draft)return;
+  let t=draft;
+  collectToolForm(t);
+  if(!t.id)return alert('UTID / Serial is required.');
+  let allowedModels=catalogModelsForType(t.codename);
+  if(hasStrictModelCatalog(t.codename)&&t.model&&!allowedModels.includes(String(t.model).trim()))return alert(`MODEL ${t.model} is not valid for ${t.codename}. Select one of: ${allowedModels.join(', ')||'no predefined models'}.`);
+  let duplicate=state.tools.find(x=>x.id.toLowerCase()===t.id.toLowerCase()&&x.id!==presentationToolOverlayId);
+  if(duplicate)return alert(`DUPLICATE TOOL — ${t.id} already exists. Open the existing tool instead.`);
+  let i=state.tools.findIndex(x=>x.id===presentationToolOverlayId);
+  if(i<0)return alert('The selected tool could not be found.');
+  state.tools[i]=normalizeTool(t);
+  saveState(`TOOL ${t.id} SAVED`);
+  closePresentationToolOverlay();
+  render();
+}
 function openTool(id){
   id=String(id||'');
   const t=state.tools.find(x=>x.id===id);
   if(!t){toast('TOOL NOT FOUND');return;}
+  if((presentationActive||document.body.classList.contains('presentation-mode'))&&route.center==='operations'&&route.sub==='live'){
+    return openPresentationToolOverlay(id);
+  }
   const origin=clone(route);
   returnRoute=(origin.center==='operations'&&origin.sub==='tools')?{center:'operations',sub:'tools'}:origin;
   selected=id;
@@ -1237,7 +1334,9 @@ window.B7Core={
   openTool:(id)=>openTool(String(id||'')),
   addTool:()=>addTool(),
   saveTool:()=>saveCurrent(),
-  cancelTool:()=>cancelEdit()
+  cancelTool:()=>cancelEdit(),
+  savePresentationTool:()=>savePresentationToolOverlay(),
+  cancelPresentationTool:()=>cancelPresentationToolOverlay()
 };
 
 // V6.5.68 hard-routed page action API. These handlers are called directly by
@@ -1439,8 +1538,8 @@ document.addEventListener('click',e=>{
 },true);
 
 const PRESENTATION_INTERACTIVE='[data-carousel],[data-snapshot],[data-indicator-picker],[data-indicator-control],[data-direct-indicator],[data-direct-identity],[data-direct-priority],[data-save-direct-priority],[data-save-direct-identity],[data-save-indicator],[data-quick-field],[data-save-quick-field],[data-open-tool],[data-handoffs],[data-forecast-checklist],[data-select-forecast-checklist],[data-modal-cancel],#modalClose,#indicator-state,#indicator-availability,#indicator-value,#indicator-driver,.modal,.modal-card,.modal-card #modalBody,.modal-card select,.modal-card input,.modal-card button,[data-universal-combo-select],[data-universal-combo-input],[data-universal-combo-root],.forecast-picker-list,.forecast-picker-row';
-document.addEventListener('click',e=>{const presentationToolEdit=document.body.classList.contains('presentation-mode')&&route.center==='operations'&&route.sub==='tool';if(document.body.classList.contains('presentation-mode')&&!presentationToolEdit&&!e.target.closest(PRESENTATION_INTERACTIVE)){e.preventDefault();e.stopImmediatePropagation()}},true);
-document.addEventListener('pointerdown',e=>{const presentationToolEdit=document.body.classList.contains('presentation-mode')&&route.center==='operations'&&route.sub==='tool';if(document.body.classList.contains('presentation-mode')&&!presentationToolEdit&&!e.target.closest(PRESENTATION_INTERACTIVE)){e.preventDefault();e.stopImmediatePropagation()}},true);
+document.addEventListener('click',e=>{if(e.target.closest?.('#presentationToolOverlay'))return;const presentationToolEdit=document.body.classList.contains('presentation-mode')&&route.center==='operations'&&route.sub==='tool';if(document.body.classList.contains('presentation-mode')&&!presentationToolEdit&&!e.target.closest(PRESENTATION_INTERACTIVE)){e.preventDefault();e.stopImmediatePropagation()}},true);
+document.addEventListener('pointerdown',e=>{if(e.target.closest?.('#presentationToolOverlay'))return;const presentationToolEdit=document.body.classList.contains('presentation-mode')&&route.center==='operations'&&route.sub==='tool';if(document.body.classList.contains('presentation-mode')&&!presentationToolEdit&&!e.target.closest(PRESENTATION_INTERACTIVE)){e.preventDefault();e.stopImmediatePropagation()}},true);
 document.addEventListener('click',e=>{
   const toggle=e.target.closest('[data-tool-type-toggle]');
   if(toggle){
@@ -1462,7 +1561,7 @@ document.addEventListener('click',e=>{
   }
   if(!e.target.closest('[data-tool-type-menu]'))document.querySelectorAll('[data-tool-type-menu].open').forEach(x=>{x.classList.remove('open');x.querySelector('[data-tool-type-toggle]')?.setAttribute('aria-expanded','false')});
 });
-document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('[data-tool-type-menu].open').forEach(x=>{x.classList.remove('open');x.querySelector('[data-tool-type-toggle]')?.setAttribute('aria-expanded','false')})});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&presentationToolOverlayActive){e.preventDefault();cancelPresentationToolOverlay();return}if(e.key==='Escape')document.querySelectorAll('[data-tool-type-menu].open').forEach(x=>{x.classList.remove('open');x.querySelector('[data-tool-type-toggle]')?.setAttribute('aria-expanded','false')})});
 document.addEventListener('pointerover',e=>{let menu=e.target.closest?.('[data-tool-type-menu]');if(menu)positionToolTypeMenu(menu)});
 
 document.addEventListener('click',e=>{let b=e.target.closest('button[data-center],button[data-sub],button,[data-tool],[data-reveal],[data-meeting],[data-dataset],[data-import-browser],[data-ship],[data-actiondone],[data-carousel],[data-snapshot],[data-order],[data-daily-ship],[data-ship-step],[data-search-tool],[data-search-meeting],[data-search-ref],[data-search-action],[data-alert-tool],[data-open-tool],[data-open-issues],[data-source-center],[data-start-embedded-morning],[data-add-volunteer],[data-remove-volunteer],[data-close-modal],[data-archived-tool],[data-handoffs],[data-save-handoffs],[data-modal-cancel],[data-modal-save-action],[data-modal-save-reference],[data-admin-mode],[data-master-reset],[data-save-mystery],[data-save-planned-count],[data-confirm-archive],[data-lead-tasks],[data-save-lead-tasks],[data-fi-checklists],[data-save-fi-checklists],[data-save-reference-edit],[data-restore-tool],[data-add-meeting-task],[data-remove-meeting-task],[data-mm-add-task],[data-mm-remove-task],[data-tool-quarter],[data-status-record],[data-edit-action],[data-save-action-edit],[data-reopen-action],[data-delete-action],[data-save-active-quarter],[data-save-cycle-averages],[data-forecast-checklist],[data-select-forecast-checklist],[data-indicator-control],[data-direct-indicator],[data-direct-identity],[data-direct-priority],[data-save-direct-priority],[data-save-direct-identity],[data-save-indicator],[data-quick-field],[data-save-quick-field],[data-priority-source],[data-photo-open-tool],[data-next-system-tasks],[data-save-next-system-tasks]');if(!b)return;if(b.dataset.toolQuarter){state.config.toolViewQuarter=b.dataset.toolQuarter;route={center:'operations',sub:'tools'};mode='view';return render()}if(b.dataset.statusRecord)return openStatusRecord(b.dataset.statusRecord);if(b.dataset.editAction)return editAction(b.dataset.editAction);if(b.dataset.center)return go(b.dataset.center);if(b.dataset.sub){if(dirty&&!confirm('Discard unsaved changes?'))return;mode='view';toolEditorMode='view';draft=null;selected=null;meetingDraft=null;dirty=false;returnRoute=null;route={center:route.center,sub:b.dataset.sub};return render()}if(b.dataset.sourceCenter)return go(b.dataset.sourceCenter,b.dataset.sourceSub||undefined);if(b.dataset.alertTool)return openTool(b.dataset.alertTool);if(b.dataset.openTool)return openTool(b.dataset.openTool);if(b.dataset.openIssues!==undefined)return go('action','open');if(b.dataset.startEmbeddedMorning!==undefined)return startMorningMeeting();if(b.dataset.searchTool)return openTool(b.dataset.searchTool);if(b.dataset.act){let a=b.dataset.act;if(a==='edit'&&route.center==='status'){returnRoute=clone(route);dailyContext=route.sub==='weekend'?'weekend':'weekday';route={center:'operations',sub:'daily'};mode='edit';draft=clone(state.tools);dirty=false;return render()}if(a==='edit')return beginEdit();if(a==='verifyTools'){route={center:'admin',sub:'audit'};mode='view';dirty=false;return render()}if(a==='updateAll'){returnRoute=clone(route);dailyContext='weekday';route={center:'operations',sub:'daily'};mode='edit';draft=clone(state.tools);dirty=false;return render()}if(a==='addTool')return addTool();if(a==='save')return saveCurrent();if(a==='cancel')return cancelEdit();if(a==='shot')return screenshot();if(a==='presentation')return presentation();if(a==='export')return exportData();if(a==='endMeeting')return saveMeeting(true);if(a==='createAction')return createAction();if(a==='createReference')return createReference();if(a==='archiveTool')return archiveSelectedTool();if(a==='deleteTool')return deleteSelectedTool();if(a==='startMorning')return startMorningMeeting();if(a==='completeMorning')return saveMorningMeeting(true);if(a==='startMeeting'){let types={leads:'Leads Meeting',orb:'ORB Meeting',cell:'Cell Meeting',escalation:'Escalation Meeting'};return startMeeting(types[route.sub]||'Generic Meeting')}if(a==='archiveAdd'){return modal(`<div class="modal-form"><h2>ADD TOOL TO ARCHIVE</h2><div class="field"><label>Tool</label><select id="archive-tool-select"><option value="">Select tool...</option>${activeTools().map(t=>`<option value="${esc(t.id)}">${esc(t.id)} · ${esc(t.codename)} · ${esc(t.toolStatus)}</option>`).join('')}</select></div><div class="modal-actions"><button class="btn" data-modal-cancel>CANCEL</button><button class="btn danger" data-confirm-archive>ARCHIVE TOOL</button></div></div>`) }}if(b.dataset.confirmArchive!==undefined){let id=document.querySelector('#archive-tool-select')?.value,t=state.tools.find(x=>x.id===id);if(!t)return alert('Select a tool.');t.toolStatus='Archived';t.archivedAt=nowISO();saveState('TOOL ARCHIVED');closeModal();render();return}if(b.dataset.mmAddTask!==undefined){collectMorningMeeting();let scope=b.dataset.mmScope||'general';if(scope==='general'){meetingDraft.generalActions=meetingDraft.generalActions||[];meetingDraft.generalActions.push(normalizeMorningAction())}else{meetingDraft.toolActions=meetingDraft.toolActions||{};meetingDraft.toolActions[scope]=Array.isArray(meetingDraft.toolActions[scope])?meetingDraft.toolActions[scope]:[];meetingDraft.toolActions[scope].push(normalizeMorningAction())}dirty=true;render();return}if(b.dataset.mmRemoveTask!==undefined){collectMorningMeeting();let scope=b.dataset.mmScope||'general',i=Number(b.dataset.mmRemoveTask);if(scope==='general'){meetingDraft.generalActions=meetingDraft.generalActions||[];meetingDraft.generalActions.splice(i,1)}else if(Array.isArray(meetingDraft.toolActions?.[scope]))meetingDraft.toolActions[scope].splice(i,1);dirty=true;render();return}if(b.dataset.addMeetingTask!==undefined){captureMeetingForm();meetingDraft.tasks.push({id:uid('task'),text:'',owner:'',due:''});dirty=true;render();return}if(b.dataset.removeMeetingTask!==undefined){captureMeetingForm();meetingDraft.tasks.splice(Number(b.dataset.removeMeetingTask),1);dirty=true;render();return}if(b.dataset.photoOpenTool){if(presentationActive||document.body.classList.contains('presentation-mode')||document.body.classList.contains('screenshot-mode'))return;if(route.center==='operations'&&(route.sub==='live'||route.sub==='tools'))return openTool(b.dataset.photoOpenTool);return}if(b.dataset.prioritySource){state.config.priorityBadgeSource=b.dataset.prioritySource==='commandCenter'?'commandCenter':'lead';saveState(`PRIORITY BADGE SOURCE — ${state.config.priorityBadgeSource==='commandCenter'?'COMMAND CENTER':'LEADS / MANAGERS'}`);render();return}if(b.dataset.nextSystemTasks)return nextSystemTasksModal(b.dataset.nextSystemTasks);if(b.dataset.saveNextSystemTasks)return saveNextSystemTasks(b.dataset.saveNextSystemTasks);if(b.dataset.quickField){return quickCardFieldModal(b.dataset.quickTool,b.dataset.quickField)}if(b.dataset.saveQuickField){return saveQuickCardField(b.dataset.saveQuickField,b.dataset.quickKey)}if(b.dataset.directIdentity){return identityEditModal(b.dataset.identityTool,b.dataset.directIdentity)}if(b.dataset.saveDirectIdentity){return saveDirectIdentity(b.dataset.saveDirectIdentity,b.dataset.identityKey)}if(b.dataset.directPriority){return directPriorityModal(b.dataset.directPriority)}if(b.dataset.saveDirectPriority){return saveDirectPriority(b.dataset.saveDirectPriority)}if(b.dataset.directIndicator){return indicatorControlModal(b.dataset.indicatorTool,b.dataset.directIndicator)}if(b.dataset.indicatorControl){let sel=document.querySelector(`[data-indicator-picker="${CSS.escape(b.dataset.indicatorControl)}"]`),key=sel?.value;if(!key){toast('SELECT A BADGE FIRST');return}return indicatorControlModal(b.dataset.indicatorControl,key)}if(b.dataset.saveIndicator){saveIndicatorUpdate(b.dataset.saveIndicator,b.dataset.indicatorKey);return}if(b.dataset.forecastChecklist)return forecastChecklistModal(b.dataset.forecastChecklist);
@@ -1496,3 +1595,5 @@ document.addEventListener('click',e=>{
 
 // V6.5.83 RENDER RECOVERY + PRESENTATION SCROLL LOCK:
 // fixes Next System Tasks FACTD scope error, Presentation Tool Edit browser scrolling, and adds persistent Save/Cancel/X actions.
+
+// V6.5.88 PRESENTATION TOOL EDIT OVERLAY LOCK: Presentation remains on the live wallboard; Tool Edit is a dedicated fixed overlay with its own scroll owner and persistent actions.
