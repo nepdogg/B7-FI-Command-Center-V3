@@ -1,4 +1,16 @@
-# B7 FI Command Center V6.5.81
+# B7 FI Command Center V6.5.82 — Badge Source-of-Truth + Presentation Scroll Lock
+
+This build is based on V6.5.81 and focuses on the 9/9 work-testing findings.
+
+- FACTD standalone badge removed. FACTD is now a yellow intermediate state of Options Testing: NEED TO COMPLETE FACTD.
+- The freed 28th matrix position is retained as FUTURE BADGE for the new badge definition coming next.
+- Lamp is one shared Lamp Status control: hours plus ON/OFF state. LAMP OFF is red and displays LAMP OFF.
+- System Power semantics: System Powered Down is red; System Powered On renders green as SYSTEM POWERED UP.
+- Customer Source and STR badges continue to write the same authoritative workflow fields used by Tool Edit; no separate badge-only status is introduced.
+- Presentation Mode > Update Tool Status uses a fixed full-viewport independent vertical scroll container so the entire Tool Edit page is reachable.
+- Universal Tool Card geometry remains unchanged.
+
+# B7 FI Command Center V6.5.82
 ## Editor Control + Presentation Scroll Rebuild Lock
 
 This build is a focused reliability rebuild of the Tool Information editing controls and Presentation Tool Edit scrolling. The Universal Tool Card layout is unchanged.

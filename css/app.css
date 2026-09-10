@@ -16000,3 +16000,33 @@ html.presentation-tool-edit body.presentation-mode[data-center="operations"][dat
   min-height:0!important;
   overflow:visible!important;
 }
+
+/* =========================================================
+   V6.5.82 PRESENTATION TOOL EDIT SCROLL — authoritative final rule
+   Full Tool Edit opened from Presentation gets its own viewport scroll container.
+   ========================================================= */
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .app-frame.presentation-tool-scroll{
+  position:fixed!important;
+  inset:0!important;
+  width:100vw!important;
+  height:100vh!important;
+  min-height:100vh!important;
+  max-height:100vh!important;
+  margin:0!important;
+  transform:none!important;
+  zoom:1!important;
+  overflow-y:scroll!important;
+  overflow-x:hidden!important;
+  -webkit-overflow-scrolling:touch!important;
+  overscroll-behavior:contain!important;
+  z-index:5000!important;
+  background:#020a13!important;
+}
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .app-frame.presentation-tool-scroll .body-shell,
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .app-frame.presentation-tool-scroll #app,
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .app-frame.presentation-tool-scroll .tool-editor{
+  height:auto!important;
+  max-height:none!important;
+  min-height:max-content!important;
+  overflow:visible!important;
+}
