@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.84', BUILD='20260909-V6.5.84-PRESENTATION-TOOL-EDIT-ACTIONS-LOCK';
+const VERSION='6.5.85', BUILD='20260909-V6.5.85-PRESENTATION-TOOL-EDIT-INTERNAL-SCROLL-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -1143,9 +1143,13 @@ function fitPresentation(){
   if(route.center==='operations'&&route.sub==='tool'){
     document.documentElement.classList.add('presentation-tool-edit');
     frame.classList.add('presentation-tool-scroll');
-    frame.style.zoom='';frame.style.width='100%';frame.style.height='auto';
+    frame.style.zoom='';frame.style.width='100%';frame.style.height='100vh';
     frame.style.transform='none';frame.style.transformOrigin='top left';
-    document.documentElement.style.overflow='auto';document.body.style.overflow='auto';
+    // Presentation Tool Edit uses an internal scrolling workspace. Keep the page itself
+    // locked so the fixed action bar and editor viewport cannot fight browser scrolling.
+    document.documentElement.style.overflow='hidden';document.body.style.overflow='hidden';
+    const editorScroll=document.querySelector('body.presentation-mode[data-center="operations"][data-sub="tool"] #app');
+    if(editorScroll&&!editorScroll.dataset.scrollInitialized){editorScroll.scrollTop=0;editorScroll.dataset.scrollInitialized='1';}
     return;
   }
   document.documentElement.classList.remove('presentation-tool-edit');

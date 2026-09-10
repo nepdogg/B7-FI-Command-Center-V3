@@ -23,3 +23,11 @@ This build is based on V6.5.82 and repairs the render-stopping regression found 
 - CANCEL and X discard/confirm unsaved changes through the normal cancel path and return to Presentation Mode.
 - Presentation click shielding is disabled while the full Tool Edit route is active, so all Tool Edit fields and action buttons remain interactive.
 - Regular Live Operations Universal Tool Card layout is unchanged.
+
+## V6.5.85 — Presentation Tool Edit Internal Scroll Lock
+- Fixes the regression where Presentation Mode showed SAVE UPDATES / CANCEL / X but the Tool Edit content could no longer scroll.
+- Presentation Tool Edit is now split into two independent layers: a fixed 56px action bar and a dedicated `#app` editor scroll viewport below it.
+- The normal Presentation header/footer are hidden only while the full Tool Edit overlay is open so they cannot consume or lock scroll space.
+- The outer page remains overflow-locked; only the Tool Edit workspace scrolls. This prevents Presentation wallboard scaling/overflow rules from taking control again.
+- SAVE UPDATES, CANCEL, and X remain visible at all scroll positions and still return to the originating Presentation view.
+- Regular Live Operations and Universal Tool Card geometry are unchanged.
