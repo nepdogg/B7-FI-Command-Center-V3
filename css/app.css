@@ -16030,4 +16030,102 @@ html.presentation-tool-edit body.presentation-mode[data-center="operations"][dat
   min-height:max-content!important;
   overflow:visible!important;
 }
-\n\n/* =========================================================\n   V6.5.83 PRESENTATION TOOL EDIT — browser-page scroll lock\n   Do not trap the long editor inside the 1920x1080 wallboard frame.\n   ========================================================= */\nhtml.presentation-tool-edit,\nhtml.presentation-tool-edit body,\nhtml.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"]{\n  width:100%!important;\n  height:auto!important;\n  min-height:100%!important;\n  max-height:none!important;\n  overflow-x:hidden!important;\n  overflow-y:auto!important;\n}\nhtml.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .app-frame,\nhtml.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .app-frame.presentation-tool-scroll{\n  position:relative!important;\n  inset:auto!important;\n  left:auto!important;\n  top:auto!important;\n  width:100%!important;\n  height:auto!important;\n  min-height:100vh!important;\n  max-height:none!important;\n  margin:0!important;\n  transform:none!important;\n  transform-origin:top left!important;\n  zoom:1!important;\n  overflow:visible!important;\n  z-index:auto!important;\n}\nhtml.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .body-shell,\nhtml.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] #app,\nhtml.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .tool-editor{\n  height:auto!important;\n  min-height:0!important;\n  max-height:none!important;\n  overflow:visible!important;\n}\n
+
+
+/* =========================================================
+   V6.5.84 PRESENTATION TOOL EDIT — scroll + persistent actions
+   Full Tool Edit behaves like a normal page while Presentation stays active.
+   ========================================================= */
+html.presentation-tool-edit,
+html.presentation-tool-edit body,
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"]{
+  width:100%!important;
+  height:auto!important;
+  min-height:100%!important;
+  max-height:none!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+}
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .app-frame,
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .app-frame.presentation-tool-scroll{
+  position:relative!important;
+  inset:auto!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:100vh!important;
+  max-height:none!important;
+  margin:0!important;
+  transform:none!important;
+  transform-origin:top left!important;
+  zoom:1!important;
+  overflow:visible!important;
+}
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .body-shell,
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] #app,
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .tool-editor{
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow:visible!important;
+  pointer-events:auto!important;
+}
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] #app{
+  padding-top:64px!important;
+}
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .presentation-tool-edit-actions{
+  position:fixed!important;
+  left:0!important;
+  right:0!important;
+  top:0!important;
+  height:56px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:18px!important;
+  padding:7px 12px!important;
+  box-sizing:border-box!important;
+  background:#061a27!important;
+  border:2px solid var(--accent)!important;
+  box-shadow:0 8px 24px rgba(0,0,0,.55)!important;
+  z-index:2147483000!important;
+  pointer-events:auto!important;
+}
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .presentation-tool-edit-actions__identity{
+  display:flex!important;
+  align-items:center!important;
+  gap:12px!important;
+  min-width:0!important;
+  font-size:15px!important;
+  letter-spacing:.04em!important;
+}
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .presentation-tool-edit-actions__identity span{
+  color:#fff!important;
+  font-weight:800!important;
+}
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .presentation-tool-edit-actions__buttons{
+  display:flex!important;
+  align-items:center!important;
+  gap:8px!important;
+  flex:0 0 auto!important;
+}
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .presentation-tool-edit-actions button{
+  min-height:38px!important;
+  pointer-events:auto!important;
+  cursor:pointer!important;
+}
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .presentation-tool-edit-close{
+  width:42px!important;
+  min-width:42px!important;
+  padding:0!important;
+  border:1px solid var(--accent)!important;
+  background:#0a2332!important;
+  color:#fff!important;
+  font-size:27px!important;
+  font-weight:900!important;
+  line-height:1!important;
+}
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .presentation-tool-edit-close:hover,
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .presentation-tool-edit-cancel:hover,
+html.presentation-tool-edit body.presentation-mode[data-center="operations"][data-sub="tool"] .presentation-tool-edit-save:hover{
+  filter:brightness(1.2)!important;
+}

@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.83', BUILD='20260909-V6.5.83-RENDER-RECOVERY-PRESENTATION-SCROLL-LOCK';
+const VERSION='6.5.84', BUILD='20260909-V6.5.84-PRESENTATION-TOOL-EDIT-ACTIONS-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -1040,6 +1040,17 @@ function historicalStatusHtml(r){let tools=Array.isArray(r.tools)?r.tools:[];ret
 function openStatusRecord(id){let r=state.statusRecords.find(x=>x.id===id);if(!r)return;modal(`<div class="historical-status-modal"><h2>READ-ONLY STATUS HISTORY</h2>${historicalStatusHtml(r)}<div class="modal-actions"><button class="btn" data-modal-cancel>BACK TO HISTORY</button></div></div>`)}
 const VIEWS={operations:()=>route.sub==='tools'?toolsDashboard():route.sub==='tool'?updateView():route.sub==='daily'?(mode==='edit'?dailyForm():`${centerPageTitle('UPDATE COMMAND CENTER')}<section class="panel">${statusEmail('Current')}</section>`):route.sub==='archive'?archiveView():(document.body.classList.contains('presentation-mode')?`${presentationQuarterPanel()}<div class="presentation-tool-only">${liveToolCard()}</div>`:quarterPanel()+`<div class="operations-dual-grid"><div class="operations-status-carousel">${statusSnapshot()}</div><div class="operations-tool-carousel">${liveToolCard()}</div></div>`),shipping:()=>mode==='edit'?shippingEdit():shippingView(false),priority:()=>mode==='edit'?priorityEdit(route.sub):priorityView(route.sub),status:()=>route.sub==='history'?`<section class="panel status-history-frame">${state.meetings.filter(m=>/Morning Meeting/i.test(m.type||'')).map(m=>`<div class="ref-row clickrow" data-search-meeting="${esc(m.id)}"><b>${esc(m.type)} · ${esc(fmtDate(m.date))}</b><span>${(m.toolOrder?.length||m.toolSnapshots?.length||0)} tools · OPEN MEETING</span></div>`).join('')||'<p>No morning meeting history.</p>'}</section>`:`${centerPageTitle((route.sub==='weekend'?'WEEKEND':'WEEKDAY')+' MORNING STATUS')}<div class="status-center-stack"><section class="panel status-workspace">${statusEmail(route.sub==='weekend'?'Weekend':'Weekday')}</section><div class="meeting-workspace-wrap">${mode==='morningMeeting'&&meetingDraft?morningMeetingForm(meetingDraft):morningMeetingReady(route.sub==='weekend'?'Weekend':'Weekday')}</div></div>`,meeting:()=>mode==='meeting'?meetingForm(meetingDraft):route.sub==='history'?meetingHistory():meetingHistory({leads:'Leads Meeting',orb:'ORB Meeting',cell:'Cell Meeting',escalation:'Escalation Meeting'}[route.sub]||''),action:()=>actionView(),reference:()=>referenceView(),cycle:()=>`${centerPageTitle('FI CYCLE TIME STATUS')}${cycleTimeView()}`,search:()=>searchView(),admin:()=>route.sub==='audit'?`${centerPageTitle('DATA INTEGRITY · VERIFY TOOLS')}<section class="panel"><h2>VERIFY TOOLS</h2><p class="helper">Checks the current quarter for duplicate UTIDs and phase-appropriate required fields. On/Off badges are valid in either state and are not treated as missing.</p>${integrityHtml()}</section>`:adminView()};
 function beginEdit(){if(route.center==='operations'){let origin=clone(route);if(route.sub==='daily'){returnRoute=origin;dailyContext='weekday';mode='edit';draft=clone(state.tools);dirty=false;return render()}if(route.sub==='priorities'){returnRoute=origin;route={center:'priority',sub:'weekday'};mode='edit';dirty=false;return render()}if(route.sub==='schedule'){returnRoute=origin;route={center:'shipping',sub:'home'};mode='edit';dirty=false;return render()}}if(route.center==='operations'&&route.sub==='daily'){returnRoute=null;dailyContext='weekday';mode='edit';draft=clone(state.tools)}else if(route.center==='shipping'){returnRoute=null;mode='edit'}else if(route.center==='priority'){returnRoute=null;mode='edit'}else if(route.center==='status'){returnRoute=clone(route);dailyContext=route.sub==='weekend'?'weekend':'weekday';route={center:'operations',sub:'daily'};mode='edit';draft=clone(state.tools)}else if(route.center==='action'){mode='edit'}else if(route.center==='reference'){mode='edit'}dirty=false;render()}
+function presentationToolEditActionBar(){
+  if(!(presentationActive||document.body.classList.contains('presentation-mode')))return '';
+  return `<div class="presentation-tool-edit-actions" role="toolbar" aria-label="Presentation Tool Edit actions">
+    <div class="presentation-tool-edit-actions__identity"><b>TOOL EDIT</b><span>${esc(String(selected||draft?.id||'NEW TOOL'))}</span></div>
+    <div class="presentation-tool-edit-actions__buttons">
+      <button type="button" class="btn presentation-tool-edit-cancel" onclick="event.preventDefault();event.stopImmediatePropagation();window.B7Core.cancelTool();return false">CANCEL</button>
+      <button type="button" class="btn save presentation-tool-edit-save" onclick="event.preventDefault();event.stopImmediatePropagation();window.B7Core.saveTool();return false">SAVE UPDATES</button>
+      <button type="button" class="presentation-tool-edit-close" aria-label="Close Tool Edit and return to Presentation Mode" title="Close and return to Presentation Mode" onclick="event.preventDefault();event.stopImmediatePropagation();window.B7Core.cancelTool();return false">×</button>
+    </div>
+  </div>`;
+}
 function renderToolEditorPage(){
   allRules();
   shell();
@@ -1049,7 +1060,7 @@ function renderToolEditorPage(){
   if(isNew){
     if(!draft){draft=normalizeTool(defaultTool());draft.id='';draft.quarter=state.quarter;draft.originalQuarter=state.quarter;}
     mode='create';toolEditorMode='create';selected=null;
-    try{app.innerHTML=toolForm(draft,true)}catch(err){console.error('Tool editor render failed',err);app.innerHTML=`<section class="panel tool-editor editor-error"><h2>TOOL EDITOR ERROR</h2><p>${esc(err.message||String(err))}</p></section>`;}
+    try{app.innerHTML=presentationToolEditActionBar()+toolForm(draft,true)}catch(err){console.error('Tool editor render failed',err);app.innerHTML=`<section class="panel tool-editor editor-error"><h2>TOOL EDITOR ERROR</h2><p>${esc(err.message||String(err))}</p></section>`;}
   }else{
     const id=String(route.toolId||selected||'');
     const t=state.tools.find(x=>x.id===id);
@@ -1057,7 +1068,7 @@ function renderToolEditorPage(){
     else{
       if(!draft||selected!==id){draft=clone(t);selected=id;}
       mode='edit';toolEditorMode='edit';
-      try{app.innerHTML=toolForm(draft,false)}catch(err){console.error('Tool editor render failed',err);app.innerHTML=`<section class="panel tool-editor editor-error"><h2>TOOL EDITOR ERROR</h2><p>${esc(err.message||String(err))}</p></section>`;}
+      try{app.innerHTML=presentationToolEditActionBar()+toolForm(draft,false)}catch(err){console.error('Tool editor render failed',err);app.innerHTML=`<section class="panel tool-editor editor-error"><h2>TOOL EDITOR ERROR</h2><p>${esc(err.message||String(err))}</p></section>`;}
     }
   }
   bindInputs();
@@ -1390,8 +1401,8 @@ document.addEventListener('click',e=>{
 },true);
 
 const PRESENTATION_INTERACTIVE='[data-carousel],[data-snapshot],[data-indicator-picker],[data-indicator-control],[data-direct-indicator],[data-direct-identity],[data-direct-priority],[data-save-direct-priority],[data-save-direct-identity],[data-save-indicator],[data-quick-field],[data-save-quick-field],[data-open-tool],[data-handoffs],[data-forecast-checklist],[data-select-forecast-checklist],[data-modal-cancel],#modalClose,#indicator-state,#indicator-availability,#indicator-value,#indicator-driver,.modal,.modal-card,.modal-card #modalBody,.modal-card select,.modal-card input,.modal-card button,[data-universal-combo-select],[data-universal-combo-input],[data-universal-combo-root],.forecast-picker-list,.forecast-picker-row';
-document.addEventListener('click',e=>{if(document.body.classList.contains('presentation-mode')&&!e.target.closest(PRESENTATION_INTERACTIVE)){e.preventDefault();e.stopImmediatePropagation()}},true);
-document.addEventListener('pointerdown',e=>{if(document.body.classList.contains('presentation-mode')&&!e.target.closest(PRESENTATION_INTERACTIVE)){e.preventDefault();e.stopImmediatePropagation()}},true);
+document.addEventListener('click',e=>{const presentationToolEdit=document.body.classList.contains('presentation-mode')&&route.center==='operations'&&route.sub==='tool';if(document.body.classList.contains('presentation-mode')&&!presentationToolEdit&&!e.target.closest(PRESENTATION_INTERACTIVE)){e.preventDefault();e.stopImmediatePropagation()}},true);
+document.addEventListener('pointerdown',e=>{const presentationToolEdit=document.body.classList.contains('presentation-mode')&&route.center==='operations'&&route.sub==='tool';if(document.body.classList.contains('presentation-mode')&&!presentationToolEdit&&!e.target.closest(PRESENTATION_INTERACTIVE)){e.preventDefault();e.stopImmediatePropagation()}},true);
 document.addEventListener('click',e=>{
   const toggle=e.target.closest('[data-tool-type-toggle]');
   if(toggle){
@@ -1446,4 +1457,4 @@ document.addEventListener('click',e=>{
 });
 
 // V6.5.83 RENDER RECOVERY + PRESENTATION SCROLL LOCK:
-// fixes Next System Tasks FACTD scope error and forces Presentation Tool Edit to use browser-page scrolling.
+// fixes Next System Tasks FACTD scope error, Presentation Tool Edit browser scrolling, and adds persistent Save/Cancel/X actions.
