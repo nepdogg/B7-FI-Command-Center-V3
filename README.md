@@ -1,3 +1,14 @@
+# B7 FI Command Center V6.5.95
+
+## V6.5.95 — Presentation Status Drilldown + Scrollbar-Free Lock
+
+### V6.5.95 changes
+- Fixes the Live Status summary-box drilldown in Presentation Mode by explicitly allowing the summary tiles and drilldown rows through the Presentation interaction shield.
+- Live Operations and Presentation Mode now use the same clickable quarter/status drilldown feature and the same authoritative tool sets.
+- Removes visible vertical and horizontal scrollbars from the drilldown popup while retaining mouse-wheel, trackpad, and touch scrolling for long lists.
+- Keeps the compact Daily-Status-style list and click-a-row-to-jump-to-that-tool behavior.
+- Does not change the finalized regular Universal Tool Card or the Presentation card geometry.
+
 # B7 FI Command Center V6.5.93
 
 ## V6.5.93 — Countdown Geometry Recovery Lock

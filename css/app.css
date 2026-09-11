@@ -16784,3 +16784,74 @@ html body .utc-card.utc-v6538 .utc-process-big.neutral{color:#fff!important;}
   .status-drilldown-row{grid-template-columns:1fr 1fr}
   .status-drilldown-row small{grid-column:1/-1}
 }
+
+
+/* ================================================================
+   V6.5.95 — PRESENTATION STATUS DRILLDOWN + SCROLLBAR-FREE LOCK
+   Scope: status-summary drilldown only. Regular UTC geometry remains frozen.
+   ================================================================ */
+
+/* The Presentation click shield must not visually or physically suppress
+   status drilldown controls. JS includes these elements in the interactive
+   allow-list; these CSS rules make the click targets explicit. */
+html body.presentation-mode .presentation-quarter-panel .live-status-drilldown,
+html body.presentation-mode .presentation-quarter-panel [data-status-drilldown]{
+  pointer-events:auto!important;
+  cursor:pointer!important;
+  position:relative!important;
+  z-index:30!important;
+}
+
+/* Drilldown modal stays above the scaled Presentation wallboard. */
+html body.presentation-mode .modal:has(.status-drilldown-modal){
+  z-index:52000!important;
+  pointer-events:auto!important;
+}
+html body.presentation-mode .modal-card:has(.status-drilldown-modal){
+  z-index:52001!important;
+  pointer-events:auto!important;
+}
+
+/* No visible scrollbars. Long lists remain wheel/trackpad/touch-scrollable. */
+.modal-card:has(.status-drilldown-modal),
+.modal-card:has(.status-drilldown-modal) #modalBody,
+.status-drilldown-modal,
+.status-drilldown-list{
+  min-width:0!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+  overflow-x:hidden!important;
+  scrollbar-width:none!important;
+  -ms-overflow-style:none!important;
+}
+.modal-card:has(.status-drilldown-modal)::-webkit-scrollbar,
+.modal-card:has(.status-drilldown-modal) #modalBody::-webkit-scrollbar,
+.status-drilldown-modal::-webkit-scrollbar,
+.status-drilldown-list::-webkit-scrollbar{
+  width:0!important;
+  height:0!important;
+  display:none!important;
+}
+.status-drilldown-list{
+  width:100%!important;
+  overflow-y:auto!important;
+  overscroll-behavior:contain!important;
+  padding-right:0!important;
+  touch-action:pan-y!important;
+}
+.status-drilldown-head,
+.status-drilldown-row{
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+}
+.status-drilldown-row{overflow:hidden!important}
+
+/* Keep the compact Daily-Status-like table inside the popup width so a
+   horizontal scrollbar is never needed. */
+@media (min-width:901px){
+  .status-drilldown-head,.status-drilldown-row{
+    grid-template-columns:minmax(78px,.72fr) minmax(110px,1fr) minmax(145px,1.35fr) minmax(150px,1.5fr) minmax(100px,.9fr) minmax(82px,.78fr)!important;
+  }
+}
