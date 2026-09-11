@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.92', BUILD='20260910-V6.5.92-FIVE-TASK-COLOR-RECOVERY-LOCK';
+const VERSION='6.5.93', BUILD='20260910-V6.5.93-COUNTDOWN-GEOMETRY-RECOVERY-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];

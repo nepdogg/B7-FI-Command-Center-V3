@@ -1,6 +1,13 @@
-# B7 FI Command Center V6.5.92
+# B7 FI Command Center V6.5.93
 
-## V6.5.92 — Five-Task + Operational Color Recovery Lock
+## V6.5.93 — Countdown Geometry Recovery Lock
+
+### V6.5.93 changes
+- Preserves the V6.5.92 operational Ship Countdown and FI Status color logic.
+- Restores protected Ship Countdown geometry so two-line states such as **1 DAY OVERDUE** and **SHIPS TODAY** do not clip.
+- Keeps the MFG Ship Date fully visible beneath the large countdown.
+- Keeps all 5 Next System Tasks visible in regular Live Operations and Presentation Mode.
+- Does not change the locked Universal Tool Card width, three-column structure, badge matrix, or overall card height.
 
 - Repairs the malformed V6.5.91 CSS block that prevented the latest visual changes from loading.
 - Regular Live Operations UTC now reserves enough middle-column height to visibly render all five Next System Tasks.

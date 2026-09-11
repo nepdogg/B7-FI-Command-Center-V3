@@ -16654,3 +16654,57 @@ html body .utc-card.utc-v6538 .utc-process-big.warning{color:#ff9f32!important;}
 html body .utc-card.utc-v6538 .utc-process-big.attention{color:#ffd84a!important;}
 html body .utc-card.utc-v6538 .utc-process-big.packing{color:#54d8ff!important;}
 html body .utc-card.utc-v6538 .utc-process-big.neutral{color:#fff!important;}
+
+
+/* ================================================================
+   V6.5.93 — SHIP COUNTDOWN GEOMETRY RECOVERY LOCK
+   Keep V6.5.92 semantic colors. Restore enough protected vertical room
+   for two-line countdown states plus the MFG Ship Date without clipping.
+   ================================================================ */
+@media (min-width:901px){
+  /* Keep the locked 650px regular UTC height while restoring countdown room.
+     Space is reclaimed only from the lower free-text panels. */
+  html body:not(.presentation-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-status{
+    grid-template-rows:122px 60px 60px 116px 154px 138px!important;
+    height:650px!important;
+    min-height:650px!important;
+    max-height:650px!important;
+  }
+  html body:not(.presentation-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-status>.utc-countdown{
+    grid-template-rows:15px minmax(0,1fr) 18px!important;
+    padding:7px 14px 6px!important;
+    overflow:hidden!important;
+  }
+  html body:not(.presentation-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-countdown-big{
+    max-height:none!important;
+    overflow:visible!important;
+  }
+  html body:not(.presentation-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-countdown-date{
+    min-height:18px!important;
+    height:18px!important;
+    line-height:18px!important;
+    overflow:visible!important;
+  }
+}
+
+@media (min-width:700px){
+  /* Presentation retains the taller wallboard but protects multi-line countdowns. */
+  html body.presentation-mode .utc-card.utc-v6538 .utc-status{
+    grid-template-rows:138px 62px 62px 142px minmax(84px,1fr) minmax(90px,1fr)!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-countdown{
+    grid-template-rows:16px minmax(0,1fr) 20px!important;
+    padding:7px 14px 6px!important;
+    overflow:hidden!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-countdown-big{
+    max-height:none!important;
+    overflow:visible!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-countdown-date{
+    min-height:20px!important;
+    height:20px!important;
+    line-height:20px!important;
+    overflow:visible!important;
+  }
+}
