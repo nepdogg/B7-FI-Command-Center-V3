@@ -16541,3 +16541,46 @@ body.presentation-editor-mode .presentation-tool-edit-close{
   #presentationToolOverlay .presentation-tool-overlay-buttons .btn{min-width:92px!important;padding:0 6px!important;font-size:9px!important}
   #presentationToolOverlay .presentation-tool-overlay-close{width:40px!important;min-width:40px!important;height:40px!important}
 }
+
+/* ============================================================
+   V6.5.89 — POD + FIVE NEXT TASKS + PRESENTATION HEIGHT LOCK
+   Presentation-only geometry. Regular Live Operations UTC remains locked.
+   ============================================================ */
+@media (min-width:700px){
+  /* Use more of the wallboard's available tool area; remove the oversized
+     visual gap below the Presentation control bar. */
+  html body.presentation-mode #app{
+    row-gap:0!important;
+    gap:0!important;
+  }
+  html body.presentation-mode .presentation-tool-only,
+  html body.presentation-mode .presentation-tool-focus{
+    padding:2px 0 4px!important;
+    margin:0!important;
+  }
+
+  /* Five upcoming tasks get the larger operational share. Live Status and
+     Lead Notes each surrender roughly one text line to the task block. */
+  html body.presentation-mode .utc-card.utc-v6538 .utc-status{
+    grid-template-rows:116px 62px 62px 142px minmax(94px,1fr) minmax(100px,1fr)!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-next-actions-blockers{
+    padding:8px 14px!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-next-actions-list{
+    gap:2px!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-next-action{
+    line-height:1.12!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-live-status-text{
+    -webkit-line-clamp:6!important;
+    line-clamp:6!important;
+    max-height:calc(100% - 22px)!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-lead-notes-text{
+    -webkit-line-clamp:6!important;
+    line-clamp:6!important;
+    max-height:calc(100% - 22px)!important;
+  }
+}
