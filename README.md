@@ -1,3 +1,14 @@
+# B7 FI Command Center V6.5.92
+
+## V6.5.92 — Five-Task + Operational Color Recovery Lock
+
+- Repairs the malformed V6.5.91 CSS block that prevented the latest visual changes from loading.
+- Regular Live Operations UTC now reserves enough middle-column height to visibly render all five Next System Tasks.
+- Presentation Mode and regular UTC both consume the same five-task data list.
+- Ship Countdown text and MFG Ship Date now use urgency colors: white >14 days, cyan 8–14, yellow 4–7, orange 1–3, red today/overdue, green shipped.
+- FI Status now uses semantic colors: green ahead/on schedule/complete, red behind/line-down/at-risk, orange waiting for parts, cyan packing.
+- Keeps V6.5.90 priority ordering, all active WIP tools in Update Command Center, POD badge, and single-source badge/Tool Edit synchronization.
+
 # B7 FI Command Center V6.5.91
 
 ## V6.5.91 — Priority + All WIP + Single Source Lock
