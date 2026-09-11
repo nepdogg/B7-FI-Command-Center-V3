@@ -94,3 +94,13 @@ Presentation-launched Tool Edit is now detached from the `presentation-mode` wal
 - Ship Countdown large text and MFG Ship Date now use time-to-ship urgency colors: >14 days white, 8–14 cyan, 4–7 yellow, 1–3 orange, today/overdue red, shipped green.
 - FI Status large text now conveys schedule condition: Ahead/On Schedule green; Behind/System Line Down/At Risk red; Waiting for Parts orange; Packing cyan; neutral states white.
 - These colors use the same shared UTC markup in regular Live Operations and Presentation Mode.
+
+
+## V6.5.94 — Carousel Lifecycle + Status Drilldown + Presentation Alignment Lock
+- Live Operations and Presentation Mode carousels now include every non-archived tool across quarters. Archive is the only lifecycle state that removes a tool from the carousel.
+- Carousel order is: active FI/WIP tools by current Priority, then tools not yet in FI, then Shipped tools last. Shipped tools remain excluded from Priority/Status/workload calculations.
+- Command Center automatic workload engine now evaluates cross-quarter WIP tools; quarter shipping totals remain scoped to the active quarter.
+- Top quarter/status summary boxes are clickable on Live Operations and Presentation Mode and open a compact read-only tool list for that exact status set. Clicking a listed tool jumps the carousel to that tool.
+- Packing / Shipping progress text now reports packing/shipping workflow states only (PACKING NOT STARTED, READY TO START PACKING, current milestone, FINAL PACKING, SHIPPED) instead of FI TESTING.
+- Customer Source and STR Not Required / N/A progress bars use a neutral diagonal striped pattern to distinguish not-applicable from 0% incomplete.
+- Regular Live Operations UTC geometry remains locked. Presentation Mode middle-column proportions now mirror the finalized regular UTC: Countdown, FI Status, Current System Status, 5 Next Tasks, Live System Status, Lead Notes / Reminders.

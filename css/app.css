@@ -16708,3 +16708,79 @@ html body .utc-card.utc-v6538 .utc-process-big.neutral{color:#fff!important;}
     overflow:visible!important;
   }
 }
+
+
+/* ================================================================
+   V6.5.94 — CAROUSEL LIFECYCLE + STATUS DRILLDOWN + PRESENTATION ALIGNMENT LOCK
+   Regular Live Operations UTC geometry remains frozen. Presentation-only middle
+   column mirrors the finalized regular UTC proportions.
+   ================================================================ */
+
+/* Clickable quarter/status summary boxes. Preserve existing visual treatment. */
+.summary-box.live-status-drilldown{
+  appearance:none;-webkit-appearance:none;font:inherit;color:inherit;text-align:center;
+  width:100%;min-width:0;cursor:pointer;box-sizing:border-box;
+}
+.summary-box.live-status-drilldown:hover,
+.summary-box.live-status-drilldown:focus-visible{
+  filter:brightness(1.18);box-shadow:0 0 0 1px currentColor inset,0 0 12px rgba(0,207,255,.18);outline:none;
+}
+.summary-box.live-status-drilldown.summary-disabled{cursor:pointer;opacity:.45}
+
+/* Compact status-box drill-down list. */
+.status-drilldown-modal{min-width:0;display:flex;flex-direction:column;gap:8px}
+.status-drilldown-modal h2{margin:0 38px 2px 0;color:#fff}
+.status-drilldown-note{border:1px solid #6a5a1a;background:#171204;color:#ffd84a;padding:7px 9px;font-size:10px}
+.status-drilldown-head,.status-drilldown-row{
+  display:grid;grid-template-columns:110px 140px 190px minmax(180px,1fr) 120px 100px;gap:8px;align-items:center;
+}
+.status-drilldown-head{padding:6px 9px;color:#54d8ff;border-bottom:1px solid #2a607c;font-size:9px}
+.status-drilldown-list{display:flex;flex-direction:column;gap:3px;max-height:62vh;overflow:auto;padding-right:3px}
+.status-drilldown-row{
+  position:relative;border:1px solid #244f69;background:#020b13;color:#fff;padding:8px 9px;text-align:left;cursor:pointer;
+}
+.status-drilldown-row:hover,.status-drilldown-row:focus-visible{border-color:#00cfff;background:#061b28;outline:none}
+.status-drilldown-row span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px;font-weight:800}
+.status-drilldown-row .status-drilldown-id{color:#54d8ff;font-size:11px}
+.status-drilldown-row small{grid-column:1/-1;color:#c9dce8;font-size:9px;border-top:1px solid #17364a;padding-top:4px;white-space:normal}
+.status-drilldown-empty{border:1px dashed #31516a;padding:24px;text-align:center;color:#8faabd;font-weight:900}
+
+/* N/A workflow bars must read as not-applicable, never as incomplete 0%. */
+.utc-card.utc-v6538 .workflow-progress-item.workflow-na .track.na-track{
+  position:relative;overflow:hidden;border-color:#65737d!important;
+  background:repeating-linear-gradient(135deg,#04080b 0 8px,#d8e0e6 8px 11px,#04080b 11px 19px)!important;
+}
+.utc-card.utc-v6538 .workflow-progress-item.workflow-na .track.na-track .fill{display:none!important}
+.utc-card.utc-v6538 .workflow-progress-item.workflow-na .progress-head b,
+.utc-card.utc-v6538 .workflow-progress-item.workflow-na .progress-step{color:#cbd5dc!important}
+
+@media (min-width:700px){
+  /* Presentation only: copy the finalized regular middle-column proportions.
+     122/60/60/116/154/138 = 650px => identical visual rhythm at any wallboard height. */
+  html body.presentation-mode .utc-card.utc-v6538 .utc-status{
+    grid-template-rows:18.7692% 9.2308% 9.2308% 17.8462% 23.6923% 21.2307%!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-status>.utc-countdown{
+    grid-template-rows:15px minmax(0,1fr) 18px!important;
+    padding:7px 14px 6px!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-next-actions-blockers{
+    min-height:0!important;max-height:none!important;padding:6px 14px!important;overflow:hidden!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-next-actions-list{
+    display:flex!important;flex-direction:column!important;gap:1px!important;overflow:visible!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-next-action{
+    min-height:0!important;margin:0!important;line-height:1.08!important;
+  }
+  html body.presentation-mode .utc-card.utc-v6538 .utc-live-system-status,
+  html body.presentation-mode .utc-card.utc-v6538 .utc-lead-notes{
+    min-height:0!important;max-height:none!important;
+  }
+}
+
+@media(max-width:900px){
+  .status-drilldown-head{display:none}
+  .status-drilldown-row{grid-template-columns:1fr 1fr}
+  .status-drilldown-row small{grid-column:1/-1}
+}
