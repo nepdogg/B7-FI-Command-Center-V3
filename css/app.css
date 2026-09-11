@@ -16855,3 +16855,28 @@ html body.presentation-mode .modal-card:has(.status-drilldown-modal){
     grid-template-columns:minmax(78px,.72fr) minmax(110px,1fr) minmax(145px,1.35fr) minmax(150px,1.5fr) minmax(100px,.9fr) minmax(82px,.78fr)!important;
   }
 }
+
+
+/* =========================================================
+   V6.5.96 FINAL AUTHORITY — TOOL TYPE OPERATIONS COLOR LOCK
+   Design-lock refinement only. Keep all Command Center / UTC geometry,
+   behavior and calculations unchanged. The Tools-page Tool Type control
+   now uses the Operations Center accent instead of the legacy gray/dark fill.
+   ========================================================= */
+html body[data-center="operations"][data-sub="tools"] .nav70-tool-type-select select{
+  background:#176FA8!important;
+  color:#fff!important;
+  border-color:#176FA8!important;
+  box-shadow:inset 0 -3px rgba(255,255,255,.10)!important;
+}
+html body[data-center="operations"][data-sub="tools"] .nav70-tool-type-select select:hover,
+html body[data-center="operations"][data-sub="tools"] .nav70-tool-type-select select:focus-visible{
+  background:#176FA8!important;
+  color:#fff!important;
+  box-shadow:inset 0 -4px #00cfff,inset 0 0 0 1px rgba(255,255,255,.30)!important;
+  outline:none!important;
+}
+html body[data-center="operations"][data-sub="tools"] .nav70-tool-type-select select option{
+  background:#176FA8!important;
+  color:#fff!important;
+}

@@ -1,4 +1,12 @@
-# B7 FI Command Center V6.5.95
+# B7 FI Command Center V6.5.96
+
+
+## V6.5.96 — Tool Type Operations Color Lock
+
+### V6.5.96 changes
+- Design-lock refinement only: no Universal Tool Card, calculation, carousel, drilldown, Presentation Mode, or data-model changes.
+- Operations Center > Tools page Tool Type submenu/select now uses the Operations Center blue (#176FA8) instead of the previous gray/dark styling.
+- Tool Type menu option text remains white and hover/focus retains the Operations accent language.
 
 ## V6.5.95 — Presentation Status Drilldown + Scrollbar-Free Lock
 

@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.95', BUILD='20260910-V6.5.95-PRESENTATION-STATUS-DRILLDOWN-SCROLLBAR-FREE-LOCK';
+const VERSION='6.5.96', BUILD='20260910-V6.5.96-TOOL-TYPE-OPERATIONS-COLOR-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
