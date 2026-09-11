@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.90', BUILD='20260910-V6.5.90-PRIORITY-ALL-WIP-SINGLE-SOURCE-LOCK';
+const VERSION='6.5.91', BUILD='20260910-V6.5.91-PRIORITY-ALL-WIP-SINGLE-SOURCE-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -377,26 +377,13 @@ function shipCountdown(t){
  let dd=shipDayDate(t.shipDate);
  if(t.toolStatus==='Shipped')return{big:'SHIPPED',small:dd,tone:'shipped'};
  if(!t.shipDate)return{big:'NO SHIP DATE',small:'SET MFG SHIP DATE',tone:'neutral'};
- let a=dateOnly(today()),b=dateOnly(t.shipDate),d=Math.round((b-a)/86400000),fi=fiProgress(t),pack=shippingProgress(t),tone='normal';
+ let a=dateOnly(today()),b=dateOnly(t.shipDate),d=Math.round((b-a)/86400000),tone='normal';
  if(d<0)return{big:`${Math.abs(d)} DAY${Math.abs(d)===1?'':'S'} OVERDUE`,small:dd,tone:'critical'};
- if(d===0){tone=(t.toolStatus==='Packing'&&pack>=90)?'warning':'critical';return{big:'SHIPS TODAY',small:dd,tone}}
- if(d===1){tone=(t.toolStatus==='Packing'&&pack>=75)?'warning':'critical';return{big:'SHIPS TOMORROW',small:dd,tone}}
- if(d<=5){
-   if(['OPI','OI'].includes(t.toolStatus))tone='critical';
-   else if(t.toolStatus==='FI')tone=fi>=90?'warning':'critical';
-   else if(t.toolStatus==='Powered Down')tone='warning';
-   else if(t.toolStatus==='Packing')tone=pack>=75?'ready':pack>=25?'warning':'critical';
-   else tone='critical';
- }else if(d<=10){
-   if(['OPI','OI'].includes(t.toolStatus))tone='critical';
-   else if(t.toolStatus==='FI')tone=fi>=85?'ready':fi>=70?'warning':'critical';
-   else if(['Powered Down','Packing'].includes(t.toolStatus))tone='ready';
-   else tone='warning';
- }else if(d<=21){
-   if(['OPI','OI'].includes(t.toolStatus))tone='warning';
-   else if(t.toolStatus==='FI'&&fi<60)tone='warning';
-   else if(['Powered Down','Packing'].includes(t.toolStatus))tone='ready';
- }
+ if(d===0)return{big:'SHIPS TODAY',small:dd,tone:'critical'};
+ if(d===1)return{big:'SHIPS TOMORROW',small:dd,tone:'urgent'};
+ if(d<=3)tone='urgent';
+ else if(d<=7)tone='warning';
+ else if(d<=14)tone='attention';
  return{big:`${d} DAYS TO SHIP`,small:dd,tone};
 }
 function nextFiMilestone(t){let r=routeFor(t),i=checklistIndex(t,t.currentChecklist);if(!r.length)return'NOT SET';if(i<0)return checklistLabel(t,r[0][0]);if(i>=r.length-1)return'FINAL FI CHECKLIST';return checklistLabel(t,r[i+1][0])}
@@ -745,7 +732,7 @@ function liveToolCard(tool=null){
   else if(t.toolStatus==='Powered Down'){process='FI COMPLETE';processClass='complete';system='POWERED DOWN';nextLine='START PACKING'}
   else if(t.toolStatus==='Packing'){process='PACKING';processClass='packing';system='PACKING';nextLine=shippingStep(t)}
   else if(t.toolStatus==='Shipped'){process='COMPLETE';processClass='complete';system='SHIPPED';nextLine='SHIPPING COMPLETE'}
-  if(t.fiStatusOverride){process=t.fiStatusOverride;processClass='attention'}
+  if(t.fiStatusOverride){process=t.fiStatusOverride;let u=String(process).toUpperCase();processClass=['AHEAD OF SCHEDULE','ON SCHEDULE','FI COMPLETE','COMPLETE','SHIPPED'].includes(u)?'complete':['BEHIND SCHEDULE','SYSTEM LINE DOWN','AT RISK'].includes(u)?'critical':u==='PACKING'?'packing':['WAITING FOR PARTS'].includes(u)?'warning':'attention'}
 
   let forecast=calculatedForecastDate(t),
       cyc=actualCycleDays(t),
@@ -787,7 +774,7 @@ function liveToolCard(tool=null){
         <div class="utc-status-section utc-countdown utc-quick-edit direct-editable" data-quick-field="shipDate" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" title="Click to update ship date">
           <div class="utc-kicker">${esc(alias)} SHIP COUNTDOWN</div>
           <div class="utc-countdown-big ${count.tone}">${esc(count.big)}</div>
-          <div class="utc-countdown-date"><span>MFG SHIP DATE</span><b>${esc(t.shipDate?shipDayDate(t.shipDate):'NOT SET')}</b></div>
+          <div class="utc-countdown-date ${count.tone}"><span>MFG SHIP DATE</span><b>${esc(t.shipDate?shipDayDate(t.shipDate):'NOT SET')}</b></div>
         </div>
 
         <div class="utc-status-section utc-fi-status utc-quick-edit direct-editable" data-quick-field="fiStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" title="Click to use Brain AUTO status or set an operational override">
