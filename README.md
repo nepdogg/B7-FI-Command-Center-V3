@@ -1,4 +1,15 @@
-# B7 FI Command Center V6.6.01 — FI Workload Order + Priority Source Lock
+# B7 FI Command Center V6.6.02 — Laser + Options Testing Workflow Lock
+
+
+## V6.6.02 changes
+
+- Laser badge is now a single 3-state workflow: `Verify Laser` (red/default), `V2 Laser` (green), `V3 Laser` (green).
+- Legacy `V3 Laser Connected` is normalized to `V3 Laser`; legacy `Need V3 Laser` is normalized to `Verify Laser`.
+- Options Testing / FACTD is now one authoritative 4-state workflow: `Need to Complete Options Testing` (red/default), `Installing and Testing Options` (yellow), `Testing FACTD` (yellow), `Options Testing Completed` (green).
+- Removes the obsolete standalone FACTD badge from badge evaluation so completed Options Testing can no longer leave a hidden FACTD task behind.
+- Next System Tasks now follows the combined Options Testing state and emits no Options/FACTD task after `Options Testing Completed`.
+- Tool Edit labels now use `Options Testing` and `Laser` and expose the same centralized state choices as the UTC badge editor.
+- Preserves V6.6.01 FI workload population/order rules, Priority Center source switching, Presentation Mode interaction fixes, and the complete multi-user test.
 
 ## V6.6.01 changes
 
