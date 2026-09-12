@@ -1,5 +1,11 @@
-# B7 FI Command Center V6.6.02 — Laser + Options Testing Workflow Lock
+# B7 FI Command Center V6.6.03 — Presentation Lead/Admin Interaction Lock
 
+
+## V6.6.03 changes
+
+- Fixed Presentation Mode so the **Lead / Admin Progress** section is clickable and opens the same Lead / Admin Tasks editor used by the regular Universal Tool Card.
+- Added Presentation Mode interaction allowance for both `data-lead-tasks` and `data-save-lead-tasks`; layout and regular UTC geometry are unchanged.
+- Preserves V6.6.02 Laser and Options Testing / FACTD workflow changes, V6.6.01 FI workload ordering / priority-source behavior, Presentation Mode viewport fixes, and the complete multi-user Microsoft Graph test.
 
 ## V6.6.02 changes
 
