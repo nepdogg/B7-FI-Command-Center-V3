@@ -1,4 +1,13 @@
-# B7 FI Command Center V6.5.99 — Complete Multi-User End-to-End Test
+# B7 FI Command Center V6.6.00 — Presentation Multi-User Interaction Lock
+
+## V6.6.00 changes
+- Multi-User Test launcher is now explicitly allowed through the Presentation Mode interaction shield.
+- Multi-User Test panel and every control inside it remain clickable while Presentation Mode is active.
+- Test panel is forced above the presentation wallboard with a top-level z-index and pointer-event lock.
+- Closing the tester returns to the existing Presentation Mode without changing UTC geometry or carousel data.
+- Retains the V6.5.99 complete end-to-end Entra / Graph / Microsoft List test flow.
+- Retains the Presentation Mode Next System Tasks click/edit fix and viewport-fit behavior.
+- Regular Live Operations Universal Tool Card geometry remains unchanged.
 
 This build is designed for the one-work-test-per-day workflow. The Multi-User Test panel can validate delegated KLA sign-in, Microsoft List discovery, read, external refresh, update + read-back, temporary row creation, and cleanup in one session. It also fixes Presentation Mode Next System Tasks click/edit access without changing locked UTC geometry.
 
@@ -13,13 +22,13 @@ This build is designed for the one-work-test-per-day workflow. The Multi-User Te
 
 ---
 
-# B7 FI Command Center V6.5.99
+# B7 FI Command Center V6.6.00
 
-## V6.5.99 — Multi-User + Presentation Viewport Fit Lock
+## V6.6.00 — Multi-User + Presentation Viewport Fit Lock
 
 This build keeps every V6.5.97 Microsoft Graph multi-user test feature and adds one presentation-only display fix.
 
-### V6.5.99 changes
+### V6.6.00 changes
 - Presentation Mode now adapts its virtual wallboard width to the actual fullscreen aspect ratio instead of always forcing a 1920×1080 canvas.
 - Removes the large unused black bands above and below the Presentation wallboard on 16:10 laptop displays.
 - Keeps uniform scaling, so text, badges, columns, and card geometry are not stretched or distorted.

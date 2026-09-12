@@ -16899,3 +16899,21 @@ html body.presentation-mode #app{
   min-height:0!important;
   box-sizing:border-box!important;
 }
+
+/* =========================================================
+   V6.6.00 PRESENTATION MULTI-USER INTERACTION LOCK
+   Diagnostic multi-user controls must remain above and interactive
+   while the wallboard presentation shield is active.
+   ========================================================= */
+html body.presentation-mode #mu-launch{
+  z-index:2147483640!important;
+  pointer-events:auto!important;
+}
+html body.presentation-mode #mu-panel{
+  z-index:2147483641!important;
+  pointer-events:auto!important;
+}
+html body.presentation-mode #mu-panel,
+html body.presentation-mode #mu-panel *{
+  pointer-events:auto!important;
+}
