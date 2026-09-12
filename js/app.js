@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.5.96', BUILD='20260910-V6.5.96-TOOL-TYPE-OPERATIONS-COLOR-LOCK';
+const VERSION='6.5.98', BUILD='20260911-V6.5.98-MULTI-USER-PRESENTATION-VIEWPORT-FIT-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -1311,7 +1311,19 @@ function fitPresentation(){
   }
   document.documentElement.classList.remove('presentation-tool-edit');
   frame.classList.remove('presentation-tool-scroll');frame.scrollTop=0;
-  const DW=1920,DH=1080;let vw=window.innerWidth||document.documentElement.clientWidth,vh=window.innerHeight||document.documentElement.clientHeight,scale=Math.min(vw/DW,vh/DH),x=Math.max(0,(vw-DW*scale)/2),y=Math.max(0,(vh-DH*scale)/2);
+  // V6.5.98: Presentation viewport-fit lock. Keep the finalized UTC internals untouched,
+  // but make the virtual wallboard width follow the actual fullscreen aspect ratio.
+  // This removes the large top/bottom letterbox bands seen on 16:10 laptops while
+  // preserving uniform scaling (no text/card distortion). 16:9 still resolves to 1920x1080.
+  const DH=1080,SAFE=.985;
+  let vw=window.innerWidth||document.documentElement.clientWidth,
+      vh=window.innerHeight||document.documentElement.clientHeight,
+      usableW=Math.max(1,vw*SAFE),usableH=Math.max(1,vh*SAFE),
+      aspect=usableW/usableH,
+      DW=Math.max(1440,Math.round(DH*aspect)),
+      scale=Math.min(usableW/DW,usableH/DH),
+      x=Math.max(0,(vw-DW*scale)/2),
+      y=Math.max(0,(vh-DH*scale)/2);
   frame.style.zoom='';frame.style.width=DW+'px';frame.style.height=DH+'px';frame.style.transformOrigin='top left';frame.style.transform=`translate(${x/scale}px,${y/scale}px) scale(${scale})`;
   document.documentElement.style.overflow='hidden';document.body.style.overflow='hidden';
 }

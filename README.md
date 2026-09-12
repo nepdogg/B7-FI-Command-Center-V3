@@ -1,5 +1,47 @@
-# B7 FI Command Center V6.5.96
+# B7 FI Command Center V6.5.98
 
+## V6.5.98 — Multi-User + Presentation Viewport Fit Lock
+
+This build keeps every V6.5.97 Microsoft Graph multi-user test feature and adds one presentation-only display fix.
+
+### V6.5.98 changes
+- Presentation Mode now adapts its virtual wallboard width to the actual fullscreen aspect ratio instead of always forcing a 1920×1080 canvas.
+- Removes the large unused black bands above and below the Presentation wallboard on 16:10 laptop displays.
+- Keeps uniform scaling, so text, badges, columns, and card geometry are not stretched or distorted.
+- 16:9 displays continue to resolve to the familiar 1920×1080 presentation geometry.
+- Recalculates automatically when Presentation Mode opens, fullscreen changes, or the browser/window is resized.
+- Regular Live Operations UTC remains locked and unchanged.
+- All V6.5.97 delegated Entra / Microsoft Graph multi-user connection and conflict-test behavior remains included.
+
+
+## V6.5.97 — Multi-User Microsoft Graph Connection Test
+
+This build preserves the V6.5.96 Command Center and adds a separate **MULTI-USER TEST** panel. It is intentionally a connection/concurrency test layer; it does not yet replace the Command Center master localStorage database with Microsoft Lists.
+
+### Test configuration
+- Delegated Microsoft Entra authentication (no client secret stored in the app).
+- Redirect URI: `http://localhost:5500/redirect.html`.
+- Microsoft List: `B7 FI Command Center` on the configured KLA OneDrive-backed SharePoint site.
+- Requested Graph scopes: `User.Read` and `Sites.ReadWrite.All`.
+- Reads existing shared List rows through Microsoft Graph.
+- Allows test-row editing/writing directly to the shared List.
+- Performs a last-modified conflict check before saving so a stale browser does not silently overwrite a row changed by another user.
+
+### How to test
+1. Copy this complete folder into the OneDrive **Command Center** folder.
+2. Double-click `START-COMMAND-CENTER.bat`. Keep the command window open.
+3. Edge should open `http://localhost:5500/`. Do not open `index.html` directly.
+4. Click **MULTI-USER TEST** at the lower-right.
+5. Click **SIGN IN WITH KLA**, then **CONNECT TO LIST**.
+6. Confirm the two existing test tools appear.
+7. Change a harmless value on a test row and click **SAVE SHARED ROW**.
+8. On a second authorized user's computer, run the same build, sign in as that user, connect, and press **REFRESH SHARED DATA**. The saved change should appear.
+9. To test conflict protection, have both users load the same row, let User A save first, then let User B save without refreshing. User B should receive a CONFLICT warning rather than overwriting User A.
+
+### Important
+- This is the first real multi-user backend test, not the final full-data synchronization build.
+- V6.5.96 Universal Tool Card geometry, calculations, carousel, Presentation Mode, badge logic, and local production data model remain unchanged.
+- If sign-in, Graph permissions, or List permissions fail, the test panel displays the Microsoft error so it can be sent to IT.
 
 ## V6.5.96 — Tool Type Operations Color Lock
 

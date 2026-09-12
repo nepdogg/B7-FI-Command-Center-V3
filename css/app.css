@@ -16880,3 +16880,22 @@ html body[data-center="operations"][data-sub="tools"] .nav70-tool-type-select se
   background:#176FA8!important;
   color:#fff!important;
 }
+
+
+/* ================================================================
+   V6.5.98 — PRESENTATION VIEWPORT FIT LOCK
+   The JS wallboard canvas now follows the fullscreen aspect ratio.
+   This block only ensures the presentation frame can consume the adaptive
+   virtual canvas cleanly; regular Live Operations UTC remains untouched.
+   ================================================================ */
+html body.presentation-mode .app-frame{
+  max-width:none!important;
+  max-height:none!important;
+}
+html body.presentation-mode .body-shell,
+html body.presentation-mode #app{
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  box-sizing:border-box!important;
+}
