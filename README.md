@@ -1,3 +1,24 @@
+# B7 FI Command Center V6.6.01 — FI Workload Order + Priority Source Lock
+
+## V6.6.01 changes
+
+- Priority Center source buttons are now functional selectors, not just visual toggles.
+  - **LEADS / MANAGERS** immediately sorts Priority Center by the manually assigned Lead priority.
+  - **COMMAND CENTER** immediately sorts Priority Center by the automatic Command Center ranking.
+  - The selected source continues to drive the Universal Tool Card priority badge and active-FI carousel priority order.
+- Automatic FI workload pages now use one shared population rule: **all non-archived, non-shipped tools that have been handed to FI, across all quarters**.
+  - A future-quarter tool appears as soon as it is handed to FI.
+  - A tool that has merely been added but has not reached FI remains visible in Live Operations / Presentation Mode, but not on the automatic FI workload pages.
+- Standard automatic page ordering is now locked to the Daily Status convention: **non-Regera/Celestiq tools in ascending UTID, followed by Regera/Celestiq tools in ascending UTID**.
+  - Applied to Status / Morning Status, Shipping Center, and Cycle Time Center.
+  - Priority Center remains the only page intentionally sorted by priority.
+- Status Center is explicitly quarter-independent because it is the daily FI morning-status workspace. Its main header is now simply **STATUS CENTER** and it combines every active FI tool regardless of quarter.
+- Shipping and Cycle Time are also populated from the cross-quarter active FI workload so next-quarter systems already in FI are not hidden by the current-quarter filter.
+- Live Operations and Presentation Mode retain the full non-archived fleet lifecycle view, including not-yet-FI and shipped tools.
+- V6.6.00 Presentation Mode interaction fixes and V6.5.99 complete Microsoft multi-user end-to-end tester are preserved.
+
+---
+
 # B7 FI Command Center V6.6.00 — Presentation Multi-User Interaction Lock
 
 ## V6.6.00 changes

@@ -2,7 +2,7 @@
 setlocal
 cd /d "%~dp0"
 echo ============================================================
-echo B7 FI COMMAND CENTER V6.6.00 - MULTI-USER + PRESENTATION INTERACTION TEST
+echo B7 FI COMMAND CENTER V6.6.01 - FI WORKLOAD + PRIORITY SOURCE + MULTI-USER TEST
 echo ============================================================
 echo Starting local web server on http://localhost:5500/
 echo Keep this window open while using the Command Center.
