@@ -1,10 +1,25 @@
-# B7 FI Command Center V6.5.98
+# B7 FI Command Center V6.5.99 — Complete Multi-User End-to-End Test
 
-## V6.5.98 — Multi-User + Presentation Viewport Fit Lock
+This build is designed for the one-work-test-per-day workflow. The Multi-User Test panel can validate delegated KLA sign-in, Microsoft List discovery, read, external refresh, update + read-back, temporary row creation, and cleanup in one session. It also fixes Presentation Mode Next System Tasks click/edit access without changing locked UTC geometry.
+
+## Work test order
+1. Launch `START-COMMAND-CENTER.bat` and confirm `http://localhost:5500/`.
+2. Back up production Command Center data, then load Test Scenario data if desired.
+3. Multi-User Test → Sign In → Connect + Read. Confirm the two known Microsoft List rows appear.
+4. Optional external-change test: add a harmless third row directly in Microsoft Lists, then press Refresh and confirm it appears in the panel.
+5. Edit a harmless field in an existing test row and press Save Shared Row. The panel performs update + read-back.
+6. Press Create Temp Test Row, verify it appears in Microsoft Lists, then Delete Temp Test Row.
+7. Capture a screenshot of any failure message.
+
+---
+
+# B7 FI Command Center V6.5.99
+
+## V6.5.99 — Multi-User + Presentation Viewport Fit Lock
 
 This build keeps every V6.5.97 Microsoft Graph multi-user test feature and adds one presentation-only display fix.
 
-### V6.5.98 changes
+### V6.5.99 changes
 - Presentation Mode now adapts its virtual wallboard width to the actual fullscreen aspect ratio instead of always forcing a 1920×1080 canvas.
 - Removes the large unused black bands above and below the Presentation wallboard on 16:10 laptop displays.
 - Keeps uniform scaling, so text, badges, columns, and card geometry are not stretched or distorted.
