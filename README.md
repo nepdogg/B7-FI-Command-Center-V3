@@ -1,3 +1,14 @@
+# B7 FI Command Center V6.6.08 — Quarter Lifecycle + Multi-User Footer Lock
+
+- Shipping Center and Cycle Time Center now separate active lifecycle tools by Current Quarter.
+- Dynamic quarter navigation is generated from quarters that still contain at least one non-archived tool.
+- Shipped tools remain on their quarter Shipping/Cycle pages until archived.
+- When the last tool in a quarter is archived, that quarter automatically disappears from active Shipping/Cycle navigation; the next available quarter becomes selected.
+- Status Center and Priority Center remain combined cross-quarter live-FI workload views.
+- Live Operations / Presentation retain the full non-archived fleet lifecycle behavior.
+- Multi-User Test launcher moved from floating overlay into the footer so it no longer blocks page content.
+- Preserves V6.6.07 countdown urgency, combined NC workflow, Loader workflow, Pacific calendar handling, UTID jump navigation, Presentation fixes, and multi-user tester.
+
 # B7 FI Command Center V6.6.07 — Countdown + NC / Loader Workflow Lock
 
 ## V6.6.07 changes
