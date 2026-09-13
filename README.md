@@ -1,3 +1,22 @@
+# B7 FI Command Center V6.6.10 — Badge Authoritative Source + Applicability Lock
+
+## V6.6.10 changes
+- Preserves the existing 45-row Lead/Admin checklist as independent task statuses; tasks may be completed in any order.
+- Customer Source badge is now driven only by the dedicated Customer Source Required/Status workflow in Tool Edit and its progress section. Lead/Admin checklist entries no longer overwrite Customer Source workflow fields; the corresponding Lead/Admin milestone rows are synchronized from the dedicated workflow for progress/Next Tasks consistency.
+- STR badge remains driven by the dedicated STR Required/Status workflow; it is now treated as an automatic/non-direct-edit badge.
+- System Power is automatically forced to SYSTEM POWERED DOWN as soon as FI_200 is the current checklist or the FI_200 visual checklist is Open/In Progress/Complete; Powered Down, Packing, and Shipped statuses also enforce the same process gate. The matching Lead/Admin task is synchronized to System Powered Down.
+- NC badge is now fully automatic from actual NC / Escalations / POA records:
+  - before FI handoff / FI-active phase = badge OFF
+  - FI-active with no NC records = badge OFF
+  - any open NC = NEED TO CLOSE ALL NCS (red)
+  - any open escalated/blocking NC = SYSTEM IN NC ESCALATION (red)
+  - all recorded NCs closed = ALL NCS CLOSED (green)
+- AUTO Next System Tasks uses actual NC records for escalation blockers and explicitly reads the dedicated Customer Source and STR workflows.
+- Automatic badge tooltips now describe authoritative tool data rather than implying every automatic badge comes from Lead/Admin.
+- Preserves V6.6.09 Lead/Admin progress/task engine, V6.6.08 quarter lifecycle navigation, Multi-User footer location, Presentation viewport fit, Pacific calendar logic, Loader/NC workflow design, and locked 28-badge UTC geometry.
+
+---
+
 # B7 FI Command Center V6.6.09 — Automatic Badge + Lead/Admin Task Engine
 
 ## V6.6.09 changes

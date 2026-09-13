@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.6.09', BUILD='20260913-V6.6.09-AUTOMATIC-BADGE-LEAD-ADMIN-TASK-ENGINE';
+const VERSION='6.6.10', BUILD='20260913-V6.6.10-BADGE-AUTHORITATIVE-SOURCE-APPLICABILITY-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -25,7 +25,7 @@ const LEAD_TASK_WORKFLOWS={
   'Options testing completed':['Need to Complete Options Testing','Installing and Testing Options','Testing FACTD','Options Testing Completed'],
   'CCL completed':['CCL Required','CCL Completed','CCL Approved','CCL Not Required']
 };
-const LEAD_AUTOMATIC_BADGE_KEYS=new Set(['options','shipKit','ironman','ctd','source','loader','optionsTesting','ccl','poweredDown','shipMeeting','calChips','systemWafers','optionFiles','pod']);
+const LEAD_AUTOMATIC_BADGE_KEYS=new Set(['options','shipKit','ironman','ctd','source','str','loader','optionsTesting','ccl','poweredDown','shipMeeting','calChips','systemWafers','ncClose','optionFiles','pod']);
 function leadTaskStatusOptions(name){return LEAD_TASK_WORKFLOWS[name]||LEAD_STATUSES}
 function leadTaskByName(t,name){return ensureLeadTasks(t).find(x=>x.name===name)}
 function leadTaskStatus(t,name){return String(leadTaskByName(t,name)?.status||'Not Started')}
@@ -98,10 +98,9 @@ function syncLeadAdminAutomation(t){
   let ctd=leadTaskStatus(t,'Is CTD data complete');if(LEAD_TASK_WORKFLOWS['Is CTD data complete'].includes(ctd))t.ctdStatus=ctd;
   let ccl=leadTaskStatus(t,'CCL completed');if(LEAD_TASK_WORKFLOWS['CCL completed'].includes(ccl))t.cclStatus=ccl;
   let iron=leadTaskStatus(t,'Ironman complete');if(['Not Run','Passed','Failed'].includes(iron))t.keyTests.ironman=iron;
-  let power=leadTaskStatus(t,'System powered down');if(['System Powered On','System Powered Down'].includes(power))t.indicatorStates.poweredDown=power;
-  let sourceReq=leadTaskStatus(t,'Does system require customer source');
-  if(sourceReq==='Customer Source Required')t.sourceRequired='YES';else if(sourceReq==='Customer Source Not Required')t.sourceRequired='NO';else if(sourceReq==='Requirement TBD')t.sourceRequired='TBD';
-  if(t.sourceRequired==='NO')t.sourceStatus='Not Started';else if(leadTaskComplete(t,'Customer source completed'))t.sourceStatus='Source Complete';else if(leadTaskComplete(t,'Customer source started'))t.sourceStatus='Source In Progress';
+  let power=leadTaskStatus(t,'System powered down');if(!fi200Started(t)&&['System Powered On','System Powered Down'].includes(power))t.indicatorStates.poweredDown=power;if(fi200Started(t))t.indicatorStates.poweredDown='System Powered Down';
+  // Customer Source is authoritative from the dedicated Customer Source section in Tool Edit.
+  // Lead/Admin items may document the work, but they do not overwrite sourceRequired/sourceStatus.
   // Option-file badge follows the real sequence of file creation tasks.
   let mfg=leadTaskComplete(t,'Create MFG options file'),impact=leadTaskComplete(t,'Created IMPACT options files'),rc=leadTaskComplete(t,'Created RC options files'),cust=leadTaskComplete(t,'Created customer options files');
   t.indicatorStates.optionFiles=!mfg?'Need to Create Option Files':!impact?'Create Impact Option File':!rc?'Create RC Option File':!cust?'Create Customer Option File':'Option Files Created';
@@ -121,7 +120,7 @@ function leadRemaining(t){return ensureLeadTasks(t).filter(x=>!['complete','na']
 function leadProgress(t){let tasks=ensureLeadTasks(t),app=tasks.filter(x=>leadTaskDisposition(x)!=='na'),done=app.filter(x=>leadTaskDisposition(x)==='complete');return app.length?Math.round(done.length/app.length*100):100}
 function nextLeadTasks(t,n=5){let r=leadRemaining(t),rank=x=>x.status==='In Progress'?0:leadTaskDisposition(x)==='tbd'?1:2;return [...r].sort((a,b)=>rank(a)-rank(b)||a.order-b.order).slice(0,n)}
 function leadTaskRows(t){let tasks=ensureLeadTasks(t);return `<div class="lead-task-list">${tasks.map((x,i)=>`<div class="lead-task-row"><div class="lead-order">${i+1}</div><div class="lead-name">${esc(x.name)}${LEAD_TASK_WORKFLOWS[x.name]?'<small>AUTOMATIC BADGE SOURCE</small>':''}</div><select data-lead-status="${i}">${selectOptions(leadTaskStatusOptions(x.name),x.status)}</select><input data-lead-notes="${i}" value="${esc(x.notes||'')}" placeholder="Task notes / date / owner"></div>`).join('')}</div>`}
-function leadTaskModal(id){let t=state.tools.find(x=>x.id===id);if(!t)return;bootstrapLeadTasksFromCurrentSources(t);let rem=leadRemaining(t);modal(`<div class="modal-form lead-modal"><h2>LEAD / ADMIN CHECKLIST — ${esc(t.id)}</h2><p class="helper"><b>${leadProgress(t)}% COMPLETE · ${rem.length} TASKS REMAINING</b><br>This is the authoritative Lead/Admin checklist. Workflow selections automatically update their corresponding UTC badges, Lead/Admin progress, and AUTO Next System Tasks.</p>${leadTaskRows(t)}<div class="modal-actions"><button class="btn" data-modal-cancel>CANCEL</button><button class="btn save" data-save-lead-tasks="${esc(t.id)}">SAVE CHECKLIST</button></div></div>`)}
+function leadTaskModal(id){let t=state.tools.find(x=>x.id===id);if(!t)return;bootstrapLeadTasksFromCurrentSources(t);let rem=leadRemaining(t);modal(`<div class="modal-form lead-modal"><h2>LEAD / ADMIN CHECKLIST — ${esc(t.id)}</h2><p class="helper"><b>${leadProgress(t)}% COMPLETE · ${rem.length} TASKS REMAINING</b><br>This is the authoritative Lead/Admin checklist. Each task remains independently selectable and may be completed out of order. Mapped task selections update their UTC badges, Lead/Admin progress, and AUTO Next System Tasks.</p>${leadTaskRows(t)}<div class="modal-actions"><button class="btn" data-modal-cancel>CANCEL</button><button class="btn save" data-save-lead-tasks="${esc(t.id)}">SAVE CHECKLIST</button></div></div>`)}
 function operationalFocus(){let e=commandCenterEngine();let list=(items,level,empty)=>items.length?items.map(x=>`<div class="focus-item ${level}"><b>${esc(x.tool.id)}</b><span>${esc((x.reasons||[]).join(' · ')||'ON TRACK')}</span></div>`).join(''):`<div class="focus-empty">${empty}</div>`;return `<section class="panel focus-panel"><div class="focus-columns"><div class="focus-column critical"><div class="focus-column-head"><b>${e.critical.length}</b><span>CRITICAL</span></div><div class="focus-column-list">${list(e.critical,'critical','NO CRITICAL SYSTEMS')}</div></div><div class="focus-column attention"><div class="focus-column-head"><b>${e.attention.length}</b><span>ATTENTION</span></div><div class="focus-column-list">${list(e.attention,'attention','NO ATTENTION SYSTEMS')}</div></div><div class="focus-column ontrack"><div class="focus-column-head"><b>${e.onTrack.length}</b><span>ON TRACK</span></div><div class="focus-column-list">${list(e.onTrack,'ontrack','NO SYSTEMS ON TRACK')}</div></div></div></section>`}
 const THEMES={operations:['OPERATIONS CENTER','#176FA8','23,111,168'],update:['UPDATE CENTER','#8E5AE8','142,90,232'],shipping:['SHIPPING CENTER','#27AE60','39,174,96'],priority:['PRIORITY CENTER','#D4A72C','212,167,44'],status:['STATUS CENTER','#F28C28','242,140,40'],meeting:['MEETING CENTER','#19B9D1','25,185,209'],action:['ACTION CENTER','#E54848','229,72,72'],reference:['REFERENCE CENTER','#E94A9A','233,74,154'],archive:['ARCHIVE CENTER','#8B73D6','139,115,214'],search:['SEARCH CENTER','#536DFE','83,109,254'],cycle:['CYCLE TIME CENTER','#00B8D4','0,184,212'],admin:['ADMINISTRATION CENTER','#A6AFBC','166,175,188']};
 const MAIN=[['operations','OPERATIONS CENTER'],['shipping','SHIPPING CENTER'],['priority','PRIORITY CENTER'],['status','STATUS CENTER'],['cycle','CYCLE TIME CENTER'],['meeting','MEETING CENTER'],['action','ACTION CENTER'],['reference','REFERENCE CENTER'],['search','SEARCH CENTER']];
@@ -152,7 +151,49 @@ let state=load();let route=loadSavedRoute(), mode='view', toolEditorMode='view',
 let screenshotRestore=null, presentationRestore=null, presentationActive=false, presentationEditorActive=false, presentationToolOverlayActive=false, presentationToolOverlayId='';
 function saveState(msg='CHANGES SAVED'){try{state.version=VERSION;state.audit.unshift({at:nowISO(),message:msg});localStorage.setItem(KEY,JSON.stringify(state));dirty=false;toast('✓ SAVED SUCCESSFULLY · '+msg);return true}catch(err){toast('✕ SAVE FAILED · '+err.message);return false}}
 function toast(t){let e=document.querySelector('#toast');e.textContent=t;e.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('show'),2400)}
-function applyRules(t){if(t.toolStatus==='Packing'&&['Not Started','Complete'].includes(t.shipping.scheduleStatus))t.shipping.scheduleStatus='Active';if(t.toolStatus==='Shipped')t.shipping.scheduleStatus='Complete';if(['OPI','OI','FI','Powered Down'].includes(t.toolStatus)&&t.shipping.scheduleStatus==='Complete')t.shipping.scheduleStatus=t.shipping.scheduleSent?'Sent':'Not Started'}
+function fi200Started(t){
+  if(['Powered Down','Packing','Shipped'].includes(String(t.toolStatus||'')))return true;
+  if(String(t.currentChecklist||'')===FI200)return true;
+  let st=String(t.fiChecklistStates?.[FI200]||'Not Started');
+  return ['Open','In Progress','Complete'].includes(st);
+}
+function fiPhaseActive(t){return ['FI','Engineering','Powered Down','Packing','Shipped'].includes(String(t.toolStatus||''))}
+function automaticNcState(t){
+  let all=Array.isArray(t.ncs)?t.ncs:[];
+  if(!fiPhaseActive(t))return {active:false,state:'OFF',tone:'idle',stored:''};
+  if(!all.length)return {active:false,state:'OFF',tone:'idle',stored:''};
+  let open=all.filter(n=>String(n.state||'Open')!=='Closed');
+  if(!open.length)return {active:true,state:'ALL NCS CLOSED',tone:'complete',stored:'All NCs Closed'};
+  if(open.some(n=>String(n.state||'').toLowerCase()==='escalated'||n.blocking))return {active:true,state:'SYSTEM IN NC ESCALATION',tone:'critical',stored:'NC Escalation'};
+  return {active:true,state:'NEED TO CLOSE ALL NCS',tone:'critical',stored:'Need to Close All NCs'};
+}
+function syncDedicatedWorkflowsToLeadTasks(t){
+  ensureLeadTasks(t);
+  let req=String(t.sourceRequired||'TBD').toUpperCase(),status=String(t.sourceStatus||'Not Started');
+  let reqTask=leadTaskByName(t,'Does system require customer source'),startTask=leadTaskByName(t,'Customer source started'),doneTask=leadTaskByName(t,'Customer source completed');
+  if(reqTask)reqTask.status=req==='YES'?'Customer Source Required':req==='NO'?'Customer Source Not Required':'Requirement TBD';
+  if(req==='NO'){if(startTask)startTask.status='N/A';if(doneTask)doneTask.status='N/A';}
+  else if(req==='YES'){
+    let started=!['','Not Started'].includes(status),complete=['Source Complete','Returned to FI'].includes(status);
+    if(startTask)startTask.status=started||complete?'Complete':(startTask.status==='N/A'?'Not Started':startTask.status);
+    if(doneTask)doneTask.status=complete?'Complete':(doneTask.status==='N/A'?'Not Started':doneTask.status);
+  }else{if(startTask&&startTask.status==='N/A')startTask.status='Not Started';if(doneTask&&doneTask.status==='N/A')doneTask.status='Not Started';}
+  if(fi200Started(t)){let p=leadTaskByName(t,'System powered down');if(p)p.status='System Powered Down';}
+  t.leadProgress=leadProgress(t);
+}
+function applyRules(t){
+  if(t.toolStatus==='Packing'&&['Not Started','Complete'].includes(t.shipping.scheduleStatus))t.shipping.scheduleStatus='Active';
+  if(t.toolStatus==='Shipped')t.shipping.scheduleStatus='Complete';
+  if(['OPI','OI','FI','Powered Down'].includes(t.toolStatus)&&t.shipping.scheduleStatus==='Complete')t.shipping.scheduleStatus=t.shipping.scheduleSent?'Sent':'Not Started';
+  t.indicatorStates=t.indicatorStates||{};t.conditionFlags=t.conditionFlags||{};
+  syncDedicatedWorkflowsToLeadTasks(t);
+  // FI 200 is a hard process gate: once FI 200 starts, the system is already powered down.
+  if(fi200Started(t)){t.indicatorStates.poweredDown='System Powered Down';t.conditionFlags.poweredDown=true;}
+  // NC badge is fully derived from actual NC records and is not a manual badge state.
+  let nc=automaticNcState(t);
+  if(nc.stored)t.indicatorStates.ncClose=nc.stored;
+  t.conditionFlags.ncEscalation=nc.stored==='NC Escalation';
+}
 function allRules(){state.tools.forEach(applyRules)}
 function activeTools(){return state.tools.filter(t=>t.toolStatus!=='Archived'&&(t.quarter||state.quarter)===state.quarter)}
 function operationalTools(){return activeTools().filter(t=>t.toolStatus!=='Shipped'&&t.toolStatus!=='Archived')}
@@ -708,6 +749,8 @@ function evaluateBadgeStates(t){
   let ctd=String(t.ctdStatus||'Need to Complete CTD Data'),ccl=String(t.cclStatus||'Verify CCL Required'),sourceRequired=String(t.sourceRequired||'TBD').toUpperCase(),sourceStatus=String(t.sourceStatus||'Not Started'),strRequired=String(t.strRequired||'TBD').toUpperCase(),strStatus=String(t.strStatus||'Not Started');
   let post=String(st.postmag||'Need to Remove Postmag'),imc=String(st.imcConfig||'Verify IMC Config'),optTest=String(st.completeOptions||'Need to Complete Options Testing'),ship=String(st.shipMeeting||'Need Ship Meeting'),laser=String(st.laser||'Verify Laser'),cal=String(st.calChips||'Need to Request Cal Chips'),thermal=String(st.thermalRack||'Verify Thermal Rack'),wafers=String(st.systemWafers||'Need to Issue System Wafer Kit'),power=String(st.poweredDown||'System Powered On'),ncClose=String(st.ncClose||'Need to Close All NCs'),loader=String(st.loader||'Verify Loader'),eq=String(st.eqChecklists||'Need to Complete All EQ Checklists'),chiller=String(st.chiller||'Verify Chiller'),optionFiles=String(st.optionFiles||'Need to Create Option Files'),pod=String(st.pod||'Need to Request POD');
   let postApplicable=['ZEPHYR','VANQUISH'].includes(String(t.codename||'').toUpperCase());
+  if(fi200Started(t))power='System Powered Down';
+  let ncAuto=automaticNcState(t);
   return {
     options:{label:'REQUEST OPTIONS',state:st.options==='Requested Options'?'OPTIONS REQUESTED':'NEED TO REQUEST OPTIONS',active:true,tone:st.options==='Requested Options'?'complete':'critical'},
     shipKit:{label:'REQUEST SHIP KIT',state:st.shipKit==='Requested Ship Kit'?'SHIP KIT REQUESTED':'NEED TO REQUEST SHIP KIT',active:true,tone:st.shipKit==='Requested Ship Kit'?'complete':'critical'},
@@ -731,7 +774,7 @@ function evaluateBadgeStates(t){
     shipMeeting:{label:'SHIP MEETING',state:ship==='Ship Meeting Completed'?'SHIP MEETING COMPLETED':ship==='Ship Meeting Scheduled'?'SHIP MEETING SCHEDULED':'NEED SHIP MEETING',active:true,tone:ship==='Ship Meeting Completed'?'complete':ship==='Ship Meeting Scheduled'?'attention':'critical'},
     calChips:{label:'CAL CHIPS',state:cal==='Cal Chips Requested'?'CAL CHIPS REQUESTED':'NEED TO REQUEST CAL CHIPS',active:true,tone:cal==='Cal Chips Requested'?'complete':'critical'},
     systemWafers:{label:'SYSTEM WAFERS',state:wafers==='System Wafer Kit Issued'?'ISSUED SYSTEM WAFER KIT':wafers==='Need to Transact System Wafer Kit'?'NEED TO TRANSACT SYSTEM WAFER KIT':wafers==='Need to Update Wafer Log'?'NEED TO UPDATE WAFER LOG':'NEED TO ISSUE SYSTEM WAFER KIT',active:true,tone:wafers==='System Wafer Kit Issued'?'complete':['Need to Transact System Wafer Kit','Need to Update Wafer Log'].includes(wafers)?'attention':'critical'},
-    ncClose:{label:'NC',state:ncClose==='All NCs Closed'?'ALL NCS CLOSED':ncClose==='NC Escalation'?'SYSTEM IN NC ESCALATION':'NEED TO CLOSE ALL NCS',active:true,tone:ncClose==='All NCs Closed'?'complete':'critical'},
+    ncClose:{label:'NC',state:ncAuto.active?ncAuto.state:'NC',active:ncAuto.active,tone:ncAuto.tone},
     loader:{label:'LOADER',state:loader==='Hybrid Loader'?'HYBRID LOADER':loader==='Phoenix 2 Loader'?'PHOENIX 2 LOADER':loader==='Phoenix 2 N2 Loader'?'PHOENIX 2 N2 LOADER':loader==='Phoenix 6 Loader'?'PHOENIX 6 LOADER':loader==='Phoenix 6 N2 Loader'?'PHOENIX 6 N2 LOADER':'VERIFY LOADER',active:true,tone:loader==='Verify Loader'?'critical':'complete'},
     eqChecklists:{label:'EQ CHECKLISTS',state:eq==='All EQ Checklists Completed'?'ALL EQ CHECKLISTS COMPLETED':'NEED TO COMPLETE ALL EQ CHECKLISTS',active:true,tone:eq==='All EQ Checklists Completed'?'complete':'critical'},
     chiller:{label:'CHILLER',state:chiller==='50Hz Chiller'?'50HZ CHILLER':chiller==='29xx Chiller'?'29XX CHILLER':chiller==='Regera Chiller'?'REGERA CHILLER':chiller==='Celestiq Chiller'?'CELESTIQ CHILLER':'VERIFY CHILLER',active:true,tone:chiller==='Verify Chiller'?'critical':'complete'},
@@ -746,22 +789,29 @@ const INDICATOR_SLOT_KEYS=[...INDICATOR_KEYS];
 const INDICATOR_CONTROL_KEYS=['driver','reduced',...INDICATOR_KEYS.filter(k=>!['lamp'].includes(k))];
 function indicatorStateForSlot(t,key){return indicatorState(t,key)}
 function indicatorMessage(t,key){return indicatorStateForSlot(t,key).state}
-function indicatorLamp(t,key){let x=indicatorStateForSlot(t,key),editable=!LEAD_AUTOMATIC_BADGE_KEYS.has(key);if(key==='lamp'){editable=true;let req=lampRequestBrainState(t);if(req.active&&x.tone==='complete')x={...x,state:`${x.state} · REQUEST LAMP`,tone:'critical'};}let attrs=key==='lamp'?` data-quick-field="lampHours" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" aria-label="Update lamp status and hours"`:editable?` data-direct-indicator="${esc(key)}" data-indicator-tool="${esc(t.id)}" role="button" tabindex="0" aria-label="Update ${esc(x.label)}"`:` aria-label="${esc(x.label)} automatic status"`;return `<div class="fi-indicator-lamp ${x.active?'on':'off'} ${x.tone} ${editable?'direct-editable':'automatic-badge'}" title="${esc(x.label)}${editable?' — click to update':' — automatic from Lead/Admin checklist'}"${attrs}><span class="fi-indicator-message">${esc(indicatorMessage(t,key))}</span></div>`}
+function indicatorLamp(t,key){let x=indicatorStateForSlot(t,key),editable=!LEAD_AUTOMATIC_BADGE_KEYS.has(key);if(key==='lamp'){editable=true;let req=lampRequestBrainState(t);if(req.active&&x.tone==='complete')x={...x,state:`${x.state} · REQUEST LAMP`,tone:'critical'};}let attrs=key==='lamp'?` data-quick-field="lampHours" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" aria-label="Update lamp status and hours"`:editable?` data-direct-indicator="${esc(key)}" data-indicator-tool="${esc(t.id)}" role="button" tabindex="0" aria-label="Update ${esc(x.label)}"`:` aria-label="${esc(x.label)} automatic status"`;return `<div class="fi-indicator-lamp ${x.active?'on':'off'} ${x.tone} ${editable?'direct-editable':'automatic-badge'}" title="${esc(x.label)}${editable?' — click to update':' — automatic from authoritative tool data'}"${attrs}><span class="fi-indicator-message">${esc(indicatorMessage(t,key))}</span></div>`}
 function indicatorDisplayPanel(t){return `<section class="utc-indicator-display"><div class="utc-indicator-grid">${INDICATOR_SLOT_KEYS.map(k=>indicatorLamp(t,k)).join('')}</div></section>`}
 function nextSystemTasksAuto(t){
   let ev=evaluateTool(t),rows=[],seen=new Set(),add=(key,tone,text,source='')=>{let norm=String(text||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();if(!norm||seen.has(norm))return;seen.add(norm);rows.push({key,tone,text,source})};
-  const ncEsc=String(t?.indicatorStates?.ncClose||'')==='NC Escalation';
+  const ncAuto=automaticNcState(t),ncEsc=ncAuto.stored==='NC Escalation';
   if(ncEsc)add('ncClose','critical','BLOCKER — SYSTEM IN NC ESCALATION','badge');
   // Official current FI checklist is the primary system work item.
   let route=routeFor(t),cur=route.find(([c])=>c===t.currentChecklist);if(cur)add('fi','fi',`${cur[0]} — ${cur[1]}`,'fi');
   // Real Lead/Admin checklist is the next authoritative work source.
   nextLeadTasks(t,8).forEach(x=>add(`lead:${x.name}`,x.status==='In Progress'?'attention':'lead',leadTaskActionText(x),'lead'));
+  // Dedicated Customer Source / STR sections are authoritative for these workflows.
+  let sr=String(t.sourceRequired||'TBD').toUpperCase(),ss=String(t.sourceStatus||'Not Started');
+  if(sr==='TBD')add('source','critical','Determine customer source requirement','workflow');
+  else if(sr==='YES'&&!['Source Complete','Returned to FI'].includes(ss))add('source',ss==='Not Started'?'critical':'attention',ss==='Not Started'?'Start customer source':'Complete customer source','workflow');
+  let rr=String(t.strRequired||'TBD').toUpperCase(),rs=String(t.strStatus||'Not Started');
+  if(rr==='TBD')add('str','critical','Determine STR requirement','workflow');
+  else if(rr==='YES'&&rs!=='Complete')add('str',rs==='Not Started'?'critical':'attention',rs==='Not Started'?'Start STR workflow':'Complete STR workflow','workflow');
   const optTest=String(t?.indicatorStates?.completeOptions||'Need to Complete Options Testing');
   const skip=new Set(['lamp','requestLamp','poweredDown','ncClose',...LEAD_AUTOMATIC_BADGE_KEYS]);
   const actionText={options:'Request options',shipKit:'Request ship kit',ironman:'Run Ironman',sccCleanup:'Complete SCC cleanup',backup:'Complete SCC backup',ctd:'Complete / advance CTD data',source:'Complete customer source requirement',loader:'Verify loader',postmag:'Remove Postmag',opk:'Resolve OPK requirement',optionsTesting:optTest==='Testing FACTD'?'Testing FACTD':optTest==='Installing and Testing Options'?'Installing and testing options':'Complete options testing',thermalRack:'Verify thermal rack',laser:'Verify laser',avData:'Complete / advance AV data',ccl:'Verify / advance CCL requirement',str:'Verify / advance STR requirement',wwc:'Verify WWC requirement',imc:'Verify IMC configuration',shipMeeting:'Schedule / complete ship meeting',calChips:'Request cal chips',systemWafers:'Complete system wafer kit action',eqChecklists:'Complete all EQ checklists',chiller:'Verify chiller',optionFiles:'Create / complete option files',pod:'Request POD'};
   ev.badgeList.forEach(x=>{if(skip.has(x.key)||!x.active||!['critical','attention'].includes(x.tone))return;add(x.key,x.tone,actionText[x.key]||x.state,'badge')});
   // Order: blocker, official FI task, in-progress/remaining Lead/Admin work, then independent badge conditions.
-  let rank=x=>x.key==='ncClose'?0:x.source==='fi'?1:x.source==='lead'?(x.tone==='attention'?2:3):x.tone==='critical'?4:5;
+  let rank=x=>x.key==='ncClose'?0:x.source==='fi'?1:x.source==='lead'?(x.tone==='attention'?2:3):x.source==='workflow'?(x.tone==='critical'?4:5):x.tone==='critical'?6:7;
   return rows.sort((a,b)=>rank(a)-rank(b)).slice(0,5);
 }
 function nextSystemTasksMode(t){return String(t.nextSystemTasksMode||'AUTO').toUpperCase()==='MANUAL'?'MANUAL':'AUTO'}
@@ -780,7 +830,7 @@ function nextSystemTasksModal(id){
   let t=state.tools.find(x=>String(x.id)===String(id));if(!t)return;
   let mode=nextSystemTasksMode(t),manual=Array.isArray(t.nextSystemTasksManual)?t.nextSystemTasksManual:['','','','',''];
   while(manual.length<3)manual.push('');
-  modal(`<div class="modal-form next-system-tasks-modal"><h2>NEXT SYSTEM TASKS — ${esc(t.id)}</h2><p class="helper">AUTO combines the official FI checklist, remaining Lead/Admin checklist work, and unresolved independent badges. Checklist-driven badges are deduplicated automatically. MANUAL overrides only these five card lines.</p><div class="form-grid"><div class="field span4"><label>DISPLAY MODE</label><select id="nexttasks-direct-mode"><option value="AUTO" ${mode==='AUTO'?'selected':''}>AUTO</option><option value="MANUAL" ${mode==='MANUAL'?'selected':''}>MANUAL</option></select></div><div class="field span4"><label>MANUAL TASK 1</label><input id="nexttasks-direct-1" value="${esc(manual[0]||'')}" placeholder="Enter first system task"></div><div class="field span4"><label>MANUAL TASK 2</label><input id="nexttasks-direct-2" value="${esc(manual[1]||'')}" placeholder="Enter second system task"></div><div class="field span4"><label>MANUAL TASK 3</label><input id="nexttasks-direct-3" value="${esc(manual[2]||'')}" placeholder="Enter third system task"></div><div class="field span4"><label>MANUAL TASK 4</label><input id="nexttasks-direct-4" value="${esc(manual[3]||'')}" placeholder="Enter fourth system task"></div><div class="field span4"><label>MANUAL TASK 5</label><input id="nexttasks-direct-5" value="${esc(manual[4]||'')}" placeholder="Enter fifth system task"></div></div><div class="modal-actions"><button class="btn" data-modal-cancel>CANCEL</button><button class="btn save" data-save-next-system-tasks="${esc(t.id)}">SAVE TASKS</button></div></div>`);
+  modal(`<div class="modal-form next-system-tasks-modal"><h2>NEXT SYSTEM TASKS — ${esc(t.id)}</h2><p class="helper">AUTO combines the official FI checklist, remaining Lead/Admin checklist work, dedicated Customer Source / STR workflows, and unresolved independent badges. Automatic badge sources are deduplicated. MANUAL overrides only these five card lines.</p><div class="form-grid"><div class="field span4"><label>DISPLAY MODE</label><select id="nexttasks-direct-mode"><option value="AUTO" ${mode==='AUTO'?'selected':''}>AUTO</option><option value="MANUAL" ${mode==='MANUAL'?'selected':''}>MANUAL</option></select></div><div class="field span4"><label>MANUAL TASK 1</label><input id="nexttasks-direct-1" value="${esc(manual[0]||'')}" placeholder="Enter first system task"></div><div class="field span4"><label>MANUAL TASK 2</label><input id="nexttasks-direct-2" value="${esc(manual[1]||'')}" placeholder="Enter second system task"></div><div class="field span4"><label>MANUAL TASK 3</label><input id="nexttasks-direct-3" value="${esc(manual[2]||'')}" placeholder="Enter third system task"></div><div class="field span4"><label>MANUAL TASK 4</label><input id="nexttasks-direct-4" value="${esc(manual[3]||'')}" placeholder="Enter fourth system task"></div><div class="field span4"><label>MANUAL TASK 5</label><input id="nexttasks-direct-5" value="${esc(manual[4]||'')}" placeholder="Enter fifth system task"></div></div><div class="modal-actions"><button class="btn" data-modal-cancel>CANCEL</button><button class="btn save" data-save-next-system-tasks="${esc(t.id)}">SAVE TASKS</button></div></div>`);
 }
 function saveNextSystemTasks(id){
   let i=state.tools.findIndex(x=>String(x.id)===String(id));if(i<0)return;let t=state.tools[i];
