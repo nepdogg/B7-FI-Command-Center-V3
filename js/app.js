@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.6.03', BUILD='20260912-V6.6.03-PRESENTATION-LEAD-ADMIN-INTERACTION-LOCK';
+const VERSION='6.6.04', BUILD='20260912-V6.6.04-PRESENTATION-STRICT-VIEWPORT-CONTAIN-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -1297,10 +1297,10 @@ function fitPresentation(){
   if(route.center==='operations'&&route.sub==='tool'){
     document.documentElement.classList.add('presentation-tool-edit');
     frame.classList.add('presentation-tool-scroll');
-    // V6.5.86: Tool Edit temporarily leaves the scaled wallboard layout and becomes a
-    // true full-browser document. The browser/body owns vertical scrolling; there is no
-    // nested editor scroller. The fixed action bar remains available above the document.
-    frame.style.zoom='';frame.style.width='100%';frame.style.height='auto';
+    frame.style.zoom='';
+    frame.style.setProperty('width','100%','important');
+    frame.style.setProperty('height','auto','important');
+    frame.style.setProperty('min-width','0','important');
     frame.style.transform='none';frame.style.transformOrigin='top left';
     document.documentElement.style.overflowX='hidden';document.documentElement.style.overflowY='auto';
     document.body.style.overflowX='hidden';document.body.style.overflowY='auto';
@@ -1311,23 +1311,43 @@ function fitPresentation(){
   }
   document.documentElement.classList.remove('presentation-tool-edit');
   frame.classList.remove('presentation-tool-scroll');frame.scrollTop=0;
-  // V6.5.98: Presentation viewport-fit lock. Keep the finalized UTC internals untouched,
-  // but make the virtual wallboard width follow the actual fullscreen aspect ratio.
-  // This removes the large top/bottom letterbox bands seen on 16:10 laptops while
-  // preserving uniform scaling (no text/card distortion). 16:9 still resolves to 1920x1080.
-  const DH=1080,SAFE=.985;
-  let vw=window.innerWidth||document.documentElement.clientWidth,
-      vh=window.innerHeight||document.documentElement.clientHeight,
-      usableW=Math.max(1,vw*SAFE),usableH=Math.max(1,vh*SAFE),
-      aspect=usableW/usableH,
-      DW=Math.max(1440,Math.round(DH*aspect)),
-      scale=Math.min(usableW/DW,usableH/DH),
-      x=Math.max(0,(vw-DW*scale)/2),
-      y=Math.max(0,(vh-DH*scale)/2);
-  frame.style.zoom='';frame.style.width=DW+'px';frame.style.height=DH+'px';frame.style.transformOrigin='top left';frame.style.transform=`translate(${x/scale}px,${y/scale}px) scale(${scale})`;
+
+  // V6.6.04: strict Presentation viewport containment.
+  // The virtual wallboard may adapt to the real fullscreen aspect ratio, but the entire
+  // rendered frame must fit inside the actual browser viewport. A small safety gutter
+  // prevents the right/bottom borders from being clipped by Windows/Edge fullscreen rounding.
+  const DH=1080, GUTTER=12;
+  const vw=Math.max(1,window.innerWidth||document.documentElement.clientWidth||screen.width||1920);
+  const vh=Math.max(1,window.innerHeight||document.documentElement.clientHeight||screen.height||1080);
+  const usableW=Math.max(1,vw-(GUTTER*2));
+  const usableH=Math.max(1,vh-(GUTTER*2));
+  const aspect=usableW/usableH;
+  const DW=Math.max(1440,Math.round(DH*aspect));
+
+  // Override the legacy 1920px !important rules from older Presentation builds.
+  frame.style.zoom='';
+  frame.style.setProperty('width',DW+'px','important');
+  frame.style.setProperty('min-width','0','important');
+  frame.style.setProperty('max-width','none','important');
+  frame.style.setProperty('height',DH+'px','important');
+  frame.style.setProperty('min-height','0','important');
+  frame.style.setProperty('max-height','none','important');
+  frame.style.transform='none';
+  frame.style.transformOrigin='top left';
+
+  // Let layout settle, then fit against the larger of the declared canvas or actual content.
+  // This protects against any child with a legacy intrinsic width without changing UTC geometry.
+  const contentW=Math.max(DW,frame.scrollWidth||0);
+  const contentH=Math.max(DH,frame.scrollHeight||0);
+  const scale=Math.min(usableW/contentW,usableH/contentH,1);
+  const renderedW=contentW*scale, renderedH=contentH*scale;
+  const x=Math.max(GUTTER,(vw-renderedW)/2);
+  const y=Math.max(GUTTER,(vh-renderedH)/2);
+
+  frame.style.transform=`translate(${x/scale}px,${y/scale}px) scale(${scale})`;
   document.documentElement.style.overflow='hidden';document.body.style.overflow='hidden';
 }
-function clearPresentationLayout(){delete document.documentElement.dataset.presentationEditorScrollInitialized;document.body.classList.remove('presentation-mode','presentation-editor-mode');document.documentElement.classList.remove('presentation-tool-edit','presentation-editor-document');let frame=document.querySelector('.app-frame');if(frame){frame.classList.remove('presentation-tool-scroll');frame.style.removeProperty('zoom');frame.style.removeProperty('transform');frame.style.removeProperty('transform-origin');frame.style.removeProperty('width');frame.style.removeProperty('height');frame.style.removeProperty('left');frame.style.removeProperty('top');frame.style.removeProperty('position')}document.documentElement.style.removeProperty('zoom');document.body.style.removeProperty('zoom');document.documentElement.style.removeProperty('overflow');document.body.style.removeProperty('overflow');document.documentElement.style.removeProperty('overflow-x');document.documentElement.style.removeProperty('overflow-y');document.body.style.removeProperty('overflow-x');document.body.style.removeProperty('overflow-y');document.documentElement.style.removeProperty('width');document.documentElement.style.removeProperty('height');document.body.style.removeProperty('width');document.body.style.removeProperty('height')}
+function clearPresentationLayout(){delete document.documentElement.dataset.presentationEditorScrollInitialized;document.body.classList.remove('presentation-mode','presentation-editor-mode');document.documentElement.classList.remove('presentation-tool-edit','presentation-editor-document');let frame=document.querySelector('.app-frame');if(frame){frame.classList.remove('presentation-tool-scroll');frame.style.removeProperty('zoom');frame.style.removeProperty('transform');frame.style.removeProperty('transform-origin');frame.style.removeProperty('width');frame.style.removeProperty('height');frame.style.removeProperty('min-width');frame.style.removeProperty('min-height');frame.style.removeProperty('max-width');frame.style.removeProperty('max-height');frame.style.removeProperty('left');frame.style.removeProperty('top');frame.style.removeProperty('position')}document.documentElement.style.removeProperty('zoom');document.body.style.removeProperty('zoom');document.documentElement.style.removeProperty('overflow');document.body.style.removeProperty('overflow');document.documentElement.style.removeProperty('overflow-x');document.documentElement.style.removeProperty('overflow-y');document.body.style.removeProperty('overflow-x');document.body.style.removeProperty('overflow-y');document.documentElement.style.removeProperty('width');document.documentElement.style.removeProperty('height');document.body.style.removeProperty('width');document.body.style.removeProperty('height')}
 async function presentation(){if(route.center!=='operations')return;presentationEditorActive=false;if(document.body.classList.contains('screenshot-mode'))exitScreenshot();presentationRestore={livePaused,snapshotPaused};livePaused=false;snapshotPaused=false;presentationActive=true;document.body.classList.add('presentation-mode');let x=document.querySelector('#exitScreenshot');x.classList.add('hidden');try{if(!document.fullscreenElement&&document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen()}catch(e){}window.scrollTo(0,0);render();requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}
 function exitPresentation(){presentationActive=false;presentationEditorActive=false;clearPresentationLayout();if(presentationRestore){livePaused=!!presentationRestore.livePaused;snapshotPaused=!!presentationRestore.snapshotPaused;presentationRestore=null}document.querySelector('#exitScreenshot').classList.add('hidden');document.querySelector('#screenshotReportTitle')?.remove();if(document.fullscreenElement&&document.exitFullscreen){try{document.exitFullscreen()}catch(e){}}render();requestAnimationFrame(()=>requestAnimationFrame(()=>{syncStickyShellHeight();window.dispatchEvent(new Event('resize'));window.scrollTo(0,0)}))}
 function exitDisplayMode(){if(document.body.classList.contains('presentation-mode'))return exitPresentation();return exitScreenshot()}

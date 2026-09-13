@@ -1,7 +1,16 @@
-# B7 FI Command Center V6.6.03 — Presentation Lead/Admin Interaction Lock
+# B7 FI Command Center V6.6.04 — Presentation Strict Viewport Contain Lock
 
+## V6.6.04 changes
 
-## V6.6.03 changes
+- Fixed the work-laptop Presentation Mode bug where the right edge of the Command Center could be cut off.
+- Presentation now uses the browser's actual usable fullscreen viewport and a small safety gutter, then uniformly scales the complete wallboard to fit inside both width and height.
+- Removed the legacy Presentation `min-width:1920px !important` conflict that could override the adaptive V6.5.98 canvas width.
+- Added a second protection pass using the frame's actual `scrollWidth` / `scrollHeight`, so any legacy intrinsic child width is included in the fit calculation instead of being clipped.
+- Re-fits automatically on resize and fullscreen changes using the existing Presentation listeners.
+- No regular Universal Tool Card geometry, badge layout, progress-bar geometry, data model, priority logic, or Microsoft multi-user test behavior was changed.
+- Preserves V6.6.03 Presentation Lead/Admin editing and all V6.6.02 Laser + Options Testing workflow fixes.
+
+## V6.6.04 changes
 
 - Fixed Presentation Mode so the **Lead / Admin Progress** section is clickable and opens the same Lead / Admin Tasks editor used by the regular Universal Tool Card.
 - Added Presentation Mode interaction allowance for both `data-lead-tasks` and `data-save-lead-tasks`; layout and regular UTC geometry are unchanged.

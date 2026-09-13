@@ -16917,3 +16917,22 @@ html body.presentation-mode #mu-panel,
 html body.presentation-mode #mu-panel *{
   pointer-events:auto!important;
 }
+
+
+/* ================================================================
+   V6.6.04 — PRESENTATION STRICT VIEWPORT CONTAIN LOCK
+   Final authority over legacy 1920px Presentation rules. The canvas size is
+   supplied by fitPresentation(); this block prevents older !important width /
+   min-width declarations from forcing the wallboard past the right edge.
+   Regular Live Operations UTC geometry is untouched.
+   ================================================================ */
+html body.presentation-mode .app-frame{
+  min-width:0!important;
+  max-width:none!important;
+  max-height:none!important;
+  box-sizing:border-box!important;
+}
+html body.presentation-mode{
+  overflow:hidden!important;
+  overscroll-behavior:none!important;
+}
