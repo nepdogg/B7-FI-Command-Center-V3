@@ -1,3 +1,31 @@
+# B7 FI Command Center V6.6.06 — Pacific Calendar + NC Single-Add Lock
+
+## V6.6.06 changes
+
+- Fixed **+ ADD NC** in the Update Command Center / all-tools editor so one click creates exactly one NC / Escalation / POA row.
+- Removed the duplicate direct DOM add path and retained a single delegated add handler that first captures unsaved tool edits, then adds one authoritative NC record and re-renders.
+- Fixed the shared Command Center `today()` helper so operational calendar dates use the browser's **local calendar date** instead of UTC (`toISOString().slice(0,10)`).
+- This prevents late-evening Pacific Time from advancing the Command Center to the next UTC date before California reaches local midnight.
+- Ship Countdown, automatic Command Center priority scoring, quarter-day calculations, milestone completion dates, and other date-only workflows now share the corrected local calendar day.
+- Example: at 10:30 PM Pacific on 09/12/2026, an MFG Ship Date of 09/13/2026 correctly evaluates as **SHIPS TOMORROW**, not **SHIPS TODAY**.
+- Preserves V6.6.05 UTID jump navigation, V6.6.04 strict Presentation viewport containment, V6.6.03 Lead/Admin Presentation editing, V6.6.02 badge workflows, and the existing Microsoft multi-user tester.
+
+---
+
+# B7 FI Command Center V6.6.05 — Update Command Center UTID Jump Navigation Lock
+
+## V6.6.05 changes
+
+- Added a **TOOL UTID ▼** page-action selector to the **Update Command Center** all-tools editor.
+- The selector is populated from the same tools currently displayed on the page and follows the same Update Command Center ordering.
+- Selecting a UTID smoothly jumps directly to that tool's edit card, eliminating long scrolling through the full tool list.
+- The destination card receives a brief visual highlight so the selected system is immediately obvious after the jump.
+- The selector resets to **TOOL UTID ▼** after every jump so another tool can be selected immediately.
+- The control is confined to the Update Command Center edit page and does not change the regular Universal Tool Card, tool data, save behavior, ordering logic, Presentation Mode, or Microsoft multi-user tester.
+- Preserves the V6.6.04 strict Presentation viewport-containment fix and all V6.6.03/V6.6.02 interaction and badge workflow fixes.
+
+---
+
 # B7 FI Command Center V6.6.04 — Presentation Strict Viewport Contain Lock
 
 ## V6.6.04 changes
