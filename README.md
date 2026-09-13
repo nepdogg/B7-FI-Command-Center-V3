@@ -1,4 +1,19 @@
-# B7 FI Command Center V6.6.08 — Quarter Lifecycle + Multi-User Footer Lock
+# B7 FI Command Center V6.6.09 — Automatic Badge + Lead/Admin Task Engine
+
+## V6.6.09 changes
+- Lead/Admin Progress is now calculated from the actual Lead/Admin checklist completion states instead of the Current Lead Task baseline.
+- Clicking Lead/Admin Progress continues to open the real Lead/Admin checklist; it is now the authoritative progress source.
+- Selected Lead/Admin workflow items now expose badge-specific multi-state choices (Customer Source requirement, Loader, CTD, Ironman, System Power, Options Testing/FACTD, and CCL).
+- Checklist saves automatically update the mapped UTC badge states for Options Requested, Ship Kit, Cal Chips, POD, System Wafers, Ship Meeting, Loader, CTD, Customer Source, Ironman, System Power, Options Testing/FACTD, CCL, and Option Files.
+- Existing badge/source data is bootstrapped into the Lead/Admin checklist when the checklist is first opened so adopting automation does not intentionally discard the current tool state.
+- AUTO Next System Tasks now combines: NC blocker, official current FI checklist, remaining Lead/Admin checklist work, and unresolved independent badge conditions.
+- Checklist-driven badges are deduplicated from AUTO Next System Tasks.
+- Badges controlled by the Lead/Admin checklist are rendered as automatic indicators rather than independent direct-edit controls. Hardware/configuration and other independent badges remain driven by their dedicated fields.
+- Preserves V6.6.08 quarter lifecycle navigation, Multi-User Test footer location, Presentation viewport fit, Pacific calendar logic, NC/Loader workflow, and all locked UTC geometry.
+
+---
+
+## Previous build — V6.6.08 Quarter Lifecycle + Multi-User Footer Lock
 
 - Shipping Center and Cycle Time Center now separate active lifecycle tools by Current Quarter.
 - Dynamic quarter navigation is generated from quarters that still contain at least one non-archived tool.
