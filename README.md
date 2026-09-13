@@ -1,3 +1,32 @@
+# B7 FI Command Center V6.6.07 — Countdown + NC / Loader Workflow Lock
+
+## V6.6.07 changes
+
+- Updated Ship Countdown urgency colors while preserving the Pacific/local-calendar date fix:
+  - more than 14 days = white
+  - 8–14 days = cyan
+  - 6–7 days = yellow
+  - 3–5 days = orange
+  - 0–2 days / SHIPS TODAY / overdue = red
+  - shipped = green
+- Combined the old NC Escalation and NC Close badges into one NC badge with one authoritative state:
+  - Need to Close All NCs = red/default
+  - NC Escalation = red, displays SYSTEM IN NC ESCALATION
+  - All NCs Closed = green
+- Existing legacy NC Escalation data migrates into the new combined NC state.
+- Added Loader badge in the freed 28-badge slot:
+  - Verify Loader = red/default
+  - Hybrid Loader = green
+  - Phoenix 2 Loader = green
+  - Phoenix 2 N2 Loader = green
+  - Phoenix 6 Loader = green
+  - Phoenix 6 N2 Loader = green
+- Next System Tasks prioritizes SYSTEM IN NC ESCALATION and shows VERIFY LOADER only while the Loader badge is unresolved.
+- Tool Edit, direct badge editing, regular UTC and Presentation Mode use the same combined NC and Loader source fields.
+- Preserves V6.6.06 Pacific calendar handling, NC single-add fix, V6.6.05 UTID jump navigation, Presentation viewport/interaction fixes, and the multi-user tester.
+
+---
+
 # B7 FI Command Center V6.6.06 — Pacific Calendar + NC Single-Add Lock
 
 ## V6.6.06 changes
