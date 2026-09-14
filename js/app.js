@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.6.14', BUILD='20260913-V6.6.14-PRIORITY-PROPAGATION-SHIPPED-STATE-LOCK';
+const VERSION='6.6.15', BUILD='20260913-V6.6.15-PRIORITY-DATA-SOURCE-LOCK';
 const KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -297,12 +297,47 @@ function currentPriorityKind(){let d=new Date(today()+'T12:00:00').getDay();retu
 function activeLeadPriorityKind(){let k=state.config?.activePriorityKind;return ['weekday','weekend'].includes(k)?k:currentPriorityKind()}
 function commandCenterPriorityList(){let eligible=new Set(priorityEligibleTools().map(t=>String(t.id)));return [...commandCenterEngine().derived].filter(x=>eligible.has(String(x.tool.id))).sort((a,b)=>b.score-a.score||morningCompare(a.tool,b.tool))}
 function commandCenterPriorityRanks(){let m=new Map();commandCenterPriorityList().forEach((x,i)=>m.set(String(x.tool.id),i+1));return m}
+function canonicalLeadPriorityRows(kind=activeLeadPriorityKind()){
+  kind=['weekday','weekend'].includes(kind)?kind:currentPriorityKind();
+  let eligible=priorityEligibleTools(),eligibleIds=new Set(eligible.map(t=>String(t.id))),seen=new Set(),existing=[];
+  (state.priorities?.[kind]||[]).forEach((p,index)=>{
+    let id=String(p?.tool||'');
+    if(!id||!eligibleIds.has(id)||seen.has(id))return;
+    seen.add(id);
+    existing.push({
+      tool:id,
+      priority:Number(p.priority)||9999,
+      assignment:p.assignment||state.tools.find(t=>String(t.id)===id)?.driver||'Unassigned',
+      notes:p.notes||'',
+      autoScore:Number(p.autoScore)||0,
+      __index:index
+    });
+  });
+  existing.sort((a,b)=>a.priority-b.priority||a.__index-b.__index);
+  let appended=morningSortTools(eligible.filter(t=>!seen.has(String(t.id)))).map(t=>({
+    tool:String(t.id),priority:9999,assignment:t.driver||'Unassigned',notes:'',autoScore:0,__index:Number.MAX_SAFE_INTEGER
+  }));
+  let rows=[...existing,...appended].map((p,i)=>({tool:p.tool,priority:i+1,assignment:p.assignment||'Unassigned',notes:p.notes||'',autoScore:Number(p.autoScore)||0}));
+  state.priorities=state.priorities||{weekday:[],weekend:[]};
+  state.priorities[kind]=rows;
+  return rows;
+}
+function setLeadPriorityRows(kind,rows){
+  kind=['weekday','weekend'].includes(kind)?kind:activeLeadPriorityKind();
+  let eligibleIds=new Set(priorityEligibleTools().map(t=>String(t.id))),seen=new Set(),ordered=[];
+  (rows||[]).forEach((p,index)=>{
+    let id=String(p?.tool||'');
+    if(!id||!eligibleIds.has(id)||seen.has(id))return;
+    seen.add(id);
+    ordered.push({tool:id,priority:Number(p.priority)||9999,assignment:p.assignment||state.tools.find(t=>String(t.id)===id)?.driver||'Unassigned',notes:p.notes||'',autoScore:Number(p.autoScore)||0,__index:index});
+  });
+  ordered.sort((a,b)=>a.priority-b.priority||a.__index-b.__index);
+  state.priorities=state.priorities||{weekday:[],weekend:[]};
+  state.priorities[kind]=ordered.map((p,i)=>({tool:p.tool,priority:i+1,assignment:p.assignment||'Unassigned',notes:p.notes||'',autoScore:p.autoScore||0}));
+  return canonicalLeadPriorityRows(kind);
+}
 function leadPriorityRanks(kind=activeLeadPriorityKind()){
-  let eligible=priorityEligibleTools(),eligibleIds=new Set(eligible.map(t=>String(t.id))),m=new Map(),seen=new Set(),rank=1,
-      rows=[...(state.priorities?.[kind]||[])].filter(p=>eligibleIds.has(String(p.tool))).sort((a,b)=>(Number(a.priority)||9999)-(Number(b.priority)||9999));
-  rows.forEach(p=>{if(!seen.has(String(p.tool))){seen.add(String(p.tool));m.set(String(p.tool),rank++)}});
-  morningSortTools(eligible.filter(t=>!seen.has(String(t.id)))).forEach(t=>m.set(String(t.id),rank++));
-  return m;
+  let m=new Map();canonicalLeadPriorityRows(kind).forEach((p,i)=>m.set(String(p.tool),i+1));return m;
 }
 function priorityTier(rank,total){
   rank=Number(rank)||0;total=Math.max(0,Number(total)||0);
@@ -332,11 +367,11 @@ function saveDirectPriority(id){
   let source=document.querySelector('#direct-priority-source')?.value==='commandCenter'?'commandCenter':'lead';
   state.config=state.config||{};state.config.priorityBadgeSource=source;
   if(source==='lead'){
-    let kind=activeLeadPriorityKind(),list=syncPriorityList(kind),rank=Math.max(1,Number(document.querySelector('#direct-priority-rank')?.value)||1),
+    let kind=activeLeadPriorityKind(),list=canonicalLeadPriorityRows(kind),rank=Math.max(1,Number(document.querySelector('#direct-priority-rank')?.value)||1),
         target=list.find(p=>String(p.tool)===String(id));
     if(!target){target={tool:t.id,priority:rank,assignment:t.driver||'Unassigned',notes:'',autoScore:0};list.push(target)}
     let others=list.filter(p=>String(p.tool)!==String(id)).sort((a,b)=>(Number(a.priority)||9999)-(Number(b.priority)||9999));
-    rank=Math.min(rank,others.length+1);others.splice(rank-1,0,target);others.forEach((p,i)=>p.priority=i+1);state.priorities[kind]=others;
+    rank=Math.min(rank,others.length+1);others.splice(rank-1,0,target);others.forEach((p,i)=>p.priority=i+1);setLeadPriorityRows(kind,others);
   }
   saveState(`PRIORITY UPDATED — ${source==='lead'?'LEADS / MANAGERS':'COMMAND CENTER AUTO'}`);closeModal();render();
   if(presentationActive)requestAnimationFrame(()=>requestAnimationFrame(fitPresentation));
@@ -1186,7 +1221,7 @@ function isoDate(d){let y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0
 function addDays(d,n){let x=new Date(d);x.setDate(x.getDate()+n);return x}
 function weekRange(kind,anchor){let d=dateOnly(anchor||today()),day=d.getDay();if(kind==='weekday'){let delta=day===0?-6:1-day,start=addDays(d,delta),end=addDays(start,4);return[start,end]}let delta=day===0?-1:6-day,start=addDays(d,delta),end=addDays(start,1);return[start,end]}
 function priorityTitle(kind){let meta=state.priorityMeta[kind]||{},[a,b]=weekRange(kind,meta.anchor||today());return `${kind==='weekend'?'WEEKEND':'WEEKDAY'} PRIORITIES — ${fmtDate(isoDate(a))} – ${fmtDate(isoDate(b))}`}
-function syncPriorityList(kind){let existing=new Map((state.priorities[kind]||[]).map(p=>[p.tool,p])),tools=morningSortTools(priorityEligibleTools());let rows=tools.map((t,i)=>{let p=existing.get(t.id)||{};return{tool:t.id,priority:p.priority||i+1,assignment:p.assignment||t.driver||'Unassigned',notes:p.notes||'',autoScore:p.autoScore||0}});state.priorities[kind]=rows;return rows}
+function syncPriorityList(kind){return canonicalLeadPriorityRows(kind)}
 function volunteerTable(day,arr){return `<div class="volunteer-panel"><div class="volunteer-head"><b>${day.toUpperCase()} VOLUNTEERS</b><button class="btn" type="button" data-add-volunteer="${day.toLowerCase()}">+ ADD ${day.toUpperCase()} VOLUNTEER</button></div>${arr.map((v,i)=>`<div class="volunteer-row" data-volunteer="${day.toLowerCase()}-${i}"><input data-vf="name" placeholder="Name" value="${esc(v.name||'')}"><input data-vf="hours" placeholder="Hours" value="${esc(v.hours||'')}"><textarea data-vf="notes" placeholder="Notes">${esc(v.notes||'')}</textarea><button type="button" class="btn danger-mini" data-remove-volunteer="${day.toLowerCase()}" data-volunteer-index="${i}">×</button></div>`).join('')||'<p class="muted">No volunteers entered.</p>'}</div>`}
 function volunteerDisplay(day,arr){return `<div class="volunteer-panel"><div class="volunteer-head"><b>${day.toUpperCase()} VOLUNTEERS</b></div>${arr.map(v=>`<div class="volunteer-display-row"><b>${esc(v.name||'—')}</b><span>${esc(v.hours||'')}</span><span>${esc(v.notes||'')}</span></div>`).join('')||'<p class="muted">No volunteers entered.</p>'}</div>`}
 function prioritySourceControl(){let s=state.config?.priorityBadgeSource||'lead';return `<div class="priority-source-control"><div><b>TOOL CARD PRIORITY BADGE SOURCE</b></div><div class="priority-source-buttons"><button class="btn ${s==='commandCenter'?'active':''}" data-priority-source="commandCenter">COMMAND CENTER</button><button class="btn ${s==='lead'?'active':''}" data-priority-source="lead">LEADS / MANAGERS</button></div></div>`}
@@ -1493,7 +1528,7 @@ function captureDailyEditor(){
 }
 function saveCurrent(){if(route.center==='operations'&&route.sub==='tool'&&draft&&(mode==='create'||mode==='edit')){let t=draft;collectToolForm(t);if(!t.id)return alert('UTID / Serial is required.');let allowedModels=catalogModelsForType(t.codename);if(hasStrictModelCatalog(t.codename)&&t.model&&!allowedModels.includes(String(t.model).trim()))return alert(`MODEL ${t.model} is not valid for ${t.codename}. Select one of: ${allowedModels.join(', ')||'no predefined models'}.`);let duplicate=state.tools.find(x=>x.id.toLowerCase()===t.id.toLowerCase()&&x.id!==selected);if(duplicate)return alert(`DUPLICATE TOOL — ${t.id} already exists. Open the existing tool instead.`);if(mode==='create')state.tools.push(normalizeTool(t));else{let i=state.tools.findIndex(x=>x.id===selected);if(i>=0)state.tools[i]=normalizeTool(t)}saveState(mode==='create'?`TOOL ${t.id} ADDED`:`TOOL ${t.id} SAVED`);mode='view';toolEditorMode='view';draft=null;selected=null;let dest=returnRoute;returnRoute=null;route=dest||{center:'operations',sub:'tools'};if(presentationEditorActive)restorePresentationFromToolEditor();render();return}
  if(mode==='edit'&&route.center==='operations'&&route.sub==='daily'){captureDailyEditor();let snap={id:`${dailyContext}-${today()}`,kind:dailyContext==='weekend'?'Weekend Morning Status':'Weekday Morning Status',date:today(),savedAt:nowISO(),tools:clone(updateCommandCenterTools())};let si=state.statusRecords.findIndex(x=>x.id===snap.id);if(si>=0)state.statusRecords[si]=snap;else state.statusRecords.unshift(snap);saveState('COMMAND CENTER UPDATES SAVED');mode='view';draft=null;dirty=false;let dest=returnRoute;returnRoute=null;route=dest||{center:'operations',sub:'live'};render();return}
- if(mode==='edit'&&route.center==='priority'){state.config=state.config||{};state.config.activePriorityKind=route.sub==='weekend'?'weekend':'weekday';let list=[];document.querySelectorAll('[data-priority]').forEach(r=>{let v=f=>r.querySelector(`[data-pf="${f}"]`)?.value||'',tool=state.tools.find(t=>t.id===r.dataset.priority),p=Number(v('priority'));if(tool){tool.salesOrder=v('salesOrder');tool.customer=v('customer');tool.shipDate=v('shipDate');tool.cleanroom=v('cleanroom');tool.driver=v('assignment')||tool.driver}if(p)list.push({tool:r.dataset.priority,priority:p,assignment:v('assignment'),notes:v('notes')})});state.priorities[route.sub]=list;state.priorityMeta[route.sub].anchor=document.querySelector('#priorityAnchor')?.value||state.priorityMeta[route.sub].anchor||today();if(route.sub==='weekend'){for(let day of ['saturday','sunday'])state.priorityMeta.weekend[day]=[...document.querySelectorAll(`[data-volunteer^="${day}-"]`)].map(r=>({name:r.querySelector('[data-vf="name"]')?.value||'',hours:r.querySelector('[data-vf="hours"]')?.value||'',notes:r.querySelector('[data-vf="notes"]')?.value||''}))}saveState(`${route.sub.toUpperCase()} PRIORITIES SAVED`);mode='view';let dest=returnRoute;returnRoute=null;route=dest||route;render();return}
+ if(mode==='edit'&&route.center==='priority'){state.config=state.config||{};state.config.activePriorityKind=route.sub==='weekend'?'weekend':'weekday';let list=[];document.querySelectorAll('[data-priority]').forEach(r=>{let v=f=>r.querySelector(`[data-pf="${f}"]`)?.value||'',tool=state.tools.find(t=>t.id===r.dataset.priority),p=Number(v('priority'));if(tool){tool.salesOrder=v('salesOrder');tool.customer=v('customer');tool.shipDate=v('shipDate');tool.cleanroom=v('cleanroom');tool.driver=v('assignment')||tool.driver}if(p)list.push({tool:r.dataset.priority,priority:p,assignment:v('assignment'),notes:v('notes')})});setLeadPriorityRows(route.sub,list);state.priorityMeta[route.sub].anchor=document.querySelector('#priorityAnchor')?.value||state.priorityMeta[route.sub].anchor||today();if(route.sub==='weekend'){for(let day of ['saturday','sunday'])state.priorityMeta.weekend[day]=[...document.querySelectorAll(`[data-volunteer^="${day}-"]`)].map(r=>({name:r.querySelector('[data-vf="name"]')?.value||'',hours:r.querySelector('[data-vf="hours"]')?.value||'',notes:r.querySelector('[data-vf="notes"]')?.value||''}))}saveState(`${route.sub.toUpperCase()} PRIORITIES SAVED`);mode='view';let dest=returnRoute;returnRoute=null;route=dest||route;render();return}
  if(mode==='edit'&&route.center==='shipping'){document.querySelectorAll('[data-shipping]').forEach(r=>{let t=state.tools.find(x=>x.id===r.dataset.shipping);if(!t)return;let v=f=>r.querySelector(`[data-sf="${f}"]`)?.value||'';t.shipping.scheduleStatus=v('scheduleStatus');t.shipping.scheduleSent=v('scheduleSent')==='Yes';t.shipping.notes=v('notes');t.shipping.completed=t.shipping.completed||{};r.querySelectorAll('[data-ms-plan]').forEach(el=>t.shipping[el.dataset.msPlan]=el.value||'');r.querySelectorAll('[data-ms-actual]').forEach(el=>t.shipping.completed[el.dataset.msActual]=el.value||'');r.querySelectorAll('[data-ms-complete]').forEach(el=>{let k=el.dataset.msComplete;if(!el.checked)t.shipping.completed[k]='';else if(!t.shipping.completed[k])t.shipping.completed[k]=today()});applyRules(t)});saveState('SHIPPING SCHEDULES SAVED');mode='view';let dest=returnRoute;returnRoute=null;route=dest||{center:'shipping',sub:'home'};render();return}
  if(mode==='morningMeeting')return saveMorningMeeting(false);if(mode==='meeting')return saveMeeting(false);toast('NO EDITABLE CHANGES ON THIS PAGE')}
 function saveMeeting(end){captureMeetingForm();let m=meetingDraft;if(m.type==='Escalation Meeting'&&m.tool){let t=state.tools.find(x=>x.id===m.tool);if(t){let n=t.ncs.find(x=>x.id===m.nc)||t.ncs[0];if(n&&m.poa){n.poa=m.poa;if(n.state==='Open')n.state='Escalated'}t.latestStatus=m.notes||t.latestStatus}}if(end){let meetingId=uid('mtg'),saved={...clone(m),id:meetingId,endedAt:nowISO()};state.meetings.unshift(saved);(m.tasks||[]).filter(x=>x.text).forEach(task=>state.actions.push({id:uid('act'),sourceMeetingId:meetingId,sourceTaskId:task.id,severity:m.type==='Escalation Meeting'?'Critical':'Attention',tool:m.tool||'',text:task.text,owner:task.owner,due:task.due,status:'Open',createdAt:nowISO()}));saveState('MEETING ENDED — MINUTES AND TASKS SAVED');mode='view';meetingDraft=null;route={center:'meeting',sub:'history'};render()}else{toast('✓ MEETING DRAFT UPDATED — ACTIONS CREATE WHEN MEETING ENDS')}}

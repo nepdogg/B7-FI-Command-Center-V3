@@ -1,3 +1,20 @@
+# V6.6.15 — Priority Data-Source Lock
+
+This build moves the remaining priority fix into the authoritative priority data layer instead of applying another display-only correction.
+
+- Lead Priority now has one canonical saved ordering per Weekday / Weekend priority set.
+- Existing ranked FI tools keep their relative order when the eligible FI population changes.
+- A tool newly entering FI is appended after the already-ranked FI tools until a Lead deliberately reorders it.
+- Duplicate, stale, pre-FI, shipped, or archived priority rows are removed from the active canonical ranking.
+- Priority numbers are re-sequenced to a clean 1..N list after direct UTC edits and Priority Center saves.
+- Priority Center, Universal Tool Cards, and direct Priority editing all read from and write to the same canonical Lead Priority data source.
+- Command Center Priority remains an independent calculated ranking.
+- Lifecycle states remain locked: pre-FI = `PRIORITY N/A · NOT IN FI`; active FI = saved Lead or calculated Command Center priority; shipped = `PRIORITY COMPLETE · SHIPPED`.
+
+Regression test: rank several FI tools, then move an OI tool into FI. The newly-entered tool must appear after the existing ranked tools without changing their relative order. Ship an FI tool and confirm it leaves the active ranking while its UTC changes to `PRIORITY COMPLETE · SHIPPED`.
+
+---
+
 # V6.6.14 — Priority Propagation + Shipped State Lock
 
 This build closes the remaining Lead Priority propagation mismatch between Priority Center and the Universal Tool Cards.
