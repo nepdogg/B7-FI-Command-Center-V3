@@ -17092,3 +17092,7 @@ html body .badge-focus-flash{outline:2px solid #54d8ff!important;box-shadow:0 0 
     line-height:1.08!important;
   }
 }
+
+/* V6.6.14 — shipped tools have a completed priority lifecycle state. */
+.utc-priority-ribbon.priority-complete{background:linear-gradient(180deg,#087f4f,#035f3a)!important;border-color:#29e58c!important;color:#fff!important}
+.utc-priority-ribbon.priority-complete small{color:#8fffc8!important}

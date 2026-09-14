@@ -1,3 +1,20 @@
+# V6.6.14 — Priority Propagation + Shipped State Lock
+
+This build closes the remaining Lead Priority propagation mismatch between Priority Center and the Universal Tool Cards.
+
+- The Lead priority set being viewed/saved in Priority Center is now the authoritative Lead priority set used by UTC ribbons and Lead-driven carousel ordering.
+- Saving Weekday or Weekend priorities explicitly activates that same set for all Lead priority displays instead of silently switching based on the computer calendar day.
+- Direct UTC priority editing writes back to the same active Lead priority set.
+- Command Center Priority remains a separate calculated ranking and is never copied into Lead Priority.
+- Priority eligibility remains limited to active FI / Engineering / Powered Down / Packing workload tools.
+- Pre-FI tools continue to show `PRIORITY N/A · NOT IN FI`.
+- Shipped tools now show `PRIORITY COMPLETE · SHIPPED` instead of incorrectly looking like a tool that never entered FI.
+- Shipped and pre-FI tools remain excluded from the active Priority Center ranking.
+
+Regression case: after setting 1350597 to Lead #11 on Weekday Priorities, its UTC must immediately render #11 when LEADS / MANAGERS is the selected source; a shipped tool such as 1450076 must render PRIORITY COMPLETE · SHIPPED.
+
+---
+
 # V6.6.13 — FI Priority Eligibility + Source Lock
 
 - Priority is now available only for tools that are actually in the active FI workflow: FI, Engineering, Powered Down, or Packing.
