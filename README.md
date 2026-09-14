@@ -1,3 +1,13 @@
+# B7 FI Command Center V6.6.11 — Lead/Admin + 28 Badge Control + Presentation Scroll Lock
+
+- Lead/Admin checklist modal now contains the existing 45 independent Lead/Admin tasks plus a separate **Tool Badges / System Verification** section with all 28 badge slots.
+- Established badge selections are available from the consolidated morning-update panel. Lead/Admin-driven badge controls write back to the matching checklist tasks rather than creating duplicate badge-only state.
+- Customer Source and STR controls write to their dedicated authoritative workflows. NC is read-only/automatic from NC records. Lamp is read-only/automatic from lamp state/hours. System Power becomes read-only/automatic once FI 200 has started.
+- Clicking a UTC badge now opens the Lead/Admin / Badge control panel and jumps directly to that badge row, keeping automatic badges clickable without bypassing their authoritative source.
+- Presentation Mode Lead/Admin modal scrolling is explicitly enabled for mouse wheel, trackpad, and touch, with the full 45-task + 28-badge content reachable and Save/Cancel kept accessible.
+- Lead/Admin Progress continues to count genuine Lead/Admin tasks only; the 28 badge controls are not added to the progress denominator.
+- Preserves V6.6.10 authoritative-source/applicability rules and all prior locked UTC, quarter lifecycle, Pacific calendar, and multi-user tester behavior.
+
 # B7 FI Command Center V6.6.10 — Badge Authoritative Source + Applicability Lock
 
 ## V6.6.10 changes
