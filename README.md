@@ -1,3 +1,14 @@
+# V6.6.13 — FI Priority Eligibility + Source Lock
+
+- Priority is now available only for tools that are actually in the active FI workflow: FI, Engineering, Powered Down, or Packing.
+- Waiting/pre-FI tools (OPI/OI) are excluded from Lead Priority and Command Center Priority even if a stray FI Handoff Date exists.
+- Pre-FI Universal Tool Cards now show `PRIORITY N/A / NOT IN FI` and the priority ribbon is not clickable.
+- Direct priority editing is blocked for pre-FI tools.
+- Priority Center and Edit Priorities use the same explicit active-FI eligible population.
+- Lead Priority remains one shared saved ranking; Command Center Priority remains a separate calculated ranking.
+- Live Operations / Presentation carousel keeps pre-FI tools visible, but pre-FI tools stay in the non-FI carousel group and do not receive priority ordering.
+- Preserves V6.6.12 FI handoff/cycle-time, badge applicability, NC terminology, Build Quarter / Ship Quarter labels, Tools-page UTC parity, Lead/Admin automation, and Multi-User Test footer behavior.
+
 # V6.6.12 — FI Handoff / Badge Gate / Cycle / NC / Quarter / UTC Parity
 
 - All 28 operational badges are visually inactive before FI owns the tool.
