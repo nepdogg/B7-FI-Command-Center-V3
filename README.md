@@ -1,4 +1,15 @@
-# B7 FI Command Center V6.6.11 — Lead/Admin + 28 Badge Control + Presentation Scroll Lock
+# V6.6.12 — FI Handoff / Badge Gate / Cycle / NC / Quarter / UTC Parity
+
+- All 28 operational badges are visually inactive before FI owns the tool.
+- FI handoff starts Cycle Time immediately; handoff day displays DAY 0 instead of NOT STARTED.
+- Cycle Time Center now uses the same FI Handoff Date start rule as the UTC.
+- AUTO Next System Tasks removes BLOCKER wording and lists actual escalated NC number/description when available.
+- Visible priority reason wording uses NC ESCALATION rather than BLOCKING ESCALATION.
+- Tool Edit labels are now Build Quarter and Ship Quarter, matching the shipping tracker; existing originalQuarter/quarter data is preserved and migrated in place.
+- Tools-page Universal Tool Cards receive additional vertical space so all five Next System Tasks remain visible at the narrower two-card width.
+- Pre-FI AUTO tasks no longer add FI-checklist, Customer Source/STR workflow, or operational-badge tasks; genuine Lead/Admin preparation work may still appear.
+
+# B7 FI Command Center V6.6.12 — Lead/Admin + 28 Badge Control + Presentation Scroll Lock
 
 - Lead/Admin checklist modal now contains the existing 45 independent Lead/Admin tasks plus a separate **Tool Badges / System Verification** section with all 28 badge slots.
 - Established badge selections are available from the consolidated morning-update panel. Lead/Admin-driven badge controls write back to the matching checklist tasks rather than creating duplicate badge-only state.

@@ -17062,3 +17062,33 @@ html body .lead-modal .modal-actions{position:sticky!important;bottom:0!importan
 html body .badge-focus-flash{outline:2px solid #54d8ff!important;box-shadow:0 0 18px rgba(84,216,255,.75)!important;animation:badgeFocusFlash 1.4s ease-out 1}
 @keyframes badgeFocusFlash{0%{filter:brightness(1.8)}100%{filter:brightness(1)}}
 @media(max-width:900px){html body .lead-badge-row,html body .lead-badge-row:not(:has(select:nth-of-type(2))){grid-template-columns:1fr!important}}
+
+/* ============================================================
+   V6.6.12 FINAL AUTHORITY — TOOLS PAGE UTC NEXT-TASK PARITY
+   Tools-page cards use the same UTC information contract as Live Ops.
+   Extra height compensates for the narrower two-card layout so all five
+   AUTO Next System Tasks can wrap without being clipped.
+   ============================================================ */
+@media (min-width:1100px){
+  html body[data-center="operations"] .tool-section .update-live-card-list .utc-host,
+  html body[data-center="operations"] .tool-section .update-live-card-list .universal-card-host.live-panel{
+    height:760px!important;
+    min-height:760px!important;
+    max-height:760px!important;
+  }
+  html body[data-center="operations"] .tool-section .update-live-card-list .utc-card.utc-v6538,
+  html body[data-center="operations"] .tool-section .update-live-card-list .utc-card.utc-v6538>.utc-column{
+    height:760px!important;
+    min-height:760px!important;
+    max-height:760px!important;
+  }
+  html body[data-center="operations"] .tool-section .update-live-card-list .utc-card.utc-v6538 .utc-status{
+    grid-template-rows:106px 60px 60px 138px minmax(176px,1fr) minmax(150px,1fr)!important;
+  }
+  html body[data-center="operations"] .tool-section .update-live-card-list .utc-next-actions-list{
+    overflow:visible!important;
+  }
+  html body[data-center="operations"] .tool-section .update-live-card-list .utc-next-action{
+    line-height:1.08!important;
+  }
+}
