@@ -1,3 +1,12 @@
+# V6.6.16 — Tools Page Ship Countdown Room
+
+- Tools-page Universal Tool Cards only: increased protected Ship Countdown height so two-line countdowns no longer crowd the MFG Ship Date.
+- Increased the Tools-page UTC height from 760px to 780px so the V6.6.12 five-task Next System Tasks fix keeps its room.
+- MFG Ship Date now has a protected 22px row and cannot ellipsize/crop at desktop Tools-page widths.
+- Live Operations regular UTC geometry remains unchanged/locked.
+- Presentation Mode geometry remains unchanged.
+- Priority data-source behavior from V6.6.15 is preserved.
+
 # V6.6.15 — Priority Data-Source Lock
 
 This build moves the remaining priority fix into the authoritative priority data layer instead of applying another display-only correction.
