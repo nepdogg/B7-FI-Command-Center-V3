@@ -17097,47 +17097,8 @@ html body .badge-focus-flash{outline:2px solid #54d8ff!important;box-shadow:0 0 
 .utc-priority-ribbon.priority-complete{background:linear-gradient(180deg,#087f4f,#035f3a)!important;border-color:#29e58c!important;color:#fff!important}
 .utc-priority-ribbon.priority-complete small{color:#8fffc8!important}
 
-/* ============================================================
-   V6.6.16 FINAL AUTHORITY — TOOLS PAGE SHIP COUNTDOWN ROOM
-   Preserve the V6.6.12 five-task fix while adding protected vertical
-   room for two-line countdown text and the complete MFG Ship Date.
-   Scope is Tools-page UTCs only; Live Operations geometry is unchanged.
-   ============================================================ */
-@media (min-width:1100px){
-  html body[data-center="operations"] .tool-section .update-live-card-list .utc-host,
-  html body[data-center="operations"] .tool-section .update-live-card-list .universal-card-host.live-panel{
-    height:780px!important;
-    min-height:780px!important;
-    max-height:780px!important;
-  }
-  html body[data-center="operations"] .tool-section .update-live-card-list .utc-card.utc-v6538,
-  html body[data-center="operations"] .tool-section .update-live-card-list .utc-card.utc-v6538>.utc-column{
-    height:780px!important;
-    min-height:780px!important;
-    max-height:780px!important;
-  }
-  html body[data-center="operations"] .tool-section .update-live-card-list .utc-card.utc-v6538 .utc-status{
-    grid-template-rows:132px 60px 60px 138px minmax(176px,1fr) minmax(150px,1fr)!important;
-  }
-  html body[data-center="operations"] .tool-section .update-live-card-list .utc-card.utc-v6538 .utc-status>.utc-countdown{
-    grid-template-rows:15px minmax(0,1fr) 22px!important;
-    padding:8px 14px 9px!important;
-    overflow:hidden!important;
-  }
-  html body[data-center="operations"] .tool-section .update-live-card-list .utc-card.utc-v6538 .utc-countdown-big{
-    max-height:none!important;
-    overflow:visible!important;
-  }
-  html body[data-center="operations"] .tool-section .update-live-card-list .utc-card.utc-v6538 .utc-countdown-date{
-    min-height:22px!important;
-    height:22px!important;
-    line-height:22px!important;
-    overflow:visible!important;
-    align-self:end!important;
-  }
-  html body[data-center="operations"] .tool-section .update-live-card-list .utc-card.utc-v6538 .utc-countdown-date b{
-    white-space:nowrap!important;
-    overflow:visible!important;
-    text-overflow:clip!important;
-  }
-}
+/* V6.6.15 — Lead/Admin save controls stay at the top of the popup. */
+.lead-modal-topbar{position:sticky;top:0;z-index:25;display:flex;align-items:center;justify-content:space-between;gap:16px;background:#000;padding:8px 0 10px;border-bottom:1px solid #176fa8}
+.lead-modal-topbar h2{margin:0}
+.lead-modal-top-actions{display:flex;gap:8px;flex:0 0 auto}
+.presentation-mode .lead-modal-topbar{background:#000}

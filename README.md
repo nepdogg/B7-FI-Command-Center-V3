@@ -1,30 +1,12 @@
-# V6.6.16 — Tools Page Ship Countdown Room
+# V6.6.15 — Lead/Admin Save Persistence Lock
 
-- Tools-page Universal Tool Cards only: increased protected Ship Countdown height so two-line countdowns no longer crowd the MFG Ship Date.
-- Increased the Tools-page UTC height from 760px to 780px so the V6.6.12 five-task Next System Tasks fix keeps its room.
-- MFG Ship Date now has a protected 22px row and cannot ellipsize/crop at desktop Tools-page widths.
-- Live Operations regular UTC geometry remains unchanged/locked.
-- Presentation Mode geometry remains unchanged.
-- Priority data-source behavior from V6.6.15 is preserved.
+- Fixed Lead/Admin checklist edits reverting after Save. The cause was the linked 28-badge panel being applied after the checklist and overwriting newly selected task states with stale badge values.
+- Linked badge controls are now applied first; explicit Lead/Admin checklist selections are authoritative and are applied last before automation synchronization.
+- Lead/Admin progress is recalculated before persistence.
+- Save/Cancel controls moved to a sticky top action bar so they are immediately available without scrolling to the bottom of the long checklist.
+- Preserves V6.6.14 priority propagation/shipped-state behavior and all previously locked UTC, badge, quarter, cycle-time, and Presentation Mode behavior.
 
-# V6.6.15 — Priority Data-Source Lock
-
-This build moves the remaining priority fix into the authoritative priority data layer instead of applying another display-only correction.
-
-- Lead Priority now has one canonical saved ordering per Weekday / Weekend priority set.
-- Existing ranked FI tools keep their relative order when the eligible FI population changes.
-- A tool newly entering FI is appended after the already-ranked FI tools until a Lead deliberately reorders it.
-- Duplicate, stale, pre-FI, shipped, or archived priority rows are removed from the active canonical ranking.
-- Priority numbers are re-sequenced to a clean 1..N list after direct UTC edits and Priority Center saves.
-- Priority Center, Universal Tool Cards, and direct Priority editing all read from and write to the same canonical Lead Priority data source.
-- Command Center Priority remains an independent calculated ranking.
-- Lifecycle states remain locked: pre-FI = `PRIORITY N/A · NOT IN FI`; active FI = saved Lead or calculated Command Center priority; shipped = `PRIORITY COMPLETE · SHIPPED`.
-
-Regression test: rank several FI tools, then move an OI tool into FI. The newly-entered tool must appear after the existing ranked tools without changing their relative order. Ship an FI tool and confirm it leaves the active ranking while its UTC changes to `PRIORITY COMPLETE · SHIPPED`.
-
----
-
-# V6.6.14 — Priority Propagation + Shipped State Lock
+# V6.6.15 — Priority Propagation + Shipped State Lock
 
 This build closes the remaining Lead Priority propagation mismatch between Priority Center and the Universal Tool Cards.
 
