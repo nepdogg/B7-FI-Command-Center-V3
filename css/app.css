@@ -17102,3 +17102,12 @@ html body .badge-focus-flash{outline:2px solid #54d8ff!important;box-shadow:0 0 
 .lead-modal-topbar h2{margin:0}
 .lead-modal-top-actions{display:flex;gap:8px;flex:0 0 auto}
 .presentation-mode .lead-modal-topbar{background:#000}
+
+/* V6.6.18 — separated local/shared administration and compact multi-user footer */
+.admin-mode-split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+.admin-mode-box{border:1px solid rgba(var(--accent-rgb),.7);padding:12px;background:#02070b}
+.admin-mode-box h3{margin:0 0 6px;color:#fff}.shared-mode-box{border-color:#00d6ff}.local-mode-box{border-color:#f0c000}
+.footer-users-button{background:#02070b;color:#fff;border:1px solid rgba(var(--accent-rgb),.8);font:inherit;font-weight:800;padding:4px 9px;cursor:pointer;white-space:nowrap}
+.footer-users-button:hover{background:rgba(var(--accent-rgb),.18)}
+.mu-users-panel{position:fixed;inset:0;z-index:100000;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center}.mu-users-card{position:relative;width:min(620px,90vw);max-height:75vh;overflow:auto;background:#06131e;border:2px solid #1ca9e8;padding:20px;box-shadow:0 0 30px #000}.mu-users-x{position:absolute;right:10px;top:8px;background:none;border:0;color:#fff;font-size:28px;cursor:pointer}.mu-user-row{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;border-top:1px solid #1b5774;padding:12px 4px}.mu-user-row b{color:#54e7ff}.mu-user-row span{color:#fff}.mu-user-row small{grid-column:1/-1;color:#9fc3d6}
+@media(max-width:1000px){.admin-mode-split{grid-template-columns:1fr}}

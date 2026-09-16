@@ -1,3 +1,12 @@
+# B7 FI Command Center V6.6.18 — Scenario Multi-User Admin Safety Update
+
+- Separates LOCAL COMMAND CENTER controls from SHARED MULTI-USER COMMAND CENTER controls.
+- MASTER RESET remains local-only.
+- RESET SHARED SCENARIO deletes only rows tagged SCENARIO TEST or SCENARIO PRESENCE.
+- START SHARED SCENARIO recreates missing scenario rows by UTID without duplicates.
+- Compact footer shows mode/list status and a clickable USERS count; user names appear in an Active Users panel.
+- Production/local data is not uploaded or deleted by Scenario controls.
+
 # B7 FI Command Center V6.6.16 — Multi-User Scenario Test
 
 - TEST-ONLY build: uses an isolated browser-storage key and automatically loads Scenario Test data on first launch.
