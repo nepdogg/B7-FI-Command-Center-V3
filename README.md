@@ -405,3 +405,12 @@ Presentation-launched Tool Edit is now detached from the `presentation-mode` wal
 - Packing / Shipping progress text now reports packing/shipping workflow states only (PACKING NOT STARTED, READY TO START PACKING, current milestone, FINAL PACKING, SHIPPED) instead of FI TESTING.
 - Customer Source and STR Not Required / N/A progress bars use a neutral diagonal striped pattern to distinguish not-applicable from 0% incomplete.
 - Regular Live Operations UTC geometry remains locked. Presentation Mode middle-column proportions now mirror the finalized regular UTC: Countdown, FI Status, Current System Status, 5 Next Tasks, Live System Status, Lead Notes / Reminders.
+## V6.6.17 Full Scenario Multi-User Test
+- SCENARIO TEST now signs in/connects to the configured Microsoft List and creates only missing Scenario tool rows by UTID.
+- Full Scenario tool state is stored in a dedicated Command Center JSON list column so normal Universal Tool Card edits can synchronize between users.
+- Scenario records are tagged `Data Mode = SCENARIO TEST`; Production data is not uploaded by Scenario Test.
+- START / RETURN TO PRODUCTION disconnects normal shared synchronization and reloads the existing local Production database (`b7fi-command-center-v3`).
+- Footer reports Shared Scenario vs Local Production, List connection status, signed-in identity, active users, and V6.6.17.
+- Presence records expire from the ACTIVE USERS display after two minutes without a heartbeat.
+- The Multi-User Test popup remains available as a diagnostic panel.
+- On first Scenario connection, the app may create four support columns in the Microsoft List: Data Mode, Command Center JSON, Last Updated By, and Session ID.
