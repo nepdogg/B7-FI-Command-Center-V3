@@ -1,4 +1,14 @@
-# V6.6.16 — Lead/Admin Save Persistence Lock
+# B7 FI Command Center V6.6.16 — Multi-User Scenario Test
+
+- TEST-ONLY build: uses an isolated browser-storage key and automatically loads Scenario Test data on first launch.
+- Does not read or overwrite the normal V6.6.15 production localStorage database.
+- Multi-User Test continues to connect to the configured shared Microsoft List for coworker read/write testing.
+- Fixes MFG Ship Date display/write handling: ISO Graph values display as YYYY-MM-DD and blank ship dates are omitted from PATCH payloads.
+- Fixes initial multi-user control state after List connection.
+- Revision labels updated to V6.6.16.
+- Back up production data before testing; do not use this scenario build for real production updates.
+
+# V6.6.15 — Lead/Admin Save Persistence Lock
 
 - Fixed Lead/Admin checklist edits reverting after Save. The cause was the linked 28-badge panel being applied after the checklist and overwriting newly selected task states with stale badge values.
 - Linked badge controls are now applied first; explicit Lead/Admin checklist selections are authoritative and are applied last before automation synchronization.
@@ -6,7 +16,7 @@
 - Save/Cancel controls moved to a sticky top action bar so they are immediately available without scrolling to the bottom of the long checklist.
 - Preserves V6.6.14 priority propagation/shipped-state behavior and all previously locked UTC, badge, quarter, cycle-time, and Presentation Mode behavior.
 
-# V6.6.16 — Priority Propagation + Shipped State Lock
+# V6.6.15 — Priority Propagation + Shipped State Lock
 
 This build closes the remaining Lead Priority propagation mismatch between Priority Center and the Universal Tool Cards.
 
