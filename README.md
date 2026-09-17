@@ -1,3 +1,14 @@
+# V6.6.19 — Existing-Schema Multi-User Scenario Fix
+
+- Fixes V6.6.18 403 failure: the app no longer attempts to create Microsoft List columns through Graph.
+- Uses only the existing List columns already proven writable.
+- Shared Scenario ownership is marked by a reserved `B7SCN:` prefix in Title.
+- Full tool JSON is split into safe chunks across Scenario-only rows and reassembled by the Command Center.
+- RESET SHARED SCENARIO deletes only rows whose Title begins `B7SCN:`. It does not delete normal/production rows.
+- Presence/Active Users also uses `B7SCN:PRESENCE:` rows and existing columns.
+- Blank MFG Ship Date remains omitted from writes.
+- Local Production remains separate from Shared Scenario mode.
+
 # B7 FI Command Center V6.6.18 — Scenario Multi-User Admin Safety Update
 
 - Separates LOCAL COMMAND CENTER controls from SHARED MULTI-USER COMMAND CENTER controls.
