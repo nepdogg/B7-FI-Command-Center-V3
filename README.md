@@ -1,15 +1,15 @@
-# V6.6.24 — Quarter Summary Wallboard Fit
+# V6.6.25 — Quarter Summary Wallboard Fit
 
-## New in V6.6.24
+## New in V6.6.25
 - Removed the inherited LIVE OPERATIONS/date title from Quarter Summary Presentation so the two urgency cards begin at the top of the wallboard.
 - Added bottom safe-area/border protection for the family matrix and presentation selector.
 - Enlarged family names and added deliberate spacing between each family name and tool image in both Summary views.
 - Centered the normal CY26Q3 SUMMARY/date page title.
-- Preserves V6.6.23 shared Microsoft List test, backup/restore, Master Reset, dual presentation, urgency, and Reveal behavior.
+- Preserves V6.6.25 shared Microsoft List test, backup/restore, Master Reset, dual presentation, urgency, and Reveal behavior.
 
-# V6.6.23 — Quarter Summary + Dual Presentation Modes
+# V6.6.25 — Quarter Summary + Dual Presentation Modes
 
-## New in V6.6.23
+## New in V6.6.25
 - Adds **CY26Q3 Summary** to Operations Center. The label follows the active quarter.
 - Live Operations now contains only the two operational carousels: status snapshot + Universal Tool Card.
 - Adds a dedicated quarter summary page using the existing quarter status boxes, shipping progress, days remaining, and per-family shipping progress/reveal matrix.
@@ -482,7 +482,7 @@ Presentation-launched Tool Edit is now detached from the `presentation-mode` wal
 - On first Scenario connection, the app may create four support columns in the Microsoft List: Data Mode, Command Center JSON, Last Updated By, and Session ID.
 
 
-## V6.6.23 test changes
+## V6.6.25 test changes
 - Local and Shared Administration test controls now mirror 0 Tool, 1 Tool, and Master Reset concepts.
 - Shared Master Reset deletes all Microsoft List rows and verifies the List is empty; schema/List are preserved.
 - Added Export Shared Backup and Restore Shared Backup. Restore downloads a pre-restore backup before replacing List rows and verifies the restored row count.
@@ -491,7 +491,7 @@ Presentation-launched Tool Edit is now detached from the `presentation-mode` wal
 - Presentation selector label is LIVE CY26Q3 TOOLS / LIVE CY26Q3 QUARTER SUMMARY.
 
 
-## V6.6.23 test changes
+## V6.6.25 test changes
 - Local and Shared Administration test controls now mirror 0 Tool, 1 Tool, and Master Reset concepts.
 - Shared Master Reset deletes all Microsoft List rows and verifies the List is empty; schema/List are preserved.
 - Added Export Shared Backup and Restore Shared Backup. Restore downloads a pre-restore backup before replacing List rows and verifies the restored row count.
