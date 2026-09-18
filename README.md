@@ -1,3 +1,14 @@
+# V6.6.20 — Stable Shared Tool Editing Test
+
+- Uses the existing Microsoft List schema; no schema creation.
+- Disables automatic/background shared-tool refresh so transient auth/read problems cannot replace valid cards with zero tools.
+- Unexpected zero-tool reads retain the last-known-good cards and report a sync warning.
+- Normal Command Center tool edits still queue shared writes for Update Tool Status / Save -> Microsoft List testing.
+- Microsoft authentication cache now uses localStorage to reduce unnecessary repeat sign-ins after reloads.
+- RESET SHARED SCENARIO recognizes B7SCN Title markers plus SCN-* chunk UTIDs, verifies deletion, and clears the Scenario UI only after verified deletion.
+- Background presence/Active Users heartbeat is temporarily disabled during stabilization.
+- Production/local browser data remains isolated from Shared Scenario Test.
+
 # V6.6.19 — Existing-Schema Multi-User Scenario Fix
 
 - Fixes V6.6.18 403 failure: the app no longer attempts to create Microsoft List columns through Graph.

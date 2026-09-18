@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.6.19', BUILD='20260916-V6.6.19-EXISTING-SCHEMA-MULTI-USER';
+const VERSION='6.6.20', BUILD='20260917-V6.6.20-STABLE-SHARED-TOOL-EDIT';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
