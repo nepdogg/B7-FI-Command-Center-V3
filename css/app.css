@@ -17304,7 +17304,7 @@ html body .quarter-hero-metric.urgency-complete{border-color:#20d98a!important;b
 html body .quarter-hero-metric.urgency-complete small,html body .quarter-hero-metric.urgency-complete strong{color:#20e69a!important;}
 \n\n/* =========================================================\n   V6.6.24 — QUARTER SUMMARY WALLBOARD FIT / FAMILY READABILITY\n   ========================================================= */\n/* Normal Summary title is the page identity: centered and prominent. */\nhtml body[data-center="operations"][data-sub="summary"] .center-page-title{\n  text-align:center!important;justify-content:center!important;width:100%!important;\n  font-size:22px!important;font-weight:1000!important;letter-spacing:.9px!important;\n}\n\n/* Normal and presentation Summary share a deliberate name/photo relationship. */\nhtml body .quarter-summary-page .family-cell.name,\nhtml body.presentation-mode[data-sub="summary"] .family-cell.name{\n  display:flex!important;align-items:center!important;justify-content:flex-start!important;\n  gap:24px!important;padding-left:14px!important;overflow:hidden!important;\n}\nhtml body .quarter-summary-page .family-cell.name span{\n  font-size:27px!important;line-height:1!important;font-weight:1000!important;white-space:nowrap!important;\n}\nhtml body .quarter-summary-page .family-thumb{\n  margin-left:4px!important;flex:0 0 auto!important;height:58px!important;max-width:108px!important;object-fit:contain!important;\n}\n\n/* Summary wallboard owns the full viewport: no inherited LIVE OPERATIONS title row. */\nhtml body.presentation-mode[data-center="operations"][data-sub="summary"] #screenshotReportTitle{display:none!important;}\nhtml body.presentation-mode[data-center="operations"][data-sub="summary"] #app{\n  grid-template-rows:minmax(0,1fr)!important;padding:7px 8px 12px!important;box-sizing:border-box!important;\n}\nhtml body.presentation-mode[data-sub="summary"] .quarter-summary-presentation{\n  grid-template-rows:190px 158px minmax(0,1fr) 52px!important;\n  height:100%!important;max-height:100%!important;min-height:0!important;overflow:hidden!important;\n  padding-bottom:1px!important;box-sizing:border-box!important;\n}\nhtml body.presentation-mode[data-sub="summary"] .quarter-summary-hero{margin-top:0!important;}\nhtml body.presentation-mode[data-sub="summary"] .family-panel-v526 .family-cell.name{gap:28px!important;padding-left:12px!important;}\nhtml body.presentation-mode[data-sub="summary"] .family-panel-v526 .family-cell.name span{\n  font-size:27px!important;line-height:1!important;font-weight:1000!important;white-space:nowrap!important;\n}\nhtml body.presentation-mode[data-sub="summary"] .family-panel-v526 .family-thumb{\n  margin-left:4px!important;height:46px!important;max-width:92px!important;flex:0 0 auto!important;object-fit:contain!important;\n}\n/* Keep the final family row and selector borders inside the physical screen. */\nhtml body.presentation-mode[data-sub="summary"] .quarter-summary-family-wrap,\nhtml body.presentation-mode[data-sub="summary"] .family-panel-v526,\nhtml body.presentation-mode[data-sub="summary"] .family-rows-scroll,\nhtml body.presentation-mode[data-sub="summary"] .quarter-summary-switchbar{box-sizing:border-box!important;min-height:0!important;}\nhtml body.presentation-mode[data-sub="summary"] .quarter-summary-switchbar{\n  margin:0 0 1px!important;border-bottom:1px solid #176fa8!important;overflow:hidden!important;\n}\nhtml body.presentation-mode[data-sub="summary"] .family-rows-scroll .family-matrix:last-child{border-bottom:1px solid #176fa8!important;}\n
 /* =========================================================
-   V6.6.25 — QUARTER SUMMARY CAROUSEL + PRESENTATION FINISH
+   V6.6.26 — QUARTER SUMMARY CAROUSEL + PRESENTATION FINISH
    ========================================================= */
 /* Normal Quarter Summary page identity is truly centered. */
 html body[data-center="operations"][data-sub="summary"] #app>.center-page-title,
@@ -17384,3 +17384,92 @@ html body.presentation-mode[data-center="operations"][data-sub="live"] .presenta
 html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only .utc-card.utc-v6538>.utc-column{
   height:100%!important;min-height:0!important;align-self:stretch!important;box-sizing:border-box!important;
 }
+
+
+/* =========================================================
+   V6.6.26 — COMPACT SUMMARY CAROUSEL + PRESENTATION GEOMETRY
+   ========================================================= */
+/* Dedicated Summary page title: true center regardless of inherited report-title alignment. */
+html body[data-center="operations"][data-sub="summary"] .quarter-summary-page-title{
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  width:100%!important;max-width:none!important;box-sizing:border-box!important;
+  padding-left:0!important;padding-right:0!important;text-align:center!important;
+}
+
+/* Live Operations status-carousel Quarter Summary is a compact slide, not a cropped page. */
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary{
+  height:100%!important;min-height:0!important;max-height:100%!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-summary-page{
+  display:grid!important;grid-template-rows:138px minmax(0,1fr)!important;
+  gap:5px!important;height:100%!important;min-height:0!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-live-panel{
+  height:138px!important;min-height:138px!important;max-height:138px!important;
+  margin:0!important;padding:5px 7px!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .summary-grid{
+  gap:4px!important;margin-bottom:4px!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .summary-box{
+  min-height:42px!important;padding:3px 5px!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .summary-box span{font-size:8px!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .summary-box b{font-size:18px!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .progress-head{font-size:9px!important;margin:2px 0!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .track{height:7px!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-panel-v526{
+  display:grid!important;grid-template-rows:24px minmax(0,1fr)!important;
+  height:100%!important;min-height:0!important;max-height:100%!important;
+  margin:0!important;padding:3px!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-matrix.header{
+  height:24px!important;min-height:24px!important;font-size:7px!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-rows-scroll{
+  display:grid!important;grid-template-rows:repeat(6,minmax(0,1fr))!important;
+  height:100%!important;min-height:0!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-matrix{
+  height:100%!important;min-height:0!important;grid-template-columns:1.35fr .34fr .5fr .45fr .48fr .48fr 1.05fr .34fr!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-cell{
+  min-height:0!important;height:100%!important;padding:1px 4px!important;font-size:12px!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-cell.name{
+  display:grid!important;grid-template-columns:max-content 54px!important;column-gap:10px!important;padding-left:7px!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-cell.name>span{font-size:14px!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-thumb{height:28px!important;max-width:54px!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-progress .track{height:5px!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-progress small{font-size:8px!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .reveal-btn{font-size:15px!important;min-width:28px!important;height:100%!important;}
+
+/* Tool Presentation: wider three-column UTC, mathematically centered with equal margins/gaps. */
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only{
+  padding:3px 5px 7px!important;display:flex!important;align-items:stretch!important;justify-content:center!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only>.universal-card-host.live-panel{
+  width:100%!important;max-width:none!important;height:100%!important;margin:0 auto!important;padding:2px!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only .utc-card.utc-v6538{
+  width:100%!important;max-width:none!important;margin:0 auto!important;padding:4px!important;gap:6px!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only .utc-card.utc-v6538>.utc-column{
+  width:100%!important;margin:0!important;
+}
+
+/* Quarter Summary Mystery Boxes remain above presentation overlays and are truly interactive. */
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-matrix,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .reveal-btn{
+  pointer-events:auto!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .reveal-btn{
+  position:relative!important;z-index:30!important;cursor:pointer!important;touch-action:manipulation!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .reveal-btn.unlocked:hover{
+  filter:brightness(1.25)!important;box-shadow:0 0 14px rgba(176,104,255,.7)!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .reveal-btn.locked{cursor:not-allowed!important;}
