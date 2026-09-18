@@ -1,6 +1,6 @@
-# V6.6.22 — Quarter Summary + Dual Presentation Modes
+# V6.6.23 — Quarter Summary + Dual Presentation Modes
 
-## New in V6.6.22
+## New in V6.6.23
 - Adds **CY26Q3 Summary** to Operations Center. The label follows the active quarter.
 - Live Operations now contains only the two operational carousels: status snapshot + Universal Tool Card.
 - Adds a dedicated quarter summary page using the existing quarter status boxes, shipping progress, days remaining, and per-family shipping progress/reveal matrix.
@@ -471,3 +471,21 @@ Presentation-launched Tool Edit is now detached from the `presentation-mode` wal
 - Presence records expire from the ACTIVE USERS display after two minutes without a heartbeat.
 - The Multi-User Test popup remains available as a diagnostic panel.
 - On first Scenario connection, the app may create four support columns in the Microsoft List: Data Mode, Command Center JSON, Last Updated By, and Session ID.
+
+
+## V6.6.23 test changes
+- Local and Shared Administration test controls now mirror 0 Tool, 1 Tool, and Master Reset concepts.
+- Shared Master Reset deletes all Microsoft List rows and verifies the List is empty; schema/List are preserved.
+- Added Export Shared Backup and Restore Shared Backup. Restore downloads a pre-restore backup before replacing List rows and verifies the restored row count.
+- Normal Quarter Summary family matrix now uses the same balanced proportions as Quarter Summary Presentation.
+- Quarter Summary Presentation fits all six family rows and Reveal/Mystery Box controls on screen, removes underlying title bleed-through, uses CY26Q3 labels, and adds urgency color coding.
+- Presentation selector label is LIVE CY26Q3 TOOLS / LIVE CY26Q3 QUARTER SUMMARY.
+
+
+## V6.6.23 test changes
+- Local and Shared Administration test controls now mirror 0 Tool, 1 Tool, and Master Reset concepts.
+- Shared Master Reset deletes all Microsoft List rows and verifies the List is empty; schema/List are preserved.
+- Added Export Shared Backup and Restore Shared Backup. Restore downloads a pre-restore backup before replacing List rows and verifies the restored row count.
+- Normal Quarter Summary family matrix now uses the same balanced proportions as Quarter Summary Presentation.
+- Quarter Summary Presentation fits all six family rows and Reveal/Mystery Box controls on screen, removes underlying title bleed-through, uses active-quarter labels, and adds urgency color coding.
+- Presentation selector label is LIVE CY26Q3 TOOLS / LIVE CY26Q3 QUARTER SUMMARY.
