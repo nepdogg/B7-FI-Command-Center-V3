@@ -1,3 +1,12 @@
+# V6.6.24 — Quarter Summary Wallboard Fit
+
+## New in V6.6.24
+- Removed the inherited LIVE OPERATIONS/date title from Quarter Summary Presentation so the two urgency cards begin at the top of the wallboard.
+- Added bottom safe-area/border protection for the family matrix and presentation selector.
+- Enlarged family names and added deliberate spacing between each family name and tool image in both Summary views.
+- Centered the normal CY26Q3 SUMMARY/date page title.
+- Preserves V6.6.23 shared Microsoft List test, backup/restore, Master Reset, dual presentation, urgency, and Reveal behavior.
+
 # V6.6.23 — Quarter Summary + Dual Presentation Modes
 
 ## New in V6.6.23
