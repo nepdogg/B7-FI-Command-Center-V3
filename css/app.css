@@ -17111,3 +17111,107 @@ html body .badge-focus-flash{outline:2px solid #54d8ff!important;box-shadow:0 0 
 .footer-users-button:hover{background:rgba(var(--accent-rgb),.18)}
 .mu-users-panel{position:fixed;inset:0;z-index:100000;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center}.mu-users-card{position:relative;width:min(620px,90vw);max-height:75vh;overflow:auto;background:#06131e;border:2px solid #1ca9e8;padding:20px;box-shadow:0 0 30px #000}.mu-users-x{position:absolute;right:10px;top:8px;background:none;border:0;color:#fff;font-size:28px;cursor:pointer}.mu-user-row{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;border-top:1px solid #1b5774;padding:12px 4px}.mu-user-row b{color:#54e7ff}.mu-user-row span{color:#fff}.mu-user-row small{grid-column:1/-1;color:#9fc3d6}
 @media(max-width:1000px){.admin-mode-split{grid-template-columns:1fr}}
+
+/* =========================================================
+   V6.6.22 — QUARTER SUMMARY + DUAL PRESENTATION MODES
+   Live Operations is now the two-carousel workspace only.
+   ========================================================= */
+html body[data-center="operations"][data-sub="live"] .operations-live-only{
+  margin-top:8px!important;
+  min-height:calc(100vh - var(--sticky-shell-height,150px) - 28px)!important;
+}
+html body .quarter-summary-page{display:grid;gap:10px;min-width:0;}
+html body .quarter-summary-page .quarter-mystery-strip{display:none!important;}
+html body .quarter-summary-page .family-panel-v526{min-height:440px;}
+
+/* Tool Presentation: the UTC owns nearly the entire wallboard. */
+html body.presentation-mode[data-sub="live"] #app{
+  display:grid!important;
+  grid-template-rows:54px minmax(0,1fr)!important;
+  height:100%!important;
+  min-height:0!important;
+  overflow:hidden!important;
+}
+html body.presentation-mode[data-sub="live"] .presentation-mode-switchbar{
+  grid-row:1!important;
+  display:grid!important;
+  grid-template-columns:1.2fr .55fr 1.05fr 1.2fr 1.2fr .8fr!important;
+  height:48px!important;
+  margin:0 6px 4px!important;
+}
+html body.presentation-mode[data-sub="live"] .presentation-tool-only{
+  grid-row:2!important;
+  padding:4px 6px 8px!important;
+  height:100%!important;
+  min-height:0!important;
+}
+html body.presentation-mode .presentation-switch-view{
+  color:#fff!important;
+  border-color:#8e5ae8!important;
+  background:rgba(142,90,232,.18)!important;
+  font-weight:1000!important;
+}
+
+/* Quarter Summary Presentation: digital quarter countdown wallboard. */
+html body.presentation-mode[data-sub="summary"] #app{
+  display:grid!important;
+  grid-template-rows:minmax(0,1fr)!important;
+  height:100%!important;
+  min-height:0!important;
+  overflow:hidden!important;
+  padding:8px!important;
+}
+html body.presentation-mode[data-sub="summary"] .quarter-summary-presentation{
+  display:grid!important;
+  grid-template-rows:230px 190px minmax(0,1fr) 58px!important;
+  gap:10px!important;
+  height:100%!important;
+  min-height:0!important;
+  overflow:hidden!important;
+}
+html body .quarter-summary-hero{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;min-height:0;
+}
+html body .quarter-hero-metric{
+  border:2px solid #176fa8;background:#02090e;display:grid;grid-template-rows:auto 1fr auto;
+  align-items:center;justify-items:center;padding:10px 18px;overflow:hidden;
+}
+html body .quarter-hero-metric small{font-size:27px;font-weight:1000;letter-spacing:1.2px;color:#7dd7ff;}
+html body .quarter-hero-metric strong{font-size:116px;line-height:.9;font-weight:1000;color:#fff;text-shadow:0 0 18px rgba(255,255,255,.12);}
+html body .quarter-hero-metric span{font-size:24px;font-weight:1000;color:#b9dfff;}
+html body .quarter-hero-metric.tools-left{border-color:#20d98a;}
+html body .quarter-hero-metric.tools-left strong{color:#20e69a;}
+html body .quarter-hero-metric.days-left{border-color:#a46cff;}
+html body .quarter-hero-metric.days-left strong{color:#b184ff;}
+
+html body.presentation-mode[data-sub="summary"] .quarter-live-panel{
+  margin:0!important;padding:8px 10px!important;min-height:0!important;height:190px!important;overflow:hidden!important;
+}
+html body.presentation-mode[data-sub="summary"] .quarter-live-panel .quarter-mystery-strip{display:none!important;}
+html body.presentation-mode[data-sub="summary"] .quarter-live-panel .summary-grid{gap:6px!important;}
+html body.presentation-mode[data-sub="summary"] .quarter-live-panel .summary-box{min-height:62px!important;}
+html body.presentation-mode[data-sub="summary"] .quarter-live-panel .summary-box span{font-size:15px!important;}
+html body.presentation-mode[data-sub="summary"] .quarter-live-panel .summary-box b{font-size:29px!important;}
+html body.presentation-mode[data-sub="summary"] .quarter-live-panel .progress-head{font-size:18px!important;}
+html body.presentation-mode[data-sub="summary"] .quarter-live-panel .track{height:12px!important;}
+
+html body .quarter-summary-family-wrap{
+  display:grid;grid-template-rows:48px minmax(0,1fr);min-height:0;overflow:hidden;border:1px solid #176fa8;background:#000;
+}
+html body .quarter-summary-family-title{
+  display:flex;align-items:center;justify-content:center;font-size:25px;font-weight:1000;letter-spacing:.8px;border-bottom:1px solid #176fa8;
+}
+html body.presentation-mode[data-sub="summary"] .quarter-summary-family-wrap .family-panel-v526{
+  margin:0!important;border:0!important;height:100%!important;min-height:0!important;padding:8px!important;overflow:hidden!important;
+}
+html body.presentation-mode[data-sub="summary"] .family-panel-v526 .family-matrix{min-height:64px!important;grid-template-columns:1.65fr .55fr .65fr .65fr .65fr .65fr 1.1fr .45fr!important;}
+html body.presentation-mode[data-sub="summary"] .family-panel-v526 .family-matrix.header{min-height:42px!important;font-size:14px!important;}
+html body.presentation-mode[data-sub="summary"] .family-panel-v526 .family-cell{font-size:27px!important;}
+html body.presentation-mode[data-sub="summary"] .family-panel-v526 .family-cell.name span{font-size:28px!important;}
+html body.presentation-mode[data-sub="summary"] .family-panel-v526 .family-thumb{height:52px!important;max-width:100px!important;}
+html body.presentation-mode[data-sub="summary"] .family-panel-v526 .family-progress small{font-size:17px!important;}
+html body.presentation-mode[data-sub="summary"] .family-panel-v526 .reveal-btn{font-size:27px!important;}
+html body.presentation-mode[data-sub="summary"] .quarter-summary-switchbar{
+  display:grid!important;grid-template-columns:1fr 1.5fr .7fr!important;height:54px!important;margin:0!important;
+}
+html body.presentation-mode[data-sub="summary"] .quarter-summary-live-label{color:#20e69a!important;font-weight:1000!important;}

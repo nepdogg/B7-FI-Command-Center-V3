@@ -1,4 +1,30 @@
-# V6.6.20 — Stable Shared Tool Editing Test
+# V6.6.22 — Quarter Summary + Dual Presentation Modes
+
+## New in V6.6.22
+- Adds **CY26Q3 Summary** to Operations Center. The label follows the active quarter.
+- Live Operations now contains only the two operational carousels: status snapshot + Universal Tool Card.
+- Adds a dedicated quarter summary page using the existing quarter status boxes, shipping progress, days remaining, and per-family shipping progress/reveal matrix.
+- Splits Presentation Mode into two switchable views:
+  - **Tool Presentation**: the Universal Tool Card gets nearly the full wallboard.
+  - **Quarter Summary Presentation**: giant Tools Left to Ship and Days Remaining metrics plus quarter/family shipping progress.
+- Presentation views can switch directly without leaving full screen.
+- Preserves the V6.6.21 shared Microsoft List testing controls and stability protections, including CLEAR MICROSOFT LIST, START/RESET SHARED SCENARIO, manual shared refresh, and no automatic background tool refresh during stabilization.
+
+# Previous V6.6.21 shared-data test changes
+
+## New in V6.6.21
+- Adds **CLEAR MICROSOFT LIST** in Administration Center → Shared Multi-User Command Center.
+- This development-test control deletes **every row** in the configured `B7 FI Command Center` Microsoft List, then rereads the List and verifies that zero rows remain.
+- It does **not** delete List columns/schema and does **not** delete the List itself.
+- Two explicit confirmation dialogs are required before deletion.
+- After a verified clear, the Command Center shows an empty Shared Scenario state. **START SHARED SCENARIO** rebuilds the standard six-tool Scenario dataset and writes it to the List.
+- Keeps the V6.6.20 stability protections: no automatic background tool refresh, last-known-good retention on failed/empty shared reads, normal Command Center saves write changed Scenario tools, and strengthened Scenario reset detection.
+
+## Recommended test cycle
+CLEAR MICROSOFT LIST → verify 0 rows in Microsoft Lists → START SHARED SCENARIO → verify Scenario rows are created → edit a tool in the normal Command Center → SAVE → verify List rows change → REFRESH SHARED DATA → verify the edit is reconstructed → CLEAR MICROSOFT LIST → verify 0 rows again.
+
+> **Development safety:** CLEAR MICROSOFT LIST intentionally deletes all rows in the configured test List. Do not use this control after the List contains production data.
+
 
 - Uses the existing Microsoft List schema; no schema creation.
 - Disables automatic/background shared-tool refresh so transient auth/read problems cannot replace valid cards with zero tools.
