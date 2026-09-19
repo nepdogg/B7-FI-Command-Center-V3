@@ -1,4 +1,4 @@
-B7 FI COMMAND CENTER V7.0.0 — MULTI-USER TEST GUIDE
+B7 FI COMMAND CENTER V7.0.1 — MULTI-USER TEST GUIDE
 
 WHAT THIS BUILD ADDS
 - Complete one-row tool storage: the Tool Data multiline column stores the complete Universal Tool Card/tool object as JSON.

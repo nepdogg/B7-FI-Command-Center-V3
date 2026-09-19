@@ -1,4 +1,4 @@
-B7 FI COMMAND CENTER V7.0.0 — CLEAN FOUNDATION
+B7 FI COMMAND CENTER V7.0.1 — CLEAN FOUNDATION
 
 Purpose
 - First clean-foundation build after V6.6.x responsive regressions.
