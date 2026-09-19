@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.6.38', BUILD='20260918-V6.6.38-QUARTER-SUMMARY-DYNAMIC-FIT';
+const VERSION='6.6.39', BUILD='20260918-V6.6.39-QUARTER-SUMMARY-RESPONSIVE-PARITY';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -1553,25 +1553,22 @@ function exitScreenshot(){document.body.classList.remove('screenshot-mode');if(s
 function fitQuarterSummaryMasters(){
   document.querySelectorAll('.quarter-summary-master-viewport').forEach(view=>{
     const canvas=view.querySelector('.quarter-summary-master');if(!canvas)return;
-    // V6.6.38: width is authoritative so the right edge can never be clipped.
-    // The virtual canvas height is then expanded to consume the real host height;
-    // the flexible family matrix receives the extra room instead of leaving a black void.
-    const rect=view.getBoundingClientRect();
-    const w=Math.max(1,Math.floor(view.clientWidth||rect.width||1));
-    const baseW=1920,scale=w/baseW;
-    let hostH=0;
-    const snap=view.closest('.snapshot-body-no-title,.snapshot-body,.snapshot-quarter-summary');
-    if(snap) hostH=Math.max(hostH,snap.clientHeight||snap.getBoundingClientRect().height||0);
-    if(document.body.dataset.center==='operations'&&document.body.dataset.sub==='summary'){
-      const footer=document.querySelector('.app-footer,.footer');
-      const footerH=footer?.getBoundingClientRect().height||0;
-      hostH=Math.max(hostH,window.innerHeight-rect.top-footerH-8);
+    // Normal Summary and the Live Operations summary slide are responsive hosts.
+    // Do not scale a 1920px presentation canvas into them: that was the source of
+    // the right-side clipping and the large unused area below the family rows.
+    const inSnapshot=!!view.closest('.snapshot-quarter-summary');
+    const host=inSnapshot?view.closest('.snapshot-body'):document.querySelector('#app');
+    let h=host?host.getBoundingClientRect().height:0;
+    if(!inSnapshot){
+      const top=view.getBoundingClientRect().top;
+      const footer=document.querySelector('.app-footer');
+      const bottom=footer?footer.getBoundingClientRect().top:window.innerHeight;
+      h=Math.max(420,bottom-top-8);
     }
-    hostH=Math.max(hostH,view.clientHeight||0);
-    const baseH=Math.max(760,Math.round((hostH||Math.round(1015*scale))/scale));
-    canvas.style.width=baseW+'px';canvas.style.height=baseH+'px';
-    canvas.style.transformOrigin='top left';canvas.style.transform=`scale(${scale})`;
-    view.style.height=Math.max(1,Math.floor(baseH*scale))+'px';
+    view.style.height=Math.max(1,Math.floor(h))+'px';
+    canvas.style.width='100%';canvas.style.height='100%';
+    canvas.style.minWidth='0';canvas.style.minHeight='0';
+    canvas.style.transform='none';canvas.style.transformOrigin='top left';
   });
 }
 function fitPresentation(){
