@@ -18776,3 +18776,70 @@ html body.presentation-mode[data-center="operations"][data-sub="summary"] .quart
   margin:0!important;box-sizing:border-box!important;overflow:hidden!important;
   gap:10px!important;padding:0!important;
 }
+
+
+/* =========================================================
+   V6.6.41 — QUARTER SUMMARY FINAL FIT
+   Scope is deliberately limited to the two non-presentation
+   summary hosts. Presentation geometry remains locked.
+   ========================================================= */
+
+/* Live Operations carousel: reserve enough vertical breathing room for
+   the hero value so 8 / 12 cannot touch or cross the metric border. */
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"]
+.snapshot-quarter-summary .quarter-summary-master{
+  grid-template-rows:clamp(142px,30cqh,255px) clamp(104px,18cqh,158px) minmax(0,1fr)!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"]
+.snapshot-quarter-summary .quarter-hero-metric{
+  padding:clamp(6px,1.1cqh,12px) clamp(8px,1cqw,18px) clamp(10px,1.8cqh,18px)!important;
+  grid-template-rows:auto minmax(0,1fr)!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"]
+.snapshot-quarter-summary .quarter-hero-metric small{
+  font-size:clamp(17px,min(1.9cqw,3.5cqh),36px)!important;
+  line-height:1.02!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"]
+.snapshot-quarter-summary .quarter-hero-metric strong{
+  font-size:clamp(54px,min(7.7cqw,12.8cqh),142px)!important;
+  line-height:1!important;
+  align-self:center!important;
+  padding:0 0 .03em!important;
+  max-height:none!important;
+}
+
+/* Normal Quarter Summary: keep every family name and machine image fully
+   inside its row. This intentionally does not target Presentation Mode. */
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"]
+.quarter-summary-master .family-rows-scroll{
+  padding:2px 0!important;
+  box-sizing:border-box!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"]
+.quarter-summary-master .family-rows-scroll>.family-matrix{
+  overflow:hidden!important;
+  min-height:0!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"]
+.quarter-summary-master .family-panel-v526 .family-cell.name{
+  grid-template-columns:minmax(0,max-content) minmax(36px,86px)!important;
+  column-gap:clamp(7px,.9cqw,20px)!important;
+  padding:3px clamp(6px,.65cqw,12px)!important;
+  min-height:0!important;
+  overflow:hidden!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"]
+.quarter-summary-master .family-panel-v526 .family-cell.name span{
+  font-size:clamp(10px,min(1.22cqw,2.65cqh),25px)!important;
+  line-height:1!important;
+  align-self:center!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"]
+.quarter-summary-master .family-panel-v526 .family-thumb{
+  width:auto!important;
+  height:min(62%,clamp(20px,5.8cqh,52px))!important;
+  max-width:86px!important;
+  object-fit:contain!important;
+  align-self:center!important;
+}

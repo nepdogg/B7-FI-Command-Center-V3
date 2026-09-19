@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.6.40', BUILD='20260918-V6.6.40-QUARTER-SUMMARY-SINGLE-RESPONSIVE-MASTER';
+const VERSION='6.6.41', BUILD='20260918-V6.6.41-QUARTER-SUMMARY-FINAL-FIT';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -743,8 +743,8 @@ function quarterSummaryView(presentation=false){
   return `<div class="quarter-summary-presentation" style="${vars}">
     ${core}
     <nav class="presentation-inline-nav quarter-summary-switchbar" aria-label="Quarter summary presentation controls">
-      <button class="presentation-nav-cell presentation-switch-view" data-presentation-view="tool" type="button">LIVE ${esc(state.quarter)} TOOLS</button>
-      <span class="presentation-nav-cell quarter-summary-live-label">LIVE ${esc(state.quarter)} QUARTER SUMMARY</span>
+      <button class="presentation-nav-cell presentation-switch-view" data-presentation-view="tool" type="button">${esc(state.quarter)} TOOLS</button>
+      <span class="presentation-nav-cell quarter-summary-live-label">${esc(state.quarter)} QUARTER SUMMARY</span>
       <span class="presentation-nav-cell presentation-nav-exit">ESC TO EXIT</span>
     </nav>
   </div>`;
