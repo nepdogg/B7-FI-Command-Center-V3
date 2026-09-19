@@ -18843,3 +18843,77 @@ html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"]
   object-fit:contain!important;
   align-self:center!important;
 }
+
+/* =========================================================
+   V6.6.42 — QUARTER SUMMARY FINAL CLEARANCE
+   Local geometry corrections only. Presentation Summary is locked.
+   ========================================================= */
+
+/* LIVE OPERATIONS > Quarter Summary carousel
+   Make the two hero values larger without letting them touch the frame. */
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"]
+.snapshot-quarter-summary .quarter-hero-metric strong{
+  font-size:clamp(66px,min(9.4cqw,15.2cqh),158px)!important;
+  line-height:.88!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  min-height:0!important;margin:0!important;padding:.02em 0 .08em!important;
+  overflow:visible!important;
+}
+
+/* Keep the second progress line completely inside the live-panel box. */
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"]
+.snapshot-quarter-summary .quarter-live-panel{
+  padding-bottom:12px!important;
+  grid-template-rows:minmax(48px,1fr) auto auto!important;
+  row-gap:5px!important;
+  overflow:hidden!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"]
+.snapshot-quarter-summary .quarter-live-panel>.track:last-child,
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"]
+.snapshot-quarter-summary .quarter-live-panel .track:last-child{
+  margin-bottom:2px!important;
+}
+
+/* NORMAL Quarter Summary: same bottom clearance for Days Remaining. */
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"]
+.quarter-summary-master .quarter-live-panel{
+  padding-bottom:12px!important;
+  grid-template-rows:minmax(48px,1fr) auto auto!important;
+  row-gap:5px!important;
+  overflow:hidden!important;
+}
+
+/* NORMAL Quarter Summary family rows: center identity content inside each
+   dynamic row and keep text/image clear of both horizontal borders. */
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"]
+.quarter-summary-master .family-rows-scroll{
+  padding:3px 0 4px!important;gap:2px!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"]
+.quarter-summary-master .family-rows-scroll>.family-matrix{
+  align-items:stretch!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"]
+.quarter-summary-master .family-panel-v526 .family-cell.name{
+  display:flex!important;align-items:center!important;justify-content:flex-start!important;
+  gap:clamp(8px,.85cqw,18px)!important;
+  padding:1px clamp(7px,.7cqw,13px)!important;
+  height:100%!important;min-height:0!important;box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"]
+.quarter-summary-master .family-panel-v526 .family-cell.name>span{
+  display:flex!important;align-items:center!important;
+  font-size:clamp(10px,min(1.05cqw,2.15cqh),21px)!important;
+  line-height:.94!important;margin:0!important;padding:0!important;
+  white-space:nowrap!important;min-height:0!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"]
+.quarter-summary-master .family-panel-v526 .family-thumb{
+  flex:0 1 auto!important;width:auto!important;
+  height:min(56%,clamp(18px,4.8cqh,44px))!important;
+  max-height:56%!important;max-width:78px!important;
+  margin:0!important;padding:0!important;object-fit:contain!important;
+  align-self:center!important;
+}
