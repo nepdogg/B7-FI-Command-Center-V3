@@ -17695,3 +17695,74 @@ html body.presentation-mode[data-center="operations"][data-sub="summary"] .famil
 html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526 button.reveal-btn:hover{
   filter:brightness(1.28)!important;box-shadow:0 0 12px rgba(176,104,255,.65)!important;
 }
+
+/* =========================================================
+   V6.6.31 — RESPONSIVE QUARTER SUMMARY FINALIZATION
+   - remove redundant family-section title in Presentation Mode
+   - protect hero KPI values at high family counts
+   - scale family typography/images/icons with row height
+   - center all family column headings
+   - family progress shows X OF Y SHIPPED over a real progress bar
+   - Mystery Box / Reveal is an allowed Presentation interaction
+   ========================================================= */
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-presentation{
+  grid-template-rows:var(--summary-hero-height,230px) 164px minmax(0,1fr) 58px!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-hero-metric{
+  overflow:hidden!important;
+  padding:9px 18px 12px!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-hero-metric small{
+  font-size:clamp(27px,1.85vw,40px)!important;
+  line-height:1!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-hero-metric strong{
+  font-size:min(var(--summary-hero-number,148px),8.1vw)!important;
+  line-height:.86!important;
+  align-self:center!important;
+  padding-bottom:.04em!important;
+  max-height:100%!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-family-wrap{
+  grid-template-rows:minmax(0,1fr)!important;
+  min-height:0!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-family-title{
+  display:none!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-family-wrap>.family-panel-v526{
+  grid-row:1!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526 .family-matrix.header>b{
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  text-align:center!important;width:100%!important;height:100%!important;
+  font-size:clamp(11px,.72vw,14px)!important;line-height:1!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526 .family-cell.name span{
+  font-size:var(--family-name-size,24px)!important;
+  line-height:1!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526 .family-cell:not(.name),
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526 .family-total{
+  font-size:var(--family-number-size,23px)!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526 .family-thumb{
+  height:var(--family-image-height,54px)!important;
+  max-height:82%!important;max-width:118px!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526 button.reveal-btn{
+  font-size:var(--family-reveal-size,28px)!important;
+  pointer-events:auto!important;cursor:pointer!important;z-index:100!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526 .family-progress{
+  position:relative!important;display:flex!important;flex-direction:column!important;
+  align-items:center!important;justify-content:center!important;gap:5px!important;padding:5px 8px!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526 .family-progress .track{
+  display:block!important;width:100%!important;height:9px!important;min-height:9px!important;
+  border:1px solid #176fa8!important;overflow:hidden!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526 .family-progress small{
+  display:block!important;font-size:clamp(12px,.9vw,18px)!important;font-weight:900!important;
+  line-height:1!important;white-space:nowrap!important;color:#d9f5ff!important;
+}

@@ -533,3 +533,13 @@ Presentation-launched Tool Edit is now detached from the `presentation-mode` wal
 - Fixed clipping of the CY26Q3 Days Remaining progress bar.
 - Mystery/Reveal boxes are clickable in Quarter Summary Presentation, including locked-state explanation and unlocked celebration.
 - Preserves V6.6.29 unified bottom navigation and V6.6.27+ one-tool/one-row multi-user storage.
+
+## V6.6.31 responsive Quarter Summary refinement
+- Presentation family layout remains dynamic across low/high tool-family counts.
+- Hero KPI boxes now keep protected height and responsive number sizing to prevent clipping at high family counts.
+- Tool-family names, status numbers, images, reveal icons, and shipped-count text scale with the number of displayed families.
+- Redundant Presentation-only Tool Shipping Progress title removed to return vertical space to the wallboard.
+- Family column headings centered.
+- Shipping Progress cells now show a real progress bar plus `X OF Y SHIPPED` instead of percentage-only text.
+- Mystery Box / Reveal controls are explicitly permitted through the Presentation interaction shield.
+- Multi-user one-tool/one-Microsoft-List-row storage from V6.6.27+ is preserved.
