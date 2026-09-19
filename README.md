@@ -1,3 +1,5 @@
+# B7 FI Command Center V6.6.34
+
 # B7 FI Command Center V6.6.30 — Unified Presentation Navigation
 
 V6.6.30 refinement: Live Operations Tool Presentation now matches the Quarter Summary Presentation structure with one large bottom navigation bar, no separate LIVE OPERATIONS title/footer row, and the play/pause control labeled CY26Q3 TOOLS PLAY/PAUSE dynamically from the active quarter. Quarter Summary hero metric labels and numbers are enlarged further. One-tool/one-row multi-user architecture from V6.6.27+ is preserved.
@@ -553,7 +555,7 @@ Presentation-launched Tool Edit is now detached from the `presentation-mode` wal
 - Removed the redundant nested family-panel border in the carousel and protected the final bottom border from clipping.
 - Presentation Mode dynamic layout and one-tool/one-Microsoft-List-row multi-user storage are preserved.
 
-## V6.6.33 — Quarter Summary / UTC parity
+## V6.6.34 — Quarter Summary / UTC parity
 - Dedicated Quarter Summary page now renders the same responsive hero/status/family wallboard component as Quarter Summary Presentation Mode, while retaining its normal page title/navigation.
 - Live Operations Quarter Summary carousel removes the remaining redundant bottom frame and reserves clearance for the last family row border.
 - Tools page UTC cards retain the same Universal Tool Card content/structure as Live Operations but receive enough vertical room in the narrower two-column layout so Customer Source, STR, Packing/Shipping and the bottom card edge are not clipped.
