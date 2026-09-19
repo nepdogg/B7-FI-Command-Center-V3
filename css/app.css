@@ -17766,3 +17766,71 @@ html body.presentation-mode[data-center="operations"][data-sub="summary"] .famil
   display:block!important;font-size:clamp(12px,.9vw,18px)!important;font-weight:900!important;
   line-height:1!important;white-space:nowrap!important;color:#d9f5ff!important;
 }
+
+/* =========================================================
+   V6.6.32 — UNIFIED DYNAMIC QUARTER SUMMARY
+   - Live Operations Quarter Summary carousel now uses the same
+     family-count-driven sizing concept as Presentation Mode.
+   - family typography/images/icons scale with active family count.
+   - redundant nested family-panel frame removed in carousel.
+   - bottom borders are kept inside the available slide height.
+   ========================================================= */
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-summary-page{
+  grid-template-rows:138px minmax(0,1fr)!important;
+  height:100%!important;min-height:0!important;overflow:hidden!important;
+  gap:5px!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-panel-v526{
+  display:grid!important;grid-template-rows:26px minmax(0,1fr)!important;
+  height:100%!important;min-height:0!important;max-height:100%!important;
+  margin:0!important;padding:0!important;gap:2px!important;overflow:hidden!important;
+  border:0!important;outline:0!important;box-shadow:none!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-matrix.header{
+  height:26px!important;min-height:26px!important;margin:0!important;border-top:1px solid #176fa8!important;
+  border-bottom:1px solid #176fa8!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-matrix.header>b{
+  display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;
+  width:100%!important;height:100%!important;font-size:clamp(7px,.55vw,10px)!important;line-height:1!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-rows-scroll{
+  display:grid!important;grid-template-rows:repeat(var(--family-count,6),minmax(0,1fr))!important;
+  height:100%!important;min-height:0!important;max-height:100%!important;overflow:hidden!important;
+  gap:2px!important;padding:0!important;margin:0!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-rows-scroll>.family-matrix{
+  height:100%!important;min-height:0!important;margin:0!important;align-items:stretch!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-rows-scroll>.family-matrix:last-child{
+  border-bottom:1px solid #176fa8!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-cell,
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary button.reveal-btn{
+  height:100%!important;min-height:0!important;margin:0!important;box-sizing:border-box!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  font-size:var(--normal-family-number-size,16px)!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-cell.name{
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  gap:clamp(8px,1vw,18px)!important;padding:2px 6px!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-cell.name>span{
+  font-size:var(--normal-family-name-size,17px)!important;line-height:1!important;font-weight:1000!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-thumb{
+  height:var(--normal-family-image-height,36px)!important;max-height:82%!important;max-width:82px!important;object-fit:contain!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary button.reveal-btn{
+  font-size:var(--normal-family-reveal-size,18px)!important;pointer-events:auto!important;cursor:pointer!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-progress{
+  display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
+  gap:3px!important;padding:2px 6px!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-progress .track{
+  width:100%!important;height:6px!important;min-height:6px!important;margin:0!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-progress small{
+  font-size:clamp(8px,.62vw,12px)!important;line-height:1!important;font-weight:900!important;white-space:nowrap!important;
+}

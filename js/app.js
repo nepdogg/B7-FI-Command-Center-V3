@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.6.31', BUILD='20260918-V6.6.31-RESPONSIVE-QUARTER-SUMMARY-FINALIZATION';
+const VERSION='6.6.32', BUILD='20260918-V6.6.32-UNIFIED-DYNAMIC-QUARTER-SUMMARY';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -723,7 +723,14 @@ function quarterDayUrgency(days){days=Number(days)||0;if(days<=7)return'critical
 function quarterToolUrgency(left,days){left=Number(left)||0;days=Math.max(0,Number(days)||0);if(left<=0)return'complete';let pace=days/left;if(days<=7||pace<2)return'critical';if(days<=14||pace<4)return'warning';if(days<=30||pace<7)return'caution';return'good'}
 function quarterSummaryView(presentation=false){
   let a=activeTools(),sh=a.filter(t=>fiSummaryStatus(t)==='Shipped').length,left=Math.max(0,a.length-sh),qt=quarterTimeProgress();
-  if(!presentation)return `<div class="report-title center-page-title quarter-summary-page-title">${esc(state.quarter)} SUMMARY · ${esc(fmtDate(today()))}</div><div class="quarter-summary-page">${quarterPanel()}${familyPanel()}</div>`;
+  if(!presentation){
+    let fc=Math.max(1,familyNames().length),
+        nf=fc<=3?22:fc<=4?20:fc<=6?17:fc<=7?15:fc<=9?13:12,
+        nn=fc<=3?20:fc<=4?18:fc<=6?16:fc<=7?14:fc<=9?13:12,
+        ni=fc<=3?48:fc<=4?43:fc<=6?36:fc<=7?32:fc<=9?28:25,
+        nr=fc<=3?23:fc<=4?21:fc<=6?18:fc<=7?16:fc<=9?15:14;
+    return `<div class="report-title center-page-title quarter-summary-page-title">${esc(state.quarter)} SUMMARY · ${esc(fmtDate(today()))}</div><div class="quarter-summary-page" style="--family-count:${fc};--normal-family-name-size:${nf}px;--normal-family-number-size:${nn}px;--normal-family-image-height:${ni}px;--normal-family-reveal-size:${nr}px">${quarterPanel()}${familyPanel()}</div>`;
+  }
   let familyCount=Math.max(1,familyNames().length),
       heroHeight=familyCount<=3?285:familyCount===4?270:familyCount===5?250:familyCount===6?230:familyCount===7?215:200,
       familyFont=familyCount<=3?30:familyCount<=4?27:familyCount<=6?24:familyCount<=7?21:familyCount<=9?18:16,

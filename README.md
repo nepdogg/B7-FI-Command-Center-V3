@@ -543,3 +543,12 @@ Presentation-launched Tool Edit is now detached from the `presentation-mode` wal
 - Shipping Progress cells now show a real progress bar plus `X OF Y SHIPPED` instead of percentage-only text.
 - Mystery Box / Reveal controls are explicitly permitted through the Presentation interaction shield.
 - Multi-user one-tool/one-Microsoft-List-row storage from V6.6.27+ is preserved.
+
+
+## V6.6.32 unified dynamic Quarter Summary
+- Live Operations Quarter Summary carousel now derives row count from the active tool families instead of assuming six rows.
+- Carousel family rows divide the available height evenly for low/high family counts.
+- Carousel family names, status values, tool images, reveal icons, and shipped-count content scale with family count.
+- Column headings remain centered and shipping progress retains `X OF Y SHIPPED`.
+- Removed the redundant nested family-panel border in the carousel and protected the final bottom border from clipping.
+- Presentation Mode dynamic layout and one-tool/one-Microsoft-List-row multi-user storage are preserved.
