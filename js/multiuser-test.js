@@ -71,10 +71,27 @@ async function syncChangedTools(nextState){if(!sharedActive||!list)return;requir
 let syncChain=Promise.resolve();
 function queueStateSync(st,msg){let snap=JSON.parse(JSON.stringify(st));syncChain=syncChain.then(()=>syncChangedTools(snap)).catch(e=>{console.error(e);setFooterStatus('SCENARIO TEST · SYNC ERROR');status('SHARED SAVE FAILED — '+friendly(e),'err')})}
 function activeUserDetails(){return []}
-function activeUsers(){return []}
+function activeUsers(){return account?[String(account.name||account.username||'').trim()]:[]}
 function setFooterStatus(txt){let e=document.querySelector('#sharedStatus');if(e)e.textContent=txt}
 function setModeIdentity(mode,connection){let shared=mode==='shared',connected=connection==='connected',connecting=connection==='connecting';for(const id of ['headerModeCenter','footerModeCenter']){let e=document.getElementById(id);if(e){e.classList.toggle('shared-connected',shared&&connected);e.classList.toggle('shared-connecting',shared&&connecting);e.classList.toggle('shared-disconnected',shared&&!connected&&!connecting)}}let h=document.getElementById('headerModeLabel'),hc=document.getElementById('headerConnectionLabel'),f=document.getElementById('footerModeLabel'),fc=document.getElementById('footerConnectionLabel');if(h)h.textContent=shared?'MULTI-USER MODE':'LOCAL PRODUCTION';if(f)f.textContent=shared?'MULTI-USER':'LOCAL';let txt=shared?(connected?'MICROSOFT LIST CONNECTED':connecting?'CONNECTING TO LIST':'LIST DISCONNECTED'):'LOCAL DATA';if(hc)hc.textContent=txt;if(fc)fc.textContent=txt}
-function updateFooter(env){let ident=document.querySelector('#sharedIdentity'),au=document.querySelector('#activeUsers');if(env==='PRODUCTION'){if(ident)ident.textContent='LOCAL';setFooterStatus('LOCAL PRODUCTION · LOCAL DATA');if(au)au.textContent='USERS: —';setModeIdentity('local','offline');return}if(ident)ident.textContent=account?'SIGNED IN: '+String(account.name||account.username).split(' ')[0].toUpperCase():'NOT SIGNED IN';setFooterStatus(sharedActive?'MULTI-USER · LIST CONNECTED · 1 ROW/TOOL':'MULTI-USER · LIST DISCONNECTED');if(au)au.textContent=sharedActive?'USERS: 1':'USERS: 0';setModeIdentity('shared',sharedActive?'connected':'offline')}
+function renderPresenceBadges(){
+  const names=['Kenny','Hailey','Tony','Miguel','Saidomar','Benson','Neptune'];
+  const host=document.querySelector('#presenceBadges');if(!host)return;
+  const who=String(account?.name||account?.username||'').toLowerCase();
+  host.innerHTML=names.map(n=>{let mine=who.includes(n.toLowerCase()),active=sharedActive&&mine;return `<button type="button" class="presence-badge ${active?'active':''} ${mine?'me':''}" data-presence-user="${n}">${n.toUpperCase()}</button>`}).join('');
+}
+function updateFooter(env){
+  let au=document.querySelector('#activeUsers'),health=document.querySelector('#footerDataHealth'),sync=document.querySelector('#footerLastSync');
+  renderPresenceBadges();
+  if(env==='PRODUCTION'){
+    setFooterStatus('LOCAL DATA');if(au)au.textContent='USERS: —/7';if(health)health.textContent=`DATA HEALTH: ${window.state?.tools?.length||0} LOCAL TOOLS`;if(sync)sync.textContent='LAST SYNC: LOCAL';setModeIdentity('local','offline');return;
+  }
+  setFooterStatus(sharedActive?'LIST CONNECTED · 1 ROW/TOOL':'LIST DISCONNECTED');
+  if(au)au.textContent=sharedActive?'USERS: 1/7':'USERS: 0/7';
+  if(health)health.textContent=`DATA HEALTH: ${sharedActive?'SHARED READY':'WAITING'}`;
+  if(sync)sync.textContent=sharedActive?'LAST SYNC: '+new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'}):'LAST SYNC: —';
+  setModeIdentity('shared',sharedActive?'connected':'offline');renderPresenceBadges();
+}
 function showActiveUsers(){alert('ACTIVE USERS presence rows are temporarily disabled in V6.6.43 while the one-tool/one-row storage model is validated.')}
 function downloadJson(obj,name){let blob=new Blob([JSON.stringify(obj,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
 async function ensureConnected(){await initMsal();if(!account){let r=await msalApp.loginPopup({scopes:CFG.scopes,redirectUri:CFG.redirectUri});account=r.account;msalApp.setActiveAccount?.(account);setSignedIn();pass('signin')}if(!list)await connect();await refreshAllItems()}

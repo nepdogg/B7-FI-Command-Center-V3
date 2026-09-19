@@ -18929,3 +18929,40 @@ body:not(.screenshot-mode):not(.presentation-mode) .body-workspace{min-height:10
 body:not(.screenshot-mode):not(.presentation-mode) .app-footer{flex:0 0 66px!important}
 @media (max-width:1200px){.mode-center-text b{font-size:8px}.mode-center-text small{font-size:6px}.hero-center{gap:5px!important}.hero-center img{max-width:76px!important}.app-footer .footer-center img{max-width:68px!important}}
 @media (max-height:800px){body:not(.screenshot-mode):not(.presentation-mode) .body-shell{min-height:220px!important}.app-footer{height:58px!important}}
+
+/* =========================================================
+   V6.6.44 — RESPONSIVE SHELL + PRESENTATION-MASTER SUMMARY + 2-ROW FOOTER
+   ========================================================= */
+body:not(.screenshot-mode):not(.presentation-mode) .app-frame{height:100vh!important;min-height:100vh!important;display:grid!important;grid-template-rows:auto minmax(0,1fr) auto!important;overflow:hidden!important}
+body:not(.screenshot-mode):not(.presentation-mode) .body-shell{min-height:0!important;height:auto!important;overflow:auto!important;display:flex!important}
+body:not(.screenshot-mode):not(.presentation-mode) .body-workspace{flex:1 1 auto!important;min-height:100%!important;height:auto!important;box-sizing:border-box!important}
+
+/* All non-presentation Quarter Summary hosts use the same proportions as the presentation board. */
+.quarter-summary-master-viewport{height:100%!important;min-height:0!important;container-type:size!important}
+.quarter-summary-master-viewport>.quarter-summary-master{grid-template-rows:minmax(118px,27%) minmax(112px,20%) minmax(0,1fr)!important;gap:10px!important}
+.quarter-summary-master .quarter-live-panel{grid-template-rows:minmax(42px,1fr) auto auto!important;padding:6px 10px 14px!important;row-gap:7px!important;overflow:visible!important}
+.quarter-summary-master .quarter-live-panel .track{flex:0 0 auto!important;min-height:8px!important;overflow:visible!important}
+.quarter-summary-master .quarter-summary-family-wrap,.quarter-summary-master .family-panel-v526,.quarter-summary-master .family-rows-scroll{min-height:0!important;height:100%!important}
+.quarter-summary-master .family-rows-scroll{display:grid!important;grid-template-rows:repeat(var(--family-count,9),minmax(0,1fr))!important;align-content:stretch!important;padding:0!important;gap:2px!important}
+.quarter-summary-master .family-rows-scroll>.family-matrix{height:100%!important;min-height:0!important;margin:0!important}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] #app{display:flex!important;flex-direction:column!important;min-height:0!important}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-master-viewport{flex:1 1 auto!important;min-height:0!important}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-summary-master{grid-template-rows:minmax(118px,27%) minmax(112px,20%) minmax(0,1fr)!important}
+
+/* Two-row footer: people/connection above, system/data information below. */
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer{height:auto!important;min-height:78px!important;flex:none!important;display:grid!important;grid-template-columns:1fr!important;grid-template-rows:minmax(46px,1fr) 28px!important;margin:0!important;padding:0!important;overflow:hidden!important;background:#07111d!important}
+.app-footer .footer-presence-row{display:grid!important;grid-template-columns:minmax(330px,1fr) minmax(250px,360px) minmax(620px,1.65fr)!important;align-items:stretch!important;min-width:0!important;background:#1676ad!important}
+.app-footer .footer-presence-left{display:flex!important;align-items:center!important;gap:14px!important;padding:5px 16px!important;min-width:0!important}
+.app-footer .footer-center{display:flex!important;justify-content:center!important;background:#05080d!important;clip-path:polygon(9% 0,91% 0,100% 100%,0 100%)!important;padding:4px 28px!important;min-width:0!important}
+.app-footer .footer-center img{max-height:34px!important;max-width:96px!important;margin:0!important}
+.presence-badges{display:grid!important;grid-template-columns:repeat(7,minmax(62px,1fr))!important;gap:5px!important;align-items:center!important;padding:5px 12px!important;min-width:0!important}
+.presence-badge{height:28px!important;min-width:0!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:5px!important;border:1px solid #41647a!important;border-radius:5px!important;background:#07121e!important;color:#aebbc5!important;font-size:10px!important;font-weight:900!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+.presence-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:#71808b;box-shadow:none;flex:0 0 auto}
+.presence-badge.active{color:#fff!important;border-color:#23e98a!important;box-shadow:0 0 8px rgba(35,233,138,.45)!important}.presence-badge.active::before{background:#23f48c;box-shadow:0 0 8px #23f48c}
+.presence-badge.recent{color:#ffe36b!important;border-color:#e6b52e!important}.presence-badge.recent::before{background:#ffc928;box-shadow:0 0 7px #ffc928}
+.presence-badge.me{outline:1px solid #7fe8ff!important;outline-offset:1px!important}
+.footer-system-row{display:grid!important;grid-template-columns:1.05fr .65fr 1.15fr .9fr 1.2fr!important;align-items:center!important;gap:0!important;min-width:0!important;background:#06101b!important;border-top:1px solid #24aee9!important;color:#d8efff!important;font-size:9px!important;font-weight:900!important;letter-spacing:.25px!important}
+.footer-system-row>*{min-width:0!important;text-align:center!important;padding:0 8px!important;border-right:1px solid rgba(78,185,236,.25)!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+.footer-users-button{justify-self:stretch!important;height:100%!important;border:0!important;background:transparent!important;color:#fff!important;font-weight:900!important}
+@media(max-width:1450px){.app-footer .footer-presence-row{grid-template-columns:minmax(260px,.8fr) minmax(210px,280px) minmax(560px,1.6fr)!important}.presence-badge{font-size:8px!important}.app-footer .footer-presence-left{gap:7px!important;padding:4px 8px!important}.footer-system-row{font-size:8px!important}}
+@media(max-width:1120px){body:not(.screenshot-mode):not(.presentation-mode) .app-footer{min-height:102px!important;grid-template-rows:74px 28px!important}.app-footer .footer-presence-row{grid-template-columns:1fr 250px!important;grid-template-rows:36px 38px!important}.app-footer .footer-presence-left{grid-column:1;grid-row:1}.app-footer .footer-center{grid-column:2;grid-row:1}.presence-badges{grid-column:1/3;grid-row:2;grid-template-columns:repeat(7,1fr)!important;padding:4px 8px!important}.footer-system-row{font-size:7px!important}}
