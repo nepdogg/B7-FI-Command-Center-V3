@@ -19012,4 +19012,116 @@ html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .sn
  .app-footer .presence-badge{font-size:8px!important}
  .app-footer .footer-system-row{grid-template-columns:minmax(245px,1.5fr) .9fr .65fr .9fr .9fr 1.2fr!important;font-size:7px!important}
 }
-\n\n/* =========================================================\n   V6.6.46 — FOOTER FRAME + DIAGNOSTICS CLEANUP\n   ========================================================= */\n/* Footer is one clean two-row surface. Remove inherited legacy frame/shadow\n   rules that produced the two dark horizontal strips under the badge row. */\nbody:not(.screenshot-mode):not(.presentation-mode) .app-footer{\n  border:0!important;\n  border-top:0!important;\n  border-bottom:0!important;\n  outline:0!important;\n  box-shadow:none!important;\n  margin:6px 0 0!important;\n  padding:0!important;\n  background:#06101b!important;\n}\nbody:not(.screenshot-mode):not(.presentation-mode) .app-footer::before,\nbody:not(.screenshot-mode):not(.presentation-mode) .app-footer::after,\nbody:not(.screenshot-mode):not(.presentation-mode) .footer-presence-row::before,\nbody:not(.screenshot-mode):not(.presentation-mode) .footer-presence-row::after{\n  content:none!important;display:none!important;border:0!important;box-shadow:none!important;\n}\nbody:not(.screenshot-mode):not(.presentation-mode) .app-footer .footer-presence-row{\n  border:0!important;outline:0!important;box-shadow:none!important;margin:0!important;\n}\nbody:not(.screenshot-mode):not(.presentation-mode) .app-footer .footer-system-row{\n  margin:0!important;border-left:0!important;border-right:0!important;border-bottom:0!important;box-shadow:none!important;\n}\n/* The injected launcher remains an internal hook only; Administration Center\n   supplies the one and only visible MULTI-USER DIAGNOSTICS button. */\n#mu-launch{display:none!important}\n
+
+
+/* =========================================================
+   V6.6.47 — GLOBAL RESPONSIVE VIEWPORT / SUMMARY / FOOTER LOCK
+   Browser zoom changes the CSS viewport. The shell always consumes that
+   viewport; page workspaces stretch inside it instead of retaining a fixed
+   design-height canvas.
+   ========================================================= */
+html,body{width:100%!important;height:100%!important;min-height:100%!important;margin:0!important}
+body:not(.screenshot-mode):not(.presentation-mode){height:100vh!important;min-height:100vh!important;overflow:hidden!important}
+body:not(.screenshot-mode):not(.presentation-mode) .app-frame{
+  width:100%!important;max-width:none!important;height:100vh!important;min-height:0!important;
+  margin:0!important;padding:0!important;display:grid!important;
+  grid-template-rows:auto minmax(0,1fr) 72px!important;overflow:hidden!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell{position:relative!important;top:auto!important;min-height:0!important}
+body:not(.screenshot-mode):not(.presentation-mode) .body-shell{
+  min-height:0!important;height:100%!important;overflow:hidden!important;display:flex!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .body-workspace{
+  width:100%!important;height:100%!important;min-height:0!important;min-width:0!important;
+  overflow:auto!important;display:block!important;padding-bottom:0!important;
+}
+/* Make the principal page workspaces use the available body height at any zoom. */
+body:not(.screenshot-mode):not(.presentation-mode) main#app>.operations-dual-grid,
+body:not(.screenshot-mode):not(.presentation-mode) main#app>.status-center-stack,
+body:not(.screenshot-mode):not(.presentation-mode) main#app>.shipping-frame,
+body:not(.screenshot-mode):not(.presentation-mode) main#app>.fleet-frame,
+body:not(.screenshot-mode):not(.presentation-mode) main#app>.action-frame,
+body:not(.screenshot-mode):not(.presentation-mode) main#app>.search-frame,
+body:not(.screenshot-mode):not(.presentation-mode) main#app>.meeting-center-stack{
+  min-height:100%!important;box-sizing:border-box!important;
+}
+/* Live Operations: allow its main grid/panels to grow instead of sitting on top of a tall canvas. */
+body:not(.screenshot-mode):not(.presentation-mode)[data-center="operations"][data-sub="live"] #app{display:flex!important;flex-direction:column!important;overflow:hidden!important}
+body:not(.screenshot-mode):not(.presentation-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid{flex:1 1 0!important;height:100%!important;min-height:0!important}
+body:not(.screenshot-mode):not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-panel,
+body:not(.screenshot-mode):not(.presentation-mode)[data-center="operations"][data-sub="live"] .live-card{min-height:0!important}
+/* Status/Morning page grows with the viewport while retaining normal scrolling when content needs it. */
+body:not(.screenshot-mode):not(.presentation-mode)[data-center="status"] #app{min-height:100%!important}
+body:not(.screenshot-mode):not(.presentation-mode)[data-center="status"] .status-center-stack{min-height:100%!important}
+
+/* One clean, guaranteed two-row footer. No legacy frame lines or phantom strips. */
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer{
+  position:relative!important;inset:auto!important;width:100%!important;height:72px!important;min-height:72px!important;
+  margin:0!important;padding:0!important;border:0!important;outline:0!important;box-shadow:none!important;
+  display:grid!important;grid-template-rows:40px 32px!important;grid-template-columns:1fr!important;
+  overflow:hidden!important;background:#07111d!important;z-index:30!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer::before,
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer::after,
+body:not(.screenshot-mode):not(.presentation-mode) .footer-presence-row::before,
+body:not(.screenshot-mode):not(.presentation-mode) .footer-presence-row::after,
+body:not(.screenshot-mode):not(.presentation-mode) .footer-system-row::before,
+body:not(.screenshot-mode):not(.presentation-mode) .footer-system-row::after{content:none!important;display:none!important}
+.app-footer .footer-presence-row{
+  grid-row:1!important;width:100%!important;height:40px!important;margin:0!important;padding:4px 18px!important;
+  border:0!important;outline:0!important;box-shadow:none!important;background:var(--accent)!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;
+}
+.app-footer .presence-badges{
+  width:min(1180px,94vw)!important;height:32px!important;margin:0 auto!important;padding:0!important;
+  display:grid!important;grid-template-columns:repeat(7,minmax(72px,1fr))!important;gap:clamp(5px,1vw,16px)!important;align-items:center!important;
+}
+.app-footer .presence-badge{height:26px!important;min-height:0!important;margin:0!important;font-size:clamp(7px,.62vw,10px)!important}
+.app-footer .footer-system-row{
+  grid-row:2!important;width:100%!important;height:32px!important;margin:0!important;padding:0!important;
+  border:0!important;border-top:1px solid rgba(70,190,240,.55)!important;outline:0!important;box-shadow:none!important;
+  background:#050b12!important;display:grid!important;
+  grid-template-columns:minmax(270px,1.55fr) .9fr .65fr .9fr .9fr minmax(180px,1.15fr)!important;
+  align-items:center!important;font-size:clamp(7px,.55vw,9px)!important;
+}
+.app-footer .footer-system-row>*{height:100%!important;min-width:0!important;margin:0!important;border:0!important;border-right:1px solid rgba(78,185,236,.20)!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:0 8px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+.app-footer .footer-system-left{justify-content:flex-start!important;gap:10px!important;padding-left:12px!important}
+.app-footer #adminButton{height:24px!important;min-height:24px!important}
+#footerModeCenter,#sharedIdentity{display:none!important}
+#mu-launch{display:none!important}
+
+/* Quarter Summary: normal page and Live carousel use the Presentation geometry.
+   Reserve the complete progress panel first, then distribute every family row evenly. */
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] #app{
+  height:100%!important;min-height:0!important;overflow:hidden!important;display:flex!important;flex-direction:column!important;
+}
+.quarter-summary-master-viewport{width:100%!important;height:100%!important;min-height:0!important;overflow:hidden!important}
+.quarter-summary-master-viewport>.quarter-summary-master,
+.snapshot-quarter-summary .quarter-summary-master{
+  width:100%!important;height:100%!important;min-height:0!important;overflow:hidden!important;
+  display:grid!important;grid-template-rows:minmax(112px,27fr) minmax(126px,22fr) minmax(0,51fr)!important;
+  gap:8px!important;padding-bottom:4px!important;box-sizing:border-box!important;
+}
+.quarter-summary-master .quarter-live-panel{
+  min-height:126px!important;height:100%!important;overflow:hidden!important;padding:6px 10px 8px!important;
+  display:grid!important;grid-template-rows:minmax(42px,1fr) 25px 25px!important;row-gap:4px!important;box-sizing:border-box!important;
+}
+.quarter-summary-master .quarter-live-panel .track{display:block!important;min-height:8px!important;height:8px!important;margin:0!important;overflow:hidden!important}
+.quarter-summary-master .quarter-summary-family-wrap{height:100%!important;min-height:0!important;overflow:hidden!important}
+.quarter-summary-master .family-panel-v526{height:100%!important;min-height:0!important;display:grid!important;grid-template-rows:28px minmax(0,1fr)!important;overflow:hidden!important;margin:0!important}
+.quarter-summary-master .family-rows-scroll{
+  height:100%!important;min-height:0!important;overflow:hidden!important;display:grid!important;
+  grid-template-rows:repeat(var(--family-count,9),minmax(0,1fr))!important;gap:3px!important;padding:3px 0!important;align-content:stretch!important;
+}
+.quarter-summary-master .family-rows-scroll>.family-matrix{height:100%!important;min-height:0!important;margin:0!important;align-self:stretch!important}
+/* Carousel host must give the summary its full slide height. */
+.snapshot-quarter-summary{height:100%!important;min-height:0!important;overflow:hidden!important}
+.snapshot-quarter-summary>.quarter-summary-master-viewport{height:100%!important;min-height:0!important}
+
+@media(max-width:1150px){
+ body:not(.screenshot-mode):not(.presentation-mode) .app-frame{grid-template-rows:auto minmax(0,1fr) 82px!important}
+ body:not(.screenshot-mode):not(.presentation-mode) .app-footer{height:82px!important;min-height:82px!important;grid-template-rows:46px 36px!important}
+ .app-footer .footer-presence-row{height:46px!important;padding:5px 8px!important}
+ .app-footer .presence-badges{width:98vw!important;gap:4px!important;grid-template-columns:repeat(7,minmax(58px,1fr))!important}
+ .app-footer .footer-system-row{height:36px!important;grid-template-columns:minmax(220px,1.4fr) .8fr .6fr .8fr .8fr 1fr!important}
+}

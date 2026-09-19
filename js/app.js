@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.6.46', BUILD='20260919-V6.6.46-FOOTER-DIAGNOSTICS-CLEANUP';
+const VERSION='6.6.46', BUILD='20260919-V6.6.47-FOOTER-DIAGNOSTICS-CLEANUP';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -1568,24 +1568,15 @@ function screenshot(){if(document.body.classList.contains('presentation-mode'))e
 function exitScreenshot(){document.body.classList.remove('screenshot-mode');if(screenshotRestore){livePaused=!!screenshotRestore.livePaused;snapshotPaused=!!screenshotRestore.snapshotPaused;screenshotRestore=null}document.querySelector('#exitScreenshot').classList.add('hidden');document.querySelector('#screenshotReportTitle')?.remove();render()}
 function fitQuarterSummaryMasters(){
   document.querySelectorAll('.quarter-summary-master-viewport').forEach(view=>{
-    const canvas=view.querySelector('.quarter-summary-master');if(!canvas)return;
+    const canvas=view.querySelector('.quarter-summary-master'); if(!canvas)return;
     const inCarousel=!!view.closest('.snapshot-quarter-summary');
-    let h=0;
-    if(inCarousel){
-      const host=view.closest('.snapshot-body')||view.parentElement;
-      h=Math.max(180,host?.clientHeight||view.parentElement?.clientHeight||360);
-    }else{
-      const footer=document.querySelector('.app-footer');
-      const top=view.getBoundingClientRect().top;
-      const footerH=(footer&&getComputedStyle(footer).display!=='none')?footer.getBoundingClientRect().height+12:0;
-      h=Math.max(240,window.innerHeight-top-footerH-8);
-    }
-    view.style.height=Math.floor(h)+'px';
-    view.style.width='100%';
-    canvas.style.width='100%';canvas.style.height='100%';
-    canvas.style.transform='none';canvas.style.transformOrigin='';
+    const host=inCarousel?(view.closest('.snapshot-body')||view.parentElement):(view.parentElement||document.querySelector('.body-workspace'));
+    const available=Math.max(240, Math.floor((host&&host.clientHeight)||view.clientHeight||window.innerHeight));
+    view.style.height=available+'px'; view.style.width='100%';
+    canvas.style.width='100%'; canvas.style.height='100%'; canvas.style.transform='none'; canvas.style.transformOrigin='';
   });
 }
+
 function fitPresentation(){
   if(!document.body.classList.contains('presentation-mode'))return;
   let frame=document.querySelector('.app-frame');if(!frame)return;

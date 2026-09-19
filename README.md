@@ -1,3 +1,11 @@
+# B7 FI Command Center V6.6.47 — Global Responsive Layout
+
+- Replaces page-specific zoom patches with a viewport-owned application shell.
+- Fixes footer as a guaranteed two-row 72px region with seven presence badges and system information; removes legacy phantom border strips.
+- Makes normal Quarter Summary and Live Operations carousel summary use the same proportional geometry as Presentation Mode.
+- Reserves full space for both quarter progress bars and evenly distributes all family rows.
+- Preserves Multi-User/List logic and one-tool/one-row test architecture.
+
 # B7 FI Command Center V6.6.35
 
 # B7 FI Command Center V6.6.30 — Unified Presentation Navigation
