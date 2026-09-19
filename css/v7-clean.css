@@ -1,0 +1,138 @@
+/* B7 FI COMMAND CENTER V7.0.0 — CLEAN FOUNDATION
+   This file intentionally owns only the application shell, footer and shared Quarter Summary geometry.
+   Browser zoom is never detected or compensated for. The application is capped to a 1920x1080 design canvas
+   and the browser is allowed to scale that canvas naturally. */
+
+:root{
+  --v7-design-width:1920px;
+  --v7-design-height:1080px;
+  --v7-footer-presence:40px;
+  --v7-footer-system:32px;
+  --v7-footer-height:72px;
+}
+
+html{width:100%;min-height:100%;background:#03101c;}
+body:not(.screenshot-mode):not(.presentation-mode){
+  width:100%!important;
+  min-width:0!important;
+  height:auto!important;
+  min-height:100vh!important;
+  margin:0!important;
+  overflow:auto!important;
+  background:#03101c!important;
+}
+
+/* A bounded design canvas is the key V7 change. At browser zoom-out the canvas no longer
+   grows to thousands of CSS pixels and then inflates all of its children. */
+body:not(.screenshot-mode):not(.presentation-mode) .app-frame{
+  width:min(calc(100% - 8px),var(--v7-design-width))!important;
+  max-width:var(--v7-design-width)!important;
+  height:min(calc(100vh - 8px),var(--v7-design-height))!important;
+  min-height:min(calc(100vh - 8px),var(--v7-design-height))!important;
+  margin:4px auto!important;
+  padding:0!important;
+  border:1px solid #28516b!important;
+  display:grid!important;
+  grid-template-rows:auto minmax(0,1fr) var(--v7-footer-height)!important;
+  overflow:hidden!important;
+  box-sizing:border-box!important;
+  background:#03101c!important;
+}
+
+body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell{
+  position:relative!important;top:auto!important;z-index:100!important;
+  width:100%!important;min-height:0!important;margin:0!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .body-shell{
+  width:100%!important;height:100%!important;min-height:0!important;margin:0!important;padding:0!important;
+  border:0!important;outline:0!important;box-shadow:none!important;overflow:auto!important;background:#03101c!important;
+  display:block!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .body-shell::before,
+body:not(.screenshot-mode):not(.presentation-mode) .body-shell::after{content:none!important;display:none!important;}
+body:not(.screenshot-mode):not(.presentation-mode) .body-workspace{
+  width:100%!important;min-width:0!important;min-height:100%!important;height:auto!important;
+  margin:0!important;box-sizing:border-box!important;
+}
+
+/* Footer is exactly two rows. No hidden legacy center, pseudo-element, frame or margin may add a third strip. */
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer{
+  position:relative!important;inset:auto!important;
+  width:100%!important;height:var(--v7-footer-height)!important;min-height:var(--v7-footer-height)!important;
+  margin:0!important;padding:0!important;border:0!important;outline:0!important;box-shadow:none!important;
+  display:grid!important;grid-template:var(--v7-footer-presence) var(--v7-footer-system)/1fr!important;
+  overflow:hidden!important;background:#050b12!important;box-sizing:border-box!important;z-index:30!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer::before,
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer::after,
+body:not(.screenshot-mode):not(.presentation-mode) .footer-presence-row::before,
+body:not(.screenshot-mode):not(.presentation-mode) .footer-presence-row::after,
+body:not(.screenshot-mode):not(.presentation-mode) .footer-system-row::before,
+body:not(.screenshot-mode):not(.presentation-mode) .footer-system-row::after{content:none!important;display:none!important;}
+.app-footer .footer-presence-row{
+  grid-row:1!important;width:100%!important;height:var(--v7-footer-presence)!important;
+  margin:0!important;padding:4px 18px!important;border:0!important;outline:0!important;box-shadow:none!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;background:var(--accent)!important;box-sizing:border-box!important;
+}
+.app-footer .presence-badges{
+  width:min(1180px,94%)!important;height:32px!important;margin:0 auto!important;padding:0!important;
+  display:grid!important;grid-template-columns:repeat(7,minmax(72px,1fr))!important;gap:clamp(5px,1vw,16px)!important;align-items:center!important;
+}
+.app-footer .presence-badge{height:26px!important;min-height:0!important;margin:0!important;font-size:clamp(7px,.62vw,10px)!important;}
+.app-footer .footer-system-row{
+  grid-row:2!important;width:100%!important;height:var(--v7-footer-system)!important;margin:0!important;padding:0!important;
+  border:0!important;border-top:1px solid rgba(70,190,240,.55)!important;outline:0!important;box-shadow:none!important;
+  background:#050b12!important;display:grid!important;
+  grid-template-columns:minmax(270px,1.55fr) .9fr .65fr .9fr .9fr minmax(180px,1.15fr)!important;
+  align-items:center!important;font-size:clamp(7px,.55vw,9px)!important;box-sizing:border-box!important;
+}
+.app-footer .footer-system-row>*{height:100%!important;min-width:0!important;margin:0!important;border:0!important;border-right:1px solid rgba(78,185,236,.20)!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:0 8px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;box-sizing:border-box!important;}
+.app-footer .footer-system-left{justify-content:flex-start!important;gap:10px!important;padding-left:12px!important;}
+.app-footer #adminButton{height:24px!important;min-height:24px!important;}
+#footerModeCenter,#sharedIdentity,#mu-launch{display:none!important;}
+
+/* Quarter Summary: one bounded layout for normal page and carousel. It does NOT use viewport-derived JS heights. */
+body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] #app{
+  height:100%!important;min-height:0!important;overflow:hidden!important;display:block!important;
+}
+.quarter-summary-master-viewport{
+  width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;overflow:hidden!important;margin:0!important;
+}
+.quarter-summary-master-viewport>.quarter-summary-master,
+.snapshot-quarter-summary .quarter-summary-master{
+  width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;overflow:hidden!important;
+  display:grid!important;grid-template-rows:minmax(150px,28%) 116px minmax(0,1fr)!important;
+  gap:8px!important;padding:8px!important;box-sizing:border-box!important;
+}
+.quarter-summary-master .quarter-summary-hero{
+  height:100%!important;min-height:0!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important;margin:0!important;
+}
+.quarter-summary-master .quarter-hero-metric{height:100%!important;min-height:0!important;overflow:hidden!important;}
+.quarter-summary-master .quarter-live-panel{
+  height:116px!important;min-height:116px!important;max-height:116px!important;overflow:hidden!important;
+  display:grid!important;grid-template-rows:48px 26px 26px!important;row-gap:3px!important;padding:5px 10px!important;box-sizing:border-box!important;
+}
+.quarter-summary-master .quarter-live-panel .track{display:block!important;height:8px!important;min-height:8px!important;margin:0!important;overflow:hidden!important;}
+.quarter-summary-master .quarter-summary-family-wrap{height:100%!important;min-height:0!important;overflow:hidden!important;margin:0!important;}
+.quarter-summary-master .family-panel-v526{height:100%!important;min-height:0!important;display:grid!important;grid-template-rows:26px minmax(0,1fr)!important;overflow:hidden!important;margin:0!important;}
+.quarter-summary-master .family-rows-scroll{
+  height:100%!important;min-height:0!important;overflow:hidden!important;display:grid!important;
+  grid-template-rows:repeat(var(--family-count,9),minmax(0,1fr))!important;gap:3px!important;padding:3px 0!important;align-content:stretch!important;
+}
+.quarter-summary-master .family-rows-scroll>.family-matrix{height:100%!important;min-height:0!important;margin:0!important;align-self:stretch!important;}
+
+/* The live carousel summary receives the same geometry; no extra internal scrolling or JS fit. */
+.snapshot-quarter-summary{height:100%!important;min-height:0!important;overflow:hidden!important;}
+.snapshot-quarter-summary>.quarter-summary-master-viewport{height:100%!important;min-height:0!important;}
+
+/* Live and Status pages use the body area, but are not stretched from browser zoom calculations. */
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] #app{height:100%!important;min-height:0!important;overflow:auto!important;}
+body:not(.presentation-mode)[data-center="status"] #app{height:auto!important;min-height:100%!important;overflow:visible!important;}
+
+/* At narrow CSS viewports we keep the footer readable; this is width-responsive only, never zoom detection. */
+@media(max-width:1150px){
+  :root{--v7-footer-presence:46px;--v7-footer-system:36px;--v7-footer-height:82px;}
+  .app-footer .footer-presence-row{padding:5px 8px!important;}
+  .app-footer .presence-badges{width:98%!important;gap:4px!important;grid-template-columns:repeat(7,minmax(58px,1fr))!important;}
+  .app-footer .footer-system-row{grid-template-columns:minmax(220px,1.4fr) .8fr .6fr .8fr .8fr 1fr!important;}
+}

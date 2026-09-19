@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.6.46', BUILD='20260919-V6.6.47-FOOTER-DIAGNOSTICS-CLEANUP';
+const VERSION='7.0.0', BUILD='20260919-V7-CLEAN-FOUNDATION';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -1566,16 +1566,7 @@ function exportData(){let blob=new Blob([JSON.stringify(state,null,2)],{type:'ap
 function screenshotReportTitle(){let date=fmtDate(today());if(route.center==='status')return `${route.sub==='weekend'?'WEEKEND':'WEEKDAY'} MORNING STATUS · ${date}`;if(route.center==='shipping')return `${centerQuarter('shipping')} SHIPPING SCHEDULE · ${date}`;if(route.center==='cycle')return `${centerQuarter('cycle')} CYCLE TIME STATUS · ${date}`;if(route.center==='priority')return `${route.sub==='weekend'?'WEEKEND':'WEEKDAY'} PRIORITIES · ${date}`;if(route.center==='action')return `ACTION CENTER · ${date}`;if(route.center==='reference')return `REFERENCE LIBRARY · ${date}`;if(route.center==='archive')return `ARCHIVE · ${date}`;if(route.center==='search')return `SEARCH · ${date}`;if(route.center==='meeting')return `MEETINGS · ${date}`;if(route.center==='update')return `${route.sub==='daily'?'COMMAND CENTER DAILY UPDATE':'UPDATE'} · ${date}`;if(route.center==='operations'){if(route.sub==='tools'||route.sub==='tool')return `TOOLS · ${date}`;if(route.sub==='daily')return `UPDATE COMMAND CENTER · ${date}`;if(route.sub==='archive')return `TOOL ARCHIVE · ${date}`;return `LIVE OPERATIONS · ${date}`;}return `${String(route.center||'COMMAND CENTER').toUpperCase()} · ${date}`}
 function screenshot(){if(document.body.classList.contains('presentation-mode'))exitPresentation();screenshotRestore={livePaused,snapshotPaused};livePaused=true;snapshotPaused=true;document.body.classList.add('screenshot-mode');let x=document.querySelector('#exitScreenshot');x.textContent='×';x.setAttribute('aria-label','Exit screenshot mode');x.title='Exit screenshot mode';x.classList.remove('hidden');window.scrollTo(0,0);render()}
 function exitScreenshot(){document.body.classList.remove('screenshot-mode');if(screenshotRestore){livePaused=!!screenshotRestore.livePaused;snapshotPaused=!!screenshotRestore.snapshotPaused;screenshotRestore=null}document.querySelector('#exitScreenshot').classList.add('hidden');document.querySelector('#screenshotReportTitle')?.remove();render()}
-function fitQuarterSummaryMasters(){
-  document.querySelectorAll('.quarter-summary-master-viewport').forEach(view=>{
-    const canvas=view.querySelector('.quarter-summary-master'); if(!canvas)return;
-    const inCarousel=!!view.closest('.snapshot-quarter-summary');
-    const host=inCarousel?(view.closest('.snapshot-body')||view.parentElement):(view.parentElement||document.querySelector('.body-workspace'));
-    const available=Math.max(240, Math.floor((host&&host.clientHeight)||view.clientHeight||window.innerHeight));
-    view.style.height=available+'px'; view.style.width='100%';
-    canvas.style.width='100%'; canvas.style.height='100%'; canvas.style.transform='none'; canvas.style.transformOrigin='';
-  });
-}
+function fitQuarterSummaryMasters(){/* V7: CSS owns Quarter Summary geometry. No viewport-derived inline sizing. */}
 
 function fitPresentation(){
   if(!document.body.classList.contains('presentation-mode'))return;
