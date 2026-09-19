@@ -1,0 +1,33 @@
+B7 FI COMMAND CENTER V6.6.43 — MULTI-USER TEST GUIDE
+
+WHAT THIS BUILD ADDS
+- Complete one-row tool storage: the Tool Data multiline column stores the complete Universal Tool Card/tool object as JSON.
+- Friendly List columns are mirrored when they exist: UTID, Code Name, FI Status, Model, Customer, Sales Order, MFG Ship Date, Quarter, Family, Last Updated By, Revision.
+- 9 TOOL TEST in both Local and Shared Multi-User Administration controls. One representative of every configured tool type: Targa, Panamera, Vanquish, Zephyr, Macan, Boxster, Regera, Celestiq, Taycan.
+- Shared-mode refresh recovery: when Shared Multi-User is active, a browser refresh reconnects and rebuilds the cards from Microsoft List instead of treating temporary browser state as the source of truth.
+- Persistent KLA mode/connection indicator in header and footer.
+- Responsive shell hardening so browser zoom/viewport changes keep the workspace/footer framed instead of leaving an unframed empty page area.
+- Existing one-tool/one-row Graph CRUD diagnostics retained.
+
+REQUIRED MICROSOFT LIST COLUMN
+1. Title (default)
+2. Tool Data — Multiple lines of text, plain text
+
+OPTIONAL FRIENDLY COLUMNS
+UTID; Code Name; FI Status; Model; Customer; Sales Order; MFG Ship Date; Quarter; Family; Last Updated By; Revision
+The complete tool state is in Tool Data, so fields not exposed as friendly columns are still covered and synchronize with the same physical row.
+
+RECOMMENDED TEST ORDER
+1. Run START-COMMAND-CENTER.bat and open Administration Center.
+2. Multi-User Diagnostics: sign in, Connect + Read.
+3. Run Shared 0 TOOL TEST. Confirm List is empty.
+4. Run Shared 1 TOOL TEST. Confirm exactly 1 List row and 1 UTC. Edit several UTC fields, save, refresh, verify they return.
+5. Run Shared 9 TOOL TEST. Confirm exactly 9 List rows and 9 UTCs.
+6. On a second computer, sign in and refresh shared data. Confirm the same 9 tools. Edit different tools from both computers and verify changes after refresh.
+7. Run Verify Tools and check deliberately incomplete test fields.
+8. Refresh localhost:5500 and confirm shared tools reconstruct from Microsoft List.
+9. Test browser zoom at 80%, 90%, 100%, 110%, and 125%.
+10. Do not move the real 25-tool production fleet until the above passes.
+
+NOTE ON ACTIVE USER BADGES
+The final six-user badge/presence design is intentionally not writing presence rows into the tool List. This build keeps the tool List pure: one tool = one row. A separate presence store/List should be connected before enabling cross-computer user badges.

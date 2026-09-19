@@ -17475,7 +17475,7 @@ html body.presentation-mode[data-center="operations"][data-sub="summary"] .revea
 html body.presentation-mode[data-center="operations"][data-sub="summary"] .reveal-btn.locked{cursor:not-allowed!important;}
 
 /* =========================================================
-   V6.6.28 — QUARTER SUMMARY READABILITY + PRESENTATION EDGE FIT
+   V6.6.43 — QUARTER SUMMARY READABILITY + PRESENTATION EDGE FIT
    Refines only Summary carousel / Presentation geometry.
    ========================================================= */
 /* Live Operations > Quarter Summary carousel: use all available width and
@@ -18845,7 +18845,7 @@ html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"]
 }
 
 /* =========================================================
-   V6.6.42 — QUARTER SUMMARY FINAL CLEARANCE
+   V6.6.43 — QUARTER SUMMARY FINAL CLEARANCE
    Local geometry corrections only. Presentation Summary is locked.
    ========================================================= */
 
@@ -18917,3 +18917,15 @@ html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"]
   margin:0!important;padding:0!important;object-fit:contain!important;
   align-self:center!important;
 }
+\n\n/* V6.6.43 — zoom/responsive hardening + persistent data-mode identity */
+.mode-center{display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;min-width:0!important}
+.mode-center-text{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;min-width:0;line-height:1.05}
+.mode-center-text b{font-size:9px;letter-spacing:.7px;white-space:nowrap}.mode-center-text small{font-size:7px;font-weight:900;letter-spacing:.35px;color:#7fe8ff;white-space:nowrap}
+.mode-center.shared-connected .mode-center-text b{color:#4dffad}.mode-center.shared-connected img{filter:drop-shadow(0 0 6px rgba(77,255,173,.7))}
+.mode-center.shared-connecting .mode-center-text b{color:#ffd84a}.mode-center.shared-disconnected .mode-center-text b{color:#ff6b7d}
+body:not(.screenshot-mode):not(.presentation-mode) .app-frame{min-height:calc(100vh - 4px)!important;display:flex!important;flex-direction:column!important}
+body:not(.screenshot-mode):not(.presentation-mode) .body-shell{flex:1 0 auto!important;min-height:clamp(260px,calc(100vh - var(--sticky-shell-height,200px) - 86px),900px)!important}
+body:not(.screenshot-mode):not(.presentation-mode) .body-workspace{min-height:100%!important}
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer{flex:0 0 66px!important}
+@media (max-width:1200px){.mode-center-text b{font-size:8px}.mode-center-text small{font-size:6px}.hero-center{gap:5px!important}.hero-center img{max-width:76px!important}.app-footer .footer-center img{max-width:68px!important}}
+@media (max-height:800px){body:not(.screenshot-mode):not(.presentation-mode) .body-shell{min-height:220px!important}.app-footer{height:58px!important}}
