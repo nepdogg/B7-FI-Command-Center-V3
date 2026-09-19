@@ -18966,3 +18966,49 @@ body:not(.screenshot-mode):not(.presentation-mode) .app-footer{height:auto!impor
 .footer-users-button{justify-self:stretch!important;height:100%!important;border:0!important;background:transparent!important;color:#fff!important;font-weight:900!important}
 @media(max-width:1450px){.app-footer .footer-presence-row{grid-template-columns:minmax(260px,.8fr) minmax(210px,280px) minmax(560px,1.6fr)!important}.presence-badge{font-size:8px!important}.app-footer .footer-presence-left{gap:7px!important;padding:4px 8px!important}.footer-system-row{font-size:8px!important}}
 @media(max-width:1120px){body:not(.screenshot-mode):not(.presentation-mode) .app-footer{min-height:102px!important;grid-template-rows:74px 28px!important}.app-footer .footer-presence-row{grid-template-columns:1fr 250px!important;grid-template-rows:36px 38px!important}.app-footer .footer-presence-left{grid-column:1;grid-row:1}.app-footer .footer-center{grid-column:2;grid-row:1}.presence-badges{grid-column:1/3;grid-row:2;grid-template-columns:repeat(7,1fr)!important;padding:4px 8px!important}.footer-system-row{font-size:7px!important}}
+
+/* =========================================================
+   V6.6.45 — SHELL / QUARTER SUMMARY / BALANCED FOOTER FIX
+   Header KLA remains centered. Footer is two functional rows:
+   presence centered above; system information below.
+   ========================================================= */
+body:not(.screenshot-mode):not(.presentation-mode) .app-frame{
+  height:100vh!important;min-height:100vh!important;display:flex!important;flex-direction:column!important;overflow:hidden!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell{flex:0 0 auto!important}
+body:not(.screenshot-mode):not(.presentation-mode) .body-shell{
+  flex:1 1 0!important;height:auto!important;min-height:0!important;overflow:hidden!important;display:flex!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .body-workspace{
+  flex:1 1 auto!important;width:100%!important;height:100%!important;min-height:0!important;overflow:auto!important;box-sizing:border-box!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer{
+  flex:0 0 76px!important;height:76px!important;min-height:76px!important;display:grid!important;grid-template-columns:1fr!important;grid-template-rows:42px 34px!important;margin-top:6px!important;overflow:hidden!important;background:#06101b!important;
+}
+.app-footer .footer-presence-row{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:0!important;background:var(--accent)!important;padding:4px 16px!important;box-sizing:border-box!important}
+.app-footer .presence-badges{width:min(1120px,92vw)!important;display:grid!important;grid-template-columns:repeat(7,minmax(86px,1fr))!important;gap:10px!important;padding:0!important;margin:0 auto!important}
+.app-footer .presence-badge{height:30px!important;font-size:10px!important}
+.app-footer .footer-system-row{display:grid!important;grid-template-columns:minmax(300px,1.65fr) 1fr .65fr .95fr 1fr 1.35fr!important;height:34px!important;align-items:center!important;background:#050b12!important;border-top:1px solid color-mix(in srgb,var(--accent) 75%,#18384d)!important}
+.app-footer .footer-system-row>*{height:100%!important;display:flex!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;min-width:0!important;padding:0 9px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+.app-footer .footer-system-left{justify-content:flex-start!important;gap:12px!important;padding-left:14px!important}
+.app-footer #adminButton{height:26px!important;flex:0 0 auto!important}
+.app-footer .footer-data{padding:0!important;border:0!important;font-size:8px!important}
+#footerModeCenter{display:none!important}
+#mu-launch[hidden]{display:none!important}
+.shared-mode-box #mu-launch{position:static!important;margin:0!important}
+
+/* Quarter Summary owns the body viewport; no artificial minimum height can push the footer upward/downward. */
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .body-workspace{overflow:hidden!important;display:flex!important;flex-direction:column!important}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-master-viewport{flex:1 1 0!important;height:100%!important;min-height:0!important;width:100%!important;overflow:hidden!important}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-master{height:100%!important;min-height:0!important;grid-template-rows:minmax(0,27fr) minmax(0,20fr) minmax(0,53fr)!important}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-family-wrap,
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .family-panel-v526,
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .family-rows-scroll{min-height:0!important;overflow:hidden!important}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-summary-master{height:100%!important;min-height:0!important;grid-template-rows:minmax(0,27fr) minmax(0,20fr) minmax(0,53fr)!important}
+
+@media(max-width:1250px){
+ body:not(.screenshot-mode):not(.presentation-mode) .app-footer{flex-basis:88px!important;height:88px!important;min-height:88px!important;grid-template-rows:48px 40px!important}
+ .app-footer .presence-badges{width:98%!important;gap:5px!important;grid-template-columns:repeat(7,minmax(66px,1fr))!important}
+ .app-footer .presence-badge{font-size:8px!important}
+ .app-footer .footer-system-row{grid-template-columns:minmax(245px,1.5fr) .9fr .65fr .9fr .9fr 1.2fr!important;font-size:7px!important}
+}

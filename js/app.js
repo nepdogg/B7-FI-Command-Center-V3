@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.6.44', BUILD='20260919-V6.6.44-RESPONSIVE-SUMMARY-FOOTER';
+const VERSION='6.6.44', BUILD='20260919-V6.6.45-RESPONSIVE-SUMMARY-FOOTER';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -1573,12 +1573,12 @@ function fitQuarterSummaryMasters(){
     let h=0;
     if(inCarousel){
       const host=view.closest('.snapshot-body')||view.parentElement;
-      h=Math.max(320,host?.clientHeight||view.parentElement?.clientHeight||520);
+      h=Math.max(180,host?.clientHeight||view.parentElement?.clientHeight||360);
     }else{
       const footer=document.querySelector('.app-footer');
       const top=view.getBoundingClientRect().top;
       const footerH=(footer&&getComputedStyle(footer).display!=='none')?footer.getBoundingClientRect().height+12:0;
-      h=Math.max(520,window.innerHeight-top-footerH-8);
+      h=Math.max(240,window.innerHeight-top-footerH-8);
     }
     view.style.height=Math.floor(h)+'px';
     view.style.width='100%';
