@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.6.36', BUILD='20260918-V6.6.36-SUMMARY-SINGLE-SOURCE-UTC-CLEARANCE';
+const VERSION='6.6.37', BUILD='20260918-V6.6.37-QUARTER-SUMMARY-MASTER-UTC-PARITY';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -566,7 +566,7 @@ function renderActions(){
 }
 function syncStickyShellHeight(){if(document.body.classList.contains('screenshot-mode')||document.body.classList.contains('presentation-mode')){document.documentElement.style.setProperty('--sticky-shell-height','0px');return}let sh=document.querySelector('#stickyShell');if(sh)document.documentElement.style.setProperty('--sticky-shell-height',Math.ceil(sh.getBoundingClientRect().height)+'px')}
 function shell(){normalizeConsolidatedRoute();setTheme();document.body.dataset.build=BUILD;nav();statusBars();renderActions()}
-function render(){allRules();shell();let titleMode=document.body.classList.contains('screenshot-mode')||document.body.classList.contains('presentation-mode');let summaryWallboard=document.body.classList.contains('presentation-mode')&&route.center==='operations'&&route.sub==='summary';let title=(titleMode&&!summaryWallboard)?`<div id="screenshotReportTitle" class="screenshot-report-title">${esc(screenshotReportTitle())}</div>`:'';document.querySelector('#app').innerHTML=title+(VIEWS[route.center]||VIEWS.operations)();bindInputs();bindCoreInteractions();persistRoute();requestAnimationFrame(syncStickyShellHeight);if(document.body.classList.contains('presentation-mode'))requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}
+function render(){allRules();shell();let titleMode=document.body.classList.contains('screenshot-mode')||document.body.classList.contains('presentation-mode');let summaryWallboard=document.body.classList.contains('presentation-mode')&&route.center==='operations'&&route.sub==='summary';let title=(titleMode&&!summaryWallboard)?`<div id="screenshotReportTitle" class="screenshot-report-title">${esc(screenshotReportTitle())}</div>`:'';document.querySelector('#app').innerHTML=title+(VIEWS[route.center]||VIEWS.operations)();bindInputs();bindCoreInteractions();persistRoute();requestAnimationFrame(()=>{syncStickyShellHeight();fitQuarterSummaryMasters()});if(document.body.classList.contains('presentation-mode'))requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}
 function go(center,sub){if(dirty&&!confirm('Discard unsaved changes?'))return;mode='view';toolEditorMode='view';draft=null;meetingDraft=null;dirty=false;selected=null;returnRoute=null;let first=(SUB[center]&&SUB[center][0])?SUB[center][0][0]:'home';route={center,sub:sub||first};let app=document.querySelector('#app');if(app)app.innerHTML='';render()}
 function fmtDate(x){if(!x)return'—';let p=String(x).slice(0,10).split('-');return p.length===3?`${p[1]}/${p[2]}/${p[0]}`:x}
 function fmtDayDate(x){if(!x)return'—';let p=String(x).slice(0,10).split('-');if(p.length!==3)return x;let y=Number(p[0]),m=Number(p[1]),d=Number(p[2]),day=['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'][new Date(y,m-1,d).getDay()];return `${day} · ${p[1]}/${p[2]}/${p[0]}`}
@@ -738,7 +738,7 @@ function quarterSummaryView(presentation=false){
     ${quarterPanel()}
     <section class="quarter-summary-family-wrap">${familyPanel()}</section>`;
   if(!presentation){
-    return `<div class="quarter-summary-presentation quarter-summary-page-parity" style="${vars}">${core}</div>`;
+    return `<div class="quarter-summary-master-viewport"><div class="quarter-summary-presentation quarter-summary-master" style="${vars}">${core}</div></div>`;
   }
   return `<div class="quarter-summary-presentation" style="${vars}">
     ${core}
@@ -1550,6 +1550,16 @@ function exportData(){let blob=new Blob([JSON.stringify(state,null,2)],{type:'ap
 function screenshotReportTitle(){let date=fmtDate(today());if(route.center==='status')return `${route.sub==='weekend'?'WEEKEND':'WEEKDAY'} MORNING STATUS · ${date}`;if(route.center==='shipping')return `${centerQuarter('shipping')} SHIPPING SCHEDULE · ${date}`;if(route.center==='cycle')return `${centerQuarter('cycle')} CYCLE TIME STATUS · ${date}`;if(route.center==='priority')return `${route.sub==='weekend'?'WEEKEND':'WEEKDAY'} PRIORITIES · ${date}`;if(route.center==='action')return `ACTION CENTER · ${date}`;if(route.center==='reference')return `REFERENCE LIBRARY · ${date}`;if(route.center==='archive')return `ARCHIVE · ${date}`;if(route.center==='search')return `SEARCH · ${date}`;if(route.center==='meeting')return `MEETINGS · ${date}`;if(route.center==='update')return `${route.sub==='daily'?'COMMAND CENTER DAILY UPDATE':'UPDATE'} · ${date}`;if(route.center==='operations'){if(route.sub==='tools'||route.sub==='tool')return `TOOLS · ${date}`;if(route.sub==='daily')return `UPDATE COMMAND CENTER · ${date}`;if(route.sub==='archive')return `TOOL ARCHIVE · ${date}`;return `LIVE OPERATIONS · ${date}`;}return `${String(route.center||'COMMAND CENTER').toUpperCase()} · ${date}`}
 function screenshot(){if(document.body.classList.contains('presentation-mode'))exitPresentation();screenshotRestore={livePaused,snapshotPaused};livePaused=true;snapshotPaused=true;document.body.classList.add('screenshot-mode');let x=document.querySelector('#exitScreenshot');x.textContent='×';x.setAttribute('aria-label','Exit screenshot mode');x.title='Exit screenshot mode';x.classList.remove('hidden');window.scrollTo(0,0);render()}
 function exitScreenshot(){document.body.classList.remove('screenshot-mode');if(screenshotRestore){livePaused=!!screenshotRestore.livePaused;snapshotPaused=!!screenshotRestore.snapshotPaused;screenshotRestore=null}document.querySelector('#exitScreenshot').classList.add('hidden');document.querySelector('#screenshotReportTitle')?.remove();render()}
+function fitQuarterSummaryMasters(){
+  document.querySelectorAll('.quarter-summary-master-viewport').forEach(view=>{
+    const canvas=view.querySelector('.quarter-summary-master');if(!canvas)return;
+    const w=Math.max(1,view.clientWidth||view.getBoundingClientRect().width||1);
+    const baseW=1920,baseH=1015,scale=w/baseW;
+    canvas.style.width=baseW+'px';canvas.style.height=baseH+'px';
+    canvas.style.transformOrigin='top left';canvas.style.transform=`scale(${scale})`;
+    view.style.height=Math.ceil(baseH*scale)+'px';
+  });
+}
 function fitPresentation(){
   if(!document.body.classList.contains('presentation-mode'))return;
   let frame=document.querySelector('.app-frame');if(!frame)return;
@@ -1577,7 +1587,7 @@ function fitPresentation(){
   // The virtual wallboard may adapt to the real fullscreen aspect ratio, but the entire
   // rendered frame must fit inside the actual browser viewport. A small safety gutter
   // prevents the right/bottom borders from being clipped by Windows/Edge fullscreen rounding.
-  const DH=1080, GUTTER=12;
+  const DH=1080, GUTTER=0;
   const vw=Math.max(1,window.innerWidth||document.documentElement.clientWidth||screen.width||1920);
   const vh=Math.max(1,window.innerHeight||document.documentElement.clientHeight||screen.height||1080);
   const usableW=Math.max(1,vw-(GUTTER*2));
@@ -1598,9 +1608,9 @@ function fitPresentation(){
 
   // Let layout settle, then fit against the larger of the declared canvas or actual content.
   // This protects against any child with a legacy intrinsic width without changing UTC geometry.
-  const contentW=Math.max(DW,frame.scrollWidth||0);
-  const contentH=Math.max(DH,frame.scrollHeight||0);
-  const scale=Math.min(usableW/contentW,usableH/contentH,1);
+  const contentW=DW;
+  const contentH=DH;
+  const scale=Math.min(usableW/contentW,usableH/contentH);
   const renderedW=contentW*scale, renderedH=contentH*scale;
   const x=Math.max(GUTTER,(vw-renderedW)/2);
   const y=Math.max(GUTTER,(vh-renderedH)/2);
@@ -1898,7 +1908,7 @@ document.addEventListener('change',e=>{let sel=e.target.closest('.priority-rank-
 document.addEventListener('change',e=>{let input=e.target.closest('[data-tool-photo-upload]');if(!input||!input.files||!input.files[0])return;let f=input.dataset.toolPhotoUpload,file=input.files[0];if(file.size>2500000){alert('Please use an image smaller than 2.5 MB.');input.value='';return}let reader=new FileReader();reader.onload=()=>{state.config.toolPhotos=state.config.toolPhotos||{};state.config.toolPhotos[f]=String(reader.result||'');saveState('TOOL PHOTO UPDATED — '+String(f).toUpperCase());render()};reader.readAsDataURL(file)});
 document.addEventListener('click',e=>{let b=e.target.closest('[data-tool-photo-reset]');if(!b)return;e.preventDefault();let f=b.dataset.toolPhotoReset;if(state.config?.toolPhotos)delete state.config.toolPhotos[f];saveState('DEFAULT TOOL PHOTO RESTORED — '+String(f).toUpperCase());render()});
 document.addEventListener('fullscreenchange',()=>{if(presentationActive&&!document.fullscreenElement){presentationActive=false;clearPresentationLayout();if(presentationRestore){livePaused=!!presentationRestore.livePaused;snapshotPaused=!!presentationRestore.snapshotPaused;presentationRestore=null}document.querySelector('#exitScreenshot')?.classList.add('hidden');render();requestAnimationFrame(()=>requestAnimationFrame(()=>{syncStickyShellHeight();window.dispatchEvent(new Event('resize'));window.scrollTo(0,0)}))}else if(presentationActive&&document.fullscreenElement){requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}});document.querySelector('#adminButton').onclick=()=>go('admin','data');document.querySelector('#modalClose').onclick=closeModal;document.querySelector('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!document.querySelector('#modal').classList.contains('hidden'))closeModal()});document.querySelector('#exitScreenshot').onclick=exitDisplayMode;document.addEventListener('click',e=>{if(e.target.id==='importJson'){document.querySelector('#importFile')?.click()}if(e.target.id==='importSharedJson'){document.querySelector('#importSharedFile')?.click()}});window.addEventListener('storage',e=>{if(e.key!==KEY||!e.newValue)return;try{let currentId=carouselTools()[liveIndex]?.id||'';state=normalize(JSON.parse(e.newValue));allRules();let list=carouselTools(),ni=list.findIndex(t=>t.id===currentId);if(ni>=0)liveIndex=ni;else if(liveIndex>=list.length)liveIndex=Math.max(0,list.length-1);render();if(presentationActive)requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}catch(err){console.warn('Cross-window Command Center refresh failed',err)}});
-window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});window.addEventListener('resize',()=>{syncStickyShellHeight();if(presentationActive)fitPresentation();});setInterval(()=>{if(!livePaused&&mode==='view'&&route.center==='operations'&&route.sub==='live'&&carouselTools().length>1){liveIndex=(liveIndex+1)%carouselTools().length;render()}},8000);setInterval(()=>{if(!snapshotPaused&&mode==='view'&&route.center==='operations'&&route.sub==='live'){snapshotIndex=(snapshotIndex+1)%6;render()}},12000);render();
+window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});window.addEventListener('resize',()=>{syncStickyShellHeight();fitQuarterSummaryMasters();if(presentationActive)fitPresentation();});setInterval(()=>{if(!livePaused&&mode==='view'&&route.center==='operations'&&route.sub==='live'&&carouselTools().length>1){liveIndex=(liveIndex+1)%carouselTools().length;render()}},8000);setInterval(()=>{if(!snapshotPaused&&mode==='view'&&route.center==='operations'&&route.sub==='live'){snapshotIndex=(snapshotIndex+1)%6;render()}},12000);render();
 
 window.B7ApplySharedScenario=function(shared){if(!shared||!Array.isArray(shared.tools))return;state=normalize(shared);state.environment='SCENARIO TEST';try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}render()};
 })();
