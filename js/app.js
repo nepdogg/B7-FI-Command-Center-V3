@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.6.39', BUILD='20260918-V6.6.39-QUARTER-SUMMARY-RESPONSIVE-PARITY';
+const VERSION='6.6.40', BUILD='20260918-V6.6.40-QUARTER-SUMMARY-SINGLE-RESPONSIVE-MASTER';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -1553,22 +1553,21 @@ function exitScreenshot(){document.body.classList.remove('screenshot-mode');if(s
 function fitQuarterSummaryMasters(){
   document.querySelectorAll('.quarter-summary-master-viewport').forEach(view=>{
     const canvas=view.querySelector('.quarter-summary-master');if(!canvas)return;
-    // Normal Summary and the Live Operations summary slide are responsive hosts.
-    // Do not scale a 1920px presentation canvas into them: that was the source of
-    // the right-side clipping and the large unused area below the family rows.
-    const inSnapshot=!!view.closest('.snapshot-quarter-summary');
-    const host=inSnapshot?view.closest('.snapshot-body'):document.querySelector('#app');
-    let h=host?host.getBoundingClientRect().height:0;
-    if(!inSnapshot){
-      const top=view.getBoundingClientRect().top;
+    const inCarousel=!!view.closest('.snapshot-quarter-summary');
+    let h=0;
+    if(inCarousel){
+      const host=view.closest('.snapshot-body')||view.parentElement;
+      h=Math.max(320,host?.clientHeight||view.parentElement?.clientHeight||520);
+    }else{
       const footer=document.querySelector('.app-footer');
-      const bottom=footer?footer.getBoundingClientRect().top:window.innerHeight;
-      h=Math.max(420,bottom-top-8);
+      const top=view.getBoundingClientRect().top;
+      const footerH=(footer&&getComputedStyle(footer).display!=='none')?footer.getBoundingClientRect().height+12:0;
+      h=Math.max(520,window.innerHeight-top-footerH-8);
     }
-    view.style.height=Math.max(1,Math.floor(h))+'px';
+    view.style.height=Math.floor(h)+'px';
+    view.style.width='100%';
     canvas.style.width='100%';canvas.style.height='100%';
-    canvas.style.minWidth='0';canvas.style.minHeight='0';
-    canvas.style.transform='none';canvas.style.transformOrigin='top left';
+    canvas.style.transform='none';canvas.style.transformOrigin='';
   });
 }
 function fitPresentation(){

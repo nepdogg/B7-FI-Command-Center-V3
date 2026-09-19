@@ -566,6 +566,3 @@ Presentation-launched Tool Edit is now detached from the `presentation-mode` wal
 - Removed normal-view summary wrapper borders/title layers that could visually clip the family matrix.
 - Family rows remain dynamic by active tool-family count and keep centered headings, shipped-count progress bars, and Mystery Box controls.
 - Tools-page UTC keeps the locked 650px Live Operations card geometry; only the host receives bottom clearance so the card border is not clipped and the page can scroll naturally.
-
-
-V6.6.39: responsive Quarter Summary parity fix. Removed fixed 1920px scaling from normal Summary and Live Operations summary slide; both now fill their actual hosts without right clipping. Tools-page UTC host bottom clearance reinforced.
