@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='7.0.1', BUILD='20260919-V7.0.1-STYLESHEET-LOAD-FIX';
+const VERSION='7.0.2', BUILD='20260919-V7.0.2-APPROVED-VISUAL-REFRESH';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -651,14 +651,6 @@ function quarterPanel(){
       ${box('status-packing','PACKING',c('Packing'),true,'packing')}
       ${box('status-shipped','SHIPPED',sh,true,'shipped')}
     </div>
-    <div class="shipping-total">
-      <div class="progress-head"><b>${esc(state.quarter)} TOOLS SHIPPING PROGRESS</b><b>${sh} OF ${a.length} TOOLS SHIPPED</b></div>
-      <div class="track"><div class="fill green" style="width:${pct}%"></div></div>
-    </div>
-    <div class="quarter-time-progress ${qt.tone}">
-      <div class="progress-head"><b>${esc(state.quarter)} DAYS REMAINING</b><b>${esc(qt.text)}</b></div>
-      <div class="track"><div class="fill quarter-days" style="width:${qt.remainingPct}%"></div></div>
-    </div>
     <div class="quarter-mystery-strip">
       <div class="quarter-mystery-grid">${mystery||'<span class="muted">No active tool families.</span>'}</div>
     </div>
@@ -707,14 +699,6 @@ function presentationQuarterPanel(){
       ${box('status-packing','PACKING',c('Packing'),true,'packing')}
       ${box('status-shipped','SHIPPED',sh,true,'shipped')}
     </div>
-    <div class="shipping-total">
-      <div class="progress-head"><b>${esc(state.quarter)} TOOLS SHIPPING PROGRESS</b><b>${sh} OF ${a.length} TOOLS SHIPPED</b></div>
-      <div class="track"><div class="fill green" style="width:${pct}%"></div></div>
-    </div>
-    <div class="quarter-time-progress ${qt.tone}">
-      <div class="progress-head"><b>${esc(state.quarter)} DAYS REMAINING</b><b>${esc(qt.text)}</b></div>
-      <div class="track"><div class="fill quarter-days" style="width:${qt.remainingPct}%"></div></div>
-    </div>
     <nav class="presentation-inline-nav presentation-tool-nav" aria-label="Presentation tool controls">
       <button class="presentation-nav-cell" data-carousel="prev" type="button" ${n?'':'disabled'}>◀ PREVIOUS TOOL</button>
       <span class="presentation-nav-cell presentation-nav-count">${n?liveIndex+1:0} / ${n}</span>
@@ -747,9 +731,10 @@ function quarterSummaryView(presentation=false){
       revealSize=familyCount<=3?34:familyCount<=4?31:familyCount<=6?28:familyCount<=7?25:familyCount<=9?22:20,
       heroNumber=familyCount<=3?166:familyCount<=4?158:familyCount<=6?148:familyCount<=7?136:familyCount<=9?122:108,
       vars=`--family-count:${familyCount};--summary-hero-height:${heroHeight}px;--family-name-size:${familyFont}px;--family-number-size:${familyNumber}px;--family-image-height:${familyImage}px;--family-reveal-size:${revealSize}px;--summary-hero-number:${heroNumber}px`;
+  let shippedPct=a.length?Math.round(sh/a.length*100):0;
   let core=`<section class="quarter-summary-hero">
-      <div class="quarter-hero-metric tools-left urgency-${quarterToolUrgency(left,qt.remaining)}"><small>${esc(state.quarter)} TOOLS LEFT TO SHIP</small><strong>${left}</strong></div>
-      <div class="quarter-hero-metric days-left urgency-${quarterDayUrgency(qt.remaining)}"><small>${esc(state.quarter)} DAYS REMAINING</small><strong>${esc(String(qt.remaining))}</strong></div>
+      <div class="quarter-hero-metric tools-left urgency-${quarterToolUrgency(left,qt.remaining)}"><small>${esc(state.quarter)} TOOLS LEFT TO SHIP</small><strong>${left}</strong><div class="hero-progress"><div class="track"><div class="fill hero-tools-fill" style="width:${shippedPct}%"></div></div><div class="hero-progress-labels"><b>${shippedPct}% COMPLETE</b><b>${left} / ${a.length} REMAINING</b></div></div></div>
+      <div class="quarter-hero-metric days-left urgency-${quarterDayUrgency(qt.remaining)}"><small>${esc(state.quarter)} DAYS REMAINING</small><strong>${esc(String(qt.remaining))}</strong><div class="hero-progress"><div class="track"><div class="fill quarter-days" style="width:${qt.pct}%"></div></div><div class="hero-progress-labels"><b>${qt.pct}% ELAPSED</b><b>${esc(qt.text)}</b></div></div></div>
     </section>
     ${quarterPanel()}
     <section class="quarter-summary-family-wrap">${familyPanel()}</section>`;

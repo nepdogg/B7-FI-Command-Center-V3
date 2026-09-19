@@ -1,4 +1,4 @@
-B7 FI COMMAND CENTER V7.0.1 — CLEAN FOUNDATION
+B7 FI COMMAND CENTER V7.0.2 — CLEAN FOUNDATION
 
 Purpose
 - First clean-foundation build after V6.6.x responsive regressions.
@@ -16,3 +16,11 @@ First regression test
 4. Check normal Quarter Summary and the carousel Quarter Summary: both progress bars must remain visible and family rows must distribute evenly.
 5. Check footer: no phantom black third strip; seven badges remain visible.
 6. Only after layout passes, resume 1-tool / 9-tool Microsoft List testing.
+
+
+V7.0.2 APPROVED VISUAL REFRESH
+- Continuous blue header with boxed KLA logo and separate connection badge.
+- Quarter Summary hero metrics now contain their own progress bars and labels.
+- Normal Quarter Summary, Live Operations carousel summary, and Presentation Summary share the same core markup.
+- Footer rebuilt as two clean rows: presence badges plus six system-information cells.
+- V7.0.1 browser-zoom foundation retained.
