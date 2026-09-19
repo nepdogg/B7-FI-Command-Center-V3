@@ -1,3 +1,12 @@
+# B7 FI Command Center V6.6.27 — One Tool = One Row Multi-User Test
+
+## Required Microsoft List schema for this build
+The clean Microsoft List named **B7 FI Command Center** must have the default **Title** column plus one manually-created column named exactly **Tool Data**, type **Multiple lines of text**. This build intentionally does not create columns through Graph because schema creation was blocked by tenant permissions.
+
+V6.6.27 removes the Scenario chunk-row storage model. Each physical FI tool is stored in exactly one Microsoft List item. The complete Universal Tool Card state is serialized into Tool Data; optional friendly columns are populated when present. Shared Master Reset deletes all rows and verifies zero remain. Shared backup/restore preserves the entire List dataset. Active-user presence rows are temporarily disabled while one-row storage is validated.
+
+Recommended first test: empty List → 1 TOOL TEST → verify exactly 1 List row → edit tool in normal Command Center → Save → Refresh Shared Data → verify same row and card → Shared Master Reset → verify 0 rows.
+
 # V6.6.26 — Quarter Summary Wallboard Fit
 
 ## New in V6.6.26
