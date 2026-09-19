@@ -560,3 +560,9 @@ Presentation-launched Tool Edit is now detached from the `presentation-mode` wal
 - Live Operations Quarter Summary carousel removes the remaining redundant bottom frame and reserves clearance for the last family row border.
 - Tools page UTC cards retain the same Universal Tool Card content/structure as Live Operations but receive enough vertical room in the narrower two-column layout so Customer Source, STR, Packing/Shipping and the bottom card edge are not clipped.
 - Existing one-tool/one-Microsoft-List-row multi-user architecture is unchanged.
+
+## V6.6.36 — Summary single-source geometry + UTC clearance
+- Dedicated Quarter Summary and Live Operations Quarter Summary carousel now use the approved Presentation wallboard geometry as a uniformly scaled layout instead of recomputing compressed family rows.
+- Removed normal-view summary wrapper borders/title layers that could visually clip the family matrix.
+- Family rows remain dynamic by active tool-family count and keep centered headings, shipped-count progress bars, and Mystery Box controls.
+- Tools-page UTC keeps the locked 650px Live Operations card geometry; only the host receives bottom clearance so the card border is not clipped and the page can scroll naturally.

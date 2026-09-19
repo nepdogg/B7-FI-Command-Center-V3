@@ -18060,3 +18060,152 @@ html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .sn
     height:650px!important;min-height:650px!important;max-height:650px!important;overflow:hidden!important;
   }
 }
+
+/* ================================================================
+   V6.6.36 — SINGLE-SOURCE QUARTER SUMMARY / UTC CLEARANCE LOCK
+   Normal Quarter Summary copies preserve the approved Presentation
+   geometry as a uniformly scaled wallboard instead of recomputing rows.
+   ================================================================ */
+
+/* Dedicated Quarter Summary: one wallboard, no title/frame wrapper. */
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] #app{
+  display:block!important;
+  height:auto!important;min-height:0!important;
+  overflow:auto!important;
+  padding:8px 10px 14px!important;
+  box-sizing:border-box!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .center-page-title,
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-page-title{display:none!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-page-parity{
+  --qs-normal-scale:.68;
+  display:grid!important;
+  grid-template-rows:var(--summary-hero-height,230px) 164px minmax(390px,1fr)!important;
+  gap:7px!important;
+  width:calc(100% / var(--qs-normal-scale))!important;
+  height:900px!important;min-height:900px!important;max-height:900px!important;
+  zoom:var(--qs-normal-scale)!important;
+  overflow:hidden!important;
+  margin:0!important;padding:0!important;
+  border:0!important;outline:0!important;box-shadow:none!important;
+  box-sizing:border-box!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-page-parity .quarter-summary-hero{
+  display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important;height:100%!important;min-height:0!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-page-parity .quarter-hero-metric{
+  height:100%!important;min-height:0!important;padding:9px 18px 12px!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-page-parity .quarter-hero-metric small{
+  font-size:clamp(27px,1.85vw,40px)!important;line-height:1!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-page-parity .quarter-hero-metric strong{
+  font-size:min(var(--summary-hero-number,148px),8.1vw)!important;line-height:.86!important;align-self:center!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-page-parity .quarter-live-panel{
+  height:100%!important;min-height:0!important;margin:0!important;padding:6px 10px 9px!important;
+  display:grid!important;grid-template-rows:minmax(50px,1fr) auto auto!important;gap:5px!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-page-parity .quarter-summary-family-wrap{
+  height:100%!important;min-height:0!important;overflow:hidden!important;border:0!important;outline:0!important;box-shadow:none!important;
+}
+
+/* Live Operations summary slide: exact same wallboard geometry, uniformly scaled to the half-width carousel. */
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel .snapshot-panel:has(.snapshot-quarter-summary),
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel .snapshot-panel:has(.snapshot-quarter-summary) .snapshot-body,
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel .snapshot-panel:has(.snapshot-quarter-summary) .snapshot-body-no-title,
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary{
+  border:0!important;outline:0!important;box-shadow:none!important;
+  padding:0!important;margin:0!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-summary-page-parity{
+  --qs-carousel-scale:.52;
+  display:grid!important;
+  grid-template-rows:var(--summary-hero-height,230px) 164px minmax(390px,1fr)!important;
+  gap:7px!important;
+  width:calc(100% / var(--qs-carousel-scale))!important;
+  height:900px!important;min-height:900px!important;max-height:900px!important;
+  zoom:var(--qs-carousel-scale)!important;
+  margin:0!important;padding:0!important;
+  border:0!important;outline:0!important;box-shadow:none!important;overflow:hidden!important;
+  box-sizing:border-box!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-summary-hero{
+  display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important;height:100%!important;min-height:0!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-hero-metric{
+  height:100%!important;min-height:0!important;padding:9px 18px 12px!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-hero-metric small{
+  font-size:clamp(27px,1.85vw,40px)!important;line-height:1!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-hero-metric strong{
+  font-size:min(var(--summary-hero-number,148px),8.1vw)!important;line-height:.86!important;align-self:center!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-live-panel{
+  height:100%!important;min-height:0!important;margin:0!important;padding:6px 10px 9px!important;
+  display:grid!important;grid-template-rows:minmax(50px,1fr) auto auto!important;gap:5px!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-summary-family-wrap{
+  height:100%!important;min-height:0!important;overflow:hidden!important;border:0!important;outline:0!important;box-shadow:none!important;
+}
+
+/* Shared family matrix authority for both scaled normal wallboards. */
+html body:not(.presentation-mode)[data-center="operations"] .quarter-summary-page-parity .family-panel-v526{
+  display:grid!important;grid-template-rows:34px minmax(0,1fr)!important;
+  height:100%!important;min-height:0!important;padding:5px 7px 7px!important;gap:3px!important;
+  margin:0!important;border:0!important;outline:0!important;box-shadow:none!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode)[data-center="operations"] .quarter-summary-page-parity .family-matrix.header{
+  height:34px!important;min-height:34px!important;margin:0!important;
+}
+html body:not(.presentation-mode)[data-center="operations"] .quarter-summary-page-parity .family-matrix.header>b{
+  display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;height:100%!important;
+  font-size:clamp(11px,.72vw,14px)!important;line-height:1!important;
+}
+html body:not(.presentation-mode)[data-center="operations"] .quarter-summary-page-parity .family-rows-scroll{
+  display:grid!important;grid-template-rows:repeat(var(--family-count,6),minmax(0,1fr))!important;
+  height:100%!important;min-height:0!important;overflow:hidden!important;gap:2px!important;padding:0!important;
+}
+html body:not(.presentation-mode)[data-center="operations"] .quarter-summary-page-parity .family-rows-scroll>.family-matrix{
+  height:100%!important;min-height:0!important;margin:0!important;align-items:stretch!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode)[data-center="operations"] .quarter-summary-page-parity .family-cell,
+html body:not(.presentation-mode)[data-center="operations"] .quarter-summary-page-parity button.reveal-btn{
+  height:100%!important;min-height:0!important;margin:0!important;box-sizing:border-box!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  font-size:var(--family-number-size,23px)!important;
+}
+html body:not(.presentation-mode)[data-center="operations"] .quarter-summary-page-parity .family-cell.name{justify-content:flex-start!important;gap:28px!important;padding-left:12px!important;}
+html body:not(.presentation-mode)[data-center="operations"] .quarter-summary-page-parity .family-cell.name span{font-size:var(--family-name-size,24px)!important;line-height:1!important;}
+html body:not(.presentation-mode)[data-center="operations"] .quarter-summary-page-parity .family-thumb{height:var(--family-image-height,54px)!important;max-height:82%!important;max-width:118px!important;object-fit:contain!important;}
+html body:not(.presentation-mode)[data-center="operations"] .quarter-summary-page-parity button.reveal-btn{font-size:var(--family-reveal-size,28px)!important;pointer-events:auto!important;cursor:pointer!important;}
+html body:not(.presentation-mode)[data-center="operations"] .quarter-summary-page-parity .family-progress{
+  position:relative!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:5px!important;padding:5px 8px!important;
+}
+html body:not(.presentation-mode)[data-center="operations"] .quarter-summary-page-parity .family-progress .track{display:block!important;width:100%!important;height:9px!important;min-height:9px!important;}
+html body:not(.presentation-mode)[data-center="operations"] .quarter-summary-page-parity .family-progress small{display:block!important;font-size:clamp(12px,.9vw,18px)!important;font-weight:900!important;line-height:1!important;white-space:nowrap!important;}
+
+/* Tools page: the card itself stays at the locked Live Operations 650px geometry.
+   A separate host clearance prevents its bottom border from touching/clipping. */
+@media (min-width:1100px){
+  html body[data-center="operations"][data-sub="tools"] #app,
+  html body[data-center="operations"][data-sub="tools"] .fleet-frame,
+  html body[data-center="operations"][data-sub="tools"] .tool-section,
+  html body[data-center="operations"][data-sub="tools"] .update-live-card-list{
+    height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;
+  }
+  html body[data-center="operations"][data-sub="tools"] .update-live-card-list{padding-bottom:14px!important;row-gap:18px!important;}
+  html body[data-center="operations"][data-sub="tools"] .tool-section .update-live-card-list .utc-host,
+  html body[data-center="operations"][data-sub="tools"] .tool-section .update-live-card-list .universal-card-host.live-panel{
+    height:664px!important;min-height:664px!important;max-height:none!important;overflow:visible!important;padding-bottom:14px!important;box-sizing:border-box!important;
+  }
+  html body[data-center="operations"][data-sub="tools"] .tool-section .update-live-card-list .utc-card.utc-v6538,
+  html body[data-center="operations"][data-sub="tools"] .tool-section .update-live-card-list .utc-card.utc-v6538>.utc-column{
+    height:650px!important;min-height:650px!important;max-height:650px!important;overflow:hidden!important;box-sizing:border-box!important;
+  }
+  html body[data-center="operations"][data-sub="tools"] .tool-section .update-live-card-list .utc-card.utc-v6538 .utc-status{
+    display:grid!important;grid-template-rows:122px 60px 60px 116px 154px 138px!important;
+    height:650px!important;min-height:650px!important;max-height:650px!important;overflow:hidden!important;
+  }
+}
