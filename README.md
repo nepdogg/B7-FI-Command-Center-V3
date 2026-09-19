@@ -1,13 +1,13 @@
-# B7 FI Command Center V6.6.29 — Unified Presentation Navigation
+# B7 FI Command Center V6.6.30 — Unified Presentation Navigation
 
-V6.6.29 refinement: Live Operations Tool Presentation now matches the Quarter Summary Presentation structure with one large bottom navigation bar, no separate LIVE OPERATIONS title/footer row, and the play/pause control labeled CY26Q3 TOOLS PLAY/PAUSE dynamically from the active quarter. Quarter Summary hero metric labels and numbers are enlarged further. One-tool/one-row multi-user architecture from V6.6.27+ is preserved.
+V6.6.30 refinement: Live Operations Tool Presentation now matches the Quarter Summary Presentation structure with one large bottom navigation bar, no separate LIVE OPERATIONS title/footer row, and the play/pause control labeled CY26Q3 TOOLS PLAY/PAUSE dynamically from the active quarter. Quarter Summary hero metric labels and numbers are enlarged further. One-tool/one-row multi-user architecture from V6.6.27+ is preserved.
 
-# B7 FI Command Center V6.6.29 — One Tool = One Row Multi-User Test
+# B7 FI Command Center V6.6.30 — One Tool = One Row Multi-User Test
 
 ## Required Microsoft List schema for this build
 The clean Microsoft List named **B7 FI Command Center** must have the default **Title** column plus one manually-created column named exactly **Tool Data**, type **Multiple lines of text**. This build intentionally does not create columns through Graph because schema creation was blocked by tenant permissions.
 
-V6.6.29 removes the Scenario chunk-row storage model. Each physical FI tool is stored in exactly one Microsoft List item. The complete Universal Tool Card state is serialized into Tool Data; optional friendly columns are populated when present. Shared Master Reset deletes all rows and verifies zero remain. Shared backup/restore preserves the entire List dataset. Active-user presence rows are temporarily disabled while one-row storage is validated.
+V6.6.30 removes the Scenario chunk-row storage model. Each physical FI tool is stored in exactly one Microsoft List item. The complete Universal Tool Card state is serialized into Tool Data; optional friendly columns are populated when present. Shared Master Reset deletes all rows and verifies zero remain. Shared backup/restore preserves the entire List dataset. Active-user presence rows are temporarily disabled while one-row storage is validated.
 
 Recommended first test: empty List → 1 TOOL TEST → verify exactly 1 List row → edit tool in normal Command Center → Save → Refresh Shared Data → verify same row and card → Shared Master Reset → verify 0 rows.
 
@@ -520,8 +520,16 @@ Presentation-launched Tool Edit is now detached from the `presentation-mode` wal
 - Dedicated Quarter Summary title forced to true center.
 
 
-## V6.6.29 visual refinement
+## V6.6.30 visual refinement
 - Enlarged and centered Quarter Summary carousel status text/numbers and protected the SHIPPED box from right-edge clipping.
 - Restored live-status drill-down click behavior in Quarter Summary Presentation Mode.
 - Expanded Live Operations Presentation Mode UTC and bottom navigation closer to the presentation frame edges with even margins.
 - One-tool/one-row Microsoft List architecture from V6.6.27 is unchanged.
+
+
+## V6.6.30
+- Quarter Summary Presentation dynamically sizes the two hero KPI boxes based on active tool-family count.
+- Tool-family rows now divide all remaining presentation height evenly, eliminating dead space below the final family.
+- Fixed clipping of the CY26Q3 Days Remaining progress bar.
+- Mystery/Reveal boxes are clickable in Quarter Summary Presentation, including locked-state explanation and unlocked celebration.
+- Preserves V6.6.29 unified bottom navigation and V6.6.27+ one-tool/one-row multi-user storage.

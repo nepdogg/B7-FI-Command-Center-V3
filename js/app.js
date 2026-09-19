@@ -724,7 +724,8 @@ function quarterToolUrgency(left,days){left=Number(left)||0;days=Math.max(0,Numb
 function quarterSummaryView(presentation=false){
   let a=activeTools(),sh=a.filter(t=>fiSummaryStatus(t)==='Shipped').length,left=Math.max(0,a.length-sh),qt=quarterTimeProgress();
   if(!presentation)return `<div class="report-title center-page-title quarter-summary-page-title">${esc(state.quarter)} SUMMARY · ${esc(fmtDate(today()))}</div><div class="quarter-summary-page">${quarterPanel()}${familyPanel()}</div>`;
-  return `<div class="quarter-summary-presentation">
+  let familyCount=Math.max(1,familyNames().length),heroHeight=familyCount<=4?270:familyCount===5?245:familyCount===6?220:familyCount===7?195:175;
+  return `<div class="quarter-summary-presentation" style="--family-count:${familyCount};--summary-hero-height:${heroHeight}px">
     <section class="quarter-summary-hero">
       <div class="quarter-hero-metric tools-left urgency-${quarterToolUrgency(left,qt.remaining)}"><small>${esc(state.quarter)} TOOLS LEFT TO SHIP</small><strong>${left}</strong></div>
       <div class="quarter-hero-metric days-left urgency-${quarterDayUrgency(qt.remaining)}"><small>${esc(state.quarter)} DAYS REMAINING</small><strong>${esc(String(qt.remaining))}</strong></div>
