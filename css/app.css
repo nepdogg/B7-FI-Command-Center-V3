@@ -17473,3 +17473,94 @@ html body.presentation-mode[data-center="operations"][data-sub="summary"] .revea
   filter:brightness(1.25)!important;box-shadow:0 0 14px rgba(176,104,255,.7)!important;
 }
 html body.presentation-mode[data-center="operations"][data-sub="summary"] .reveal-btn.locked{cursor:not-allowed!important;}
+
+/* =========================================================
+   V6.6.28 — QUARTER SUMMARY READABILITY + PRESENTATION EDGE FIT
+   Refines only Summary carousel / Presentation geometry.
+   ========================================================= */
+/* Live Operations > Quarter Summary carousel: use all available width and
+   make the eight live status boxes readable, centered, and uncropped. */
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-live-panel{
+  width:100%!important;max-width:100%!important;padding:5px 5px!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .summary-grid{
+  display:grid!important;grid-template-columns:repeat(8,minmax(0,1fr))!important;
+  width:100%!important;max-width:100%!important;gap:4px!important;box-sizing:border-box!important;
+  overflow:visible!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .summary-box{
+  width:100%!important;min-width:0!important;max-width:none!important;min-height:48px!important;
+  padding:4px 3px!important;box-sizing:border-box!important;overflow:hidden!important;
+  display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
+  text-align:center!important;line-height:1.05!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .summary-box span{
+  width:100%!important;font-size:9px!important;line-height:1.05!important;text-align:center!important;
+  white-space:normal!important;overflow:visible!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .summary-box b{
+  display:flex!important;align-items:center!important;justify-content:center!important;flex:1 1 auto!important;
+  width:100%!important;margin:1px 0 0!important;font-size:22px!important;line-height:1!important;text-align:center!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .progress-head{
+  font-size:10px!important;line-height:1.05!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-matrix.header{
+  font-size:8px!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-cell{
+  font-size:13px!important;align-items:center!important;justify-content:center!important;text-align:center!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-cell.name>span{
+  font-size:15px!important;
+}
+
+/* Quarter Summary presentation: live status boxes retain the same drill-down
+   behavior as the normal Summary and Live Operations carousel. */
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-live-panel,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .summary-grid,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .summary-box,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .live-status-drilldown{
+  pointer-events:auto!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .summary-box{
+  position:relative!important;z-index:40!important;cursor:pointer!important;
+  display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
+  text-align:center!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .summary-box span,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .summary-box b{
+  width:100%!important;text-align:center!important;pointer-events:none!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .summary-box:hover{
+  filter:brightness(1.18)!important;
+}
+
+/* Live Operations tool Presentation: reduce unused frame margins and let the
+   UTC, bottom navigation, and presentation content extend evenly to the frame. */
+html body.presentation-mode[data-center="operations"][data-sub="live"] .app-frame{
+  padding:3px!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app{
+  width:100%!important;height:100%!important;margin:0!important;padding:4px!important;gap:4px!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] #screenshotReportTitle{
+  margin:0 0 4px!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only{
+  width:100%!important;max-width:none!important;margin:0!important;padding:0!important;
+  flex:1 1 auto!important;align-items:stretch!important;justify-content:stretch!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only>.universal-card-host.live-panel{
+  width:100%!important;max-width:none!important;height:100%!important;margin:0!important;padding:1px!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only .utc-card.utc-v6538{
+  width:100%!important;max-width:none!important;height:100%!important;margin:0!important;padding:3px!important;gap:5px!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-inline-nav.presentation-tool-nav{
+  width:100%!important;max-width:none!important;margin:4px 0 0!important;min-height:38px!important;
+  align-self:stretch!important;box-sizing:border-box!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-inline-nav.presentation-tool-nav .presentation-nav-cell{
+  min-height:36px!important;font-size:10px!important;
+}
