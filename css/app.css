@@ -17564,3 +17564,46 @@ html body.presentation-mode[data-center="operations"][data-sub="live"] .presenta
 html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-inline-nav.presentation-tool-nav .presentation-nav-cell{
   min-height:36px!important;font-size:10px!important;
 }
+
+
+/* =========================================================
+   V6.6.29 — UNIFIED PRESENTATION NAVIGATION
+   Live Tool Presentation now follows Quarter Summary wallboard structure:
+   content first, one large navigation bar at the bottom, no separate title row.
+   ========================================================= */
+html body.presentation-mode[data-center="operations"][data-sub="live"] #screenshotReportTitle{
+  display:none!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app{
+  display:grid!important;
+  grid-template-rows:minmax(0,1fr) 62px!important;
+  width:100%!important;height:100%!important;min-height:0!important;
+  padding:7px 8px 8px!important;gap:6px!important;box-sizing:border-box!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only{
+  grid-row:1!important;width:100%!important;height:100%!important;min-height:0!important;
+  margin:0!important;padding:0!important;overflow:hidden!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only>.universal-card-host.live-panel{
+  width:100%!important;height:100%!important;min-height:0!important;margin:0!important;padding:1px!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only .utc-card.utc-v6538{
+  width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;
+  margin:0!important;padding:3px!important;gap:5px!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-inline-nav.presentation-tool-nav{
+  grid-row:2!important;width:100%!important;max-width:none!important;height:58px!important;min-height:58px!important;
+  margin:0!important;border:1px solid #176fa8!important;align-self:end!important;box-sizing:border-box!important;overflow:hidden!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-inline-nav.presentation-tool-nav .presentation-nav-cell{
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  min-height:56px!important;height:56px!important;font-size:clamp(16px,1.2vw,23px)!important;
+  font-weight:1000!important;line-height:1!important;box-sizing:border-box!important;
+}
+/* Make the two primary Quarter Summary wallboard metrics read like true headline boxes. */
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-hero-metric small{
+  font-size:clamp(30px,1.75vw,36px)!important;line-height:1.05!important;font-weight:1000!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-hero-metric strong{
+  font-size:clamp(120px,7.2vw,150px)!important;line-height:.88!important;font-weight:1000!important;
+}
