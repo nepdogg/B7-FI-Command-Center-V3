@@ -17996,3 +17996,67 @@ html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .sn
     grid-template-rows:122px 68px 68px 160px minmax(235px,1fr) minmax(205px,1fr)!important;
   }
 }
+
+/* ================================================================
+   V6.6.35 — PRESENTATION PARITY FINAL OVERRIDES
+   Quarter Summary normal-page and carousel copies use the exact same
+   three-part visual hierarchy as Presentation: hero, live strip, family grid.
+   ================================================================ */
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] #app{
+  display:block!important;height:calc(100vh - var(--sticky-shell-height,0px) - 58px)!important;
+  min-height:620px!important;overflow:hidden!important;padding:8px 10px!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-page-title{display:none!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-page-parity{
+  display:grid!important;grid-template-rows:minmax(190px,32%) 128px minmax(0,1fr)!important;
+  gap:7px!important;width:100%!important;height:100%!important;min-height:0!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-page-parity .quarter-summary-hero{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important;height:100%!important;min-height:0!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-page-parity .quarter-live-panel{height:128px!important;min-height:128px!important;overflow:hidden!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-page-parity .quarter-summary-family-wrap{height:100%!important;min-height:0!important;overflow:hidden!important;}
+
+/* Status carousel: same content hierarchy as Presentation, scaled to its actual panel. */
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel .snapshot-panel:has(.snapshot-quarter-summary){padding:0!important;overflow:hidden!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel .snapshot-panel:has(.snapshot-quarter-summary) .snapshot-body,
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel .snapshot-panel:has(.snapshot-quarter-summary) .snapshot-body-no-title,
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary{
+  width:100%!important;height:100%!important;min-height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-summary-page-parity{
+  display:grid!important;grid-template-rows:minmax(142px,31%) 104px minmax(0,1fr)!important;
+  gap:5px!important;width:100%!important;height:100%!important;min-height:0!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-summary-hero{
+  display:grid!important;grid-template-columns:1fr 1fr!important;gap:6px!important;height:100%!important;min-height:0!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-hero-metric{display:grid!important;grid-template-rows:auto minmax(0,1fr)!important;align-items:center!important;justify-items:center!important;min-height:0!important;overflow:hidden!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-hero-metric small{font-size:clamp(15px,1.25vw,24px)!important;line-height:1.05!important;text-align:center!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-hero-metric strong{font-size:clamp(62px,8.5vw,118px)!important;line-height:.82!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-live-panel{display:block!important;height:104px!important;min-height:104px!important;overflow:hidden!important;padding:5px!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-live-panel .summary-grid{height:44px!important;min-height:44px!important;display:grid!important;grid-template-columns:repeat(8,minmax(0,1fr))!important;gap:3px!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-live-panel .summary-box{height:44px!important;min-height:44px!important;padding:2px!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-live-panel .summary-box span{font-size:clamp(6px,.48vw,9px)!important;line-height:1!important;text-align:center!important;white-space:normal!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-live-panel .summary-box b{font-size:clamp(14px,1.05vw,20px)!important;line-height:1!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-live-panel .shipping-total,
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-live-panel .quarter-time-progress{display:block!important;height:25px!important;min-height:25px!important;margin:0!important;overflow:hidden!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-summary-family-wrap{height:100%!important;min-height:0!important;overflow:hidden!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-panel-v526{display:grid!important;grid-template-rows:26px minmax(0,1fr)!important;height:100%!important;min-height:0!important;overflow:hidden!important;border:0!important;padding:0!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-rows-scroll{display:grid!important;grid-template-rows:repeat(var(--family-count,6),minmax(0,1fr))!important;height:100%!important;min-height:0!important;gap:2px!important;padding:0 0 3px!important;overflow:hidden!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-rows-scroll>.family-matrix{height:100%!important;min-height:0!important;overflow:hidden!important;}
+
+/* Tools page: use the locked Live Operations UTC geometry, not a taller variant. */
+@media (min-width:1100px){
+  html body[data-center="operations"][data-sub="tools"] #app{overflow:visible!important;height:auto!important;max-height:none!important;}
+  html body[data-center="operations"][data-sub="tools"] .tool-section,
+  html body[data-center="operations"][data-sub="tools"] .update-live-card-list{overflow:visible!important;height:auto!important;max-height:none!important;}
+  html body[data-center="operations"][data-sub="tools"] .tool-section .update-live-card-list .utc-host,
+  html body[data-center="operations"][data-sub="tools"] .tool-section .update-live-card-list .universal-card-host.live-panel,
+  html body[data-center="operations"][data-sub="tools"] .tool-section .update-live-card-list .utc-card.utc-v6538,
+  html body[data-center="operations"][data-sub="tools"] .tool-section .update-live-card-list .utc-card.utc-v6538>.utc-column{
+    height:650px!important;min-height:650px!important;max-height:650px!important;overflow:hidden!important;box-sizing:border-box!important;
+  }
+  html body[data-center="operations"][data-sub="tools"] .tool-section .update-live-card-list .utc-card.utc-v6538 .utc-status{
+    display:grid!important;grid-template-rows:122px 60px 60px 116px 154px 138px!important;
+    height:650px!important;min-height:650px!important;max-height:650px!important;overflow:hidden!important;
+  }
+}
