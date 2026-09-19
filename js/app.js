@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='6.6.32', BUILD='20260918-V6.6.32-UNIFIED-DYNAMIC-QUARTER-SUMMARY';
+const VERSION='6.6.33', BUILD='20260918-V6.6.33-QUARTER-SUMMARY-UTC-PARITY';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -723,28 +723,25 @@ function quarterDayUrgency(days){days=Number(days)||0;if(days<=7)return'critical
 function quarterToolUrgency(left,days){left=Number(left)||0;days=Math.max(0,Number(days)||0);if(left<=0)return'complete';let pace=days/left;if(days<=7||pace<2)return'critical';if(days<=14||pace<4)return'warning';if(days<=30||pace<7)return'caution';return'good'}
 function quarterSummaryView(presentation=false){
   let a=activeTools(),sh=a.filter(t=>fiSummaryStatus(t)==='Shipped').length,left=Math.max(0,a.length-sh),qt=quarterTimeProgress();
-  if(!presentation){
-    let fc=Math.max(1,familyNames().length),
-        nf=fc<=3?22:fc<=4?20:fc<=6?17:fc<=7?15:fc<=9?13:12,
-        nn=fc<=3?20:fc<=4?18:fc<=6?16:fc<=7?14:fc<=9?13:12,
-        ni=fc<=3?48:fc<=4?43:fc<=6?36:fc<=7?32:fc<=9?28:25,
-        nr=fc<=3?23:fc<=4?21:fc<=6?18:fc<=7?16:fc<=9?15:14;
-    return `<div class="report-title center-page-title quarter-summary-page-title">${esc(state.quarter)} SUMMARY · ${esc(fmtDate(today()))}</div><div class="quarter-summary-page" style="--family-count:${fc};--normal-family-name-size:${nf}px;--normal-family-number-size:${nn}px;--normal-family-image-height:${ni}px;--normal-family-reveal-size:${nr}px">${quarterPanel()}${familyPanel()}</div>`;
-  }
   let familyCount=Math.max(1,familyNames().length),
       heroHeight=familyCount<=3?285:familyCount===4?270:familyCount===5?250:familyCount===6?230:familyCount===7?215:200,
       familyFont=familyCount<=3?30:familyCount<=4?27:familyCount<=6?24:familyCount<=7?21:familyCount<=9?18:16,
       familyNumber=familyCount<=3?29:familyCount<=4?26:familyCount<=6?23:familyCount<=7?21:familyCount<=9?19:17,
       familyImage=familyCount<=3?72:familyCount<=4?64:familyCount<=6?54:familyCount<=7?48:familyCount<=9?40:34,
       revealSize=familyCount<=3?34:familyCount<=4?31:familyCount<=6?28:familyCount<=7?25:familyCount<=9?22:20,
-      heroNumber=familyCount<=3?166:familyCount<=4?158:familyCount<=6?148:familyCount<=7?136:familyCount<=9?122:108;
-  return `<div class="quarter-summary-presentation" style="--family-count:${familyCount};--summary-hero-height:${heroHeight}px;--family-name-size:${familyFont}px;--family-number-size:${familyNumber}px;--family-image-height:${familyImage}px;--family-reveal-size:${revealSize}px;--summary-hero-number:${heroNumber}px">
-    <section class="quarter-summary-hero">
+      heroNumber=familyCount<=3?166:familyCount<=4?158:familyCount<=6?148:familyCount<=7?136:familyCount<=9?122:108,
+      vars=`--family-count:${familyCount};--summary-hero-height:${heroHeight}px;--family-name-size:${familyFont}px;--family-number-size:${familyNumber}px;--family-image-height:${familyImage}px;--family-reveal-size:${revealSize}px;--summary-hero-number:${heroNumber}px`;
+  let core=`<section class="quarter-summary-hero">
       <div class="quarter-hero-metric tools-left urgency-${quarterToolUrgency(left,qt.remaining)}"><small>${esc(state.quarter)} TOOLS LEFT TO SHIP</small><strong>${left}</strong></div>
       <div class="quarter-hero-metric days-left urgency-${quarterDayUrgency(qt.remaining)}"><small>${esc(state.quarter)} DAYS REMAINING</small><strong>${esc(String(qt.remaining))}</strong></div>
     </section>
     ${quarterPanel()}
-    <section class="quarter-summary-family-wrap">${familyPanel()}</section>
+    <section class="quarter-summary-family-wrap">${familyPanel()}</section>`;
+  if(!presentation){
+    return `<div class="report-title center-page-title quarter-summary-page-title">${esc(state.quarter)} QUARTER SUMMARY · ${esc(fmtDate(today()))}</div><div class="quarter-summary-presentation quarter-summary-page-parity" style="${vars}">${core}</div>`;
+  }
+  return `<div class="quarter-summary-presentation" style="${vars}">
+    ${core}
     <nav class="presentation-inline-nav quarter-summary-switchbar" aria-label="Quarter summary presentation controls">
       <button class="presentation-nav-cell presentation-switch-view" data-presentation-view="tool" type="button">LIVE ${esc(state.quarter)} TOOLS</button>
       <span class="presentation-nav-cell quarter-summary-live-label">LIVE ${esc(state.quarter)} QUARTER SUMMARY</span>

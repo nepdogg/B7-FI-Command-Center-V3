@@ -552,3 +552,9 @@ Presentation-launched Tool Edit is now detached from the `presentation-mode` wal
 - Column headings remain centered and shipping progress retains `X OF Y SHIPPED`.
 - Removed the redundant nested family-panel border in the carousel and protected the final bottom border from clipping.
 - Presentation Mode dynamic layout and one-tool/one-Microsoft-List-row multi-user storage are preserved.
+
+## V6.6.33 — Quarter Summary / UTC parity
+- Dedicated Quarter Summary page now renders the same responsive hero/status/family wallboard component as Quarter Summary Presentation Mode, while retaining its normal page title/navigation.
+- Live Operations Quarter Summary carousel removes the remaining redundant bottom frame and reserves clearance for the last family row border.
+- Tools page UTC cards retain the same Universal Tool Card content/structure as Live Operations but receive enough vertical room in the narrower two-column layout so Customer Source, STR, Packing/Shipping and the bottom card edge are not clipped.
+- Existing one-tool/one-Microsoft-List-row multi-user architecture is unchanged.
