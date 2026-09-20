@@ -131,7 +131,7 @@ body:not(.presentation-mode):not(.screenshot-mode) .app-footer{
 }
 
 /* =========================================================
-   V7.3.2 PROTOTYPE RECOVERY LOCK
+   V7.3.6 PROTOTYPE RECOVERY LOCK
    One normal-flow shell. Native browser zoom. No fixed canvas.
    ========================================================= */
 html,body{width:100%!important;min-width:0!important;height:auto!important;min-height:100%!important;margin:0!important;padding:0!important;overflow-x:hidden!important;zoom:1!important}
@@ -364,7 +364,7 @@ html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{
 }
 
 /* =========================================================
-   V7.3.5 — PROTOTYPE GEOMETRY / UTC PARITY MASTER OVERRIDE
+   V7.3.6 — PROTOTYPE GEOMETRY / UTC PARITY MASTER OVERRIDE
    Single final authority for normal desktop Operations Center.
    ========================================================= */
 @media (min-width:901px){
@@ -495,4 +495,102 @@ html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{
   html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid{
     grid-template-columns:minmax(0,47.5fr) minmax(0,52.5fr)!important;
   }
+}
+
+/* =========================================================
+   V7.3.6 — PROTOTYPE FIXED-CANVAS PARITY
+   The approved prototype is a 1448px desktop composition.
+   Do not reflow it as the viewport changes: native browser zoom
+   scales the entire composition as one unit.
+   ========================================================= */
+@media (min-width:901px){
+  html{overflow-x:auto!important;background:#202020!important;}
+  body:not(.presentation-mode):not(.screenshot-mode){
+    min-width:0!important;
+    margin:0!important;
+    padding:16px 0 24px!important;
+    background:#202020!important;
+    overflow-x:auto!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{
+    width:1448px!important;
+    min-width:1448px!important;
+    max-width:1448px!important;
+    margin:0 auto!important;
+    overflow:hidden!important;
+    border:1px solid #24475a!important;
+    box-sizing:border-box!important;
+  }
+  /* exact four-part prototype header: equal outer fields and equal center boxes */
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero{
+    width:100%!important;
+    grid-template-columns:minmax(0,1fr) 160px 160px minmax(0,1fr)!important;
+    column-gap:4px!important;
+    box-sizing:border-box!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box,
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-mode-box{
+    width:160px!important;min-width:160px!important;max-width:160px!important;
+    height:54px!important;box-sizing:border-box!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero-left,
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero-right{
+    min-width:0!important;
+  }
+  /* prototype live composition */
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid{
+    grid-template-columns:680px 744px!important;
+    width:1440px!important;
+    height:624px!important;min-height:624px!important;
+    grid-template-rows:608px!important;
+    gap:8px!important;padding:8px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .body-shell,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app{
+    height:624px!important;min-height:624px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel{
+    height:608px!important;min-height:608px!important;max-height:608px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel>.snapshot-panel,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel>.utc-host,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel>.universal-card-host,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel .utc-card.utc-v6538,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel .utc-card.utc-v6538>.utc-column{
+    height:590px!important;min-height:590px!important;max-height:590px!important;
+  }
+  /* Tools-page badge proportions, retained in Live Operations */
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display{
+    flex:0 0 274px!important;height:274px!important;min-height:274px!important;max-height:274px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display .utc-indicator-grid{
+    grid-template-rows:repeat(14,18px)!important;grid-auto-rows:18px!important;
+    height:274px!important;min-height:274px!important;max-height:274px!important;gap:2px 4px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-lamp{
+    height:18px!important;min-height:18px!important;max-height:18px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-status{
+    height:590px!important;min-height:590px!important;max-height:590px!important;
+    grid-template-rows:108px 54px 54px 98px 138px 138px!important;
+  }
+  /* Prototype progress tracks: readable centered labels, never squeezed. */
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .progress-item{
+    grid-template-rows:auto 14px auto!important;row-gap:3px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .track{
+    height:14px!important;min-height:14px!important;border-radius:7px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .track.labeled-track>span{
+    font-size:8px!important;line-height:14px!important;
+  }
+  /* Footer is part of the prototype canvas, not a viewport-width strip. */
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{
+    width:100%!important;height:76px!important;min-height:76px!important;
+    grid-template-rows:38px 38px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-presence-row{height:38px!important;padding:4px 16px!important;}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-row,
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-cell{height:38px!important;}
 }

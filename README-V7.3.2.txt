@@ -1,4 +1,4 @@
-B7 FI Command Center V7.3.2 — Prototype Recovery Lock
+B7 FI Command Center V7.3.6 — Prototype Recovery Lock
 
 - Restores Live Operations workspace height.
 - Native browser zoom; no fixed-canvas transform in normal mode.
