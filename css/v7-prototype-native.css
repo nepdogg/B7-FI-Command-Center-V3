@@ -127,3 +127,43 @@
   html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #adminButton,
   html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-users-button{font-size:8.5px!important}
 }
+
+/* V7.4.1 — approved new prototype header/footer lock. */
+@media (min-width:901px){
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{margin:0 auto!important;width:calc(100% - 16px)!important;max-width:1660px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero{grid-template-columns:minmax(0,1fr) 190px minmax(0,1fr)!important;gap:3px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero-center{display:flex!important;align-items:center!important;justify-content:center!important;min-width:0!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box{width:190px!important;min-width:190px!important;max-width:190px!important;height:50px!important;border:1px solid #00b7e8!important;background:#020910!important;box-sizing:border-box!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) #headerModeCenter.shared-connected .header-kla-box{border-color:#00ed7f!important;box-shadow:0 0 9px rgba(0,237,127,.28)!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) #headerModeCenter.shared-connecting .header-kla-box{border-color:#ffc400!important;box-shadow:0 0 9px rgba(255,196,0,.24)!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) #headerModeCenter.shared-disconnected .header-kla-box{border-color:#ff3158!important;box-shadow:0 0 9px rgba(255,49,88,.24)!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) #headerModeCenter.local-mode .header-kla-box{border-color:#00b7e8!important;box-shadow:none!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-mode-box{display:none!important}
+
+  /* New prototype: blue segmented system-status row first, black user-badge row second. */
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{height:78px!important;min-height:78px!important;grid-template-rows:45px 33px!important;flex:0 0 78px!important;background:#020910!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-row{order:1!important;height:45px!important;min-height:45px!important;padding:0!important;display:grid!important;grid-template-columns:1.05fr 1.08fr .96fr 1fr 1.2fr .98fr!important;gap:3px!important;background:#020910!important;border:0!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-cell{height:45px!important;min-height:45px!important;background:linear-gradient(180deg,#1596d2,#087eb9)!important;border:1px solid #063e60!important;padding:0 12px!important;gap:9px!important;font-size:9px!important;overflow:hidden!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-icon{font-size:21px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #adminButton,
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-users-button{font-size:9px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-status{display:flex!important;justify-content:center!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-dot{width:20px!important;height:20px!important;border-radius:50%!important;background:#697984!important;box-shadow:none!important;flex:0 0 20px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-copy{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;line-height:1.05!important;white-space:nowrap!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-copy b{font-size:9px!important;color:#fff!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-copy small{font-size:8px!important;color:#d8f5ff!important;font-weight:900!important;margin-top:3px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerModeCenter.shared-connected .footer-mode-dot{background:#00ed7f!important;box-shadow:0 0 10px #00ed7f!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerModeCenter.shared-connected #footerConnectionLabel{color:#00ed7f!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerModeCenter.shared-connecting .footer-mode-dot{background:#ffc400!important;box-shadow:0 0 9px #ffc400!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerModeCenter.shared-connecting #footerConnectionLabel{color:#ffe45b!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerModeCenter.shared-disconnected .footer-mode-dot{background:#ff3158!important;box-shadow:0 0 9px #ff3158!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerModeCenter.shared-disconnected #footerConnectionLabel{color:#ffb0bf!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerModeCenter.local-mode .footer-mode-dot{background:#00b7e8!important;box-shadow:0 0 8px #00b7e8!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerModeCenter.local-mode #footerConnectionLabel{color:#b9f2ff!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-presence-row{order:2!important;height:33px!important;min-height:33px!important;padding:3px 38px!important;background:#020910!important;border:1px solid #075d87!important;border-top:0!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badges{height:27px!important;max-width:none!important;grid-template-columns:repeat(7,minmax(80px,1fr))!important;gap:clamp(12px,4vw,90px)!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badge{height:24px!important;min-height:24px!important;background:#020910!important;border:1px solid #12384d!important;color:#63727c!important;opacity:.48!important;font-size:8.5px!important;padding:0 12px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badge::before{background:#5f6d75!important;box-shadow:none!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badge.active{opacity:1!important;color:#fff!important;border-color:#00a864!important;background:#03131d!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badge.active::before{background:#00ed7f!important;box-shadow:0 0 9px #00ed7f!important}
+}
