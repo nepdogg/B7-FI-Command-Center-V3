@@ -692,7 +692,7 @@ html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{
 
 
 /* =========================================================
-   V7.3.9 — PROTOTYPE GEOMETRY REBUILD
+   V7.3.10 — PROTOTYPE GEOMETRY REBUILD
    FINAL AUTHORITY. 1448px master canvas; native browser zoom.
    Matches the approved prototype's compact vertical rhythm.
    ========================================================= */
@@ -808,4 +808,94 @@ html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{
   html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-icon{font-size:16px!important}
   html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #adminButton,
   html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-users-button{font-size:7.5px!important}
+}
+
+/* =========================================================
+   V7.3.10 — PROTOTYPE VIEWPORT PARITY LOCK
+   One final authority for normal desktop mode. The previous 1448px
+   master rendered too small on the target Windows/Edge display.
+   This restores the approved prototype's screen occupancy and vertical
+   rhythm while leaving browser zoom native (no CSS transform scaling).
+   ========================================================= */
+@media (min-width:901px){
+  html,body{background:#202020!important;overflow:auto!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{
+    width:1752px!important;min-width:1752px!important;max-width:1752px!important;
+    margin:14px auto!important;overflow:hidden!important;box-sizing:border-box!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero{
+    height:66px!important;min-height:66px!important;
+    grid-template-columns:minmax(0,1fr) 194px 194px minmax(0,1fr)!important;gap:4px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero-left,
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero-right{height:66px!important;font-size:29px!important;padding:0 24px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box,
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-mode-box{width:194px!important;min-width:194px!important;max-width:194px!important;height:59px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box img{height:35px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-mode-dot{width:22px!important;height:22px!important;flex:0 0 22px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .mode-center-text b{font-size:9.5px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .mode-center-text small{font-size:7px!important}
+
+  html body:not(.presentation-mode):not(.screenshot-mode) .main-nav{height:47px!important;padding:4px 7px!important;gap:4px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .main-nav button{height:39px!important;font-size:9px!important;padding:0 5px!important;gap:4px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .main-nav button::before{font-size:15px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-stack{padding-top:4px!important;font-size:10px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-bar{height:43px!important;min-height:43px!important;margin-bottom:4px!important;grid-template-columns:188px 1fr 128px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-dot{width:12px!important;height:12px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-label strong{font-size:11px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-label small{font-size:8px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-message,html body:not(.presentation-mode):not(.screenshot-mode) .status-right{font-size:10.5px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .pagebar{height:39px!important;min-height:39px!important;grid-template-columns:58% 42%!important;gap:4px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .pagebar button{height:35px!important;font-size:8.5px!important;padding:0 5px!important}
+
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .body-shell,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app{height:606px!important;min-height:606px!important;max-height:606px!important;overflow:hidden!important}
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid{
+    width:1742px!important;height:606px!important;min-height:606px!important;
+    grid-template-columns:824px 906px!important;grid-template-rows:588px!important;gap:10px!important;padding:9px!important;overflow:hidden!important
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel{height:588px!important;min-height:588px!important;max-height:588px!important;overflow:hidden!important}
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel>.snapshot-panel,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel>.utc-host,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel>.universal-card-host,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel .utc-card.utc-v6538,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel .utc-card.utc-v6538>.utc-column{height:588px!important;min-height:588px!important;max-height:588px!important}
+
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538{grid-template-columns:33% 35% 32%!important;gap:7px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info{padding:6px!important;gap:2px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-priority-ribbon{flex:0 0 33px!important;height:33px!important;min-height:33px!important;font-size:15px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-identity-badges{grid-template-rows:repeat(5,25px)!important;gap:2px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-identity-badges>.utc-identity-ribbon{height:25px!important;min-height:25px!important;font-size:12px!important;padding:0 7px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-driver-ribbon,
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-reduced{flex:0 0 27px!important;height:27px!important;min-height:27px!important;max-height:27px!important;font-size:12px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display{flex:0 0 300px!important;height:300px!important;min-height:300px!important;max-height:300px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display .utc-indicator-grid{grid-template-rows:repeat(14,19px)!important;grid-auto-rows:19px!important;height:300px!important;min-height:300px!important;max-height:300px!important;gap:2px 4px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-lamp{height:19px!important;min-height:19px!important;max-height:19px!important;padding:1px 3px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-message{font-size:7px!important;line-height:7.3px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-edit-tool-bar-bottom{flex:0 0 30px!important;height:30px!important;min-height:30px!important;max-height:30px!important;font-size:12px!important}
+
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-status{height:588px!important;min-height:588px!important;max-height:588px!important;grid-template-rows:114px 59px 59px 100px 126px 130px!important;font-size:11px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-section-label{font-size:8.5px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-countdown{padding:8px 12px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-countdown-value{font-size:38px!important;line-height:.9!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-next-actions-blockers,
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-live-system-status,
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-lead-notes{padding:8px 12px!important;overflow:hidden!important;visibility:visible!important;opacity:1!important}
+
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list{gap:7px!important;padding:8px 9px!important;font-size:10px!important;overflow:hidden!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .progress-item{grid-template-rows:auto 15px auto!important;row-gap:3px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .track{height:15px!important;min-height:15px!important;border-radius:8px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .track.labeled-track>span{font-size:8.5px!important;line-height:15px!important}
+
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{height:82px!important;min-height:82px!important;grid-template-rows:39px 43px!important;flex:0 0 82px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-presence-row{height:39px!important;padding:4px 19px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badges{height:32px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badge{height:26px!important;font-size:9px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-row,
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-cell{height:43px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-cell{font-size:9px!important;padding:0 9px!important;gap:8px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-icon{font-size:19px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #adminButton,
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-users-button{font-size:9px!important}
 }
