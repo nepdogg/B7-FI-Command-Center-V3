@@ -221,3 +221,58 @@
     gap:clamp(18px,5vw,105px)!important; align-items:center!important;
   }
 }
+
+/* V7.4.3 — prototype section lock: defeat legacy footer hide and restore approved geometry. */
+@media (min-width:901px){
+  html,body{margin:0!important;padding:0!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{
+    width:calc(100% - 12px)!important;max-width:1920px!important;margin:0 auto!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero{
+    min-height:68px!important;height:68px!important;grid-template-rows:68px!important;
+    grid-template-columns:minmax(0,1fr) 220px minmax(0,1fr)!important;padding:0!important;gap:4px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero-left,
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero-right{
+    height:64px!important;display:flex!important;align-items:center!important;padding:0 28px!important;
+    font-size:clamp(19px,1.55vw,30px)!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero-right{justify-content:flex-end!important;text-align:right!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero-center{
+    width:220px!important;min-width:220px!important;max-width:220px!important;height:64px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box{
+    width:220px!important;min-width:220px!important;max-width:220px!important;height:64px!important;border:2px solid #00ed7f!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box img{height:42px!important;max-width:155px!important}
+
+  /* The old stylesheet hid this ID with !important. The approved footer requires it visible. */
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerModeCenter{
+    display:flex!important;visibility:visible!important;opacity:1!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{
+    height:94px!important;min-height:94px!important;grid-template-rows:56px 38px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer>.footer-system-row{
+    height:56px!important;min-height:56px!important;max-height:56px!important;
+    grid-template-columns:1.12fr 1.14fr 1.02fr 1.04fr 1.30fr 1.08fr!important;gap:4px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-cell{
+    height:56px!important;min-height:56px!important;background:linear-gradient(180deg,#159bd8,#087fba)!important;
+    border:1px solid #063e60!important;font-size:11px!important;padding:0 14px!important;gap:12px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-icon{font-size:27px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #adminButton,
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-users-button{font-size:11px!important;font-weight:900!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-dot{width:24px!important;height:24px!important;flex-basis:24px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-copy b{font-size:11px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-copy small{font-size:10px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer>.footer-presence-row{
+    height:38px!important;min-height:38px!important;max-height:38px!important;padding:4px 46px!important;background:#020910!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badges{
+    height:30px!important;grid-template-columns:repeat(7,minmax(90px,1fr))!important;gap:clamp(18px,5vw,105px)!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badge{height:27px!important;min-height:27px!important;font-size:10px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) #footerDataHealth{display:none!important;visibility:hidden!important;width:0!important;height:0!important;overflow:hidden!important}
+}
