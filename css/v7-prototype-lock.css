@@ -1,0 +1,84 @@
+/* B7 FI Command Center V7.1.1 — prototype geometry lock */
+:root{--v711-blue:#0b7fba;--v711-bg:#020b13;--v711-line:#087fb9;}
+
+/* HEADER — one continuous blue rectangle. No wedges, masks, gradients or pseudo art. */
+body:not(.presentation-mode) .hero{
+  height:70px!important;min-height:70px!important;
+  display:grid!important;grid-template-columns:minmax(360px,1fr) 430px minmax(440px,1fr)!important;
+  gap:0!important;background:var(--v711-blue)!important;background-image:none!important;
+  border:1px solid #0aa4df!important;overflow:hidden!important;
+}
+body:not(.presentation-mode) .hero::before,body:not(.presentation-mode) .hero::after,
+body:not(.presentation-mode) .hero-left::before,body:not(.presentation-mode) .hero-left::after,
+body:not(.presentation-mode) .hero-center::before,body:not(.presentation-mode) .hero-center::after,
+body:not(.presentation-mode) .hero-right::before,body:not(.presentation-mode) .hero-right::after{content:none!important;display:none!important;clip-path:none!important;}
+body:not(.presentation-mode) .hero-left,body:not(.presentation-mode) .hero-right,
+body:not(.presentation-mode) .hero-center{
+  background:transparent!important;background-image:none!important;clip-path:none!important;
+  height:100%!important;min-width:0!important;margin:0!important;border:0!important;
+}
+body:not(.presentation-mode) .hero-left{padding:0 28px!important;font-size:30px!important;font-weight:950!important;letter-spacing:.5px!important;}
+body:not(.presentation-mode) .hero-right{padding:0 28px!important;justify-content:flex-end!important;font-size:27px!important;font-weight:950!important;letter-spacing:.4px!important;}
+body:not(.presentation-mode) .hero-center{display:grid!important;grid-template-columns:165px 205px!important;gap:6px!important;justify-content:center!important;align-items:center!important;padding:5px 0!important;}
+body:not(.presentation-mode) .kla-header-box,body:not(.presentation-mode) .mode-status-box{
+  height:58px!important;min-height:58px!important;border-radius:2px!important;box-sizing:border-box!important;background:#020912!important;
+}
+body:not(.presentation-mode) .kla-header-box{border:1px solid #00b9f2!important;display:flex!important;align-items:center!important;justify-content:center!important;}
+body:not(.presentation-mode) .kla-header-box img{max-width:130px!important;max-height:48px!important;object-fit:contain!important;}
+body:not(.presentation-mode) .mode-status-box{border:1px solid #00e884!important;padding:0 12px!important;display:flex!important;align-items:center!important;gap:12px!important;}
+
+/* NORMAL DOCUMENT FLOW — footer follows the page; it never overlays/sticks to the viewport. */
+body:not(.screenshot-mode):not(.presentation-mode){height:auto!important;min-height:100vh!important;overflow:auto!important;}
+body:not(.screenshot-mode):not(.presentation-mode) .app-frame{
+  width:calc(100% - 8px)!important;max-width:1920px!important;height:auto!important;min-height:calc(100vh - 8px)!important;
+  margin:4px auto!important;display:flex!important;flex-direction:column!important;overflow:visible!important;border:1px solid #28516b!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell{position:relative!important;top:auto!important;flex:0 0 auto!important;}
+body:not(.screenshot-mode):not(.presentation-mode) .body-shell{
+  flex:1 0 auto!important;height:auto!important;min-height:0!important;overflow:visible!important;margin:0!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .body-workspace{height:auto!important;min-height:0!important;overflow:visible!important;}
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer{
+  position:static!important;inset:auto!important;bottom:auto!important;left:auto!important;right:auto!important;top:auto!important;
+  flex:0 0 92px!important;width:100%!important;height:92px!important;min-height:92px!important;max-height:92px!important;
+  margin:6px 0 0!important;z-index:auto!important;transform:none!important;
+  display:grid!important;grid-template:46px 46px/1fr!important;overflow:hidden!important;
+}
+.app-footer .footer-presence-row{height:46px!important;min-height:46px!important;padding:5px 18px!important;background:var(--v711-blue)!important;}
+.app-footer .footer-system-row{height:46px!important;min-height:46px!important;grid-template-columns:1.2fr 1.05fr .85fr .85fr 1.15fr .9fr!important;}
+
+/* QUARTER SUMMARY — prototype: large metrics own the progress bars, status row immediately below, family table fills remainder. */
+.quarter-summary-master-viewport{height:auto!important;min-height:610px!important;overflow:visible!important;}
+.quarter-summary-master-viewport>.quarter-summary-master,.snapshot-quarter-summary .quarter-summary-master{
+  height:auto!important;min-height:610px!important;display:grid!important;
+  grid-template-rows:190px 68px minmax(350px,1fr)!important;gap:8px!important;padding:8px 12px!important;overflow:hidden!important;
+}
+.quarter-summary-master .quarter-summary-hero{height:190px!important;min-height:190px!important;gap:10px!important;}
+.quarter-summary-master .quarter-hero-metric{height:190px!important;min-height:190px!important;grid-template-rows:34px minmax(0,1fr) 30px!important;padding:10px 14px 12px!important;}
+.quarter-summary-master .quarter-hero-metric small{font-size:24px!important;line-height:1!important;}
+.quarter-summary-master .quarter-hero-metric strong{font-size:86px!important;line-height:.9!important;}
+.quarter-summary-master .hero-inline-track{height:26px!important;min-height:26px!important;width:100%!important;margin:0!important;}
+.quarter-summary-master .hero-inline-track span{font-size:12px!important;}
+.quarter-summary-master .quarter-live-panel{height:68px!important;min-height:68px!important;max-height:68px!important;padding:4px 8px!important;border:0!important;background:transparent!important;}
+.quarter-summary-master .quarter-live-panel .summary-grid{height:60px!important;grid-template-columns:repeat(8,minmax(0,1fr))!important;gap:5px!important;}
+.quarter-summary-master .quarter-live-panel .summary-box{height:60px!important;}
+.quarter-summary-master .quarter-summary-family-wrap{height:100%!important;min-height:350px!important;margin:0!important;padding:0!important;border:0!important;}
+.quarter-summary-master .family-panel-v526{height:100%!important;min-height:350px!important;padding:0 4px 4px!important;border:0!important;background:transparent!important;grid-template-rows:28px minmax(0,1fr)!important;}
+.quarter-summary-master .family-panel-v526>.family-matrix.header{border-top:0!important;border-bottom:0!important;}
+.quarter-summary-master .family-rows-scroll{height:100%!important;min-height:0!important;padding:0!important;gap:3px!important;}
+.quarter-summary-master .family-progress .track{height:16px!important;min-height:16px!important;}
+
+/* Live carousel snapshot gets the same visual proportions without forcing the whole page into a fixed viewport. */
+.snapshot-quarter-summary,.snapshot-quarter-summary>.quarter-summary-master-viewport{height:auto!important;min-height:610px!important;overflow:hidden!important;}
+
+/* Presentation summary uses the same prototype language. */
+body.presentation-mode .quarter-summary-presentation .quarter-summary-hero{gap:10px!important;}
+body.presentation-mode .quarter-summary-presentation .quarter-hero-metric{grid-template-rows:auto minmax(0,1fr) 34px!important;}
+body.presentation-mode .quarter-summary-presentation .hero-inline-track{height:30px!important;width:100%!important;}
+
+@media(max-width:1250px){
+ body:not(.presentation-mode) .hero{grid-template-columns:minmax(270px,1fr) 350px minmax(320px,1fr)!important;}
+ body:not(.presentation-mode) .hero-left{font-size:23px!important;padding:0 18px!important;}
+ body:not(.presentation-mode) .hero-right{font-size:21px!important;padding:0 18px!important;}
+ body:not(.presentation-mode) .hero-center{grid-template-columns:140px 190px!important;}
+}
