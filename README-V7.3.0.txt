@@ -1,4 +1,4 @@
-B7 FI Command Center V7.3.0 — Prototype Master Lock
+B7 FI Command Center V7.3.1 — Prototype Master Lock
 
 Visual source of truth: approved prototype supplied by user.
 - Four-section header: equal outer title sections; equal KLA and Multi-User center modules.

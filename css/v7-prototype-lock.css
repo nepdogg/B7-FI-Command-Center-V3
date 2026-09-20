@@ -39,3 +39,93 @@ body:not(.screenshot-mode):not(.presentation-mode) .app-footer{position:relative
 
 /* Browser zoom must remain native; no fixed design canvas and no right-side clipping. */
 @media(max-width:1250px){.hero{grid-template-columns:minmax(0,3fr) minmax(125px,.82fr) minmax(125px,.82fr) minmax(0,3fr)!important;padding:0 8px!important}.hero-left,.hero-right{padding:0 9px!important}.header-kla-box,.header-mode-box{height:48px!important}.mode-center-text b{font-size:9px!important}.mode-center-text small{font-size:7px!important}.main-nav button{gap:3px!important}.operations-dual-grid{height:600px!important;min-height:600px!important}body:not(.presentation-mode)[data-center="operations"][data-sub="live"] #app,body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] #app{min-height:600px!important}.quarter-summary-master-viewport{height:600px!important;min-height:600px!important}}
+
+/* =========================================================
+   V7.3.1 — APPROVED PROTOTYPE RESPONSIVE GEOMETRY LOCK
+   Normal browser zoom remains native. No fixed design-canvas scaling.
+   ========================================================= */
+:root{--v731-header-h:68px;--v731-nav-h:44px;--v731-presence-h:44px;--v731-system-footer-h:48px}
+html{overflow-x:hidden!important}
+body:not(.presentation-mode):not(.screenshot-mode){overflow-x:hidden!important;overflow-y:auto!important}
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame{
+  width:calc(100% - 12px)!important;max-width:none!important;min-width:0!important;
+  min-height:calc(100vh - 12px)!important;height:auto!important;margin:6px!important;
+  display:flex!important;flex-direction:column!important;overflow:visible!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .sticky-shell{flex:0 0 auto!important;width:100%!important;min-width:0!important}
+body:not(.presentation-mode):not(.screenshot-mode) .body-shell{flex:0 0 auto!important;width:100%!important;min-width:0!important;height:auto!important;overflow:visible!important}
+body:not(.presentation-mode):not(.screenshot-mode) .body-workspace{width:100%!important;min-width:0!important;height:auto!important;overflow:visible!important}
+
+/* Prototype header = 4 sections: equal outer sections + equal center modules. */
+.hero{
+  height:var(--v731-header-h)!important;min-height:var(--v731-header-h)!important;
+  grid-template-columns:minmax(0,1fr) 190px 190px minmax(0,1fr)!important;
+  gap:4px!important;padding:0 10px!important;background:linear-gradient(180deg,#1689c5,#0878b2)!important;
+}
+.hero-left,.hero-right{font-size:clamp(20px,1.72vw,32px)!important;padding:0 22px!important;font-weight:950!important}
+.header-kla-box,.header-mode-box{width:100%!important;height:54px!important;border-radius:3px!important}
+.header-kla-box img{height:37px!important}.header-mode-box{padding:0 14px!important;gap:12px!important}
+.header-mode-dot{width:19px!important;height:19px!important;flex-basis:19px!important}
+.mode-center-text b{font-size:10px!important}.mode-center-text small{font-size:7px!important}
+
+/* Prototype navigation buttons: one line, equal geometry, full labels. */
+.main-nav{height:var(--v731-nav-h)!important;grid-template-columns:repeat(10,minmax(0,1fr))!important;gap:3px!important;padding:4px 7px!important}
+.main-nav button{height:36px!important;font-size:clamp(7px,.62vw,11px)!important;padding:0 5px!important;gap:6px!important;overflow:visible!important;text-overflow:clip!important}
+.main-nav button::before{font-size:clamp(12px,1vw,18px)!important}
+
+/* Page bar mirrors prototype and never expands the document wider than viewport. */
+.pagebar{width:100%!important;max-width:100%!important;min-width:0!important;overflow:hidden!important}
+.subnav{flex:1 1 58%!important;min-width:0!important}.page-actions{flex:0 1 42%!important;min-width:0!important;max-width:42%!important;display:flex!important}
+.page-actions>*{min-width:0!important}.pagebar button{font-size:clamp(6.5px,.52vw,9.5px)!important;padding:0 5px!important}
+
+/* Live Operations follows available viewport height instead of a 640px fixed canvas. */
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] #app{height:auto!important;min-height:0!important;overflow:visible!important}
+.operations-dual-grid{
+  width:100%!important;max-width:100%!important;min-width:0!important;
+  height:clamp(560px,calc(100vh - 365px),690px)!important;min-height:560px!important;
+  grid-template-columns:minmax(0,48%) minmax(0,52%)!important;gap:8px!important;padding:8px!important;overflow:hidden!important;
+}
+.operations-status-carousel,.operations-tool-carousel{height:100%!important;min-height:0!important;min-width:0!important;overflow:hidden!important}
+
+/* Quarter summary: prototype-sized hero cards consume the old dead progress-bar band. */
+body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] #app{height:auto!important;min-height:0!important;overflow:visible!important}
+.quarter-summary-master-viewport{height:clamp(560px,calc(100vh - 365px),690px)!important;min-height:560px!important;overflow:hidden!important}
+.quarter-summary-master-viewport>.quarter-summary-master,.snapshot-quarter-summary .quarter-summary-master{
+  grid-template-rows:minmax(210px,42%) 70px minmax(0,1fr)!important;gap:7px!important;
+}
+.quarter-summary-master .quarter-hero-metric{min-height:210px!important}
+.quarter-summary-master .hero-progress .track{height:25px!important}
+.quarter-summary-master .hero-progress-labels b{display:none!important}
+.quarter-summary-master .hero-progress-labels b:last-child{display:block!important;font-size:12px!important}
+
+/* Family shipping bars keep their text centered inside the bar. */
+.family-progress{min-height:24px!important;position:relative!important}
+.family-progress .track{height:12px!important;left:7px!important;right:7px!important}
+.family-progress small{font-size:9px!important;line-height:24px!important}
+
+/* Footer is in normal document flow: never sticky/fixed and never covers page content. */
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer{
+  position:relative!important;left:auto!important;right:auto!important;bottom:auto!important;top:auto!important;
+  flex:0 0 auto!important;width:100%!important;height:calc(var(--v731-presence-h) + var(--v731-system-footer-h))!important;
+  min-height:calc(var(--v731-presence-h) + var(--v731-system-footer-h))!important;margin-top:0!important;
+  grid-template-rows:var(--v731-presence-h) var(--v731-system-footer-h)!important;z-index:1!important;
+}
+.app-footer .footer-presence-row{height:var(--v731-presence-h)!important;padding:4px 18px!important}
+.app-footer .presence-badges{height:32px!important}
+.app-footer .footer-system-row{height:var(--v731-system-footer-h)!important}
+.app-footer .footer-system-cell{height:var(--v731-system-footer-h)!important}
+
+/* At narrower CSS viewports preserve all four header sections instead of clipping right side. */
+@media(max-width:1450px){
+ .hero{grid-template-columns:minmax(0,1fr) 160px 160px minmax(0,1fr)!important;padding:0 7px!important}
+ .hero-left,.hero-right{font-size:clamp(17px,1.7vw,25px)!important;padding:0 12px!important}
+ .header-kla-box,.header-mode-box{height:49px!important}.header-kla-box img{height:33px!important}
+ .operations-dual-grid,.quarter-summary-master-viewport{height:clamp(540px,calc(100vh - 350px),650px)!important;min-height:540px!important}
+}
+@media(max-width:1100px){
+ .hero{grid-template-columns:minmax(0,1fr) 130px 130px minmax(0,1fr)!important}
+ .hero-left,.hero-right{font-size:clamp(14px,1.65vw,20px)!important;padding:0 7px!important}
+ .mode-center-text b{font-size:8px!important}.mode-center-text small{font-size:6px!important}
+ .main-nav button{font-size:6.5px!important;gap:3px!important}
+ .page-actions{max-width:46%!important}.subnav{flex-basis:54%!important}
+}
