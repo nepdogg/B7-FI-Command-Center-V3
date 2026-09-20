@@ -129,3 +129,90 @@ body:not(.presentation-mode):not(.screenshot-mode) .app-footer{
  .main-nav button{font-size:6.5px!important;gap:3px!important}
  .page-actions{max-width:46%!important}.subnav{flex-basis:54%!important}
 }
+
+/* =========================================================
+   V7.3.2 PROTOTYPE RECOVERY LOCK
+   One normal-flow shell. Native browser zoom. No fixed canvas.
+   ========================================================= */
+html,body{width:100%!important;min-width:0!important;height:auto!important;min-height:100%!important;margin:0!important;padding:0!important;overflow-x:hidden!important;zoom:1!important}
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame{
+  width:calc(100% - 12px)!important;max-width:none!important;min-width:0!important;
+  height:auto!important;min-height:0!important;margin:6px!important;padding:0!important;
+  display:flex!important;flex-direction:column!important;overflow:visible!important;transform:none!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .sticky-shell{position:relative!important;inset:auto!important;flex:0 0 auto!important;width:100%!important;transform:none!important}
+body:not(.presentation-mode):not(.screenshot-mode) .body-shell{position:relative!important;flex:0 0 auto!important;width:100%!important;min-width:0!important;height:auto!important;min-height:0!important;overflow:hidden!important;display:block!important}
+body:not(.presentation-mode):not(.screenshot-mode) #app.body-workspace{position:relative!important;display:block!important;width:100%!important;min-width:0!important;max-width:100%!important;height:auto!important;min-height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;transform:none!important}
+
+/* Four rectangular header sections: equal outside fields + equal center modules. */
+html body .hero{
+  width:100%!important;height:72px!important;min-height:72px!important;
+  display:grid!important;grid-template-columns:minmax(0,1fr) 190px 190px minmax(0,1fr)!important;
+  gap:5px!important;align-items:stretch!important;padding:0!important;
+  background:#087fba!important;border:1px solid #17698f!important;overflow:hidden!important;clip-path:none!important;
+}
+html body .hero-left,html body .hero-right{
+  height:70px!important;min-width:0!important;margin:0!important;padding:0 28px!important;
+  display:flex!important;align-items:center!important;background:#087fba!important;background-image:none!important;
+  clip-path:none!important;border:0!important;box-shadow:none!important;color:#fff!important;
+  font-size:29px!important;line-height:1!important;font-weight:950!important;letter-spacing:.3px!important;white-space:nowrap!important;
+}
+html body .hero-left{grid-column:1!important;justify-content:flex-start!important}
+html body .hero-right{grid-column:4!important;justify-content:flex-end!important;text-align:right!important}
+html body .hero-center{display:contents!important;background:none!important;border:0!important;clip-path:none!important}
+html body .header-kla-box,html body .header-mode-box{
+  width:190px!important;height:56px!important;align-self:center!important;margin:0!important;border-radius:3px!important;
+  background:#02070d!important;box-sizing:border-box!important;clip-path:none!important;box-shadow:none!important;
+}
+html body .header-kla-box{grid-column:2!important;border:1px solid #00a9df!important;display:flex!important;align-items:center!important;justify-content:center!important}
+html body .header-mode-box{grid-column:3!important;border:1px solid #00e77f!important;display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:11px!important;padding:0 14px!important}
+html body .header-kla-box img{height:39px!important;width:auto!important;max-width:145px!important}
+html body .header-mode-dot{width:20px!important;height:20px!important;flex:0 0 20px!important}
+html body .mode-center-text b{font-size:11px!important;line-height:1!important}
+html body .mode-center-text small{font-size:8px!important;line-height:1!important;margin-top:4px!important}
+
+/* Navigation stays one row and scales with native browser zoom, not viewport-font math. */
+html body .main-nav{width:100%!important;height:46px!important;display:grid!important;grid-template-columns:repeat(10,minmax(0,1fr))!important;gap:3px!important;padding:4px 6px!important;overflow:hidden!important}
+html body .main-nav button{width:100%!important;min-width:0!important;height:38px!important;padding:0 5px!important;gap:6px!important;font-size:10px!important;line-height:1!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important}
+html body .main-nav button::before{font-size:16px!important;margin:0 5px 0 0!important;flex:0 0 auto!important}
+
+/* Prototype page navigation/action bar. */
+html body .pagebar{height:40px!important;min-height:40px!important;display:grid!important;grid-template-columns:minmax(0,58%) minmax(0,42%)!important;gap:3px!important;overflow:hidden!important}
+html body .subnav{width:100%!important;min-width:0!important;display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:3px!important}
+html body .page-actions{width:100%!important;max-width:none!important;min-width:0!important;display:flex!important;overflow:hidden!important;gap:3px!important}
+html body .pagebar button{height:36px!important;min-width:0!important;padding:0 7px!important;font-size:9px!important;line-height:1!important;white-space:nowrap!important;overflow:hidden!important}
+
+/* Live Operations must always occupy the workspace. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .body-shell{height:556px!important;min-height:556px!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app{height:556px!important;min-height:556px!important;display:block!important;overflow:hidden!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid{
+  display:grid!important;grid-template-columns:minmax(0,47.5fr) minmax(0,52.5fr)!important;
+  width:100%!important;height:556px!important;min-height:556px!important;margin:0!important;padding:8px!important;gap:8px!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel{display:block!important;width:100%!important;height:540px!important;min-height:0!important;overflow:hidden!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .snapshot-panel,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .live-card{height:540px!important;min-height:540px!important;max-height:540px!important;margin:0!important;overflow:hidden!important}
+
+/* Quarter Summary uses the same workspace height. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="summary"] .body-shell,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="summary"] #app{height:556px!important;min-height:556px!important;overflow:hidden!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-master-viewport{height:556px!important;min-height:556px!important;max-height:556px!important;overflow:hidden!important}
+
+/* Footer is part of document flow and can never cover the workspace. */
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{position:relative!important;inset:auto!important;flex:0 0 98px!important;width:100%!important;height:98px!important;min-height:98px!important;margin:0!important;transform:none!important;z-index:1!important}
+
+/* Integrated progress text stays visible. */
+html body .family-progress{position:relative!important;display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important}
+html body .family-progress .track{position:absolute!important;left:6px!important;right:6px!important;top:50%!important;transform:translateY(-50%)!important;height:12px!important;width:auto!important;margin:0!important}
+html body .family-progress small{position:relative!important;z-index:3!important;display:block!important;color:#fff!important;font-size:9px!important;font-weight:950!important;text-shadow:0 1px 2px #000!important;white-space:nowrap!important}
+
+/* Narrow screens: preserve all four header sections without clipping labels. */
+@media(max-width:1450px){
+ html body .hero{grid-template-columns:minmax(0,1fr) 155px 155px minmax(0,1fr)!important}
+ html body .header-kla-box,html body .header-mode-box{width:155px!important;height:52px!important}
+ html body .hero-left,html body .hero-right{font-size:22px!important;padding:0 16px!important}
+ html body .header-kla-box img{height:34px!important}.mode-center-text b{font-size:9px!important}.mode-center-text small{font-size:7px!important}
+ html body .main-nav button{font-size:8px!important;gap:3px!important}html body .main-nav button::before{font-size:13px!important;margin-right:3px!important}
+ html body .pagebar button{font-size:7px!important;padding:0 4px!important}
+}
