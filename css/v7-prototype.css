@@ -1,0 +1,99 @@
+/* B7 FI Command Center V7.0.3 — prototype-match visual layer.
+   Keeps the V7.0.1 bounded-canvas/zoom foundation and changes only presentation geometry. */
+:root{--prototype-blue:#087fc0;--prototype-blue2:#0a6fa8;--prototype-cyan:#00c8ff;--prototype-green:#00e884;--prototype-ink:#020912;}
+
+/* One fully filled header with two explicit center status boxes. */
+body:not(.presentation-mode) .hero{
+  height:68px!important;grid-template-columns:minmax(360px,1fr) minmax(360px,430px) minmax(420px,1fr)!important;
+  background:linear-gradient(180deg,var(--prototype-blue),var(--prototype-blue2))!important;border:0!important;border-bottom:1px solid #2ab8ee!important;overflow:hidden!important;
+}
+body:not(.presentation-mode) .hero-left,body:not(.presentation-mode) .hero-right{
+  background:none!important;color:#fff!important;font-size:clamp(19px,1.55vw,29px)!important;font-weight:950!important;letter-spacing:.7px!important;padding:0 28px!important;
+}
+body:not(.presentation-mode) .hero-center{background:transparent!important;display:grid!important;grid-template-columns:160px minmax(180px,1fr)!important;gap:6px!important;padding:7px 0!important;align-items:stretch!important;}
+.kla-header-box,.mode-status-box{background:#02070d!important;border:1px solid #00aeea!important;border-radius:3px!important;min-width:0!important;box-sizing:border-box!important;}
+.kla-header-box{display:flex!important;align-items:center!important;justify-content:center!important;padding:4px 12px!important;}
+.kla-header-box img{width:100%!important;height:100%!important;max-width:130px!important;max-height:44px!important;object-fit:contain!important;}
+.mode-status-box{display:grid!important;grid-template-columns:26px minmax(0,1fr)!important;gap:8px!important;align-items:center!important;padding:4px 10px!important;border-color:#00dc79!important;box-shadow:inset 0 0 10px rgba(0,220,121,.10)!important;}
+.mode-status-box .mode-dot{width:18px;height:18px;border-radius:50%;background:#00e884;box-shadow:0 0 10px rgba(0,232,132,.85);display:block;}
+.mode-status-box>div{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;min-width:0!important;}
+.mode-status-box b{font-size:11px!important;line-height:1.05!important;color:#fff!important;white-space:nowrap!important;}
+.mode-status-box small{font-size:7px!important;line-height:1.15!important;color:#00e884!important;font-weight:950!important;white-space:nowrap!important;}
+
+/* Icon-forward navigation matching the prototype. */
+body:not(.presentation-mode) .main-nav{height:44px!important;background:#02070d!important;border:0!important;border-bottom:1px solid #00aeea!important;gap:2px!important;padding:4px 7px!important;box-sizing:border-box!important;}
+body:not(.presentation-mode) .main-nav button{border:1px solid #164b68!important;border-radius:2px!important;background:#02070d!important;font-size:clamp(7px,.62vw,10px)!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;box-shadow:none!important;}
+body:not(.presentation-mode) .main-nav button::before{font-size:16px;line-height:1;color:#fff;font-weight:400;}
+body:not(.presentation-mode) .main-nav button:nth-child(1)::before{content:'⌂'}
+body:not(.presentation-mode) .main-nav button:nth-child(2)::before{content:'▣'}
+body:not(.presentation-mode) .main-nav button:nth-child(3)::before{content:'◎'}
+body:not(.presentation-mode) .main-nav button:nth-child(4)::before{content:'▥'}
+body:not(.presentation-mode) .main-nav button:nth-child(5)::before{content:'◷'}
+body:not(.presentation-mode) .main-nav button:nth-child(6)::before{content:'♟'}
+body:not(.presentation-mode) .main-nav button:nth-child(7)::before{content:'▤'}
+body:not(.presentation-mode) .main-nav button:nth-child(8)::before{content:'▥'}
+body:not(.presentation-mode) .main-nav button:nth-child(9)::before{content:'⌕'}
+body:not(.presentation-mode) .main-nav button:nth-child(10)::before{content:'▭'}
+body:not(.presentation-mode) .main-nav button.active{background:linear-gradient(180deg,#087fb9,#035b88)!important;border-color:#00c8ff!important;box-shadow:inset 0 -2px #00d6ff,0 0 8px rgba(0,190,255,.25)!important;}
+
+/* Summary hero owns its progress bars; no duplicated strips below. */
+.quarter-summary-master-viewport>.quarter-summary-master,.snapshot-quarter-summary .quarter-summary-master{
+  grid-template-rows:minmax(190px,35%) 72px minmax(0,1fr)!important;gap:8px!important;padding:8px!important;
+}
+.quarter-summary-master .quarter-summary-hero{gap:10px!important;}
+.quarter-summary-master .quarter-hero-metric{position:relative!important;display:grid!important;grid-template-rows:auto minmax(0,1fr) 28px!important;align-items:center!important;padding:10px 14px 12px!important;box-sizing:border-box!important;background:#030b12!important;}
+.quarter-summary-master .quarter-hero-metric small{font-size:clamp(16px,1.25vw,25px)!important;font-weight:950!important;text-align:center!important;letter-spacing:.5px!important;}
+.quarter-summary-master .quarter-hero-metric strong{font-size:clamp(58px,5vw,96px)!important;line-height:.95!important;text-align:center!important;align-self:center!important;}
+.hero-inline-track{position:relative;height:24px;border:1px solid #2b5a76;border-radius:14px;background:#071421;overflow:hidden;display:flex;align-items:center;justify-content:center;box-sizing:border-box;}
+.hero-inline-fill{position:absolute;inset:0 auto 0 0;height:100%;border-radius:13px;min-width:0;}
+.hero-ship-fill{background:#ff2f53;}.hero-days-fill{background:#ff9c2c;}
+.hero-inline-track span{position:relative;z-index:2;color:#fff;font-size:12px;font-weight:950;line-height:1;text-shadow:0 1px 2px #000;white-space:nowrap;}
+.quarter-summary-master .quarter-live-panel{height:72px!important;min-height:72px!important;max-height:72px!important;padding:4px 8px!important;display:block!important;}
+.quarter-summary-master .quarter-live-panel>.shipping-total,.quarter-summary-master .quarter-live-panel>.quarter-time-progress,.quarter-summary-master .quarter-live-panel>.quarter-mystery-strip{display:none!important;}
+.quarter-summary-master .quarter-live-panel .summary-grid{height:100%!important;grid-template-columns:repeat(8,minmax(0,1fr))!important;gap:5px!important;}
+.quarter-summary-master .quarter-live-panel .summary-box{height:100%!important;padding:4px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;}
+.quarter-summary-master .quarter-live-panel .summary-box span{font-size:8px!important;}.quarter-summary-master .quarter-live-panel .summary-box b{font-size:22px!important;line-height:1!important;}
+
+/* Shipping progress labels live inside the bar, exactly like the prototype. */
+.labeled-track{position:relative!important;display:flex!important;align-items:center!important;justify-content:center!important;min-height:12px!important;overflow:hidden!important;}
+.labeled-track>.fill{position:absolute!important;left:0!important;top:0!important;bottom:0!important;z-index:1!important;}
+.labeled-track>span{position:relative!important;z-index:2!important;color:#fff!important;font-size:8px!important;font-weight:950!important;line-height:1!important;text-shadow:0 1px 2px #000!important;white-space:nowrap!important;}
+.quarter-summary-master .family-progress{display:block!important;padding:4px 6px!important;}
+.quarter-summary-master .family-progress .track{width:100%!important;max-width:none!important;height:16px!important;min-height:16px!important;}
+.quarter-summary-master .family-progress small{display:none!important;}
+
+/* Tool-card progress bars use the same in-bar labeling treatment. */
+body[data-center="operations"] .live-progress.compact-progress .track{height:15px!important;min-height:15px!important;margin-top:3px!important;}
+body[data-center="operations"] .live-progress.compact-progress .labeled-track>span{font-size:8px!important;}
+
+/* Footer: exactly two visible rows, balanced, no extra black strip. */
+:root{--v7-footer-presence:44px;--v7-footer-system:48px;--v7-footer-height:92px;}
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer{background:#020912!important;border:0!important;overflow:hidden!important;}
+.app-footer .footer-presence-row{background:linear-gradient(180deg,#0b86c7,#0874ae)!important;border:0!important;padding:5px 18px!important;}
+.app-footer .presence-badges{width:min(1360px,94%)!important;height:34px!important;gap:clamp(8px,1.5vw,30px)!important;}
+.app-footer .presence-badge{height:28px!important;border:1px solid #0a3148!important;background:#03111c!important;border-radius:3px!important;font-size:9px!important;position:relative!important;padding-left:23px!important;}
+.app-footer .presence-badge::before{content:'';position:absolute;left:9px;top:50%;transform:translateY(-50%);width:10px;height:10px;border-radius:50%;background:#70808a;}
+.app-footer .presence-badge.active::before{background:#00e884;box-shadow:0 0 8px rgba(0,232,132,.8);}
+.app-footer .footer-system-row{height:48px!important;grid-template-columns:1.15fr 1.1fr .9fr .85fr 1.2fr .9fr!important;background:#020912!important;border:1px solid #087fb9!important;border-top:1px solid #00aeea!important;font-size:9px!important;}
+.app-footer .footer-system-row>*{border-right:1px solid rgba(255,255,255,.55)!important;padding:0 14px!important;font-weight:850!important;}
+.app-footer .footer-system-row>*:last-child{border-right:0!important;}
+.app-footer .footer-system-left{justify-content:center!important;padding:0 10px!important;}
+.app-footer #adminButton{border:0!important;background:transparent!important;font-size:10px!important;}
+.app-footer #sharedStatus{display:none!important;}
+.app-footer #versionLabel{display:flex!important;flex-direction:column!important;line-height:1.15!important;font-size:10px!important;}
+.app-footer #versionLabel small{display:block!important;color:#00c8ff!important;font-size:8px!important;font-weight:700!important;margin-top:2px!important;}
+.app-footer #footerDataHealth,.app-footer #activeUsers,.app-footer #footerLastSync,.app-footer #environmentLabel{white-space:nowrap!important;}
+
+/* Presentation Quarter Summary uses the same hero/progress/family visual language. */
+body.presentation-mode .quarter-summary-presentation{background:#020912!important;}
+body.presentation-mode .quarter-summary-presentation .quarter-hero-metric{display:grid!important;grid-template-rows:auto minmax(0,1fr) 32px!important;padding:12px 16px!important;}
+body.presentation-mode .quarter-summary-presentation .hero-inline-track{height:28px!important;}
+body.presentation-mode .quarter-summary-presentation .hero-inline-track span{font-size:14px!important;}
+body.presentation-mode .quarter-summary-presentation .quarter-live-panel>.shipping-total,body.presentation-mode .quarter-summary-presentation .quarter-live-panel>.quarter-time-progress,body.presentation-mode .quarter-summary-presentation .quarter-live-panel>.quarter-mystery-strip{display:none!important;}
+body.presentation-mode .quarter-summary-presentation .family-progress .track{height:20px!important;}
+
+@media(max-width:1150px){
+  body:not(.presentation-mode) .hero{grid-template-columns:minmax(250px,1fr) 330px minmax(300px,1fr)!important;}
+  body:not(.presentation-mode) .hero-center{grid-template-columns:130px minmax(160px,1fr)!important;}
+  .app-footer .footer-system-row{grid-template-columns:1.2fr 1fr .8fr .75fr 1fr .8fr!important;}
+}
