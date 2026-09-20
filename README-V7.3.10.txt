@@ -1,4 +1,4 @@
-B7 FI COMMAND CENTER V7.3.10 — PROTOTYPE VIEWPORT PARITY LOCK
+B7 FI COMMAND CENTER V7.3.11 — PROTOTYPE VIEWPORT PARITY LOCK
 
 This build corrects the V7.3.9 desktop canvas being visibly too small at 100% Edge zoom.
 - Enlarges the complete desktop composition as one coordinated system.

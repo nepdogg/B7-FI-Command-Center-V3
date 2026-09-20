@@ -1,9 +1,9 @@
-B7 FI Command Center V7.3.10 — Prototype Geometry Rebuild
+B7 FI Command Center V7.3.11 — Prototype Geometry Rebuild
 
 This build uses V7.3.8 as the exact baseline and replaces the accumulated desktop override geometry with one final prototype-authority block.
 
 Key changes:
-- Runtime/tab/footer version unified at V7.3.10
+- Runtime/tab/footer version unified at V7.3.11
 - 1448px master canvas retained for native browser zoom
 - Compact prototype header/nav/status/pagebar heights
 - Live Operations workspace reduced to prototype vertical density
