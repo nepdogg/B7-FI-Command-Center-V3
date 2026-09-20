@@ -1,0 +1,99 @@
+/* V7.5.4 — PROTOTYPE CANVAS LOCK
+   Final authority: the desktop Command Center is one 16:9 dashboard canvas.
+   Components no longer independently collapse against viewport height. */
+@media (min-width:901px){
+  html,body{margin:0!important;padding:0!important;width:100%!important;height:100%!important;background:#202020!important;overflow:auto!important}
+  body:not(.presentation-mode):not(.screenshot-mode){margin:0!important;padding:0!important;min-height:100vh!important;height:auto!important;display:block!important;overflow:auto!important}
+
+  body:not(.presentation-mode):not(.screenshot-mode) .app-frame{
+    --cc-w:100vw;
+    width:var(--cc-w)!important;max-width:none!important;min-width:0!important;
+    height:56.25vw!important;min-height:720px!important;max-height:none!important;
+    margin:0!important;padding:0!important;box-sizing:border-box!important;
+    display:grid!important;grid-template-rows:auto minmax(0,1fr) 92px!important;
+    background:#020910!important;overflow:hidden!important;border:0!important;
+  }
+  @media (min-aspect-ratio:16/9){
+    body:not(.presentation-mode):not(.screenshot-mode) .app-frame{width:100vw!important;height:56.25vw!important}
+  }
+
+  /* Three genuinely independent header panels. */
+  body:not(.presentation-mode):not(.screenshot-mode) .hero{
+    width:100%!important;height:72px!important;min-height:72px!important;max-height:72px!important;
+    display:grid!important;grid-template-columns:minmax(0,1fr) 220px minmax(0,1fr)!important;
+    column-gap:4px!important;margin:0!important;padding:4px 4px 0!important;box-sizing:border-box!important;background:#020910!important;
+  }
+  body:not(.presentation-mode):not(.screenshot-mode) .hero-left,
+  body:not(.presentation-mode):not(.screenshot-mode) .hero-center,
+  body:not(.presentation-mode):not(.screenshot-mode) .hero-right{
+    position:relative!important;inset:auto!important;width:auto!important;min-width:0!important;max-width:none!important;
+    height:68px!important;min-height:68px!important;max-height:68px!important;margin:0!important;box-sizing:border-box!important;
+  }
+  body:not(.presentation-mode):not(.screenshot-mode) .hero-left,
+  body:not(.presentation-mode):not(.screenshot-mode) .hero-right{background:linear-gradient(180deg,#1595cf,#087db8)!important;border:1px solid #075b84!important;font-size:28px!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .hero-center{background:#020910!important;display:flex!important;align-items:center!important;justify-content:center!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box{width:100%!important;min-width:0!important;max-width:none!important;height:68px!important;min-height:68px!important;max-height:68px!important}
+
+  /* Shell rows stay on top of a clean black background; no legacy lines bleed behind nav. */
+  body:not(.presentation-mode):not(.screenshot-mode) .sticky-shell{position:relative!important;top:0!important;width:100%!important;background:#020910!important;z-index:10!important;overflow:visible!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .main-nav{height:48px!important;min-height:48px!important;margin:4px 4px 3px!important;padding:0!important;background:#020910!important;position:relative!important;z-index:3!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .main-nav button{height:44px!important;min-height:44px!important;font-size:10px!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .status-stack{margin:0 4px 3px!important;background:#020910!important;position:relative!important;z-index:3!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .status-row{height:48px!important;min-height:48px!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .pagebar{height:48px!important;min-height:48px!important;margin:0 4px 4px!important;background:#020910!important;position:relative!important;z-index:3!important}
+
+  /* Body receives the rest of the 16:9 canvas. */
+  body:not(.presentation-mode):not(.screenshot-mode) .body-shell{width:100%!important;height:100%!important;min-height:0!important;padding:0 4px!important;box-sizing:border-box!important;overflow:hidden!important;display:block!important;background:#020910!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .body-workspace{width:100%!important;height:100%!important;min-height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;display:block!important}
+  body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app{display:flex!important;flex-direction:column!important;height:100%!important;min-height:0!important;overflow:hidden!important}
+  body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid{
+    display:grid!important;grid-template-columns:minmax(0,48fr) minmax(0,52fr)!important;gap:8px!important;
+    flex:1 1 auto!important;width:100%!important;height:100%!important;min-height:0!important;margin:0!important;padding:0!important;align-items:stretch!important;overflow:hidden!important;
+  }
+  body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel,
+  body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel{
+    width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;margin:0!important;padding:8px!important;box-sizing:border-box!important;overflow:hidden!important;background:#000!important;
+  }
+  body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel>.snapshot-panel,
+  body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel>.utc-host,
+  body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel>.universal-card-host,
+  body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .utc-card.utc-v6538{
+    width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;overflow:hidden!important;box-sizing:border-box!important;
+  }
+
+  /* UTC prototype proportions; never let old 680px locks compress columns. */
+  body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538{display:grid!important;grid-template-columns:29% 36% 35%!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538>.utc-column{height:100%!important;min-height:0!important;max-height:none!important;overflow:hidden!important}
+
+  /* Five blue footer status panels + separate black seven-badge row. */
+  body:not(.presentation-mode):not(.screenshot-mode) .app-footer{
+    width:100%!important;height:92px!important;min-height:92px!important;max-height:92px!important;margin:0!important;padding:0 4px 4px!important;
+    display:grid!important;grid-template-rows:56px 32px!important;background:#020910!important;overflow:hidden!important;box-sizing:border-box!important;border:0!important;
+  }
+  body:not(.presentation-mode):not(.screenshot-mode) .app-footer>.footer-system-row{
+    width:100%!important;height:56px!important;display:grid!important;grid-template-columns:1.1fr 1.1fr 1.1fr 1.35fr .9fr!important;gap:4px!important;background:#020910!important;padding:0!important;margin:0!important;overflow:hidden!important;
+  }
+  body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-cell,
+  body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-status{height:56px!important;min-height:56px!important;max-height:56px!important;background:linear-gradient(180deg,#1596d2,#087eb9)!important;border:1px solid #075b84!important;padding:0 12px!important;box-sizing:border-box!important;overflow:hidden!important}
+  body:not(.presentation-mode):not(.screenshot-mode) #activeUsers.hidden{display:none!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .footer-version-copy small{display:none!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .footer-version-copy b{font-size:13px!important;white-space:nowrap!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .app-footer>.footer-presence-row{width:100%!important;height:32px!important;min-height:32px!important;max-height:32px!important;padding:3px 48px!important;background:#020910!important;border:1px solid #075d87!important;border-top:0!important;box-sizing:border-box!important;overflow:hidden!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badges{height:26px!important;display:grid!important;grid-template-columns:repeat(7,minmax(80px,1fr))!important;gap:clamp(18px,4vw,90px)!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badge{height:26px!important;min-height:26px!important;max-height:26px!important}
+
+  /* Laptop widths: preserve geometry and reduce typography only. */
+  @media (max-width:1500px){
+    body:not(.presentation-mode):not(.screenshot-mode) .app-frame{min-height:620px!important}
+    body:not(.presentation-mode):not(.screenshot-mode) .hero{grid-template-columns:minmax(0,1fr) 150px minmax(0,1fr)!important;height:58px!important;min-height:58px!important;max-height:58px!important}
+    body:not(.presentation-mode):not(.screenshot-mode) .hero-left,
+    body:not(.presentation-mode):not(.screenshot-mode) .hero-center,
+    body:not(.presentation-mode):not(.screenshot-mode) .hero-right,
+    body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box{height:54px!important;min-height:54px!important;max-height:54px!important}
+    body:not(.presentation-mode):not(.screenshot-mode) .hero-left,body:not(.presentation-mode):not(.screenshot-mode) .hero-right{font-size:20px!important}
+    body:not(.presentation-mode):not(.screenshot-mode) .main-nav{height:40px!important;min-height:40px!important}
+    body:not(.presentation-mode):not(.screenshot-mode) .main-nav button{height:36px!important;min-height:36px!important;font-size:7px!important}
+    body:not(.presentation-mode):not(.screenshot-mode) .status-row{height:40px!important;min-height:40px!important}
+    body:not(.presentation-mode):not(.screenshot-mode) .pagebar{height:40px!important;min-height:40px!important}
+  }
+}
