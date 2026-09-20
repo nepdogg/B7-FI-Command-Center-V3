@@ -299,3 +299,66 @@ html body:not(.presentation-mode):not(.screenshot-mode) .footer-info-strip{
  html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box,
  html body:not(.presentation-mode):not(.screenshot-mode) .header-mode-box{width:150px!important;min-width:150px!important;max-width:150px!important}
 }
+
+/* =========================================================
+   V7.3.4 — PROTOTYPE PROGRESS / SPACING / NATIVE ZOOM FIX
+   ========================================================= */
+/* Never assign CSS zoom in normal application mode. Browser zoom must remain native. */
+html:not(.presentation-tool-edit),
+html:not(.presentation-tool-edit) body:not(.presentation-mode):not(.screenshot-mode){zoom:unset!important;}
+
+/* Prototype header: four true sections. Outer sections match each other; center pair match each other. */
+html body:not(.presentation-mode):not(.screenshot-mode) .hero{
+  grid-template-columns:minmax(0,1fr) 172px 172px minmax(0,1fr)!important;
+  gap:4px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box,
+html body:not(.presentation-mode):not(.screenshot-mode) .header-mode-box{
+  width:172px!important;min-width:172px!important;max-width:172px!important;height:56px!important;
+}
+
+/* Match prototype UTC right-column bars: taller, readable, centered percentage inside the bar. */
+html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list{
+  gap:7px!important;padding:8px 0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .progress-item{
+  grid-template-rows:auto 18px auto!important;
+  align-content:center!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .track{
+  position:relative!important;height:18px!important;min-height:18px!important;border-radius:9px!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .track .fill{
+  position:absolute!important;left:0!important;top:0!important;bottom:0!important;height:100%!important;min-height:100%!important;border-radius:8px!important;z-index:1!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .track.labeled-track>span{
+  position:absolute!important;inset:0!important;z-index:3!important;display:flex!important;align-items:center!important;justify-content:center!important;
+  color:#fff!important;font-size:9px!important;line-height:1!important;font-weight:950!important;letter-spacing:.15px!important;text-shadow:0 1px 2px #000!important;white-space:nowrap!important;pointer-events:none!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .progress-head{margin-bottom:4px!important;}
+html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .progress-step{margin-top:4px!important;line-height:1.05!important;}
+
+/* Give the six middle-column blocks the same visual rhythm as the prototype while preserving Lead Notes. */
+@media (min-width:901px){
+ html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-status{
+   grid-template-rows:116px 58px 58px 104px 102px 102px!important;
+ }
+ html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-next-actions-blockers,
+ html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-live-system-status,
+ html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-lead-notes{
+   padding:7px 12px!important;
+ }
+}
+
+/* Keep footer in flow at every browser zoom level. */
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{
+  position:relative!important;inset:auto!important;transform:none!important;margin:0!important;
+}
+
+@media(max-width:1450px){
+ html body:not(.presentation-mode):not(.screenshot-mode) .hero{grid-template-columns:minmax(0,1fr) 150px 150px minmax(0,1fr)!important}
+ html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box,
+ html body:not(.presentation-mode):not(.screenshot-mode) .header-mode-box{width:150px!important;min-width:150px!important;max-width:150px!important}
+ html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .track{height:16px!important;min-height:16px!important}
+ html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .progress-item{grid-template-rows:auto 16px auto!important}
+}
