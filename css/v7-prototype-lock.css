@@ -689,3 +689,123 @@ html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{
   html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-cell{font-size:8px!important;padding:0 8px!important;gap:7px!important}
   html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-icon{font-size:17px!important}
 }
+
+
+/* =========================================================
+   V7.3.9 — PROTOTYPE GEOMETRY REBUILD
+   FINAL AUTHORITY. 1448px master canvas; native browser zoom.
+   Matches the approved prototype's compact vertical rhythm.
+   ========================================================= */
+@media (min-width:901px){
+  html,body{overflow-x:auto!important;background:#202020!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{
+    width:1448px!important;min-width:1448px!important;max-width:1448px!important;
+    margin:10px auto!important;border:1px solid #24475a!important;overflow:hidden!important;
+  }
+  /* 4-part header: equal outside panels, equal center panels */
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero{
+    height:54px!important;min-height:54px!important;
+    grid-template-columns:minmax(0,1fr) 160px 160px minmax(0,1fr)!important;
+    gap:4px!important;padding:0!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero-left,
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero-right{
+    height:54px!important;padding:0 20px!important;font-size:24px!important;line-height:1!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box,
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-mode-box{
+    width:160px!important;min-width:160px!important;max-width:160px!important;height:48px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box img{height:29px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-mode-dot{width:18px!important;height:18px!important;flex:0 0 18px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .mode-center-text b{font-size:8px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .mode-center-text small{font-size:6px!important;margin-top:2px!important}
+
+  /* Main navigation */
+  html body:not(.presentation-mode):not(.screenshot-mode) .main-nav{height:39px!important;padding:3px 6px!important;gap:3px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .main-nav button{height:33px!important;font-size:7.5px!important;padding:0 4px!important;gap:3px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .main-nav button::before{font-size:13px!important;margin-right:3px!important}
+
+  /* Alert/status bars */
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-stack{padding-top:3px!important;font-size:8px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-bar{
+    min-height:35px!important;height:35px!important;margin-bottom:3px!important;
+    grid-template-columns:155px 1fr 105px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-left{padding:0 10px!important;gap:7px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-dot{width:10px!important;height:10px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-label strong{font-size:9px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-label small{font-size:7px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-message{font-size:9px!important;padding:0 8px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-right{font-size:9px!important}
+
+  /* Page navigation */
+  html body:not(.presentation-mode):not(.screenshot-mode) .pagebar{height:32px!important;min-height:32px!important;grid-template-columns:58% 42%!important;gap:3px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .pagebar button{height:29px!important;font-size:7px!important;padding:0 4px!important}
+
+  /* Live Operations master geometry */
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .body-shell,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app{
+    height:500px!important;min-height:500px!important;max-height:500px!important;overflow:hidden!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid{
+    width:1440px!important;height:500px!important;min-height:500px!important;
+    grid-template-columns:680px 744px!important;grid-template-rows:484px!important;
+    gap:8px!important;padding:8px!important;overflow:hidden!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel{
+    height:484px!important;min-height:484px!important;max-height:484px!important;overflow:hidden!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel>.snapshot-panel,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel>.utc-host,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel>.universal-card-host,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel .utc-card.utc-v6538,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel .utc-card.utc-v6538>.utc-column{
+    height:484px!important;min-height:484px!important;max-height:484px!important;
+  }
+
+  /* UTC exact prototype density */
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538{grid-template-columns:33% 35% 32%!important;gap:6px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info{padding:5px!important;gap:2px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-priority-ribbon{flex:0 0 27px!important;height:27px!important;min-height:27px!important;font-size:13px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-identity-badges{grid-template-rows:repeat(5,21px)!important;gap:2px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-identity-badges>.utc-identity-ribbon{height:21px!important;min-height:21px!important;padding:0 6px!important;font-size:10px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-driver-ribbon,
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-reduced{flex:0 0 22px!important;height:22px!important;min-height:22px!important;max-height:22px!important;font-size:10px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display{flex:0 0 246px!important;height:246px!important;min-height:246px!important;max-height:246px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display .utc-indicator-grid{grid-template-rows:repeat(14,16px)!important;grid-auto-rows:16px!important;height:246px!important;min-height:246px!important;max-height:246px!important;gap:1.5px 4px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-lamp{height:16px!important;min-height:16px!important;max-height:16px!important;padding:0 3px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-message{font-size:5.9px!important;line-height:6.3px!important;font-weight:900!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-edit-tool-bar-bottom{flex:0 0 25px!important;height:25px!important;min-height:25px!important;max-height:25px!important;font-size:10px!important}
+
+  /* Middle column: preserve notes and match prototype section rhythm */
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-status{
+    height:484px!important;min-height:484px!important;max-height:484px!important;
+    grid-template-rows:94px 49px 49px 82px 104px 106px!important;font-size:9px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-section-label{font-size:7px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-countdown{padding:7px 10px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-countdown-value{font-size:31px!important;line-height:.9!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-next-actions-blockers,
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-live-system-status,
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-lead-notes{padding:7px 10px!important;overflow:hidden!important;visibility:visible!important;opacity:1!important}
+
+  /* Right progress column */
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list{gap:5px!important;padding:6px 7px!important;font-size:8px!important;overflow:hidden!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .progress-item{grid-template-rows:auto 12px auto!important;row-gap:2px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .track{height:12px!important;min-height:12px!important;border-radius:6px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .track.labeled-track>span{font-size:7px!important;line-height:12px!important}
+
+  /* Footer: prototype two-strip proportions */
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{height:68px!important;min-height:68px!important;grid-template-rows:32px 36px!important;flex:0 0 68px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-presence-row{height:32px!important;padding:3px 16px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badges{height:26px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badge{height:21px!important;font-size:7.5px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-row,
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-cell{height:36px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-cell{font-size:7.5px!important;padding:0 7px!important;gap:6px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-icon{font-size:16px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #adminButton,
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-users-button{font-size:7.5px!important}
+}
