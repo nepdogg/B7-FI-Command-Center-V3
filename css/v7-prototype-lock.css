@@ -216,3 +216,86 @@ html body .family-progress small{position:relative!important;z-index:3!important
  html body .main-nav button{font-size:8px!important;gap:3px!important}html body .main-nav button::before{font-size:13px!important;margin-right:3px!important}
  html body .pagebar button{font-size:7px!important;padding:0 4px!important}
 }
+
+/* =========================================================
+   V7.3.3 — PROTOTYPE GEOMETRY + NATIVE ZOOM LOCK
+   Final authority for normal Live Operations.
+   ========================================================= */
+/* Do not neutralize browser zoom. CSS zoom is intentionally unset in normal mode. */
+html:not(.presentation-tool-edit) body:not(.presentation-mode):not(.screenshot-mode),
+html:not(.presentation-tool-edit){zoom:normal!important;}
+
+/* Exact 4-section header. Remove all legacy angled wing geometry. */
+html body:not(.presentation-mode):not(.screenshot-mode) .hero{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 172px 172px minmax(0,1fr)!important;
+  column-gap:4px!important;
+  height:68px!important;min-height:68px!important;
+  padding:0!important;margin:0!important;
+  background:#000!important;border:1px solid #17698f!important;
+  box-shadow:none!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .hero::before,
+html body:not(.presentation-mode):not(.screenshot-mode) .hero::after{display:none!important;content:none!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .hero-left,
+html body:not(.presentation-mode):not(.screenshot-mode) .hero-right{
+  height:66px!important;min-height:66px!important;width:auto!important;
+  margin:0!important;padding:0 28px!important;
+  background:#147db6!important;background-image:none!important;
+  clip-path:none!important;border:0!important;box-shadow:none!important;
+  overflow:hidden!important;text-overflow:clip!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .hero-left{grid-column:1!important;justify-content:flex-start!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .hero-right{grid-column:4!important;justify-content:flex-end!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .hero-center{display:contents!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box,
+html body:not(.presentation-mode):not(.screenshot-mode) .header-mode-box{
+  width:172px!important;height:56px!important;min-width:172px!important;max-width:172px!important;
+  align-self:center!important;margin:0!important;clip-path:none!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .hero-left,
+html body:not(.presentation-mode):not(.screenshot-mode) .hero-right{font-size:clamp(20px,1.55vw,29px)!important}
+
+/* Live UTC must keep all six middle sections inside the visible card, including Lead Notes. */
+@media (min-width:901px){
+ html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538,
+ html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538>.utc-column{
+   height:540px!important;min-height:540px!important;max-height:540px!important;
+ }
+ html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-status{
+   display:grid!important;
+   grid-template-rows:112px 55px 55px 105px 108px 105px!important;
+   height:540px!important;min-height:540px!important;max-height:540px!important;
+   overflow:hidden!important;
+ }
+ html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-status>.utc-countdown{
+   min-height:0!important;padding:6px 12px 5px!important;
+ }
+ html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-next-actions-blockers,
+ html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-live-system-status,
+ html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-lead-notes{
+   display:flex!important;flex-direction:column!important;min-height:0!important;max-height:none!important;
+   padding:5px 12px!important;overflow:hidden!important;
+ }
+ html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-lead-notes{visibility:visible!important;opacity:1!important}
+ html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-live-status-text,
+ html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-lead-notes-text{
+   display:-webkit-box!important;-webkit-box-orient:vertical!important;overflow:hidden!important;line-height:1.12!important;
+ }
+ html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-live-status-text{-webkit-line-clamp:5!important;line-clamp:5!important}
+ html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-lead-notes-text{-webkit-line-clamp:5!important;line-clamp:5!important}
+}
+
+/* Prototype footer remains below content; never sticky/fixed. */
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer,
+html body:not(.presentation-mode):not(.screenshot-mode) .presence-strip,
+html body:not(.presentation-mode):not(.screenshot-mode) .footer-info-strip{
+  position:relative!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;
+}
+
+/* Browser zoom changes CSS viewport width. Keep labels usable without changing the design language. */
+@media(max-width:1450px){
+ html body:not(.presentation-mode):not(.screenshot-mode) .hero{grid-template-columns:minmax(0,1fr) 150px 150px minmax(0,1fr)!important}
+ html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box,
+ html body:not(.presentation-mode):not(.screenshot-mode) .header-mode-box{width:150px!important;min-width:150px!important;max-width:150px!important}
+}
