@@ -1,0 +1,129 @@
+/* B7 FI COMMAND CENTER V7.4.0 — PROTOTYPE NATIVE LAYOUT
+   Final desktop authority based on the approved prototype geometry.
+   Reference canvas: 1448px wide. No transform/zoom scaling. Browser zoom remains native. */
+@media (min-width:901px){
+  html,body{margin:0!important;background:#202020!important;overflow:auto!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{
+    width:calc(100% - 32px)!important;max-width:1448px!important;min-width:0!important;
+    margin:16px auto!important;border:1px solid #28516b!important;overflow:hidden!important;
+    min-height:0!important;height:auto!important;background:#03101c!important;
+  }
+  /* HEADER — prototype 3-zone balance */
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero{
+    height:54px!important;min-height:54px!important;display:grid!important;
+    grid-template-columns:minmax(0,1fr) 165px 165px minmax(0,1fr)!important;gap:3px!important;padding:0!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero-left,
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero-right{
+    height:54px!important;min-height:54px!important;padding:0 22px!important;font-size:24px!important;line-height:1!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box,
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-mode-box{
+    width:165px!important;min-width:165px!important;max-width:165px!important;height:50px!important;min-height:50px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box img{height:30px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-mode-dot{width:19px!important;height:19px!important;flex:0 0 19px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .mode-center-text b{font-size:8px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .mode-center-text small{font-size:6.5px!important}
+
+  /* PRIMARY NAV */
+  html body:not(.presentation-mode):not(.screenshot-mode) .main-nav{height:39px!important;min-height:39px!important;padding:3px 6px!important;gap:3px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .main-nav button{height:32px!important;min-height:32px!important;font-size:7.8px!important;padding:0 5px!important;gap:4px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .main-nav button::before{font-size:14px!important}
+
+  /* ALERT BARS */
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-stack{padding-top:3px!important;font-size:9px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-bar{height:39px!important;min-height:39px!important;margin-bottom:3px!important;grid-template-columns:174px 1fr 112px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-dot{width:12px!important;height:12px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-label strong{font-size:10px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-label small{font-size:7.5px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-message,
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-right{font-size:9.5px!important}
+
+  /* PAGE BAR */
+  html body:not(.presentation-mode):not(.screenshot-mode) .pagebar{height:33px!important;min-height:33px!important;grid-template-columns:60% 40%!important;gap:3px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .pagebar button{height:30px!important;min-height:30px!important;font-size:7.6px!important;padding:0 5px!important}
+
+  /* LIVE OPERATIONS — prototype 48/52 split */
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .body-shell,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app{
+    height:496px!important;min-height:496px!important;max-height:496px!important;overflow:hidden!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid{
+    width:100%!important;height:496px!important;min-height:496px!important;max-height:496px!important;
+    display:grid!important;grid-template-columns:minmax(0,48.2%) minmax(0,51.8%)!important;grid-template-rows:480px!important;
+    gap:8px!important;padding:8px!important;margin:0!important;overflow:hidden!important;box-sizing:border-box!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel>.snapshot-panel,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel>.utc-host,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel>.universal-card-host,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel .utc-card.utc-v6538,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel .utc-card.utc-v6538>.utc-column{
+    height:480px!important;min-height:480px!important;max-height:480px!important;overflow:hidden!important;
+  }
+
+  /* STATUS / QUARTER SNAPSHOT */
+  html body:not(.presentation-mode):not(.screenshot-mode) .snapshot-panel{padding:8px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .snapshot-title{height:29px!important;min-height:29px!important;font-size:11px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .snapshot-quarter-summary .quarter-summary-master,
+  html body:not(.presentation-mode):not(.screenshot-mode) .quarter-summary-master{
+    height:100%!important;min-height:0!important;grid-template-rows:166px 57px minmax(0,1fr)!important;gap:7px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .quarter-summary-hero{gap:7px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .quarter-hero-metric{min-height:166px!important;height:166px!important;padding:9px 12px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .quarter-hero-metric small{font-size:15px!important;line-height:1.05!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .quarter-hero-metric strong{font-size:66px!important;line-height:.9!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .quarter-summary-master .hero-progress .track{height:20px!important;min-height:20px!important;border-radius:10px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .quarter-summary-master .hero-progress-labels{height:20px!important;bottom:0!important;font-size:10px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .quarter-summary-master .hero-progress-labels b:last-child{font-size:10px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .quarter-summary-master .quarter-panel{min-height:57px!important;height:57px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .quarter-summary-master .quarter-summary-family-wrap{min-height:0!important;overflow:hidden!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .quarter-summary-master .family-cell{min-height:23px!important;height:23px!important;font-size:9px!important;padding:2px 4px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .quarter-summary-master .family-matrix.header .family-cell{height:21px!important;min-height:21px!important;font-size:7px!important}
+
+  /* UNIVERSAL TOOL CARD — prototype has narrow progress column */
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538{
+    grid-template-columns:minmax(0,35.5%) minmax(0,36.5%) minmax(0,28%)!important;gap:6px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info{padding:5px!important;gap:2px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-priority-ribbon{flex:0 0 29px!important;height:29px!important;min-height:29px!important;font-size:13px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-identity-badges{grid-template-rows:repeat(5,22px)!important;gap:2px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-identity-badges>.utc-identity-ribbon{height:22px!important;min-height:22px!important;padding:0 6px!important;font-size:10px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-driver-ribbon,
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-reduced{flex:0 0 23px!important;height:23px!important;min-height:23px!important;max-height:23px!important;font-size:10px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display{flex:0 0 238px!important;height:238px!important;min-height:238px!important;max-height:238px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display .utc-indicator-grid{grid-template-rows:repeat(14,16px)!important;grid-auto-rows:16px!important;height:238px!important;min-height:238px!important;max-height:238px!important;gap:1px 4px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-lamp{height:16px!important;min-height:16px!important;max-height:16px!important;padding:0 3px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-message{font-size:5.9px!important;line-height:6.2px!important;font-weight:900!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-edit-tool-bar-bottom{flex:0 0 26px!important;height:26px!important;min-height:26px!important;max-height:26px!important;font-size:10.5px!important}
+
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-status{
+    height:480px!important;min-height:480px!important;max-height:480px!important;
+    grid-template-rows:91px 47px 47px 81px 103px 111px!important;font-size:9px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-section-label{font-size:7px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-countdown{padding:7px 10px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-countdown-value{font-size:34px!important;line-height:.9!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-next-actions-blockers,
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-live-system-status,
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-lead-notes{padding:7px 10px!important;overflow:hidden!important}
+
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list{gap:5px!important;padding:6px 7px!important;font-size:8.5px!important;overflow:hidden!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .progress-item{grid-template-rows:auto 13px auto!important;row-gap:2px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .track{height:13px!important;min-height:13px!important;border-radius:7px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .track.labeled-track>span{font-size:7.5px!important;line-height:13px!important}
+
+  /* FOOTER — two independent prototype strips */
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{height:76px!important;min-height:76px!important;grid-template-rows:34px 42px!important;flex:0 0 76px!important;margin:0!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-presence-row{height:34px!important;min-height:34px!important;padding:3px 18px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badges{height:28px!important;align-items:center!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badge{height:23px!important;min-height:23px!important;font-size:8.5px!important;padding:0 12px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-row,
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-cell{height:42px!important;min-height:42px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-cell{font-size:8.5px!important;padding:0 9px!important;gap:7px!important;align-items:center!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-icon{font-size:18px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #adminButton,
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-users-button{font-size:8.5px!important}
+}
