@@ -19125,3 +19125,86 @@ html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] 
  .app-footer .presence-badges{width:98vw!important;gap:4px!important;grid-template-columns:repeat(7,minmax(58px,1fr))!important}
  .app-footer .footer-system-row{height:36px!important;grid-template-columns:minmax(220px,1.4fr) .8fr .6fr .8fr .8fr 1fr!important}
 }
+
+/* =========================================================
+   V7.0.6 PROTOTYPE GEOMETRY + NAVIGATION + CAROUSEL CONTROL LOCK
+   ========================================================= */
+/* Main navigation: prototype-style independent outlined buttons with a larger icon. */
+html body:not(.presentation-mode) .main-nav{
+  gap:4px!important;padding:4px 8px!important;height:46px!important;background:#03101a!important;
+  border:0!important;border-bottom:1px solid #1a6d9d!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode) .main-nav button{
+  height:36px!important;border:1px solid #174c6b!important;border-radius:3px!important;background:#020a11!important;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.45)!important;display:flex!important;align-items:center!important;
+  justify-content:center!important;gap:8px!important;padding:0 8px!important;font-size:clamp(7px,.62vw,11px)!important;
+  font-weight:950!important;letter-spacing:.1px!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode) .main-nav button .nav-glyph{
+  flex:0 0 auto!important;font-size:clamp(13px,1.05vw,20px)!important;line-height:1!important;color:#fff!important;font-weight:900!important;
+}
+html body:not(.presentation-mode) .main-nav button .nav-label{min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+html body:not(.presentation-mode) .main-nav button.active{
+  border-color:#17bff2!important;background:linear-gradient(180deg,rgba(23,111,168,.48),rgba(4,28,44,.92))!important;
+  box-shadow:inset 0 -3px #16bdf2,0 0 8px rgba(20,175,235,.16)!important;
+}
+
+/* Live page carousel controls: two compact, unmistakably separate controllers. */
+html body[data-center="operations"][data-sub="live"] #pageActions.page-actions{
+  grid-template-columns:320px 344px!important;width:664px!important;min-width:664px!important;
+}
+html body[data-center="operations"][data-sub="live"] .nav69-live-controls{
+  grid-template-columns:160px 160px!important;width:320px!important;min-width:320px!important;gap:2px!important;border-left:1px solid #1c5a7b!important;
+}
+html body[data-center="operations"][data-sub="live"] .nav69-control-group{
+  grid-template-columns:18px 42px 80px 18px!important;width:160px!important;min-width:160px!important;border:1px solid #1a5b7d!important;background:#020b13!important;
+}
+html body[data-center="operations"][data-sub="live"] .nav69-pause{padding:0 3px!important;background:#071b2a!important;border-left:1px solid #1c4c69!important;border-right:1px solid #1c4c69!important}
+html body[data-center="operations"][data-sub="live"] .nav69-pause span{font-size:7px!important;font-weight:950!important;line-height:1.05!important;white-space:normal!important;text-align:center!important}
+html body[data-center="operations"][data-sub="live"] .nav69-count{flex-direction:column!important;gap:1px!important}
+html body[data-center="operations"][data-sub="live"] .nav69-count b{font-size:8px!important}
+html body[data-center="operations"][data-sub="live"] .nav69-count small{font-size:6px!important;color:#65d9ff!important;font-weight:950!important}
+
+/* Quarter Summary: reclaim the old progress-strip space for the two hero metrics.
+   The middle status row contains ONLY its eight boxes; no invisible rows reserve space. */
+.quarter-summary-master-viewport>.quarter-summary-master,
+.snapshot-quarter-summary .quarter-summary-master{
+  grid-template-rows:minmax(155px,38fr) minmax(64px,13fr) minmax(0,49fr)!important;
+  gap:7px!important;
+}
+.quarter-summary-master .quarter-summary-hero{height:100%!important;min-height:0!important;margin:0!important}
+.quarter-summary-master .quarter-hero-metric{
+  height:100%!important;min-height:0!important;grid-template-rows:auto minmax(0,1fr) 30px!important;
+  padding:10px 18px 12px!important;box-sizing:border-box!important;
+}
+.quarter-summary-master .quarter-hero-metric small{font-size:clamp(18px,min(2.05cqw,3.8cqh),38px)!important}
+.quarter-summary-master .quarter-hero-metric strong{font-size:clamp(72px,min(9cqw,17cqh),170px)!important;align-self:center!important}
+.quarter-summary-master .hero-inline-track{height:24px!important;min-height:24px!important;margin:0!important;align-self:end!important}
+.quarter-summary-master .hero-inline-track span{display:flex!important;font-size:clamp(9px,.72vw,14px)!important;font-weight:950!important}
+.quarter-summary-master .quarter-live-panel{
+  height:100%!important;min-height:0!important;padding:4px 8px!important;display:block!important;overflow:hidden!important;border:0!important;background:transparent!important;
+}
+.quarter-summary-master .quarter-live-panel .summary-grid{
+  width:100%!important;height:100%!important;min-height:0!important;display:grid!important;grid-template-columns:repeat(8,minmax(0,1fr))!important;gap:5px!important;
+}
+.quarter-summary-master .quarter-live-panel .summary-box{height:100%!important;min-height:0!important;padding:3px!important}
+.quarter-summary-master .quarter-live-panel .quarter-mystery-strip{display:none!important}
+.quarter-summary-master .quarter-summary-family-wrap{border:0!important;padding-top:0!important}
+.quarter-summary-master .family-panel-v526{border:0!important;border-top:0!important;background:transparent!important}
+.quarter-summary-master .family-matrix.header{border-top:0!important}
+
+/* Presentation summary uses the same prototype geometry rather than a second layout. */
+html body.presentation-mode .quarter-summary-presentation{
+  grid-template-rows:minmax(170px,38fr) minmax(70px,13fr) minmax(0,49fr) auto!important;
+}
+html body.presentation-mode .quarter-summary-presentation .quarter-summary-hero{height:100%!important}
+html body.presentation-mode .quarter-summary-presentation .quarter-live-panel{height:100%!important;display:block!important;padding:5px 10px!important;overflow:hidden!important}
+html body.presentation-mode .quarter-summary-presentation .quarter-live-panel .summary-grid{height:100%!important;grid-template-columns:repeat(8,minmax(0,1fr))!important;gap:6px!important}
+html body.presentation-mode .quarter-summary-presentation .quarter-live-panel .quarter-mystery-strip{display:none!important}
+
+@media(max-width:1450px){
+ html body[data-center="operations"][data-sub="live"] #pageActions.page-actions{grid-template-columns:288px 306px!important;width:594px!important;min-width:594px!important}
+ html body[data-center="operations"][data-sub="live"] .nav69-live-controls{grid-template-columns:144px 144px!important;width:288px!important;min-width:288px!important}
+ html body[data-center="operations"][data-sub="live"] .nav69-control-group{grid-template-columns:16px 38px 74px 16px!important;width:144px!important;min-width:144px!important}
+ html body[data-center="operations"][data-sub="live"] .nav69-live-actions{grid-template-columns:86px 140px 80px!important;width:306px!important;min-width:306px!important}
+}
