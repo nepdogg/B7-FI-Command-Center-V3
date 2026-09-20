@@ -110,3 +110,88 @@ body.presentation-mode .quarter-summary-presentation .family-progress .track{hei
 .nav704-count small{display:block!important;margin-top:3px!important;font-size:6px!important;line-height:1!important;color:#7fddff!important;font-weight:950!important;letter-spacing:.25px!important;}
 .nav704-pause span{font-size:12px!important;line-height:1!important;font-weight:950!important;}
 @media(max-width:1150px){.nav69-control-group.nav704-carousel-group{grid-template-columns:20px 36px 24px 20px!important}.nav704-count b{font-size:7px!important}.nav704-count small{font-size:5.5px!important}}
+
+/* ============================================================
+   V7.0.5 — EXACT PROTOTYPE LOCK
+   Final visual lock for the supplied prototype reference.
+   ============================================================ */
+:root{--v7-footer-presence:46px!important;--v7-footer-system:46px!important;--v7-footer-height:92px!important;}
+
+/* Header: one uninterrupted blue field with boxed KLA + mode status. */
+body:not(.presentation-mode) .hero{background:#087fbd!important;height:68px!important;}
+body:not(.presentation-mode) .hero-left,body:not(.presentation-mode) .hero-right{height:100%!important;display:flex!important;align-items:center!important;}
+body:not(.presentation-mode) .hero-right{justify-content:flex-end!important;}
+body:not(.presentation-mode) .kla-header-box{border-color:#00b9f2!important;background:#020912!important;}
+body:not(.presentation-mode) .mode-status-box{background:#020912!important;border-color:#00e884!important;}
+
+/* Quarter Summary: prototype proportions, no dead middle space. */
+.quarter-summary-master-viewport>.quarter-summary-master,
+.snapshot-quarter-summary .quarter-summary-master{
+  grid-template-rows:minmax(165px,34%) 66px minmax(0,1fr)!important;
+  gap:8px!important;padding:8px 12px!important;
+}
+.quarter-summary-master .quarter-summary-hero{min-height:0!important;height:100%!important;gap:10px!important;}
+.quarter-summary-master .quarter-hero-metric{
+  width:100%!important;min-width:0!important;height:100%!important;
+  grid-template-rows:auto minmax(0,1fr) 30px!important;
+  padding:10px 14px 12px!important;
+}
+.quarter-summary-master .quarter-hero-metric small{font-size:clamp(18px,1.35vw,27px)!important;}
+.quarter-summary-master .quarter-hero-metric strong{font-size:clamp(62px,5.2vw,100px)!important;}
+.quarter-summary-master .hero-inline-track{
+  display:flex!important;width:100%!important;min-width:0!important;max-width:none!important;
+  height:24px!important;min-height:24px!important;margin:0!important;align-self:end!important;
+  border:1px solid #2b5a76!important;border-radius:14px!important;background:#071421!important;
+  overflow:hidden!important;position:relative!important;align-items:center!important;justify-content:center!important;
+}
+.quarter-summary-master .hero-inline-fill{display:block!important;position:absolute!important;left:0!important;top:0!important;bottom:0!important;height:100%!important;}
+.quarter-summary-master .hero-inline-track span{display:block!important;position:relative!important;z-index:3!important;font-size:12px!important;}
+.quarter-summary-master .quarter-live-panel{height:66px!important;min-height:66px!important;max-height:66px!important;padding:4px 8px!important;border:0!important;background:transparent!important;overflow:hidden!important;}
+.quarter-summary-master .quarter-live-panel .summary-grid{height:58px!important;gap:5px!important;}
+.quarter-summary-master .quarter-live-panel .summary-box{height:58px!important;border-radius:3px!important;}
+.quarter-summary-master .quarter-summary-family-wrap{border:0!important;margin:0!important;padding:0!important;}
+.quarter-summary-master .family-panel-v526{border:0!important;background:transparent!important;padding:0 4px 4px!important;grid-template-rows:26px minmax(0,1fr)!important;}
+.quarter-summary-master .family-panel-v526>.family-matrix.header{border-top:0!important;border-bottom:0!important;background:transparent!important;}
+.quarter-summary-master .family-rows-scroll{padding:0!important;gap:3px!important;}
+.quarter-summary-master .family-progress{padding:3px 6px!important;display:flex!important;align-items:center!important;}
+.quarter-summary-master .family-progress .track{display:flex!important;width:100%!important;height:16px!important;min-height:16px!important;margin:0!important;}
+
+/* Footer: two complete rows exactly like the prototype. */
+body:not(.screenshot-mode):not(.presentation-mode) .app-frame{grid-template-rows:auto minmax(0,1fr) 92px!important;}
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer{
+  display:grid!important;visibility:visible!important;opacity:1!important;
+  grid-template-columns:1fr!important;grid-template-rows:46px 46px!important;
+  height:92px!important;min-height:92px!important;max-height:92px!important;
+  background:#020912!important;border:0!important;overflow:hidden!important;
+}
+.app-footer .footer-presence-row{
+  display:flex!important;visibility:visible!important;grid-row:1!important;height:46px!important;min-height:46px!important;
+  padding:5px 18px!important;background:#087fbd!important;border:0!important;
+}
+.app-footer .presence-badges{height:36px!important;width:min(1360px,94%)!important;grid-template-columns:repeat(7,minmax(86px,1fr))!important;gap:clamp(8px,1.5vw,30px)!important;}
+.app-footer .presence-badge{height:28px!important;}
+.app-footer .footer-system-row{
+  display:grid!important;visibility:visible!important;opacity:1!important;grid-row:2!important;
+  width:100%!important;height:46px!important;min-height:46px!important;max-height:46px!important;
+  grid-template-columns:1.2fr 1.05fr .85fr .85fr 1.15fr .9fr!important;
+  background:#020912!important;color:#fff!important;border:1px solid #087fb9!important;border-top:1px solid #00aeea!important;
+  font-size:9px!important;overflow:hidden!important;
+}
+.app-footer .footer-system-row>*{display:flex!important;visibility:visible!important;opacity:1!important;color:#fff!important;height:100%!important;align-items:center!important;justify-content:center!important;border-right:1px solid rgba(255,255,255,.48)!important;padding:0 12px!important;}
+.app-footer .footer-system-row>*:last-child{border-right:0!important;}
+.app-footer .footer-system-left{justify-content:center!important;gap:12px!important;}
+.app-footer #adminButton{display:flex!important;color:#fff!important;background:transparent!important;border:0!important;font-weight:950!important;}
+.app-footer #environmentLabel,.app-footer #footerDataHealth,.app-footer #activeUsers,.app-footer #footerLastSync,.app-footer #versionLabel{display:flex!important;color:#fff!important;}
+.app-footer #sharedStatus{display:none!important;}
+.app-footer #versionLabel{flex-direction:column!important;line-height:1.15!important;}
+.app-footer #versionLabel::after{content:'B7 FI Command Center';display:block;color:#00c8ff;font-size:8px;font-weight:700;margin-top:2px;}
+
+/* Keep both independent carousel controls compact, with labels below counts. */
+.nav69-live-controls{gap:5px!important;}
+.nav69-control-group.nav704-carousel-group{height:34px!important;grid-template-columns:24px 44px 28px 24px!important;}
+.nav704-count b{font-size:8px!important}.nav704-count small{font-size:6px!important;margin-top:3px!important;}
+
+/* Presentation Quarter Summary uses the exact same summary language. */
+body.presentation-mode .quarter-summary-presentation .quarter-hero-metric{grid-template-rows:auto minmax(0,1fr) 34px!important;}
+body.presentation-mode .quarter-summary-presentation .hero-inline-track{display:flex!important;width:100%!important;height:30px!important;min-height:30px!important;}
+body.presentation-mode .quarter-summary-presentation .family-progress .track{display:flex!important;width:100%!important;height:20px!important;}
