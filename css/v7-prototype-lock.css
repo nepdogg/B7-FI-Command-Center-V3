@@ -131,7 +131,7 @@ body:not(.presentation-mode):not(.screenshot-mode) .app-footer{
 }
 
 /* =========================================================
-   V7.3.6 PROTOTYPE RECOVERY LOCK
+   V7.3.7 PROTOTYPE RECOVERY LOCK
    One normal-flow shell. Native browser zoom. No fixed canvas.
    ========================================================= */
 html,body{width:100%!important;min-width:0!important;height:auto!important;min-height:100%!important;margin:0!important;padding:0!important;overflow-x:hidden!important;zoom:1!important}
@@ -364,7 +364,7 @@ html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{
 }
 
 /* =========================================================
-   V7.3.6 — PROTOTYPE GEOMETRY / UTC PARITY MASTER OVERRIDE
+   V7.3.7 — PROTOTYPE GEOMETRY / UTC PARITY MASTER OVERRIDE
    Single final authority for normal desktop Operations Center.
    ========================================================= */
 @media (min-width:901px){
@@ -498,7 +498,7 @@ html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{
 }
 
 /* =========================================================
-   V7.3.6 — PROTOTYPE FIXED-CANVAS PARITY
+   V7.3.7 — PROTOTYPE FIXED-CANVAS PARITY
    The approved prototype is a 1448px desktop composition.
    Do not reflow it as the viewport changes: native browser zoom
    scales the entire composition as one unit.
@@ -593,4 +593,99 @@ html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{
   html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-presence-row{height:38px!important;padding:4px 16px!important;}
   html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-row,
   html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-cell{height:38px!important;}
+}
+
+/* =========================================================
+   V7.3.7 — PROTOTYPE TYPOGRAPHY + UTC PROPORTION PARITY
+   Final desktop authority. Browser zoom scales the fixed canvas;
+   these values do not respond to viewport width.
+   ========================================================= */
+@media (min-width:901px){
+  /* Prototype header: same visual height and smaller typography. */
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero{
+    height:58px!important;min-height:58px!important;
+    grid-template-columns:minmax(0,1fr) 160px 160px minmax(0,1fr)!important;
+    column-gap:4px!important;padding:0!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero-left,
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero-right{
+    height:58px!important;font-size:25px!important;line-height:1!important;
+    padding:0 20px!important;letter-spacing:.25px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box,
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-mode-box{
+    width:160px!important;min-width:160px!important;max-width:160px!important;height:52px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box img{height:32px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-mode-dot{width:18px!important;height:18px!important;flex-basis:18px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .mode-center-text b{font-size:9px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .mode-center-text small{font-size:6.5px!important;margin-top:3px!important}
+
+  /* Navigation typography is deliberately smaller than V7.3.7 so labels fit like prototype. */
+  html body:not(.presentation-mode):not(.screenshot-mode) .main-nav{height:40px!important;padding:3px 6px!important;gap:3px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .main-nav button{height:34px!important;font-size:8px!important;gap:4px!important;padding:0 4px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .main-nav button::before{font-size:13px!important;margin-right:3px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-stack{font-size:9px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .pagebar{height:34px!important;min-height:34px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .pagebar button{height:31px!important;font-size:7.5px!important;padding:0 5px!important}
+
+  /* Live UTC: preserve the prototype three-column proportions. */
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid{
+    grid-template-columns:680px 744px!important;width:1440px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538{
+    grid-template-columns:31% 36% 33%!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info{
+    padding:6px!important;gap:2px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-priority-ribbon{
+    flex:0 0 31px!important;height:31px!important;min-height:31px!important;font-size:14px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-identity-badges{
+    grid-template-rows:repeat(5,25px)!important;gap:2px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-identity-badges>.utc-identity-ribbon{
+    height:25px!important;min-height:25px!important;padding:1px 7px!important;font-size:11px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-driver-ribbon,
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-reduced{
+    flex:0 0 27px!important;height:27px!important;min-height:27px!important;max-height:27px!important;font-size:12px!important;
+  }
+  /* Restore tall operational badges. */
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display{
+    flex:0 0 320px!important;height:320px!important;min-height:320px!important;max-height:320px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display .utc-indicator-grid{
+    grid-template-rows:repeat(14,21px)!important;grid-auto-rows:21px!important;height:320px!important;min-height:320px!important;max-height:320px!important;gap:2px 4px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-lamp{
+    height:21px!important;min-height:21px!important;max-height:21px!important;padding:1px 3px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-message{
+    font-size:6.8px!important;line-height:7.5px!important;font-weight:900!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-edit-tool-bar-bottom{
+    flex:0 0 30px!important;height:30px!important;min-height:30px!important;max-height:30px!important;font-size:11px!important;
+  }
+
+  /* Card text density: prototype-sized rather than viewport-sized. */
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-status{font-size:10px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-section-label{font-size:8px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-progress-list{gap:7px!important;padding:8px 0!important;font-size:9px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .progress-item{grid-template-rows:auto 16px auto!important;row-gap:3px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .track{height:16px!important;min-height:16px!important;border-radius:8px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .track.labeled-track>span{font-size:8px!important;line-height:16px!important}
+
+  /* Prototype footer: thinner presence strip and compact system strip. */
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{
+    height:70px!important;min-height:70px!important;grid-template-rows:34px 36px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-presence-row{height:34px!important;padding:3px 16px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badges{height:28px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badge{height:23px!important;font-size:8px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-row,
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-cell{height:36px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-cell{font-size:8px!important;padding:0 8px!important;gap:7px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-icon{font-size:17px!important}
 }

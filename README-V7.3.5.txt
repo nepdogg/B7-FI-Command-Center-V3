@@ -1,4 +1,4 @@
-B7 FI COMMAND CENTER V7.3.6 — PROTOTYPE GEOMETRY / UTC PARITY
+B7 FI COMMAND CENTER V7.3.7 — PROTOTYPE GEOMETRY / UTC PARITY
 
 - Restores the two-panel Live Operations layout at desktop browser zoom levels.
 - Removes the legacy <=1250px collapse that made the tool card disappear.

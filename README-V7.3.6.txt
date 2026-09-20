@@ -1,4 +1,4 @@
-B7 FI COMMAND CENTER V7.3.6 — PROTOTYPE FIXED-CANVAS PARITY
+B7 FI COMMAND CENTER V7.3.7 — PROTOTYPE FIXED-CANVAS PARITY
 
 This build changes the desktop shell from viewport-reflow geometry to the approved prototype's fixed desktop canvas.
 - 1448px centered desktop composition with intentional outer margins.
