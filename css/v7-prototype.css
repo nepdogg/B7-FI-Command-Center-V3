@@ -97,3 +97,16 @@ body.presentation-mode .quarter-summary-presentation .family-progress .track{hei
   body:not(.presentation-mode) .hero-center{grid-template-columns:130px minmax(160px,1fr)!important;}
   .app-footer .footer-system-row{grid-template-columns:1.2fr 1fr .8fr .75fr 1fr .8fr!important;}
 }
+
+
+/* V7.0.4 — compact, independent Status and Tools carousel controls. */
+.nav69-live-controls{display:flex!important;align-items:stretch!important;gap:4px!important;flex:0 0 auto!important;}
+.nav69-control-group.nav704-carousel-group{display:grid!important;grid-template-columns:24px 42px 28px 24px!important;align-items:stretch!important;gap:0!important;border:1px solid #12638c!important;background:#020912!important;min-width:0!important;height:34px!important;box-sizing:border-box!important;}
+.nav704-carousel-group .nav69-mini,.nav704-carousel-group .nav704-pause{min-width:0!important;width:auto!important;height:32px!important;padding:0!important;border:0!important;border-right:1px solid #12638c!important;border-radius:0!important;background:#04121d!important;color:#fff!important;font-size:11px!important;font-weight:950!important;display:flex!important;align-items:center!important;justify-content:center!important;}
+.nav704-carousel-group .nav69-mini:last-child{border-right:0!important;}
+.nav704-carousel-group .nav69-mini:hover,.nav704-carousel-group .nav704-pause:hover{background:#075b83!important;color:#fff!important;}
+.nav704-count{height:32px!important;padding:2px 2px 1px!important;margin:0!important;border-right:1px solid #12638c!important;background:#020912!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;line-height:1!important;box-sizing:border-box!important;white-space:nowrap!important;}
+.nav704-count b{font-size:8px!important;line-height:1!important;color:#fff!important;font-weight:950!important;}
+.nav704-count small{display:block!important;margin-top:3px!important;font-size:6px!important;line-height:1!important;color:#7fddff!important;font-weight:950!important;letter-spacing:.25px!important;}
+.nav704-pause span{font-size:12px!important;line-height:1!important;font-weight:950!important;}
+@media(max-width:1150px){.nav69-control-group.nav704-carousel-group{grid-template-columns:20px 36px 24px 20px!important}.nav704-count b{font-size:7px!important}.nav704-count small{font-size:5.5px!important}}
