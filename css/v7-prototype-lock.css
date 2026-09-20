@@ -362,3 +362,137 @@ html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{
  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .track{height:16px!important;min-height:16px!important}
  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .progress-item{grid-template-rows:auto 16px auto!important}
 }
+
+/* =========================================================
+   V7.3.5 — PROTOTYPE GEOMETRY / UTC PARITY MASTER OVERRIDE
+   Single final authority for normal desktop Operations Center.
+   ========================================================= */
+@media (min-width:901px){
+  /* Keep desktop geometry stable at every native browser zoom level. */
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{
+    min-width:1180px!important;
+    overflow:visible!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .body-shell,
+  html body:not(.presentation-mode):not(.screenshot-mode) #app.body-workspace{
+    overflow:visible!important;
+  }
+
+  /* Live Operations is always the prototype two-panel composition. */
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .body-shell,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app{
+    height:696px!important;min-height:696px!important;max-height:none!important;
+    overflow:visible!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid{
+    display:grid!important;
+    grid-template-columns:minmax(0,47.5fr) minmax(0,52.5fr)!important;
+    grid-template-rows:680px!important;
+    width:100%!important;height:696px!important;min-height:696px!important;
+    padding:8px!important;margin:0!important;gap:8px!important;
+    align-items:stretch!important;overflow:hidden!important;box-sizing:border-box!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel{
+    grid-column:1!important;display:block!important;width:100%!important;height:680px!important;min-height:680px!important;max-height:680px!important;
+    padding:8px!important;overflow:hidden!important;box-sizing:border-box!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel{
+    grid-column:2!important;display:block!important;width:100%!important;height:680px!important;min-height:680px!important;max-height:680px!important;
+    padding:8px!important;overflow:hidden!important;box-sizing:border-box!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel>.snapshot-panel,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel>.utc-host,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel>.universal-card-host{
+    width:100%!important;height:662px!important;min-height:662px!important;max-height:662px!important;margin:0!important;padding:0!important;overflow:hidden!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel .utc-card.utc-v6538,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel .utc-card.utc-v6538>.utc-column{
+    height:662px!important;min-height:662px!important;max-height:662px!important;overflow:hidden!important;
+  }
+
+  /* Left UTC column uses the same tall badge geometry as the Tools page. */
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info{
+    gap:2px!important;padding:7px!important;overflow:hidden!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-priority-ribbon{
+    flex:0 0 32px!important;height:32px!important;min-height:32px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-identity-badges{
+    grid-template-rows:repeat(5,27px)!important;gap:2px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-identity-badges>.utc-identity-ribbon{
+    height:27px!important;min-height:27px!important;padding:2px 8px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-driver-ribbon,
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-reduced{
+    flex:0 0 29px!important;height:29px!important;min-height:29px!important;max-height:29px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display{
+    flex:0 0 306px!important;height:306px!important;min-height:306px!important;max-height:306px!important;overflow:hidden!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display .utc-indicator-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    grid-template-rows:repeat(14,20px)!important;grid-auto-rows:20px!important;
+    height:306px!important;min-height:306px!important;max-height:306px!important;gap:2px 4px!important;align-content:start!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-lamp{
+    height:20px!important;min-height:20px!important;max-height:20px!important;padding:1px 4px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-message{
+    font-size:7.5px!important;line-height:8.5px!important;-webkit-line-clamp:2!important;line-clamp:2!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-edit-tool-bar-bottom{
+    flex:0 0 31px!important;height:31px!important;min-height:31px!important;max-height:31px!important;
+  }
+
+  /* Middle column: preserve Next Tasks, Live Status and Lead Notes. */
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-status{
+    display:grid!important;height:662px!important;min-height:662px!important;max-height:662px!important;
+    grid-template-rows:122px 62px 62px 116px 150px 150px!important;overflow:hidden!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-next-actions-blockers,
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-live-system-status,
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-lead-notes{
+    padding:7px 12px!important;min-height:0!important;overflow:hidden!important;
+  }
+
+  /* Right-column progress bars match the prototype: visible text inside a 16px bar. */
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list{
+    gap:8px!important;padding:9px 0!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .progress-item{
+    grid-template-rows:auto 16px auto!important;row-gap:3px!important;align-content:center!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .track{
+    position:relative!important;height:16px!important;min-height:16px!important;border-radius:8px!important;overflow:hidden!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .track .fill{
+    position:absolute!important;left:0!important;top:0!important;bottom:0!important;height:100%!important;z-index:1!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .track.labeled-track>span{
+    position:absolute!important;inset:0!important;z-index:4!important;display:flex!important;align-items:center!important;justify-content:center!important;
+    color:#fff!important;font-size:9px!important;line-height:16px!important;font-weight:1000!important;text-shadow:0 1px 2px #000!important;white-space:nowrap!important;
+  }
+
+  /* Header/footer proportions are locked; browser zoom scales them instead of triggering alternate desktop geometry. */
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero{
+    grid-template-columns:minmax(0,1fr) 172px 172px minmax(0,1fr)!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box,
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-mode-box{
+    width:172px!important;min-width:172px!important;max-width:172px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{
+    position:relative!important;inset:auto!important;height:90px!important;min-height:90px!important;grid-template-rows:46px 44px!important;overflow:hidden!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-presence-row{height:46px!important;padding:5px 18px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-row,
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-cell{height:44px!important}
+}
+
+/* Disable the legacy breakpoint that collapses Live Operations to one column. */
+@media (min-width:901px) and (max-width:1250px){
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid{
+    grid-template-columns:minmax(0,47.5fr) minmax(0,52.5fr)!important;
+  }
+}
