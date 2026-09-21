@@ -131,3 +131,34 @@ body:not([data-center="operations"]) #app>*,body[data-center="operations"] #app>
 .progress-head{font-size:12px;line-height:1.05;min-height:14px;align-items:center}
 .track{height:19px;min-height:19px;margin-top:6px}
 .progress-step{font-size:9px;line-height:1.05;margin-top:4px}
+
+/* V7.6.3 — shell/navigation/status refinement */
+/* Five footer zones: version moved to header. */
+.footer-system-row{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+.footer-version{display:none!important}
+
+/* One connection truth: KLA border and mode dot always agree. */
+.prototype-header-center.shared-connected{border-color:var(--green)!important;box-shadow:0 0 10px rgba(0,231,131,.28)}
+.prototype-header-center.shared-connecting{border-color:#ffd000!important;box-shadow:0 0 10px rgba(255,208,0,.25)}
+.prototype-header-center.shared-disconnected{border-color:var(--red)!important;box-shadow:0 0 10px rgba(255,23,72,.25)}
+.prototype-header-center.local-mode{border-color:var(--cyan)!important;box-shadow:none}
+.footer-mode-status.shared-connected .footer-mode-dot{background:var(--green)!important;box-shadow:0 0 10px var(--green)!important}
+.footer-mode-status.shared-connecting .footer-mode-dot{background:#ffd000!important;box-shadow:0 0 10px #ffd000!important}
+.footer-mode-status.shared-disconnected .footer-mode-dot{background:var(--red)!important;box-shadow:0 0 10px var(--red)!important}
+.footer-mode-status.local-mode .footer-mode-dot{background:var(--cyan)!important;box-shadow:0 0 8px rgba(0,207,255,.65)!important}
+.footer-mode-status.shared-disconnected .footer-mode-copy small{color:#ff6b88!important}
+.footer-mode-status.shared-connecting .footer-mode-copy small{color:#ffd000!important}
+.footer-mode-status.shared-connected .footer-mode-copy small{color:var(--green)!important}
+.footer-mode-status.local-mode .footer-mode-copy small{color:var(--cyan)!important}
+
+/* Every navigation/control element gets the same clickable behavior. */
+.main-nav button,.subnav button,.page-actions button,.nav69-live-actions button,.nav69-mini,.nav69-pause,.status-right,.footer-system-cell button,.presence-badge{cursor:pointer;transition:background-color .14s ease,border-color .14s ease,box-shadow .14s ease,color .14s ease,transform .08s ease}
+.main-nav button:hover,.subnav button:hover,.page-actions button:hover,.nav69-live-actions button:hover,.nav69-mini:hover:not(:disabled),.nav69-pause:hover:not(:disabled),.status-right:hover{background:#0a3650!important;border-color:#00cfff!important;box-shadow:inset 0 0 0 1px #00cfff,0 0 7px rgba(0,207,255,.25)!important;color:#fff!important}
+.main-nav button:active,.subnav button:active,.page-actions button:active,.nav69-live-actions button:active,.nav69-mini:active:not(:disabled),.nav69-pause:active:not(:disabled){transform:translateY(1px)}
+.main-nav button:disabled,.subnav button:disabled,.page-actions button:disabled,.nav69-mini:disabled,.nav69-pause:disabled{cursor:default;opacity:.42}
+/* Active page uses a full border instead of an oversized lower stripe. */
+.subnav button.active{background:#073351!important;border:2px solid #00bfff!important;box-shadow:inset 0 0 0 1px rgba(0,191,255,.18)!important}
+
+/* Combined two-line carousel control buttons. */
+.nav69-live-controls{gap:3px}.nav69-control-group{gap:2px}.nav69-pause{min-width:78px;padding:2px 7px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;line-height:1.02!important}
+.nav69-pause b{font-size:12px;color:#fff;font-weight:950}.nav69-pause small{font-size:7px;color:#9be9ff;font-weight:950;white-space:nowrap;margin-top:2px}.nav69-count{display:none!important}
