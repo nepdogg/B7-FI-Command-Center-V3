@@ -77,10 +77,10 @@ function activeUsers(){return account?[String(account.name||account.username||''
 function setFooterStatus(txt){let e=document.querySelector('#sharedStatus');if(e)e.textContent=txt}
 function setModeIdentity(mode,connection){let shared=mode==='shared',connected=connection==='connected',connecting=connection==='connecting';let h=document.getElementById('headerModeCenter'),f=document.getElementById('footerModeCenter');for(const e of [h,f])if(e){e.classList.toggle('shared-connected',shared&&connected);e.classList.toggle('shared-connecting',shared&&connecting);e.classList.toggle('shared-disconnected',shared&&!connected&&!connecting);e.classList.toggle('local-mode',!shared)}let fl=document.getElementById('footerModeLabel'),fc=document.getElementById('footerConnectionLabel');if(fl)fl.textContent=shared?'MULTI-USER MODE':'LOCAL PRODUCTION';let txt=shared?(connected?'LIST CONNECTED':connecting?'CONNECTING TO LIST':'LIST DISCONNECTED'):'LOCAL DATA';if(fc)fc.textContent=txt}
 function renderPresenceBadges(){
-  const names=['Kenny','Hailey','Tony','Miguel','Saidomar','Benson','Neptune'];
   const host=document.querySelector('#presenceBadges');if(!host)return;
-  const who=String(account?.name||account?.username||'').toLowerCase();
-  host.innerHTML=names.map(n=>{let mine=who.includes(n.toLowerCase()),active=sharedActive&&mine;return `<button type="button" class="presence-badge ${active?'active':''} ${mine?'me':''}" data-presence-user="${n}">${n.toUpperCase()}</button>`}).join('');
+  let names=activeUsers().filter(Boolean).slice(0,4);
+  while(names.length<4)names.push('');
+  host.innerHTML=names.map((n,i)=>`<button type="button" class="presence-badge ${n&&sharedActive?'active':''}" data-presence-slot="${i+1}">${n?String(n).split(/\s+/)[0].toUpperCase():'—'}</button>`).join('');
 }
 function updateFooter(env){
   let au=document.querySelector('#activeUsers'),health=document.querySelector('#footerDataHealth'),sync=document.querySelector('#footerLastSync');
