@@ -1,0 +1,581 @@
+/* B7 FI COMMAND CENTER V7.0.1 — CLEAN FOUNDATION
+   This file intentionally owns only the application shell, footer and shared Quarter Summary geometry.
+   Browser zoom is never detected or compensated for. The application is capped to a 1920x1080 design canvas
+   and the browser is allowed to scale that canvas naturally. */
+
+:root{
+  --v7-design-width:1920px;
+  --v7-design-height:1080px;
+  --v7-footer-presence:40px;
+  --v7-footer-system:32px;
+  --v7-footer-height:72px;
+}
+
+html{width:100%;min-height:100%;background:#03101c;}
+body:not(.screenshot-mode):not(.presentation-mode){
+  width:100%!important;
+  min-width:0!important;
+  height:auto!important;
+  min-height:100vh!important;
+  margin:0!important;
+  overflow:auto!important;
+  background:#03101c!important;
+}
+
+/* A bounded design canvas is the key V7 change. At browser zoom-out the canvas no longer
+   grows to thousands of CSS pixels and then inflates all of its children. */
+body:not(.screenshot-mode):not(.presentation-mode) .app-frame{
+  width:min(calc(100% - 8px),var(--v7-design-width))!important;
+  max-width:var(--v7-design-width)!important;
+  height:min(calc(100vh - 8px),var(--v7-design-height))!important;
+  min-height:min(calc(100vh - 8px),var(--v7-design-height))!important;
+  margin:4px auto!important;
+  padding:0!important;
+  border:1px solid #28516b!important;
+  display:grid!important;
+  grid-template-rows:auto minmax(0,1fr) var(--v7-footer-height)!important;
+  overflow:hidden!important;
+  box-sizing:border-box!important;
+  background:#03101c!important;
+}
+
+body:not(.screenshot-mode):not(.presentation-mode) .sticky-shell{
+  position:relative!important;top:auto!important;z-index:100!important;
+  width:100%!important;min-height:0!important;margin:0!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .body-shell{
+  width:100%!important;height:100%!important;min-height:0!important;margin:0!important;padding:0!important;
+  border:0!important;outline:0!important;box-shadow:none!important;overflow:auto!important;background:#03101c!important;
+  display:block!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .body-shell::before,
+body:not(.screenshot-mode):not(.presentation-mode) .body-shell::after{content:none!important;display:none!important;}
+body:not(.screenshot-mode):not(.presentation-mode) .body-workspace{
+  width:100%!important;min-width:0!important;min-height:100%!important;height:auto!important;
+  margin:0!important;box-sizing:border-box!important;
+}
+
+/* Footer is exactly two rows. No hidden legacy center, pseudo-element, frame or margin may add a third strip. */
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer{
+  position:relative!important;inset:auto!important;
+  width:100%!important;height:var(--v7-footer-height)!important;min-height:var(--v7-footer-height)!important;
+  margin:0!important;padding:0!important;border:0!important;outline:0!important;box-shadow:none!important;
+  display:grid!important;grid-template:var(--v7-footer-presence) var(--v7-footer-system)/1fr!important;
+  overflow:hidden!important;background:#050b12!important;box-sizing:border-box!important;z-index:30!important;
+}
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer::before,
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer::after,
+body:not(.screenshot-mode):not(.presentation-mode) .footer-presence-row::before,
+body:not(.screenshot-mode):not(.presentation-mode) .footer-presence-row::after,
+body:not(.screenshot-mode):not(.presentation-mode) .footer-system-row::before,
+body:not(.screenshot-mode):not(.presentation-mode) .footer-system-row::after{content:none!important;display:none!important;}
+.app-footer .footer-presence-row{
+  grid-row:1!important;width:100%!important;height:var(--v7-footer-presence)!important;
+  margin:0!important;padding:4px 18px!important;border:0!important;outline:0!important;box-shadow:none!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;background:var(--accent)!important;box-sizing:border-box!important;
+}
+.app-footer .presence-badges{
+  width:min(1180px,94%)!important;height:32px!important;margin:0 auto!important;padding:0!important;
+  display:grid!important;grid-template-columns:repeat(7,minmax(72px,1fr))!important;gap:clamp(5px,1vw,16px)!important;align-items:center!important;
+}
+.app-footer .presence-badge{height:26px!important;min-height:0!important;margin:0!important;font-size:clamp(7px,.62vw,10px)!important;}
+.app-footer .footer-system-row{
+  grid-row:2!important;width:100%!important;height:var(--v7-footer-system)!important;margin:0!important;padding:0!important;
+  border:0!important;border-top:1px solid rgba(70,190,240,.55)!important;outline:0!important;box-shadow:none!important;
+  background:#050b12!important;display:grid!important;
+  grid-template-columns:minmax(270px,1.55fr) .9fr .65fr .9fr .9fr minmax(180px,1.15fr)!important;
+  align-items:center!important;font-size:clamp(7px,.55vw,9px)!important;box-sizing:border-box!important;
+}
+.app-footer .footer-system-row>*{height:100%!important;min-width:0!important;margin:0!important;border:0!important;border-right:1px solid rgba(78,185,236,.20)!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:0 8px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;box-sizing:border-box!important;}
+.app-footer .footer-system-left{justify-content:flex-start!important;gap:10px!important;padding-left:12px!important;}
+.app-footer #adminButton{height:24px!important;min-height:24px!important;}
+#footerModeCenter,#sharedIdentity,#mu-launch{display:none!important;}
+
+/* Quarter Summary: one bounded layout for normal page and carousel. It does NOT use viewport-derived JS heights. */
+body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] #app{
+  height:100%!important;min-height:0!important;overflow:hidden!important;display:block!important;
+}
+.quarter-summary-master-viewport{
+  width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;overflow:hidden!important;margin:0!important;
+}
+.quarter-summary-master-viewport>.quarter-summary-master,
+.snapshot-quarter-summary .quarter-summary-master{
+  width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;overflow:hidden!important;
+  display:grid!important;grid-template-rows:minmax(150px,28%) 116px minmax(0,1fr)!important;
+  gap:8px!important;padding:8px!important;box-sizing:border-box!important;
+}
+.quarter-summary-master .quarter-summary-hero{
+  height:100%!important;min-height:0!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important;margin:0!important;
+}
+.quarter-summary-master .quarter-hero-metric{height:100%!important;min-height:0!important;overflow:hidden!important;}
+.quarter-summary-master .quarter-live-panel{
+  height:116px!important;min-height:116px!important;max-height:116px!important;overflow:hidden!important;
+  display:grid!important;grid-template-rows:48px 26px 26px!important;row-gap:3px!important;padding:5px 10px!important;box-sizing:border-box!important;
+}
+.quarter-summary-master .quarter-live-panel .track{display:block!important;height:8px!important;min-height:8px!important;margin:0!important;overflow:hidden!important;}
+.quarter-summary-master .quarter-summary-family-wrap{height:100%!important;min-height:0!important;overflow:hidden!important;margin:0!important;}
+.quarter-summary-master .family-panel-v526{height:100%!important;min-height:0!important;display:grid!important;grid-template-rows:26px minmax(0,1fr)!important;overflow:hidden!important;margin:0!important;}
+.quarter-summary-master .family-rows-scroll{
+  height:100%!important;min-height:0!important;overflow:hidden!important;display:grid!important;
+  grid-template-rows:repeat(var(--family-count,9),minmax(0,1fr))!important;gap:3px!important;padding:3px 0!important;align-content:stretch!important;
+}
+.quarter-summary-master .family-rows-scroll>.family-matrix{height:100%!important;min-height:0!important;margin:0!important;align-self:stretch!important;}
+
+/* The live carousel summary receives the same geometry; no extra internal scrolling or JS fit. */
+.snapshot-quarter-summary{height:100%!important;min-height:0!important;overflow:hidden!important;}
+.snapshot-quarter-summary>.quarter-summary-master-viewport{height:100%!important;min-height:0!important;}
+
+/* Live and Status pages use the body area, but are not stretched from browser zoom calculations. */
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] #app{height:100%!important;min-height:0!important;overflow:auto!important;}
+body:not(.presentation-mode)[data-center="status"] #app{height:auto!important;min-height:100%!important;overflow:visible!important;}
+
+/* At narrow CSS viewports we keep the footer readable; this is width-responsive only, never zoom detection. */
+@media(max-width:1150px){
+  :root{--v7-footer-presence:46px;--v7-footer-system:36px;--v7-footer-height:82px;}
+  .app-footer .footer-presence-row{padding:5px 8px!important;}
+  .app-footer .presence-badges{width:98%!important;gap:4px!important;grid-template-columns:repeat(7,minmax(58px,1fr))!important;}
+  .app-footer .footer-system-row{grid-template-columns:minmax(220px,1.4fr) .8fr .6fr .8fr .8fr 1fr!important;}
+}
+/* B7 FI COMMAND CENTER V7.0.2 — APPROVED VISUAL REFRESH
+   Visual target: approved 2026-09-19 mockup.  V7.0.1 zoom foundation remains authoritative. */
+:root{--v702-blue:#087bb8;--v702-cyan:#08c8ff;--v702-green:#00ef83;--v702-ink:#020a11;--v702-panel:#020b12;--v702-line:#0a5b82;--v702-footer-presence:46px;--v702-footer-system:52px;--v702-footer-height:98px}
+body:not(.screenshot-mode):not(.presentation-mode) .app-frame{grid-template-rows:auto minmax(0,1fr) var(--v702-footer-height)!important}
+/* Header: one continuous blue bar; logo and connection state are independent rectangular modules. */
+.hero{background:linear-gradient(180deg,#1187c5,#0875ad)!important;border:0!important;border-bottom:1px solid #45bff3!important;display:grid!important;grid-template-columns:minmax(300px,1fr) minmax(360px,440px) minmax(380px,1fr)!important;align-items:center!important;min-height:72px!important;padding:0 24px!important;box-sizing:border-box!important}
+.hero-left,.hero-right{font-size:clamp(18px,1.55vw,30px)!important;font-weight:950!important;letter-spacing:.5px!important;color:#fff!important}.hero-right{text-align:right!important}
+.hero-center{position:static!important;transform:none!important;width:100%!important;height:auto!important;display:grid!important;grid-template-columns:minmax(150px,.95fr) minmax(165px,1.05fr)!important;gap:6px!important;align-items:stretch!important;background:none!important;clip-path:none!important;padding:0!important;margin:0!important}
+.header-kla-box,.header-mode-box{height:52px!important;box-sizing:border-box!important;background:#03070d!important;border:1px solid #0f89c3!important;border-radius:4px!important;display:flex!important;align-items:center!important;justify-content:center!important;box-shadow:0 0 0 2px rgba(0,0,0,.28)!important}.header-kla-box img{width:auto!important;height:37px!important;max-width:142px!important;object-fit:contain!important}.header-mode-box{border-color:#00e67e!important;justify-content:flex-start!important;padding:0 13px!important;gap:12px!important}.header-mode-dot{width:20px!important;height:20px!important;border-radius:50%!important;background:#00ed7f!important;box-shadow:0 0 11px rgba(0,237,127,.65)!important;flex:0 0 auto!important}.mode-center-text{display:flex!important;flex-direction:column!important;align-items:flex-start!important;line-height:1.05!important}.mode-center-text b{font-size:13px!important;color:#fff!important;letter-spacing:.25px!important}.mode-center-text small{font-size:9px!important;color:#00ef83!important;font-weight:900!important;margin-top:3px!important}
+/* Main navigation visual refresh. */
+.main-nav{height:45px!important;background:#020910!important;border-color:#0b6089!important}.main-nav button{font-size:10px!important;letter-spacing:.15px!important;border-right:1px solid #0b5d83!important;background:#020910!important;color:#eef9ff!important}.main-nav button.active{background:#0a4e78!important;box-shadow:inset 0 -3px #00cfff!important}.main-nav button::before{font-size:17px!important;margin-right:8px!important;vertical-align:-2px!important}.main-nav button:nth-child(1)::before{content:'⌂'}.main-nav button:nth-child(2)::before{content:'▣'}.main-nav button:nth-child(3)::before{content:'◎'}.main-nav button:nth-child(4)::before{content:'▥'}.main-nav button:nth-child(5)::before{content:'◷'}.main-nav button:nth-child(6)::before{content:'♟'}.main-nav button:nth-child(7)::before{content:'▤'}.main-nav button:nth-child(8)::before{content:'▥'}.main-nav button:nth-child(9)::before{content:'⌕'}.main-nav button:nth-child(10)::before{content:'▱'}
+/* Quarter Summary — shared normal/carousel/presentation geometry. */
+.quarter-summary-master-viewport>.quarter-summary-master,.snapshot-quarter-summary .quarter-summary-master{grid-template-rows:minmax(160px,34%) 72px minmax(0,1fr)!important;gap:7px!important;padding:7px 10px 9px!important;background:#020910!important}
+.quarter-summary-master .quarter-summary-hero{gap:9px!important}
+.quarter-summary-master .quarter-hero-metric{position:relative!important;display:grid!important;grid-template-rows:auto minmax(0,1fr) auto!important;align-items:center!important;justify-items:center!important;padding:9px 14px 8px!important;background:radial-gradient(circle at 50% 58%,rgba(24,46,64,.28),rgba(0,0,0,.12) 46%,rgba(0,0,0,.72) 100%)!important;border-width:2px!important;overflow:hidden!important}.quarter-summary-master .quarter-hero-metric small{font-size:clamp(16px,1.45vw,29px)!important;font-weight:950!important;letter-spacing:.4px!important}.quarter-summary-master .quarter-hero-metric strong{font-size:clamp(62px,6.6vw,112px)!important;line-height:.82!important;text-shadow:0 0 20px rgba(255,255,255,.08)!important}.quarter-summary-master .hero-progress{width:100%!important;align-self:end!important}.quarter-summary-master .hero-progress .track{width:100%!important;height:22px!important;border:1px solid #37586d!important;border-radius:12px!important;background:#132838!important;overflow:hidden!important;box-sizing:border-box!important}.quarter-summary-master .hero-progress .fill{height:100%!important;border-radius:12px!important}.quarter-summary-master .hero-tools-fill{background:#ff2854!important}.quarter-summary-master .days-left .quarter-days{background:#ff9d2f!important}.quarter-summary-master .hero-progress-labels{display:flex!important;justify-content:space-between!important;align-items:center!important;margin-top:5px!important;font-size:clamp(9px,.72vw,13px)!important;color:#fff!important;line-height:1!important}.quarter-summary-master .hero-progress-labels b{font-weight:950!important}
+.quarter-summary-master .quarter-live-panel{height:72px!important;min-height:72px!important;max-height:72px!important;display:block!important;padding:4px 7px!important;background:#020910!important;border-color:#0874a7!important;overflow:hidden!important}.quarter-summary-master .quarter-live-panel .summary-grid{height:62px!important;display:grid!important;grid-template-columns:repeat(8,minmax(0,1fr))!important;gap:5px!important}.quarter-summary-master .quarter-live-panel .summary-box{height:62px!important;min-height:62px!important;border-radius:4px!important;padding:4px 2px!important}.quarter-summary-master .quarter-live-panel .summary-box span{font-size:clamp(7px,.58vw,11px)!important;line-height:1!important}.quarter-summary-master .quarter-live-panel .summary-box b{font-size:clamp(17px,1.45vw,28px)!important;line-height:1!important}.quarter-summary-master .quarter-live-panel .quarter-mystery-strip,.quarter-summary-master .quarter-live-panel .shipping-total,.quarter-summary-master .quarter-live-panel .quarter-time-progress{display:none!important}
+.quarter-summary-master .quarter-summary-family-wrap{border-top:1px solid #07577d!important;padding-top:4px!important}.quarter-summary-master .family-panel-v526{grid-template-rows:27px minmax(0,1fr)!important;border:0!important;background:#020910!important}.quarter-summary-master .family-rows-scroll{gap:3px!important;padding:2px 0!important}.quarter-summary-master .family-matrix{grid-template-columns:2.3fr .55fr .72fr .72fr .78fr .78fr 1.55fr .42fr!important}.quarter-summary-master .family-cell,.quarter-summary-master .reveal-btn{border-radius:3px!important}.quarter-summary-master .family-cell.name{padding-left:10px!important}.quarter-summary-master .family-cell.name span{font-weight:950!important}.quarter-summary-master .family-progress .track{height:8px!important;border-radius:6px!important}.quarter-summary-master .family-progress .fill{border-radius:6px!important}
+/* Presentation Quarter Summary is the same visual component, only with its presentation navigation below. */
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-presentation{background:#020910!important;padding:8px!important;box-sizing:border-box!important;display:grid!important;grid-template-rows:minmax(180px,34%) 76px minmax(0,1fr) 52px!important;gap:8px!important;overflow:hidden!important}html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-hero{min-height:0!important}html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-live-panel{height:76px!important;min-height:76px!important;max-height:76px!important}html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-live-panel .summary-grid{height:66px!important}html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-live-panel .summary-box{height:66px!important;min-height:66px!important}
+/* Footer: exactly two rows, no phantom strip. */
+body:not(.screenshot-mode):not(.presentation-mode) .app-footer{height:var(--v702-footer-height)!important;min-height:var(--v702-footer-height)!important;grid-template-rows:var(--v702-footer-presence) var(--v702-footer-system)!important;background:#020910!important;border:0!important;overflow:hidden!important}.app-footer .footer-presence-row{height:var(--v702-footer-presence)!important;background:linear-gradient(180deg,#1288c7,#0879b4)!important;padding:5px 12%!important;border:0!important}.app-footer .presence-badges{width:100%!important;max-width:1380px!important;height:36px!important;grid-template-columns:repeat(7,minmax(90px,1fr))!important;gap:clamp(12px,3.4vw,72px)!important}.app-footer .presence-badge{height:30px!important;background:#031522!important;border:1px solid #0a5f89!important;color:#fff!important;border-radius:5px!important;font-size:10px!important}.app-footer .presence-badge::before{width:12px!important;height:12px!important}.app-footer .presence-badge.active::before{background:#00ed7f!important;box-shadow:0 0 9px #00ed7f!important}
+.app-footer .footer-system-row{height:var(--v702-footer-system)!important;grid-template-columns:1.15fr 1.05fr .9fr .85fr 1.15fr .9fr!important;background:#020910!important;border-top:1px solid #075d87!important;padding:0 3%!important}.app-footer .footer-system-cell{height:100%!important;min-width:0!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:12px!important;border-right:1px solid rgba(215,239,255,.5)!important;padding:0 18px!important;box-sizing:border-box!important;color:#fff!important;font-size:10px!important;font-weight:900!important;white-space:nowrap!important}.app-footer .footer-system-cell:last-of-type{border-right:0!important}.app-footer .footer-icon{font-size:23px!important;color:#fff!important;line-height:1!important}.app-footer #adminButton,.app-footer .footer-users-button{height:auto!important;min-height:0!important;background:transparent!important;border:0!important;color:#fff!important;font-size:10px!important;padding:0!important}.app-footer .footer-health,.app-footer .footer-version{flex-direction:row!important}.app-footer #footerDataHealth,.app-footer #footerLastSync,.app-footer #versionLabel{overflow:hidden!important;text-overflow:ellipsis!important}.app-footer #versionLabel{color:#fff!important}.app-footer .footer-version::after{content:'B7 FI Command Center';display:block;color:#00cfff;font-size:8px;font-weight:800;margin-left:-4px}.app-footer #sharedStatus{display:none!important}
+@media(max-width:1200px){.hero{grid-template-columns:minmax(250px,1fr) minmax(310px,370px) minmax(300px,1fr)!important;padding:0 14px!important}.hero-left,.hero-right{font-size:18px!important}.header-kla-box,.header-mode-box{height:46px!important}.mode-center-text b{font-size:10px!important}.mode-center-text small{font-size:7px!important}.main-nav button::before{font-size:13px!important;margin-right:4px!important}.quarter-summary-master .hero-progress .track{height:16px!important}.app-footer .footer-system-cell{padding:0 7px!important;gap:6px!important;font-size:8px!important}.app-footer .footer-icon{font-size:17px!important}.app-footer .presence-badges{gap:8px!important}}
+
+/* V7.2.0 — requested compact independent carousel controls only. Prototype geometry otherwise unchanged. */
+.compact-carousel-count{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;line-height:1!important;min-width:46px!important}
+.compact-carousel-count b{font-size:9px!important}.compact-carousel-count small{font-size:6px!important;margin-top:2px!important;color:#79dfff!important;font-weight:900!important}
+.compact-carousel-pause{min-width:82px!important;padding:0 7px!important}.compact-carousel-pause span{font-size:8px!important;font-weight:950!important;white-space:nowrap!important}
+/* B7 FI COMMAND CENTER V7.4.0 — PROTOTYPE NATIVE LAYOUT
+   Final desktop authority based on the approved prototype geometry.
+   Reference canvas: 1448px wide. No transform/zoom scaling. Browser zoom remains native. */
+@media (min-width:901px){
+  html,body{margin:0!important;background:#202020!important;overflow:auto!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{
+    width:calc(100% - 32px)!important;max-width:1448px!important;min-width:0!important;
+    margin:16px auto!important;border:1px solid #28516b!important;overflow:hidden!important;
+    min-height:0!important;height:auto!important;background:#03101c!important;
+  }
+  /* HEADER — prototype 3-zone balance */
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero{
+    height:54px!important;min-height:54px!important;display:grid!important;
+    grid-template-columns:minmax(0,1fr) 165px 165px minmax(0,1fr)!important;gap:3px!important;padding:0!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero-left,
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero-right{
+    height:54px!important;min-height:54px!important;padding:0 22px!important;font-size:24px!important;line-height:1!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box,
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-mode-box{
+    width:165px!important;min-width:165px!important;max-width:165px!important;height:50px!important;min-height:50px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box img{height:30px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-mode-dot{width:19px!important;height:19px!important;flex:0 0 19px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .mode-center-text b{font-size:8px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .mode-center-text small{font-size:6.5px!important}
+
+  /* PRIMARY NAV */
+  html body:not(.presentation-mode):not(.screenshot-mode) .main-nav{height:39px!important;min-height:39px!important;padding:3px 6px!important;gap:3px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .main-nav button{height:32px!important;min-height:32px!important;font-size:7.8px!important;padding:0 5px!important;gap:4px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .main-nav button::before{font-size:14px!important}
+
+  /* ALERT BARS */
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-stack{padding-top:3px!important;font-size:9px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-bar{height:39px!important;min-height:39px!important;margin-bottom:3px!important;grid-template-columns:174px 1fr 112px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-dot{width:12px!important;height:12px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-label strong{font-size:10px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-label small{font-size:7.5px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-message,
+  html body:not(.presentation-mode):not(.screenshot-mode) .status-right{font-size:9.5px!important}
+
+  /* PAGE BAR */
+  html body:not(.presentation-mode):not(.screenshot-mode) .pagebar{height:33px!important;min-height:33px!important;grid-template-columns:60% 40%!important;gap:3px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .pagebar button{height:30px!important;min-height:30px!important;font-size:7.6px!important;padding:0 5px!important}
+
+  /* LIVE OPERATIONS — prototype 48/52 split */
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .body-shell,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app{
+    height:496px!important;min-height:496px!important;max-height:496px!important;overflow:hidden!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid{
+    width:100%!important;height:496px!important;min-height:496px!important;max-height:496px!important;
+    display:grid!important;grid-template-columns:minmax(0,48.2%) minmax(0,51.8%)!important;grid-template-rows:480px!important;
+    gap:8px!important;padding:8px!important;margin:0!important;overflow:hidden!important;box-sizing:border-box!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel>.snapshot-panel,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel>.utc-host,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel>.universal-card-host,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel .utc-card.utc-v6538,
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel .utc-card.utc-v6538>.utc-column{
+    height:480px!important;min-height:480px!important;max-height:480px!important;overflow:hidden!important;
+  }
+
+  /* STATUS / QUARTER SNAPSHOT */
+  html body:not(.presentation-mode):not(.screenshot-mode) .snapshot-panel{padding:8px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .snapshot-title{height:29px!important;min-height:29px!important;font-size:11px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .snapshot-quarter-summary .quarter-summary-master,
+  html body:not(.presentation-mode):not(.screenshot-mode) .quarter-summary-master{
+    height:100%!important;min-height:0!important;grid-template-rows:166px 57px minmax(0,1fr)!important;gap:7px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .quarter-summary-hero{gap:7px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .quarter-hero-metric{min-height:166px!important;height:166px!important;padding:9px 12px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .quarter-hero-metric small{font-size:15px!important;line-height:1.05!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .quarter-hero-metric strong{font-size:66px!important;line-height:.9!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .quarter-summary-master .hero-progress .track{height:20px!important;min-height:20px!important;border-radius:10px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .quarter-summary-master .hero-progress-labels{height:20px!important;bottom:0!important;font-size:10px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .quarter-summary-master .hero-progress-labels b:last-child{font-size:10px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .quarter-summary-master .quarter-panel{min-height:57px!important;height:57px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .quarter-summary-master .quarter-summary-family-wrap{min-height:0!important;overflow:hidden!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .quarter-summary-master .family-cell{min-height:23px!important;height:23px!important;font-size:9px!important;padding:2px 4px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .quarter-summary-master .family-matrix.header .family-cell{height:21px!important;min-height:21px!important;font-size:7px!important}
+
+  /* UNIVERSAL TOOL CARD — prototype has narrow progress column */
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538{
+    grid-template-columns:minmax(0,35.5%) minmax(0,36.5%) minmax(0,28%)!important;gap:6px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info{padding:5px!important;gap:2px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-priority-ribbon{flex:0 0 29px!important;height:29px!important;min-height:29px!important;font-size:13px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-identity-badges{grid-template-rows:repeat(5,22px)!important;gap:2px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-identity-badges>.utc-identity-ribbon{height:22px!important;min-height:22px!important;padding:0 6px!important;font-size:10px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-driver-ribbon,
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-reduced{flex:0 0 23px!important;height:23px!important;min-height:23px!important;max-height:23px!important;font-size:10px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display{flex:0 0 238px!important;height:238px!important;min-height:238px!important;max-height:238px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display .utc-indicator-grid{grid-template-rows:repeat(14,16px)!important;grid-auto-rows:16px!important;height:238px!important;min-height:238px!important;max-height:238px!important;gap:1px 4px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-lamp{height:16px!important;min-height:16px!important;max-height:16px!important;padding:0 3px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-message{font-size:5.9px!important;line-height:6.2px!important;font-weight:900!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-info>.utc-edit-tool-bar-bottom{flex:0 0 26px!important;height:26px!important;min-height:26px!important;max-height:26px!important;font-size:10.5px!important}
+
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-status{
+    height:480px!important;min-height:480px!important;max-height:480px!important;
+    grid-template-rows:91px 47px 47px 81px 103px 111px!important;font-size:9px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-section-label{font-size:7px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-countdown{padding:7px 10px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-countdown-value{font-size:34px!important;line-height:.9!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-next-actions-blockers,
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-live-system-status,
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-lead-notes{padding:7px 10px!important;overflow:hidden!important}
+
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list{gap:5px!important;padding:6px 7px!important;font-size:8.5px!important;overflow:hidden!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .progress-item{grid-template-rows:auto 13px auto!important;row-gap:2px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .track{height:13px!important;min-height:13px!important;border-radius:7px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-progress-list .track.labeled-track>span{font-size:7.5px!important;line-height:13px!important}
+
+  /* FOOTER — two independent prototype strips */
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{height:76px!important;min-height:76px!important;grid-template-rows:34px 42px!important;flex:0 0 76px!important;margin:0!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-presence-row{height:34px!important;min-height:34px!important;padding:3px 18px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badges{height:28px!important;align-items:center!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badge{height:23px!important;min-height:23px!important;font-size:8.5px!important;padding:0 12px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-row,
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-cell{height:42px!important;min-height:42px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-cell{font-size:8.5px!important;padding:0 9px!important;gap:7px!important;align-items:center!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-icon{font-size:18px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #adminButton,
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-users-button{font-size:8.5px!important}
+}
+
+/* V7.4.1 — approved new prototype header/footer lock. */
+@media (min-width:901px){
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{margin:0 auto!important;width:calc(100% - 16px)!important;max-width:1660px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero{grid-template-columns:minmax(0,1fr) 190px minmax(0,1fr)!important;gap:3px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero-center{display:flex!important;align-items:center!important;justify-content:center!important;min-width:0!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box{width:190px!important;min-width:190px!important;max-width:190px!important;height:50px!important;border:1px solid #00b7e8!important;background:#020910!important;box-sizing:border-box!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) #headerModeCenter.shared-connected .header-kla-box{border-color:#00ed7f!important;box-shadow:0 0 9px rgba(0,237,127,.28)!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) #headerModeCenter.shared-connecting .header-kla-box{border-color:#ffc400!important;box-shadow:0 0 9px rgba(255,196,0,.24)!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) #headerModeCenter.shared-disconnected .header-kla-box{border-color:#ff3158!important;box-shadow:0 0 9px rgba(255,49,88,.24)!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) #headerModeCenter.local-mode .header-kla-box{border-color:#00b7e8!important;box-shadow:none!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-mode-box{display:none!important}
+
+  /* New prototype: blue segmented system-status row first, black user-badge row second. */
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{height:78px!important;min-height:78px!important;grid-template-rows:45px 33px!important;flex:0 0 78px!important;background:#020910!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-row{order:1!important;height:45px!important;min-height:45px!important;padding:0!important;display:grid!important;grid-template-columns:1.05fr 1.08fr .96fr 1fr 1.2fr .98fr!important;gap:3px!important;background:#020910!important;border:0!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-cell{height:45px!important;min-height:45px!important;background:linear-gradient(180deg,#1596d2,#087eb9)!important;border:1px solid #063e60!important;padding:0 12px!important;gap:9px!important;font-size:9px!important;overflow:hidden!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-icon{font-size:21px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #adminButton,
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-users-button{font-size:9px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-status{display:flex!important;justify-content:center!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-dot{width:20px!important;height:20px!important;border-radius:50%!important;background:#697984!important;box-shadow:none!important;flex:0 0 20px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-copy{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;line-height:1.05!important;white-space:nowrap!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-copy b{font-size:9px!important;color:#fff!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-copy small{font-size:8px!important;color:#d8f5ff!important;font-weight:900!important;margin-top:3px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerModeCenter.shared-connected .footer-mode-dot{background:#00ed7f!important;box-shadow:0 0 10px #00ed7f!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerModeCenter.shared-connected #footerConnectionLabel{color:#00ed7f!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerModeCenter.shared-connecting .footer-mode-dot{background:#ffc400!important;box-shadow:0 0 9px #ffc400!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerModeCenter.shared-connecting #footerConnectionLabel{color:#ffe45b!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerModeCenter.shared-disconnected .footer-mode-dot{background:#ff3158!important;box-shadow:0 0 9px #ff3158!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerModeCenter.shared-disconnected #footerConnectionLabel{color:#ffb0bf!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerModeCenter.local-mode .footer-mode-dot{background:#00b7e8!important;box-shadow:0 0 8px #00b7e8!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerModeCenter.local-mode #footerConnectionLabel{color:#b9f2ff!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-presence-row{order:2!important;height:33px!important;min-height:33px!important;padding:3px 38px!important;background:#020910!important;border:1px solid #075d87!important;border-top:0!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badges{height:27px!important;max-width:none!important;grid-template-columns:repeat(7,minmax(80px,1fr))!important;gap:clamp(12px,4vw,90px)!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badge{height:24px!important;min-height:24px!important;background:#020910!important;border:1px solid #12384d!important;color:#63727c!important;opacity:.48!important;font-size:8.5px!important;padding:0 12px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badge::before{background:#5f6d75!important;box-shadow:none!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badge.active{opacity:1!important;color:#fff!important;border-color:#00a864!important;background:#03131d!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badge.active::before{background:#00ed7f!important;box-shadow:0 0 9px #00ed7f!important}
+}
+
+/* V7.4.2 — exact new-prototype header/footer geometry correction.
+   Explicit placement defeats legacy grid-column/grid-row rules from older builds. */
+@media (min-width:901px){
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{
+    width:calc(100% - 16px)!important; max-width:1920px!important; margin:0 auto!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero{
+    display:grid!important; grid-template-columns:minmax(0,1fr) 190px minmax(0,1fr)!important;
+    grid-template-rows:54px!important; column-gap:3px!important; row-gap:0!important;
+    height:54px!important; min-height:54px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero-left{
+    grid-column:1!important; grid-row:1!important; width:auto!important; min-width:0!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero-center{
+    grid-column:2!important; grid-row:1!important; width:190px!important; min-width:190px!important; max-width:190px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero-right{
+    grid-column:3!important; grid-row:1!important; width:auto!important; min-width:0!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box{
+    width:190px!important; min-width:190px!important; max-width:190px!important; height:50px!important;
+  }
+
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{
+    display:grid!important; grid-template-columns:1fr!important; grid-template-rows:45px 33px!important;
+    height:78px!important; min-height:78px!important; max-height:78px!important; overflow:hidden!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer>.footer-system-row{
+    grid-column:1!important; grid-row:1!important; order:0!important;
+    width:100%!important; height:45px!important; min-height:45px!important; max-height:45px!important;
+    display:grid!important; grid-template-columns:repeat(6,minmax(0,1fr))!important; gap:3px!important;
+    padding:0!important; margin:0!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer>.footer-presence-row{
+    grid-column:1!important; grid-row:2!important; order:0!important;
+    width:100%!important; height:33px!important; min-height:33px!important; max-height:33px!important;
+    padding:3px 42px!important; margin:0!important; background:#020910!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-cell{
+    width:auto!important; min-width:0!important; height:45px!important; min-height:45px!important;
+    background:linear-gradient(180deg,#1596d2,#087eb9)!important; border:1px solid #063e60!important;
+    justify-content:center!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerDataHealth,
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #sharedStatus,
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #sharedIdentity{display:none!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badges{
+    width:100%!important; max-width:none!important; height:27px!important;
+    display:grid!important; grid-template-columns:repeat(7,minmax(80px,1fr))!important;
+    gap:clamp(18px,5vw,105px)!important; align-items:center!important;
+  }
+}
+
+/* V7.4.3 — prototype section lock: defeat legacy footer hide and restore approved geometry. */
+@media (min-width:901px){
+  html,body{margin:0!important;padding:0!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{
+    width:calc(100% - 12px)!important;max-width:1920px!important;margin:0 auto!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero{
+    min-height:68px!important;height:68px!important;grid-template-rows:68px!important;
+    grid-template-columns:minmax(0,1fr) 220px minmax(0,1fr)!important;padding:0!important;gap:4px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero-left,
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero-right{
+    height:64px!important;display:flex!important;align-items:center!important;padding:0 28px!important;
+    font-size:clamp(19px,1.55vw,30px)!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero-right{justify-content:flex-end!important;text-align:right!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .hero-center{
+    width:220px!important;min-width:220px!important;max-width:220px!important;height:64px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box{
+    width:220px!important;min-width:220px!important;max-width:220px!important;height:64px!important;border:2px solid #00ed7f!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box img{height:42px!important;max-width:155px!important}
+
+  /* The old stylesheet hid this ID with !important. The approved footer requires it visible. */
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerModeCenter{
+    display:flex!important;visibility:visible!important;opacity:1!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{
+    height:94px!important;min-height:94px!important;grid-template-rows:56px 38px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer>.footer-system-row{
+    height:56px!important;min-height:56px!important;max-height:56px!important;
+    grid-template-columns:1.12fr 1.14fr 1.02fr 1.04fr 1.30fr 1.08fr!important;gap:4px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-cell{
+    height:56px!important;min-height:56px!important;background:linear-gradient(180deg,#159bd8,#087fba)!important;
+    border:1px solid #063e60!important;font-size:11px!important;padding:0 14px!important;gap:12px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-icon{font-size:27px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #adminButton,
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-users-button{font-size:11px!important;font-weight:900!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-dot{width:24px!important;height:24px!important;flex-basis:24px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-copy b{font-size:11px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-copy small{font-size:10px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer>.footer-presence-row{
+    height:38px!important;min-height:38px!important;max-height:38px!important;padding:4px 46px!important;background:#020910!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badges{
+    height:30px!important;grid-template-columns:repeat(7,minmax(90px,1fr))!important;gap:clamp(18px,5vw,105px)!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badge{height:27px!important;min-height:27px!important;font-size:10px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) #footerDataHealth{display:none!important;visibility:hidden!important;width:0!important;height:0!important;overflow:hidden!important}
+}
+/* B7 FI COMMAND CENTER V7.5.3 — PROTOTYPE FINAL GEOMETRY
+   Final cascade authority. Layout only; application and shared-data logic untouched. */
+@media (min-width:901px){
+html,body{margin:0!important;padding:0!important;width:100%!important;min-width:0!important;background:#202020!important;overflow-x:hidden!important}
+html body:not(.presentation-mode):not(.screenshot-mode){padding:0 8px 8px!important;box-sizing:border-box!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{width:calc(100vw - 16px)!important;max-width:none!important;min-width:0!important;margin:0!important;border:1px solid #28516b!important;background:#020910!important;box-sizing:border-box!important;overflow:hidden!important;display:flex!important;flex-direction:column!important;min-height:calc(100vh - 8px)!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .sticky-shell{position:relative!important;top:auto!important;flex:0 0 auto!important;width:100%!important;background:#020910!important}
+/* Three physically separate header panels. */
+html body:not(.presentation-mode):not(.screenshot-mode) .hero{display:grid!important;grid-template-columns:minmax(0,1fr) 190px minmax(0,1fr)!important;gap:4px!important;width:100%!important;height:64px!important;min-height:64px!important;max-height:64px!important;margin:0 0 4px!important;padding:0!important;background:#020910!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .hero-left,html body:not(.presentation-mode):not(.screenshot-mode) .hero-center,html body:not(.presentation-mode):not(.screenshot-mode) .hero-right{position:static!important;inset:auto!important;transform:none!important;float:none!important;width:auto!important;min-width:0!important;max-width:none!important;height:64px!important;min-height:64px!important;max-height:64px!important;margin:0!important;box-sizing:border-box!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .hero-left,html body:not(.presentation-mode):not(.screenshot-mode) .hero-right{display:flex!important;align-items:center!important;background:linear-gradient(180deg,#178fc8,#087bb4)!important;border:1px solid #075b84!important;color:#fff!important;font-size:27px!important;font-weight:950!important;white-space:nowrap!important;overflow:hidden!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .hero-left{justify-content:flex-start!important;padding:0 26px!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .hero-right{justify-content:flex-end!important;padding:0 26px!important;text-align:right!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .hero-center{display:flex!important;align-items:center!important;justify-content:center!important;background:#020910!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box{display:flex!important;align-items:center!important;justify-content:center!important;width:190px!important;min-width:190px!important;max-width:190px!important;height:64px!important;min-height:64px!important;max-height:64px!important;margin:0!important;background:#020910!important;border:2px solid #00ed7f!important;box-shadow:0 0 10px rgba(0,237,127,.25)!important;box-sizing:border-box!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box img{height:38px!important;width:auto!important;max-width:140px!important;object-fit:contain!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #headerModeCenter.shared-disconnected .header-kla-box{border-color:#ff3158!important;box-shadow:0 0 10px rgba(255,49,88,.25)!important}html body:not(.presentation-mode):not(.screenshot-mode) #headerModeCenter.shared-connecting .header-kla-box{border-color:#ffc400!important}html body:not(.presentation-mode):not(.screenshot-mode) #headerModeCenter.local-mode .header-kla-box{border-color:#00b7e8!important}
+/* Navigation and status bars — no stray background rules. */
+html body:not(.presentation-mode):not(.screenshot-mode) .main-nav{display:grid!important;grid-template-columns:repeat(10,minmax(0,1fr))!important;width:100%!important;height:46px!important;min-height:46px!important;padding:2px 4px!important;margin:0 0 3px!important;gap:4px!important;background:#020910!important;box-sizing:border-box!important;border:0!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .main-nav button{height:41px!important;min-height:41px!important;margin:0!important;padding:0 6px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;font-size:10px!important;font-weight:950!important;line-height:1!important;white-space:nowrap!important;border:1px solid #087fb8!important;background:#020910!important;box-sizing:border-box!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .main-nav button::before{font-size:18px!important;line-height:1!important;color:#fff!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .status-stack{width:100%!important;margin:0 0 3px!important;padding:0 4px!important;gap:4px!important;background:#020910!important;box-sizing:border-box!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .status-row,html body:not(.presentation-mode):not(.screenshot-mode) .status-bar{height:45px!important;min-height:45px!important;max-height:45px!important;margin:0!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .pagebar{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;width:calc(100% - 8px)!important;height:45px!important;min-height:45px!important;margin:0 4px 5px!important;padding:0!important;gap:4px!important;background:#020910!important;border:0!important;box-sizing:border-box!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .subnav,html body:not(.presentation-mode):not(.screenshot-mode) .page-actions{height:45px!important;min-height:45px!important;margin:0!important;background:#020910!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .subnav button,html body:not(.presentation-mode):not(.screenshot-mode) .page-actions button{height:42px!important;min-height:42px!important;margin:0!important;font-size:10px!important}
+/* Main live workspace: prototype 48/52 split, full height, no carousel clipping. */
+html body:not(.presentation-mode):not(.screenshot-mode) .body-shell{width:100%!important;max-width:none!important;min-width:0!important;flex:1 1 auto!important;min-height:500px!important;padding:0 4px!important;margin:0!important;box-sizing:border-box!important;overflow:hidden!important;background:#020910!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .body-workspace{width:100%!important;max-width:none!important;min-width:0!important;height:100%!important;min-height:500px!important;margin:0!important;padding:0!important;box-sizing:border-box!important;overflow:hidden!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid{display:grid!important;grid-template-columns:minmax(0,48.2%) minmax(0,51.8%)!important;grid-template-rows:minmax(500px,1fr)!important;width:100%!important;height:100%!important;min-height:500px!important;max-height:none!important;gap:8px!important;padding:7px!important;margin:0!important;box-sizing:border-box!important;overflow:hidden!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel,html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel{height:100%!important;min-height:500px!important;max-height:none!important;min-width:0!important;overflow:hidden!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel>.snapshot-panel,html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel>.utc-host,html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel>.universal-card-host,html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel .utc-card.utc-v6538{height:100%!important;min-height:500px!important;max-height:none!important;overflow:hidden!important;box-sizing:border-box!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538{grid-template-columns:minmax(0,35.5%) minmax(0,36.5%) minmax(0,28%)!important;gap:7px!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538>.utc-column{height:100%!important;min-height:500px!important;max-height:none!important;overflow:hidden!important}
+/* Let the middle and progress columns breathe instead of inheriting the old 480px squeeze. */
+html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-status{height:100%!important;min-height:500px!important;max-height:none!important;grid-template-rows:19% 10% 10% 17% 22% 22%!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538 .utc-progress-list{height:100%!important;min-height:0!important;max-height:none!important;overflow:hidden!important;padding:8px 9px!important;gap:6px!important}
+/* Footer: five blue status panels, then independent black user-badge strip. */
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{width:100%!important;height:94px!important;min-height:94px!important;max-height:94px!important;display:grid!important;grid-template-rows:58px 36px!important;flex:0 0 94px!important;margin:5px 0 0!important;padding:0!important;gap:0!important;background:#020910!important;border:0!important;overflow:hidden!important;box-sizing:border-box!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer>.footer-system-row{grid-row:1!important;width:100%!important;height:58px!important;min-height:58px!important;max-height:58px!important;display:grid!important;grid-template-columns:1.05fr 1.05fr 1.05fr 1.35fr .9fr!important;gap:4px!important;padding:0!important;margin:0!important;background:#020910!important;border:0!important;box-sizing:border-box!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-cell,html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-status{height:58px!important;min-height:58px!important;max-height:58px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:12px!important;padding:0 14px!important;margin:0!important;background:linear-gradient(180deg,#1596d0,#0a83bc)!important;border:1px solid #075b84!important;color:#fff!important;box-sizing:border-box!important;font-size:11px!important;font-weight:950!important;white-space:nowrap!important;overflow:hidden!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-icon{font-size:25px!important;color:#fff!important;flex:0 0 auto!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #adminButton{font-size:11px!important;font-weight:950!important;color:#fff!important;white-space:nowrap!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-dot{width:24px!important;height:24px!important;min-width:24px!important;flex:0 0 24px!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-copy,html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-version-copy{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;line-height:1.05!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-copy b,html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-version-copy b{font-size:12px!important;color:#fff!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-copy small{display:block!important;margin-top:4px!important;font-size:10px!important;font-weight:950!important;color:#00ff75!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-version-copy{align-items:center!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer>.footer-presence-row{grid-row:2!important;width:100%!important;height:36px!important;min-height:36px!important;max-height:36px!important;padding:4px 40px!important;margin:0!important;background:#020910!important;border:1px solid #087fb8!important;border-top:0!important;box-sizing:border-box!important;overflow:hidden!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badges{width:100%!important;height:28px!important;display:grid!important;grid-template-columns:repeat(7,minmax(80px,1fr))!important;gap:clamp(16px,5vw,105px)!important;align-items:center!important;justify-content:space-between!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badge{height:27px!important;min-height:27px!important;max-height:27px!important;margin:0!important;padding:0 12px!important;font-size:10px!important;background:#03101c!important;box-sizing:border-box!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .presence-badge:not(.online){opacity:.22!important;border-color:#27404e!important;color:#80909a!important}
+}
+@media (min-width:901px) and (max-width:1500px){
+html body:not(.presentation-mode):not(.screenshot-mode) .hero{grid-template-columns:minmax(0,1fr) 160px minmax(0,1fr)!important;height:58px!important;min-height:58px!important;max-height:58px!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .hero-left,html body:not(.presentation-mode):not(.screenshot-mode) .hero-center,html body:not(.presentation-mode):not(.screenshot-mode) .hero-right{height:58px!important;min-height:58px!important;max-height:58px!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box{width:160px!important;min-width:160px!important;max-width:160px!important;height:58px!important;min-height:58px!important;max-height:58px!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .hero-left,html body:not(.presentation-mode):not(.screenshot-mode) .hero-right{font-size:22px!important;padding:0 18px!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .main-nav button{font-size:8px!important;gap:4px!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .main-nav button::before{font-size:15px!important}
+}
+
+/* ============================================================
+   V7.5.9 FINAL PROTOTYPE MASTER
+   One authority layer. No JavaScript transform scaling.
+   Browser zoom is native; the dashboard geometry remains proportional.
+   ============================================================ */
+@media (min-width:901px){
+  html,body{margin:0!important;padding:0!important;width:100%!important;min-width:0!important;max-width:none!important;height:auto!important;min-height:100%!important;overflow-x:hidden!important;overflow-y:auto!important;background:#202020!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .app-frame{
+    position:relative!important;inset:auto!important;transform:none!important;zoom:1!important;
+    width:100%!important;max-width:1920px!important;min-width:0!important;
+    height:auto!important;min-height:0!important;max-height:none!important;
+    aspect-ratio:1.84/1!important;
+    margin:0 auto!important;padding:8px!important;box-sizing:border-box!important;
+    display:grid!important;grid-template-rows:29% minmax(0,60.5%) 10.5%!important;
+    overflow:hidden!important;background:#020910!important;
+  }
+  /* TRUE THREE-SECTION HEADER */
+  body:not(.presentation-mode):not(.screenshot-mode) .prototype-header{
+    position:relative!important;inset:auto!important;transform:none!important;
+    width:100%!important;height:22.5%!important;min-height:0!important;max-height:none!important;
+    display:grid!important;grid-template-columns:minmax(0,1fr) 260px minmax(0,1fr)!important;gap:4px!important;
+    margin:0 0 4px!important;padding:0!important;background:#020910!important;overflow:hidden!important;box-sizing:border-box!important
+  }
+  body:not(.presentation-mode):not(.screenshot-mode) .prototype-header-left,
+  body:not(.presentation-mode):not(.screenshot-mode) .prototype-header-center,
+  body:not(.presentation-mode):not(.screenshot-mode) .prototype-header-right{
+    position:relative!important;inset:auto!important;transform:none!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;margin:0!important;box-sizing:border-box!important;overflow:hidden!important
+  }
+  body:not(.presentation-mode):not(.screenshot-mode) .prototype-header-left,
+  body:not(.presentation-mode):not(.screenshot-mode) .prototype-header-right{
+    display:flex!important;align-items:center!important;background:linear-gradient(180deg,#1595cf,#087db8)!important;border:2px solid #075b84!important;color:#fff!important;font-size:clamp(16px,1.52vw,29px)!important;font-weight:950!important;white-space:nowrap!important
+  }
+  body:not(.presentation-mode):not(.screenshot-mode) .prototype-header-left{justify-content:flex-start!important;padding-left:28px!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .prototype-header-right{justify-content:flex-end!important;padding-right:28px!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .prototype-header-center{display:flex!important;align-items:center!important;justify-content:center!important;background:#020910!important;border:2px solid #00d8ff!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .prototype-kla-box{width:100%!important;height:100%!important;display:flex!important;align-items:center!important;justify-content:center!important;margin:0!important;padding:0!important;border:0!important;box-shadow:none!important;background:#020910!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .prototype-kla-box img{height:54%!important;width:auto!important;max-width:75%!important;object-fit:contain!important}
+
+  body:not(.presentation-mode):not(.screenshot-mode) .sticky-shell{height:100%!important;min-height:0!important;max-height:none!important;display:grid!important;grid-template-rows:22.5% 17% 36% 24.5%!important;overflow:hidden!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .main-nav,
+  body:not(.presentation-mode):not(.screenshot-mode) .status-stack,
+  body:not(.presentation-mode):not(.screenshot-mode) .pagebar{height:100%!important;min-height:0!important;max-height:none!important;margin:0!important;overflow:hidden!important;box-sizing:border-box!important}
+
+  body:not(.presentation-mode):not(.screenshot-mode) .body-shell,
+  body:not(.presentation-mode):not(.screenshot-mode) #app{width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;overflow:hidden!important;box-sizing:border-box!important}
+  body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid{
+    width:100%!important;height:100%!important;display:grid!important;grid-template-columns:49.2% 50.8%!important;grid-template-rows:minmax(0,1fr)!important;gap:8px!important;margin:0!important;padding:8px!important;box-sizing:border-box!important;overflow:hidden!important;align-items:stretch!important
+  }
+  body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel,
+  body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel,
+  body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel>*,
+  body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel>*{
+    width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;margin:0!important;box-sizing:border-box!important;overflow:hidden!important
+  }
+  /* Prototype UTC proportions: wider progress column and full-height sections. */
+  body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538{
+    width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;display:grid!important;
+    grid-template-columns:29.5% 36.5% 34%!important;gap:7px!important;overflow:hidden!important;box-sizing:border-box!important
+  }
+  body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .utc-card.utc-v6538>.utc-column{height:100%!important;min-height:0!important;max-height:none!important;overflow:hidden!important}
+  /* Make prototype progress bars visually substantial rather than hairline bars. */
+  body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .progress,
+  body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .progress-track,
+  body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel [class*="progress-track"],
+  body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel [class*="progress-bar"]{min-height:14px!important}
+
+  /* Prototype footer: five blue status cells + black badge strip. */
+  body:not(.presentation-mode):not(.screenshot-mode) .app-footer{width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;display:grid!important;grid-template-rows:62% 38%!important;padding:0!important;overflow:hidden!important;box-sizing:border-box!important;background:#020910!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .app-footer>.footer-system-row{width:100%!important;height:100%!important;display:grid!important;grid-template-columns:1.05fr 1.05fr 1.05fr 1.35fr .85fr!important;gap:4px!important;padding:0!important;overflow:hidden!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-cell,
+  body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-status{height:100%!important;min-height:0!important;max-height:none!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .app-footer>.footer-presence-row{height:100%!important;min-height:0!important;max-height:none!important;padding:3px 4%!important;overflow:hidden!important;background:#020910!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .footer-version-copy::after,
+  body:not(.presentation-mode):not(.screenshot-mode) .footer-version::after{display:none!important;content:none!important}
+}
