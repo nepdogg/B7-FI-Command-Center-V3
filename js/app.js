@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='7.5.8', BUILD='20260920-V7.5.8-VIEWPORT-PROTOTYPE-LOCK';
+const VERSION='7.6.0', BUILD='20260920-V7.6.0-CLEAN-PROTOTYPE-REWRITE';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
