@@ -162,3 +162,30 @@ body:not([data-center="operations"]) #app>*,body[data-center="operations"] #app>
 /* Combined two-line carousel control buttons. */
 .nav69-live-controls{gap:3px}.nav69-control-group{gap:2px}.nav69-pause{min-width:78px;padding:2px 7px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;line-height:1.02!important}
 .nav69-pause b{font-size:12px;color:#fff;font-weight:950}.nav69-pause small{font-size:7px;color:#9be9ff;font-weight:950;white-space:nowrap;margin-top:2px}.nav69-count{display:none!important}
+
+
+/* V7.6.4 — footer user-grid cleanup + cross-page render stabilization */
+.footer-users-grid{
+  border:0!important;
+  background:transparent!important;
+  padding:0!important;
+  margin:0!important;
+  display:block!important;
+  min-width:0;min-height:0;overflow:hidden;
+}
+.footer-users-grid .presence-badges{
+  width:100%!important;height:100%!important;
+  margin:0!important;padding:0!important;
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-template-rows:repeat(2,minmax(0,1fr))!important;
+  gap:3px!important;
+}
+.footer-users-grid .presence-badge{
+  width:100%!important;height:100%!important;
+  margin:0!important;min-width:0!important;min-height:0!important;
+  border-radius:3px!important;
+}
+/* Keep all center workspaces in the same native-width render model. */
+.body-workspace{display:block;width:100%;min-width:0}
+.body-workspace>*{min-width:0;max-width:100%}
