@@ -189,3 +189,66 @@ body:not([data-center="operations"]) #app>*,body[data-center="operations"] #app>
 /* Keep all center workspaces in the same native-width render model. */
 .body-workspace{display:block;width:100%;min-width:0}
 .body-workspace>*{min-width:0;max-width:100%}
+
+
+/* V7.6.5 — unified navigation + all-page viewport normalization */
+/* Tool Type is a navigation control, so it must look/behave exactly like the adjacent controls. */
+.nav70-tool-type-select{
+  display:flex!important;align-items:stretch!important;height:100%!important;min-width:142px!important;
+  margin:0!important;padding:0!important;border:1px solid #075d87!important;border-radius:0!important;
+  background:#06131d!important;overflow:hidden!important;cursor:pointer!important;
+  transition:background-color .14s ease,border-color .14s ease,box-shadow .14s ease,color .14s ease,transform .08s ease!important;
+}
+.nav70-tool-type-select:hover{background:#0a3650!important;border-color:#00cfff!important;box-shadow:inset 0 0 0 1px #00cfff,0 0 7px rgba(0,207,255,.25)!important}
+.nav70-tool-type-select:active{transform:translateY(1px)}
+.nav70-tool-type-select select{
+  appearance:none!important;-webkit-appearance:none!important;width:100%!important;height:100%!important;min-width:0!important;
+  margin:0!important;padding:0 28px 0 11px!important;border:0!important;outline:0!important;border-radius:0!important;
+  background:transparent!important;color:#fff!important;font-size:10px!important;font-weight:900!important;text-align:center!important;
+  cursor:pointer!important;background-image:linear-gradient(45deg,transparent 50%,#fff 50%),linear-gradient(135deg,#fff 50%,transparent 50%)!important;
+  background-position:calc(100% - 15px) 50%,calc(100% - 10px) 50%!important;background-size:5px 5px,5px 5px!important;background-repeat:no-repeat!important;
+}
+.nav70-tool-type-select select option{background:#06131d;color:#fff}
+.tool-type-menu-button,.tool-type-dropdown button{cursor:pointer!important}
+
+/* Main navigation: prototype-size white pictograms with a common visual box. */
+.main-nav button{position:relative;gap:9px!important;padding:0 7px!important;cursor:pointer!important}
+.main-nav button::before{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:22px!important;height:22px!important;flex:0 0 22px!important;color:#fff!important;font-family:Arial,Helvetica,sans-serif!important;font-weight:950!important;line-height:1!important;border:0!important;border-radius:0!important}
+.main-nav button:nth-child(1)::before{content:'⌂'!important;font-size:23px!important}
+.main-nav button:nth-child(2)::before{content:'▰'!important;font-size:19px!important;transform:skew(-8deg)}
+.main-nav button:nth-child(3)::before{content:'!'!important;font-size:15px!important;border:2px solid #fff!important;border-radius:50%!important;width:20px!important;height:20px!important;flex-basis:20px!important}
+.main-nav button:nth-child(4)::before{content:'▥'!important;font-size:20px!important}
+.main-nav button:nth-child(5)::before{content:'◷'!important;font-size:23px!important}
+.main-nav button:nth-child(6)::before{content:'♟'!important;font-size:21px!important}
+.main-nav button:nth-child(7)::before{content:'▤'!important;font-size:21px!important}
+.main-nav button:nth-child(8)::before{content:'▮▮'!important;font-size:16px!important;letter-spacing:-2px!important}
+.main-nav button:nth-child(9)::before{content:'⌕'!important;font-size:25px!important}
+.main-nav button:nth-child(10)::before{content:'▣'!important;font-size:21px!important}
+
+/* Every center/page uses the same shell width and predictable scrolling rules. */
+.body-shell{min-width:0!important;overflow:hidden!important}
+.body-workspace{width:100%!important;min-width:0!important;max-width:100%!important;overflow:hidden!important}
+body:not([data-center="operations"]) .body-workspace,
+body[data-center="operations"][data-sub="tools"] .body-workspace,
+body[data-center="operations"][data-sub="tool"] .body-workspace,
+body[data-center="operations"][data-sub="daily"] .body-workspace,
+body[data-center="operations"][data-sub="archive"] .body-workspace{
+  height:606px!important;min-height:606px!important;max-height:606px!important;padding:6px!important;overflow:auto!important;background:#02080d!important;
+}
+body:not([data-center="operations"]) .body-workspace>*,
+body[data-center="operations"] .body-workspace>*{width:100%!important;max-width:100%!important;min-width:0!important}
+.shipping-view,.priority-view,.cycle-time-frame,.email-status,.status-history-frame,.action-frame,.reference-frame,.search-frame,.archive-quarter,.fleet-frame,.daily-update-frame,.status-workspace,.meeting-workspace-wrap{
+  width:100%!important;max-width:100%!important;min-width:0!important;box-sizing:border-box!important;
+}
+.data-table{width:100%!important;max-width:100%!important}
+/* Tool page cards may be taller than one viewport; scroll the workspace rather than clipping a card. */
+body[data-center="operations"][data-sub="tools"] .body-workspace{overflow-y:auto!important;overflow-x:hidden!important}
+body[data-center="operations"][data-sub="tools"] .utc-card{min-height:606px}
+/* Tool editor and non-live pages must never hide their bottom sections. */
+body[data-center="operations"][data-sub="tool"] .body-workspace,
+body[data-center="operations"][data-sub="daily"] .body-workspace{overflow:auto!important}
+
+/* Keep footer geometry clean and equal. */
+.footer-system-row{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+.footer-users-grid{border:0!important;padding:0!important;background:transparent!important}
+.footer-users-grid .presence-badges{gap:3px!important}
