@@ -4648,3 +4648,31 @@ html body.presentation-mode[data-center="operations"][data-sub="summary"] .quart
   margin:0!important;box-sizing:border-box!important;overflow:hidden!important;
   gap:10px!important;padding:0!important;
 }
+/* V7.6.10 — progress-label consolidation + UTC readability */
+/* Primary progress values live inside their bars; remove duplicated external values. */
+.utc-progress-list .progress-head>b,
+.utc-progress-list .forecast-progress-pct{display:none!important}
+.utc-progress-list .progress-head{grid-template-columns:minmax(0,1fr)!important}
+.utc-progress-list .track,
+.shipping-overview td .track,
+.cycle-time-table td .track{position:relative!important;overflow:hidden!important}
+.utc-progress-list .track>span,
+.shipping-overview td .track>.bar-value,
+.cycle-time-table td .track>.bar-value,
+.quarter-summary-master .hero-progress .track>.bar-value{position:absolute!important;inset:0!important;z-index:3!important;display:flex!important;align-items:center!important;justify-content:center!important;color:#fff!important;font-weight:950!important;text-shadow:0 1px 2px #000!important;pointer-events:none!important;white-space:nowrap!important}
+.shipping-overview td .track>.bar-value,.cycle-time-table td .track>.bar-value{font-size:9px!important}
+.quarter-summary-master .hero-progress .track>.bar-value{font-size:clamp(10px,.8vw,15px)!important}
+.shipping-overview td>small.progress-external,.cycle-time-table td>small.progress-external{display:none!important}
+.quarter-summary-master .hero-progress-labels{display:none!important}
+
+/* Give normal UTCs enough vertical room for all nine progress rows and two-line badges. */
+body:not(.presentation-mode):not(.screenshot-mode) .operations-tool-carousel .universal-card-host,
+body:not(.presentation-mode):not(.screenshot-mode) .update-live-card-list .universal-card-host{min-height:690px!important;height:690px!important}
+body:not(.presentation-mode):not(.screenshot-mode) .utc-card.utc-v6538 .utc-progress-list{overflow:visible!important;gap:7px!important;padding:8px 9px!important}
+body:not(.presentation-mode):not(.screenshot-mode) .utc-card.utc-v6538 .progress-item{min-height:62px!important}
+.utc-indicator-grid>*{white-space:normal!important;overflow:visible!important;word-break:normal!important;line-height:1.08!important;padding:2px 4px!important;box-sizing:border-box!important}
+body:not(.presentation-mode):not(.screenshot-mode) .utc-info{grid-template-rows:38px 145px 30px 27px minmax(350px,1fr) 38px!important}
+body:not(.presentation-mode):not(.screenshot-mode) .utc-indicator-grid{grid-template-rows:repeat(14,minmax(22px,1fr))!important}
+
+/* Presentation UTC stays viewport driven, but badges may wrap to two lines. */
+body.presentation-mode .utc-indicator-grid>*{white-space:normal!important;line-height:1.08!important;overflow:visible!important}
