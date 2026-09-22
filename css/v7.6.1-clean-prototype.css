@@ -4676,3 +4676,23 @@ body:not(.presentation-mode):not(.screenshot-mode) .utc-indicator-grid{grid-temp
 
 /* Presentation UTC stays viewport driven, but badges may wrap to two lines. */
 body.presentation-mode .utc-indicator-grid>*{white-space:normal!important;line-height:1.08!important;overflow:visible!important}
+
+/* V7.6.11 — GLOBAL PROGRESS BAR CONVENTION
+   Every measurable progress bar owns its value label inside the track. */
+html body .track{position:relative!important;overflow:hidden!important;}
+html body .track>.fill{height:100%!important;}
+html body .track>.bar-value,
+html body .track.labeled-track>span,
+html body .family-progress .track>span{
+  position:absolute!important;inset:0!important;z-index:4!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  margin:0!important;padding:0 6px!important;color:#fff!important;
+  font-weight:950!important;line-height:1!important;text-align:center!important;
+  text-shadow:0 1px 2px #000!important;white-space:nowrap!important;pointer-events:none!important;
+}
+html body .family-progress{position:relative!important;display:flex!important;align-items:center!important;justify-content:center!important;}
+html body .family-progress .track{position:relative!important;left:auto!important;right:auto!important;top:auto!important;transform:none!important;width:calc(100% - 12px)!important;margin:0 auto!important;}
+html body .family-progress>small{display:none!important;}
+html body .progress-head>b,
+html body .forecast-progress-pct{display:none!important;}
+/* Keep descriptive secondary text; only duplicated measurement labels are removed. */
