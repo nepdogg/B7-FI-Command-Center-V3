@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='7.6.6', BUILD='20260921-V7.6.6-MULTIUSER-LIST-BRIDGE';
+const VERSION='7.6.7', BUILD='20260921-V7.6.7-TOOL-TYPE-NAV-PARITY';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -568,8 +568,8 @@ function renderActions(){
   }
   if(route.center==='operations'&&route.sub==='tools'&&mode==='view'){
     let fams=toolTypeFamiliesForCurrentView();
-    let opts=fams.map(f=>{let id='tool-family-'+String(f).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');return `<option value="${esc(id)}">${esc(f).toUpperCase()}</option>`}).join('');
-    host.innerHTML=`<label class="nav70-tool-type-select" title="Jump to tool type"><select aria-label="Tool Type" onchange="return window.B7Nav70.jumpToolType(this)"><option value="" selected>TOOL TYPE ▼</option>${opts}</select></label><button type="button" class="primary nav70-action" onclick="return window.B7Nav70.action(event,'updateAll')">UPDATE COMMAND CENTER</button><button type="button" class="primary nav70-action" onclick="return window.B7Nav70.action(event,'addTool')">ADD TOOL</button><button type="button" class="nav70-action" onclick="return window.B7Nav70.action(event,'shot')">SCREENSHOT</button>`;
+    let toolMenu=fams.length?`<div class="tool-type-menu nav69-tool-type nav767-tool-type" data-tool-type-menu><button type="button" class="tool-type-menu-button" data-tool-type-toggle aria-haspopup="true" aria-expanded="false">TOOL TYPE <span class="tool-type-chevron">▼</span></button><div class="tool-type-dropdown" role="menu">${fams.map(f=>{let id='tool-family-'+String(f).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');return `<button type="button" role="menuitem" data-tool-type-target="${esc(id)}">${esc(f).toUpperCase()}</button>`}).join('')}</div></div>`:'';
+    host.innerHTML=`${toolMenu}<button type="button" class="primary nav70-action" onclick="return window.B7Nav70.action(event,'updateAll')">UPDATE COMMAND CENTER</button><button type="button" class="primary nav70-action" onclick="return window.B7Nav70.action(event,'addTool')">ADD TOOL</button><button type="button" class="nav70-action" onclick="return window.B7Nav70.action(event,'shot')">SCREENSHOT</button>`;
     return;
   }
   if(route.center==='operations'&&route.sub==='live'&&mode==='view'){

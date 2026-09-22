@@ -252,3 +252,40 @@ body[data-center="operations"][data-sub="daily"] .body-workspace{overflow:auto!i
 .footer-system-row{grid-template-columns:repeat(5,minmax(0,1fr))!important}
 .footer-users-grid{border:0!important;padding:0!important;background:transparent!important}
 .footer-users-grid .presence-badges{gap:3px!important}
+\n\n/* V7.6.7 — Tool Type custom navigation parity. Avoid native SELECT popup styling. */
+body[data-center="operations"][data-sub="tools"] #pageActions>.nav767-tool-type{
+  position:relative!important;display:flex!important;align-items:stretch!important;width:100%!important;min-width:0!important;height:100%!important;
+  margin:0!important;padding:0!important;border:0!important;background:transparent!important;overflow:visible!important;cursor:pointer!important;
+}
+body[data-center="operations"][data-sub="tools"] #pageActions>.nav767-tool-type>.tool-type-menu-button{
+  width:100%!important;height:100%!important;min-width:0!important;margin:0!important;padding:0 10px!important;
+  border:1px solid #075d87!important;border-radius:0!important;background:#06131d!important;color:#fff!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;
+  font-size:9px!important;font-weight:950!important;line-height:1!important;white-space:nowrap!important;cursor:pointer!important;
+  transition:background .12s ease,box-shadow .12s ease,border-color .12s ease!important;
+}
+body[data-center="operations"][data-sub="tools"] #pageActions>.nav767-tool-type:hover>.tool-type-menu-button,
+body[data-center="operations"][data-sub="tools"] #pageActions>.nav767-tool-type:focus-within>.tool-type-menu-button,
+body[data-center="operations"][data-sub="tools"] #pageActions>.nav767-tool-type.open>.tool-type-menu-button{
+  background:rgba(var(--accent-rgb),.56)!important;border-color:var(--accent)!important;
+  box-shadow:inset 0 -4px var(--accent),inset 0 0 0 1px rgba(255,255,255,.28)!important;outline:none!important;
+}
+body[data-center="operations"][data-sub="tools"] #pageActions>.nav767-tool-type .tool-type-chevron{font-size:8px!important;line-height:1!important;transition:transform .12s ease!important}
+body[data-center="operations"][data-sub="tools"] #pageActions>.nav767-tool-type.open .tool-type-chevron{transform:rotate(180deg)!important}
+body[data-center="operations"][data-sub="tools"] #pageActions>.nav767-tool-type>.tool-type-dropdown{
+  display:none!important;position:fixed!important;left:var(--tool-menu-left)!important;top:var(--tool-menu-top)!important;width:var(--tool-menu-width)!important;
+  min-width:190px!important;max-width:260px!important;padding:3px!important;border:1px solid var(--accent)!important;background:#03101c!important;
+  box-shadow:0 9px 20px rgba(0,0,0,.68)!important;z-index:20000!important;
+}
+body[data-center="operations"][data-sub="tools"] #pageActions>.nav767-tool-type.open>.tool-type-dropdown{display:grid!important}
+body[data-center="operations"][data-sub="tools"] #pageActions>.nav767-tool-type>.tool-type-dropdown>button{
+  width:100%!important;height:34px!important;margin:0!important;padding:0 12px!important;border:0!important;border-bottom:1px solid #1c4c69!important;
+  border-radius:0!important;background:#06131d!important;color:#fff!important;display:flex!important;align-items:center!important;justify-content:center!important;
+  font-size:10px!important;font-weight:950!important;white-space:nowrap!important;cursor:pointer!important;
+  transition:background .12s ease,box-shadow .12s ease!important;
+}
+body[data-center="operations"][data-sub="tools"] #pageActions>.nav767-tool-type>.tool-type-dropdown>button:last-child{border-bottom:0!important}
+body[data-center="operations"][data-sub="tools"] #pageActions>.nav767-tool-type>.tool-type-dropdown>button:hover,
+body[data-center="operations"][data-sub="tools"] #pageActions>.nav767-tool-type>.tool-type-dropdown>button:focus-visible{
+  background:rgba(var(--accent-rgb),.56)!important;box-shadow:inset 4px 0 var(--accent)!important;outline:none!important;
+}
