@@ -4696,3 +4696,42 @@ html body .family-progress>small{display:none!important;}
 html body .progress-head>b,
 html body .forecast-progress-pct{display:none!important;}
 /* Keep descriptive secondary text; only duplicated measurement labels are removed. */
+
+/* V7.6.12 — stabilization: Tools page geometry, family dividers, centered presence, clickable KLA connection */
+#headerModeCenter{cursor:pointer!important;user-select:none}
+#headerModeCenter:hover{filter:brightness(1.12)}
+
+/* Regular CY26Q3 Tools page is a two-card workspace. Presentation and Live carousel keep their own geometry. */
+body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tools"] .update-live-card-list{
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;align-items:start!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tools"] .update-live-card-list .universal-card-host{
+  width:100%!important;min-width:0!important;height:auto!important;min-height:690px!important;margin:0!important;
+}
+/* Restore the tool-family divider as a full-width, glanceable status strip. */
+body[data-center="operations"][data-sub="tools"] .tool-section{margin:0 0 20px!important;scroll-margin-top:190px!important}
+body[data-center="operations"][data-sub="tools"] .tool-section-head{
+  display:grid!important;grid-template-columns:minmax(180px,.8fr) minmax(620px,2.4fr)!important;align-items:stretch!important;
+  min-height:66px!important;margin:0 0 10px!important;border:2px solid #0788c5!important;background:#06121b!important;
+}
+body[data-center="operations"][data-sub="tools"] .tool-section-head h2{
+  display:flex!important;align-items:center!important;padding:0 18px!important;margin:0!important;font-size:24px!important;letter-spacing:.5px!important;
+  border-right:1px solid #0788c5!important;
+}
+body[data-center="operations"][data-sub="tools"] .tool-family-totals{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:0!important}
+body[data-center="operations"][data-sub="tools"] .tool-family-totals .mini-stat{
+  display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;min-height:64px!important;
+  border-left:1px solid #075d87!important;font-size:11px!important;font-weight:900!important;line-height:1.1!important;
+}
+body[data-center="operations"][data-sub="tools"] .tool-family-totals .mini-stat b{font-size:23px!important;margin-top:5px!important;color:#fff!important}
+
+/* Footer balance: the visible user-presence area owns the center of the footer row. */
+.footer-system-row{grid-template-columns:1fr 1fr 1fr 1fr 1fr!important;position:relative!important}
+.footer-users-grid{grid-column:3!important;grid-row:1!important;z-index:3!important;min-width:0!important}
+#footerModeCenter{grid-column:2!important;grid-row:1!important}
+#footerLastSync{white-space:nowrap!important}
+.footer-system-row>.footer-system-cell:has(#footerLastSync){grid-column:4!important;grid-row:1!important}
+.footer-admin{grid-column:1!important;grid-row:1!important}
+.footer-users-grid .presence-badges{gap:5px!important;padding:4px!important;grid-template-columns:repeat(4,minmax(0,1fr))!important}
+.footer-users-grid .presence-badge{min-width:0!important}
+@media(max-width:1250px){body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tools"] .update-live-card-list{grid-template-columns:1fr!important}}

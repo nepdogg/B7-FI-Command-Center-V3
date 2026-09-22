@@ -118,7 +118,32 @@ async function resetSharedScenario(){return clearEntireList()}
 async function refreshScenario(){if(!sharedActive)throw new Error('Start Shared Scenario first.');requireToolDataColumn();let seed=lastSharedState||{environment:'SCENARIO TEST',tools:[]};await refreshAllItems();let tools=decodeSharedTools();if(!tools.length&&(seed.tools||[]).length){setFooterStatus(`SCENARIO TEST · SYNC WARNING · ${(seed.tools||[]).length} TOOLS RETAINED`);status('SYNC WARNING — List returned no valid tools. Last-known-good cards were retained.','err');return JSON.parse(JSON.stringify(seed))}let out=JSON.parse(JSON.stringify(seed));out.environment='SCENARIO TEST';out.tools=tools;lastSharedState=JSON.parse(JSON.stringify(out));updateFooter('SCENARIO TEST');status(`PASS — Refreshed ${tools.length} tool(s) from ${items.filter(isToolRow).length} Microsoft List tool row(s).`,'ok');return out}
 async function enterScenario(localState){await ensureConnected();requireToolDataColumn();sharedActive=true;localStorage.setItem(SHARED_MODE_KEY,'1');let out=await loadSharedScenario(localState);updateFooter('SCENARIO TEST');status(`PASS — SHARED SCENARIO ACTIVE · ONE TOOL = ONE ROW · ${out.tools.length} tool(s).`,'ok');return out}
 function leaveScenario(){sharedActive=false;localStorage.removeItem(SHARED_MODE_KEY);updateFooter('PRODUCTION')}
-window.B7Shared={enterScenario,leaveScenario,queueStateSync,isActive:()=>sharedActive,updateFooter,resetSharedScenario,clearEntireList,refreshScenario,showActiveUsers,activeUsers,exportSharedBackup,restoreSharedBackup,replaceSharedScenario};
+// V7.6.12 — production one-click connection + background synchronization.
+let autoSyncBusy=false,lastAutoSyncSignature='';
+function toolSignature(ts){return JSON.stringify((ts||[]).map(t=>{let x=JSON.parse(JSON.stringify(t));delete x._sharedRowId;return x}).sort((a,b)=>String(a.id).localeCompare(String(b.id))))}
+function editingIsActive(){let m=document.querySelector('#modal');if(m&&!m.classList.contains('hidden'))return true;let a=document.activeElement;return !!(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName))}
+async function oneClickConnect(){
+  try{
+    setModeIdentity('shared','connecting');status('Signing in and connecting to the B7 FI Command Center List…');
+    await ensureConnected();sharedActive=true;localStorage.setItem(SHARED_MODE_KEY,'1');
+    await refreshAllItems();let tools=decodeSharedTools();
+    let out={environment:'SCENARIO TEST',tools};lastSharedState=JSON.parse(JSON.stringify(out));lastAutoSyncSignature=toolSignature(tools);
+    updateFooter('SCENARIO TEST');if(window.B7ApplySharedScenario)window.B7ApplySharedScenario(out);
+    status(`PASS — MULTI-USER READY · ${tools.length} shared tool(s) loaded. Automatic sync is active.`,'ok');return out;
+  }catch(e){setModeIdentity('shared','offline');status('ONE-CLICK CONNECTION FAILED — '+friendly(e),'err');throw e}
+}
+async function autoSync(){
+  if(!sharedActive||!account||!list||autoSyncBusy||editingIsActive())return;
+  autoSyncBusy=true;
+  try{
+    await refreshAllItems();let tools=decodeSharedTools(),sig=toolSignature(tools);
+    if(sig!==lastAutoSyncSignature){let out={environment:'SCENARIO TEST',tools};lastSharedState=JSON.parse(JSON.stringify(out));lastAutoSyncSignature=sig;if(window.B7ApplySharedScenario)window.B7ApplySharedScenario(out);status(`AUTO SYNC — ${tools.length} shared tool(s) current.`,'ok')}
+    updateFooter('SCENARIO TEST');
+  }catch(e){setFooterStatus('LIST CONNECTED · SYNC RETRYING');console.warn('B7 auto sync',e)}finally{autoSyncBusy=false}
+}
+function bindHeaderLogin(){let h=document.getElementById('headerModeCenter');if(!h)return;h.setAttribute('role','button');h.setAttribute('tabindex','0');h.title='KLA MULTI-USER SIGN IN / CONNECTION';let go=()=>{if(sharedActive){autoSync();return}oneClickConnect().catch(()=>{})};h.onclick=go;h.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}}}
+window.B7Shared={enterScenario,leaveScenario,oneClickConnect,autoSync,queueStateSync,isActive:()=>sharedActive,updateFooter,resetSharedScenario,clearEntireList,refreshScenario,showActiveUsers,activeUsers,exportSharedBackup,restoreSharedBackup,replaceSharedScenario};
+setInterval(autoSync,15000);
 
-document.addEventListener('DOMContentLoaded',async()=>{inject();document.querySelector('#activeUsers')?.addEventListener('click',showActiveUsers);try{await initMsal();let resume=localStorage.getItem(SHARED_MODE_KEY)==='1';if(resume){setModeIdentity('shared','connecting');if(account){await connect();sharedActive=true;let seed={environment:'SCENARIO TEST',tools:[]};await refreshAllItems();let tools=decodeSharedTools();if(items.length&&tools.length===0)throw new Error(`SHARED LOAD BLOCKED — ${items.length} List row(s) were found but none contained valid Tool Data. Local cards were retained.`);seed.tools=tools;lastSharedState=JSON.parse(JSON.stringify(seed));updateFooter('SCENARIO TEST');if(window.B7ApplySharedScenario)window.B7ApplySharedScenario(seed);status(`PASS — Multi-User session restored after refresh · ${tools.length} tool(s) loaded from Microsoft List.`,'ok')}else{updateFooter('SCENARIO TEST');status('MULTI-USER SESSION PAUSED — Sign in to reload shared tools from Microsoft List.','err')}}else{updateFooter('PRODUCTION');if(account)status('Existing Microsoft sign-in detected. Local data remains active until Shared Multi-User is started.','ok')}}catch(e){setModeIdentity('shared','offline');status('Authentication / shared restore warning — '+friendly(e),'err')}});
+document.addEventListener('DOMContentLoaded',async()=>{inject();bindHeaderLogin();document.querySelector('#activeUsers')?.addEventListener('click',showActiveUsers);try{await initMsal();let resume=localStorage.getItem(SHARED_MODE_KEY)==='1';if(resume){setModeIdentity('shared','connecting');if(account){await connect();sharedActive=true;let seed={environment:'SCENARIO TEST',tools:[]};await refreshAllItems();let tools=decodeSharedTools();if(items.length&&tools.length===0)throw new Error(`SHARED LOAD BLOCKED — ${items.length} List row(s) were found but none contained valid Tool Data. Local cards were retained.`);seed.tools=tools;lastSharedState=JSON.parse(JSON.stringify(seed));updateFooter('SCENARIO TEST');if(window.B7ApplySharedScenario)window.B7ApplySharedScenario(seed);status(`PASS — Multi-User session restored after refresh · ${tools.length} tool(s) loaded from Microsoft List.`,'ok')}else{updateFooter('SCENARIO TEST');status('MULTI-USER SESSION PAUSED — Sign in to reload shared tools from Microsoft List.','err')}}else{updateFooter('PRODUCTION');if(account)status('Existing Microsoft sign-in detected. Local data remains active until Shared Multi-User is started.','ok')}}catch(e){setModeIdentity('shared','offline');status('Authentication / shared restore warning — '+friendly(e),'err')}});
 })();
