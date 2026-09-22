@@ -289,3 +289,91 @@ body[data-center="operations"][data-sub="tools"] #pageActions>.nav767-tool-type>
 body[data-center="operations"][data-sub="tools"] #pageActions>.nav767-tool-type>.tool-type-dropdown>button:focus-visible{
   background:rgba(var(--accent-rgb),.56)!important;box-shadow:inset 4px 0 var(--accent)!important;outline:none!important;
 }
+
+
+/* V7.6.8 — cross-page layout + interaction recovery.
+   V7.6.5 accidentally forced every non-live page into a 606px viewport.
+   Restore the established V7.6.4 natural page geometry while preserving
+   V7.6.6 shared-list behavior and V7.6.7 Tool Type navigation. */
+body:not([data-center="operations"]) .body-workspace,
+body[data-center="operations"][data-sub="tools"] .body-workspace,
+body[data-center="operations"][data-sub="tool"] .body-workspace,
+body[data-center="operations"][data-sub="daily"] .body-workspace,
+body[data-center="operations"][data-sub="archive"] .body-workspace{
+  height:auto!important;
+  min-height:606px!important;
+  max-height:none!important;
+  padding:6px!important;
+  overflow:visible!important;
+  background:#02080d!important;
+}
+/* Tools remains the one long workspace that benefits from its own vertical scroll. */
+body[data-center="operations"][data-sub="tools"] .body-workspace{
+  overflow-x:hidden!important;
+  overflow-y:visible!important;
+}
+body[data-center="operations"][data-sub="tools"] .utc-card{min-height:606px}
+
+/* Restore content panels to their designed natural geometry rather than
+   stretching every page to the forced V7.6.5 viewport. */
+.shipping-view,.priority-view,.cycle-time-frame,.email-status,.status-history-frame,
+.action-frame,.reference-frame,.search-frame,.archive-quarter,.fleet-frame,
+.daily-update-frame,.status-workspace,.meeting-workspace-wrap{
+  height:auto!important;
+  max-height:none!important;
+}
+
+/* Universal interaction affordance: every real Command Center control must
+   advertise itself to the mouse, not only the top navigation. */
+button:not(:disabled),
+a[href],
+[role="button"],
+[role="menuitem"],
+.clickrow,
+[data-tool],
+[data-open-tool],
+[data-reveal],
+[data-status-drilldown],
+[data-carousel],
+[data-snapshot],
+[data-carousel-jump],
+[data-next-system-tasks],
+[data-lead-tasks],
+[data-direct-indicator],
+[data-direct-identity],
+[data-direct-priority],
+[data-quick-field],
+[data-handoffs],
+[data-forecast-checklist],
+[data-collapse-target],
+[data-tool-type-toggle],
+[data-tool-type-target],
+[data-actiondone],
+[data-search-action],
+[data-search-meeting],
+[data-search-ref],
+[data-archived-tool],
+[data-restore-tool],
+[data-ship-step],
+[data-daily-ship],
+[data-meeting],
+[data-dataset],
+[data-admin-mode],
+[data-master-reset],
+[data-save-mystery],
+[data-add-volunteer],
+[data-remove-volunteer]{cursor:pointer!important}
+button:disabled,[aria-disabled="true"]{cursor:default!important}
+
+/* Hover feedback for generic clickable controls that do not already own a
+   stronger state-specific hover rule. */
+.btn:not(:disabled):hover,
+.clickrow:hover,
+[data-open-tool]:hover,
+[data-archived-tool]:hover,
+[data-search-action]:hover,
+[data-search-meeting]:hover,
+[data-search-ref]:hover{
+  border-color:#00cfff!important;
+  box-shadow:inset 0 0 0 1px rgba(0,207,255,.55)!important;
+}
