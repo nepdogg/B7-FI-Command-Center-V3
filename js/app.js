@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='7.6.5', BUILD='20260920-V7.6.3-SHELL-NAV-STATUS-REFINEMENT';
+const VERSION='7.6.6', BUILD='20260921-V7.6.6-MULTIUSER-LIST-BRIDGE';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
