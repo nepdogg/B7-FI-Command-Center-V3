@@ -4980,3 +4980,65 @@ html body:not(.presentation-mode):not(.screenshot-mode) .tool-section,
 html body:not(.presentation-mode):not(.screenshot-mode) [id^="tool-type-"]{
   scroll-margin-top:calc(var(--sticky-shell-height,270px) + 10px)!important;
 }
+
+/* =========================================================
+   V7.6.17 — TESTING CONSOLIDATION
+   Fixes: UTC right clearance + single-card carousel parity,
+   tool-family status-strip bottom gap, Quarter Summary parity,
+   full-screen Mystery Reveal, and favicon/version consistency.
+   ========================================================= */
+/* Tools page: family divider is one exact row — no phantom lower strip. */
+html body[data-center="operations"][data-sub="tools"] .tool-section-head{
+  height:76px!important;min-height:76px!important;max-height:76px!important;
+  padding:0!important;margin:0 0 10px!important;overflow:hidden!important;
+}
+html body[data-center="operations"][data-sub="tools"] .tool-section-head h2,
+html body[data-center="operations"][data-sub="tools"] .tool-family-totals,
+html body[data-center="operations"][data-sub="tools"] .tool-family-totals .mini-stat{
+  height:72px!important;min-height:72px!important;max-height:72px!important;margin:0!important;padding-top:0!important;padding-bottom:0!important;
+}
+
+/* Universal Tool Card: preserve the three columns but give the frame equal outer clearance. */
+html body:not(.presentation-mode):not(.screenshot-mode) .universal-card-host.utc-host{
+  padding:8px 18px 8px 8px!important;box-sizing:border-box!important;overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .utc-card.utc-v6538{
+  width:100%!important;max-width:100%!important;grid-template-columns:minmax(0,33fr) minmax(0,35fr) minmax(0,32fr)!important;
+  gap:8px!important;box-sizing:border-box!important;
+}
+/* Live Operations is one full master UTC, never a compressed derivative. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-live-only{
+  grid-template-columns:minmax(0,39%) minmax(0,61%)!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel{
+  min-width:0!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel>.universal-card-host.utc-host{
+  width:100%!important;max-width:100%!important;padding:8px 18px 8px 8px!important;
+}
+
+/* Normal Quarter Summary is the same composition as presentation, sized beneath the sticky shell. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="summary"] .body-shell,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="summary"] #app{
+  height:auto!important;min-height:760px!important;max-height:none!important;overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-master-viewport{
+  width:100%!important;height:760px!important;min-height:760px!important;max-height:none!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-master{
+  width:100%!important;height:100%!important;grid-template-rows:minmax(270px,36fr) minmax(92px,12fr) minmax(0,45fr)!important;gap:8px!important;padding:8px!important;
+}
+
+/* Mystery Box: true viewport celebration, no internal scrollbars. */
+html body .modal:has(.mystery-celebration){padding:12px!important;overflow:hidden!important;align-items:stretch!important;justify-content:stretch!important;}
+html body .modal-card:has(.mystery-celebration){
+  width:calc(100vw - 24px)!important;max-width:none!important;height:calc(100vh - 24px)!important;max-height:none!important;
+  margin:0!important;padding:14px 18px 16px!important;overflow:hidden!important;display:flex!important;flex-direction:column!important;
+}
+html body .modal-card:has(.mystery-celebration) #modalBody{flex:1 1 auto!important;min-height:0!important;width:100%!important;overflow:hidden!important;}
+html body .mystery-celebration{width:100%!important;height:100%!important;max-height:none!important;overflow:hidden!important;display:grid!important;grid-template-rows:auto minmax(0,1fr) auto auto auto!important;gap:7px!important;}
+html body .mystery-celebration h1{font-size:clamp(28px,2.3vw,44px)!important;margin:0 44px 3px!important;}
+html body .mystery-celebration img{width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;min-height:0!important;object-fit:contain!important;margin:0!important;}
+html body .mystery-celebration .raiders-call{font-size:clamp(28px,2.6vw,50px)!important;margin:0!important;}
+html body .mystery-celebration h2{font-size:clamp(20px,1.7vw,34px)!important;margin:0!important;}
+html body .mystery-celebration p{font-size:clamp(14px,1.05vw,20px)!important;margin:0!important;}
