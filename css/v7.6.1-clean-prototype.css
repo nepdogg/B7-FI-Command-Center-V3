@@ -4858,3 +4858,84 @@ html body .utc-card.utc-v6538 .utc-progress-list>.utc-progress-quick:last-child,
 html body .utc-card.utc-v6538 .utc-progress-list>.utc-progress-quick:last-child>.progress-item{
   border-bottom:0!important;box-shadow:none!important;
 }
+
+
+/* =========================================================
+   V7.6.15 — UTC / STATUS / QUARTER SUMMARY PARITY LOCK
+   ========================================================= */
+/* Normal app shell: header + main nav + alerts + page nav remain sticky. */
+html body:not(.presentation-mode):not(.screenshot-mode) .sticky-shell{
+  position:sticky!important;top:0!important;z-index:20000!important;background:#02080d!important;
+  box-shadow:0 5px 16px rgba(0,0,0,.72)!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .body-workspace{overflow:auto!important;}
+
+/* Live Operations uses the exact same full-height UTC geometry as the Tools page. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid{
+  height:760px!important;min-height:760px!important;grid-template-columns:46% 54%!important;align-items:start!important;overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel>.universal-card-host{
+  height:744px!important;min-height:744px!important;overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .universal-card-host.utc-host{padding:8px!important;}
+html body:not(.presentation-mode):not(.screenshot-mode) .utc-card.utc-v6538{
+  height:720px!important;min-height:720px!important;max-height:720px!important;gap:8px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .utc-card.utc-v6538>.utc-column{height:720px!important;min-height:720px!important;max-height:720px!important;}
+html body:not(.presentation-mode):not(.screenshot-mode) .utc-card.utc-v6538 .utc-progress-list>.utc-progress-quick:last-child{border-bottom:0!important;}
+
+/* Tools page: preserve two cards per row on normal desktop monitors. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tools"] .update-live-card-list{
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;align-items:start!important;
+}
+@media(max-width:1180px){html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tools"] .update-live-card-list{grid-template-columns:1fr!important}}
+
+/* Daily Status email visual hierarchy restored. */
+html body[data-center="status"] .status-workspace{padding:12px!important;background:#020b12!important;}
+html body[data-center="status"] .email-status.email-match{padding:10px 14px!important;background:#020b12!important;overflow:visible!important;}
+html body[data-center="status"] .email-meta{font-size:17px!important;font-weight:900!important;color:#eaf7ff!important;padding:0 0 10px!important;border-bottom:2px solid #0879ad!important;}
+html body[data-center="status"] .email-row{padding:10px 12px!important;border-bottom:1px solid #164354!important;background:#03101a!important;}
+html body[data-center="status"] .email-row:nth-child(even){background:#041521!important;}
+html body[data-center="status"] .email-main{font-size:14px!important;line-height:1.25!important;font-weight:950!important;color:#fff!important;}
+html body[data-center="status"] .email-subline{font-size:12px!important;line-height:1.3!important;padding-left:14px!important;margin-top:4px!important;color:#b8d7e4!important;}
+html body[data-center="status"] .email-nc{color:#ff9aae!important}.email-poa{color:#ffd57b!important}
+
+/* Presentation UTC: equal section rhythm, headings anchored to each divider, no centered countdown exception. */
+html body.presentation-mode[data-center="operations"][data-sub="live"] .utc-card.utc-v6538 .utc-status{
+  display:grid!important;grid-template-rows:1.18fr .82fr .82fr 1.18fr 1.05fr .95fr!important;padding:0 14px!important;min-height:0!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .utc-card.utc-v6538 .utc-status>.utc-status-section{
+  height:auto!important;min-height:0!important;margin:0!important;padding:10px 0!important;display:flex!important;flex-direction:column!important;
+  align-items:flex-start!important;justify-content:flex-start!important;text-align:left!important;border-bottom:1px solid #0781b3!important;overflow:hidden!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .utc-card.utc-v6538 .utc-status>.utc-lead-notes{border-bottom:0!important;}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .utc-card.utc-v6538 .utc-kicker{width:100%!important;margin:0 0 6px!important;align-self:flex-start!important;}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .utc-card.utc-v6538 .utc-countdown-big{width:100%!important;text-align:left!important;margin:2px 0 7px!important;}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .utc-card.utc-v6538 .utc-countdown-date{width:100%!important;justify-content:flex-start!important;}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .utc-card.utc-v6538 .utc-progress-list>.utc-progress-quick:last-child{border-bottom:0!important;}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-nav .presentation-nav-cell{font-size:clamp(17px,1.25vw,23px)!important;}
+
+/* Quarter Summary normal page and presentation use the same master composition. */
+html body[data-center="operations"][data-sub="summary"] .quarter-summary-master,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-presentation{
+  grid-template-rows:minmax(270px,38fr) minmax(92px,13fr) minmax(0,49fr)!important;gap:8px!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-presentation{grid-template-rows:minmax(270px,36fr) minmax(92px,12fr) minmax(0,45fr) 58px!important;}
+html body[data-center="operations"][data-sub="summary"] .quarter-hero-metric{padding:12px 20px!important;}
+html body[data-center="operations"][data-sub="summary"] .quarter-hero-metric small{font-size:clamp(27px,2.15vw,44px)!important;line-height:1!important;}
+html body[data-center="operations"][data-sub="summary"] .quarter-hero-metric strong{font-size:clamp(140px,10vw,210px)!important;line-height:.8!important;}
+html body[data-center="operations"][data-sub="summary"] .hero-progress .track{height:34px!important;min-height:34px!important;border-radius:18px!important;}
+html body[data-center="operations"][data-sub="summary"] .hero-progress .track .bar-value{font-size:clamp(15px,1.2vw,23px)!important;font-weight:1000!important;}
+html body[data-center="operations"][data-sub="summary"] .quarter-live-panel{border:0!important;background:transparent!important;padding:0!important;}
+html body[data-center="operations"][data-sub="summary"] .quarter-live-panel .summary-grid{gap:6px!important;width:100%!important;}
+html body[data-center="operations"][data-sub="summary"] .summary-box{min-width:0!important;background:#0b2433!important;border:2px solid #0879ad!important;}
+html body[data-center="operations"][data-sub="summary"] .summary-box span{font-size:clamp(11px,.85vw,16px)!important;font-weight:900!important;}
+html body[data-center="operations"][data-sub="summary"] .summary-box b{font-size:clamp(25px,2vw,39px)!important;}
+html body[data-center="operations"][data-sub="summary"] .summary-box.summary-disabled{background:#151a1f!important;border-color:#3d4650!important;color:#69737d!important;opacity:.55!important;pointer-events:none!important;}
+html body[data-center="operations"][data-sub="summary"] .summary-quarter{background:#092b3b!important}.summary-pulled{background:#163228!important}.summary-pushed{background:#321d1d!important}.summary-planned{background:#241b39!important}.status-waiting{background:#322b12!important}.status-infi{background:#102c3d!important}.status-packing{background:#17303b!important}.status-shipped{background:#103226!important}
+html body[data-center="operations"][data-sub="summary"] .family-cell,html body[data-center="operations"][data-sub="summary"] .reveal-btn{font-size:clamp(12px,.95vw,18px)!important;}
+html body[data-center="operations"][data-sub="summary"] .family-progress .track{height:24px!important;min-height:24px!important;}
+html body[data-center="operations"][data-sub="summary"] .family-progress .labeled-track>span{font-size:clamp(10px,.8vw,15px)!important;}
+html body[data-center="operations"][data-sub="summary"] .reveal-btn.locked{background:#2b2038!important;border-color:#7447a5!important;color:#c7a9ed!important;}
+html body[data-center="operations"][data-sub="summary"] .reveal-btn.unlocked{background:#173d29!important;border-color:#00e783!important;}
