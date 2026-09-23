@@ -4735,3 +4735,126 @@ body[data-center="operations"][data-sub="tools"] .tool-family-totals .mini-stat 
 .footer-users-grid .presence-badges{gap:5px!important;padding:4px!important;grid-template-columns:repeat(4,minmax(0,1fr))!important}
 .footer-users-grid .presence-badge{min-width:0!important}
 @media(max-width:1250px){body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tools"] .update-live-card-list{grid-template-columns:1fr!important}}
+
+/* V7.6.13 — UTC parity + sticky navigation + 2x2 presence finalization */
+/* Header, center navigation, alerts and page navigation stay visible on normal pages. */
+body:not(.presentation-mode):not(.screenshot-mode) .sticky-shell{
+  position:sticky!important;top:0!important;z-index:10000!important;
+  box-shadow:0 4px 12px rgba(0,0,0,.55)!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .tool-section{scroll-margin-top:275px!important}
+
+/* Presence is deliberately a compact 2x2 center matrix. */
+.footer-users-grid .presence-badges{
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-template-rows:repeat(2,minmax(0,1fr))!important;gap:4px!important;padding:4px!important;
+}
+.footer-users-grid .presence-badge{min-width:0!important;min-height:0!important;overflow:hidden!important}
+
+/* One master UTC geometry. Tools page and Live Operations use the same card dimensions. */
+body:not(.presentation-mode):not(.screenshot-mode) .universal-card-host.utc-host{
+  box-sizing:border-box!important;padding:8px!important;overflow:visible!important;background:#020b12!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .utc-card.utc-v6538{
+  height:720px!important;min-height:720px!important;max-height:720px!important;
+  grid-template-columns:33% 35% 32%!important;gap:8px!important;background:#02080d!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .utc-card.utc-v6538>.utc-column{
+  height:100%!important;min-height:0!important;overflow:hidden!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .utc-card.utc-v6538 .utc-info{
+  grid-template-rows:38px 145px 30px 27px minmax(0,1fr) 38px!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .utc-card.utc-v6538 .utc-indicator-grid{
+  grid-template-rows:repeat(14,minmax(24px,1fr))!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .utc-card.utc-v6538 .utc-indicator-grid>*{
+  white-space:normal!important;overflow:hidden!important;line-height:1.08!important;padding:2px 4px!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .utc-card.utc-v6538 .utc-progress-list{
+  height:100%!important;grid-template-rows:repeat(9,minmax(0,1fr))!important;gap:4px!important;padding:0!important;overflow:hidden!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .utc-card.utc-v6538 .progress-item{min-height:0!important;height:100%!important}
+body:not(.presentation-mode):not(.screenshot-mode) .utc-card.utc-v6538 .utc-progress-quick:last-child{border-bottom:0!important}
+
+/* Live Operations no longer squeezes/crops the master UTC. */
+body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid{
+  height:742px!important;min-height:742px!important;align-items:stretch!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel{
+  overflow:visible!important;min-height:0!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel .universal-card-host{
+  height:100%!important;min-height:0!important;
+}
+
+/* Tools: two cards per row on normal desktop widths, with equal outside/inter-column spacing. */
+body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tools"] .update-live-card-list{
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;align-items:start!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tools"] .update-live-card-list .universal-card-host{
+  width:100%!important;height:auto!important;min-height:0!important;margin:0!important;
+}
+@media(max-width:1180px){
+ body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tools"] .update-live-card-list{grid-template-columns:1fr!important}
+}
+
+/* V7.6.14 — PRESENTATION MODE READABILITY + UTC CENTER-COLUMN PARITY */
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-presentation{
+  grid-template-rows:minmax(250px,36vh) 108px minmax(0,1fr) 58px!important;
+  gap:7px!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-hero{height:100%!important;min-height:250px!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-hero-metric{padding:12px 20px 14px!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-hero-metric small{font-size:clamp(31px,2.05vw,43px)!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-hero-metric strong{font-size:clamp(128px,8.4vw,176px)!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-hero-metric .hero-progress .track{
+  height:30px!important;min-height:30px!important;border-radius:16px!important;position:relative!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-hero-metric .hero-progress .bar-value{
+  position:absolute!important;inset:0!important;display:flex!important;align-items:center!important;justify-content:center!important;
+  font-size:clamp(15px,1.05vw,22px)!important;font-weight:1000!important;color:#fff!important;line-height:1!important;z-index:3!important;
+  text-shadow:0 1px 2px #000!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-live-panel{height:108px!important;min-height:108px!important;max-height:108px!important;padding:5px 8px!important;display:block!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-live-panel .summary-grid{height:96px!important;min-height:96px!important;gap:5px!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-live-panel .summary-box{height:96px!important;min-height:96px!important;padding:5px 3px!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-live-panel .summary-box span{font-size:clamp(11px,.8vw,16px)!important;line-height:1.05!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-live-panel .summary-box b{font-size:clamp(26px,2vw,40px)!important;line-height:1!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526 .family-matrix.header>b{font-size:clamp(13px,.9vw,18px)!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526 .family-cell.name span{font-size:clamp(17px,1.15vw,25px)!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526 .family-cell:not(.name){font-size:clamp(17px,1.15vw,25px)!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526 .family-progress{padding:3px 8px!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526 .family-progress .track{
+  width:100%!important;height:17px!important;min-height:17px!important;border-radius:10px!important;position:relative!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526 .family-progress .track>span{
+  position:absolute!important;inset:0!important;display:flex!important;align-items:center!important;justify-content:center!important;
+  font-size:clamp(10px,.72vw,15px)!important;font-weight:1000!important;color:#fff!important;z-index:3!important;text-shadow:0 1px 2px #000!important;
+}
+
+/* Presentation UTC: countdown follows the same left-aligned section rhythm as every other middle-column section. */
+html body.presentation-mode[data-center="operations"][data-sub="live"] .utc-card.utc-v6538 .utc-status{
+  display:grid!important;grid-template-rows:1.18fr .72fr .72fr 1.05fr 1.18fr 1.05fr!important;min-height:0!important;height:100%!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .utc-card.utc-v6538 .utc-status>.utc-countdown,
+html body.presentation-mode[data-center="operations"][data-sub="live"] .utc-card.utc-v6538 .utc-status>.utc-status-section{
+  min-height:0!important;height:auto!important;margin:0!important;padding:10px 14px!important;box-sizing:border-box!important;
+  display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;text-align:left!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .utc-card.utc-v6538 .utc-status>.utc-countdown{
+  grid-template-rows:none!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .utc-card.utc-v6538 .utc-countdown .utc-kicker,
+html body.presentation-mode[data-center="operations"][data-sub="live"] .utc-card.utc-v6538 .utc-countdown-big,
+html body.presentation-mode[data-center="operations"][data-sub="live"] .utc-card.utc-v6538 .utc-countdown-date{
+  width:100%!important;text-align:left!important;align-self:flex-start!important;justify-content:flex-start!important;margin-left:0!important;margin-right:0!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .utc-card.utc-v6538 .utc-countdown-big{font-size:clamp(38px,3.25vw,62px)!important;line-height:.92!important;margin:5px 0 8px!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .utc-card.utc-v6538 .utc-countdown-date{height:auto!important;min-height:0!important;line-height:1.05!important}
+
+/* Right column: Packing / Shipping is final, so no trailing divider below it. */
+html body .utc-card.utc-v6538 .utc-progress-list>.utc-progress-quick:last-child,
+html body .utc-card.utc-v6538 .utc-progress-list>.utc-progress-quick:last-child>.progress-item{
+  border-bottom:0!important;box-shadow:none!important;
+}
