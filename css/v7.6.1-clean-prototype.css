@@ -4939,3 +4939,44 @@ html body[data-center="operations"][data-sub="summary"] .family-progress .track{
 html body[data-center="operations"][data-sub="summary"] .family-progress .labeled-track>span{font-size:clamp(10px,.8vw,15px)!important;}
 html body[data-center="operations"][data-sub="summary"] .reveal-btn.locked{background:#2b2038!important;border-color:#7447a5!important;color:#c7a9ed!important;}
 html body[data-center="operations"][data-sub="summary"] .reveal-btn.unlocked{background:#173d29!important;border-color:#00e783!important;}
+
+/* =========================================================
+   V7.6.16 — GLOBAL STICKY COMMAND SHELL HARD LOCK
+   The complete shell (title/KLA, center nav, alerts, page nav/actions)
+   sticks as one unit. Page content alone scrolls beneath it.
+   ========================================================= */
+html body:not(.presentation-mode):not(.screenshot-mode){overflow-y:auto!important;}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{
+  overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .sticky-shell{
+  position:-webkit-sticky!important;
+  position:sticky!important;
+  top:0!important;
+  left:auto!important;
+  right:auto!important;
+  z-index:2147483000!important;
+  width:100%!important;
+  overflow:visible!important;
+  isolation:isolate!important;
+  transform:none!important;
+  contain:none!important;
+  background:#02080d!important;
+  box-shadow:0 7px 18px rgba(0,0,0,.82)!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .body-shell,
+html body:not(.presentation-mode):not(.screenshot-mode) .body-workspace{
+  overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .prototype-header,
+html body:not(.presentation-mode):not(.screenshot-mode) .main-nav,
+html body:not(.presentation-mode):not(.screenshot-mode) .status-stack,
+html body:not(.presentation-mode):not(.screenshot-mode) .pagebar{
+  position:relative!important;
+  z-index:1!important;
+  background-color:#02080d!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .tool-section,
+html body:not(.presentation-mode):not(.screenshot-mode) [id^="tool-type-"]{
+  scroll-margin-top:calc(var(--sticky-shell-height,270px) + 10px)!important;
+}
