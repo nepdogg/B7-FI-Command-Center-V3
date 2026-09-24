@@ -1,20 +1,20 @@
-B7 FI COMMAND CENTER — V7.6.21
-Build: 20260923-V7.6.21-RESPONSIVE-SUMMARY-LIVE-PARITY
+B7 FI COMMAND CENTER — V7.6.22
+Build: 20260923-V7.6.22-SUMMARY-DYNAMIC-FOOTER
 
-V7.6.21 CHANGES
-- Restored equal 50/50 Live Operations carousel sizing so Quarter Summary and Universal Tool Card fit without clipping.
-- Restored dynamic Quarter Summary family-row sizing so all active tool types remain visible above the footer.
-- Centered Quarter Summary column headings and added responsive one-line heading sizing.
-- Made the Status carousel Quarter Summary scale as a complete board for its smaller viewport.
-- Preserved/forced the two large progress-bar messages above the progress fill in normal, carousel, and Presentation views.
-- Added dynamic urgency treatment to the two large Quarter Summary boxes using the existing tools-left/days-left logic.
-- Widened the KLA/user-presence center header section and enlarged the KLA+ logo while keeping four badges inside the border.
-- Preserved V7.6.20 Tool UTID custom dropdown and prior multi-user synchronization changes.
+V7.6.22 CHANGES
+- Quarter Summary top progress-bar fill now follows the same dynamic urgency state as the large hero box. With 8 tools left and 7 days remaining, the quarter-level bars use the critical red treatment instead of healthy green.
+- Presentation Mode fleet rows remain fully dynamic: fewer tool families expand to fill the available table space; more families compress so every family remains visible on one screen.
+- Normal Quarter Summary is now intentionally taller and scrollable rather than clipping the last tool-family row.
+- Normal Quarter Summary gives more vertical space to the two large hero boxes and slightly less to the small summary strip.
+- Every normal-page family row must render completely; the footer no longer covers the last row.
+- Footer redesigned around purpose rather than equal widths: compact Administration navigation, Multi-User connection state, a larger Command Center Activity area, and Last Sync.
+- Multi-User and Last Sync remain separate because connection state and data freshness are independent.
+- Preserved V7.6.21 responsive Quarter Summary, Live Operations parity, KLA presence panel, Tool UTID dropdown, and prior multi-user synchronization changes.
 
 TEST FOCUS
-1. Live Operations: verify both carousel panels are equal size and fully visible.
-2. Quarter Summary normal page: verify every tool-family row is visible and column headings are centered.
-3. Status carousel Quarter Summary: verify top boxes, bar text, all rows, and one-line headings fit.
-4. Presentation Mode: verify both hero progress bars show both messages and urgency coloring.
-5. Header: verify four user badges fit and the larger KLA+ logo fills the center module cleanly.
+1. Quarter Summary Presentation Mode: confirm critical hero bars are red and all family rows dynamically fill the available height.
+2. Reduce the number of tool families and confirm remaining family rows grow to use the space.
+3. Normal Quarter Summary: confirm the page can scroll and every family row, including the final row, is fully visible.
+4. Confirm the two normal-page hero boxes have improved vertical spacing.
+5. Footer: confirm compact ADMIN, Multi-User status, wide Activity, and Last Sync are all visible and balanced.
 6. Continue two-laptop Add / Update / Delete shared-mode testing.

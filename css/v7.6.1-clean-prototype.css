@@ -5226,3 +5226,48 @@ body[data-center="operations"] .quarter-summary-presentation .hero-progress .tra
 .quarter-hero-metric.urgency-warning strong,.quarter-hero-metric.urgency-warning small{color:#ffad33!important}
 .quarter-hero-metric.urgency-critical strong,.quarter-hero-metric.urgency-critical small{color:#ff3158!important;text-shadow:0 0 10px rgba(255,23,72,.25)!important}
 .quarter-hero-metric.urgency-complete strong,.quarter-hero-metric.urgency-complete small{color:#00e783!important}
+
+/* V7.6.22 — Quarter Summary final responsive pass + information-first footer */
+/* Quarter-level progress fill follows the same urgency state as its hero box. */
+body[data-center="operations"] .quarter-hero-metric.urgency-good .hero-progress .fill,
+body[data-center="operations"] .quarter-hero-metric.urgency-complete .hero-progress .fill{background:#00e783!important}
+body[data-center="operations"] .quarter-hero-metric.urgency-caution .hero-progress .fill{background:#ffd000!important}
+body[data-center="operations"] .quarter-hero-metric.urgency-warning .hero-progress .fill{background:#ff8a00!important}
+body[data-center="operations"] .quarter-hero-metric.urgency-critical .hero-progress .fill{background:#ff1748!important;box-shadow:0 0 12px rgba(255,23,72,.35)!important}
+
+/* Presentation Mode remains a one-screen wallboard. Family rows consume all remaining height dynamically. */
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-presentation{height:100vh!important;min-height:0!important;display:grid!important;grid-template-rows:minmax(0,36fr) minmax(0,16fr) minmax(0,42fr) 58px!important;gap:8px!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-family-wrap,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-rows-scroll{height:100%!important;min-height:0!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-rows-scroll{display:grid!important;grid-template-rows:repeat(var(--family-count,9),minmax(0,1fr))!important;gap:3px!important;align-content:stretch!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-rows-scroll>.family-matrix{height:100%!important;min-height:0!important}
+
+/* Normal Quarter Summary prioritizes full-size readability. It may scroll, but it may never clip a family row. */
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .body-workspace{overflow-y:auto!important;overflow-x:hidden!important;display:block!important}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] #app{height:auto!important;min-height:100%!important;overflow:visible!important;display:block!important}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-master-viewport{height:auto!important;min-height:720px!important;overflow:visible!important;padding-bottom:10px!important}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-master{height:auto!important;min-height:720px!important;overflow:visible!important;display:grid!important;grid-template-rows:250px 86px minmax(330px,auto)!important;gap:7px!important;padding:6px!important}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-hero{min-height:250px!important}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-hero-metric{min-height:0!important;padding:10px 16px 12px!important}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-hero-metric strong{font-size:clamp(92px,9vw,142px)!important;line-height:.82!important}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-live-panel{height:86px!important;min-height:86px!important;padding:3px 5px!important;grid-template-rows:1fr!important}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-live-panel .summary-grid{height:100%!important;min-height:0!important}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-family-wrap{height:auto!important;min-height:330px!important;overflow:visible!important}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .family-panel-v526{height:auto!important;min-height:330px!important;overflow:visible!important;grid-template-rows:28px auto!important}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .family-rows-scroll{height:auto!important;min-height:300px!important;overflow:visible!important;display:grid!important;grid-template-rows:repeat(var(--family-count,9),minmax(32px,1fr))!important;gap:3px!important;padding:2px 0 8px!important}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .family-rows-scroll>.family-matrix{height:auto!important;min-height:32px!important}
+
+/* Footer: compact navigation, then three live-information zones. */
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-row{grid-template-columns:minmax(110px,11fr) minmax(220px,25fr) minmax(320px,42fr) minmax(180px,22fr)!important}
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-admin{grid-column:1!important;grid-row:1!important;gap:5px!important;padding:0 6px!important}
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-admin .footer-icon{font-size:13px!important}
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer #adminButton{font-size:8px!important;padding:0 5px!important;width:auto!important;max-width:100%!important}
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-status{display:flex!important;grid-column:2!important;grid-row:1!important}
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-activity{grid-column:3!important;grid-row:1!important}
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-row>div:last-of-type{grid-column:4!important;grid-row:1!important}
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerModeCenter{display:flex!important}
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-copy{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;line-height:1.05!important}
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-mode-copy small{font-size:7px!important;margin-top:2px!important}
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-activity .footer-data{font-size:clamp(7px,.58vw,10px)!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+@media(max-width:1150px){body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-row{grid-template-columns:10fr 26fr 42fr 22fr!important}.app-footer #adminButton{font-size:7px!important}}
