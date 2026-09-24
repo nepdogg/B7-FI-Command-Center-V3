@@ -80,7 +80,25 @@ async function loadSharedScenario(localState){requireToolDataColumn();await refr
   // Repair legacy one-row records whose Tool Data is valid but Title was left blank.
   for(const it of items){let t=parseToolData(it);if(t&&!titleOf(it).startsWith(TOOL_PREFIX)){let b={};setField(b,'Title',TOOL_PREFIX+String(t.id));if(Object.keys(b).length)await patchRow(it.id,b)}}
   for(const t of localState.tools||[])if(!have.has(String(t.id)))await upsertTool(t);await refreshAllItems();sharedTools=decodeSharedTools();let out=JSON.parse(JSON.stringify(localState));out.environment='SCENARIO TEST';out.tools=sharedTools;lastSharedState=JSON.parse(JSON.stringify(out));return out}
-async function syncChangedTools(nextState){if(!sharedActive||!list)return;requireToolDataColumn();let prev=new Map((lastSharedState?.tools||[]).map(t=>[String(t.id),JSON.stringify(t)]));let changed=(nextState.tools||[]).filter(t=>prev.get(String(t.id))!==JSON.stringify(t));for(const t of changed)await upsertTool(t);await refreshAllItems();lastSharedState=JSON.parse(JSON.stringify(nextState));updateFooter('SCENARIO TEST')}
+async function syncChangedTools(nextState){
+  if(!sharedActive||!list)return;requireToolDataColumn();
+  let previousTools=(lastSharedState?.tools||[]), nextTools=(nextState.tools||[]);
+  let prev=new Map(previousTools.map(t=>[String(t.id),JSON.stringify(t)])), nextIds=new Set(nextTools.map(t=>String(t.id)));
+  // V7.6.18: shared DELETE is authoritative. Delete missing tool rows from Microsoft List
+  // before upserting changed/created tools, then verify by reading the List back.
+  await refreshAllItems();
+  for(const oldTool of previousTools){
+    let id=String(oldTool.id); if(nextIds.has(id))continue;
+    let matches=items.filter(it=>isToolRow(it)&&toolIdFromRow(it)===id);
+    for(const row of matches)await deleteRow(row.id);
+  }
+  let changed=nextTools.filter(t=>prev.get(String(t.id))!==JSON.stringify(t));
+  for(const t of changed)await upsertTool(t);
+  await refreshAllItems();
+  let verified=decodeSharedTools(), verifiedIds=new Set(verified.map(t=>String(t.id)));
+  for(const oldTool of previousTools)if(!nextIds.has(String(oldTool.id))&&verifiedIds.has(String(oldTool.id)))throw new Error('DELETE VERIFY FAILED — tool '+oldTool.id+' still exists in Microsoft List.');
+  let out=JSON.parse(JSON.stringify(nextState));out.tools=verified;lastSharedState=out;lastAutoSyncSignature=toolSignature(verified);updateFooter('SCENARIO TEST');
+}
 let syncChain=Promise.resolve();
 function queueStateSync(st,msg){let snap=JSON.parse(JSON.stringify(st));syncChain=syncChain.then(()=>syncChangedTools(snap)).catch(e=>{console.error(e);setFooterStatus('SCENARIO TEST · SYNC ERROR');status('SHARED SAVE FAILED — '+friendly(e),'err')})}
 function activeUserDetails(){return []}
@@ -88,10 +106,12 @@ function activeUsers(){return account?[String(account.name||account.username||''
 function setFooterStatus(txt){let e=document.querySelector('#sharedStatus');if(e)e.textContent=txt}
 function setModeIdentity(mode,connection){let shared=mode==='shared',connected=connection==='connected',connecting=connection==='connecting';let h=document.getElementById('headerModeCenter'),f=document.getElementById('footerModeCenter');for(const e of [h,f])if(e){e.classList.toggle('shared-connected',shared&&connected);e.classList.toggle('shared-connecting',shared&&connecting);e.classList.toggle('shared-disconnected',shared&&!connected&&!connecting);e.classList.toggle('local-mode',!shared)}let fl=document.getElementById('footerModeLabel'),fc=document.getElementById('footerConnectionLabel');if(fl)fl.textContent=shared?'MULTI-USER MODE':'LOCAL PRODUCTION';let txt=shared?(connected?'LIST CONNECTED':connecting?'CONNECTING TO LIST':'LIST DISCONNECTED'):'LOCAL DATA';if(fc)fc.textContent=txt}
 function renderPresenceBadges(){
-  const host=document.querySelector('#presenceBadges');if(!host)return;
-  let names=activeUsers().filter(Boolean).slice(0,4);
-  while(names.length<4)names.push('');
-  host.innerHTML=names.map((n,i)=>`<button type="button" class="presence-badge ${n&&sharedActive?'active':''}" data-presence-slot="${i+1}">${n?String(n).split(/\s+/)[0].toUpperCase():'—'}</button>`).join('');
+  let names=activeUsers().filter(Boolean).slice(0,4);while(names.length<4)names.push('');
+  let badge=(n,i)=>`<button type="button" class="kla-presence-badge ${n&&sharedActive?'active':''}" data-presence-slot="${i+1}" title="${n||'Available user slot'}">${n?String(n).split(/\s+/)[0].toUpperCase():'—'}</button>`;
+  let l=document.querySelector('#klaUsersLeft'),r=document.querySelector('#klaUsersRight');if(l)l.innerHTML=badge(names[0],1)+badge(names[1],2);if(r)r.innerHTML=badge(names[2],3)+badge(names[3],4);
+}
+function activity(msg,type='ok'){
+  let e=document.querySelector('#footerActivity');if(!e)return;let who=account?String(account.name||account.username||'').split(/\s+/)[0].toUpperCase():'';let tm=new Date().toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});e.textContent=`${type==='err'?'✕':'✓'} ${msg}${who?' · '+who:''} · ${tm}`;e.classList.toggle('activity-error',type==='err');
 }
 function updateFooter(env){
   let au=document.querySelector('#activeUsers'),health=document.querySelector('#footerDataHealth'),sync=document.querySelector('#footerLastSync');
@@ -141,9 +161,10 @@ async function autoSync(){
     updateFooter('SCENARIO TEST');
   }catch(e){setFooterStatus('LIST CONNECTED · SYNC RETRYING');console.warn('B7 auto sync',e)}finally{autoSyncBusy=false}
 }
-function bindHeaderLogin(){let h=document.getElementById('headerModeCenter');if(!h)return;h.setAttribute('role','button');h.setAttribute('tabindex','0');h.title='KLA MULTI-USER SIGN IN / CONNECTION';let go=()=>{if(sharedActive){autoSync();return}oneClickConnect().catch(()=>{})};h.onclick=go;h.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}}}
-window.B7Shared={enterScenario,leaveScenario,oneClickConnect,autoSync,queueStateSync,isActive:()=>sharedActive,updateFooter,resetSharedScenario,clearEntireList,refreshScenario,showActiveUsers,activeUsers,exportSharedBackup,restoreSharedBackup,replaceSharedScenario};
-setInterval(autoSync,15000);
+function showConnectionPanel(){let who=account?`${account.name||''}${account.username?' · '+account.username:''}`:'Not signed in';let listText=list?(CFG.listName+' · CONNECTED'):(CFG.listName+' · DISCONNECTED');alert(`KLA MULTI-USER CONNECTION\n\nUSER: ${who}\nLIST: ${listText}\nMODE: ${sharedActive?'MULTI-USER MODE':'LOCAL PRODUCTION'}\n\nAutomatic shared synchronization: ${sharedActive?'ACTIVE (3 second check)':'OFF'}`)}
+function bindHeaderLogin(){let h=document.getElementById('headerModeCenter');if(!h)return;h.setAttribute('role','button');h.setAttribute('tabindex','0');h.title='KLA MULTI-USER SIGN IN / CONNECTION';let go=()=>{if(sharedActive){showConnectionPanel();return}oneClickConnect().catch(()=>{})};h.onclick=go;h.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}}}
+window.B7Shared={enterScenario,leaveScenario,oneClickConnect,autoSync,queueStateSync,isActive:()=>sharedActive,updateFooter,activity,resetSharedScenario,clearEntireList,refreshScenario,showActiveUsers,activeUsers,exportSharedBackup,restoreSharedBackup,replaceSharedScenario};
+setInterval(autoSync,3000);
 
 document.addEventListener('DOMContentLoaded',async()=>{inject();bindHeaderLogin();document.querySelector('#activeUsers')?.addEventListener('click',showActiveUsers);try{await initMsal();let resume=localStorage.getItem(SHARED_MODE_KEY)==='1';if(resume){setModeIdentity('shared','connecting');if(account){await connect();sharedActive=true;let seed={environment:'SCENARIO TEST',tools:[]};await refreshAllItems();let tools=decodeSharedTools();if(items.length&&tools.length===0)throw new Error(`SHARED LOAD BLOCKED — ${items.length} List row(s) were found but none contained valid Tool Data. Local cards were retained.`);seed.tools=tools;lastSharedState=JSON.parse(JSON.stringify(seed));updateFooter('SCENARIO TEST');if(window.B7ApplySharedScenario)window.B7ApplySharedScenario(seed);status(`PASS — Multi-User session restored after refresh · ${tools.length} tool(s) loaded from Microsoft List.`,'ok')}else{updateFooter('SCENARIO TEST');status('MULTI-USER SESSION PAUSED — Sign in to reload shared tools from Microsoft List.','err')}}else{updateFooter('PRODUCTION');if(account)status('Existing Microsoft sign-in detected. Local data remains active until Shared Multi-User is started.','ok')}}catch(e){setModeIdentity('shared','offline');status('Authentication / shared restore warning — '+friendly(e),'err')}});
 })();

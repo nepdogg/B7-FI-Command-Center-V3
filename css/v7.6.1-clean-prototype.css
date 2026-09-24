@@ -5042,3 +5042,12 @@ html body .mystery-celebration img{width:100%!important;height:100%!important;ma
 html body .mystery-celebration .raiders-call{font-size:clamp(28px,2.6vw,50px)!important;margin:0!important;}
 html body .mystery-celebration h2{font-size:clamp(20px,1.7vw,34px)!important;margin:0!important;}
 html body .mystery-celebration p{font-size:clamp(14px,1.05vw,20px)!important;margin:0!important;}
+
+/* V7.6.18 — header presence + activity footer */
+.prototype-header-center .kla-presence-box{display:grid!important;grid-template-columns:minmax(56px,1fr) auto minmax(56px,1fr)!important;align-items:center!important;gap:5px!important;padding:3px 6px!important;overflow:hidden!important}
+.prototype-header-center .kla-user-side{display:grid;grid-template-rows:1fr 1fr;gap:2px;min-width:0}
+.prototype-header-center .kla-presence-badge{height:17px;min-width:0;padding:0 4px;border:1px solid #24536a;border-radius:3px;background:#03101a;color:#607783;font-size:7px;font-weight:950;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.prototype-header-center .kla-presence-badge.active{border-color:#00d879;background:#05271b;color:#fff;box-shadow:0 0 5px rgba(0,216,121,.35)}
+.prototype-header-center .kla-presence-box>img{max-width:88px!important;max-height:44px!important;justify-self:center}
+.app-footer .footer-system-row{grid-template-columns:1.05fr 1.65fr 1.2fr 1fr!important}
+.app-footer .footer-activity{min-width:0!important}.app-footer #footerActivity{font-size:10px!important;line-height:1.15!important;text-align:center!important;white-space:normal!important}.app-footer #footerActivity.activity-error{color:#ffd1da!important}

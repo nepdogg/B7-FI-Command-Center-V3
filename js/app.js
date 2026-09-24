@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='7.6.15', BUILD='20260922-V7.6.16-UTC-STATUS-SUMMARY-PARITY';
+const VERSION='7.6.18', BUILD='20260923-V7.6.18-MULTIUSER-ACTIVITY-DELETE-FIX';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -206,7 +206,7 @@ function loadSavedRoute(){try{let r=JSON.parse(localStorage.getItem(ROUTE_KEY)||
 function persistRoute(){try{localStorage.setItem(ROUTE_KEY,JSON.stringify({center:route.center,sub:route.sub,toolId:route.toolId||''}))}catch(e){}}
 let state=load();let route=loadSavedRoute(), mode='view', toolEditorMode='view', draft=null, selected=null, dirty=false, meetingDraft=null, dailyContext='weekday', returnRoute=null, liveIndex=0, livePaused=false, snapshotIndex=0, snapshotPaused=false;
 let screenshotRestore=null, presentationRestore=null, presentationActive=false, presentationEditorActive=false, presentationToolOverlayActive=false, presentationToolOverlayId='';
-function saveState(msg='CHANGES SAVED'){try{state.version=VERSION;state.audit.unshift({at:nowISO(),message:msg});let storageKey=state.environment==='PRODUCTION'?PROD_KEY:KEY;localStorage.setItem(storageKey,JSON.stringify(state));dirty=false;toast('✓ SAVED SUCCESSFULLY · '+msg);if(state.environment==='SCENARIO TEST'&&window.B7Shared?.isActive?.())window.B7Shared.queueStateSync(state,msg);return true}catch(err){toast('✕ SAVE FAILED · '+err.message);return false}}
+function saveState(msg='CHANGES SAVED'){try{state.version=VERSION;state.audit.unshift({at:nowISO(),message:msg});let storageKey=state.environment==='PRODUCTION'?PROD_KEY:KEY;localStorage.setItem(storageKey,JSON.stringify(state));dirty=false;if(window.B7Shared?.activity)window.B7Shared.activity(msg,'ok');if(state.environment==='SCENARIO TEST'&&window.B7Shared?.isActive?.())window.B7Shared.queueStateSync(state,msg);return true}catch(err){if(window.B7Shared?.activity)window.B7Shared.activity('SAVE FAILED · '+err.message,'err');else toast('✕ SAVE FAILED · '+err.message);return false}}
 function toast(t){let e=document.querySelector('#toast');e.textContent=t;e.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('show'),2400)}
 function fi200Started(t){
   if(['Powered Down','Packing','Shipped'].includes(String(t.toolStatus||'')))return true;
