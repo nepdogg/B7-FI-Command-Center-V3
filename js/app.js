@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='7.6.19', BUILD='20260923-V7.6.19-PRESENTATION-FLEET-NAV-PRESENCE';
+const VERSION='7.6.20', BUILD='20260923-V7.6.20-NAV-HEADER-PROGRESS-READABILITY';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -495,7 +495,7 @@ function scopedToolForm(t,i){
   h=h.replace(/id="addNc"/g,`data-add-nc-tool="${esc(t.id)}"`);
   h=h.replace(/id="ncList"/g,`id="ncList-${i}"`);
   h=h.replace('class="panel tool-editor"',`class="panel tool-editor universal-all-tool-editor" data-tool-prefix="${prefix}"`);
-  return `<article class="daily-card universal-editor-card" data-daily="${esc(t.id)}" data-prefix="${prefix}"><div class="daily-order auto-order"><b>${i+1}</b><small>AUTO</small></div><div class="daily-editor-body">${h}</div></article>`;
+  return `<article id="daily-tool-${String(t.id||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}" class="daily-card universal-editor-card" data-daily="${esc(t.id)}" data-prefix="${prefix}"><div class="daily-order auto-order"><b>${i+1}</b><small>AUTO</small></div><div class="daily-editor-body">${h}</div></article>`;
 }
 function dailyCard(t,i,total){return scopedToolForm(t,i)}
 
@@ -562,8 +562,8 @@ function renderActions(){
   let normal=actionsFor().map(actionButtonHtml).join('');
   if(route.center==='operations'&&route.sub==='daily'&&mode==='edit'){
     let tools=updateCommandCenterTools();
-    let opts=tools.map(t=>`<option value="${esc(t.id)}">${esc(t.id)}</option>`).join('');
-    host.innerHTML=`<label class="nav70-tool-utid-select" title="Jump directly to a tool in Update Command Center"><select aria-label="Tool UTID" onchange="return window.B7Nav70.jumpUTID(this)"><option value="" selected>TOOL UTID ▼</option>${opts}</select></label>${normal}`;
+    let utidMenu=tools.length?`<div class="tool-type-menu nav69-tool-type nav767-tool-type nav7620-utid" data-tool-type-menu><button type="button" class="tool-type-menu-button" data-tool-type-toggle aria-haspopup="true" aria-expanded="false">TOOL UTID <span class="tool-type-chevron">▼</span></button><div class="tool-type-dropdown" role="menu">${tools.map(t=>{let id='daily-tool-'+String(t.id||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');return `<button type="button" role="menuitem" data-tool-type-target="${esc(id)}">${esc(t.id)}${t.codename?' — '+esc(String(t.codename).toUpperCase()):''}</button>`}).join('')}</div></div>`:'';
+    host.innerHTML=`${utidMenu}${normal}`;
     return;
   }
   if(route.center==='operations'&&route.sub==='tools'&&mode==='view'){
@@ -733,8 +733,8 @@ function quarterSummaryView(presentation=false){
       vars=`--family-count:${familyCount};--summary-hero-height:${heroHeight}px;--family-name-size:${familyFont}px;--family-number-size:${familyNumber}px;--family-image-height:${familyImage}px;--family-reveal-size:${revealSize}px;--summary-hero-number:${heroNumber}px`;
   let shippedPct=a.length?Math.round(sh/a.length*100):0;
   let core=`<section class="quarter-summary-hero">
-      <div class="quarter-hero-metric tools-left urgency-${quarterToolUrgency(left,qt.remaining)}"><small>${esc(state.quarter)} TOOLS LEFT TO SHIP</small><strong>${left}</strong><div class="hero-progress"><div class="track"><div class="fill hero-tools-fill" style="width:${shippedPct}%"></div><span class="bar-value">${sh} OF ${a.length} SHIPPED · ${left} TOOL${left===1?'':'S'} LEFT</span></div></div></div>
-      <div class="quarter-hero-metric days-left urgency-${quarterDayUrgency(qt.remaining)}"><small>${esc(state.quarter)} DAYS REMAINING</small><strong>${esc(String(qt.remaining))}</strong><div class="hero-progress"><div class="track"><div class="fill quarter-days" style="width:${qt.pct}%"></div><span class="bar-value">DAY ${qt.elapsed} OF ${qt.total} · ${qt.remaining} DAY${qt.remaining===1?'':'S'} LEFT</span></div></div></div>
+      <div class="quarter-hero-metric tools-left urgency-${quarterToolUrgency(left,qt.remaining)}"><small>${esc(state.quarter)} TOOLS LEFT TO SHIP</small><strong>${left}</strong><div class="hero-progress"><div class="track"><div class="fill hero-tools-fill" style="width:${shippedPct}%"></div><span class="bar-value"><span>${sh} OF ${a.length} TOOLS SHIPPED</span><i aria-hidden="true"></i><span>${left} TOOL${left===1?'':'S'} LEFT TO SHIP</span></span></div></div></div>
+      <div class="quarter-hero-metric days-left urgency-${quarterDayUrgency(qt.remaining)}"><small>${esc(state.quarter)} DAYS REMAINING</small><strong>${esc(String(qt.remaining))}</strong><div class="hero-progress"><div class="track"><div class="fill quarter-days" style="width:${qt.pct}%"></div><span class="bar-value"><span>DAY ${qt.elapsed} OF ${qt.total}</span><i aria-hidden="true"></i><span>${qt.remaining} DAY${qt.remaining===1?'':'S'} LEFT</span></span></div></div></div>
     </section>
     ${quarterPanel()}
     <section class="quarter-summary-family-wrap">${familyPanel()}</section>`;

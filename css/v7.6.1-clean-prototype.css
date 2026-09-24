@@ -5104,3 +5104,57 @@ html body.presentation-mode[data-center="operations"][data-sub="summary"] .quart
 html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-hero-metric .hero-progress .track{height:32px!important;min-height:32px!important;border-radius:17px!important}
 html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-hero-metric .hero-progress .fill{border-radius:16px!important}
 html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-hero-metric .hero-progress .bar-value{font-size:clamp(15px,1.12vw,22px)!important;font-weight:950!important}
+
+/* V7.6.20 — true Tool UTID custom-menu parity, KLA presence fit, Quarter Summary progress readability */
+/* Update Command Center UTID navigation is now the same custom component as Tool Type. */
+html body[data-center="operations"][data-sub="daily"] #pageActions>.nav7620-utid{
+  position:relative!important;display:flex!important;align-items:stretch!important;width:142px!important;min-width:142px!important;height:100%!important;
+  margin:0!important;padding:0!important;border:0!important;background:transparent!important;overflow:visible!important;cursor:pointer!important;
+}
+html body[data-center="operations"][data-sub="daily"] #pageActions>.nav7620-utid>.tool-type-menu-button{
+  width:100%!important;height:100%!important;min-width:0!important;margin:0!important;padding:0 10px!important;border:1px solid #075d87!important;border-radius:0!important;
+  background:#06131d!important;color:#fff!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;
+  font-size:9px!important;font-weight:950!important;line-height:1!important;white-space:nowrap!important;cursor:pointer!important;
+}
+html body[data-center="operations"][data-sub="daily"] #pageActions>.nav7620-utid:hover>.tool-type-menu-button,
+html body[data-center="operations"][data-sub="daily"] #pageActions>.nav7620-utid.open>.tool-type-menu-button{
+  background:rgba(var(--accent-rgb),.56)!important;border-color:var(--accent)!important;box-shadow:inset 0 -4px var(--accent),inset 0 0 0 1px rgba(255,255,255,.28)!important;
+}
+html body[data-center="operations"][data-sub="daily"] #pageActions>.nav7620-utid.open .tool-type-chevron{transform:rotate(180deg)!important}
+html body[data-center="operations"][data-sub="daily"] #pageActions>.nav7620-utid>.tool-type-dropdown{
+  display:none!important;position:fixed!important;left:var(--tool-menu-left)!important;top:var(--tool-menu-top)!important;width:var(--tool-menu-width)!important;
+  min-width:190px!important;max-width:290px!important;max-height:min(62vh,520px)!important;overflow-y:auto!important;padding:3px!important;border:1px solid var(--accent)!important;
+  background:#03101c!important;box-shadow:0 9px 20px rgba(0,0,0,.68)!important;z-index:20000!important;
+}
+html body[data-center="operations"][data-sub="daily"] #pageActions>.nav7620-utid.open>.tool-type-dropdown{display:grid!important}
+html body[data-center="operations"][data-sub="daily"] #pageActions>.nav7620-utid>.tool-type-dropdown>button{
+  width:100%!important;height:34px!important;margin:0!important;padding:0 12px!important;border:0!important;border-bottom:1px solid #1c4c69!important;border-radius:0!important;
+  background:#06131d!important;color:#fff!important;display:flex!important;align-items:center!important;justify-content:center!important;font-size:10px!important;font-weight:950!important;white-space:nowrap!important;cursor:pointer!important;
+}
+html body[data-center="operations"][data-sub="daily"] #pageActions>.nav7620-utid>.tool-type-dropdown>button:last-child{border-bottom:0!important}
+html body[data-center="operations"][data-sub="daily"] #pageActions>.nav7620-utid>.tool-type-dropdown>button:hover{background:rgba(var(--accent-rgb),.56)!important;box-shadow:inset 4px 0 var(--accent)!important}
+
+/* Fit all four presence badges fully inside the existing KLA border; enlarge logo without increasing header height. */
+.prototype-header-center{overflow:hidden!important}
+.prototype-header-center .kla-presence-box{box-sizing:border-box!important;width:100%!important;height:100%!important;min-height:0!important;padding:3px 7px!important;gap:7px!important;overflow:hidden!important;align-items:stretch!important}
+.prototype-header-center .kla-user-side{box-sizing:border-box!important;height:100%!important;min-height:0!important;grid-template-rows:minmax(0,1fr) minmax(0,1fr)!important;gap:3px!important;overflow:hidden!important}
+.prototype-header-center .kla-presence-badge{box-sizing:border-box!important;width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;padding:0 5px!important;font-size:8px!important;line-height:1!important;overflow:hidden!important}
+.prototype-header-center .kla-presence-box>img{box-sizing:border-box!important;width:auto!important;height:88%!important;max-width:124px!important;max-height:100%!important;align-self:center!important;object-fit:contain!important}
+
+/* Hero bars use two balanced message zones with a real visual separator. */
+html body[data-center="operations"][data-sub="summary"] .quarter-hero-metric .hero-progress .bar-value{
+  display:grid!important;grid-template-columns:minmax(0,1fr) 2px minmax(0,1fr)!important;align-items:center!important;justify-items:center!important;gap:clamp(12px,1.6vw,34px)!important;padding:0 clamp(16px,2vw,42px)!important;white-space:nowrap!important;
+}
+html body[data-center="operations"][data-sub="summary"] .quarter-hero-metric .hero-progress .bar-value>span{width:100%!important;text-align:center!important}
+html body[data-center="operations"][data-sub="summary"] .quarter-hero-metric .hero-progress .bar-value>i{display:block!important;width:2px!important;height:64%!important;background:rgba(255,255,255,.78)!important;box-shadow:0 0 4px rgba(0,0,0,.7)!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-hero-metric .hero-progress .track{height:36px!important;min-height:36px!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-hero-metric .hero-progress .bar-value{font-size:clamp(16px,1.18vw,23px)!important}
+
+/* Family shipping progress nearly fills each row for wallboard readability. */
+html body[data-center="operations"][data-sub="summary"] .family-cell.family-progress{padding:3px 8px!important;align-items:stretch!important}
+html body[data-center="operations"][data-sub="summary"] .family-cell.family-progress .track.labeled-track{height:100%!important;min-height:30px!important;max-height:none!important;border-radius:10px!important;align-self:stretch!important}
+html body[data-center="operations"][data-sub="summary"] .family-cell.family-progress .track.labeled-track .fill{border-radius:9px!important}
+html body[data-center="operations"][data-sub="summary"] .family-cell.family-progress .track.labeled-track>span{font-size:clamp(12px,.92vw,18px)!important;font-weight:950!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-cell.family-progress{padding:3px 7px!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-cell.family-progress .track.labeled-track{min-height:32px!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-cell.family-progress .track.labeled-track>span{font-size:clamp(13px,.98vw,19px)!important}
