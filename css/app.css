@@ -19125,3 +19125,108 @@ html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] 
  .app-footer .presence-badges{width:98vw!important;gap:4px!important;grid-template-columns:repeat(7,minmax(58px,1fr))!important}
  .app-footer .footer-system-row{height:36px!important;grid-template-columns:minmax(220px,1.4fr) .8fr .6fr .8fr .8fr 1fr!important}
 }
+
+/* =========================================================
+   V7.6.23 — PRESENTATION FIT + LOCKED UTC REFERENCE
+   2026-09-23
+   ========================================================= */
+/* Header connection panel: fit two stacked user badges at 100% browser zoom. */
+html body:not(.presentation-mode):not(.screenshot-mode) .hero{
+  grid-template-columns:minmax(0,1fr) minmax(420px,28vw) minmax(0,1fr)!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box{
+  width:100%!important;max-width:none!important;min-width:420px!important;height:64px!important;min-height:64px!important;
+  overflow:visible!important;padding:3px 10px!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box img{
+  height:50px!important;max-height:50px!important;width:auto!important;object-fit:contain!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box .header-user-stack,
+html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box .kla-user-stack{
+  height:56px!important;min-height:56px!important;overflow:visible!important;gap:4px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box .header-user-badge,
+html body:not(.presentation-mode):not(.screenshot-mode) .header-kla-box .kla-user-badge{
+  min-height:25px!important;height:25px!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+
+/* Normal Quarter Summary: content may grow/scroll; never sacrifice the final family row. */
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .body-workspace{overflow-y:auto!important;overflow-x:hidden!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] #app{height:auto!important;min-height:680px!important;overflow:visible!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-master-viewport{height:auto!important;min-height:680px!important;overflow:visible!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-master{height:auto!important;min-height:680px!important;grid-template-rows:minmax(250px,auto) 108px auto!important;overflow:visible!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-family-wrap,
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .family-panel-v526,
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .family-rows-scroll{height:auto!important;min-height:0!important;overflow:visible!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .family-rows-scroll{display:grid!important;grid-auto-rows:minmax(38px,auto)!important;gap:2px!important;}
+
+/* Remove the unnecessary outer box around the family matrix; retain row/cell divisions. */
+.quarter-summary-family-wrap,.family-panel-v526{border:0!important;outline:0!important;box-shadow:none!important;}
+
+/* Presentation Quarter Summary is a strict one-screen wallboard. */
+html body.presentation-mode[data-center="operations"][data-sub="summary"]{overflow:hidden!important;}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] #app{
+  height:100vh!important;min-height:0!important;overflow:hidden!important;padding:6px 8px!important;box-sizing:border-box!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-presentation{
+  height:100%!important;min-height:0!important;max-height:100%!important;overflow:hidden!important;
+  display:grid!important;grid-template-rows:minmax(300px,36%) 88px minmax(0,1fr) 52px!important;gap:6px!important;padding:0!important;box-sizing:border-box!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-family-wrap{
+  height:100%!important;min-height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526{
+  height:100%!important;min-height:0!important;display:grid!important;grid-template-rows:30px minmax(0,1fr)!important;overflow:hidden!important;margin:0!important;padding:0!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-rows-scroll{
+  height:100%!important;min-height:0!important;display:grid!important;grid-template-rows:repeat(var(--family-count,9),minmax(0,1fr))!important;
+  gap:2px!important;padding:0!important;margin:0!important;overflow:hidden!important;align-content:stretch!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-rows-scroll>.family-matrix{
+  height:100%!important;min-height:0!important;margin:0!important;overflow:hidden!important;align-self:stretch!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-switchbar{
+  height:52px!important;min-height:52px!important;margin:0!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+
+/* Presentation Universal Tool Card: one locked three-column geometry for every tool state. */
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app{
+  height:100vh!important;min-height:0!important;display:grid!important;grid-template-rows:minmax(0,1fr) 52px!important;gap:7px!important;overflow:hidden!important;padding:6px 8px!important;box-sizing:border-box!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only{
+  height:100%!important;min-height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only>.universal-card-host.live-panel{
+  height:100%!important;min-height:0!important;margin:0!important;padding:3px!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only .utc-card.utc-v6538{
+  width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;margin:0!important;padding:5px!important;
+  display:grid!important;grid-template-columns:33.5% 33.5% 33%!important;gap:8px!important;align-items:stretch!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only .utc-card.utc-v6538>.utc-column{
+  height:100%!important;min-height:0!important;max-height:none!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+/* Middle column follows the approved sample rhythm and keeps all six sections visible. */
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only .utc-status{
+  height:100%!important;min-height:0!important;display:grid!important;
+  grid-template-rows:minmax(118px,1.28fr) minmax(92px,.95fr) minmax(118px,1.18fr) minmax(105px,1.08fr) minmax(88px,.92fr)!important;
+  gap:0!important;overflow:hidden!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only .utc-status-section{
+  min-height:0!important;height:auto!important;overflow:hidden!important;margin:0!important;box-sizing:border-box!important;
+}
+/* Right progress column: distribute the approved sections evenly from top to bottom. */
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only .utc-progress{
+  height:100%!important;min-height:0!important;display:flex!important;flex-direction:column!important;overflow:hidden!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only .utc-progress-list{
+  flex:1 1 auto!important;height:100%!important;min-height:0!important;display:grid!important;grid-template-rows:repeat(9,minmax(0,1fr))!important;overflow:hidden!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only .utc-progress-list>.progress-item{
+  min-height:0!important;height:100%!important;margin:0!important;padding:5px 8px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;box-sizing:border-box!important;overflow:hidden!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only .utc-progress-list>.progress-item:last-child{border-bottom:0!important;}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-nav,
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-nav{
+  height:52px!important;min-height:52px!important;margin:0!important;overflow:hidden!important;box-sizing:border-box!important;
+}
