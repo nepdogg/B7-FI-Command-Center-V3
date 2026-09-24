@@ -5158,3 +5158,71 @@ html body[data-center="operations"][data-sub="summary"] .family-cell.family-prog
 html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-cell.family-progress{padding:3px 7px!important}
 html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-cell.family-progress .track.labeled-track{min-height:32px!important}
 html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-cell.family-progress .track.labeled-track>span{font-size:clamp(13px,.98vw,19px)!important}
+
+/* V7.6.21 — responsive Quarter Summary parity + balanced Live Operations + KLA presence geometry */
+/* Give the center connection module enough real width for four user badges and a full-height KLA mark. */
+body:not(.presentation-mode):not(.screenshot-mode) .prototype-header{grid-template-columns:minmax(0,39%) minmax(300px,22%) minmax(0,39%)!important}
+body:not(.presentation-mode):not(.screenshot-mode) .prototype-header-center .kla-presence-box{grid-template-columns:minmax(78px,1fr) minmax(128px,1.25fr) minmax(78px,1fr)!important;gap:9px!important;padding:3px 9px!important}
+body:not(.presentation-mode):not(.screenshot-mode) .prototype-header-center .kla-presence-box>img{height:96%!important;max-height:96%!important;max-width:158px!important;width:auto!important}
+body:not(.presentation-mode):not(.screenshot-mode) .prototype-header-center .kla-presence-badge{font-size:clamp(7px,.5vw,9px)!important;padding:0 6px!important}
+
+/* Live Operations returns to two equal, fully-contained carousel panels. */
+body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:8px!important;height:100%!important;min-height:0!important}
+body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel,
+body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel{height:100%!important;min-height:0!important;overflow:hidden!important}
+
+/* One responsive Quarter Summary geometry across page + status carousel. */
+.quarter-summary-master .family-panel-v526 .family-matrix.header>b{display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;white-space:nowrap!important;overflow:hidden!important;line-height:1!important;padding:0 2px!important;font-size:clamp(8px,.72vw,14px)!important}
+.quarter-summary-master .family-panel-v526 .family-matrix.header>b:first-child{justify-content:center!important}
+.quarter-summary-master .family-rows-scroll{grid-template-rows:repeat(var(--family-count,9),minmax(0,1fr))!important;height:100%!important;min-height:0!important;overflow:hidden!important;gap:2px!important;padding:2px 0!important}
+.quarter-summary-master .family-rows-scroll>.family-matrix{min-height:0!important;height:100%!important}
+.quarter-summary-master .family-cell,.quarter-summary-master .reveal-btn{min-height:0!important;height:100%!important}
+
+/* Normal Quarter Summary: preserve every family row above the footer. */
+body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-master{grid-template-rows:minmax(0,34fr) minmax(0,19fr) minmax(0,47fr)!important;gap:6px!important;padding:6px!important}
+body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-family-wrap,
+body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .family-panel-v526,
+body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .family-rows-scroll{height:100%!important;min-height:0!important;overflow:hidden!important}
+
+/* Status-carousel Quarter Summary: scale the whole board to the smaller host, not individual pieces into clipping. */
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-panel:has(.snapshot-quarter-summary),
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-panel:has(.snapshot-quarter-summary) .snapshot-body,
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary,
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-summary-master-viewport{height:100%!important;min-height:0!important;overflow:hidden!important;padding:0!important}
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-summary-master{grid-template-rows:minmax(0,34fr) minmax(0,19fr) minmax(0,47fr)!important;gap:4px!important;padding:4px!important}
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-summary-hero{gap:5px!important;min-height:0!important}
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-hero-metric{min-height:0!important;padding:5px 7px!important}
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-hero-metric small{font-size:clamp(12px,1.05vw,20px)!important;line-height:1.02!important;text-align:center!important;white-space:nowrap!important}
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-hero-metric strong{font-size:clamp(48px,5vw,86px)!important;line-height:.84!important}
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-hero-metric .hero-progress .track{height:22px!important;min-height:22px!important}
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-hero-metric .hero-progress .bar-value{font-size:clamp(8px,.62vw,12px)!important;gap:5px!important;padding:0 5px!important}
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-live-panel{min-height:0!important;height:100%!important;padding:3px 4px!important;display:block!important}
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-live-panel .summary-grid{height:100%!important;gap:2px!important}
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .summary-box span{font-size:clamp(6px,.48vw,9px)!important;white-space:nowrap!important}
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .summary-box b{font-size:clamp(14px,1.45vw,24px)!important}
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-panel-v526{grid-template-rows:18px minmax(0,1fr)!important}
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-panel-v526 .family-matrix.header>b{font-size:clamp(6px,.46vw,9px)!important;letter-spacing:-.15px!important}
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-cell{font-size:clamp(6px,.5vw,9px)!important}
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-cell.name span{font-size:clamp(7px,.58vw,10px)!important;white-space:nowrap!important}
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-tool-icon{max-height:20px!important;max-width:30px!important}
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-tool-icon img{max-height:18px!important;width:auto!important}
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-cell.family-progress{padding:1px 3px!important}
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-cell.family-progress .track.labeled-track{min-height:12px!important;height:72%!important;margin:0!important}
+body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-cell.family-progress .track.labeled-track>span{font-size:clamp(6px,.48vw,9px)!important}
+
+/* Hero progress text must remain above the fill in every Quarter Summary surface. */
+body[data-center="operations"] .quarter-summary-presentation .hero-progress .track{position:relative!important}
+body[data-center="operations"] .quarter-summary-presentation .hero-progress .track>.fill{position:absolute!important;left:0!important;top:0!important;bottom:0!important;z-index:1!important}
+body[data-center="operations"] .quarter-summary-presentation .hero-progress .track>.bar-value{position:absolute!important;inset:0!important;z-index:8!important;visibility:visible!important;opacity:1!important;color:#fff!important;display:grid!important;grid-template-columns:minmax(0,1fr) 2px minmax(0,1fr)!important}
+body[data-center="operations"] .quarter-summary-presentation .hero-progress .track>.bar-value>span{display:block!important;visibility:visible!important;opacity:1!important;overflow:hidden!important;text-overflow:clip!important;white-space:nowrap!important}
+
+/* Urgency is driven by the existing days/tools-vs-days logic in app.js. */
+.quarter-hero-metric.urgency-good{border-color:#00e783!important;box-shadow:inset 0 0 22px rgba(0,231,131,.08)!important}
+.quarter-hero-metric.urgency-caution{border-color:#ffd000!important;box-shadow:inset 0 0 26px rgba(255,208,0,.10)!important}
+.quarter-hero-metric.urgency-warning{border-color:#ff8a00!important;box-shadow:inset 0 0 28px rgba(255,138,0,.12)!important}
+.quarter-hero-metric.urgency-critical{border-color:#ff1748!important;box-shadow:inset 0 0 34px rgba(255,23,72,.17)!important}
+.quarter-hero-metric.urgency-complete{border-color:#00e783!important;box-shadow:inset 0 0 28px rgba(0,231,131,.15)!important}
+.quarter-hero-metric.urgency-caution strong,.quarter-hero-metric.urgency-caution small{color:#ffe45c!important}
+.quarter-hero-metric.urgency-warning strong,.quarter-hero-metric.urgency-warning small{color:#ffad33!important}
+.quarter-hero-metric.urgency-critical strong,.quarter-hero-metric.urgency-critical small{color:#ff3158!important;text-shadow:0 0 10px rgba(255,23,72,.25)!important}
+.quarter-hero-metric.urgency-complete strong,.quarter-hero-metric.urgency-complete small{color:#00e783!important}
