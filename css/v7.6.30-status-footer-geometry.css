@@ -1,0 +1,115 @@
+/* B7 FI Command Center V7.6.30 — status-bar containment + true 3-way footer */
+
+/* Keep every normal status row inside the Command Center canvas. */
+body:not(.presentation-mode):not(.screenshot-mode) .status-stack,
+body:not(.presentation-mode):not(.screenshot-mode) .status-stack .status-bar{
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  box-sizing:border-box!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .status-stack .status-bar{
+  grid-template-columns:minmax(150px,12%) minmax(0,1fr) minmax(150px,12%)!important;
+  overflow:hidden!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .status-stack .status-left,
+body:not(.presentation-mode):not(.screenshot-mode) .status-stack .status-message,
+body:not(.presentation-mode):not(.screenshot-mode) .status-stack .status-right{
+  min-width:0!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .status-stack .status-message{
+  white-space:nowrap!important;
+  text-overflow:ellipsis!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .status-stack .status-right{
+  width:auto!important;
+  padding:0 8px!important;
+  white-space:nowrap!important;
+  text-overflow:ellipsis!important;
+  justify-content:center!important;
+  text-align:center!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .command-center-activity-bar{
+  grid-template-columns:minmax(150px,12%) minmax(0,1fr) minmax(190px,16%)!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .command-center-activity-time{
+  font-size:clamp(8px,.72vw,12px)!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+/* Footer is exactly three equal cells: Admin | Last Activity | Last Sync. */
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer{
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row{
+  display:flex!important;
+  flex-flow:row nowrap!important;
+  align-items:stretch!important;
+  justify-content:stretch!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  height:100%!important;
+  margin:0!important;
+  padding:0!important;
+  gap:3px!important;
+  overflow:hidden!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row>.footer-system-cell{
+  display:flex!important;
+  flex:1 1 0!important;
+  width:0!important;
+  min-width:0!important;
+  max-width:none!important;
+  height:100%!important;
+  margin:0!important;
+  padding:0 10px!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+  grid-column:auto!important;
+  grid-row:auto!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer .footer-admin,
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer .footer-activity,
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer .footer-sync{
+  flex:1 1 0!important;
+  width:0!important;
+  min-width:0!important;
+  max-width:none!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer #adminButton,
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer #footerActivity,
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer #footerLastSync{
+  min-width:0!important;
+  max-width:100%!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  text-align:center!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row>#activeUsers,
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row>#sharedStatus,
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row>#footerDataHealth,
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>#sharedIdentity{
+  display:none!important;
+  flex:0 0 0!important;
+  width:0!important;
+  min-width:0!important;
+  height:0!important;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+  overflow:hidden!important;
+}
