@@ -51,3 +51,11 @@ body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-admin,
 body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-activity,
 body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-sync{grid-row:1!important;width:100%!important;}
 .command-center-activity-time{white-space:nowrap!important;text-align:center!important;}
+
+/* V7.6.29 — definitive three-column footer geometry. Explicit columns defeat legacy column assignments. */
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer{display:block!important;width:100%!important;overflow:hidden!important}
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer>.footer-system-row{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)!important;grid-template-rows:100%!important;gap:3px!important;width:100%!important;max-width:100%!important;height:100%!important;margin:0!important;padding:0!important}
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-admin{grid-column:1!important;grid-row:1!important}
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-activity{grid-column:2!important;grid-row:1!important}
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-sync{grid-column:3!important;grid-row:1!important}
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-cell{width:auto!important;max-width:none!important;min-width:0!important;margin:0!important}

@@ -113,13 +113,25 @@ function renderPresenceBadges(){
   let l=document.querySelector('#klaUsersLeft'),r=document.querySelector('#klaUsersRight');if(l)l.innerHTML=badge(names[0],1)+badge(names[1],2);if(r)r.innerHTML=badge(names[2],3)+badge(names[3],4);
 }
 function activity(msg,type='ok'){
-  let e=document.querySelector('#footerActivity');let who=account?displayUserName(account.name||account.username||'').toUpperCase():'';let tm=new Date().toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});let full=`${type==='err'?'✕':'✓'} ${msg}${who?' · '+who:''} · ${tm}`;if(e){e.textContent=full;e.classList.toggle('activity-error',type==='err')}let m=document.querySelector('#commandCenterActivityMessage'),st=document.querySelector('#commandCenterActivityState'),bar=document.querySelector('#commandCenterActivityBar'),time=document.querySelector('#commandCenterActivityTime');if(m)m.textContent=full;if(st)st.textContent=type==='err'?'ACTIVITY · ERROR':'ACTIVITY · UPDATED';if(time)time.textContent='↻ LAST SYNC: '+tm;if(bar){bar.classList.toggle('critical',type==='err');bar.classList.toggle('normal',type!=='err')}
+  let e=document.querySelector('#footerActivity');
+  let who=account?displayUserName(account.name||account.username||'').toUpperCase():'';
+  let tm=new Date().toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});
+  let localMode=(window.state?.environment||'PRODUCTION')==='PRODUCTION';
+  let actor=who||'LOCAL';
+  let full=`${type==='err'?'✕':'✓'} ${msg} · ${actor} · ${tm}`;
+  let syncText=`↻ LAST SYNC: ${localMode?'LOCAL · ':''}${tm}`;
+  window.B7ActivityState={state:type==='err'?'ACTIVITY · ERROR':'ACTIVITY · UPDATED',message:full,sync:syncText,type:type,at:Date.now()};
+  if(e){e.textContent='LAST ACTIVITY: '+full;e.classList.toggle('activity-error',type==='err')}
+  let fs=document.querySelector('#footerLastSync');if(fs)fs.textContent=`LAST SYNC: ${localMode?'LOCAL · ':''}${tm}`;
+  let m=document.querySelector('#commandCenterActivityMessage'),st=document.querySelector('#commandCenterActivityState'),bar=document.querySelector('#commandCenterActivityBar'),time=document.querySelector('#commandCenterActivityTime');
+  if(m)m.textContent=full;if(st)st.textContent=window.B7ActivityState.state;if(time)time.textContent=syncText;
+  if(bar){bar.classList.toggle('critical',type==='err');bar.classList.toggle('normal',type!=='err')}
 }
 function updateFooter(env){
   let au=document.querySelector('#activeUsers'),health=document.querySelector('#footerDataHealth'),sync=document.querySelector('#footerLastSync');
   renderPresenceBadges();
   if(env==='PRODUCTION'){
-    setFooterStatus('LOCAL DATA');if(au)au.textContent='USERS: —/7';if(health)health.textContent=`DATA HEALTH: ${window.state?.tools?.length||0} LOCAL TOOLS`;if(sync)sync.textContent='LAST SYNC: LOCAL';let topSync=document.querySelector('#commandCenterActivityTime');if(topSync)topSync.textContent='↻ LAST SYNC: LOCAL';setModeIdentity('local','offline');return;
+    setFooterStatus('LOCAL DATA');if(au)au.textContent='USERS: —/7';if(health)health.textContent=`DATA HEALTH: ${window.state?.tools?.length||0} LOCAL TOOLS`;if(sync&&!window.B7ActivityState)sync.textContent='LAST SYNC: LOCAL';let topSync=document.querySelector('#commandCenterActivityTime');if(topSync&&!window.B7ActivityState)topSync.textContent='↻ LAST SYNC: LOCAL';setModeIdentity('local','offline');return;
   }
   setFooterStatus(sharedActive?'LIST CONNECTED · 1 ROW/TOOL':'LIST DISCONNECTED');
   if(au)au.textContent=sharedActive?'USERS: 1/7':'USERS: 0/7';
