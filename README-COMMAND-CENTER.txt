@@ -1,3 +1,23 @@
+B7 FI COMMAND CENTER — V7.6.34
+TARGETED VISUAL FIT FIX
+
+V7.6.34 CHANGES
+- Fixed header user/presence badge rows so the bottom badges stay fully inside the header.
+- Re-locked all 28 UTC operational badge positions so the bottom badge rows remain visible.
+- Enlarged and centered the shipped-tool red X directly over the machine image everywhere the Quarter Summary family tool icons are used.
+- Restored the footer Sync section as the full right 25% of the 25/50/25 footer.
+- Reduced/reserved Quarter Summary Presentation Mode bottom geometry so the complete navigation bar and bottom border remain visible at 100% browser zoom.
+- No broad redesign: V7.6.33 geometry and behavior remain otherwise locked.
+
+TEST FIRST AT 100% BROWSER ZOOM
+1. Header: confirm both rows of user badges are fully visible.
+2. Live Operations UTC: confirm all 28 operational badges, including the bottom row, are visible.
+3. Footer: confirm Administration / Last Activity / Last Sync display as 25% / 50% / 25%.
+4. Quarter Summary normal + Presentation: confirm shipped red X covers the tool image.
+5. Quarter Summary Presentation: confirm the complete bottom navigation bar and its bottom border are visible with no scrolling.
+
+PREVIOUS PACKAGE NOTES
+----------------------
 B7 FI COMMAND CENTER — V7.6.33
 
 V7.6.33 TEST BUILD
