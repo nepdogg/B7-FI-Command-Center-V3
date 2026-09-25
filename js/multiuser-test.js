@@ -113,7 +113,7 @@ function renderPresenceBadges(){
   let l=document.querySelector('#klaUsersLeft'),r=document.querySelector('#klaUsersRight');if(l)l.innerHTML=badge(names[0],1)+badge(names[1],2);if(r)r.innerHTML=badge(names[2],3)+badge(names[3],4);
 }
 function activity(msg,type='ok'){
-  let e=document.querySelector('#footerActivity');if(!e)return;let who=account?displayUserName(account.name||account.username||'').toUpperCase():'';let tm=new Date().toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});e.textContent=`${type==='err'?'✕':'✓'} ${msg}${who?' · '+who:''} · ${tm}`;e.classList.toggle('activity-error',type==='err');
+  let e=document.querySelector('#footerActivity');let who=account?displayUserName(account.name||account.username||'').toUpperCase():'';let tm=new Date().toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});let full=`${type==='err'?'✕':'✓'} ${msg}${who?' · '+who:''} · ${tm}`;if(e){e.textContent=full;e.classList.toggle('activity-error',type==='err')}let m=document.querySelector('#commandCenterActivityMessage'),st=document.querySelector('#commandCenterActivityState'),bar=document.querySelector('#commandCenterActivityBar'),time=document.querySelector('#commandCenterActivityTime');if(m)m.textContent=full;if(st)st.textContent=type==='err'?'ACTIVITY · ERROR':'ACTIVITY · UPDATED';if(time)time.textContent=tm;if(bar){bar.classList.toggle('critical',type==='err');bar.classList.toggle('normal',type!=='err')}
 }
 function updateFooter(env){
   let au=document.querySelector('#activeUsers'),health=document.querySelector('#footerDataHealth'),sync=document.querySelector('#footerLastSync');

@@ -1,0 +1,43 @@
+/* B7 FI Command Center V7.6.27 — activity bar, balanced footer, Quarter Summary presentation repair */
+@media (min-width:901px){
+  body:not(.presentation-mode):not(.screenshot-mode) .sticky-shell{grid-template-rows:19% 14% 45% 22%!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .status-stack{display:grid!important;grid-template-rows:repeat(3,minmax(0,1fr))!important;gap:3px!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .status-stack .status-bar{height:100%!important;min-height:0!important;max-height:none!important}
+  .command-center-activity-bar .status-dot{background:#00d8ff!important;box-shadow:0 0 9px rgba(0,216,255,.75)!important}
+  .command-center-activity-bar.normal .status-left{border-color:#00a8df!important}
+  .command-center-activity-bar.critical .status-dot{background:#ff3158!important;box-shadow:0 0 9px rgba(255,49,88,.8)!important}
+  .command-center-activity-time{font-weight:950!important;color:#fff!important}
+
+  body:not(.presentation-mode):not(.screenshot-mode) .app-footer{grid-template-rows:100%!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .app-footer>.footer-system-row{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:4px!important;width:100%!important;height:100%!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-cell{display:flex!important;min-width:0!important;height:100%!important;align-items:center!important;justify-content:center!important;padding:0 12px!important;background:linear-gradient(180deg,#1595cf,#087db8)!important;border:1px solid #075b84!important;box-sizing:border-box!important;overflow:hidden!important}
+  body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-activity .footer-data,
+  body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-sync span{display:block!important;max-width:100%!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;text-align:center!important}
+}
+
+/* Presentation summary owns the full viewport. Never exceed its width or height. */
+html body.presentation-mode[data-center="operations"][data-sub="summary"]{width:100vw!important;height:100vh!important;min-width:0!important;min-height:0!important;overflow:hidden!important;background:#020910!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .app-frame,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .body-shell,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] #app,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-presentation{width:100%!important;max-width:100%!important;height:100%!important;max-height:100%!important;min-width:0!important;min-height:0!important;box-sizing:border-box!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-presentation{display:grid!important;grid-template-rows:minmax(0,35%) minmax(58px,9%) minmax(0,1fr) minmax(46px,6%)!important;gap:7px!important;padding:7px!important;background:#020910!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-hero{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;width:100%!important;min-width:0!important;min-height:0!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-hero-metric{width:100%!important;min-width:0!important;height:100%!important;min-height:0!important;box-sizing:border-box!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-hero-metric small{font-size:clamp(20px,2.1vw,38px)!important;white-space:nowrap!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-hero-metric strong{font-size:clamp(78px,10vh,150px)!important;line-height:.9!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-live-panel{width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;padding:0!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-live-panel .summary-grid{width:100%!important;height:100%!important;display:grid!important;grid-template-columns:repeat(8,minmax(0,1fr))!important;gap:4px!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-live-panel .summary-box{width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;padding:3px!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-family-wrap{width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;padding:0!important;border:0!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526{width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;display:grid!important;grid-template-rows:minmax(24px,8%) minmax(0,1fr)!important;border:0!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-rows-scroll{width:100%!important;height:100%!important;min-height:0!important;display:grid!important;grid-template-rows:repeat(var(--family-count),minmax(0,1fr))!important;gap:3px!important;padding:2px 0!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-matrix{width:100%!important;min-width:0!important;display:grid!important;grid-template-columns:minmax(0,2.3fr) minmax(0,.55fr) minmax(0,.72fr) minmax(0,.72fr) minmax(0,.78fr) minmax(0,.78fr) minmax(0,1.55fr) minmax(0,.42fr)!important;box-sizing:border-box!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-rows-scroll>.family-matrix{height:100%!important;min-height:0!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-matrix.header>*{display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;white-space:nowrap!important;font-size:clamp(9px,.9vw,16px)!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-cell,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .reveal-btn{height:100%!important;min-height:0!important;box-sizing:border-box!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-cell.name{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-tool-fleet{display:flex!important;align-items:center!important;justify-content:flex-end!important;min-width:0!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-tool-icon img{max-height:min(var(--family-image-height),6vh)!important;width:auto!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-switchbar{width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;box-sizing:border-box!important;overflow:hidden!important}

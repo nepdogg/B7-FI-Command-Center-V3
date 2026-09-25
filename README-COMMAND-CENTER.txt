@@ -1,54 +1,22 @@
-B7 FI COMMAND CENTER — V7.6.26
-Updated: 09/24/2026
+B7 FI COMMAND CENTER — V7.6.27
 
-LATEST UPDATE
-- Header center is now the Multi-User Connection Center.
-- KLA connection/status has its own color-coded inner border: green connected, yellow connecting, red disconnected, cyan local.
-- Multi-User Mode / List Connected moved from the footer to directly under the KLA logo.
-- KLA center section is substantially wider; left/right title panels give up width first.
-- User badges now display the FULL Microsoft display name instead of only the first token/surname fragment.
-- Footer simplified to three sections: Administration Center | Command Center Activity | Last Sync.
-- Command Center Activity receives the largest footer area.
-- Added Administration Center control: IMPORT LOCAL PRODUCTION TO MULTI-USER.
-- Production migration validates UTIDs, downloads one combined safety backup of Local Production + current Microsoft List, replaces shared rows, then reads back and verifies tool count/UTIDs.
-- One Microsoft List row remains one physical tool.
-- V7.6.24 proven two-laptop Add / Update / Delete synchronization behavior is preserved.
+LATEST TEST BUILD
 
-MIGRATION SAFETY
-Run IMPORT LOCAL PRODUCTION TO MULTI-USER only from the browser/laptop that contains the authoritative real Local Production fleet. Do not delete the Local Production copy after migration. The migration creates a downloadable pre-migration backup before replacing the shared List dataset.
+Changes in V7.6.27:
+- Added a third top status bar dedicated to live Command Center Activity.
+- Multi-user save/sync activity is mirrored into the top activity bar for visibility without scrolling.
+- Footer restored to three equal sections: Administration Center, Last Activity, Last Sync.
+- Last Sync content remains visible in the right footer section.
+- Repaired Quarter Summary Presentation Mode viewport sizing so it cannot overflow horizontally.
+- Quarter Summary tool-family rows dynamically divide the available height based on the number of tool types.
+- Bottom presentation navigation remains inside the viewport.
+- Centered Quarter Summary column headings and constrained them to one line.
+- Preserved V7.6.26 multi-user synchronization/data logic.
 
-TEST AT WORK
-1. Extract the ZIP and run START-COMMAND-CENTER.bat.
-2. Test at 100% browser zoom.
-3. Confirm full Microsoft display name appears in the header badge.
-4. Confirm KLA status box reads MULTI-USER MODE (or MULTI-USER PRODUCTION) / LIST CONNECTED and is green when connected.
-5. Confirm footer has exactly three visible sections.
-6. Repeat two-laptop Add / Update / Delete sync test before importing real production data.
-7. When ready, use Administration Center > IMPORT LOCAL PRODUCTION TO MULTI-USER from the laptop holding the real Local Production data.
-
-------------------------------------------------------------
-PRIOR BUILD NOTES / HISTORY
-------------------------------------------------------------
-B7 FI COMMAND CENTER — V7.6.24
-Structural layout correction build.
-
-Key fixes:
-- Changes applied to the actual linked active stylesheet (v7.6.1-clean-prototype.css), not legacy app.css.
-- Quarter Summary Presentation Mode uses one-screen viewport geometry with bottom navigation always visible and family rows filling remaining space.
-- Normal Quarter Summary grows vertically so final tool-family rows are not clipped.
-- Removed outer family-table border while retaining row/cell divisions.
-- Presentation Universal Tool Cards locked to the approved three-column reference geometry.
-- KLA/user presence area widened and unclipped at 100% browser zoom.
-- Browser tab/header version synchronized to V7.6.24 with stylesheet cache bust.
-
-Testing: use browser zoom 100%. Hard refresh once after replacing an older GitHub/local build.
-
-
-V7.6.26 UPDATE — 09/24/2026
-- Rebalanced header so both main titles fit while retaining the KLA/user connection center.
-- Reduced user badge footprint; preserved color-coded KLA/mode connection border.
-- Footer is exactly three sections: Administration Center | Command Center Activity | Last Sync.
-- Corrected regular/non-presentation Mystery Box reveal to a bounded centered no-scroll celebration panel.
-- Quarter Summary Presentation Mode now fills the entire viewport; system-family rows dynamically grow/shrink with family count and bottom navigation stays flush to the bottom.
-- Preserved V7.6.25 multi-user CRUD/sync, last-updated-by behavior, one-row-per-tool architecture, and local-to-shared migration controls.
-- Package continues to use one consolidated README-COMMAND-CENTER.txt only.
+TESTING
+1. Extract the ZIP.
+2. Run START-COMMAND-CENTER.bat.
+3. Open http://localhost:5500/ and test at 100% browser zoom.
+4. In Multi-User Mode, make a change from Laptop 1 and confirm Laptop 2 shows the activity in the new top Command Center Activity bar.
+5. Confirm footer shows three balanced sections and Last Sync.
+6. Open CY26Q3 Summary Presentation Mode and confirm the full right side, all family rows, and bottom navigation fit the screen.
