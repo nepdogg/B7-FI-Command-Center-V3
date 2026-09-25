@@ -1,0 +1,54 @@
+/* B7 FI Command Center V7.6.32 — shared 25/50/25 status + footer geometry lock */
+body:not(.presentation-mode):not(.screenshot-mode) .command-center-activity-bar{
+  display:grid!important;
+  grid-template-columns:minmax(0,25%) minmax(0,50%) minmax(0,25%)!important;
+  width:100%!important;max-width:100%!important;min-width:0!important;
+  box-sizing:border-box!important;overflow:hidden!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .command-center-activity-bar>.status-left,
+body:not(.presentation-mode):not(.screenshot-mode) .command-center-activity-bar>.status-message,
+body:not(.presentation-mode):not(.screenshot-mode) .command-center-activity-bar>.status-right{
+  width:auto!important;min-width:0!important;max-width:100%!important;
+  box-sizing:border-box!important;overflow:hidden!important;
+  white-space:nowrap!important;text-overflow:ellipsis!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .command-center-activity-bar>.status-left{grid-column:1!important;}
+body:not(.presentation-mode):not(.screenshot-mode) .command-center-activity-bar>.status-message{grid-column:2!important;padding-inline:10px!important;text-align:center!important;}
+body:not(.presentation-mode):not(.screenshot-mode) .command-center-activity-bar>.status-right{grid-column:3!important;padding-inline:10px!important;text-align:center!important;justify-content:center!important;}
+body:not(.presentation-mode):not(.screenshot-mode) .command-center-activity-time{font-size:clamp(8px,.72vw,12px)!important;}
+
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer{
+  display:block!important;width:100%!important;max-width:100%!important;min-width:0!important;
+  box-sizing:border-box!important;overflow:hidden!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row{
+  display:grid!important;
+  grid-template-columns:minmax(0,25%) minmax(0,50%) minmax(0,25%)!important;
+  grid-template-rows:1fr!important;
+  width:100%!important;max-width:100%!important;min-width:0!important;height:100%!important;
+  margin:0!important;padding:0!important;gap:0!important;box-sizing:border-box!important;overflow:hidden!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row>.footer-admin,
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row>.footer-activity,
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row>.footer-sync{
+  display:flex!important;width:auto!important;min-width:0!important;max-width:none!important;height:100%!important;
+  margin:0!important;padding:0 10px!important;box-sizing:border-box!important;overflow:hidden!important;
+  align-items:center!important;justify-content:center!important;gap:8px!important;
+  border-right:2px solid #00131d!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row>.footer-admin{grid-column:1!important;grid-row:1!important;}
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row>.footer-activity{grid-column:2!important;grid-row:1!important;}
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row>.footer-sync{grid-column:3!important;grid-row:1!important;border-right:0!important;}
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer #adminButton,
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer #footerActivity,
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer #footerLastSync{
+  min-width:0!important;max-width:100%!important;white-space:nowrap!important;overflow:hidden!important;
+  text-overflow:ellipsis!important;text-align:center!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row>#activeUsers,
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row>#sharedStatus,
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row>#footerDataHealth,
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>#sharedIdentity{
+  display:none!important;position:absolute!important;width:0!important;min-width:0!important;max-width:0!important;
+  height:0!important;min-height:0!important;max-height:0!important;padding:0!important;margin:0!important;border:0!important;overflow:hidden!important;
+}

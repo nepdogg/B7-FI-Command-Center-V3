@@ -34,3 +34,11 @@ V7.6.30 LATEST FIXES
 - Footer is hard-locked to exactly three equal sections: Administration Center | Last Activity | Last Sync.
 - Hidden telemetry/user elements cannot consume footer layout width.
 - Existing multi-user synchronization, Quarter Summary, presentation layouts, and tool data behavior are preserved.
+
+
+V7.6.32 — STATUS/FOOTER GEOMETRY LOCK
+- Command Center Activity status bar is now a hard 25% / 50% / 25% grid.
+- Footer uses the identical 25% / 50% / 25% grid: Administration / Last Activity / Last Sync.
+- Removed layout conflicts that could create black gaps or clip the right Sync cell.
+- Restored the status/footer containment foundation stylesheet and added a final geometry lock.
+- Preserves V7.6.31 clickable last-tool activity navigation and existing multi-user/local behavior.
