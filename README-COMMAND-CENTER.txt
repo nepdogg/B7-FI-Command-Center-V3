@@ -1,3 +1,16 @@
+B7 FI COMMAND CENTER — V7.6.33
+
+V7.6.33 TEST BUILD
+- Locks Command Center Activity bar and footer to 25% / 50% / 25%.
+- Quarter Summary regular page now grows vertically so live tool-family rows are not clipped.
+- Quarter Summary Presentation Mode is a coordinated 100vh layout with no empty area below its bottom navigation.
+- Presentation family rows dynamically share remaining viewport height and retain the final row/border.
+- Shipped-tool red X is enlarged in Presentation Mode and kept consistent with the regular Quarter Summary.
+- Preserves V7.6.32 activity recording, clickable last-tool activity, local/shared behavior, and multi-user code.
+
+TEST: extract the entire folder, run START-COMMAND-CENTER.bat, test at 100% browser zoom.
+
+--- PREVIOUS NOTES ---
 B7 FI COMMAND CENTER — V7.6.31
 
 V7.6.31 LATEST TEST BUILD
