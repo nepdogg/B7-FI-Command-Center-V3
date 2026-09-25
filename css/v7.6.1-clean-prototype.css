@@ -5392,3 +5392,98 @@ body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerLastSync{f
   body:not(.presentation-mode):not(.screenshot-mode) .prototype-header-right{font-size:clamp(15px,1.5vw,23px)!important}
   body:not(.presentation-mode):not(.screenshot-mode) .prototype-header-center .kla-presence-box{grid-template-columns:minmax(125px,1fr) minmax(175px,1.05fr) minmax(125px,1fr)!important;gap:6px!important;padding:4px 6px!important}
 }
+
+/* ======================================================================
+   V7.6.26 — HEADER/FOOTER + REVEAL + PRESENTATION FULL-HEIGHT FINAL OVERRIDES
+   ====================================================================== */
+body:not(.presentation-mode):not(.screenshot-mode) .prototype-header{
+  grid-template-columns:minmax(0,34%) minmax(470px,32%) minmax(0,34%)!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .prototype-header-left,
+body:not(.presentation-mode):not(.screenshot-mode) .prototype-header-right{
+  font-size:clamp(15px,1.48vw,27px)!important;padding-inline:clamp(10px,1.3vw,24px)!important;
+  white-space:nowrap!important;overflow:hidden!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .prototype-header-center .kla-presence-box{
+  grid-template-columns:minmax(105px,.92fr) minmax(175px,1.25fr) minmax(105px,.92fr)!important;
+  gap:5px!important;padding:3px 6px!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .prototype-header-center .kla-presence-badge{
+  padding:0 5px!important;font-size:clamp(6px,.52vw,9px)!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .prototype-header-center .kla-connection-core>img{
+  max-height:43px!important;max-width:165px!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .prototype-header-center .kla-connection-copy b{font-size:clamp(5px,.42vw,8px)!important}
+body:not(.presentation-mode):not(.screenshot-mode) .prototype-header-center .kla-connection-copy small{font-size:clamp(5px,.38vw,7px)!important}
+
+/* Exactly three balanced footer cells: Admin | Activity | Last Sync. */
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer{
+  display:block!important;height:48px!important;min-height:48px!important;padding:0!important;overflow:hidden!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-row{
+  width:100%!important;height:48px!important;display:grid!important;
+  grid-template-columns:18% 64% 18%!important;gap:0!important;border:0!important;margin:0!important;padding:0!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-row>.footer-system-cell{
+  width:100%!important;height:48px!important;border-right:2px solid #06131d!important;padding:0 10px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-row>.footer-sync{border-right:0!important}
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer #adminButton{width:auto!important;max-width:100%!important;font-size:clamp(7px,.58vw,10px)!important}
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerActivity,
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerLastSync{font-size:clamp(7px,.62vw,11px)!important}
+body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-system-row>.hidden{display:none!important}
+
+/* Regular-mode Mystery Box reveal: bounded, centered, no page-sized image or scrollbars. */
+body:not(.presentation-mode) .modal-card:has(.mystery-celebration){
+  width:min(900px,88vw)!important;height:min(760px,82vh)!important;max-width:88vw!important;max-height:82vh!important;
+  padding:14px 18px 16px!important;overflow:hidden!important;display:flex!important;flex-direction:column!important;
+}
+body:not(.presentation-mode) .modal-card:has(.mystery-celebration)>#modalBody{
+  flex:1 1 auto!important;min-height:0!important;overflow:hidden!important;display:flex!important;
+}
+body:not(.presentation-mode) .mystery-celebration{
+  width:100%!important;height:100%!important;min-height:0!important;display:grid!important;
+  grid-template-rows:auto minmax(0,1fr) auto auto auto!important;align-items:center!important;justify-items:center!important;gap:5px!important;
+}
+body:not(.presentation-mode) .mystery-celebration h1{font-size:clamp(20px,2vw,30px)!important;margin:0!important}
+body:not(.presentation-mode) .mystery-celebration img{
+  width:100%!important;height:100%!important;min-height:0!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;margin:0!important;
+}
+body:not(.presentation-mode) .mystery-celebration .raiders-call{font-size:clamp(28px,3vw,42px)!important;margin:2px 0 0!important}
+body:not(.presentation-mode) .mystery-celebration h2{font-size:clamp(16px,1.5vw,22px)!important;margin:0!important}
+body:not(.presentation-mode) .mystery-celebration p{font-size:clamp(10px,.9vw,14px)!important;margin:0!important}
+body:not(.presentation-mode) .modal-card:has(.mystery-celebration)>.modal-x{
+  position:absolute!important;right:8px!important;top:8px!important;float:none!important;margin:0!important;
+}
+
+/* Quarter Summary Presentation Mode: consume the full fullscreen canvas.
+   Family rows are the elastic region: fewer families grow, more families compress. */
+html body.presentation-mode[data-center="operations"][data-sub="summary"] #app{
+  width:100vw!important;height:100vh!important;min-height:100vh!important;max-height:100vh!important;
+  padding:6px 8px!important;margin:0!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-presentation{
+  width:100%!important;height:calc(100vh - 12px)!important;min-height:0!important;max-height:none!important;
+  display:grid!important;grid-template-rows:minmax(270px,34vh) 84px minmax(0,1fr) 52px!important;
+  gap:6px!important;margin:0!important;padding:0!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-family-wrap,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-rows-scroll{height:100%!important;min-height:0!important;max-height:none!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-rows-scroll{
+  grid-template-rows:repeat(var(--family-count,1),minmax(0,1fr))!important;align-content:stretch!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-rows-scroll>.family-matrix{
+  height:100%!important;min-height:0!important;align-self:stretch!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-switchbar{
+  height:52px!important;min-height:52px!important;align-self:end!important;margin:0!important;
+}
+
+@media(max-width:1450px){
+ body:not(.presentation-mode):not(.screenshot-mode) .prototype-header{grid-template-columns:minmax(0,32%) minmax(500px,36%) minmax(0,32%)!important}
+ body:not(.presentation-mode):not(.screenshot-mode) .prototype-header-left,
+ body:not(.presentation-mode):not(.screenshot-mode) .prototype-header-right{font-size:clamp(13px,1.3vw,21px)!important}
+}

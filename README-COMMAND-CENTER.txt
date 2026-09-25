@@ -1,4 +1,4 @@
-B7 FI COMMAND CENTER — V7.6.25
+B7 FI COMMAND CENTER — V7.6.26
 Updated: 09/24/2026
 
 LATEST UPDATE
@@ -42,3 +42,13 @@ Key fixes:
 - Browser tab/header version synchronized to V7.6.24 with stylesheet cache bust.
 
 Testing: use browser zoom 100%. Hard refresh once after replacing an older GitHub/local build.
+
+
+V7.6.26 UPDATE — 09/24/2026
+- Rebalanced header so both main titles fit while retaining the KLA/user connection center.
+- Reduced user badge footprint; preserved color-coded KLA/mode connection border.
+- Footer is exactly three sections: Administration Center | Command Center Activity | Last Sync.
+- Corrected regular/non-presentation Mystery Box reveal to a bounded centered no-scroll celebration panel.
+- Quarter Summary Presentation Mode now fills the entire viewport; system-family rows dynamically grow/shrink with family count and bottom navigation stays flush to the bottom.
+- Preserved V7.6.25 multi-user CRUD/sync, last-updated-by behavior, one-row-per-tool architecture, and local-to-shared migration controls.
+- Package continues to use one consolidated README-COMMAND-CENTER.txt only.
