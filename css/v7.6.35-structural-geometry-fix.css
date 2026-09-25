@@ -1,0 +1,113 @@
+/* B7 FI Command Center V7.6.35 — structural geometry corrections.
+   Fixes the parent containers that were defeating the V7.6.34 visual overrides. */
+
+/* 1) LIVE OPERATIONS UTC — never squeeze the 720px locked UTC into a shorter carousel.
+      The page may scroll, but the card itself must remain complete. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid{
+  height:760px!important;min-height:760px!important;max-height:none!important;
+  align-items:start!important;overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel>.universal-card-host{
+  height:744px!important;min-height:744px!important;max-height:none!important;overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .utc-card.utc-v6538,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .utc-card.utc-v6538>.utc-column{
+  height:720px!important;min-height:720px!important;max-height:720px!important;overflow:hidden!important;
+}
+/* The 28 badges are exactly 2 x 14 and share all available indicator height. */
+html body:not(.presentation-mode):not(.screenshot-mode) .utc-card.utc-v6538 .utc-info{
+  grid-template-rows:38px 145px 30px 27px minmax(0,1fr) 38px!important;
+  min-height:0!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .utc-card.utc-v6538 .utc-info>.utc-indicator-display{
+  min-height:0!important;height:100%!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .utc-card.utc-v6538 .utc-info>.utc-indicator-display>.utc-indicator-grid{
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-template-rows:repeat(14,minmax(0,1fr))!important;grid-auto-rows:0!important;
+  height:100%!important;min-height:0!important;gap:2px 4px!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-lamp{
+  min-height:0!important;height:100%!important;max-height:none!important;padding:1px 4px!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .utc-card.utc-v6538 .utc-driver-ribbon{
+  min-height:0!important;height:38px!important;max-height:38px!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+
+/* 2) SHIPPED TOOL MARKER — draw a true full-thumbnail X with two diagonal bars.
+      The old multiplication glyph is hidden so font metrics can no longer make the mark tiny. */
+html body[data-center="operations"] .family-tool-icon{position:relative!important;isolation:isolate!important;overflow:visible!important}
+html body[data-center="operations"] .family-tool-icon .family-tool-x{
+  position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
+  transform:none!important;font-size:0!important;line-height:0!important;color:transparent!important;
+  z-index:30!important;pointer-events:none!important;display:block!important;
+}
+html body[data-center="operations"] .family-tool-icon .family-tool-x::before,
+html body[data-center="operations"] .family-tool-icon .family-tool-x::after{
+  content:""!important;position:absolute!important;left:-8%!important;top:50%!important;
+  width:116%!important;height:max(5px,10%)!important;border-radius:999px!important;
+  background:#ff244f!important;box-shadow:0 0 2px #000,0 0 5px #000!important;
+  transform-origin:center!important;
+}
+html body[data-center="operations"] .family-tool-icon .family-tool-x::before{transform:translateY(-50%) rotate(38deg)!important}
+html body[data-center="operations"] .family-tool-icon .family-tool-x::after{transform:translateY(-50%) rotate(-38deg)!important}
+
+/* 3) FOOTER — use flex rather than the legacy multi-column grid. This removes the ghost
+      grid track that produced the large black gap before LAST SYNC. */
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer{
+  display:block!important;width:100%!important;height:48px!important;min-height:48px!important;max-height:48px!important;
+  padding:0!important;margin:0!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row{
+  display:flex!important;flex-flow:row nowrap!important;width:100%!important;height:48px!important;
+  min-width:0!important;max-width:none!important;margin:0!important;padding:0!important;gap:0!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row>.footer-admin{
+  flex:0 0 25%!important;width:25%!important;max-width:25%!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row>.footer-activity{
+  flex:0 0 50%!important;width:50%!important;max-width:50%!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row>.footer-sync{
+  flex:0 0 25%!important;width:25%!important;max-width:25%!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row>.footer-admin,
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row>.footer-activity,
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row>.footer-sync{
+  display:flex!important;height:48px!important;min-width:0!important;box-sizing:border-box!important;
+  align-items:center!important;justify-content:center!important;padding:0 10px!important;margin:0!important;
+  background:linear-gradient(180deg,#1595cf,#087db8)!important;border:1px solid #075b84!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row>.footer-sync{visibility:visible!important;opacity:1!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer #footerLastSync{display:inline!important;visibility:visible!important;opacity:1!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row>#activeUsers,
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row>#sharedStatus,
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer>.footer-system-row>#footerDataHealth{display:none!important;flex:0 0 0!important;width:0!important;height:0!important;padding:0!important;margin:0!important;border:0!important}
+
+/* 4) QUARTER SUMMARY PRESENTATION — make the nav part of the 100dvh grid, not an extra
+      50/58px appended to a 100vh content box. A small inset keeps the bottom border visible. */
+html body.presentation-mode[data-center="operations"][data-sub="summary"],
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .app-frame,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .body-shell,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] #app{
+  width:100vw!important;height:100dvh!important;min-width:0!important;min-height:0!important;max-height:100dvh!important;
+  margin:0!important;padding:0!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-presentation{
+  width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;
+  display:grid!important;grid-template-rows:minmax(0,34fr) minmax(64px,10fr) minmax(0,50fr) 44px!important;
+  gap:4px!important;margin:0!important;padding:5px 7px 7px!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-hero,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-live-panel,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-family-wrap,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-rows-scroll{min-height:0!important;max-height:100%!important;overflow:hidden!important;box-sizing:border-box!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-switchbar{
+  height:44px!important;min-height:44px!important;max-height:44px!important;width:100%!important;
+  margin:0!important;align-self:stretch!important;overflow:hidden!important;box-sizing:border-box!important;border:1px solid #176fa8!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-switchbar .presentation-nav-cell{
+  height:42px!important;min-height:42px!important;max-height:42px!important;box-sizing:border-box!important;
+}

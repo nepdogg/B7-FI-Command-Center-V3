@@ -1,3 +1,22 @@
+B7 FI COMMAND CENTER — V7.6.35 STRUCTURAL GEOMETRY FIX
+
+V7.6.35 fixes the parent-layout causes that prevented the V7.6.34 visual fixes from taking effect.
+
+CHANGES
+- Live Operations UTC is no longer squeezed by its carousel parent; the complete 720px locked card remains intact and the page can scroll when necessary.
+- The 28 operational badges remain a strict 2 x 14 matrix and the Driver row remains inside the UTC.
+- Shipped-tool red X is now drawn as two full-thumbnail diagonal bars rather than a font glyph, so it covers the actual tool image consistently.
+- Footer is structurally Flex-based at 25% Administration / 50% Last Activity / 25% Last Sync, eliminating the legacy ghost grid track and restoring Sync.
+- Quarter Summary Presentation Mode is a true 100dvh grid. Its bottom navigation is a 44px grid row inside the viewport with a bottom safety inset, so the complete border remains visible at 100% zoom.
+- Existing V7.6.33/V7.6.34 behavior remains in place unless superseded by the structural fixes above.
+
+TEST AT 100% BROWSER ZOOM
+1. Live Operations: inspect the entire UTC, all 28 badges, and Driver row.
+2. Quarter Summary normal + Presentation: verify shipped red X covers the shipped machine thumbnail.
+3. Normal page footer: verify exactly three continuous sections with no black gap.
+4. Quarter Summary Presentation: verify the entire bottom navigation and bottom border are visible.
+
+--- PRIOR BUILD NOTES ---
 B7 FI COMMAND CENTER — V7.6.34
 TARGETED VISUAL FIT FIX
 
