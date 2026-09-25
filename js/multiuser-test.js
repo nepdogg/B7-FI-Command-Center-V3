@@ -120,23 +120,26 @@ function activity(msg,type='ok'){
   let actor=who||'LOCAL';
   let full=`${type==='err'?'✕':'✓'} ${msg} · ${actor} · ${tm}`;
   let syncText=`↻ LAST SYNC: ${localMode?'LOCAL · ':''}${tm}`;
-  window.B7ActivityState={state:type==='err'?'ACTIVITY · ERROR':'ACTIVITY · UPDATED',message:full,sync:syncText,type:type,at:Date.now()};
+  let toolMatch=String(msg||'').match(/\bTOOL\s+([A-Z0-9_-]+)/i);
+  let toolId=toolMatch?toolMatch[1]:'';
+  let syncCompact=`↻ SYNC: ${tm}`;
+  window.B7ActivityState={state:type==='err'?'ACTIVITY · ERROR':'ACTIVITY · UPDATED',message:full,sync:syncText,syncCompact:syncCompact,toolId:toolId,type:type,at:Date.now()};
   if(e){e.textContent='LAST ACTIVITY: '+full;e.classList.toggle('activity-error',type==='err')}
   let fs=document.querySelector('#footerLastSync');if(fs)fs.textContent=`LAST SYNC: ${localMode?'LOCAL · ':''}${tm}`;
   let m=document.querySelector('#commandCenterActivityMessage'),st=document.querySelector('#commandCenterActivityState'),bar=document.querySelector('#commandCenterActivityBar'),time=document.querySelector('#commandCenterActivityTime');
-  if(m)m.textContent=full;if(st)st.textContent=window.B7ActivityState.state;if(time)time.textContent=syncText;
+  if(m){m.textContent=full;if(toolId){m.dataset.tool=toolId;m.setAttribute('role','button');m.tabIndex=0;m.title='Open last updated tool '+toolId}else{delete m.dataset.tool;m.removeAttribute('role');m.removeAttribute('tabindex');m.removeAttribute('title')}}if(st)st.textContent=window.B7ActivityState.state;if(time)time.textContent=syncCompact;
   if(bar){bar.classList.toggle('critical',type==='err');bar.classList.toggle('normal',type!=='err')}
 }
 function updateFooter(env){
   let au=document.querySelector('#activeUsers'),health=document.querySelector('#footerDataHealth'),sync=document.querySelector('#footerLastSync');
   renderPresenceBadges();
   if(env==='PRODUCTION'){
-    setFooterStatus('LOCAL DATA');if(au)au.textContent='USERS: —/7';if(health)health.textContent=`DATA HEALTH: ${window.state?.tools?.length||0} LOCAL TOOLS`;if(sync&&!window.B7ActivityState)sync.textContent='LAST SYNC: LOCAL';let topSync=document.querySelector('#commandCenterActivityTime');if(topSync&&!window.B7ActivityState)topSync.textContent='↻ LAST SYNC: LOCAL';setModeIdentity('local','offline');return;
+    setFooterStatus('LOCAL DATA');if(au)au.textContent='USERS: —/7';if(health)health.textContent=`DATA HEALTH: ${window.state?.tools?.length||0} LOCAL TOOLS`;if(sync&&!window.B7ActivityState)sync.textContent='LAST SYNC: LOCAL';let topSync=document.querySelector('#commandCenterActivityTime');if(topSync&&!window.B7ActivityState)topSync.textContent='↻ SYNC: LOCAL';setModeIdentity('local','offline');return;
   }
   setFooterStatus(sharedActive?'LIST CONNECTED · 1 ROW/TOOL':'LIST DISCONNECTED');
   if(au)au.textContent=sharedActive?'USERS: 1/7':'USERS: 0/7';
   if(health)health.textContent=`DATA HEALTH: ${sharedActive?'SHARED READY':'WAITING'}`;
-  if(sync)sync.textContent=sharedActive?'LAST SYNC: '+new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'}):'LAST SYNC: —';let topSync=document.querySelector('#commandCenterActivityTime');if(topSync)topSync.textContent='↻ '+(sync?.textContent||'LAST SYNC: —');
+  if(sync)sync.textContent=sharedActive?'LAST SYNC: '+new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'}):'LAST SYNC: —';let topSync=document.querySelector('#commandCenterActivityTime');if(topSync)topSync.textContent=sharedActive?'↻ SYNC: '+new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'}):'↻ SYNC: —';
   setModeIdentity('shared',sharedActive?'connected':'offline');renderPresenceBadges();
 }
 function showActiveUsers(){alert('ACTIVE USERS presence rows are temporarily disabled in V6.6.45 while the one-tool/one-row storage model is validated.')}

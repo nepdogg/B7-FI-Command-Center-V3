@@ -1,4 +1,4 @@
-/* B7 FI Command Center V7.6.30 — status-bar containment + true 3-way footer */
+/* B7 FI Command Center V7.6.31 — status-bar containment + true 3-way footer */
 
 /* Keep every normal status row inside the Command Center canvas. */
 body:not(.presentation-mode):not(.screenshot-mode) .status-stack,

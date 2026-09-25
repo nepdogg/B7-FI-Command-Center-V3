@@ -1,4 +1,22 @@
-B7 FI COMMAND CENTER — V7.6.30
+B7 FI COMMAND CENTER — V7.6.31
+
+V7.6.31 LATEST TEST BUILD
+- Preserves the proven V7.6.30 local/shared activity wiring and synchronization behavior.
+- Footer is re-proportioned to 25% Administration Center | 50% Last Activity | 25% Last Sync.
+- Command Center status bar is proportioned 12% status | 68% activity | 20% sync.
+- Top sync display is compact (SYNC + time) so Multi-User mode cannot push the row outside the viewport.
+- Tool-related Last Activity messages are clickable and open the affected tool directly.
+- Clickable activity gets a subtle hover/focus treatment and arrow.
+- Non-tool events remain informational and are not falsely clickable.
+- Existing Quarter Summary, Presentation Mode, Universal Tool Cards, local production data, and multi-user List behavior are preserved.
+
+TEST
+1. Extract the ZIP and run START-COMMAND-CENTER.bat.
+2. Test at 100% browser zoom.
+3. Add or update a tool and confirm the blue activity bar changes immediately.
+4. Click the center activity message and verify it opens that tool.
+5. Confirm the footer is visibly 25/50/25 and Last Activity has the widest section.
+6. In Multi-User mode, confirm the top-right SYNC time stays fully inside the page.
 
 V7.6.30 TEST BUILD
 - Local Add/Update/Delete/save activity is now wired to the top Command Center Activity bar.
