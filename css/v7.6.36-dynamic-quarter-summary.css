@@ -1,0 +1,74 @@
+/* B7 FI Command Center V7.6.36 — fully dynamic Quarter Summary fleet geometry.
+   The largest family expands the SYSTEM column; all other columns proportionally
+   yield width while retaining usable minimum content. Each family fleet then sizes
+   its own thumbnails to fit with a guaranteed visible gap. */
+
+/* One shared column model for normal Summary, Live Operations snapshot and Presentation. */
+html body[data-center="operations"] .quarter-summary-presentation .family-panel-v526 .family-matrix,
+html body[data-center="operations"] .quarter-summary-master .family-panel-v526 .family-matrix{
+  grid-template-columns:
+    minmax(0,var(--summary-system-col,30%))
+    minmax(0,var(--summary-total-col,8%))
+    minmax(0,var(--summary-waiting-col,9%))
+    minmax(0,var(--summary-infi-col,9%))
+    minmax(0,var(--summary-packing-col,9%))
+    minmax(0,var(--summary-shipped-col,9%))
+    minmax(0,var(--summary-progress-col,18%))
+    minmax(0,var(--summary-reveal-col,7%))!important;
+  gap:3px!important;
+}
+
+/* SYSTEM cell is itself dynamic: family name keeps a readable lane and fleet gets the rest. */
+html body[data-center="operations"] .quarter-summary-presentation .family-cell.name,
+html body[data-center="operations"] .quarter-summary-master .family-cell.name{
+  display:grid!important;
+  grid-template-columns:minmax(72px,max-content) minmax(0,1fr)!important;
+  align-items:center!important;
+  column-gap:8px!important;
+  padding:2px 7px!important;
+  min-width:0!important;
+  overflow:hidden!important;
+}
+html body[data-center="operations"] .quarter-summary-presentation .family-cell.name>span,
+html body[data-center="operations"] .quarter-summary-master .family-cell.name>span{
+  min-width:0!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+}
+
+/* Every row independently fits its fleet. Gap is never sacrificed; thumbnails shrink first. */
+html body[data-center="operations"] .quarter-summary-presentation .family-tool-fleet,
+html body[data-center="operations"] .quarter-summary-master .family-tool-fleet{
+  width:100%!important;min-width:0!important;height:100%!important;
+  display:flex!important;align-items:center!important;justify-content:flex-end!important;
+  gap:clamp(4px,.38vw,8px)!important;padding:2px 1px!important;overflow:hidden!important;
+}
+html body[data-center="operations"] .quarter-summary-presentation .family-tool-icon,
+html body[data-center="operations"] .quarter-summary-master .family-tool-icon{
+  flex:0 1 calc((100% - (var(--fleet-count,1) - 1) * clamp(4px,.38vw,8px))/var(--fleet-count,1))!important;
+  width:min(var(--family-image-height,54px),calc((100% - (var(--fleet-count,1) - 1) * clamp(4px,.38vw,8px))/var(--fleet-count,1)))!important;
+  min-width:0!important;max-width:var(--family-image-height,54px)!important;
+  height:min(92%,var(--family-image-height,54px))!important;
+  margin:0!important;padding:0!important;overflow:visible!important;
+}
+html body[data-center="operations"] .quarter-summary-presentation .family-tool-icon img,
+html body[data-center="operations"] .quarter-summary-master .family-tool-icon img{
+  display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;
+}
+
+/* X is locked to the individual thumbnail container, never the fleet row or neighboring tool. */
+html body[data-center="operations"] .quarter-summary-presentation .family-tool-icon .family-tool-x,
+html body[data-center="operations"] .quarter-summary-master .family-tool-icon .family-tool-x{
+  position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
+  overflow:hidden!important;z-index:30!important;pointer-events:none!important;
+}
+html body[data-center="operations"] .quarter-summary-presentation .family-tool-icon .family-tool-x::before,
+html body[data-center="operations"] .quarter-summary-presentation .family-tool-icon .family-tool-x::after,
+html body[data-center="operations"] .quarter-summary-master .family-tool-icon .family-tool-x::before,
+html body[data-center="operations"] .quarter-summary-master .family-tool-icon .family-tool-x::after{
+  left:2%!important;width:96%!important;height:max(4px,9%)!important;
+}
+
+/* When SYSTEM expands heavily, preserve the semantic columns but allow compact labels. */
+html body[data-center="operations"] .quarter-summary-presentation .family-matrix.header>b,
+html body[data-center="operations"] .quarter-summary-master .family-matrix.header>b{
+  min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;
+}
