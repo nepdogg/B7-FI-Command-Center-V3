@@ -77,3 +77,26 @@ V7.6.38 TEST FOCUS
 5. Open the badge quick editor and confirm the popup is above the header, navigation, status bars, cards and all other page content.
 6. Confirm wafer values persist after save/reload and through the existing shared tool record path.
 
+
+============================================================
+V7.6.39 — UNIVERSAL QUARTER SUMMARY + HEADER READABILITY
+============================================================
+- Normal CY26Q3 Summary remains the visual reference for tool-photo spacing and shipped red-X placement.
+- Normal Summary now dynamically fits every tool-family row in the available family-table region.
+- Live Operations / Status Quarter Summary carousel now uses the same dynamic family-row fitting and the same fleet/photo/X behavior, with master-like proportions: larger hero numbers and shorter eight live-status boxes.
+- Quarter Summary Presentation Mode now fits the entire wallboard inside the viewport, including the full outer border and bottom navigation, with no intended page scrolling.
+- Presentation fleet spacing and shipped X behavior now follow the same master fleet rules.
+- System Wafer badge is a true two-line vertical badge: line 1 = System Wafer Kit workflow; line 2 = additional S/H/D65/D65F counters. The two rows keep independent colors.
+- Main navigation is text-only for more label room and cleaner readability.
+- Status bars have increased internal breathing room; dots and left labels no longer touch borders.
+- Command Center activity bar uses a more informative ready-state message; sync remains in the dedicated right cell.
+- KLA presence panel geometry expanded internally so both upper and lower user badges remain visible.
+
+STRESS TEST RECOMMENDED
+1. Test 9+ tool families simultaneously.
+2. Test 10+ BOXSTER tools with a mixture of shipped/non-shipped tools.
+3. Compare normal CY26Q3 Summary, Live Operations Quarter Summary carousel, and Quarter Summary Presentation Mode.
+4. Confirm every family is visible, photos retain separation, and each red X stays centered on its own shipped tool.
+5. Confirm Presentation Mode outer border and bottom navigation are completely visible without scrolling.
+6. Confirm all four KLA user badges are visible and all three status bars have top/bottom padding.
+7. Confirm System Wafer badge shows two horizontal lines and retains independent top/bottom colors.
