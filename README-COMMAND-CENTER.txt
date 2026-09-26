@@ -1,125 +1,25 @@
-B7 FI COMMAND CENTER — V7.6.41
+B7 FI COMMAND CENTER — V7.6.42
 
-V7.6.41 TEST FOCUS
-- Unified Quarter Summary fleet geometry across normal Summary, Live Operations Quarter Summary carousel, and Presentation Mode.
-- Tool photos are right-anchored and grow right-to-left. A protected clearance equal to roughly one normal thumbnail is maintained after the tool-family name; thumbnails only compress when required.
-- Shipped red X remains locked to the individual tool thumbnail and scales/moves with it.
-- Eight live quarter status boxes are shorter and protected from bottom clipping.
-- Presentation Mode reserves its bottom navigation area and divides remaining family-table height dynamically so all tool types, the navigation bar, and the complete outer border remain inside the viewport.
-- Clickable status-bar regions now use navigation-style semantic glow on hover; informational regions do not react.
-- Removed the Command Center activity arrow.
+STRUCTURAL CONSOLIDATION TEST BUILD
 
-Recommended stress test: keep the large BOXSTER fleet plus all current tool families, test at 100% browser zoom in normal Summary, Live Operations Quarter Summary carousel, and Presentation Mode.
+This build works from the actual V7.6.41 source rather than adding screenshot-only patches.
 
---- PRIOR CONSOLIDATED NOTES ---
-B7 FI COMMAND CENTER — V7.6.40
-
-V7.6.40 TEST BUILD CHANGES
-- Quarter Summary tool-family rows now preserve one tool-photo-width gap between the tool type name and first photo.
-- Tool photos continue to shrink dynamically as more tools are added; the name/photo gap no longer collapses.
-- Removed the fixed Quarter Summary minimum-height behavior that could create the stray border/scroll line through the eight live-status boxes.
-- Removed the small arrow from the Command Center activity status bar.
-- Clickable status bars now use a whole-bar navigation-style hover treatment; narrow inner hover boxes and underlines are suppressed.
-
-B7 FI COMMAND CENTER — V7.6.36
-DYNAMIC QUARTER SUMMARY
-September 25, 2026
-
-BASELINE
-- Built directly from V7.6.35 Structural Geometry Fix.
-- V7.6.35 outer page, footer, UTC, and Presentation Mode geometry remains the baseline.
-
-V7.6.36 CHANGES
-1. Quarter Summary SYSTEM column is now data-driven.
-   - The largest tool-family count in the active quarter determines how much horizontal width SYSTEM receives.
-   - Six or fewer tools uses the normal layout.
-   - Each tool beyond six progressively expands SYSTEM.
-   - SYSTEM can expand to 50% of the table when required.
-2. All remaining Quarter Summary columns automatically give up width proportionally when SYSTEM expands.
-   - TOTAL, WAITING FI, IN FI, PACKING, SHIPPED, SHIPPING PROGRESS and REVEAL stay aligned across every row.
-3. Every family row independently sizes its own tool thumbnails.
-   - A visible gap is maintained between every tool.
-   - Photos shrink only when that family needs the additional room.
-   - Families with fewer tools retain larger photos.
-4. Shipped red X is locked to each individual thumbnail container.
-   - It scales with that tool photo.
-   - It cannot extend into the neighboring tool container.
-5. The same dynamic rules apply to:
-   - CY26Q3 Summary page
-   - Quarter Summary in Live Operations
-   - Quarter Summary Presentation Mode
-6. No quarter-specific tool counts are hard-coded.
+CHANGES
+- Quarter Summary fleet geometry is now one final override shared by normal Summary, Live Status Quarter Summary carousel, and Presentation Mode.
+- Tool fleets are right anchored and grow right-to-left. A protected one-thumbnail-width clearance remains after the tool type name. Images shrink only when the fleet consumes its available lane.
+- Red shipped X remains attached to the individual tool image and scales with it.
+- Live Status Quarter Summary snapshot now preserves tool click targets instead of stripping data-tool attributes.
+- Presentation Quarter Summary reserves explicit viewport space for hero, 8 status boxes, family table, bottom navigation, outer border and gaps.
+- 8 live status boxes reduced to a compact fixed geometry so their lower border cannot collide with the SYSTEM table header.
+- Clickable status-bar regions use navigation-style semantic glow with no narrow inner hover artifact.
+- Command Center activity arrow remains removed.
+- System Wafers badge is forced into one badge slot with a true horizontal divider: top half = System Wafer Kit workflow; bottom half = additional wafer tally.
 
 TEST FOCUS
-- Test at 100% browser zoom.
-- Add/remove tools so one family has 1-3 tools, another 6, and another 8-12 if practical.
-- Confirm SYSTEM expands when the largest family grows.
-- Confirm the other columns become narrower but remain aligned.
-- Confirm there is visible space between every tool photo.
-- Confirm every shipped red X remains centered on exactly one photo.
-- Confirm the same data/layout behavior on Summary, Live Operations and Presentation Mode.
-- Confirm Presentation Mode bottom navigation remains fully visible.
+1. Normal CY26Q3 Summary with 9 tool types and a large Boxster fleet.
+2. Live Operations Quarter Summary carousel: compare fleet spacing/X placement and click a tool image.
+3. Quarter Summary Presentation Mode at 100% browser zoom: verify full outer border, all family rows, and bottom nav are visible. Hover/click individual tool images.
+4. Hover actionable sections of all three status bars.
+5. Inspect System Wafers badge with zero and non-zero additional wafer counts.
 
-LAUNCH
-Extract the entire ZIP, then run START-COMMAND-CENTER.bat.
-
-V7.6.37 — WAFER TRACKER + QUARTER SUMMARY REFINEMENT
-- Quarter Summary Presentation Mode: same visible fleet spacing as normal Quarter Summary.
-- Presentation Mode: full outer perimeter border inset inside the viewport.
-- Status carousel Quarter Summary: increased tool-photo spacing and full-thumbnail shipped X markers.
-- System Wafers remains one of the existing 28 badges; no 29th badge added.
-- System Wafers badge now displays a second-line additional-wafer tally: + S / H / D65 / D65F.
-- Clicking System Wafers opens a dedicated wafer tracker with +/- and numeric controls.
-- Automatic base kit: non-Celestiq/Regera = S1 H1 D65-1; Celestiq/Regera = S1 H1 D65F-2.
-- Per-tool base-kit override supports customer/tool exceptions such as special Taycan configurations.
-- Additional wafer counts persist in the tool record and are separate from the base kit.
-- Additional-wafer transaction state is preserved as N/A / Pending / Complete; counts are retained as history after completion.
-- Next System Tasks flags outstanding additional-wafer transactions during FI.
-
-V7.6.38 — AUTOMATIC DUAL-COLOR SYSTEM WAFERS
-================================================
-- Built from V7.6.37 and preserves the Quarter Summary refinements.
-- System Wafers remains one of the existing 28 UTC badges; no 29th badge was added.
-- The badge is now split into two independently colored halves:
-  * Top = automatic System Wafer Kit workflow from the Lead/Admin checklist.
-  * Bottom = manual additional-wafer tally (S / H / D65 / D65F).
-- Automatic kit workflow order is: Need to Issue System Wafer Kit -> Need to Update System Wafer Log -> Need to Notify Planners to Transact System Wafer Kit -> System Wafer Kit Issued.
-- Additional-wafer bottom half is RED whenever additional wafers exist and have not been accounted for/transacted.
-- Once explicitly marked Accounted For / Transacted, the lower half turns GREEN but retains the historical counts.
-- Increasing any additional-wafer count automatically clears the accounted state and returns the lower half to RED.
-- Added a dedicated System Wafers section to Tool Edit so morning tool updates can maintain Shiny, Haze, DSW65 and DSW65F additional counts from the normal tool workflow.
-- Clicking the System Wafers badge opens a simplified quick editor for the same four counters. Standard-kit composition/base-kit overrides were removed because the kit part number defines the standard contents.
-- Wafer popup is forced above all Command Center layers with a top-level modal z-index and locks background interaction while open.
-- Next System Tasks can flag outstanding additional wafers that still need accounting.
-
-V7.6.38 TEST FOCUS
-1. Complete the three System Wafer Lead/Admin checklist actions in sequence and confirm the badge top half advances automatically.
-2. Add extra wafers from Tool Edit and confirm the badge lower half immediately shows the tally and turns red.
-3. Mark additional wafers Accounted For / Transacted and confirm counts remain while the lower half turns green.
-4. Add another wafer afterward and confirm the lower half returns to red automatically.
-5. Open the badge quick editor and confirm the popup is above the header, navigation, status bars, cards and all other page content.
-6. Confirm wafer values persist after save/reload and through the existing shared tool record path.
-
-
-============================================================
-V7.6.39 — UNIVERSAL QUARTER SUMMARY + HEADER READABILITY
-============================================================
-- Normal CY26Q3 Summary remains the visual reference for tool-photo spacing and shipped red-X placement.
-- Normal Summary now dynamically fits every tool-family row in the available family-table region.
-- Live Operations / Status Quarter Summary carousel now uses the same dynamic family-row fitting and the same fleet/photo/X behavior, with master-like proportions: larger hero numbers and shorter eight live-status boxes.
-- Quarter Summary Presentation Mode now fits the entire wallboard inside the viewport, including the full outer border and bottom navigation, with no intended page scrolling.
-- Presentation fleet spacing and shipped X behavior now follow the same master fleet rules.
-- System Wafer badge is a true two-line vertical badge: line 1 = System Wafer Kit workflow; line 2 = additional S/H/D65/D65F counters. The two rows keep independent colors.
-- Main navigation is text-only for more label room and cleaner readability.
-- Status bars have increased internal breathing room; dots and left labels no longer touch borders.
-- Command Center activity bar uses a more informative ready-state message; sync remains in the dedicated right cell.
-- KLA presence panel geometry expanded internally so both upper and lower user badges remain visible.
-
-STRESS TEST RECOMMENDED
-1. Test 9+ tool families simultaneously.
-2. Test 10+ BOXSTER tools with a mixture of shipped/non-shipped tools.
-3. Compare normal CY26Q3 Summary, Live Operations Quarter Summary carousel, and Quarter Summary Presentation Mode.
-4. Confirm every family is visible, photos retain separation, and each red X stays centered on its own shipped tool.
-5. Confirm Presentation Mode outer border and bottom navigation are completely visible without scrolling.
-6. Confirm all four KLA user badges are visible and all three status bars have top/bottom padding.
-7. Confirm System Wafer badge shows two horizontal lines and retains independent top/bottom colors.
+Extract the entire ZIP before running START-COMMAND-CENTER.bat.

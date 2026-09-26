@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='7.6.37', BUILD='20260925-V7.6.38-WAFER-TRACKER-QUARTER-SUMMARY-REFINEMENT';
+const VERSION='7.6.42', BUILD='20260925-V7.6.42-STRUCTURAL-CONSOLIDATION';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -611,7 +611,7 @@ function shipCountdown(t){
  return{big:`${d} DAYS TO SHIP`,small:dd,tone};
 }
 function nextFiMilestone(t){let r=routeFor(t),i=checklistIndex(t,t.currentChecklist);if(!r.length)return'NOT SET';if(i<0)return checklistLabel(t,r[0][0]);if(i>=r.length-1)return'FINAL FI CHECKLIST';return checklistLabel(t,r[i+1][0])}
-function snapshotDisplay(html){return String(html).replace(/\sdata-tool="[^"]*"/g,'').replace(/\sdata-alert-tool="[^"]*"/g,'').replace(/\sdata-search-tool="[^"]*"/g,'')}
+function snapshotDisplay(html){return String(html).replace(/\sdata-alert-tool="[^"]*"/g,'').replace(/\sdata-search-tool="[^"]*"/g,'')}
 function toolTypeOptions(sel){let arr=FAMILIES.slice();if(sel&&!arr.includes(sel))arr.push(sel);return selectOptions(arr,sel)}
 function modelOptions(t,sel){let arr=catalogModelsForType(t.codename);if(!arr.length)arr=['TBD'];let chosen=arr.includes(sel)?sel:arr[0];return arr.map(x=>option(x,x,chosen)).join('')}
 function quarterBounds(q){let m=String(q||'').match(/^CY(\d{2})Q([1-4])$/i);if(!m)return null;let y=2000+Number(m[1]),qn=Number(m[2]),sm=(qn-1)*3;return{start:new Date(y,sm,1,12),end:new Date(y,sm+3,0,12)}}
