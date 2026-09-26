@@ -39,3 +39,16 @@ TEST FOCUS
 
 LAUNCH
 Extract the entire ZIP, then run START-COMMAND-CENTER.bat.
+
+V7.6.37 — WAFER TRACKER + QUARTER SUMMARY REFINEMENT
+- Quarter Summary Presentation Mode: same visible fleet spacing as normal Quarter Summary.
+- Presentation Mode: full outer perimeter border inset inside the viewport.
+- Status carousel Quarter Summary: increased tool-photo spacing and full-thumbnail shipped X markers.
+- System Wafers remains one of the existing 28 badges; no 29th badge added.
+- System Wafers badge now displays a second-line additional-wafer tally: + S / H / D65 / D65F.
+- Clicking System Wafers opens a dedicated wafer tracker with +/- and numeric controls.
+- Automatic base kit: non-Celestiq/Regera = S1 H1 D65-1; Celestiq/Regera = S1 H1 D65F-2.
+- Per-tool base-kit override supports customer/tool exceptions such as special Taycan configurations.
+- Additional wafer counts persist in the tool record and are separate from the base kit.
+- Additional-wafer transaction state is preserved as N/A / Pending / Complete; counts are retained as history after completion.
+- Next System Tasks flags outstanding additional-wafer transactions during FI.

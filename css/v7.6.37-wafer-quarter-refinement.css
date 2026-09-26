@@ -1,0 +1,16 @@
+/* V7.6.37 — Quarter Summary parity + wafer tracker */
+.fi-indicator-message{white-space:pre-line!important}
+/* Presentation frame: preserve full perimeter inside viewport. */
+html body.presentation-mode[data-center="operations"][data-sub="summary"] #app{padding:6px!important;box-sizing:border-box!important;background:#02080d!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-presentation{width:100%!important;height:calc(100dvh - 12px)!important;max-height:calc(100dvh - 12px)!important;box-sizing:border-box!important;border:2px solid #00bfff!important;overflow:hidden!important}
+/* Presentation gets the same fleet spacing behavior as the normal summary. */
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-tool-fleet{gap:clamp(6px,.55vw,11px)!important;padding-inline:4px!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-tool-icon{max-width:var(--family-image-height,54px)!important}
+/* Status carousel is a scaled summary, but must retain visible separation and a full X. */
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-tool-fleet{gap:clamp(3px,.3vw,6px)!important;padding-inline:2px!important}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-tool-icon{max-width:34px!important;max-height:24px!important;width:min(34px,calc((100% - (var(--fleet-count,1) - 1)*3px)/var(--fleet-count,1)))!important;height:24px!important}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-tool-icon img{width:100%!important;height:100%!important;max-height:none!important;object-fit:contain!important}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-tool-x::before,
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .family-tool-x::after{left:-5%!important;width:110%!important;height:max(4px,14%)!important}
+/* Wafer editor */
+.wafer-modal{max-width:760px!important}.wafer-base{border:1px solid #00bfff;padding:10px;margin:8px 0}.wafer-base h3,.wafer-modal h3{margin:6px 0}.wafer-base-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px}.wafer-base-grid label{display:grid;grid-template-columns:auto 1fr;gap:5px;align-items:center}.wafer-count-row{display:grid;grid-template-columns:minmax(120px,1fr) 44px 90px 44px;gap:8px;align-items:center;margin:7px 0}.wafer-count-row input,.wafer-base-grid input{text-align:center}
