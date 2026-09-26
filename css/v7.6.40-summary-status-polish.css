@@ -1,0 +1,66 @@
+/* V7.6.40 — Quarter Summary final spacing + status-bar interaction polish */
+
+/* Quarter Summary SYSTEM lane: keep exactly one thumbnail-width of breathing room
+   between the family name and the first tool.  The fleet then grows to the right;
+   thumbnails shrink as count rises, but the name gap never collapses. */
+html body[data-center="operations"] .quarter-summary-master .family-cell.name,
+html body[data-center="operations"] .quarter-summary-presentation .family-cell.name{
+  grid-template-columns:minmax(72px,max-content) var(--family-image-height,54px) minmax(0,1fr)!important;
+  column-gap:0!important;
+}
+html body[data-center="operations"] .quarter-summary-master .family-cell.name>span,
+html body[data-center="operations"] .quarter-summary-presentation .family-cell.name>span{
+  grid-column:1!important;
+}
+html body[data-center="operations"] .quarter-summary-master .family-tool-fleet,
+html body[data-center="operations"] .quarter-summary-presentation .family-tool-fleet{
+  grid-column:3!important;
+  justify-content:flex-start!important;
+}
+
+/* Normal Quarter Summary must consume only its available workspace.  Removing the
+   old fixed 620px floor prevents the phantom horizontal/edge line through the
+   eight live-status boxes on shorter browser workspaces. */
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-master-viewport{
+  height:calc(100dvh - var(--sticky-height,0px) - 58px)!important;
+  min-height:0!important;
+  max-height:calc(100dvh - var(--sticky-height,0px) - 58px)!important;
+  overflow:hidden!important;
+  scrollbar-width:none!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-master{
+  height:100%!important;
+  min-height:0!important;
+  max-height:100%!important;
+  overflow:hidden!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-live-panel,
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-live-panel .summary-grid{
+  min-height:0!important;
+  overflow:hidden!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-master-viewport::-webkit-scrollbar{display:none!important}
+
+/* Status bars behave as one navigation-style hit target.  No narrow inner hover
+   rectangle or underline; the complete bar receives the hover/focus treatment. */
+body:not(.presentation-mode):not(.screenshot-mode) .status-stack .status-bar{
+  transition:background-color .14s ease,box-shadow .14s ease,filter .14s ease!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .status-stack .status-bar:has([data-alert-tool]):hover,
+body:not(.presentation-mode):not(.screenshot-mode) .status-stack .command-center-activity-bar:has([data-tool]):hover{
+  background:#0a1c29!important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .status-stack .status-message:hover,
+body:not(.presentation-mode):not(.screenshot-mode) .status-stack .status-message:focus-visible,
+body:not(.presentation-mode):not(.screenshot-mode) #commandCenterActivityMessage[data-tool]:hover,
+body:not(.presentation-mode):not(.screenshot-mode) #commandCenterActivityMessage[data-tool]:focus-visible{
+  outline:none!important;
+  box-shadow:none!important;
+  background:transparent!important;
+  text-decoration:none!important;
+}
+
+/* Remove the small activity arrow permanently. */
+body:not(.presentation-mode):not(.screenshot-mode) #commandCenterActivityMessage[data-tool]{padding-right:12px!important}
+body:not(.presentation-mode):not(.screenshot-mode) #commandCenterActivityMessage[data-tool]::after{content:none!important;display:none!important}

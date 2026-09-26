@@ -1,3 +1,12 @@
+B7 FI COMMAND CENTER — V7.6.40
+
+V7.6.40 TEST BUILD CHANGES
+- Quarter Summary tool-family rows now preserve one tool-photo-width gap between the tool type name and first photo.
+- Tool photos continue to shrink dynamically as more tools are added; the name/photo gap no longer collapses.
+- Removed the fixed Quarter Summary minimum-height behavior that could create the stray border/scroll line through the eight live-status boxes.
+- Removed the small arrow from the Command Center activity status bar.
+- Clickable status bars now use a whole-bar navigation-style hover treatment; narrow inner hover boxes and underlines are suppressed.
+
 B7 FI COMMAND CENTER — V7.6.36
 DYNAMIC QUARTER SUMMARY
 September 25, 2026
