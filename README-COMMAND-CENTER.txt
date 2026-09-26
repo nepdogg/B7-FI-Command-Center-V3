@@ -52,3 +52,28 @@ V7.6.37 — WAFER TRACKER + QUARTER SUMMARY REFINEMENT
 - Additional wafer counts persist in the tool record and are separate from the base kit.
 - Additional-wafer transaction state is preserved as N/A / Pending / Complete; counts are retained as history after completion.
 - Next System Tasks flags outstanding additional-wafer transactions during FI.
+
+V7.6.38 — AUTOMATIC DUAL-COLOR SYSTEM WAFERS
+================================================
+- Built from V7.6.37 and preserves the Quarter Summary refinements.
+- System Wafers remains one of the existing 28 UTC badges; no 29th badge was added.
+- The badge is now split into two independently colored halves:
+  * Top = automatic System Wafer Kit workflow from the Lead/Admin checklist.
+  * Bottom = manual additional-wafer tally (S / H / D65 / D65F).
+- Automatic kit workflow order is: Need to Issue System Wafer Kit -> Need to Update System Wafer Log -> Need to Notify Planners to Transact System Wafer Kit -> System Wafer Kit Issued.
+- Additional-wafer bottom half is RED whenever additional wafers exist and have not been accounted for/transacted.
+- Once explicitly marked Accounted For / Transacted, the lower half turns GREEN but retains the historical counts.
+- Increasing any additional-wafer count automatically clears the accounted state and returns the lower half to RED.
+- Added a dedicated System Wafers section to Tool Edit so morning tool updates can maintain Shiny, Haze, DSW65 and DSW65F additional counts from the normal tool workflow.
+- Clicking the System Wafers badge opens a simplified quick editor for the same four counters. Standard-kit composition/base-kit overrides were removed because the kit part number defines the standard contents.
+- Wafer popup is forced above all Command Center layers with a top-level modal z-index and locks background interaction while open.
+- Next System Tasks can flag outstanding additional wafers that still need accounting.
+
+V7.6.38 TEST FOCUS
+1. Complete the three System Wafer Lead/Admin checklist actions in sequence and confirm the badge top half advances automatically.
+2. Add extra wafers from Tool Edit and confirm the badge lower half immediately shows the tally and turns red.
+3. Mark additional wafers Accounted For / Transacted and confirm counts remain while the lower half turns green.
+4. Add another wafer afterward and confirm the lower half returns to red automatically.
+5. Open the badge quick editor and confirm the popup is above the header, navigation, status bars, cards and all other page content.
+6. Confirm wafer values persist after save/reload and through the existing shared tool record path.
+
