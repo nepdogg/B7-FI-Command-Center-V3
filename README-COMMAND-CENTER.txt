@@ -1,3 +1,17 @@
+B7 FI COMMAND CENTER — V7.6.41
+
+V7.6.41 TEST FOCUS
+- Unified Quarter Summary fleet geometry across normal Summary, Live Operations Quarter Summary carousel, and Presentation Mode.
+- Tool photos are right-anchored and grow right-to-left. A protected clearance equal to roughly one normal thumbnail is maintained after the tool-family name; thumbnails only compress when required.
+- Shipped red X remains locked to the individual tool thumbnail and scales/moves with it.
+- Eight live quarter status boxes are shorter and protected from bottom clipping.
+- Presentation Mode reserves its bottom navigation area and divides remaining family-table height dynamically so all tool types, the navigation bar, and the complete outer border remain inside the viewport.
+- Clickable status-bar regions now use navigation-style semantic glow on hover; informational regions do not react.
+- Removed the Command Center activity arrow.
+
+Recommended stress test: keep the large BOXSTER fleet plus all current tool families, test at 100% browser zoom in normal Summary, Live Operations Quarter Summary carousel, and Presentation Mode.
+
+--- PRIOR CONSOLIDATED NOTES ---
 B7 FI COMMAND CENTER — V7.6.40
 
 V7.6.40 TEST BUILD CHANGES

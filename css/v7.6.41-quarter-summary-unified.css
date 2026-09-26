@@ -1,0 +1,83 @@
+/* V7.6.41 — unified Quarter Summary fleet geometry + presentation fit + status hit-target polish */
+
+/* MASTER FLEET RULE: family label fixed left; fleet is right-anchored and grows right-to-left.
+   Normal thumbnail size/spacing is preserved until the protected label clearance is reached;
+   only then do flex items shrink. Same rule is inherited by page, live snapshot and presentation. */
+html body[data-center="operations"] .quarter-summary-presentation .family-cell.name,
+html body[data-center="operations"] .quarter-summary-master .family-cell.name{
+  display:grid!important;
+  grid-template-columns:minmax(72px,max-content) minmax(0,1fr)!important;
+  column-gap:var(--family-image-height,54px)!important;
+  align-items:center!important;
+  padding:2px 7px!important;
+  min-width:0!important;
+  overflow:hidden!important;
+}
+html body[data-center="operations"] .quarter-summary-presentation .family-cell.name>span,
+html body[data-center="operations"] .quarter-summary-master .family-cell.name>span{grid-column:1!important;min-width:0!important;white-space:nowrap!important}
+html body[data-center="operations"] .quarter-summary-presentation .family-tool-fleet,
+html body[data-center="operations"] .quarter-summary-master .family-tool-fleet{
+  grid-column:2!important;width:100%!important;min-width:0!important;height:100%!important;
+  display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-end!important;
+  gap:clamp(4px,.38vw,8px)!important;padding:1px!important;overflow:hidden!important;
+}
+html body[data-center="operations"] .quarter-summary-presentation .family-tool-icon,
+html body[data-center="operations"] .quarter-summary-master .family-tool-icon{
+  flex:0 1 var(--family-image-height,54px)!important;
+  width:var(--family-image-height,54px)!important;max-width:var(--family-image-height,54px)!important;min-width:0!important;
+  height:min(92%,var(--family-image-height,54px))!important;margin:0!important;padding:0!important;position:relative!important;overflow:visible!important;
+}
+html body[data-center="operations"] .quarter-summary-presentation .family-tool-icon img,
+html body[data-center="operations"] .quarter-summary-master .family-tool-icon img{width:100%!important;height:100%!important;object-fit:contain!important}
+html body[data-center="operations"] .quarter-summary-presentation .family-tool-x,
+html body[data-center="operations"] .quarter-summary-master .family-tool-x{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;z-index:30!important;pointer-events:none!important}
+html body[data-center="operations"] .quarter-summary-presentation .family-tool-x::before,
+html body[data-center="operations"] .quarter-summary-presentation .family-tool-x::after,
+html body[data-center="operations"] .quarter-summary-master .family-tool-x::before,
+html body[data-center="operations"] .quarter-summary-master .family-tool-x::after{left:2%!important;width:96%!important;height:max(4px,9%)!important}
+
+/* The eight live quarter boxes are deliberately compact and may never collide with the family header. */
+html body[data-center="operations"] .quarter-summary-master .quarter-live-panel{height:70px!important;min-height:70px!important;max-height:70px!important;padding:2px 4px!important;overflow:hidden!important;box-sizing:border-box!important}
+html body[data-center="operations"] .quarter-summary-master .quarter-live-panel .summary-grid{height:64px!important;min-height:0!important;max-height:64px!important;gap:4px!important}
+html body[data-center="operations"] .quarter-summary-master .quarter-live-panel .summary-box{height:64px!important;min-height:0!important;max-height:64px!important;box-sizing:border-box!important}
+
+/* Presentation owns exactly one viewport. Reserve the switch bar first, then distribute the rest.
+   Family rows always divide the available family area, so every tool type and the full outer border remain visible. */
+html body.presentation-mode[data-center="operations"][data-sub="summary"],
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .app-frame,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .body-shell,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] #app{width:100vw!important;height:100dvh!important;min-height:0!important;max-height:100dvh!important;margin:0!important;overflow:hidden!important;box-sizing:border-box!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] #app{padding:4px!important;background:#02080d!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-presentation{
+  width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;margin:0!important;padding:5px!important;
+  border:2px solid #00bfff!important;box-sizing:border-box!important;overflow:hidden!important;display:grid!important;
+  grid-template-rows:minmax(0,37fr) 72px minmax(0,49fr) 40px!important;gap:4px!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-live-panel{height:72px!important;min-height:72px!important;max-height:72px!important;padding:2px 4px!important;overflow:hidden!important;box-sizing:border-box!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-live-panel .summary-grid{height:66px!important;min-height:0!important;max-height:66px!important;gap:4px!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-live-panel .summary-box{height:66px!important;min-height:0!important;max-height:66px!important;box-sizing:border-box!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-family-wrap,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-rows-scroll{height:100%!important;min-height:0!important;max-height:100%!important;overflow:hidden!important;box-sizing:border-box!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526{display:grid!important;grid-template-rows:22px minmax(0,1fr)!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-rows-scroll{display:grid!important;grid-template-rows:repeat(var(--family-count,1),minmax(0,1fr))!important;gap:2px!important;padding:0!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-rows-scroll>.family-matrix{height:100%!important;min-height:0!important;margin:0!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-switchbar{height:40px!important;min-height:40px!important;max-height:40px!important;margin:0!important;overflow:hidden!important;box-sizing:border-box!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-switchbar .presentation-nav-cell{height:38px!important;min-height:38px!important;max-height:38px!important}
+
+/* Status interaction language = navigation interaction language. Only actionable regions react.
+   Glow uses the bar's semantic color; no inset/narrow hover rectangle and no layout movement. */
+body:not(.presentation-mode):not(.screenshot-mode) .status-stack .status-message[data-alert-tool],
+body:not(.presentation-mode):not(.screenshot-mode) #commandCenterActivityMessage[data-tool],
+body:not(.presentation-mode):not(.screenshot-mode) .status-stack .status-open-button{cursor:pointer!important;transition:background-color .14s ease,box-shadow .14s ease,filter .14s ease!important;outline:none!important}
+body:not(.presentation-mode):not(.screenshot-mode) .status-stack .status-bar.critical .status-message[data-alert-tool]:hover,
+body:not(.presentation-mode):not(.screenshot-mode) .status-stack .status-bar.critical .status-open-button:hover{background:rgba(255,25,75,.13)!important;box-shadow:inset 0 0 0 1px #ff194b,0 0 9px rgba(255,25,75,.7)!important}
+body:not(.presentation-mode):not(.screenshot-mode) .status-stack .status-bar.attention .status-message[data-alert-tool]:hover,
+body:not(.presentation-mode):not(.screenshot-mode) .status-stack .status-bar.attention .status-open-button:hover{background:rgba(255,204,0,.10)!important;box-shadow:inset 0 0 0 1px #ffcc00,0 0 9px rgba(255,204,0,.65)!important}
+body:not(.presentation-mode):not(.screenshot-mode) #commandCenterActivityMessage[data-tool]:hover{background:rgba(0,207,255,.11)!important;box-shadow:inset 0 0 0 1px #00cfff,0 0 9px rgba(0,207,255,.65)!important}
+body:not(.presentation-mode):not(.screenshot-mode) .status-stack .status-message:focus-visible,
+body:not(.presentation-mode):not(.screenshot-mode) .status-stack .status-open-button:focus-visible{filter:brightness(1.18)!important}
+/* defeat older whole-bar hover rules */
+body:not(.presentation-mode):not(.screenshot-mode) .status-stack .status-bar:hover{background:initial!important;box-shadow:none!important}
+/* no activity arrow */
+body:not(.presentation-mode):not(.screenshot-mode) #commandCenterActivityMessage[data-tool]::after{content:none!important;display:none!important}
