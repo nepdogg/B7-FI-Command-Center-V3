@@ -89,3 +89,37 @@ TEST FOCUS
 4. Verify shipped X overlays remain centered on their exact photos.
 5. Compare System Wafers outside edges to the badge immediately beside it: top, bottom, width, and grid alignment must match.
 6. Verify wafer top status and bottom counters are both readable without changing the badge-grid geometry.
+
+============================================================
+V7.6.46 — QUARTER SUMMARY CORRECTION / SKETCH IMPLEMENTATION
+============================================================
+This build corrects the issues verified during V7.6.45 testing.
+
+1. SYSTEM TOOL PHOTO ORIGIN
+- Tool photos are no longer right-anchored for sparse families.
+- Every family uses a common name zone.
+- A protected gap approximately equal to one tool-photo width follows the name zone.
+- The first tool photo starts after that gap and additional tools grow LEFT-TO-RIGHT.
+- Red X overlays remain attached to their corresponding shipped tool.
+
+2. EIGHT LIVE STATUS BOXES
+- Removed the inherited panel/grid lower rail below the eight boxes.
+- The individual status-box borders are the only bottom edge.
+
+3. SYSTEM WAFERS BADGE
+- Uses the same standard badge-grid cell footprint and shell as neighboring badges.
+- Top internal row = System Wafer Kit workflow state.
+- Bottom internal row = extra wafer counters.
+- Split is internal only; it does not change the badge cell size.
+
+4. QUARTER SUMMARY PRESENTATION MODE
+- Presentation uses the same Quarter Summary composition instead of a stretched KPI layout.
+- Removed the nested 100vh sizing that caused the KPI panels to consume the screen and push the table below the viewport.
+- Complete family table and compact dynamic quarter navigation are reserved inside the fitted presentation canvas.
+
+TEST FIRST
+- Compare 1-tool, 2-tool and BOXSTER/many-tool SYSTEM rows to the approved hand sketch.
+- Confirm there is no gray rail under the eight live-status boxes.
+- Confirm System Wafers aligns exactly with the badge to its right.
+- Enter Quarter Summary Presentation Mode and confirm the complete summary/table/navigation is visible.
+- Confirm the next-quarter Summary link appears in Presentation Mode when that quarter contains an active tool.

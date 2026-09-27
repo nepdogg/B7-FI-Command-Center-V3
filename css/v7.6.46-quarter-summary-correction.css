@@ -1,0 +1,121 @@
+/* V7.6.46 — Quarter Summary correction from user sketch + presentation parity + wafer badge lock */
+
+/* 1) SYSTEM photo strip: common origin after a fixed name zone + one photo-width gap.
+      Photos grow LEFT -> RIGHT from that common origin. Never right-anchor sparse families. */
+html body[data-center="operations"] .quarter-summary-presentation .family-cell.name,
+html body[data-center="operations"] .quarter-summary-master .family-cell.name{
+  display:flex!important;align-items:center!important;justify-content:flex-start!important;
+  padding:1px 8px!important;gap:0!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+html body[data-center="operations"] .quarter-summary-presentation .family-cell.name>span,
+html body[data-center="operations"] .quarter-summary-master .family-cell.name>span{
+  flex:0 0 clamp(112px,8.25vw,150px)!important;width:clamp(112px,8.25vw,150px)!important;
+  min-width:clamp(112px,8.25vw,150px)!important;max-width:clamp(112px,8.25vw,150px)!important;
+  white-space:nowrap!important;margin:0!important;padding:0!important;position:relative!important;z-index:2!important;
+}
+html body[data-center="operations"] .quarter-summary-presentation .family-tool-fleet,
+html body[data-center="operations"] .quarter-summary-master .family-tool-fleet{
+  flex:1 1 auto!important;width:auto!important;min-width:0!important;height:100%!important;
+  margin:0!important;padding:1px 2px 1px var(--family-image-height,40px)!important;
+  display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-start!important;
+  gap:clamp(4px,.34vw,8px)!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+html body[data-center="operations"] .quarter-summary-presentation .family-tool-icon,
+html body[data-center="operations"] .quarter-summary-master .family-tool-icon{flex:0 0 auto!important;}
+
+/* 2) Eight status boxes: the cells themselves are the only bottom edge.
+      Remove every panel/grid rail, pseudo-element and inherited shadow below them. */
+html body[data-center="operations"] .quarter-summary-presentation .quarter-live-panel,
+html body[data-center="operations"] .quarter-summary-master .quarter-live-panel{
+  border:0!important;border-top:0!important;border-right:0!important;border-bottom:0!important;border-left:0!important;
+  outline:0!important;box-shadow:none!important;background:transparent!important;margin:0!important;padding:0!important;
+  overflow:visible!important;
+}
+html body[data-center="operations"] .quarter-summary-presentation .quarter-live-panel::before,
+html body[data-center="operations"] .quarter-summary-presentation .quarter-live-panel::after,
+html body[data-center="operations"] .quarter-summary-master .quarter-live-panel::before,
+html body[data-center="operations"] .quarter-summary-master .quarter-live-panel::after,
+html body[data-center="operations"] .quarter-summary-presentation .quarter-live-panel .summary-grid::before,
+html body[data-center="operations"] .quarter-summary-presentation .quarter-live-panel .summary-grid::after,
+html body[data-center="operations"] .quarter-summary-master .quarter-live-panel .summary-grid::before,
+html body[data-center="operations"] .quarter-summary-master .quarter-live-panel .summary-grid::after{
+  content:none!important;display:none!important;border:0!important;outline:0!important;box-shadow:none!important;
+}
+html body[data-center="operations"] .quarter-summary-presentation .quarter-live-panel .summary-grid,
+html body[data-center="operations"] .quarter-summary-master .quarter-live-panel .summary-grid{
+  border:0!important;border-bottom:0!important;outline:0!important;box-shadow:none!important;margin:0!important;padding:0!important;
+}
+
+/* 3) System Wafers: use the exact standard lamp shell. The split lives INSIDE it.
+      Same row/cell geometry, border, background family and visual weight as its neighbor. */
+html body .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-lamp.wafer-dual,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-lamp.wafer-dual{
+  display:grid!important;grid-template-columns:1fr!important;grid-template-rows:minmax(0,13fr) minmax(0,9fr)!important;
+  width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;
+  margin:0!important;padding:0!important;gap:0!important;box-sizing:border-box!important;overflow:hidden!important;
+  border:1px solid var(--red,#ff244f)!important;border-radius:0!important;background:#5a0713!important;
+  color:#fff!important;font-family:inherit!important;font-weight:950!important;
+}
+html body .utc-card.utc-v6538 .fi-indicator-lamp.wafer-dual>.wafer-kit-half,
+html body .utc-card.utc-v6538 .fi-indicator-lamp.wafer-dual>.wafer-extra-half{
+  display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:100%!important;
+  min-width:0!important;min-height:0!important;margin:0!important;padding:0 2px!important;box-sizing:border-box!important;
+  overflow:hidden!important;text-align:center!important;background:inherit!important;color:inherit!important;border:0!important;
+}
+html body .utc-card.utc-v6538 .fi-indicator-lamp.wafer-dual>.wafer-kit-half{border-bottom:1px solid rgba(255,255,255,.50)!important;}
+html body .utc-card.utc-v6538 .fi-indicator-lamp.wafer-dual .wafer-kit-half .fi-indicator-message{
+  display:block!important;width:100%!important;margin:0!important;padding:0!important;white-space:nowrap!important;overflow:hidden!important;
+  font-size:7.5px!important;line-height:9px!important;font-weight:950!important;letter-spacing:-.08px!important;text-align:center!important;
+}
+html body .utc-card.utc-v6538 .fi-indicator-lamp.wafer-dual .wafer-extra-half .fi-indicator-message{
+  display:block!important;width:100%!important;margin:0!important;padding:0!important;white-space:nowrap!important;overflow:hidden!important;
+  font-size:6.5px!important;line-height:7px!important;font-weight:950!important;letter-spacing:-.12px!important;text-align:center!important;
+}
+/* Completed base kit can be green; extra-wafer attention can independently turn the lower half red. */
+html body .utc-card.utc-v6538 .fi-indicator-lamp.wafer-dual>.wafer-kit-half.complete{background:#075c3e!important;}
+html body .utc-card.utc-v6538 .fi-indicator-lamp.wafer-dual>.wafer-extra-half.outstanding{background:#780815!important;}
+html body .utc-card.utc-v6538 .fi-indicator-lamp.wafer-dual>.wafer-extra-half.accounted{background:#075c3e!important;}
+
+/* 4) Presentation Summary is the SAME summary composition, plus only a compact bottom switch bar.
+      Important: use 100% of the fitted presentation canvas, never 100vh inside that canvas. */
+html body.presentation-mode[data-center="operations"][data-sub="summary"] #app{
+  width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;
+  margin:0!important;padding:4px!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-presentation{
+  width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;
+  margin:0!important;padding:4px!important;box-sizing:border-box!important;overflow:hidden!important;
+  display:grid!important;grid-template-rows:minmax(0,38fr) 70px minmax(0,62fr) 44px!important;gap:6px!important;
+  border:2px solid #00bfff!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-hero{
+  height:100%!important;min-height:0!important;max-height:100%!important;overflow:hidden!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-hero-metric{height:100%!important;min-height:0!important;box-sizing:border-box!important;}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-live-panel{
+  height:70px!important;min-height:70px!important;max-height:70px!important;overflow:visible!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-live-panel .summary-grid{
+  height:70px!important;min-height:70px!important;max-height:70px!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-live-panel .summary-box{
+  height:70px!important;min-height:70px!important;max-height:70px!important;box-sizing:border-box!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-family-wrap,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-rows-scroll{
+  height:100%!important;min-height:0!important;max-height:100%!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-panel-v526{
+  display:grid!important;grid-template-rows:28px minmax(0,1fr)!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-rows-scroll{
+  display:grid!important;grid-template-rows:repeat(var(--family-count,1),minmax(0,1fr))!important;gap:2px!important;padding:0!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .family-rows-scroll>.family-matrix{height:100%!important;min-height:0!important;margin:0!important;}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-switchbar{
+  height:44px!important;min-height:44px!important;max-height:44px!important;margin:0!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-switchbar .presentation-nav-cell{
+  height:42px!important;min-height:42px!important;min-width:0!important;flex:1 1 0!important;font-size:clamp(11px,.9vw,17px)!important;
+}
