@@ -1,0 +1,24 @@
+/* V7.6.43 — dynamic quarter lifecycle + final summary/wafer parity */
+
+/* System Wafer badge remains exactly one normal badge footprint with two stacked rows. */
+.fi-indicator-lamp.wafer-dual{display:grid!important;grid-template:1fr 1fr/1fr!important;padding:0!important;overflow:hidden!important;border:inherit!important}
+.fi-indicator-lamp.wafer-dual .wafer-kit-half,.fi-indicator-lamp.wafer-dual .wafer-extra-half{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:0!important;padding:1px 2px!important;line-height:1!important;font-size:clamp(6px,.45vw,8px)!important;font-weight:900!important;white-space:nowrap!important;overflow:hidden!important}
+.fi-indicator-lamp.wafer-dual .wafer-kit-half{border-bottom:1px solid rgba(255,255,255,.72)!important}
+.fi-indicator-lamp.wafer-dual .wafer-extra-half.outstanding{background:#8f0019!important;color:#fff!important}
+.fi-indicator-lamp.wafer-dual .wafer-extra-half.accounted{background:#075f3d!important;color:#fff!important}
+.fi-indicator-lamp.wafer-dual .wafer-extra-half.clear{background:#071018!important;color:#dce9ef!important}
+
+/* Summary family fleet: photos originate at right edge and grow left with protected name gap. */
+.quarter-summary-master .family-cell.name,.quarter-summary-presentation .family-cell.name{grid-template-columns:minmax(74px,max-content) minmax(0,1fr)!important;column-gap:var(--family-image-height,54px)!important}
+.quarter-summary-master .family-tool-fleet,.quarter-summary-presentation .family-tool-fleet{justify-content:flex-end!important;gap:clamp(4px,.34vw,8px)!important;padding-inline:2px!important}
+
+/* Embedded status-carousel summary uses the same master component, only uniformly scaled by its viewport. */
+.snapshot-quarter-summary{overflow:hidden!important}
+.snapshot-quarter-summary .quarter-summary-master-viewport{width:100%!important;height:100%!important;min-height:0!important;overflow:hidden!important}
+.snapshot-quarter-summary .quarter-summary-master{transform-origin:top left!important}
+
+/* Full presentation wallboard: border and switchbar must always remain inside the visible frame. */
+body.presentation-mode[data-center="operations"][data-sub="summary"] #app{padding:3px!important}
+body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-presentation{border:2px solid #00bfff!important;grid-template-rows:minmax(0,36fr) 62px minmax(0,1fr) 36px!important;gap:3px!important}
+body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-live-panel{height:62px!important;min-height:62px!important;max-height:62px!important}
+body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-live-panel .summary-grid,body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-live-panel .summary-box{height:56px!important;max-height:56px!important}
