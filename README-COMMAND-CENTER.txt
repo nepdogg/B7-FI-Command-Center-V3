@@ -123,3 +123,22 @@ TEST FIRST
 - Confirm System Wafers aligns exactly with the badge to its right.
 - Enter Quarter Summary Presentation Mode and confirm the complete summary/table/navigation is visible.
 - Confirm the next-quarter Summary link appears in Presentation Mode when that quarter contains an active tool.
+
+============================================================
+V7.6.47 — QUARTER SUMMARY PRODUCTION LOCK
+============================================================
+- Protects full SYSTEM family names (including PANAMERA).
+- Uses shared SYSTEM name zone + one-photo-width gap; photos grow left-to-right.
+- Removes parent rail/bottom divider beneath the eight live-status boxes.
+- Rebuilds System Wafers inside the standard badge shell with two equal internal rows.
+- Presentation Mode uses the normal Quarter Summary proportions and forces all family rows to fit above the presentation navigation.
+- Live Operations Quarter Summary snapshot reserves more height for the family table and minimum readable photo sizes.
+- Dynamic CY26Q4/future-quarter navigation from V7.6.43+ is retained.
+
+TEST FIRST:
+1. Quarter Summary: verify PANAMERA is fully visible.
+2. Verify first photo starts after shared name zone + approximately one photo-width gap.
+3. Verify no gray rail exists below the 8 status boxes.
+4. Presentation Mode: verify KPI + 8 boxes + every family row + bottom navigation are simultaneously visible.
+5. Live Operations: verify summary labels and fleet photos remain readable.
+6. Universal Tool Card: compare System Wafers outer dimensions directly with the badge to its right.
