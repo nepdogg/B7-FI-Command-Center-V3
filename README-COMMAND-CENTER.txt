@@ -58,3 +58,34 @@ TEST FOCUS
 6. Archive CY26Q3 tools one at a time. After the final CY26Q3 tool is archived, verify CY26Q3 Summary disappears and CY26Q4 Summary becomes the selected active Summary. Confirm archived Q3 tools remain in Tool Archive.
 
 Extract the entire ZIP before running START-COMMAND-CENTER.bat.
+
+============================================================
+V7.6.45 — SKETCH LAYOUT LOCK — 2026-09-26
+============================================================
+This build uses the hand-drawn layout supplied during testing as the authoritative geometry specification.
+
+QUARTER SUMMARY / SYSTEM PHOTO ROWS
+- Tool-family photos are RIGHT-ANCHORED again.
+- One tool stays at the far right; additional tools grow from RIGHT TO LEFT.
+- A protected minimum gap approximately equal to one tool-photo width is reserved between the family name and the closest photo.
+- Existing photo-to-photo spacing and shipped red-X overlay behavior are preserved.
+- Rule applies to the shared Quarter Summary presentation/master contexts.
+
+SYSTEM WAFERS BADGE
+- System Wafers remains ONE standard badge-grid cell with the same outside footprint as neighboring badges.
+- Inside only, the badge is divided into two stacked rows by one thin horizontal divider.
+- Top row = System Wafer Kit workflow/status.
+- Bottom row = additional wafer counters: S / H / D65 / D65F.
+- Counter format is compact: S=0 | H=0 | D65=0 | D65F=0.
+- Existing wafer workflow automation and manual additional-wafer counters are preserved.
+
+QUARTER SUMMARY LIVE STATUS
+- Reinforces removal of any extra lower rail/divider beneath the eight live-status cells.
+
+TEST FOCUS
+1. Compare SYSTEM rows directly to the approved sketch with families containing 1, 2, 3, 5, and many tools.
+2. Verify the rightmost photo remains anchored and new photos grow left.
+3. Verify the closest photo never crowds the family name; retain about one photo-width minimum gap.
+4. Verify shipped X overlays remain centered on their exact photos.
+5. Compare System Wafers outside edges to the badge immediately beside it: top, bottom, width, and grid alignment must match.
+6. Verify wafer top status and bottom counters are both readable without changing the badge-grid geometry.

@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='7.6.44', BUILD='20260926-V7.6.44-QUARTER-PRESENTATION-WAFER-LOCK';
+const VERSION='7.6.45', BUILD='20260926-V7.6.45-SKETCH-LAYOUT-LOCK';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -892,7 +892,7 @@ const INDICATOR_CONTROL_KEYS=['driver','reduced',...INDICATOR_KEYS.filter(k=>!['
 function indicatorStateForSlot(t,key){return indicatorState(t,key)}
 function waferAdditional(t){return Object.assign({shiny:0,haze:0,dsw65:0,dsw65f:0},t?.waferTracking?.additional||{})}
 function waferAdditionalTotal(t){let a=waferAdditional(t);return a.shiny+a.haze+a.dsw65+a.dsw65f}
-function waferTally(t){let a=waferAdditional(t);return `+ S${a.shiny} · H${a.haze} · D65 ${a.dsw65} · D65F ${a.dsw65f}`}
+function waferTally(t){let a=waferAdditional(t);return `S=${a.shiny} | H=${a.haze} | D65=${a.dsw65} | D65F=${a.dsw65f}`}
 function waferAdditionalAccounted(t){return waferAdditionalTotal(t)>0&&!!t?.waferTracking?.accounted}
 function indicatorMessage(t,key){let state=indicatorStateForSlot(t,key).state;return key==='systemWafers'?state+'\n'+waferTally(t):state}
 function indicatorLamp(t,key){let x=indicatorStateForSlot(t,key),editable=true;if(key==='lamp'){editable=true;let req=lampRequestBrainState(t);if(req.active&&x.tone==='complete')x={...x,state:`${x.state} · REQUEST LAMP`,tone:'critical'};}let attrs=key==='lamp'?` data-quick-field="lampHours" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" aria-label="Update lamp status and hours"`:editable?` data-direct-indicator="${esc(key)}" data-indicator-tool="${esc(t.id)}" role="button" tabindex="0" aria-label="Update ${esc(x.label)}"`:` aria-label="${esc(x.label)} automatic status"`;if(key==='systemWafers'){let total=waferAdditionalTotal(t),lower=total===0?'clear':waferAdditionalAccounted(t)?'accounted':'outstanding';return `<div class="fi-indicator-lamp wafer-dual ${x.active?'on':'off'} direct-editable" title="SYSTEM WAFERS — click to update additional wafer counters"${attrs}><span class="wafer-kit-half ${x.tone}"><span class="fi-indicator-message">${esc(x.state)}</span></span><span class="wafer-extra-half ${lower}"><span class="fi-indicator-message">${esc(waferTally(t))}${lower==='accounted'?' ✓':''}</span></span></div>`;}return `<div class="fi-indicator-lamp ${x.active?'on':'off'} ${x.tone} ${editable?'direct-editable':'automatic-badge'}" title="${esc(x.label)}${editable?' — click to open source / badge control':''}"${attrs}><span class="fi-indicator-message">${esc(indicatorMessage(t,key))}</span></div>`}

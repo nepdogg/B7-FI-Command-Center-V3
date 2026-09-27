@@ -1,0 +1,117 @@
+/* V7.6.45 — Sketch-locked Quarter Summary fleet + System Wafer badge geometry */
+
+/*
+   SYSTEM fleet rule from approved sketch:
+   - family name stays on the left
+   - fleet remains anchored to the RIGHT edge
+   - new tools grow RIGHT -> LEFT
+   - preserve a protected minimum gap of approximately one tool-photo width
+     between the family label and the closest photo
+*/
+html body[data-center="operations"] .quarter-summary-presentation .family-cell.name,
+html body[data-center="operations"] .quarter-summary-master .family-cell.name{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:0!important;
+  padding-left:12px!important;
+  overflow:hidden!important;
+}
+html body[data-center="operations"] .quarter-summary-presentation .family-cell.name>span,
+html body[data-center="operations"] .quarter-summary-master .family-cell.name>span{
+  flex:0 0 auto!important;
+  white-space:nowrap!important;
+  position:relative!important;
+  z-index:2!important;
+}
+html body[data-center="operations"] .quarter-summary-presentation .family-tool-fleet,
+html body[data-center="operations"] .quarter-summary-master .family-tool-fleet{
+  flex:1 1 auto!important;
+  width:auto!important;
+  min-width:0!important;
+  height:100%!important;
+  margin-left:var(--family-image-height,54px)!important;
+  padding:1px 4px 1px 0!important;
+  display:flex!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:clamp(4px,.34vw,8px)!important;
+  overflow:hidden!important;
+  box-sizing:border-box!important;
+}
+html body[data-center="operations"] .quarter-summary-presentation .family-tool-icon,
+html body[data-center="operations"] .quarter-summary-master .family-tool-icon{
+  flex:0 0 auto!important;
+}
+
+/*
+   SYSTEM WAFERS is one STANDARD badge cell.  Same outside geometry as all 28
+   badge cells.  Only the inside is divided into two stacked lines.
+*/
+html body .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-lamp.wafer-dual,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-lamp.wafer-dual{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  grid-template-rows:1fr 1fr!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:0!important;
+  gap:0!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+  border-width:1px!important;
+  border-style:solid!important;
+  border-radius:0!important;
+}
+html body .utc-card.utc-v6538 .fi-indicator-lamp.wafer-dual>.wafer-kit-half,
+html body .utc-card.utc-v6538 .fi-indicator-lamp.wafer-dual>.wafer-extra-half{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0 2px!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+  text-align:center!important;
+}
+html body .utc-card.utc-v6538 .fi-indicator-lamp.wafer-dual>.wafer-kit-half{
+  border:0!important;
+  border-bottom:1px solid rgba(255,255,255,.58)!important;
+}
+html body .utc-card.utc-v6538 .fi-indicator-lamp.wafer-dual>.wafer-extra-half{
+  border:0!important;
+}
+html body .utc-card.utc-v6538 .fi-indicator-lamp.wafer-dual .fi-indicator-message{
+  display:block!important;
+  width:100%!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:0!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:clip!important;
+  text-align:center!important;
+  font-size:clamp(7px,.50vw,9px)!important;
+  line-height:1!important;
+  font-weight:900!important;
+  letter-spacing:-.08px!important;
+}
+
+/* Keep the eight live-status cells clean: no extra rail/divider under the row. */
+html body[data-center="operations"] .quarter-summary-presentation .quarter-live-panel,
+html body[data-center="operations"] .quarter-summary-master .quarter-live-panel,
+html body[data-center="operations"] .quarter-summary-presentation .quarter-live-panel::before,
+html body[data-center="operations"] .quarter-summary-presentation .quarter-live-panel::after,
+html body[data-center="operations"] .quarter-summary-master .quarter-live-panel::before,
+html body[data-center="operations"] .quarter-summary-master .quarter-live-panel::after{
+  border-bottom:0!important;
+  box-shadow:none!important;
+}
