@@ -35,3 +35,26 @@ V7.6.43 — DYNAMIC QUARTER LIFECYCLE / SUMMARY + WAFER UPDATE
 - Presentation Summary and embedded Live Operations status-carousel Summary receive parity/fit refinements so the complete wallboard remains inside its border.
 - System Wafers remains one normal badge footprint with two stacked rows: System Wafer Kit state on top and additional wafer counters on bottom. Extra-wafer attention can be red independently of the kit-complete state.
 - Existing multi-user, archive, tool edit, shipping, priority, status, and checklist data behavior retained.
+
+============================================================
+V7.6.44 — QUARTER SUMMARY / PRESENTATION / WAFER LOCK
+============================================================
+CHANGES
+- Regular Quarter Summary remains the master visual reference.
+- The 8 Live Tool Status boxes now reserve enough label height for two-line labels, keep equal geometry, and remove the unwanted lower divider/border.
+- Quarter Summary status counts are now calculated for the quarter being viewed instead of always using the calendar/current quarter.
+- SYSTEM tool-family photo lanes now begin one tool-photo-width after the family name and grow left-to-right as tools are added. Photo-to-photo spacing and shipped red-X attachment remain locked.
+- Presentation Mode now renders the same Quarter Summary content/layout and reserves a fixed bottom navigation lane so the table and outer border remain visible.
+- Presentation Mode automatically creates a Quarter Summary navigation button for every currently active/non-archived quarter (for example CY26Q3 and CY26Q4).
+- System Wafers uses the same outside badge footprint as every other badge. Inside that normal badge: top row = System Wafer Kit workflow state; bottom row = S / H / D65 / D65F additional-wafer counters.
+- Quarter Summary navigation no longer keeps an empty quarter Summary solely because it is the calendar quarter. When the final tool for a quarter is archived, that Summary can disappear and the remaining quarter becomes the selected Summary.
+
+TEST FOCUS
+1. CY26Q3 Summary: verify all 8 Live Tool Status labels/numbers and borders are fully visible with no gray line below.
+2. SYSTEM rows: verify the first photo begins about one photo-width after each family name and additional photos grow to the right.
+3. System Wafers badge: compare its outside edges directly with the badge beside it; they must match exactly.
+4. Presentation Mode: verify the complete Quarter Summary, all tool-family rows, outer border, and bottom navigation are visible at 100% zoom.
+5. With a CY26Q4 tool present, verify Presentation Mode shows both CY26Q3 and CY26Q4 Quarter Summary buttons and switches between them without leaving Presentation Mode.
+6. Archive CY26Q3 tools one at a time. After the final CY26Q3 tool is archived, verify CY26Q3 Summary disappears and CY26Q4 Summary becomes the selected active Summary. Confirm archived Q3 tools remain in Tool Archive.
+
+Extract the entire ZIP before running START-COMMAND-CENTER.bat.
