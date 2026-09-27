@@ -1,3 +1,15 @@
+B7 FI COMMAND CENTER — V7.6.48 ROOT-CAUSE CONSOLIDATION
+
+This build removes the V7.6.44–V7.6.47 Quarter Summary patch stack from index.html and replaces it with one authoritative V7.6.48 stylesheet. Presentation Mode now renders the same quarter-summary-master component as the normal Quarter Summary.
+
+V7.6.48 TEST FOCUS
+- Quarter Summary: verify no gray/scrollbar-like rail below the 8 status boxes.
+- SYSTEM: verify a protected 150px name zone, one photo-width gap, then photos growing left-to-right from a common origin.
+- Presentation Mode: verify all KPI cards, all 8 status boxes, every SYSTEM row, Reveal column, and bottom quarter navigation are visible simultaneously.
+- CY26Q4: verify the automatically-created quarter link remains available in Presentation Mode.
+- System Wafers: verify the outer badge is identical in size/border/background to neighboring badges; top line is kit state and bottom line is additional-wafer counters.
+- Live Operations: verify compact Quarter Summary remains readable and photo/X positions stay attached to the correct tools.
+
 B7 FI COMMAND CENTER — V7.6.42
 
 STRUCTURAL CONSOLIDATION TEST BUILD

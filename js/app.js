@@ -751,7 +751,7 @@ function quarterSummaryView(presentation=false,q=summaryViewQuarter()){
   if(!presentation){
     return `<div class="quarter-summary-master-viewport"><div class="quarter-summary-presentation quarter-summary-master" style="${vars}">${core}</div></div>`;
   }
-  return `<div class="quarter-summary-presentation" style="${vars}">
+  return `<div class="quarter-summary-presentation quarter-summary-master" style="${vars}">
     ${core}
     <nav class="presentation-inline-nav quarter-summary-switchbar" aria-label="Quarter summary presentation controls">
       <button class="presentation-nav-cell presentation-switch-view" data-presentation-view="tool" type="button">${esc(state.quarter)} TOOLS</button>
