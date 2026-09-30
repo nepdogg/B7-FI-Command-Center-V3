@@ -1,0 +1,68 @@
+/* B7 FI Command Center V7.6.52 — UI RECOVERY LOCK
+   Restore normal document flow. Preserve established page/card geometry while keeping V7.6.51 features. */
+
+/* NORMAL MODE: the page owns vertical scrolling; footer is never an overlay. */
+html body:not(.presentation-mode):not(.screenshot-mode){
+  height:auto!important;min-height:100%!important;overflow-x:auto!important;overflow-y:auto!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{
+  height:auto!important;min-height:calc(100vh - 8px)!important;max-height:none!important;overflow:visible!important;
+  display:flex!important;flex-direction:column!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .body-shell{
+  height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;flex:0 0 auto!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #app.body-workspace{
+  height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{
+  position:static!important;inset:auto!important;bottom:auto!important;top:auto!important;z-index:auto!important;
+  flex:0 0 74px!important;height:74px!important;min-height:74px!important;max-height:74px!important;
+  margin-top:auto!important;transform:none!important;
+}
+/* Tool Edit must expose the complete form through the normal page scrollbar. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tool"] .body-shell,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tool"] #app,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tool"] .tool-editor{
+  height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;
+}
+
+/* Global footer controls: Presentation Mode belongs beside Administration Center on every page. */
+html body:not(.presentation-mode):not(.screenshot-mode) .footer-admin{gap:7px!important;padding:0 9px!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .footer-global-actions{
+  display:grid!important;grid-template-columns:1fr 1fr!important;gap:6px!important;width:100%!important;min-width:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .footer-global-actions button{
+  min-width:0!important;width:100%!important;height:28px!important;padding:0 7px!important;border:1px solid rgba(255,255,255,.65)!important;
+  background:rgba(0,33,53,.24)!important;color:#fff!important;font-size:clamp(7px,.56vw,10px)!important;font-weight:900!important;white-space:nowrap!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .footer-global-actions button:hover{box-shadow:0 0 8px #00d7ff!important;border-color:#fff!important}
+
+/* Live page carousel controls: exact mirrored geometry. */
+html body:not(.presentation-mode):not(.screenshot-mode) .nav69-live-controls{
+  display:grid!important;grid-template-columns:repeat(2,132px)!important;gap:8px!important;align-items:stretch!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .nav69-control-group{
+  display:grid!important;grid-template-columns:32px 68px 32px!important;gap:0!important;width:132px!important;height:100%!important;min-width:132px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .nav69-control-group .nav69-mini{
+  width:32px!important;min-width:32px!important;max-width:32px!important;height:100%!important;margin:0!important;padding:0!important;text-align:center!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .nav69-control-group .nav69-pause{
+  width:68px!important;min-width:68px!important;max-width:68px!important;height:100%!important;margin:0!important;padding:1px 2px!important;text-align:center!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .nav69-control-group .nav69-pause b,
+html body:not(.presentation-mode):not(.screenshot-mode) .nav69-control-group .nav69-pause small{display:block!important;width:100%!important;text-align:center!important}
+
+/* Command Center status is a first-class actionable status bar. */
+html body:not(.presentation-mode) .clickable-command-status{cursor:pointer!important}
+html body:not(.presentation-mode) .clickable-command-status:hover{
+  border-color:#00dfff!important;box-shadow:0 0 10px rgba(0,220,255,.8),inset 0 0 8px rgba(0,220,255,.12)!important;
+}
+html body:not(.presentation-mode) .clickable-command-status:focus-visible{outline:2px solid #fff!important;outline-offset:-2px!important}
+
+/* Do not let screenshot-mode recovery rules leak into ordinary Tools pages. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tools"] .body-shell,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tools"] #app{
+  height:auto!important;max-height:none!important;overflow:visible!important;
+}

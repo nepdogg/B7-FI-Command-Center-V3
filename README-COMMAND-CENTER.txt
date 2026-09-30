@@ -34,3 +34,25 @@ SCREENSHOT MODE TEST
 - Confirm action/edit controls disappear while operational content remains visible.
 - Confirm Mystery Boxes remain visible where applicable.
 - Exit with X and confirm the exact normal page returns.
+
+============================================================
+V7.6.52 — UI RECOVERY LOCK / FINAL-DAY TEST BUILD
+============================================================
+Changes:
+- Restored normal page scrolling and natural document height.
+- Footer is no longer sticky/fixed and cannot cover Tool Cards or Tool Edit fields.
+- Tool Edit can scroll through the complete form using the normal browser scrollbar.
+- Presentation Mode is now a global footer control beside Administration Center and is available from every page.
+- Live Operations carousel navigation groups use identical fixed geometry for previous / counter / next controls.
+- Command Center Status bar is clickable; clicking its general activity area opens Action Center / All Open. Tool-specific activity remains a direct tool drill-down.
+- Existing V7.6.51 Archive Center, Screenshot Mode work, Search intelligence, and automatic quarter-close/archive logic are retained.
+- Quarter-close/calendar logic was intentionally not changed in this UI recovery build ahead of the real Sep 30 / Oct 1 transition test.
+
+Critical test sequence:
+1. Tools page: confirm two Universal Tool Cards retain the approved geometry and nothing is covered by the footer.
+2. Tool Edit: scroll from Tool Information through every lower section and confirm the footer appears only after the final section.
+3. Footer: confirm it is not sticky while scrolling. Confirm Administration Center and Presentation Mode both work from multiple Centers.
+4. Live Operations: confirm both carousel control groups are symmetrical/equal.
+5. Command Center Status: hover and click the cyan bar; confirm it opens the activity/action view. Tool-specific activity should still open the tool.
+6. Sep 30: verify Quarter Summary reaches FINAL DAY / DAY 92 OF 92 / 100%.
+7. Oct 1: do not manually archive Q3. Verify Q4 becomes active and Archive Center > Quarter Archives automatically contains the frozen CY26Q3 Quarter Close record.
