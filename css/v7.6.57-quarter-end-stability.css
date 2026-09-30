@@ -1,0 +1,108 @@
+/* V7.6.57 — QUARTER-END STABILITY / ROOT GEOMETRY FIX
+   Restores the proven fixed top shell and makes Live Operations UTC geometry viewport-driven.
+   This file intentionally overrides conflicting legacy fixed-pixel UTC heights. */
+
+/* 1. NORMAL APP SHELL: header -> page navigation is one fixed/sticky application shell. */
+html body:not(.presentation-mode):not(.screenshot-mode) .sticky-shell{
+  position:fixed!important;top:0!important;left:var(--app-edge-gutter,6px)!important;right:var(--app-edge-gutter,6px)!important;
+  width:auto!important;z-index:9000!important;transform:none!important;margin:0!important;overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{
+  width:calc(100% - (var(--app-edge-gutter,6px) * 2))!important;max-width:none!important;
+  margin:0 var(--app-edge-gutter,6px)!important;padding-top:var(--sticky-shell-height,200px)!important;
+  height:auto!important;min-height:100vh!important;max-height:none!important;overflow:visible!important;
+  display:flex!important;flex-direction:column!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .body-shell{
+  width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;flex:0 0 auto!important;
+}
+
+/* 2. LIVE OPERATIONS: both carousel frames consume the same viewport-driven row. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app.body-workspace{
+  display:block!important;width:100%!important;height:auto!important;min-height:0!important;overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid.operations-live-only{
+  display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr)!important;
+  width:100%!important;height:calc(100vh - var(--sticky-shell-height,200px) - 58px)!important;min-height:610px!important;max-height:none!important;
+  gap:8px!important;padding:7px!important;margin:0!important;box-sizing:border-box!important;align-items:stretch!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel{
+  display:block!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;max-height:none!important;
+  overflow:hidden!important;align-self:stretch!important;
+}
+
+/* 3. ONE UTC: host, card AND all three columns fill the carousel. This removes the 720px legacy ceiling. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel>.universal-card-host,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel>.utc-host,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel .utc-host{
+  width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel .utc-card.utc-v6538{
+  display:grid!important;grid-template-columns:minmax(0,29%) minmax(0,36%) minmax(0,35%)!important;grid-template-rows:minmax(0,1fr)!important;
+  gap:7px!important;width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;padding:7px!important;
+  box-sizing:border-box!important;overflow:hidden!important;align-items:stretch!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel .utc-card.utc-v6538>.utc-column{
+  width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;overflow:hidden!important;align-self:stretch!important;
+}
+
+/* 4. UTC vertical distribution: preserve the 2x14 badge matrix while using the newly available height. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .utc-card.utc-v6538 .utc-info{
+  display:grid!important;grid-template-rows:38px 145px 38px 32px minmax(0,1fr) 42px!important;height:100%!important;min-height:0!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .utc-card.utc-v6538 .utc-info>.utc-indicator-display,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .utc-card.utc-v6538 .utc-info>.utc-indicator-display>.utc-indicator-grid{
+  height:100%!important;min-height:0!important;max-height:none!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .utc-card.utc-v6538 .utc-status{
+  height:100%!important;min-height:0!important;max-height:none!important;overflow:hidden!important;
+  grid-template-rows:22% 11% 11% 18% 19% 19%!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .utc-card.utc-v6538 .utc-progress{
+  height:100%!important;min-height:0!important;max-height:none!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .utc-card.utc-v6538 .utc-progress-list{
+  height:100%!important;min-height:0!important;max-height:none!important;overflow:hidden!important;padding:6px 8px!important;gap:3px!important;
+}
+
+/* Progress tracks stay substantial and are never vertically cropped. */
+html body .utc-card.utc-v6538 .utc-progress .track,
+html body .utc-card.utc-v6538 .utc-progress .labeled-track{
+  display:block!important;height:14px!important;min-height:14px!important;max-height:14px!important;line-height:14px!important;
+  border-radius:8px!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+html body .utc-card.utc-v6538 .utc-progress .track>.fill,
+html body .utc-card.utc-v6538 .utc-progress .labeled-track>.fill{height:100%!important;min-height:100%!important;max-height:100%!important}
+
+/* 5. Symmetric dual carousel controls: left arrow / center / right arrow always reserve equal tracks. */
+html body:not(.presentation-mode):not(.screenshot-mode) .nav69-live-controls{display:grid!important;grid-template-columns:132px 132px!important;gap:8px!important;min-width:272px!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .nav69-control-group{display:grid!important;grid-template-columns:32px 68px 32px!important;width:132px!important;min-width:132px!important;max-width:132px!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .nav69-control-group>.nav69-mini{display:flex!important;visibility:visible!important;opacity:1!important;width:32px!important;min-width:32px!important;max-width:32px!important;align-items:center!important;justify-content:center!important}
+
+/* 6. Footer remains document-flow content; it never becomes a sticky overlay. */
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{position:static!important;inset:auto!important;transform:none!important;margin-top:4px!important;flex:0 0 48px!important;height:48px!important;min-height:48px!important;max-height:48px!important}
+
+/* 7. Tool editor uses the page scrollbar. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tool"] .body-shell,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tool"] #app,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tool"] .tool-editor{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important}
+
+/* 8. Presentation wallboards: preserve complete viewport border and clickable bottom navigation. */
+html body.presentation-mode .quarter-summary-switchbar,
+html body.presentation-mode .presentation-mode-switchbar{position:relative!important;z-index:10000!important;pointer-events:auto!important}
+html body.presentation-mode .presentation-nav-cell,
+html body.presentation-mode [data-summary-quarter],
+html body.presentation-mode [data-presentation-view]{position:relative!important;z-index:10001!important;pointer-events:auto!important;cursor:pointer!important}
+html body.presentation-mode[data-center="operations"] #app.body-workspace{inset:0!important;width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;box-sizing:border-box!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"] .presentation-tool-only .utc-card.utc-v6538,
+html body.presentation-mode[data-center="operations"] .presentation-tool-only .utc-card.utc-v6538>.utc-column{height:100%!important;min-height:0!important;max-height:none!important}
+
+/* 9. Quarter Summary shipped-photo overlay stays centered and covers the complete photo. */
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-tool-fleet{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:clamp(6px,.48vw,10px)!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-tool-icon{position:relative!important;isolation:isolate!important;margin:0!important;overflow:visible!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-tool-x{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;z-index:30!important;pointer-events:none!important;font-size:0!important;color:transparent!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-tool-x::before,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-tool-x::after{content:""!important;position:absolute!important;left:-8%!important;top:50%!important;width:116%!important;height:max(5px,12%)!important;border-radius:999px!important;background:#ff244f!important;box-shadow:0 0 2px #000,0 0 5px #000!important;transform-origin:center!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-tool-x::before{transform:translateY(-50%) rotate(38deg)!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-tool-x::after{transform:translateY(-50%) rotate(-38deg)!important}
