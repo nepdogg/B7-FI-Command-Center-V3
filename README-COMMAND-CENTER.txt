@@ -56,3 +56,11 @@ Critical test sequence:
 5. Command Center Status: hover and click the cyan bar; confirm it opens the activity/action view. Tool-specific activity should still open the tool.
 6. Sep 30: verify Quarter Summary reaches FINAL DAY / DAY 92 OF 92 / 100%.
 7. Oct 1: do not manually archive Q3. Verify Q4 becomes active and Archive Center > Quarter Archives automatically contains the frozen CY26Q3 Quarter Close record.
+
+V7.6.53 REGRESSION RECOVERY UPDATE
+- Restored Live Operations content rendering below the navigation/status shell.
+- Restored Status Center vertical workflow: Morning/Daily Status on top, Morning Meeting Workspace below.
+- Fixed Presentation Mode quarter-summary navigation so previous/current quarter summary buttons switch while staying in Presentation Mode.
+- Corrected pre-quarter calendar display to DAY 0 with the quarter's actual total days remaining and QUARTER NOT STARTED.
+- Preserved non-sticky footer, Tool Edit scrolling, Archive Center, Search Center, and automatic quarter-close/archive logic from the prior build.
+- Quarter-close lifecycle logic was otherwise left unchanged for the Sep 30 / Oct 1 real-calendar test.

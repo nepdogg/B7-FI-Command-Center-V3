@@ -1,0 +1,28 @@
+/* V7.6.53 — targeted regression recovery. No global redesigns. */
+/* Live Operations must always render its established two-panel workspace. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app.body-workspace{
+  display:block!important;height:auto!important;min-height:620px!important;overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid.operations-live-only{
+  display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  grid-template-rows:minmax(590px,auto)!important;width:100%!important;height:auto!important;min-height:606px!important;
+  gap:8px!important;padding:7px!important;box-sizing:border-box!important;overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel{
+  display:block!important;min-width:0!important;height:auto!important;min-height:590px!important;overflow:hidden!important;
+}
+/* Status Center approved workflow: Daily/Morning Status first, Meeting Workspace below it. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="status"] .status-center-stack{
+  display:flex!important;flex-direction:column!important;grid-template-columns:none!important;gap:8px!important;
+  width:100%!important;height:auto!important;min-height:0!important;overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="status"] .status-workspace,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="status"] .meeting-workspace-wrap{
+  width:100%!important;max-width:none!important;min-width:0!important;height:auto!important;min-height:0!important;overflow:visible!important;
+}
+/* Presentation quarter links remain above the wallboard and clickable. */
+html body.presentation-mode .quarter-summary-switchbar{position:relative!important;z-index:1000!important;pointer-events:auto!important}
+html body.presentation-mode .quarter-summary-switchbar .presentation-nav-cell{pointer-events:auto!important;cursor:pointer!important}
+/* Keep normal footer in document flow; never cover content. */
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{position:static!important;inset:auto!important;margin-top:auto!important;transform:none!important}
