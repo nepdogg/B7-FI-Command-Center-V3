@@ -1,0 +1,120 @@
+/* V7.6.55 — FINAL QUARTER STABILITY LOCK
+   Restores browser-zoom workspace use, one UTC geometry, Live Operations parity,
+   Presentation edge containment, and Quarter Summary navigation/photo parity. */
+
+/* NORMAL MODE: use the browser workspace instead of preserving a miniature fixed canvas. */
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{
+  width:calc(100% - 8px)!important;max-width:none!important;margin:4px auto!important;
+  min-height:calc(100vh - 8px)!important;height:auto!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .body-shell{flex:1 0 auto!important;width:100%!important;min-height:0!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #app.body-workspace{width:100%!important;max-width:none!important;min-height:0!important;overflow:visible!important}
+
+/* LIVE OPERATIONS: the two carousel frames are equal-height peers and consume the workspace. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid.operations-live-only{
+  display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  grid-template-rows:minmax(0,1fr)!important;align-items:stretch!important;
+  width:100%!important;height:max(650px,calc(100vh - var(--sticky-height,0px) - 88px))!important;
+  min-height:650px!important;max-height:none!important;gap:8px!important;padding:7px!important;margin:0!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel{
+  width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;max-height:none!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel>.panel,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel .snapshot-panel,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel>.universal-card-host.utc-host{
+  width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;margin:0!important;box-sizing:border-box!important;
+}
+
+/* ONE UNIVERSAL TOOL CARD: same 29/36/35 master geometry everywhere. */
+html body .utc-card.utc-v6538,
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only .utc-card.utc-v6538{
+  display:grid!important;grid-template-columns:minmax(0,29%) minmax(0,36%) minmax(0,35%)!important;
+  gap:8px!important;width:100%!important;box-sizing:border-box!important;align-items:stretch!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel .utc-card.utc-v6538{
+  height:100%!important;min-height:0!important;max-height:100%!important;margin:0!important;padding:5px!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel .utc-card.utc-v6538>.utc-column,
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only .utc-card.utc-v6538>.utc-column{
+  width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;max-height:100%!important;align-self:stretch!important;box-sizing:border-box!important;overflow:hidden!important;
+}
+
+/* Left UTC column always keeps the same badge matrix and badge order in normal + Presentation. */
+html body .utc-card.utc-v6538 .utc-info{display:flex!important;flex-direction:column!important;min-height:0!important}
+html body .utc-card.utc-v6538 .utc-info>.utc-indicator-display{flex:1 1 auto!important;min-height:0!important;height:auto!important;max-height:none!important;overflow:hidden!important}
+html body .utc-card.utc-v6538 .utc-info>.utc-indicator-display .utc-indicator-grid,
+html body.presentation-mode .presentation-tool-only .utc-card.utc-v6538 .utc-info>.utc-indicator-display .utc-indicator-grid{
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:repeat(14,minmax(0,1fr))!important;
+  grid-auto-flow:row!important;height:100%!important;min-height:0!important;max-height:100%!important;gap:2px 4px!important;overflow:hidden!important;
+}
+html body .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-lamp,
+html body.presentation-mode .presentation-tool-only .utc-card.utc-v6538 .utc-info>.utc-indicator-display .fi-indicator-lamp{
+  width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;margin:0!important;box-sizing:border-box!important;
+}
+
+/* Middle column: six real sections, all sharing the available height. */
+html body .utc-card.utc-v6538 .utc-status,
+html body.presentation-mode .presentation-tool-only .utc-card.utc-v6538 .utc-status{
+  display:grid!important;grid-template-rows:1.15fr .86fr .9fr 1.12fr 1.08fr 1.08fr!important;
+  height:100%!important;min-height:0!important;gap:0!important;overflow:hidden!important;
+}
+html body .utc-card.utc-v6538 .utc-status>.utc-status-section{min-height:0!important;height:auto!important;overflow:hidden!important;box-sizing:border-box!important}
+
+/* Right column: nine sections fill the card; restore substantial progress bars. */
+html body .utc-card.utc-v6538 .utc-progress{display:flex!important;flex-direction:column!important;height:100%!important;min-height:0!important;overflow:hidden!important}
+html body .utc-card.utc-v6538 .utc-progress-list{display:grid!important;grid-template-rows:repeat(9,minmax(0,1fr))!important;flex:1 1 auto!important;height:100%!important;min-height:0!important;overflow:hidden!important}
+html body .utc-card.utc-v6538 .utc-progress-list>.utc-progress-quick{min-height:0!important;height:100%!important;overflow:hidden!important;box-sizing:border-box!important}
+html body .utc-card.utc-v6538 .utc-progress-list>.utc-progress-quick>.progress-item{height:100%!important;min-height:0!important;display:flex!important;flex-direction:column!important;justify-content:center!important;overflow:hidden!important;box-sizing:border-box!important}
+html body .utc-card.utc-v6538 .utc-progress .track,
+html body .utc-card.utc-v6538 .utc-progress .labeled-track{height:14px!important;min-height:14px!important;max-height:14px!important;border-radius:8px!important;overflow:hidden!important;flex:0 0 14px!important}
+html body.presentation-mode .utc-card.utc-v6538 .utc-progress .track,
+html body.presentation-mode .utc-card.utc-v6538 .utc-progress .labeled-track{height:16px!important;min-height:16px!important;max-height:16px!important;flex-basis:16px!important}
+html body .utc-card.utc-v6538 .utc-progress .track>.fill{height:100%!important;min-height:100%!important}
+
+/* Live carousel navigation stays perfectly mirrored: ◀ counter/play ▶ for both carousels. */
+html body:not(.presentation-mode):not(.screenshot-mode) .nav69-live-controls{display:grid!important;grid-template-columns:132px 132px!important;gap:8px!important;min-width:272px!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .nav69-control-group{display:grid!important;grid-template-columns:32px 68px 32px!important;width:132px!important;min-width:132px!important;max-width:132px!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .nav69-control-group>.nav69-mini{display:flex!important;visibility:visible!important;opacity:1!important;width:32px!important;min-width:32px!important;max-width:32px!important;align-items:center!important;justify-content:center!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .nav69-control-group>.nav69-pause{width:68px!important;min-width:68px!important;max-width:68px!important}
+
+/* PRESENTATION: protected inset keeps all four borders and bottom navigation visible. */
+html body.presentation-mode[data-center="operations"] #app{box-sizing:border-box!important;padding:8px!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app{grid-template-rows:minmax(0,1fr) 52px!important;gap:7px!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only{height:100%!important;min-height:0!important;padding:0!important;margin:0!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only>.universal-card-host.live-panel{height:100%!important;min-height:0!important;padding:4px!important;margin:0!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only .utc-card.utc-v6538{height:100%!important;min-height:0!important;max-height:100%!important;margin:0!important;padding:6px!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-nav{position:relative!important;z-index:5000!important;height:52px!important;min-height:52px!important;pointer-events:auto!important}
+
+/* Quarter Summary Presentation: protected full border + real clickable navigation layer. */
+html body.presentation-mode[data-center="operations"][data-sub="summary"] #app{padding:8px!important;background:#02080d!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-presentation.quarter-summary-master{
+  width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;margin:0!important;padding:6px!important;
+  border:2px solid #00bfff!important;box-sizing:border-box!important;overflow:hidden!important;
+  display:grid!important;grid-template-rows:minmax(190px,30%) 72px minmax(0,1fr) 48px!important;gap:6px!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-switchbar{
+  position:relative!important;z-index:10000!important;display:flex!important;width:100%!important;height:48px!important;min-height:48px!important;max-height:48px!important;
+  margin:0!important;padding:0!important;gap:4px!important;overflow:visible!important;pointer-events:auto!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-switchbar .presentation-nav-cell{
+  position:relative!important;z-index:10001!important;flex:1 1 0!important;min-width:0!important;height:46px!important;pointer-events:auto!important;cursor:pointer!important;
+}
+
+/* Presentation Summary photos exactly follow normal Summary semantics. */
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-cell.name{grid-template-columns:150px var(--family-image-height,40px) minmax(0,1fr)!important;column-gap:0!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-tool-fleet{grid-column:3!important;display:flex!important;justify-content:flex-start!important;align-items:center!important;gap:clamp(5px,.42vw,9px)!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-tool-icon{position:relative!important;isolation:isolate!important;flex:0 0 var(--family-image-height,40px)!important;width:var(--family-image-height,40px)!important;min-width:var(--family-image-height,40px)!important;max-width:var(--family-image-height,40px)!important;height:min(92%,var(--family-image-height,40px))!important;overflow:visible!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-tool-icon img{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-tool-x{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;font-size:0!important;color:transparent!important;z-index:30!important;pointer-events:none!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-tool-x::before,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-tool-x::after{content:""!important;position:absolute!important;left:-8%!important;top:50%!important;width:116%!important;height:max(5px,12%)!important;border-radius:999px!important;background:#ff244f!important;box-shadow:0 0 2px #000,0 0 5px #000!important;transform-origin:center!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-tool-x::before{transform:translateY(-50%) rotate(38deg)!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-tool-x::after{transform:translateY(-50%) rotate(-38deg)!important}
+
+/* Preserve the approved non-sticky footer and full Tool Edit scrolling. */
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{position:static!important;inset:auto!important;transform:none!important;margin-top:auto!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tool"] .body-shell,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tool"] #app,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tool"] .tool-editor{height:auto!important;max-height:none!important;overflow:visible!important}

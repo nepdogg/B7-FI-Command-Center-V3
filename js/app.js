@@ -1608,7 +1608,7 @@ function fitPresentation(){
   // The virtual wallboard may adapt to the real fullscreen aspect ratio, but the entire
   // rendered frame must fit inside the actual browser viewport. A small safety gutter
   // prevents the right/bottom borders from being clipped by Windows/Edge fullscreen rounding.
-  const DH=1080, GUTTER=0;
+  const DH=1080, GUTTER=8;
   const vw=Math.max(1,window.innerWidth||document.documentElement.clientWidth||screen.width||1920);
   const vh=Math.max(1,window.innerHeight||document.documentElement.clientHeight||screen.height||1080);
   const usableW=Math.max(1,vw-(GUTTER*2));
