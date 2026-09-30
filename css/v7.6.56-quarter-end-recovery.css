@@ -1,0 +1,72 @@
+/* V7.6.56 — Quarter-End Recovery Lock
+   Fixes only verified regressions: browser-zoom geometry, live dual-carousel sizing,
+   UTC clipping, Presentation navigation, summary photos/X, footer/editor flow. */
+
+/* NORMAL PAGE GEOMETRY — size from width, not 100vh. Browser zoom therefore scales the
+   dashboard instead of creating a giant CSS viewport and empty lower page. */
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{min-height:0!important;height:auto!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .body-shell{min-height:0!important;height:auto!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app.body-workspace{height:auto!important;min-height:0!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid.operations-live-only{
+ display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;grid-template-rows:1fr!important;
+ width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;aspect-ratio:2.34/1!important;
+ gap:8px!important;padding:7px!important;margin:0!important;box-sizing:border-box!important;overflow:hidden!important;align-items:stretch!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel{
+ width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;max-height:none!important;overflow:hidden!important
+}
+
+/* ONE UTC — Live Operations and Presentation use the same renderer and column proportions. */
+html body .utc-card.utc-v6538{grid-template-columns:minmax(0,29%) minmax(0,36%) minmax(0,35%)!important;gap:7px!important}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel .utc-host,
+html body:not(.presentation-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel .utc-card.utc-v6538{height:100%!important;min-height:0!important;max-height:100%!important}
+html body .utc-card.utc-v6538 .utc-info,html body .utc-card.utc-v6538 .utc-status,html body .utc-card.utc-v6538 .utc-progress{min-width:0!important;min-height:0!important;overflow:hidden!important}
+html body .utc-card.utc-v6538 .utc-progress .track,html body .utc-card.utc-v6538 .utc-progress .labeled-track,
+html body .utc-card.utc-v6538 .utc-progress-row .track{height:15px!important;min-height:15px!important;max-height:15px!important;border-radius:8px!important;overflow:hidden!important}
+html body.presentation-mode .utc-card.utc-v6538 .utc-progress .track,html body.presentation-mode .utc-card.utc-v6538 .utc-progress .labeled-track,
+html body.presentation-mode .utc-card.utc-v6538 .utc-progress-row .track{height:15px!important;min-height:15px!important;max-height:15px!important}
+
+/* LIVE NAV — exact mirrored previous/pause/next control groups. */
+html body:not(.presentation-mode):not(.screenshot-mode) .nav69-live-controls{display:grid!important;grid-template-columns:132px 132px!important;gap:8px!important;min-width:272px!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .nav69-control-group{display:grid!important;grid-template-columns:32px 68px 32px!important;width:132px!important;min-width:132px!important;max-width:132px!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .nav69-control-group>.nav69-mini{display:flex!important;visibility:visible!important;opacity:1!important;width:32px!important;min-width:32px!important;align-items:center!important;justify-content:center!important}
+
+/* PRESENTATION — outer wallboard always stays inside its virtual canvas. */
+html body.presentation-mode .app-frame{box-sizing:border-box!important;border:3px solid #00aee8!important;overflow:hidden!important}
+html body.presentation-mode .presentation-tool-only{min-height:0!important;overflow:hidden!important}
+html body.presentation-mode .presentation-tool-only .utc-host,html body.presentation-mode .presentation-tool-only .utc-card.utc-v6538{height:100%!important;min-height:0!important;max-height:100%!important}
+
+/* Presentation Summary photo row is deliberately identical in semantics to the normal Summary:
+   fixed name, one-photo-width spacer, then evenly separated photos. */
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-cell.name{
+ display:grid!important;grid-template-columns:150px var(--family-image-height,40px) minmax(0,1fr)!important;align-items:center!important;padding:1px 7px!important;overflow:hidden!important
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-cell.name>span{width:150px!important;min-width:150px!important;max-width:150px!important;white-space:nowrap!important;overflow:visible!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-tool-fleet{
+ grid-column:3!important;display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:8px!important;padding:1px 0!important;overflow:visible!important
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-tool-icon{
+ position:relative!important;display:block!important;flex:0 0 var(--family-image-height,40px)!important;width:var(--family-image-height,40px)!important;height:var(--family-image-height,40px)!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;overflow:visible!important
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-tool-icon img{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-tool-x{position:absolute!important;inset:-5%!important;width:110%!important;height:110%!important;display:block!important;font-size:0!important;color:transparent!important;z-index:20!important;pointer-events:none!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-tool-x:before,
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-tool-x:after{content:""!important;position:absolute!important;left:-5%!important;top:50%!important;width:110%!important;height:6px!important;min-height:6px!important;border-radius:99px!important;background:#ff244f!important;box-shadow:0 0 2px #000,0 0 5px #000!important;transform-origin:center!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-tool-x:before{transform:translateY(-50%) rotate(42deg)!important}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-master .family-tool-x:after{transform:translateY(-50%) rotate(-42deg)!important}
+html body[data-center="operations"] .quarter-summary-master .hero-progress .track{height:32px!important;min-height:32px!important}
+html body[data-center="operations"] .quarter-summary-master .family-progress .track{height:calc(100% - 8px)!important;min-height:26px!important;margin:4px 5px!important}
+
+/* Quarter links must be real controls, not covered by the Presentation click shield. */
+html body.presentation-mode .quarter-summary-switchbar,html body.presentation-mode .presentation-mode-switchbar{position:relative!important;z-index:9000!important;pointer-events:auto!important}
+html body.presentation-mode [data-summary-quarter],html body.presentation-mode [data-presentation-view]{position:relative!important;z-index:9001!important;pointer-events:auto!important;cursor:pointer!important}
+
+/* Approved Status Center stack + normal-flow footer + scrollable Tool Edit. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="status"] .status-center-stack{display:flex!important;flex-direction:column!important;gap:8px!important;width:100%!important;height:auto!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="status"] .status-workspace,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="status"] .meeting-workspace-wrap{width:100%!important;max-width:none!important;height:auto!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{position:static!important;inset:auto!important;transform:none!important;margin-top:0!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tool"] .body-shell,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tool"] #app,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tool"] .tool-editor{height:auto!important;max-height:none!important;overflow:visible!important}
