@@ -1,54 +1,36 @@
-B7 FI COMMAND CENTER — V7.6.49
-Build: 2026-09-29 — Quarter Archive + Search Expansion
+B7 FI COMMAND CENTER — V7.6.51
+UI REGRESSION LOCK + ARCHIVE CENTER + SCREENSHOT MODE RESTORATION
 
 BASELINE
-- Built directly from V7.6.48 Root Cause Consolidation supplied for this test cycle.
-- Existing local/shared data storage keys are preserved so current test data can continue to load.
+- Built from V7.6.50, which was built from the uploaded V7.6.48 Root Cause Consolidation source.
 
-V7.6.49 CHANGES
-1. SEARCH CENTER
-- Current Tools and Archive Tools are now shown in separate result sections.
-- Search understands tracked workflow facts, not only literal text.
-- Supported test searches include: reduced process, extra shiny wafers, extra haze wafers, extra DSW65 wafers, extra DSW65F wafers, 150 checklist, system wafers, UTID, customer, sales order, driver, status, notes, badges and checklist text.
-- Added one-click example searches for Reduced Process, Extra Shiny Wafers, 150 Checklists and System Wafers.
-- Archived quarter snapshots are included in archive searches.
+CHANGES
+1. Added ARCHIVE CENTER as a permanent top-level Center.
+   - Quarter Archives
+   - Tool Archives
+   - Archive Search
+2. Removed Presentation Mode from the permanent Center navigation.
+   - Presentation Mode is now a page action on Live Operations / Quarter Summary.
+3. Removed the old Tool Archive button from Operations navigation.
+4. Screenshot Mode regression lock:
+   - Keeps the established page/header/status/sub-navigation/content/footer presentation.
+   - Hides interaction-only action controls.
+   - Keeps Mystery Boxes and read-only summary/status content visible.
+   - Adds a color-matched capture border.
+   - Does not globally resize/redesign established page components.
+5. Preserves automatic quarter-close archive behavior from V7.6.50.
+6. Preserves simple Search Center layout and structured search logic from V7.6.50.
+7. Existing page design is treated as locked; new functionality should not redesign established pages.
 
-2. REDUCED PROCESS
-- Active Reduced Process indicator now uses a brighter orange/yellow high-visibility treatment so it stands out immediately from the normal badge matrix.
+QUARTER-END TEST
+- Final day: Quarter Summary should show FINAL DAY / DAY 92 OF 92 / 100%.
+- First day of next quarter: previous quarter freezes at 100% and an automatic Quarter Close snapshot should appear in ARCHIVE CENTER > QUARTER ARCHIVES.
+- Do not manually create the quarter archive for this test.
+- Reopen/refresh to confirm no duplicate quarter snapshot is created.
 
-3. QUARTER END LIFECYCLE
-- Quarter day progress stops at 100% when the quarter ends.
-- The days card changes to QUARTER COMPLETE / CLOSED / QUARTER ENDED instead of continuing into negative days.
-- Final shipping result remains visible: MISSION COMPLETE if all tools shipped, otherwise the number of tools not shipped.
-
-4. AUTOMATIC FINAL QUARTER ARCHIVE
-- On the first day after a quarter ends, the Command Center automatically creates a frozen final-quarter snapshot the next time the app is opened/rendered.
-- Snapshot records the quarter, final tool count, shipped count, tools not shipped, final result, and final tool records.
-- Operations Center > Tool Archive now contains FINAL QUARTER SUMMARIES above the individual archived-tool list.
-- Final snapshots remain frozen even if live tool records are changed later.
-- OPEN FINAL TOOL LIST recalls the tool-level final state captured in the snapshot.
-
-5. MYSTERY BOX REVEAL
-- Celebration reveal is now full-screen instead of a small side/modal card.
-- Media and celebration text scale to the full display while keeping the close control available.
-
-TESTING
-A. Search Center
-- Search "reduced process" and verify only reduced-process tools appear.
-- Search "extra shiny wafers" and verify only tools with additional shiny wafer count > 0 appear.
-- Search "150 checklist" and verify tools currently in FI_150-series checklists appear.
-- Verify CURRENT TOOLS and ARCHIVE TOOLS are separate sections.
-
-B. Quarter Close
-- Normal current-quarter behavior should remain unchanged before the end date.
-- After the quarter end date, verify day progress freezes at 100%, the card says CLOSED / QUARTER ENDED, and no negative day count appears.
-- On the day after quarter end, open Tool Archive and verify a FINAL QUARTER SUMMARY is automatically present.
-
-C. Mystery Box
-- Open an unlocked reveal and verify the celebration occupies the full screen.
-
-D. Reduced Process
-- Open CY26Q3 Tools and verify an active Reduced Process badge is immediately visible and clearly different from the inactive/normal state.
-
-PACKAGING
-- This is the only README/update TXT file in the build.
+SCREENSHOT MODE TEST
+- Test Screenshot on Operations, Priority, Status, Action, Reference, Search, Archive, Tool Edit and Administration pages.
+- Confirm established page formatting remains intact.
+- Confirm action/edit controls disappear while operational content remains visible.
+- Confirm Mystery Boxes remain visible where applicable.
+- Exit with X and confirm the exact normal page returns.

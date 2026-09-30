@@ -177,3 +177,25 @@ html body[data-center="operations"] .utc-reduced.active,html body[data-center="o
 .smart-search{max-width:none!important}.search-examples{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px}.search-examples button{border:1px solid #00bfff;background:#062238;color:#fff;padding:7px 12px;font-weight:900;cursor:pointer}.search-result-group{border:1px solid #1f5e83;margin:10px 0;padding:10px;background:#020b13}.search-result-group h3{margin:0 0 8px;color:#00d9ff}.archive-search-results{border-color:#8b73d6}.archive-search-results h3{color:#c7adff}.search-count{font-size:13px;font-weight:1000;margin:10px 0;color:#fff}.tool-search-result{display:grid!important;grid-template-columns:180px 1fr;gap:2px 12px;padding:9px!important;border:1px solid #234d67;margin:4px 0;cursor:pointer}.tool-search-result small{grid-column:2;color:#9fdff0}.tool-search-result:hover{border-color:#00d9ff!important;background:#062238!important}
 .quarter-final-archive{margin:8px 0}.quarter-final-archive>h2{color:#c7adff}.quarter-archive-card{border-color:#8b73d6!important;margin:8px 0!important}.quarter-archive-head{display:grid;grid-template-columns:1fr 180px;gap:12px;align-items:center}.quarter-archive-head h2{margin:0 0 6px}.quarter-archive-head>div:last-child{text-align:center;border:1px solid #00bfff;padding:8px}.quarter-archive-head strong{display:block;font-size:28px}.quarter-archive-head small{display:block}.quarter-archive-result{display:inline-block;padding:5px 9px;border:1px solid}.quarter-archive-result.complete{color:#00f0a0;border-color:#00f0a0}.quarter-archive-result.incomplete{color:#ff5575;border-color:#ff1748}.quarter-archive-families{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:5px;margin:10px 0}.quarter-archive-families>div{border:1px solid #24546f;padding:7px;display:flex;justify-content:space-between;gap:8px}.quarter-archive-actions{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .quarter-summary-hero.quarter-ended .days-left strong{font-size:clamp(54px,5vw,90px)!important;letter-spacing:2px}.quarter-summary-hero.quarter-ended .urgency-complete{border-color:#00e59b!important}.quarter-summary-hero.quarter-ended .urgency-complete small,.quarter-summary-hero.quarter-ended .urgency-complete strong{color:#00e59b!important}
+
+/* V7.6.50 — UI RESTORATION / LOCK
+   Restore the previously-developed component formatting from app.css while the
+   V7.6.1+ shell and quarter-summary locks remain authoritative later in cascade. */
+html body .tool-photo-admin-grid{display:grid!important;grid-template-columns:repeat(3,minmax(220px,1fr))!important;gap:10px!important}
+html body .tool-photo-admin-card{min-width:0!important;overflow:hidden!important}
+html body .tool-photo-preview{height:170px!important;min-height:170px!important;max-height:170px!important;display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;background:#02080d!important;border:1px solid #234d68!important}
+html body .tool-photo-preview img{display:block!important;width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important}
+html body .tool-photo-actions{display:flex!important;gap:6px!important;align-items:center!important;flex-wrap:wrap!important}
+html body .admin-mode-split{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important}
+html body .form-grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:8px!important}
+html body .field label{display:block!important;color:#9bb9cb!important;font-size:9px!important;font-weight:900!important;margin-bottom:3px!important}
+html body .field input,html body .field select,html body .field textarea{width:100%!important;min-width:0!important}
+html body .tool-editor{display:block!important;visibility:visible!important;opacity:1!important;min-height:320px!important}
+html body .tool-editor .subsection{border-top:1px solid #244e69!important;padding-top:10px!important;margin-top:10px!important}
+html body .search-center-locked{display:flex!important;flex-direction:column!important;min-height:500px!important}
+html body .search-entry{display:grid!important;grid-template-columns:minmax(0,1fr) 130px!important;gap:8px!important;align-items:stretch!important}
+html body .search-entry .search-box{width:100%!important;min-height:42px!important;font-size:14px!important}
+html body .search-submit{min-height:42px!important;font-weight:1000!important}
+html body .search-results-bottom{margin-top:14px!important}
+html body .search-examples{display:none!important}
+@media(max-width:1100px){html body .tool-photo-admin-grid{grid-template-columns:repeat(2,minmax(220px,1fr))!important}}
