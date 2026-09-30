@@ -1,156 +1,54 @@
-B7 FI COMMAND CENTER — V7.6.48 ROOT-CAUSE CONSOLIDATION
+B7 FI COMMAND CENTER — V7.6.49
+Build: 2026-09-29 — Quarter Archive + Search Expansion
 
-This build removes the V7.6.44–V7.6.47 Quarter Summary patch stack from index.html and replaces it with one authoritative V7.6.48 stylesheet. Presentation Mode now renders the same quarter-summary-master component as the normal Quarter Summary.
+BASELINE
+- Built directly from V7.6.48 Root Cause Consolidation supplied for this test cycle.
+- Existing local/shared data storage keys are preserved so current test data can continue to load.
 
-V7.6.48 TEST FOCUS
-- Quarter Summary: verify no gray/scrollbar-like rail below the 8 status boxes.
-- SYSTEM: verify a protected 150px name zone, one photo-width gap, then photos growing left-to-right from a common origin.
-- Presentation Mode: verify all KPI cards, all 8 status boxes, every SYSTEM row, Reveal column, and bottom quarter navigation are visible simultaneously.
-- CY26Q4: verify the automatically-created quarter link remains available in Presentation Mode.
-- System Wafers: verify the outer badge is identical in size/border/background to neighboring badges; top line is kit state and bottom line is additional-wafer counters.
-- Live Operations: verify compact Quarter Summary remains readable and photo/X positions stay attached to the correct tools.
+V7.6.49 CHANGES
+1. SEARCH CENTER
+- Current Tools and Archive Tools are now shown in separate result sections.
+- Search understands tracked workflow facts, not only literal text.
+- Supported test searches include: reduced process, extra shiny wafers, extra haze wafers, extra DSW65 wafers, extra DSW65F wafers, 150 checklist, system wafers, UTID, customer, sales order, driver, status, notes, badges and checklist text.
+- Added one-click example searches for Reduced Process, Extra Shiny Wafers, 150 Checklists and System Wafers.
+- Archived quarter snapshots are included in archive searches.
 
-B7 FI COMMAND CENTER — V7.6.42
+2. REDUCED PROCESS
+- Active Reduced Process indicator now uses a brighter orange/yellow high-visibility treatment so it stands out immediately from the normal badge matrix.
 
-STRUCTURAL CONSOLIDATION TEST BUILD
+3. QUARTER END LIFECYCLE
+- Quarter day progress stops at 100% when the quarter ends.
+- The days card changes to QUARTER COMPLETE / CLOSED / QUARTER ENDED instead of continuing into negative days.
+- Final shipping result remains visible: MISSION COMPLETE if all tools shipped, otherwise the number of tools not shipped.
 
-This build works from the actual V7.6.41 source rather than adding screenshot-only patches.
+4. AUTOMATIC FINAL QUARTER ARCHIVE
+- On the first day after a quarter ends, the Command Center automatically creates a frozen final-quarter snapshot the next time the app is opened/rendered.
+- Snapshot records the quarter, final tool count, shipped count, tools not shipped, final result, and final tool records.
+- Operations Center > Tool Archive now contains FINAL QUARTER SUMMARIES above the individual archived-tool list.
+- Final snapshots remain frozen even if live tool records are changed later.
+- OPEN FINAL TOOL LIST recalls the tool-level final state captured in the snapshot.
 
-CHANGES
-- Quarter Summary fleet geometry is now one final override shared by normal Summary, Live Status Quarter Summary carousel, and Presentation Mode.
-- Tool fleets are right anchored and grow right-to-left. A protected one-thumbnail-width clearance remains after the tool type name. Images shrink only when the fleet consumes its available lane.
-- Red shipped X remains attached to the individual tool image and scales with it.
-- Live Status Quarter Summary snapshot now preserves tool click targets instead of stripping data-tool attributes.
-- Presentation Quarter Summary reserves explicit viewport space for hero, 8 status boxes, family table, bottom navigation, outer border and gaps.
-- 8 live status boxes reduced to a compact fixed geometry so their lower border cannot collide with the SYSTEM table header.
-- Clickable status-bar regions use navigation-style semantic glow with no narrow inner hover artifact.
-- Command Center activity arrow remains removed.
-- System Wafers badge is forced into one badge slot with a true horizontal divider: top half = System Wafer Kit workflow; bottom half = additional wafer tally.
+5. MYSTERY BOX REVEAL
+- Celebration reveal is now full-screen instead of a small side/modal card.
+- Media and celebration text scale to the full display while keeping the close control available.
 
-TEST FOCUS
-1. Normal CY26Q3 Summary with 9 tool types and a large Boxster fleet.
-2. Live Operations Quarter Summary carousel: compare fleet spacing/X placement and click a tool image.
-3. Quarter Summary Presentation Mode at 100% browser zoom: verify full outer border, all family rows, and bottom nav are visible. Hover/click individual tool images.
-4. Hover actionable sections of all three status bars.
-5. Inspect System Wafers badge with zero and non-zero additional wafer counts.
+TESTING
+A. Search Center
+- Search "reduced process" and verify only reduced-process tools appear.
+- Search "extra shiny wafers" and verify only tools with additional shiny wafer count > 0 appear.
+- Search "150 checklist" and verify tools currently in FI_150-series checklists appear.
+- Verify CURRENT TOOLS and ARCHIVE TOOLS are separate sections.
 
-Extract the entire ZIP before running START-COMMAND-CENTER.bat.
+B. Quarter Close
+- Normal current-quarter behavior should remain unchanged before the end date.
+- After the quarter end date, verify day progress freezes at 100%, the card says CLOSED / QUARTER ENDED, and no negative day count appears.
+- On the day after quarter end, open Tool Archive and verify a FINAL QUARTER SUMMARY is automatically present.
 
-============================================================
-V7.6.43 — DYNAMIC QUARTER LIFECYCLE / SUMMARY + WAFER UPDATE
-============================================================
-- Calendar quarter is now detected automatically at startup/render. At quarter rollover the new calendar quarter becomes the active quarter automatically.
-- Adding the first tool assigned to a future quarter automatically exposes that quarter's Summary and Tools navigation; no hand-built quarter page is required.
-- Live Operations tool carousel continues to include all non-archived tools across quarter rollover. Previous-quarter carryover remains live until explicitly archived.
-- Quarter Summary navigation is data-driven. Each non-archived quarter receives its own Summary using the same master Quarter Summary renderer.
-- Regular Quarter Summary remains the reference geometry. Family tool photos stay right-anchored, grow left, preserve a protected one-photo-width gap from the tool-family name, retain click/hover behavior, and keep shipped red-X overlays on the photo.
-- Presentation Summary and embedded Live Operations status-carousel Summary receive parity/fit refinements so the complete wallboard remains inside its border.
-- System Wafers remains one normal badge footprint with two stacked rows: System Wafer Kit state on top and additional wafer counters on bottom. Extra-wafer attention can be red independently of the kit-complete state.
-- Existing multi-user, archive, tool edit, shipping, priority, status, and checklist data behavior retained.
+C. Mystery Box
+- Open an unlocked reveal and verify the celebration occupies the full screen.
 
-============================================================
-V7.6.44 — QUARTER SUMMARY / PRESENTATION / WAFER LOCK
-============================================================
-CHANGES
-- Regular Quarter Summary remains the master visual reference.
-- The 8 Live Tool Status boxes now reserve enough label height for two-line labels, keep equal geometry, and remove the unwanted lower divider/border.
-- Quarter Summary status counts are now calculated for the quarter being viewed instead of always using the calendar/current quarter.
-- SYSTEM tool-family photo lanes now begin one tool-photo-width after the family name and grow left-to-right as tools are added. Photo-to-photo spacing and shipped red-X attachment remain locked.
-- Presentation Mode now renders the same Quarter Summary content/layout and reserves a fixed bottom navigation lane so the table and outer border remain visible.
-- Presentation Mode automatically creates a Quarter Summary navigation button for every currently active/non-archived quarter (for example CY26Q3 and CY26Q4).
-- System Wafers uses the same outside badge footprint as every other badge. Inside that normal badge: top row = System Wafer Kit workflow state; bottom row = S / H / D65 / D65F additional-wafer counters.
-- Quarter Summary navigation no longer keeps an empty quarter Summary solely because it is the calendar quarter. When the final tool for a quarter is archived, that Summary can disappear and the remaining quarter becomes the selected Summary.
+D. Reduced Process
+- Open CY26Q3 Tools and verify an active Reduced Process badge is immediately visible and clearly different from the inactive/normal state.
 
-TEST FOCUS
-1. CY26Q3 Summary: verify all 8 Live Tool Status labels/numbers and borders are fully visible with no gray line below.
-2. SYSTEM rows: verify the first photo begins about one photo-width after each family name and additional photos grow to the right.
-3. System Wafers badge: compare its outside edges directly with the badge beside it; they must match exactly.
-4. Presentation Mode: verify the complete Quarter Summary, all tool-family rows, outer border, and bottom navigation are visible at 100% zoom.
-5. With a CY26Q4 tool present, verify Presentation Mode shows both CY26Q3 and CY26Q4 Quarter Summary buttons and switches between them without leaving Presentation Mode.
-6. Archive CY26Q3 tools one at a time. After the final CY26Q3 tool is archived, verify CY26Q3 Summary disappears and CY26Q4 Summary becomes the selected active Summary. Confirm archived Q3 tools remain in Tool Archive.
-
-Extract the entire ZIP before running START-COMMAND-CENTER.bat.
-
-============================================================
-V7.6.45 — SKETCH LAYOUT LOCK — 2026-09-26
-============================================================
-This build uses the hand-drawn layout supplied during testing as the authoritative geometry specification.
-
-QUARTER SUMMARY / SYSTEM PHOTO ROWS
-- Tool-family photos are RIGHT-ANCHORED again.
-- One tool stays at the far right; additional tools grow from RIGHT TO LEFT.
-- A protected minimum gap approximately equal to one tool-photo width is reserved between the family name and the closest photo.
-- Existing photo-to-photo spacing and shipped red-X overlay behavior are preserved.
-- Rule applies to the shared Quarter Summary presentation/master contexts.
-
-SYSTEM WAFERS BADGE
-- System Wafers remains ONE standard badge-grid cell with the same outside footprint as neighboring badges.
-- Inside only, the badge is divided into two stacked rows by one thin horizontal divider.
-- Top row = System Wafer Kit workflow/status.
-- Bottom row = additional wafer counters: S / H / D65 / D65F.
-- Counter format is compact: S=0 | H=0 | D65=0 | D65F=0.
-- Existing wafer workflow automation and manual additional-wafer counters are preserved.
-
-QUARTER SUMMARY LIVE STATUS
-- Reinforces removal of any extra lower rail/divider beneath the eight live-status cells.
-
-TEST FOCUS
-1. Compare SYSTEM rows directly to the approved sketch with families containing 1, 2, 3, 5, and many tools.
-2. Verify the rightmost photo remains anchored and new photos grow left.
-3. Verify the closest photo never crowds the family name; retain about one photo-width minimum gap.
-4. Verify shipped X overlays remain centered on their exact photos.
-5. Compare System Wafers outside edges to the badge immediately beside it: top, bottom, width, and grid alignment must match.
-6. Verify wafer top status and bottom counters are both readable without changing the badge-grid geometry.
-
-============================================================
-V7.6.46 — QUARTER SUMMARY CORRECTION / SKETCH IMPLEMENTATION
-============================================================
-This build corrects the issues verified during V7.6.45 testing.
-
-1. SYSTEM TOOL PHOTO ORIGIN
-- Tool photos are no longer right-anchored for sparse families.
-- Every family uses a common name zone.
-- A protected gap approximately equal to one tool-photo width follows the name zone.
-- The first tool photo starts after that gap and additional tools grow LEFT-TO-RIGHT.
-- Red X overlays remain attached to their corresponding shipped tool.
-
-2. EIGHT LIVE STATUS BOXES
-- Removed the inherited panel/grid lower rail below the eight boxes.
-- The individual status-box borders are the only bottom edge.
-
-3. SYSTEM WAFERS BADGE
-- Uses the same standard badge-grid cell footprint and shell as neighboring badges.
-- Top internal row = System Wafer Kit workflow state.
-- Bottom internal row = extra wafer counters.
-- Split is internal only; it does not change the badge cell size.
-
-4. QUARTER SUMMARY PRESENTATION MODE
-- Presentation uses the same Quarter Summary composition instead of a stretched KPI layout.
-- Removed the nested 100vh sizing that caused the KPI panels to consume the screen and push the table below the viewport.
-- Complete family table and compact dynamic quarter navigation are reserved inside the fitted presentation canvas.
-
-TEST FIRST
-- Compare 1-tool, 2-tool and BOXSTER/many-tool SYSTEM rows to the approved hand sketch.
-- Confirm there is no gray rail under the eight live-status boxes.
-- Confirm System Wafers aligns exactly with the badge to its right.
-- Enter Quarter Summary Presentation Mode and confirm the complete summary/table/navigation is visible.
-- Confirm the next-quarter Summary link appears in Presentation Mode when that quarter contains an active tool.
-
-============================================================
-V7.6.47 — QUARTER SUMMARY PRODUCTION LOCK
-============================================================
-- Protects full SYSTEM family names (including PANAMERA).
-- Uses shared SYSTEM name zone + one-photo-width gap; photos grow left-to-right.
-- Removes parent rail/bottom divider beneath the eight live-status boxes.
-- Rebuilds System Wafers inside the standard badge shell with two equal internal rows.
-- Presentation Mode uses the normal Quarter Summary proportions and forces all family rows to fit above the presentation navigation.
-- Live Operations Quarter Summary snapshot reserves more height for the family table and minimum readable photo sizes.
-- Dynamic CY26Q4/future-quarter navigation from V7.6.43+ is retained.
-
-TEST FIRST:
-1. Quarter Summary: verify PANAMERA is fully visible.
-2. Verify first photo starts after shared name zone + approximately one photo-width gap.
-3. Verify no gray rail exists below the 8 status boxes.
-4. Presentation Mode: verify KPI + 8 boxes + every family row + bottom navigation are simultaneously visible.
-5. Live Operations: verify summary labels and fleet photos remain readable.
-6. Universal Tool Card: compare System Wafers outer dimensions directly with the badge to its right.
+PACKAGING
+- This is the only README/update TXT file in the build.
