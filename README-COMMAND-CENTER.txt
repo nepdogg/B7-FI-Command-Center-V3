@@ -64,3 +64,41 @@ V7.6.53 REGRESSION RECOVERY UPDATE
 - Corrected pre-quarter calendar display to DAY 0 with the quarter's actual total days remaining and QUARTER NOT STARTED.
 - Preserved non-sticky footer, Tool Edit scrolling, Archive Center, Search Center, and automatic quarter-close/archive logic from the prior build.
 - Quarter-close lifecycle logic was otherwise left unchanged for the Sep 30 / Oct 1 real-calendar test.
+
+============================================================
+V7.6.54 — GEOMETRY RESTORATION / FINAL QUARTER TEST
+============================================================
+Built directly from the supplied V7.6.53 package.
+
+RESTORED / FIXED
+- Live Operations returns to two equal 50/50 carousel panels.
+- Removed the V7.6.53 fixed live-workspace floor that caused bad zoom-out behavior.
+- Universal Tool Card returns to locked 29% / 36% / 35% column geometry.
+- UTC progress bars restored to substantial thickness and protected from clipping.
+- Live page carousel control groups are symmetrical; both previous/next arrows are protected from collapse.
+- Presentation Tool Card uses the same locked 29/36/35 column rhythm and thicker progress bars.
+- Presentation Quarter Summary tool photos use the same left-to-right fleet rule as normal Quarter Summary.
+- Added visible spacing between every Presentation Quarter Summary tool photo.
+- Shipped red X is centered on each individual photo and expanded across the complete thumbnail footprint.
+- Quarter Summary hero and family shipping progress bars restored to the established heavier geometry.
+- Presentation Quarter Summary navigation is forced above the wallboard as an interactive layer.
+- Status Center retains Daily/Morning Status first and Morning Meeting Workspace below.
+- Footer remains non-sticky/in document flow.
+- Tool Edit remains normal-page-scrollable through all fields.
+
+PRESERVED / NOT CHANGED
+- CY26Q4 pre-quarter lifecycle calculation (DAY 0 OF 92 / QUARTER NOT STARTED).
+- September 30 final-day lifecycle logic.
+- October 1 automatic quarter-close/archive logic.
+- Archive Center and Search Center data behavior.
+- Normal Quarter Summary data/rendering logic; it remains the visual reference.
+
+TEST PRIORITY
+1. Live Operations at 100%, 90%, 80%, 75%, 67%, and 50% browser zoom.
+2. Confirm both Live Operations carousel control groups show previous + counter/pause + next.
+3. Compare Live Operations UTC column widths/progress bars against the established layout.
+4. Enter Presentation Mode Tool view and verify thick, unclipped progress bars.
+5. Enter Q3 Quarter Summary Presentation Mode and compare photo spacing/X alignment to normal Q3 Summary.
+6. Click CY26Q3 and CY26Q4 QUARTER SUMMARY repeatedly while remaining in Presentation Mode.
+7. Verify Status Center vertical layout, Tool Edit full scrolling, and non-sticky footer.
+8. Do not manually archive Q3 during the real quarter-transition test.
