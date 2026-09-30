@@ -1,0 +1,34 @@
+/* V7.6.51 UI REGRESSION LOCK
+   Existing page geometry remains authoritative. New features must not globally restyle established pages. */
+
+/* Ten permanent Centers fit on one line. Presentation Mode is a page action, not a Center. */
+body:not(.screenshot-mode):not(.presentation-mode) .main-nav{display:grid!important;grid-template-columns:repeat(10,minmax(0,1fr))!important;gap:3px!important}
+body:not(.screenshot-mode):not(.presentation-mode) .main-nav button{min-width:0!important;padding-left:4px!important;padding-right:4px!important;font-size:clamp(7px,.63vw,11px)!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important}
+
+/* Screenshot Mode: preserve the approved page itself and remove only interaction chrome. */
+html body.screenshot-mode{background:#101419!important;overflow:auto!important}
+html body.screenshot-mode .app-frame{width:calc(100% - 12px)!important;max-width:none!important;margin:6px!important;padding:0!important;display:block!important;background:#020a11!important;border:2px solid var(--accent,#00bde8)!important;box-sizing:border-box!important}
+html body.screenshot-mode .sticky-shell{display:block!important;position:relative!important;inset:auto!important;box-shadow:none!important}
+html body.screenshot-mode .prototype-header{display:grid!important}
+html body.screenshot-mode .main-nav{display:none!important}
+html body.screenshot-mode .status-stack{display:block!important}
+html body.screenshot-mode .pagebar{display:flex!important}
+html body.screenshot-mode .subnav{display:flex!important;flex:1 1 auto!important}
+html body.screenshot-mode .page-actions{display:none!important}
+html body.screenshot-mode .body-shell{display:block!important;width:100%!important;height:auto!important;min-height:0!important;overflow:visible!important;box-shadow:none!important}
+html body.screenshot-mode #app.body-workspace{display:block!important;width:100%!important;max-width:none!important;height:auto!important;min-height:0!important;overflow:visible!important;padding:6px!important;box-sizing:border-box!important}
+html body.screenshot-mode .app-footer{display:grid!important;position:relative!important;margin:0!important;box-shadow:none!important}
+html body.screenshot-mode #screenshotReportTitle{display:block!important;margin:0 0 6px!important;border:1px solid var(--accent,#00bde8)!important;background:#061522!important}
+html body.screenshot-mode #exitScreenshot{display:block!important}
+/* Hide only controls that mutate/navigate data. Preserve status/mystery/read-only content. */
+html body.screenshot-mode #app .btn,
+html body.screenshot-mode #app button:not(.summary-box):not(.quarter-mystery-box):not(.reveal-btn):not(.live-status-drilldown){display:none!important}
+html body.screenshot-mode .quarter-mystery-box,
+html body.screenshot-mode .reveal-btn,
+html body.screenshot-mode .summary-box{display:flex!important;visibility:visible!important;opacity:1!important;pointer-events:none!important}
+
+/* Administration photo management must never escape its card. */
+html body[data-center="admin"] .photo-admin-card img,
+html body[data-center="admin"] .tool-photo-admin img,
+html body[data-center="admin"] .tool-photo-preview img,
+html body[data-center="admin"] .admin-tool-photo img{max-width:100%!important;max-height:260px!important;width:auto!important;height:auto!important;object-fit:contain!important}
