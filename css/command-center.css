@@ -26377,3 +26377,103 @@ html body.presentation-mode[data-center="operations"][data-sub="summary"] .quart
 .brain-diagnostic{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))!important;gap:6px!important;margin:10px 0!important;padding:10px!important;border:1px solid #176fa8!important;background:#061624!important}
 .brain-diagnostic>b{grid-column:1/-1!important;color:#54d8ff!important;font-size:13px!important}
 .brain-diagnostic>span{border:1px solid #173d57!important;background:#081d2d!important;padding:7px!important;font-size:10px!important;font-weight:900!important}
+
+/* ===== V7.7.1 QUARTER TRANSITION UI RECOVERY =====
+   One authoritative normal-mode shell at the end of the cascade.
+   Page-specific content may size itself, but may not own the global header/footer geometry. */
+html body:not(.presentation-mode):not(.screenshot-mode){
+  min-height:100vh!important;height:auto!important;overflow-x:hidden!important;overflow-y:auto!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{
+  display:flex!important;flex-direction:column!important;width:100%!important;min-height:100vh!important;height:auto!important;
+  max-height:none!important;overflow:visible!important;transform:none!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .sticky-shell{
+  position:-webkit-sticky!important;position:sticky!important;top:0!important;z-index:2147483000!important;
+  flex:0 0 auto!important;width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;
+  overflow:visible!important;transform:none!important;contain:none!important;background:#02080d!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .body-shell{
+  position:relative!important;z-index:1!important;display:flex!important;flex:1 0 auto!important;flex-direction:column!important;
+  width:100%!important;height:auto!important;min-height:calc(100vh - var(--sticky-shell-height,0px) - 60px)!important;
+  max-height:none!important;overflow:visible!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #app.body-workspace{
+  position:relative!important;display:block!important;flex:1 0 auto!important;width:100%!important;height:auto!important;
+  min-height:100%!important;max-height:none!important;overflow:visible!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{
+  position:relative!important;inset:auto!important;z-index:5!important;display:block!important;flex:0 0 54px!important;
+  width:100%!important;height:54px!important;min-height:54px!important;max-height:54px!important;margin:6px 0 0!important;
+  transform:none!important;overflow:visible!important;background:#02080d!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer>.footer-system-row{
+  height:54px!important;min-height:54px!important;max-height:54px!important;
+}
+
+/* Live Operations locked geometry: equal carousels, same row, minimal center gutter. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .body-shell{
+  min-height:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app.body-workspace{
+  min-height:0!important;padding:4px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid.operations-live-only{
+  display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr)!important;
+  align-items:stretch!important;width:100%!important;height:max(620px,calc(100vh - var(--sticky-shell-height,0px) - 64px))!important;
+  min-height:620px!important;max-height:none!important;gap:4px!important;padding:0!important;margin:0!important;
+  overflow:hidden!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-status-carousel,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel{
+  display:block!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;
+  max-width:none!important;max-height:none!important;margin:0!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel>.utc-host,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel>.universal-card-host,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-tool-carousel .utc-card.utc-v6538{
+  width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;margin:0!important;box-sizing:border-box!important;
+}
+
+/* Carryover/final-day lifecycle banner. Same full width location above Reduced Process. */
+.utc-carryover-banner.quarter-close-active{
+  background:linear-gradient(90deg,#8d0d0d,#e13218,#8d0d0d)!important;border-color:#ffb02e!important;color:#fff!important;
+  box-shadow:0 0 13px rgba(255,74,35,.92),inset 0 0 12px rgba(255,190,70,.24)!important;
+}
+
+/* Presentation Summary KPI: keep FINAL DAY / ENDED on one line and never sacrifice the progress strip. */
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-hero .quarter-hero-metric{
+  min-width:0!important;overflow:hidden!important;display:grid!important;grid-template-rows:auto minmax(0,1fr) auto!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-hero .quarter-hero-metric>small{
+  min-width:0!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-hero .quarter-hero-metric>strong{
+  display:flex!important;align-items:center!important;justify-content:center!important;min-width:0!important;min-height:0!important;
+  max-width:100%!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important;line-height:.92!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-hero.quarter-final-day .days-left>strong{
+  font-size:clamp(44px,5.2vw,88px)!important;letter-spacing:-1px!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-hero.quarter-ended .days-left>strong{
+  font-size:clamp(42px,4.8vw,82px)!important;letter-spacing:0!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-hero .hero-progress{
+  display:block!important;flex:0 0 auto!important;height:auto!important;min-height:26px!important;overflow:visible!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-hero .hero-progress .track{
+  min-height:24px!important;height:24px!important;overflow:hidden!important;
+}
+
+/* Presentation quarter switchbar must stay above the board and accept clicks. */
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-switchbar{
+  position:relative!important;z-index:2147483640!important;pointer-events:auto!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-switchbar .presentation-nav-cell{
+  position:relative!important;z-index:2147483641!important;pointer-events:auto!important;cursor:pointer!important;
+}
+
+/* Status bars are a live rotating display; message area must remain readable while labels stay fixed. */
+html body:not(.presentation-mode):not(.screenshot-mode) .status-bar .status-message{
+  min-width:0!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+}
