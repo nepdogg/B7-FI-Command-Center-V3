@@ -3,7 +3,7 @@ setlocal
 cd /d "%~dp0"
 set "B7LOG=%TEMP%\B7-FI-Command-Center-server.log"
 echo ============================================================
-echo B7 FI COMMAND CENTER V7.7.1 - QUARTER TRANSITION STABILITY
+echo B7 FI COMMAND CENTER V7.7.2 - CANONICAL UTC + ZOOM RECOVERY
 echo ============================================================
 echo Local server: http://localhost:5500/
 echo Routine browser GET messages are hidden from this window.
