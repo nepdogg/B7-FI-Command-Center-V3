@@ -1,0 +1,197 @@
+/* B7 FI COMMAND CENTER V7.7.4 — FOUNDATION LOCK
+   Loaded last. This file intentionally owns only the global shell, the
+   Universal Quarter Summary host behavior, and cross-context component locks.
+   It does not create another Tool Card implementation. */
+
+/* ======================================================================
+   1. ONE FIXED APPLICATION SHELL
+   Header -> Center Nav -> 3 Status Bars -> Page Navigation are one unit.
+   Only the workspace below scrolls. Footer remains in normal document flow.
+   ====================================================================== */
+html body:not(.presentation-mode):not(.screenshot-mode){
+  min-height:100dvh!important;height:auto!important;overflow-x:hidden!important;overflow-y:auto!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{
+  display:flex!important;flex-direction:column!important;width:100%!important;min-width:0!important;
+  min-height:100dvh!important;height:auto!important;max-height:none!important;
+  padding-top:var(--sticky-shell-height,0px)!important;overflow:visible!important;transform:none!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell.sticky-shell{
+  position:fixed!important;top:0!important;left:0!important;right:0!important;bottom:auto!important;
+  width:100%!important;max-width:none!important;height:auto!important;min-height:0!important;max-height:none!important;
+  margin:0!important;z-index:2147483000!important;overflow:visible!important;transform:none!important;
+  contain:none!important;background:#02080d!important;box-shadow:0 5px 14px rgba(0,0,0,.55)!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .body-shell{
+  position:relative!important;z-index:1!important;display:flex!important;flex:1 0 auto!important;flex-direction:column!important;
+  width:100%!important;min-width:0!important;height:auto!important;
+  min-height:calc(100dvh - var(--sticky-shell-height,0px) - 60px)!important;max-height:none!important;
+  margin:0!important;padding:0!important;overflow:visible!important;transform:none!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #app.body-workspace{
+  position:relative!important;display:block!important;flex:1 0 auto!important;width:100%!important;min-width:0!important;
+  height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;transform:none!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{
+  position:static!important;inset:auto!important;z-index:5!important;flex:0 0 54px!important;
+  width:100%!important;height:54px!important;min-height:54px!important;max-height:54px!important;
+  margin:6px 0 0!important;transform:none!important;overflow:visible!important;
+}
+
+/* Browser zoom uses the CSS viewport. No minimum desktop canvas is allowed. */
+html,body{min-width:0!important;max-width:none!important;transform:none!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame,
+html body:not(.presentation-mode):not(.screenshot-mode) .body-shell,
+html body:not(.presentation-mode):not(.screenshot-mode) #app{min-width:0!important;max-width:none!important}
+
+/* ======================================================================
+   2. ONE UNIVERSAL TOOL CARD
+   V7.7.3 owns the internal UTC geometry. This lock prevents legacy context
+   rules from changing order/proportions after that canonical stylesheet.
+   ====================================================================== */
+html body #app .utc-card.utc-v6538{
+  grid-template-columns:minmax(0,29%) minmax(0,36%) minmax(0,35%)!important;
+}
+html body #app .utc-card.utc-v6538>.utc-info{
+  grid-template-rows:5.4% 21.5% 4.7% 7% 4.4% minmax(0,1fr) 5.4%!important;
+}
+html body #app .utc-card.utc-v6538>.utc-info>.utc-priority-ribbon{grid-row:1!important}
+html body #app .utc-card.utc-v6538>.utc-info>.utc-identity-badges{grid-row:2!important}
+html body #app .utc-card.utc-v6538>.utc-info>.utc-driver-ribbon{grid-row:3!important}
+html body #app .utc-card.utc-v6538>.utc-info>.utc-carryover-banner{grid-row:4!important}
+html body #app .utc-card.utc-v6538>.utc-info>.utc-reduced{grid-row:5!important}
+html body #app .utc-card.utc-v6538>.utc-info>.utc-indicator-display{grid-row:6!important}
+html body #app .utc-card.utc-v6538>.utc-info>.utc-edit-tool-bar-bottom,
+html body #app .utc-card.utc-v6538>.utc-info>.utc-edit-tool-bar{grid-row:7!important}
+html body #app .utc-card.utc-v6538>.utc-info>.utc-indicator-display>.utc-indicator-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:repeat(14,minmax(0,1fr))!important;
+}
+html body #app .utc-card.utc-v6538>.utc-status{
+  grid-template-rows:minmax(0,1.18fr) minmax(0,.78fr) minmax(0,.78fr) minmax(0,1.18fr) minmax(0,1.06fr) minmax(0,1.02fr)!important;
+}
+html body #app .utc-card.utc-v6538 .utc-progress-list{
+  grid-template-rows:repeat(8,minmax(0,1fr))!important;
+}
+
+/* ======================================================================
+   3. ONE UNIVERSAL QUARTER SUMMARY
+   Page, Presentation, and Live Status carousel render the same master.
+   Live Summary temporarily owns the full two-carousel workspace instead of
+   squeezing the Summary into the left half.
+   ====================================================================== */
+html body[data-center="operations"] .quarter-summary-master{
+  width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;
+  display:grid!important;grid-template-rows:minmax(0,38fr) 72px minmax(0,62fr)!important;
+  gap:6px!important;margin:0!important;padding:6px!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+html body[data-center="operations"] .quarter-summary-master .quarter-summary-hero{
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;
+  width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;overflow:hidden!important;
+}
+html body[data-center="operations"] .quarter-summary-master .quarter-hero-metric{
+  min-width:0!important;min-height:0!important;height:100%!important;display:grid!important;
+  grid-template-rows:auto minmax(0,1fr) auto!important;overflow:hidden!important;padding:10px 18px!important;
+}
+html body[data-center="operations"] .quarter-summary-master .quarter-hero-metric>small{
+  font-size:clamp(18px,2vw,38px)!important;line-height:1!important;text-align:center!important;
+  white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+}
+html body[data-center="operations"] .quarter-summary-master .quarter-hero-metric>strong{
+  display:flex!important;align-items:center!important;justify-content:center!important;min-width:0!important;min-height:0!important;
+  max-width:100%!important;font-size:clamp(70px,8.5vw,165px)!important;line-height:.88!important;
+  white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important;
+}
+html body[data-center="operations"] .quarter-summary-master .quarter-summary-hero.quarter-final-day .days-left>strong{
+  font-size:clamp(58px,7.2vw,128px)!important;letter-spacing:-1px!important;
+}
+html body[data-center="operations"] .quarter-summary-master .quarter-summary-hero.quarter-ended .days-left>strong{
+  font-size:clamp(52px,6vw,106px)!important;letter-spacing:0!important;
+}
+html body[data-center="operations"] .quarter-summary-master .hero-progress{width:100%!important;min-height:26px!important;overflow:visible!important}
+html body[data-center="operations"] .quarter-summary-master .hero-progress .track{height:28px!important;min-height:28px!important;max-height:28px!important}
+html body[data-center="operations"] .quarter-summary-master .quarter-live-panel{
+  height:72px!important;min-height:72px!important;max-height:72px!important;margin:0!important;padding:4px 0!important;overflow:hidden!important;
+}
+html body[data-center="operations"] .quarter-summary-master .quarter-live-panel .summary-grid{
+  display:grid!important;grid-template-columns:repeat(8,minmax(0,1fr))!important;width:100%!important;height:64px!important;gap:4px!important;
+}
+html body[data-center="operations"] .quarter-summary-master .quarter-summary-family-wrap,
+html body[data-center="operations"] .quarter-summary-master .family-panel-v526,
+html body[data-center="operations"] .quarter-summary-master .family-rows-scroll{height:100%!important;min-height:0!important;max-height:100%!important;overflow:hidden!important}
+html body[data-center="operations"] .quarter-summary-master .family-panel-v526{display:grid!important;grid-template-rows:26px minmax(0,1fr)!important}
+html body[data-center="operations"] .quarter-summary-master .family-rows-scroll{display:grid!important;grid-template-rows:repeat(var(--family-count,1),minmax(0,1fr))!important;gap:2px!important}
+
+/* Normal Quarter Summary host. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="summary"] .quarter-summary-master-viewport{
+  width:100%!important;height:calc(100dvh - var(--sticky-shell-height,0px) - 60px)!important;min-height:0!important;max-height:none!important;
+  margin:0!important;padding:0!important;overflow:hidden!important;
+}
+
+/* Live Operations Quarter Summary gets the entire combined carousel row. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid.operations-live-only:has(.snapshot-quarter-summary){
+  grid-template-columns:minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr)!important;gap:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid.operations-live-only:has(.snapshot-quarter-summary) .operations-status-carousel{
+  grid-column:1/-1!important;width:100%!important;height:100%!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid.operations-live-only:has(.snapshot-quarter-summary) .operations-tool-carousel{
+  display:none!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .snapshot-panel:has(.snapshot-quarter-summary){
+  width:100%!important;height:100%!important;border:0!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .snapshot-panel:has(.snapshot-quarter-summary)>.snapshot-source-button{display:none!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .snapshot-panel:has(.snapshot-quarter-summary)>.snapshot-body,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-summary-master-viewport,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-summary-master{
+  width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;margin:0!important;padding:0!important;overflow:hidden!important;transform:none!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .snapshot-quarter-summary .quarter-summary-master{padding:6px!important}
+
+/* Presentation uses the same master rows plus only its bottom navigation row. */
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-presentation.quarter-summary-master{
+  width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;
+  display:grid!important;grid-template-rows:minmax(0,38fr) 72px minmax(0,62fr) 44px!important;
+  gap:6px!important;margin:0!important;padding:6px!important;overflow:hidden!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-switchbar{
+  display:flex!important;width:100%!important;height:44px!important;min-height:44px!important;max-height:44px!important;
+  margin:0!important;padding:0!important;gap:4px!important;overflow:hidden!important;position:relative!important;
+  z-index:2147483640!important;pointer-events:auto!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-switchbar .presentation-nav-cell{
+  flex:1 1 0!important;min-width:0!important;height:42px!important;pointer-events:auto!important;cursor:pointer!important;
+}
+
+/* Preserve identical family photo/X semantics in every Summary host. */
+html body[data-center="operations"] .quarter-summary-master .family-cell.name{
+  grid-template-columns:150px var(--family-image-height,40px) minmax(0,1fr)!important;column-gap:0!important;padding:1px 7px!important;
+}
+html body[data-center="operations"] .quarter-summary-master .family-cell.name>span{width:150px!important;min-width:150px!important;max-width:150px!important;white-space:nowrap!important}
+html body[data-center="operations"] .quarter-summary-master .family-tool-fleet{
+  grid-column:3!important;display:flex!important;justify-content:flex-start!important;align-items:center!important;
+  gap:clamp(4px,.34vw,8px)!important;padding:1px 2px!important;overflow:hidden!important;
+}
+html body[data-center="operations"] .quarter-summary-master .family-tool-icon{
+  position:relative!important;isolation:isolate!important;flex:0 0 var(--family-image-height,40px)!important;
+  width:var(--family-image-height,40px)!important;min-width:var(--family-image-height,40px)!important;
+  max-width:var(--family-image-height,40px)!important;height:min(92%,var(--family-image-height,40px))!important;overflow:visible!important;
+}
+html body[data-center="operations"] .quarter-summary-master .family-tool-x{
+  position:absolute!important;inset:0!important;width:100%!important;height:100%!important;display:block!important;
+  font-size:0!important;color:transparent!important;z-index:30!important;pointer-events:none!important;
+}
+html body[data-center="operations"] .quarter-summary-master .family-tool-x::before,
+html body[data-center="operations"] .quarter-summary-master .family-tool-x::after{
+  content:""!important;position:absolute!important;left:-8%!important;top:50%!important;width:116%!important;
+  height:max(5px,12%)!important;border-radius:999px!important;background:#ff244f!important;box-shadow:0 0 2px #000,0 0 5px #000!important;transform-origin:center!important;
+}
+html body[data-center="operations"] .quarter-summary-master .family-tool-x::before{transform:translateY(-50%) rotate(38deg)!important}
+html body[data-center="operations"] .quarter-summary-master .family-tool-x::after{transform:translateY(-50%) rotate(-38deg)!important}
+
+/* Keep normal live carousels equal height when Summary is not the active slide. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .operations-dual-grid.operations-live-only{
+  width:100%!important;height:calc(100dvh - var(--sticky-shell-height,0px) - 64px)!important;min-height:0!important;max-height:none!important;
+  align-items:stretch!important;overflow:hidden!important;
+}
