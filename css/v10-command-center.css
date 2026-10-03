@@ -293,3 +293,39 @@ html,body,.app-frame{max-width:100%;overflow-x:hidden}
  .prototype-header-center{order:initial!important}.prototype-header-right{justify-content:flex-end!important;text-align:right!important}
  .pagebar{overflow-x:auto!important}.pagebar .subnav{min-width:600px!important}.page-actions{flex:0 0 auto!important}
 }
+
+/* =========================================================
+   V10.0.5 — LIVE OPERATIONS GEOMETRY CORRECTION
+   User-verified corrections: frameless body, clean status panels,
+   taller global status bars, readiness moved into available space.
+   ========================================================= */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app.body-workspace{
+  padding:0!important;border:0!important;outline:0!important;box-shadow:none!important;background:transparent!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v92-live-page,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v9-live-main,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-tool-card,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-card-grid{
+  margin:0!important;border:0!important;border-radius:0!important;outline:0!important;box-shadow:none!important;
+}
+/* The three upper middle panels are status surfaces, not nested input boxes. */
+.v10-status-column>.v10-status-card:nth-child(-n+3){
+  border:0!important;border-radius:0!important;outline:0!important;box-shadow:none!important;background:transparent!important;
+  padding-left:16px!important;padding-right:16px!important;
+}
+.v10-status-column>.v10-status-card:nth-child(-n+3) .hero{
+  border:0!important;border-radius:0!important;outline:0!important;box-shadow:none!important;background:transparent!important;
+  padding:0!important;
+}
+/* Global alert/status rails now visually match the navigation rail height. */
+.status-stack{display:grid!important;gap:6px!important;padding:6px 10px!important}
+.status-bar{min-height:42px!important;height:42px!important;margin:0!important;border-radius:11px!important}
+.status-left{padding:0 14px!important}.status-label strong{font-size:12px!important}.status-label small{font-size:9px!important}
+.status-message{font-size:clamp(10px,.68vw,13px)!important}.status-right{font-size:11px!important}
+/* Right column consumes the full height; readiness follows progress immediately instead of being pushed to the floor. */
+.v10-progress-column{justify-content:flex-start!important}
+.v10-readiness-widget{
+  flex:0 0 auto!important;min-height:0!important;margin-top:12px!important;padding:14px 0 0!important;justify-content:flex-start!important;
+}
+.v10-readiness-grid>div{min-height:68px!important}.v10-readiness-title strong{font-size:28px!important}
+@media(max-width:1180px){.status-bar{min-height:40px!important;height:40px!important}}
