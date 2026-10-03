@@ -201,3 +201,61 @@ html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"
   html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar>.subnav,
   html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar>.page-actions{height:46px!important;min-height:46px!important;max-height:46px!important}
 }
+
+/* =====================================================================
+   V10.1.3 MODERN PARITY LOCK — final cascade owner. No rules below this.
+   ===================================================================== */
+:root{--v1013-row-h:46px;--v1013-header-h:68px;--v1013-id-h:45px}
+/* Three header cells: one exact geometry; 8 presence slots fit inside center. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header>section{height:var(--v1013-header-h)!important;min-height:var(--v1013-header-h)!important;max-height:var(--v1013-header-h)!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-kla-box{height:60px!important;min-height:60px!important;max-height:60px!important;grid-template-columns:minmax(105px,1fr) 150px minmax(105px,1fr)!important;gap:5px!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .kla-user-side{display:grid!important;grid-template-rows:repeat(4,minmax(0,1fr))!important;gap:2px!important;height:60px!important;overflow:hidden!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .kla-presence-badge{height:auto!important;min-height:0!important;border:1px solid #24536a!important;border-radius:3px!important;background:#03101a!important;color:#607783!important;font-size:7px!important;font-weight:950!important;line-height:1!important;padding:0 4px!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .kla-presence-badge.active{border-color:#00d879!important;background:#05271b!important;color:#fff!important;box-shadow:0 0 5px rgba(0,216,121,.35)!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .kla-connection-core{height:60px!important;min-height:60px!important;max-height:60px!important}
+/* One exact row height for Main Nav, 3 status bars and Page Nav. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .main-nav,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .status-stack>.status-bar,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .main-nav>button,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .subnav>button,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .page-actions>button,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .page-actions>.btn{height:var(--v1013-row-h)!important;min-height:var(--v1013-row-h)!important;max-height:var(--v1013-row-h)!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .status-stack{grid-template-rows:repeat(3,var(--v1013-row-h))!important;height:calc(var(--v1013-row-h)*3 + 8px)!important;min-height:calc(var(--v1013-row-h)*3 + 8px)!important;max-height:calc(var(--v1013-row-h)*3 + 8px)!important}
+/* Main and Page navigation share the same actual button language. Page controls consume 100% width. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .main-nav,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .subnav,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .page-actions{border:0!important;outline:0!important;box-shadow:none!important;background:transparent!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar{display:flex!important;width:100%!important;gap:4px!important;overflow:hidden!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar>.subnav,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar>.page-actions{display:contents!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar button,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .btn{flex:1 1 0!important;width:auto!important;min-width:0!important;max-width:none!important;margin:0!important;padding:0 7px!important;border:1px solid #0879a7!important;border-radius:12px!important;background:#020c14!important;color:#fff!important;font-size:10px!important;font-weight:900!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;box-shadow:inset 0 0 0 1px rgba(0,200,255,.03)!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar button.active,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar button.primary{background:linear-gradient(180deg,#063f59,#032333)!important;border-color:var(--v10-cyan)!important;box-shadow:inset 0 0 18px rgba(0,200,255,.12),0 0 10px rgba(0,200,255,.18)!important}
+/* Tool status is one outer element. Identity leads the headline at identical typography. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-intelligence{grid-template-columns:320px 1px minmax(0,1fr)!important;gap:0!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-statusbar .copy{display:block!important;min-width:0!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-statusbar .copy strong{display:block!important;font-size:25px!important;font-weight:950!important;line-height:1.08!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;color:#ffad2f!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-statusbar .tool-identity,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-statusbar .tool-message{font:inherit!important;letter-spacing:inherit!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-statusbar .tool-identity{color:#fff!important}
+/* Body/card has no master rectangle anywhere. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app>.v92-live-page,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v9-live-main,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-card,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-card-grid{border:0!important;outline:0!important;box-shadow:none!important;background:transparent!important}
+/* Identity grid is complete: Quarter + Ship Date occupy the final row. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-identity-stack{grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-auto-rows:var(--v1013-id-h)!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-id-badge,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-badge{height:var(--v1013-id-h)!important;min-height:var(--v1013-id-h)!important;max-height:var(--v1013-id-h)!important}
+/* State headlines are naked text inside their parent bubble — no inner box or divider. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-status-card>strong.hero{border:0!important;border-width:0!important;border-style:none!important;outline:0!important;box-shadow:none!important;background:transparent!important;background-image:none!important;border-radius:0!important;padding:0!important}
+/* Equal-height columns and no unused bottom zone: each column owns the full shared grid track. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-card-grid{align-items:stretch!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-column{height:100%!important;align-self:stretch!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-status-column{display:grid!important;grid-template-rows:repeat(6,minmax(0,1fr))!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-progress-column{display:grid!important;grid-template-rows:repeat(9,minmax(0,1fr)) minmax(90px,1.35fr)!important}

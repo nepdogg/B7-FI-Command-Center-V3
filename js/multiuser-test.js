@@ -108,9 +108,9 @@ function sharedKind(){return localStorage.getItem(SHARED_KIND_KEY)==='PRODUCTION
 function setModeIdentity(mode,connection){let shared=mode==='shared',connected=connection==='connected',connecting=connection==='connecting';let h=document.getElementById('headerModeCenter');if(h){h.classList.toggle('shared-connected',shared&&connected);h.classList.toggle('shared-connecting',shared&&connecting);h.classList.toggle('shared-disconnected',shared&&!connected&&!connecting);h.classList.toggle('local-mode',!shared)}let fl=document.getElementById('headerModeLabel'),fc=document.getElementById('headerConnectionLabel');let kind=sharedKind();if(fl)fl.textContent=shared?(kind==='PRODUCTION'?'MULTI-USER PRODUCTION':'MULTI-USER MODE'):'LOCAL MODE';let txt=shared?(connected?'LIST CONNECTED':connecting?'CONNECTING TO LIST':'LIST DISCONNECTED'):'LOCAL DATA';if(fc)fc.textContent=txt;let core=document.getElementById('klaConnectionCore');if(core){core.classList.toggle('shared-connected',shared&&connected);core.classList.toggle('shared-connecting',shared&&connecting);core.classList.toggle('shared-disconnected',shared&&!connected&&!connecting);core.classList.toggle('local-mode',!shared)}}
 function displayUserName(n){return String(n||'').trim().replace(/\s+/g,' ')}
 function renderPresenceBadges(){
-  let names=activeUsers().filter(Boolean).slice(0,4);while(names.length<4)names.push('');
+  let names=activeUsers().filter(Boolean).slice(0,8);while(names.length<8)names.push('');
   let badge=(n,i)=>{let full=displayUserName(n),label=full?full.toUpperCase():'—';return `<button type="button" class="kla-presence-badge ${full&&sharedActive?'active':''}" data-presence-slot="${i+1}" title="${full||'Available user slot'}">${label}</button>`};
-  let l=document.querySelector('#klaUsersLeft'),r=document.querySelector('#klaUsersRight');if(l)l.innerHTML=badge(names[0],1)+badge(names[1],2);if(r)r.innerHTML=badge(names[2],3)+badge(names[3],4);
+  let l=document.querySelector('#klaUsersLeft'),r=document.querySelector('#klaUsersRight');if(l)l.innerHTML=badge(names[0],1)+badge(names[1],2)+badge(names[2],3)+badge(names[3],4);if(r)r.innerHTML=badge(names[4],5)+badge(names[5],6)+badge(names[6],7)+badge(names[7],8);
 }
 function activity(msg,type='ok'){
   let e=document.querySelector('#footerActivity');

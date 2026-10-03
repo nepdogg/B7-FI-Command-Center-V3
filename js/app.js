@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='10.1.2', BUILD='20261003-V10.1.2-GEOMETRY-LOCK';
+const VERSION='10.1.3', BUILD='20261003-V10.1.3-MODERN-PARITY-LOCK';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -1448,7 +1448,8 @@ function v10ToolIntelligence(t,count,p){
     if(String(t.sourceRequired||'').toUpperCase()==='YES'&&!/complete|returned/i.test(String(t.sourceStatus||'')))parts.push('CUSTOMER SOURCE OPEN');
     if(['critical','urgent'].includes(String(count?.tone||'')))tone='critical';else if(['warning','attention'].includes(String(count?.tone||''))&&tone!=='critical')tone='warning';
   }
-  return{tone,message:parts.filter(Boolean).slice(0,5).join(' · ')||'TOOL OPERATIONS NORMAL',detail:`${t.id} · ${t.codename||'TOOL'} ${t.model||''}`};
+  let identity=`${t.id||'NO UTID'} · ${t.codename||'TOOL'} ${t.model||''}`.trim();
+  return{tone,identity,message:parts.filter(Boolean).slice(0,5).join(' · ')||'TOOL OPERATIONS NORMAL'};
 }
 function v10IdentityButton(t,key,label,value,missing=false){return `<button type="button" class="v10-id-badge ${missing?'missing':''}" data-direct-identity="${esc(key)}" data-identity-tool="${esc(t.id)}" title="${esc(label)} — click to update"><small>${esc(label)}</small><strong>${esc(String(value||'—').toUpperCase())}</strong></button>`}
 function v10ProgressRow(label,pct,tone,sub,tool,key='',display=''){
@@ -1467,7 +1468,7 @@ function v9ToolCard(){
   let badgeRows=orderedBadges.slice(0,28), waferBadge=badgeRows.find(x=>x.key==='systemWafers');
   let standardBadges=badgeRows.filter(x=>x.key!=='systemWafers');
   let badgeHtml=standardBadges.map(x=>`<button type="button" class="v10-badge ${esc(x.tone||'normal')}" data-direct-indicator="${esc(x.key||'')}" data-indicator-tool="${esc(t.id)}" title="${esc(x.state||x.label||'')} — click to update">${esc(x.label||x.key||'BADGE')}</button>`).join('');
-  if(standardBadges.length%3!==0)badgeHtml+=`<div class="v10-badge v10-badge-placeholder" title="Reserved for a future tool badge"><span>NEW TOOL BADGE</span><small>PLACEHOLDER</small></div>`;
+  
   if(waferBadge)badgeHtml+=`<button type="button" class="v10-badge v10-wafer-badge ${esc(waferBadge.tone||'normal')}" data-direct-indicator="systemWafers" data-indicator-tool="${esc(t.id)}" title="${esc(waferBadge.state||waferBadge.label||'SYSTEM WAFERS')} — click to update"><span>${esc(waferBadge.label||'SYSTEM WAFERS')}</span><small>${esc(waferTally(t))}</small></button>`;
   let statusLabel=t.toolStatus==='FI'?'FI TESTING':String(t.toolStatus||fiSummaryStatus(t)).toUpperCase();
   let currentStatus=performance(t)[0]==='BEHIND'?'BEHIND SCHEDULE':performance(t)[0]==='AHEAD'?'AHEAD OF SCHEDULE':'ON SCHEDULE';
@@ -1476,7 +1477,7 @@ function v9ToolCard(){
     <div class="v10-intelligence v10-intelligence-${esc(intel.tone)}">
       <button type="button" class="v10-priority" data-direct-priority="${esc(t.id)}" title="Update priority"><b>#${esc(p.rank||t.priority||'—')}</b><span><strong>PRIORITY</strong><small>${esc((p.tier||'PRIORITY').toUpperCase())}</small></span></button>
       <span class="v10-intel-divider" aria-hidden="true"></span>
-      <button type="button" class="v10-tool-statusbar ${esc(intel.tone)}" data-open-tool="${esc(t.id)}" title="Open Tool Control Center"><i class="signal"></i><div class="copy"><strong>${esc(intel.message)}</strong><small>${esc(intel.detail)}</small></div><span class="v1008-view-details">VIEW DETAILS ›</span></button>
+      <button type="button" class="v10-tool-statusbar ${esc(intel.tone)}" data-open-tool="${esc(t.id)}" title="Open Tool Control Center"><i class="signal"></i><div class="copy"><strong><span class="tool-identity">${esc(intel.identity)}</span><span class="tool-message"> · ${esc(intel.message)}</span></strong></div><span class="v1008-view-details">VIEW DETAILS ›</span></button>
     </div>
     <div class="v10-card-grid">
       <section class="v10-column v10-identity-column">
@@ -1489,6 +1490,7 @@ function v9ToolCard(){
           ${v10IdentityButton(t,'salesOrder','SALES ORDER',t.salesOrder||'NO SALES ORDER',!t.salesOrder)}
           <button type="button" class="v10-id-badge ${!t.driver||/^unassigned$/i.test(t.driver)?'missing':''}" data-direct-indicator="driver" data-indicator-tool="${esc(t.id)}"><small>DRIVER</small><strong>${esc(t.driver||'UNASSIGNED')}</strong></button>
           <div class="v10-id-badge"><small>QUARTER</small><strong>${esc(toolHomeQuarter(t))}</strong></div>
+          <button type="button" class="v10-id-badge ${!t.shipDate?'missing':''}" data-quick-field="shipDate" data-quick-tool="${esc(t.id)}" title="SHIP DATE — click to update"><small>SHIP DATE</small><strong>${esc(t.shipDate?fmtDate(t.shipDate):'NO SHIP DATE')}</strong></button>
         </div>
         <button type="button" class="v10-reduced ${t.reducedProcess?'active':''}" data-direct-indicator="reduced" data-indicator-tool="${esc(t.id)}">${t.reducedProcess?'REDUCED PROCESS':'NORMAL PROCESS'}</button>
         ${carry?`<div class="v10-carry">⚠ QUARTER CARRYOVER — SHIP ASAP ⚠</div>`:''}
