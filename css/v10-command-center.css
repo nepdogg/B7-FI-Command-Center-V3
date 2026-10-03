@@ -194,3 +194,102 @@ html,body,.app-frame{max-width:100%;overflow-x:hidden}
 .v10-readiness-alert{margin-top:9px;border:1px solid #1d5d79;border-radius:9px;padding:9px 11px;font-size:11px;font-weight:900}.v10-readiness-alert.critical{border-color:#ff315d;background:rgba(126,12,43,.38)}.v10-readiness-alert.warning{border-color:#ffd044;background:rgba(100,72,7,.35)}.v10-readiness-alert.complete{border-color:#14e6a4;background:rgba(6,84,60,.35)}
 @media(max-width:1500px){.prototype-header{grid-template-columns:minmax(0,1fr) minmax(320px,430px) minmax(0,1fr)!important;gap:8px!important}.page-actions button{padding:4px 6px!important}.v1002-tool-carousel .nav69-control-group{grid-template-columns:30px minmax(90px,112px) 30px!important}}
 @media(max-width:1180px){.prototype-header{grid-template-columns:minmax(0,1fr) 310px minmax(0,1fr)!important;height:72px!important}.main-nav{grid-template-columns:repeat(10,minmax(92px,1fr))!important;overflow-x:auto!important}.pagebar{overflow-x:auto!important}.pagebar .subnav{min-width:620px!important}.page-actions{flex:0 0 auto!important}}
+
+/* =========================================================
+   V10.0.4 — MODERN LIVE OPERATIONS POLISH
+   Canonical header/nav + spacious tool-card refinements.
+   ========================================================= */
+/* Header: exactly three clean sections; no enclosing pink center frame. */
+.prototype-header{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) clamp(340px,26vw,500px) minmax(0,1fr)!important;
+  align-items:stretch!important;
+  gap:10px!important;
+  padding:8px 12px!important;
+  height:72px!important;
+  min-height:72px!important;
+  background:linear-gradient(90deg,#087db8,#0c99d2 42%,#087db8)!important;
+  border:0!important;outline:0!important;box-shadow:none!important;
+}
+.prototype-header-left,.prototype-header-center,.prototype-header-right{
+  min-width:0!important;height:56px!important;margin:0!important;
+  border:0!important;outline:0!important;box-shadow:none!important;
+}
+.prototype-header-left,.prototype-header-right{
+  display:flex!important;align-items:center!important;
+  padding:0 22px!important;border-radius:10px!important;
+  background:linear-gradient(180deg,rgba(12,154,211,.88),rgba(6,113,166,.88))!important;
+}
+.prototype-header-left{justify-content:flex-start!important}
+.prototype-header-right{justify-content:flex-end!important;text-align:right!important}
+.prototype-header-center{padding:0!important;background:transparent!important}
+.prototype-kla-box{width:100%!important;height:56px!important;min-height:56px!important;margin:0!important;border:1px solid rgba(255,49,93,.7)!important;border-radius:10px!important;box-shadow:none!important}
+
+/* Main and page navigation: no rail/container border, only modern rounded controls. */
+.main-nav,.pagebar{
+  border:0!important;outline:0!important;box-shadow:none!important;
+  background:transparent!important;
+}
+.main-nav{padding:6px 10px!important;gap:7px!important}
+.main-nav button,.subnav button,.page-actions button,.nav69-mini,.nav69-pause{
+  border-radius:11px!important;
+  border:1px solid #195879!important;
+  background:linear-gradient(180deg,#0a2638,#061725)!important;
+  transition:border-color .15s ease,background .15s ease,box-shadow .15s ease,transform .15s ease!important;
+}
+.main-nav button:hover,.subnav button:hover,.page-actions button:hover,.nav69-mini:hover,.nav69-pause:hover{
+  border-color:var(--cyan)!important;background:#0b3550!important;box-shadow:0 0 0 1px rgba(22,200,255,.16),0 0 14px rgba(22,200,255,.12)!important;
+}
+.main-nav button.active,.subnav button.active{background:linear-gradient(180deg,#0e6c98,#094666)!important;border-color:#38d4ff!important;box-shadow:inset 0 -2px 0 #32d6ff!important}
+.pagebar{display:flex!important;width:100%!important;align-items:stretch!important;gap:7px!important;padding:6px 10px!important;overflow:visible!important}
+.pagebar .subnav{display:flex!important;flex:1 1 0!important;min-width:0!important;gap:7px!important;overflow:visible!important}
+.pagebar .subnav>*{flex:1 1 0!important;min-width:0!important}
+.page-actions{display:flex!important;flex:0 0 auto!important;gap:7px!important;overflow:visible!important}
+.nav69-live-controls,.nav69-live-actions{gap:7px!important}
+.v1002-tool-carousel .nav69-control-group{display:grid!important;grid-template-columns:38px minmax(122px,154px) 38px!important;gap:6px!important}
+.page-actions button,.subnav button{min-height:36px!important;padding:6px 12px!important;font-size:clamp(9px,.65vw,12px)!important}
+
+/* Tool intelligence: no redundant kicker; identity at right is full-size status text. */
+.v10-tool-statusbar{grid-template-columns:auto minmax(0,1fr) auto!important;min-height:64px!important;padding:10px 18px!important}
+.v10-tool-statusbar .copy small{display:none!important}
+.v10-tool-statusbar strong{font-size:clamp(18px,1.28vw,26px)!important;line-height:1.12!important}
+.v10-tool-statusbar em{font-size:clamp(16px,1.05vw,22px)!important;font-weight:900!important;color:#f4fbff!important;letter-spacing:.015em!important;padding-left:14px!important}
+.v10-section-kicker{display:none!important}
+
+/* Middle column: 3 equal upper panels + 3 equal lower panels. */
+.v10-status-column{display:grid!important;grid-template-rows:repeat(6,minmax(0,1fr))!important;gap:12px!important}
+.v10-status-column>.v10-status-card,.v10-status-column>.v10-status-card:nth-of-type(4),.v10-status-column>.v10-bottom-card{min-height:0!important;height:auto!important;display:flex!important;flex-direction:column!important;justify-content:center!important}
+.v10-status-card{padding:15px 17px!important}
+.v10-status-card .label{font-size:clamp(11px,.72vw,14px)!important}
+.v10-status-card .hero{
+  margin-top:7px!important;padding:0!important;min-height:0!important;
+  border:0!important;outline:0!important;box-shadow:none!important;
+  background:transparent!important;
+  font-size:clamp(25px,1.9vw,39px)!important;
+}
+.v10-status-card .sub{font-size:clamp(11px,.72vw,14px)!important;margin-top:7px!important}
+.v10-status-card.ship.complete .hero{color:var(--green)!important}
+.v10-status-card.ship.warning .hero{color:var(--yellow)!important}
+.v10-status-card.ship.critical .hero{color:var(--red)!important}
+.v10-lines{font-size:clamp(12px,.75vw,15px)!important;line-height:1.55!important;min-height:0!important;margin-top:8px!important}
+.v10-task span{font-size:clamp(12px,.74vw,15px)!important}
+
+/* Larger global tool-card text now that the card owns the Live Operations workspace. */
+.v10-id-badge small{font-size:clamp(10px,.62vw,12px)!important}.v10-id-badge strong{font-size:clamp(14px,.88vw,18px)!important}
+.v10-badge{font-size:clamp(10px,.62vw,12px)!important;font-weight:900!important}
+.v10-progress-head b{font-size:clamp(14px,.9vw,18px)!important}.v10-progress-head strong{font-size:clamp(16px,1.05vw,21px)!important}
+.v10-progress-row small{font-size:clamp(10px,.62vw,12px)!important}
+.v10-progress-track{height:22px!important;flex-basis:22px!important}
+.v10-readiness-widget{flex:1 1 auto!important;display:flex!important;flex-direction:column!important;justify-content:flex-end!important;min-height:150px!important}
+
+@media(max-width:1500px){
+ .prototype-header{grid-template-columns:minmax(0,1fr) clamp(310px,27vw,420px) minmax(0,1fr)!important;gap:8px!important}
+ .pagebar{gap:5px!important;padding-inline:7px!important}.pagebar .subnav,.page-actions,.nav69-live-controls,.nav69-live-actions{gap:5px!important}
+ .page-actions button,.subnav button{padding-inline:8px!important}
+ .v1002-tool-carousel .nav69-control-group{grid-template-columns:32px minmax(105px,128px) 32px!important;gap:4px!important}
+}
+@media(max-width:1180px){
+ .prototype-header{grid-template-columns:minmax(0,1fr) 300px minmax(0,1fr)!important;height:72px!important}
+ .prototype-header-center{order:initial!important}.prototype-header-right{justify-content:flex-end!important;text-align:right!important}
+ .pagebar{overflow-x:auto!important}.pagebar .subnav{min-width:600px!important}.page-actions{flex:0 0 auto!important}
+}

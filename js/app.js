@@ -1473,11 +1473,10 @@ function v9ToolCard(){
   return `<section class="v10-tool-card" data-universal-tool-card="${esc(t.id)}">
     <div class="v10-intelligence">
       <button type="button" class="v10-priority" data-direct-priority="${esc(t.id)}" title="Update priority"><b>#${esc(p.rank||t.priority||'—')}</b><span>${esc((p.tier||'PRIORITY').toUpperCase())}</span></button>
-      <button type="button" class="v10-tool-statusbar ${esc(intel.tone)}" data-open-tool="${esc(t.id)}" title="Open Tool Control Center"><i class="signal"></i><div class="copy"><small>TOOL INTELLIGENCE · LIVE STATUS</small><strong>${esc(intel.message)}</strong></div><em>${esc(intel.detail)}</em></button>
+      <button type="button" class="v10-tool-statusbar ${esc(intel.tone)}" data-open-tool="${esc(t.id)}" title="Open Tool Control Center"><i class="signal"></i><div class="copy"><strong>${esc(intel.message)}</strong></div><em>${esc(intel.detail)}</em></button>
     </div>
     <div class="v10-card-grid">
       <section class="v10-column v10-identity-column">
-        <div class="v10-section-kicker">TOOL IDENTITY & REQUIREMENTS</div>
         <div class="v10-photo"><img src="${esc(img)}" alt="${esc(t.codename||'Tool')}"></div>
         <div class="v10-identity-stack">
           ${v10IdentityButton(t,'utid','UTID',t.id,!t.id)}
@@ -1494,18 +1493,14 @@ function v9ToolCard(){
         <button class="v10-update" data-tool="${esc(t.id)}">UPDATE TOOL STATUS →</button>
       </section>
       <section class="v10-column v10-status-column">
-        <div class="v10-section-kicker">LIVE TOOL STATUS</div>
         <div class="v10-status-card ship ${esc(intel.tone)} clickable" data-quick-field="shipDate" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">TOOL SHIP COUNTDOWN</span><strong class="hero">${esc(count.big||'NO SHIP DATE')}</strong><span class="sub">${esc(count.small||'SET MANUFACTURING SHIP DATE')}</span></div>
         <div class="v10-status-card clickable" data-quick-field="fiStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">CURRENT TOOL STATUS · FI TESTING STATUS</span><strong class="hero">${esc(currentStatus)}</strong><span class="sub">${esc(checklistLabel(t,t.currentChecklist))}</span></div>
         <div class="v10-status-card clickable" data-quick-field="toolStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">CURRENT SYSTEM STATUS</span><strong class="hero">${esc(statusLabel)}</strong><span class="sub">${esc(t.latestStatus||'No live system status entered.')}</span></div>
-        <div class="v10-status-card"><span class="label">NEXT SYSTEM TASKS</span><div class="v10-tasks">${tasks.length?tasks.slice(0,5).map((x,i)=>`<div class="v10-task"><i>${i+1}</i><span>${esc(x.text)}</span></div>`).join(''):'<div class="v10-task"><i>✓</i><span>NO OPEN SYSTEM TASKS</span></div>'}</div></div>
-        <div class="v10-middle-split">
-          <div class="v10-status-card clickable" data-quick-field="latestStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">LATEST SYSTEM STATUS</span><div class="v10-lines">${esc(t.latestStatus||'No latest system status entered.')}</div></div>
-          <div class="v10-status-card clickable" data-quick-field="leadNotes" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">LEAD NOTES / REMINDERS</span><div class="v10-lines">${esc(t.notes||'No lead notes entered.')}</div></div>
-        </div>
+        <div class="v10-status-card v10-bottom-card"><span class="label">NEXT SYSTEM TASKS</span><div class="v10-tasks">${tasks.length?tasks.slice(0,5).map((x,i)=>`<div class="v10-task"><i>${i+1}</i><span>${esc(x.text)}</span></div>`).join(''):'<div class="v10-task"><i>✓</i><span>NO OPEN SYSTEM TASKS</span></div>'}</div></div>
+        <div class="v10-status-card v10-bottom-card clickable" data-quick-field="latestStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">LATEST SYSTEM STATUS</span><div class="v10-lines">${esc(t.latestStatus||'No latest system status entered.')}</div></div>
+        <div class="v10-status-card v10-bottom-card clickable" data-quick-field="leadNotes" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">LEAD NOTES / REMINDERS</span><div class="v10-lines">${esc(t.notes||'No lead notes entered.')}</div></div>
       </section>
       <section class="v10-column v10-progress-column">
-        <div class="v10-section-kicker">PROGRESS & PERFORMANCE</div>
         ${v10ProgressRow('FI PROGRESS',fi,'cyan',checklistLabel(t,t.currentChecklist),t,'currentChecklist')}
         ${v10ProgressRow('MICRO SCHEDULE',mi,performance(t)[0]==='BEHIND'?'red':'green',checklistLabel(t,t.microSchedule),t,'microSchedule')}
         ${v10ProgressRow('FI FORECAST PROGRESS',forecast,forecast>=90?'yellow':'purple',`FORECAST · ${fmtDate(calculatedForecastDate(t)||t.nextForecastDate||'')}`,t,'forecastDate')}
@@ -1515,7 +1510,7 @@ function v9ToolCard(){
         ${v10ProgressRow('STR PROGRESS',str,str>=100?'green':str>0?'yellow':'cyan',`${String(t.strRequired||'TBD').toUpperCase()} · ${String(t.strStatus||'NOT STARTED').toUpperCase()}`,t,'strWorkflow')}
         ${v10ProgressRow('PACKING / SHIPPING PROGRESS',packing,packing>=100?'green':packing>0?'yellow':'cyan',shippingStep(t),t,'shippingWorkflow')}
         ${v10ProgressRow('TOOL SHIPMENT PROGRESS',shipment,shipment>=100?'green':shipment>=75?'yellow':'cyan',t.toolStatus==='Shipped'?'SHIPMENT COMPLETE':`${statusLabel} · ${count.big||'NO SHIP DATE'}`,t,'shipDate')}
-        <div class="v10-readiness-widget"><div class="v10-readiness-title"><span>TOOL READINESS</span><strong>${Math.round((fi+mi+Math.min(100,cp)+lead+source+str+packing+shipment)/8)}%</strong></div><div class="v10-readiness-grid"><div><small>FI</small><b>${fi}%</b></div><div><small>LEAD / ADMIN</small><b>${lead}%</b></div><div><small>PACKING</small><b>${packing}%</b></div><div><small>SHIPMENT</small><b>${shipment}%</b></div></div><div class="v10-readiness-alert ${esc(intel.tone)}">${esc(intel.message)}</div></div>
+        <div class="v10-readiness-widget"><div class="v10-readiness-title"><span>TOOL READINESS</span><strong>${Math.round((fi+mi+lead+packing+shipment)/5)}%</strong></div><div class="v10-readiness-grid"><div><small>FI</small><b>${fi}%</b></div><div><small>LEAD / ADMIN</small><b>${lead}%</b></div><div><small>PACKING</small><b>${packing}%</b></div><div><small>SHIPMENT</small><b>${shipment}%</b></div></div><div class="v10-readiness-alert ${esc(intel.tone)}">${esc(intel.message)}</div></div>
       </section>
     </div>
   </section>`;

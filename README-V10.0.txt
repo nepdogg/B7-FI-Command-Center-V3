@@ -1,24 +1,31 @@
-B7 FI COMMAND CENTER — V10.0.3 CORRECTION BUILD
+B7 FI COMMAND CENTER — V10.0.4 MODERN LIVE OPERATIONS POLISH TEST
 
-This build corrects the V10.0.2 changes that did not visibly apply as intended.
+PURPOSE
+This build continues the V10 modern Command Center redesign while retaining the existing data, Brain, tool workflows, multi-user logic, and update controls from V10.0.3.
 
-CHANGES
-- Restored a true three-section header: Command Center / KLA Multi-User / Center + Quarter.
-- Removed enclosing shell borders around the main navigation and page navigation rails.
-- Rebuilt page navigation sizing so the right-side controls do not clip at normal desktop widths.
-- Live Operations retains only one Tool Carousel controller; no Status Carousel controller.
-- System Wafers is forced into the visible 28-badge set, swapped with Option Files, and rendered full-width.
-- System Wafers now has a larger second line for extra-wafer counts.
-- Added a Tool Readiness widget to the bottom of the right Progress & Performance column to use the former empty area.
-- Removed the outer border/radius/shadow around the large Live Operations Tool Card.
-- Existing Brain/data/multi-user code and direct Tool Card update interactions are retained.
+V10.0.4 CHANGES
+- Restored the header as a clean three-section layout: Command Center / KLA connection / current Center.
+- Removed enclosing border-box styling from the main navigation and page navigation rails.
+- Page navigation now distributes available width dynamically and uses modern rounded buttons.
+- Removed the obsolete Status carousel controls; Live Operations retains only the Tool carousel controls.
+- Enlarged the Tool Status Bar identity text (UTID / Tool Type / Model) to match the primary status text hierarchy.
+- Removed redundant TOOL INTELLIGENCE · LIVE STATUS, TOOL IDENTITY & REQUIREMENTS, LIVE TOOL STATUS, and PROGRESS & PERFORMANCE headings.
+- Removed the black inner value boxes/borders from Ship Countdown, Current Tool Status, and Current System Status.
+- Middle column is now six equal-height sections: 3 upper status panels + Next System Tasks + Latest System Status + Lead Notes / Reminders.
+- Lead Notes / Reminders remains directly below Latest System Status.
+- Increased tool-card typography and progress-bar thickness for FI monitor readability.
+- Preserved three-column full-height Live Operations card behavior.
+- Preserved full-width System Wafers badge with extra-wafer tally.
+- Added/retained Tool Readiness space at the bottom of the progress column to use available vertical room.
 
-TEST
-1. Header is visibly three sections and remains centered.
-2. Main navigation has no enclosing rectangular frame.
-3. Page navigation is not cut off; only Tool Carousel controls appear on Live Operations.
-4. System Wafers is a full-width badge and opens the existing wafer editor when clicked.
-5. Right column ends with Tool Readiness and no large unused blank area.
-6. Test clickable identity fields, operational badges, progress rows, Update Tool Status, carousel arrows, Verify Tools, Update Command Center, and Screenshot.
-7. Test browser zoom at 100%, 90%, 80%, 75%, 67%, 110%, and 125%.
-8. Validate Microsoft List sign-in/sync in the work environment before production use.
+TEST FIRST
+1. Live Operations at 100%, 90%, 80%, 75%, and 67% browser zoom.
+2. Header remains three sections and does not collapse or overlap.
+3. Main navigation and page navigation show no enclosing rectangular frame.
+4. Page buttons stretch to consume available space; Screenshot remains visible.
+5. Tool carousel Previous / Tool X of Y / Next controls remain clickable.
+6. Click badges, System Wafers, identity fields, status panels, progress rows, and Update Tool Status.
+7. Verify Ship Countdown / Current Tool Status / Current System Status have no black inner rectangles.
+8. Verify all six middle-column panels are equal height.
+9. Verify Tool Status Bar identity text is readable and similar in size to the main status message.
+10. Verify existing data is preserved; do not reset or clear the Microsoft List during visual testing.
