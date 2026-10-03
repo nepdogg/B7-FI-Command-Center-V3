@@ -1,19 +1,27 @@
-B7 FI COMMAND CENTER V10.0.5 — LIVE OPERATIONS GEOMETRY CORRECTION
-Date: 2026-10-02
+B7 FI COMMAND CENTER V10.0.6 — UNIFIED MODERN SHELL + BUBBLE TOOL CARD
 
-This test build is based directly on V10.0.4 and keeps the existing Command Center data/workflows.
+This test build preserves the existing Command Center data/Brain/workflow logic and applies the requested V10 visual corrections.
 
-Changes in V10.0.5
-- Removed the enclosing border/frame around the Live Operations main body.
-- Removed the remaining rectangular borders/background boxes from the first three middle-column status sections and their large status-value areas.
-- Increased Leads Alert, System Status, and Command Center status bars to navigation-scale height.
-- Moved Tool Readiness upward so it follows the progress stack and uses the previously empty right-column space instead of being pinned to the bottom.
-- Preserved the V10 three-column tool-card structure, full-width System Wafers badge, modern navigation, and current interactions.
+CHANGES
+- Header is exactly three visible sections: Command Center / KLA connection / current Center + quarter.
+- Removed legacy header side/user boxes from the visible header geometry.
+- Main navigation and page navigation rails no longer use enclosing border boxes.
+- Main navigation buttons, page navigation buttons, carousel controls, and action buttons use the same modern rounded style.
+- Removed the obsolete Status Carousel page-control allocation; the remaining Live Operations controls dynamically consume the full page-navigation width.
+- Leads Alert, System Status, and Command Center status bars now match navigation-button height.
+- Live Operations remains one large Tool Card carousel.
+- Removed column divider lines and residual outer Tool Card frame treatment.
+- Tool photo is now a rounded information bubble.
+- Middle-column sections are rounded bubbles with consistent spacing.
+- Right-column progress sections are individual rounded bubbles; divider-line layout removed.
+- Tool Readiness remains directly after the progress stack instead of being pinned to the bottom.
+- Existing three-wide operational badges and full-width System Wafers badge are preserved.
+- Existing click/update behavior and Brain/data logic are preserved.
 
-Suggested test
-1. Open Live Operations at 100% browser zoom.
-2. Confirm there is no outer frame around the main tool-card body.
-3. Confirm the first three middle panels have no nested rectangular status-value boxes.
-4. Confirm all three global status bars are approximately the same height as the navigation buttons.
-5. Confirm Tool Readiness is directly below the progress stack rather than at the bottom of a large empty region.
-6. Recheck 90%, 80%, 75%, and 67% zoom.
+TESTING
+1. Start at 100% browser zoom and verify the three-section header.
+2. Verify all three status bars match the navigation-bar control height.
+3. Verify the page navigation has no dead Status Carousel space and fills the width.
+4. Verify Live Operations Tool Card bubbles and all clickable badges/actions.
+5. Test browser zoom at 90%, 80%, 75%, 67%, 110%, and 125%.
+6. Verify Tool Card carousel previous/pause/next and all update actions still work.

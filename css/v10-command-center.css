@@ -329,3 +329,103 @@ html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"
 }
 .v10-readiness-grid>div{min-height:68px!important}.v10-readiness-title strong{font-size:28px!important}
 @media(max-width:1180px){.status-bar{min-height:40px!important;height:40px!important}}
+
+/* =========================================================
+   V10.0.6 — UNIFIED MODERN SHELL + BUBBLE TOOL CARD
+   One visual language: three-part header, borderless rails,
+   equal-height navigation/status controls, bubble-based tool data.
+   ========================================================= */
+/* HEADER: exactly three visible sections. */
+.prototype-header{
+  grid-template-columns:minmax(0,1fr) clamp(300px,25vw,430px) minmax(0,1fr)!important;
+  gap:10px!important;padding:8px 10px!important;height:74px!important;min-height:74px!important;
+  background:#03101a!important;
+}
+.prototype-header-left,.prototype-header-right,.prototype-header-center{
+  height:58px!important;min-height:58px!important;border:1px solid #1682b4!important;border-radius:12px!important;
+  overflow:hidden!important;
+}
+.prototype-header-left,.prototype-header-right{
+  background:linear-gradient(180deg,#109fd7,#087bb5)!important;padding:0 22px!important;
+}
+.prototype-header-center{background:#030b12!important;border-color:#ff315d!important}
+.prototype-kla-box{height:100%!important;min-height:0!important;border:0!important;border-radius:0!important;background:transparent!important;display:block!important}
+.prototype-kla-box .kla-user-side{display:none!important}
+.prototype-kla-box .kla-connection-core{width:100%!important;height:100%!important;min-height:0!important;border:0!important;margin:0!important;border-radius:0!important;display:flex!important;align-items:center!important;justify-content:center!important}
+
+/* NAVIGATION: controls themselves provide the geometry; rails have no box. */
+.main-nav,.pagebar,.status-stack{border:0!important;outline:0!important;box-shadow:none!important;background:#03101a!important}
+.main-nav{padding:5px 10px!important;gap:7px!important}
+.main-nav button,.subnav button,.page-actions button,.nav69-mini,.nav69-pause{
+  min-height:42px!important;height:42px!important;border-radius:12px!important;border:1px solid #195879!important;
+  background:linear-gradient(180deg,#0a2638,#061725)!important;color:#effbff!important;font-weight:900!important;
+}
+/* Three status rails match the main navigation button height. */
+.status-stack{gap:6px!important;padding:5px 10px!important}
+.status-bar{height:42px!important;min-height:42px!important;border-radius:12px!important}
+.status-left{height:100%!important}.status-message,.status-right{height:100%!important;display:flex!important;align-items:center!important;justify-content:center!important}
+.status-label strong{font-size:12px!important}.status-label small{font-size:9px!important}.status-message{font-size:clamp(11px,.72vw,14px)!important}.status-right{font-size:11px!important}
+
+/* Page navigation: no legacy status-carousel slot, all remaining controls consume the row. */
+.pagebar{display:flex!important;gap:7px!important;padding:5px 10px!important;align-items:stretch!important;overflow:visible!important}
+.pagebar .subnav{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:7px!important;flex:5 1 0!important;min-width:0!important;overflow:visible!important}
+.pagebar .subnav>*{width:100%!important;min-width:0!important;flex:none!important}
+.page-actions{display:flex!important;gap:7px!important;flex:6 1 0!important;min-width:0!important;align-items:stretch!important}
+.nav69-live-controls,.nav69-live-actions{display:flex!important;gap:7px!important;flex:1 1 0!important;min-width:0!important}
+.v1002-tool-carousel .nav69-control-group{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px!important;width:100%!important;flex:1!important}
+.nav69-live-actions>button{flex:1 1 0!important;min-width:0!important;padding-inline:8px!important}
+.page-actions button,.subnav button,.nav69-mini,.nav69-pause{font-size:clamp(9px,.63vw,12px)!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+
+/* TOOL CARD: open three-column canvas. Components, not grid lines, create separation. */
+.v10-tool-card,.v10-card-grid{border:0!important;border-radius:0!important;box-shadow:none!important}
+.v10-card-grid{gap:14px!important;padding:14px!important;background:#03101a!important}
+.v10-column{padding:0!important;border:0!important;min-width:0!important}
+.v10-column+.v10-column{border-left:0!important}
+
+/* Every information area is a modern bubble. */
+.v10-photo{height:clamp(270px,31vh,410px)!important;margin:0 0 12px!important;padding:10px!important;border:1px solid #1b526c!important;border-radius:16px!important;background:radial-gradient(circle at 50% 65%,rgba(24,130,180,.18),#071c2b 70%)!important;overflow:hidden!important}
+.v10-photo img{max-width:100%!important;max-height:100%!important;object-fit:contain!important}
+.v10-id-badge,.v10-reduced,.v10-carry,.v10-badge,.v10-update{border-radius:12px!important}
+
+/* Middle: six equally intentional bubble surfaces. */
+.v10-status-column{gap:12px!important}
+.v10-status-column>.v10-status-card,
+.v10-status-column>.v10-status-card:nth-child(-n+3),
+.v10-status-column>.v10-bottom-card{
+  border:1px solid #1b526c!important;border-radius:16px!important;outline:0!important;box-shadow:none!important;
+  background:linear-gradient(180deg,#09263a,#071c2b)!important;padding:16px 18px!important;
+}
+.v10-status-column>.v10-status-card:nth-child(-n+3) .hero{
+  border:0!important;background:transparent!important;box-shadow:none!important;padding:0!important;
+}
+.v10-status-card.ship.critical{border-color:#ff315d!important;background:linear-gradient(90deg,rgba(255,49,93,.12),#071c2b)!important}
+.v10-status-card.ship.warning{border-color:#ffd044!important}.v10-status-card.ship.complete{border-color:#14e6a4!important}
+
+/* Right: every progress metric becomes a self-contained bubble; remove divider rules. */
+.v10-progress-column{gap:11px!important}
+.v10-progress-row{
+  border:1px solid #1b526c!important;border-radius:16px!important;background:linear-gradient(180deg,#082337,#061b29)!important;
+  padding:14px 16px!important;margin:0!important;min-height:92px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;
+}
+.v10-progress-row:last-child{border-bottom:1px solid #1b526c!important}
+.v10-progress-row.clickable:hover{border-color:#16c8ff!important;background:#092a40!important}
+.v10-progress-track{height:22px!important}
+.v10-forecast-panel{border-radius:16px!important;padding:14px 16px!important}
+.v10-readiness-widget{
+  margin-top:0!important;padding:14px 16px!important;border:1px solid #1b526c!important;border-radius:16px!important;
+  background:linear-gradient(180deg,#082337,#061b29)!important;
+}
+.v10-readiness-grid>div{border-radius:12px!important}
+
+/* Remove residual separator rules from the three card columns. */
+.v10-progress-column hr,.v10-status-column hr,.v10-column>hr{display:none!important}
+
+@media(max-width:1500px){
+ .prototype-header{grid-template-columns:minmax(0,1fr) clamp(280px,25vw,390px) minmax(0,1fr)!important}
+ .pagebar .subnav{flex:5 1 0!important}.page-actions{flex:6 1 0!important}
+ .main-nav button,.subnav button,.page-actions button,.nav69-mini,.nav69-pause,.status-bar{height:40px!important;min-height:40px!important}
+}
+@media(max-width:1180px){
+ .prototype-header{grid-template-columns:minmax(300px,1fr) 280px minmax(300px,1fr)!important;overflow-x:auto!important}
+ .pagebar{overflow-x:auto!important}.pagebar .subnav{min-width:600px!important}.page-actions{min-width:650px!important}
+}
