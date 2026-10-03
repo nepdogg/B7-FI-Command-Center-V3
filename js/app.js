@@ -1459,7 +1459,11 @@ function v9ToolCard(){
   let a=carouselTools();if(!a.length)return `<section class="v10-tool-card"><div class="v9-empty">NO ACTIVE TOOLS</div></section>`;
   liveIndex=((liveIndex%a.length)+a.length)%a.length;
   let t=a[liveIndex],count=shipCountdown(t),fi=fiProgress(t),mi=microProgress(t),cyc=actualCycleDays(t),target=cycleAverageDays(t)||25,cp=Math.round(cyc/target*100),tasks=nextSystemTasksRows(t),img=individualToolPhoto(t)||familyImage(t),carry=isCarryoverTool(t),p=priorityBadgeInfo(t),badges=evaluateTool(t).badgeList||[],intel=v10ToolIntelligence(t,count,p),forecast=v10ForecastProgress(t),lead=leadProgress(t),source=v10WorkflowProgress(t.sourceRequired,t.sourceStatus,'source'),str=v10WorkflowProgress(t.strRequired,t.strStatus,'str'),packing=shippingProgress(t),shipment=v10ShipmentProgress(t);
-  let badgeHtml=badges.slice(0,28).map(x=>{
+  let orderedBadges=[...badges];
+  let wi=orderedBadges.findIndex(x=>x.key==='systemWafers'), oi=orderedBadges.findIndex(x=>x.key==='optionFiles');
+  if(wi>=0&&oi>=0){let tmp=orderedBadges[wi];orderedBadges[wi]=orderedBadges[oi];orderedBadges[oi]=tmp}
+  if(wi<0)orderedBadges.push({key:'systemWafers',label:'SYSTEM WAFERS',tone:'attention',state:'SYSTEM WAFERS'});
+  let badgeHtml=orderedBadges.slice(0,28).map(x=>{
     let wafer=x.key==='systemWafers';
     return `<button type="button" class="v10-badge ${wafer?'v10-wafer-badge ':''}${esc(x.tone||'normal')}" data-direct-indicator="${esc(x.key||'')}" data-indicator-tool="${esc(t.id)}" title="${esc(x.state||x.label||'')} — click to update">${wafer?`<span>${esc(x.label||'SYSTEM WAFERS')}</span><small>${esc(waferTally(t))}</small>`:esc(x.label||x.key||'BADGE')}</button>`
   }).join('');
@@ -1511,6 +1515,7 @@ function v9ToolCard(){
         ${v10ProgressRow('STR PROGRESS',str,str>=100?'green':str>0?'yellow':'cyan',`${String(t.strRequired||'TBD').toUpperCase()} · ${String(t.strStatus||'NOT STARTED').toUpperCase()}`,t,'strWorkflow')}
         ${v10ProgressRow('PACKING / SHIPPING PROGRESS',packing,packing>=100?'green':packing>0?'yellow':'cyan',shippingStep(t),t,'shippingWorkflow')}
         ${v10ProgressRow('TOOL SHIPMENT PROGRESS',shipment,shipment>=100?'green':shipment>=75?'yellow':'cyan',t.toolStatus==='Shipped'?'SHIPMENT COMPLETE':`${statusLabel} · ${count.big||'NO SHIP DATE'}`,t,'shipDate')}
+        <div class="v10-readiness-widget"><div class="v10-readiness-title"><span>TOOL READINESS</span><strong>${Math.round((fi+mi+Math.min(100,cp)+lead+source+str+packing+shipment)/8)}%</strong></div><div class="v10-readiness-grid"><div><small>FI</small><b>${fi}%</b></div><div><small>LEAD / ADMIN</small><b>${lead}%</b></div><div><small>PACKING</small><b>${packing}%</b></div><div><small>SHIPMENT</small><b>${shipment}%</b></div></div><div class="v10-readiness-alert ${esc(intel.tone)}">${esc(intel.message)}</div></div>
       </section>
     </div>
   </section>`;
