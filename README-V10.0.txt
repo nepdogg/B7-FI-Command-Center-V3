@@ -1,10 +1,10 @@
-B7 FI COMMAND CENTER — V10.0 CLEAN MODERN FOUNDATION TEST
+B7 FI COMMAND CENTER — V10.0.2 MODERN SHELL + SINGLE TOOL CAROUSEL TEST
 Build: 2026-10-02
 
 PURPOSE
 V10 starts the clean visual rewrite requested for the B7 FI Command Center. The existing operational data model, Command Center Brain logic, quarter/carryover rules, tool workflows, local data keys, Microsoft List integration, multi-user script, archive logic, search, meetings, actions and tool-edit workflows are retained so the new UI can be tested against the existing functionality.
 
-WHAT IS NEW IN V10.0
+WHAT IS NEW IN V10.0.1
 1. LIVE OPERATIONS IS NOW ONE LARGE UNIVERSAL TOOL CARD CAROUSEL.
    - No Fleet Intelligence sidebar competing with the tool.
    - New Tool Intelligence top bar with Priority + live tool-specific Brain message.
@@ -84,3 +84,30 @@ CREATE-COMMAND-CENTER-DESKTOP-SHORTCUT.bat
 
 NEXT V10 PHASE AFTER THIS TEST
 Use your screenshots from the FI monitor to lock the Universal Tool Card geometry first. Then refine Quarter Summary, Tool Control Center and each specialized Center without changing the locked card geometry.
+
+
+V10.0.1 LAYOUT UPDATE
+- Live Operations three columns now stretch to the full card height.
+- Middle column Latest System Status and Lead Notes / Reminders are stacked vertically.
+- Lead Notes / Reminders now sits directly below Latest System Status.
+- Right progress stack distributes vertically to use the available height.
+- Left operational badge matrix expands vertically while preserving three badges per row.
+
+
+V10.0.2 UPDATE
+- Restored the application header to a true three-section layout: Command Center / KLA multi-user / current Center + quarter.
+- Removed the extra enclosing square/rectangular frame from the main Center navigation rail.
+- Removed the extra enclosing frame from the page navigation rail.
+- Live Operations now has one carousel controller only. The obsolete Status Carousel controls are removed.
+- Tool carousel control now reads TOOL X OF Y with Previous / Pause-or-Play / Next controls.
+- Preserved Verify Tools, Update Command Center, and Screenshot actions.
+- System Wafers is now a full-width operational badge and includes the additional-wafer tally.
+- Preserved the V10.0.1 full-height three-column Live Operations Tool Card and middle-column Lead Notes placement.
+
+TEST FOCUS
+1. Confirm header remains three sections at normal browser zoom and reduced zoom.
+2. Confirm both navigation rails have no enclosing square border.
+3. Confirm only the Tool Carousel controls appear on Live Operations and Previous/Pause/Next work.
+4. Confirm Verify Tools, Update Command Center, Screenshot, badges, identity fields and status cards remain clickable.
+5. Confirm System Wafers spans the full badge width and its extra-wafer tally is readable.
+6. Confirm multi-user sign-in/list behavior is unchanged from the source build.
