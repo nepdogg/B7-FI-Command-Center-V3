@@ -1,4 +1,4 @@
-/* B7 FI COMMAND CENTER V10.1.0 — AUTHORITATIVE MODERN UI LAYER
+/* B7 FI COMMAND CENTER V10.1.1 — AUTHORITATIVE MODERN UI LAYER
    This file owns the V10 shell + Live Operations card. Legacy CSS remains only for legacy center content. */
 :root{--v10-bg:#020b13;--v10-panel:#061b2a;--v10-panel2:#082638;--v10-line:#087ca9;--v10-cyan:#08c8ff;--v10-text:#f6fbff;--v10-muted:#8fc9df;--v10-red:#ff174f;--v10-orange:#ff9418;--v10-yellow:#ffd21f;--v10-green:#13e59a;--v10-purple:#8757f5;--v10-nav-h:42px;--v10-gap:8px;--v10-radius:12px}
 *{box-sizing:border-box}html,body{min-width:1180px;min-height:100%;background:var(--v10-bg)!important}body{margin:0!important;overflow-x:auto!important;overflow-y:auto!important;color:var(--v10-text)!important}.app-frame{width:100%!important;min-height:100vh!important;height:auto!important;max-width:none!important;margin:0!important;padding:6px 8px 0!important;background:linear-gradient(180deg,#020a11,#03111c 55%,#020a11)!important;transform:none!important;zoom:1!important;overflow:visible!important}.sticky-shell{position:sticky!important;top:0!important;z-index:800!important;background:#020a11!important;padding-bottom:7px!important;width:100%!important}.body-shell,.body-workspace,#app{width:100%!important;max-width:none!important;min-width:0!important;height:auto!important;min-height:0!important;overflow:visible!important;margin:0!important;padding:0!important}
@@ -24,3 +24,48 @@ body.presentation-mode{overflow:hidden!important}.presentation-mode .sticky-shel
 /* zoom/reflow: no transform scaling. Browser zoom simply exposes more CSS pixels. */
 @media(max-width:1450px){.prototype-header>section{font-size:20px!important;padding:0 14px!important}.main-nav button,.subnav button,.page-actions button{font-size:9px!important;padding:0 7px!important}.v10-card-grid{grid-template-columns:minmax(320px,.9fr) minmax(430px,1.2fr) minmax(380px,1fr)!important}.v10-photo{height:225px!important}.v10-status-card .hero{font-size:25px!important}}
 @media(min-width:1900px){:root{--v10-nav-h:46px}.prototype-header{height:64px!important}.prototype-header>section{height:64px!important;font-size:27px!important}.v10-intelligence{grid-template-columns:320px 1fr!important}.v10-priority,.v10-tool-statusbar{min-height:72px!important}.v10-card-grid{grid-template-columns:minmax(430px,.98fr) minmax(600px,1.25fr) minmax(500px,1.08fr)!important}.v10-photo{height:300px!important}.v10-status-card{min-height:138px!important}.v10-progress-row{min-height:78px!important}.v10-progress-head b{font-size:13px!important}}
+
+/* V10.1.1 GEOMETRY LOCK — single source for the issues verified in the 10/03 screenshots */
+:root{--v10-shell-row-h:42px;--v10-header-h:64px;--v10-badge-h:45px}
+html{overflow-x:auto!important;overflow-y:auto!important}
+body{overflow:visible!important}
+.app-frame{overflow:visible!important;contain:none!important}
+.sticky-shell{position:-webkit-sticky!important;position:sticky!important;top:0!important;z-index:9999!important;isolation:isolate!important;background:#020a11!important}
+/* all three header sections are exactly one height */
+.prototype-header{height:var(--v10-header-h)!important;min-height:var(--v10-header-h)!important;max-height:var(--v10-header-h)!important;align-items:stretch!important}
+.prototype-header>section{height:var(--v10-header-h)!important;min-height:var(--v10-header-h)!important;max-height:var(--v10-header-h)!important}
+.prototype-header-center{padding:4px 8px!important}.prototype-kla-box,.kla-connection-core{height:calc(var(--v10-header-h) - 8px)!important}
+/* main nav, all 3 status bars and page nav share exactly the same row height */
+.main-nav,.status-stack .status-bar,.pagebar{height:var(--v10-shell-row-h)!important;min-height:var(--v10-shell-row-h)!important;max-height:var(--v10-shell-row-h)!important}
+.main-nav button,.subnav button,.page-actions button,.page-actions .btn{height:var(--v10-shell-row-h)!important;min-height:var(--v10-shell-row-h)!important;max-height:var(--v10-shell-row-h)!important}
+.status-stack{grid-template-rows:repeat(3,var(--v10-shell-row-h))!important}
+/* remove every enclosing navigation frame; only buttons carry borders */
+.main-nav,.pagebar,.subnav,.page-actions{border:0!important;outline:0!important;box-shadow:none!important;background:transparent!important}
+/* ONE tool intelligence element: parent owns the only outside border/radius/background */
+.v10-intelligence{position:relative!important;display:grid!important;grid-template-columns:320px 1px minmax(0,1fr)!important;gap:0!important;min-height:72px!important;border:1px solid var(--v10-orange)!important;border-radius:13px!important;background:linear-gradient(90deg,#9f1239 0,#5a1028 17%,#321314 24%,#140e0d 42%,#06121b 100%)!important;box-shadow:0 0 14px rgba(255,120,0,.22),inset 0 0 30px rgba(255,100,0,.06)!important;overflow:hidden!important}
+.v10-intelligence-complete{border-color:var(--v10-green)!important;background:linear-gradient(90deg,#07543e 0,#07382d 20%,#061b18 40%,#06121b 100%)!important;box-shadow:0 0 14px rgba(19,229,154,.18)!important}
+.v10-priority,.v10-tool-statusbar{min-height:70px!important;height:70px!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;margin:0!important}
+.v10-priority{padding:7px 20px!important}.v10-priority>b{font-size:40px!important}.v10-priority strong{font-size:22px!important}.v10-priority small{font-size:14px!important}
+.v10-intel-divider{width:1px!important;height:100%!important;background:rgba(255,220,190,.72)!important;align-self:stretch!important}
+.v10-tool-statusbar{grid-template-columns:58px minmax(0,1fr) 150px!important;padding:7px 14px!important}
+.v10-tool-statusbar .signal{width:48px!important;height:48px!important;border-radius:10px!important;background:rgba(255,145,0,.18)!important}.v10-tool-statusbar .signal:after{font-size:32px!important}.v10-tool-statusbar .copy{flex-direction:row!important;align-items:center!important;gap:16px!important}.v10-tool-statusbar .copy strong{font-size:23px!important;color:#ffad2f!important;flex:0 1 auto!important}.v10-tool-statusbar .copy small{font-size:12px!important;color:#ffc25b!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}.v10-tool-statusbar .copy small:before{content:'• '!important}.v1008-view-details{height:42px!important;border-radius:12px!important}
+/* no enclosing Tool Card rectangle */
+.v10-tool-card,.v10-card-grid,.v10-column{border:0!important;outline:0!important;box-shadow:none!important;background:transparent!important}
+/* all 3 columns share the same height and distribute their contents to eliminate dead space */
+.v10-card-grid{align-items:stretch!important;grid-auto-rows:1fr!important}
+.v10-column{height:100%!important;min-height:0!important}
+.v10-identity-column{display:grid!important;grid-template-rows:minmax(210px,1.9fr) auto var(--v10-badge-h) auto auto var(--v10-badge-h)!important;gap:6px!important}
+.v10-photo{height:auto!important;min-height:210px!important}
+.v10-status-column{display:grid!important;grid-template-rows:repeat(6,minmax(0,1fr))!important;gap:6px!important}
+.v10-status-card,.v10-bottom-card{min-height:0!important;height:auto!important}
+.v10-progress-column{display:grid!important;grid-template-rows:repeat(9,minmax(0,1fr)) minmax(90px,1.35fr)!important;gap:6px!important}
+.v10-progress-row{min-height:0!important;height:auto!important}
+.v10-readiness-widget{min-height:0!important;height:auto!important}
+/* identity and every operational badge use the exact same 45px row height */
+.v10-id-badge,.v10-reduced,.v10-carry,.v10-badge,.v10-wafer-badge{height:var(--v10-badge-h)!important;min-height:var(--v10-badge-h)!important;max-height:var(--v10-badge-h)!important}
+.v10-badge{border-radius:9px!important;font-size:10px!important;padding:5px 8px!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important}
+.v10-wafer-badge{grid-column:1/-1!important;display:grid!important;grid-template-columns:1fr 1.7fr!important}
+.v10-badge-placeholder{border-style:dashed!important;border-color:#41677a!important;background:#071a25!important;color:#779bab!important;flex-direction:column!important;gap:1px!important}.v10-badge-placeholder small{font-size:7px!important;color:#587888!important}
+/* large state text is typography, never another box */
+.v10-status-card .hero{border:0!important;outline:0!important;box-shadow:none!important;background:transparent!important;padding:0!important;margin:0!important;width:auto!important}
+@media(min-width:1900px){:root{--v10-shell-row-h:46px;--v10-header-h:68px;--v10-badge-h:48px}.prototype-header,.prototype-header>section{height:var(--v10-header-h)!important;min-height:var(--v10-header-h)!important;max-height:var(--v10-header-h)!important}.v10-intelligence{min-height:76px!important}.v10-priority,.v10-tool-statusbar{height:74px!important;min-height:74px!important}}

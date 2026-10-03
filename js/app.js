@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='10.1.0', BUILD='20261002-V10.1.0-MODERN-UI-REBUILD';
+const VERSION='10.1.1', BUILD='20261003-V10.1.1-GEOMETRY-LOCK';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -1464,16 +1464,18 @@ function v9ToolCard(){
   let wi=orderedBadges.findIndex(x=>x.key==='systemWafers'), oi=orderedBadges.findIndex(x=>x.key==='optionFiles');
   if(wi>=0&&oi>=0){let tmp=orderedBadges[wi];orderedBadges[wi]=orderedBadges[oi];orderedBadges[oi]=tmp}
   if(wi<0)orderedBadges.push({key:'systemWafers',label:'SYSTEM WAFERS',tone:'attention',state:'SYSTEM WAFERS'});
-  let badgeHtml=orderedBadges.slice(0,28).map(x=>{
-    let wafer=x.key==='systemWafers';
-    return `<button type="button" class="v10-badge ${wafer?'v10-wafer-badge ':''}${esc(x.tone||'normal')}" data-direct-indicator="${esc(x.key||'')}" data-indicator-tool="${esc(t.id)}" title="${esc(x.state||x.label||'')} — click to update">${wafer?`<span>${esc(x.label||'SYSTEM WAFERS')}</span><small>${esc(waferTally(t))}</small>`:esc(x.label||x.key||'BADGE')}</button>`
-  }).join('');
+  let badgeRows=orderedBadges.slice(0,28), waferBadge=badgeRows.find(x=>x.key==='systemWafers');
+  let standardBadges=badgeRows.filter(x=>x.key!=='systemWafers');
+  let badgeHtml=standardBadges.map(x=>`<button type="button" class="v10-badge ${esc(x.tone||'normal')}" data-direct-indicator="${esc(x.key||'')}" data-indicator-tool="${esc(t.id)}" title="${esc(x.state||x.label||'')} — click to update">${esc(x.label||x.key||'BADGE')}</button>`).join('');
+  if(standardBadges.length%3!==0)badgeHtml+=`<div class="v10-badge v10-badge-placeholder" title="Reserved for a future tool badge"><span>NEW TOOL BADGE</span><small>PLACEHOLDER</small></div>`;
+  if(waferBadge)badgeHtml+=`<button type="button" class="v10-badge v10-wafer-badge ${esc(waferBadge.tone||'normal')}" data-direct-indicator="systemWafers" data-indicator-tool="${esc(t.id)}" title="${esc(waferBadge.state||waferBadge.label||'SYSTEM WAFERS')} — click to update"><span>${esc(waferBadge.label||'SYSTEM WAFERS')}</span><small>${esc(waferTally(t))}</small></button>`;
   let statusLabel=t.toolStatus==='FI'?'FI TESTING':String(t.toolStatus||fiSummaryStatus(t)).toUpperCase();
   let currentStatus=performance(t)[0]==='BEHIND'?'BEHIND SCHEDULE':performance(t)[0]==='AHEAD'?'AHEAD OF SCHEDULE':'ON SCHEDULE';
   if(t.fiStatusOverride)currentStatus=t.fiStatusOverride;
   return `<section class="v10-tool-card" data-universal-tool-card="${esc(t.id)}">
-    <div class="v10-intelligence">
+    <div class="v10-intelligence v10-intelligence-${esc(intel.tone)}">
       <button type="button" class="v10-priority" data-direct-priority="${esc(t.id)}" title="Update priority"><b>#${esc(p.rank||t.priority||'—')}</b><span><strong>PRIORITY</strong><small>${esc((p.tier||'PRIORITY').toUpperCase())}</small></span></button>
+      <span class="v10-intel-divider" aria-hidden="true"></span>
       <button type="button" class="v10-tool-statusbar ${esc(intel.tone)}" data-open-tool="${esc(t.id)}" title="Open Tool Control Center"><i class="signal"></i><div class="copy"><strong>${esc(intel.message)}</strong><small>${esc(intel.detail)}</small></div><span class="v1008-view-details">VIEW DETAILS ›</span></button>
     </div>
     <div class="v10-card-grid">
