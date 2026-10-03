@@ -429,3 +429,113 @@ html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"
  .prototype-header{grid-template-columns:minmax(300px,1fr) 280px minmax(300px,1fr)!important;overflow-x:auto!important}
  .pagebar{overflow-x:auto!important}.pagebar .subnav{min-width:600px!important}.page-actions{min-width:650px!important}
 }
+
+/* =========================================================
+   V10.0.7 — STICKY SHELL + RESPONSIVE WALLBOARD STABILIZATION
+   ========================================================= */
+:root{--v1007-nav-h:42px;--v1007-gap:6px}
+html,body{width:100%;max-width:100%;box-sizing:border-box}
+*,*::before,*::after{box-sizing:border-box}
+
+/* Normal mode: one authoritative sticky control stack. */
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{overflow:visible!important;min-height:100vh!important;height:auto!important;transform:none!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell.sticky-shell{
+ position:-webkit-sticky!important;position:sticky!important;top:0!important;z-index:2147483000!important;
+ align-self:flex-start!important;width:100%!important;overflow:visible!important;transform:none!important;contain:none!important;
+}
+
+/* Header stays a true three-section row at every desktop zoom level. */
+.prototype-header{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(280px,32%) minmax(0,1fr)!important;gap:8px!important;padding:7px 10px!important;overflow:visible!important}
+.prototype-header-left,.prototype-header-center,.prototype-header-right{width:100%!important;min-width:0!important;max-width:none!important;overflow:hidden!important}
+.prototype-header-center{position:relative!important;z-index:2!important}
+.prototype-kla-box,.prototype-kla-box .kla-connection-core{width:100%!important;max-width:none!important;min-width:0!important}
+.prototype-kla-box img{max-height:34px!important;max-width:44%!important;object-fit:contain!important}
+.prototype-header-left,.prototype-header-right{font-size:clamp(18px,1.45vw,30px)!important}
+
+/* Navigation rails are frameless. Buttons are the only outlined elements. */
+.main-nav,.pagebar{border:0!important;border-top:0!important;border-bottom:0!important;outline:0!important;box-shadow:none!important;background:#03101a!important}
+.main-nav::before,.main-nav::after,.pagebar::before,.pagebar::after{display:none!important;content:none!important}
+.main-nav{display:grid!important;grid-template-columns:repeat(10,minmax(0,1fr))!important;gap:7px!important}
+.main-nav button{width:100%!important;min-width:0!important;height:var(--v1007-nav-h)!important;min-height:var(--v1007-nav-h)!important}
+
+/* Status bars intentionally match main-navigation height. */
+.status-stack{padding:5px 10px!important;gap:6px!important;border:0!important}
+.status-bar{height:var(--v1007-nav-h)!important;min-height:var(--v1007-nav-h)!important;max-height:var(--v1007-nav-h)!important}
+
+/* Page navigation fills the complete row: five page buttons + one tool-control group + three actions. */
+.pagebar{display:grid!important;grid-template-columns:minmax(0,5fr) minmax(0,4fr)!important;gap:7px!important;padding:5px 10px!important;width:100%!important;overflow:visible!important}
+.pagebar .subnav{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:7px!important;min-width:0!important;width:100%!important}
+.page-actions{display:grid!important;grid-template-columns:minmax(0,1.35fr) repeat(3,minmax(0,1fr))!important;gap:7px!important;min-width:0!important;width:100%!important}
+.nav69-live-controls{display:block!important;min-width:0!important;width:100%!important}
+.nav69-live-actions{display:contents!important}
+.v1002-tool-carousel .nav69-control-group,.nav69-control-group{display:grid!important;grid-template-columns:36px minmax(0,1fr) 36px!important;gap:5px!important;width:100%!important;height:100%!important}
+.pagebar button,.pagebar .nav69-pause,.pagebar .nav69-mini{height:var(--v1007-nav-h)!important;min-height:var(--v1007-nav-h)!important;border-radius:12px!important}
+
+/* Live Operations grows with the CSS viewport instead of stopping at a 980px cap. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .body-shell{min-height:calc(100vh - var(--sticky-shell-height,0px) - 60px)!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app.body-workspace{min-height:calc(100vh - var(--sticky-shell-height,0px) - 60px)!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v92-live-page,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v9-live-main{min-height:inherit!important;height:auto!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-tool-card{min-height:calc(100vh - var(--sticky-shell-height,0px) - 60px)!important;height:auto!important;max-height:none!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-card-grid{flex:1 1 auto!important;min-height:0!important}
+
+/* Tool intelligence bar: stronger modern status treatment. */
+.v10-intelligence{gap:10px!important;padding:10px 14px!important}
+.v10-priority{border-radius:14px!important;min-height:66px!important}
+.v10-tool-statusbar{min-height:66px!important;border-radius:14px!important;padding:10px 18px!important;background:linear-gradient(90deg,#071a28,#06131e)!important}
+.v10-tool-statusbar.warning{background:linear-gradient(90deg,rgba(255,164,35,.22),#17100b 36%,#07131d)!important;box-shadow:inset 0 0 24px rgba(255,164,35,.08)!important}
+.v10-tool-statusbar.critical{background:linear-gradient(90deg,rgba(255,49,93,.22),#160b12 36%,#07131d)!important;box-shadow:inset 0 0 24px rgba(255,49,93,.08)!important}
+.v10-tool-statusbar.complete{background:linear-gradient(90deg,rgba(20,230,164,.16),#071b1a 36%,#07131d)!important;box-shadow:inset 0 0 24px rgba(20,230,164,.07)!important}
+.v10-tool-statusbar strong,.v10-tool-statusbar em{font-size:clamp(17px,1.18vw,25px)!important}
+
+/* PRESENTATION MODE: card + nav must fit one viewport. No card scrolling and no clipped bottoms. */
+html body.presentation-mode[data-center="operations"][data-sub="live"]{overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .app-frame{width:100vw!important;height:100vh!important;min-height:100vh!important;max-height:100vh!important;overflow:hidden!important;transform:none!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .body-shell{height:100vh!important;min-height:0!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app.body-workspace{height:100vh!important;min-height:0!important;overflow:hidden!important;padding:0!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only{height:calc(100vh - 58px)!important;min-height:0!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-tool-card{height:100%!important;min-height:0!important;max-height:100%!important;overflow:hidden!important;display:flex!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-intelligence{flex:0 0 72px!important;padding:7px 14px!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-priority,
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-tool-statusbar{min-height:58px!important;height:58px!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-card-grid{flex:1 1 auto!important;height:auto!important;min-height:0!important;overflow:hidden!important;grid-template-columns:31% 38% 31%!important;gap:10px!important;padding:10px 12px!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-column{height:100%!important;min-height:0!important;overflow:hidden!important}
+
+/* Left column compresses only spacing, not readability. */
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-identity-column{display:grid!important;grid-template-rows:minmax(170px,2.2fr) repeat(7,minmax(34px,.38fr)) minmax(34px,.38fr) auto minmax(38px,.45fr)!important;gap:5px!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-photo{height:auto!important;min-height:0!important;margin:0!important;padding:6px!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-identity-stack{display:contents!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-id-badge{min-height:0!important;height:auto!important;padding:4px 10px!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-reduced{min-height:0!important;height:auto!important;margin:0!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-carry{position:absolute!important;left:24px!important;top:78px!important;right:auto!important;z-index:3!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-badges{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-rows:minmax(25px,1fr)!important;gap:4px!important;min-height:0!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-badge{min-height:0!important;height:auto!important;padding:2px 5px!important;font-size:clamp(8px,.58vw,11px)!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-wafer-badge{grid-column:1/-1!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-update{min-height:0!important;height:auto!important;margin:0!important}
+
+/* Middle column: three equal status bubbles, then tasks/status/notes share remaining height. */
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-status-column{display:grid!important;grid-template-rows:repeat(3,minmax(0,1fr)) minmax(0,1.25fr) minmax(0,1fr) minmax(0,1fr)!important;gap:8px!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-status-column>.v10-status-card{min-height:0!important;height:auto!important;padding:10px 13px!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-status-card .hero{font-size:clamp(21px,1.65vw,34px)!important;margin-top:3px!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-status-card .sub{margin-top:3px!important;font-size:clamp(9px,.62vw,12px)!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-tasks{gap:3px!important;margin-top:5px!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-task{min-height:20px!important;grid-template-columns:22px 1fr!important;gap:6px!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-task i{width:21px!important;height:21px!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-lines{margin-top:4px!important;line-height:1.3!important;overflow:hidden!important}
+
+/* Right column: all metrics plus readiness fit and end at the same baseline as other columns. */
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-progress-column{display:grid!important;grid-template-rows:repeat(9,minmax(0,1fr)) minmax(0,1.35fr)!important;gap:6px!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-progress-row{min-height:0!important;height:auto!important;padding:7px 10px!important;border-radius:12px!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-progress-head b{font-size:clamp(10px,.72vw,14px)!important}.v10-progress-head strong{font-size:clamp(12px,.86vw,17px)!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-progress-track{height:14px!important;flex-basis:14px!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-progress-row small{font-size:clamp(8px,.54vw,10px)!important;line-height:1.05!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-readiness-widget{min-height:0!important;height:auto!important;margin:0!important;padding:8px 10px!important;overflow:hidden!important;justify-content:center!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-readiness-grid>div{min-height:34px!important;padding:4px 7px!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-readiness-title strong{font-size:20px!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-readiness-alert{padding:4px 7px!important;font-size:9px!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-inline-nav.presentation-tool-nav{position:absolute!important;left:0!important;right:0!important;bottom:0!important;height:58px!important;min-height:58px!important;z-index:100!important;margin:0!important}
+
+@media(max-width:1180px){
+ .prototype-header{grid-template-columns:minmax(0,1fr) minmax(250px,32%) minmax(0,1fr)!important;overflow:visible!important}
+ .pagebar{grid-template-columns:minmax(600px,5fr) minmax(600px,4fr)!important;overflow-x:auto!important}
+}

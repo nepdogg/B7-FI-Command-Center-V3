@@ -1755,6 +1755,15 @@ function fitQuarterSummaryMasters(){/* V7: CSS owns Quarter Summary geometry. No
 function fitPresentation(){
   if(!document.body.classList.contains('presentation-mode'))return;
   let frame=document.querySelector('.app-frame');if(!frame)return;
+  // V10.0.7: the live tool wallboard uses the real viewport. CSS fits the complete card
+  // between its intelligence bar and 58px presentation navigation without global scaling.
+  if(route.center==='operations'&&route.sub==='live'){
+    frame.style.zoom='';frame.style.setProperty('width','100vw','important');frame.style.setProperty('height','100vh','important');
+    frame.style.setProperty('min-width','0','important');frame.style.setProperty('min-height','0','important');
+    frame.style.transform='none';frame.style.transformOrigin='top left';
+    document.documentElement.style.overflow='hidden';document.body.style.overflow='hidden';
+    return;
+  }
   // Tool Edit is intentionally NOT scaled like the wallboard. In fullscreen Presentation
   // it becomes a normal scrollable editor so every field and Save/Cancel can be reached.
   if(route.center==='operations'&&route.sub==='tool'){
