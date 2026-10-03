@@ -69,3 +69,135 @@ body{overflow:visible!important}
 /* large state text is typography, never another box */
 .v10-status-card .hero{border:0!important;outline:0!important;box-shadow:none!important;background:transparent!important;padding:0!important;margin:0!important;width:auto!important}
 @media(min-width:1900px){:root{--v10-shell-row-h:46px;--v10-header-h:68px;--v10-badge-h:48px}.prototype-header,.prototype-header>section{height:var(--v10-header-h)!important;min-height:var(--v10-header-h)!important;max-height:var(--v10-header-h)!important}.v10-intelligence{min-height:76px!important}.v10-priority,.v10-tool-statusbar{height:74px!important;min-height:74px!important}}
+
+/* =====================================================================
+   V10.1.2 RENDER CONTRACT — final cascade owner for normal Live Operations.
+   These selectors intentionally outrank the legacy stylesheet's high-specificity
+   normal-mode rules. Do not add Live Operations geometry below this block.
+   ===================================================================== */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell{
+  position:fixed!important;top:0!important;left:8px!important;right:8px!important;width:auto!important;
+  z-index:2147483640!important;margin:0!important;padding:0 0 6px!important;background:#020a11!important;
+  transform:none!important;contain:none!important;overflow:visible!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .body-shell{
+  padding-top:var(--v1012-shell-h,300px)!important;margin-top:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header>section{
+  height:64px!important;min-height:64px!important;max-height:64px!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header{align-items:stretch!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center{align-self:stretch!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-kla-box,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .kla-connection-core{height:56px!important;min-height:56px!important;max-height:56px!important}
+
+/* ONE shell-row metric: Main Nav = each Status Bar = Page Nav. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .main-nav,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .status-stack>.status-bar,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar{
+  height:44px!important;min-height:44px!important;max-height:44px!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .main-nav{
+  border:0!important;outline:0!important;box-shadow:none!important;background:transparent!important;padding:0!important;
+  margin:0 0 5px!important;gap:4px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .main-nav>button,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .subnav>button,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .page-actions>button,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .page-actions>.btn{
+  height:44px!important;min-height:44px!important;max-height:44px!important;box-sizing:border-box!important;
+  border-radius:12px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .status-stack{
+  display:grid!important;grid-template-rows:repeat(3,44px)!important;gap:4px!important;height:140px!important;min-height:140px!important;max-height:140px!important;
+  border:0!important;outline:0!important;box-shadow:none!important;background:transparent!important;padding:0!important;margin:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .status-stack>.status-bar{margin:0!important;padding:0!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar{
+  display:flex!important;align-items:stretch!important;border:0!important;outline:0!important;box-shadow:none!important;background:transparent!important;
+  padding:0!important;margin:6px 0 0!important;gap:4px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar>.subnav,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar>.page-actions{
+  height:44px!important;min-height:44px!important;max-height:44px!important;border:0!important;outline:0!important;box-shadow:none!important;background:transparent!important;padding:0!important;margin:0!important;
+}
+
+/* LIVE OPERATIONS: prototype status bar is exactly ONE outside element. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-intelligence{
+  display:grid!important;grid-template-columns:320px 1px minmax(0,1fr)!important;gap:0!important;
+  min-height:80px!important;height:80px!important;max-height:80px!important;margin:0 0 8px!important;padding:0!important;
+  border:1px solid #ff7d12!important;border-radius:13px!important;overflow:hidden!important;
+  background:linear-gradient(90deg,#d80e43 0,#8d1234 17%,#351217 26%,#150d0b 44%,#06121b 100%)!important;
+  box-shadow:0 0 16px rgba(255,116,0,.28),inset 0 0 30px rgba(255,105,0,.08)!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-intelligence-complete{
+  border-color:#13e59a!important;background:linear-gradient(90deg,#075f45,#07382d 22%,#061b18 44%,#06121b 100%)!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-intelligence>.v10-priority,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-intelligence>.v10-tool-statusbar{
+  height:78px!important;min-height:78px!important;max-height:78px!important;margin:0!important;border:0!important;border-radius:0!important;outline:0!important;box-shadow:none!important;background:transparent!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-intelligence>.v10-priority{
+  display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:16px!important;padding:8px 20px!important;color:#fff!important;text-align:left!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-priority>b{font-size:42px!important;line-height:1!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-priority strong{font-size:22px!important;line-height:1!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-priority small{font-size:14px!important;line-height:1.15!important;margin-top:5px!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-intel-divider{height:78px!important;min-height:78px!important;background:rgba(255,230,205,.72)!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-statusbar{
+  display:grid!important;grid-template-columns:64px minmax(0,1fr) 154px!important;align-items:center!important;gap:14px!important;padding:8px 14px!important;color:#fff!important;text-align:left!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-statusbar .signal{width:52px!important;height:52px!important;border-radius:10px!important;background:rgba(255,145,0,.20)!important;box-shadow:inset 0 0 16px rgba(255,145,0,.08)!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-statusbar .signal:after{font-size:35px!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-statusbar .copy{display:flex!important;flex-direction:row!important;align-items:center!important;gap:16px!important;min-width:0!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-statusbar .copy strong{font-size:25px!important;line-height:1!important;color:#ffad2f!important;white-space:nowrap!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-statusbar .copy small{font-size:13px!important;line-height:1!important;color:#ffbd50!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v1008-view-details{height:44px!important;min-height:44px!important;border-radius:12px!important;font-size:12px!important}
+
+/* No master Tool Card box; three columns are one equal-height grid. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-card,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-card-grid,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-column{
+  border:0!important;outline:0!important;box-shadow:none!important;background:transparent!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-card{padding:0 4px 8px!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-card-grid{
+  display:grid!important;grid-template-columns:minmax(350px,.95fr) minmax(480px,1.25fr) minmax(410px,1.1fr)!important;
+  grid-auto-rows:auto!important;align-items:stretch!important;gap:8px!important;height:auto!important;min-height:0!important;overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-column{align-self:stretch!important;height:100%!important;min-height:0!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-status-column{
+  display:grid!important;grid-template-rows:repeat(6,minmax(0,1fr))!important;gap:7px!important;height:100%!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-progress-column{
+  display:grid!important;grid-template-rows:repeat(9,minmax(0,1fr)) minmax(92px,1.35fr)!important;gap:7px!important;height:100%!important;
+}
+/* State words are text only: never an inner rectangle. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-status-card>strong.hero{
+  display:block!important;width:auto!important;max-width:100%!important;height:auto!important;min-height:0!important;
+  margin:0!important;padding:0!important;border-width:0!important;border-style:none!important;border-color:transparent!important;
+  border-radius:0!important;outline:0!important;background:none!important;background-color:transparent!important;
+  box-shadow:none!important;text-decoration:none!important;appearance:none!important;-webkit-appearance:none!important;
+}
+/* Every operational badge equals the UTID identity badge height. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-id-badge,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-badge,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-reduced,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-carry,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-wafer-badge{
+  height:45px!important;min-height:45px!important;max-height:45px!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-badges{grid-auto-rows:45px!important;align-content:start!important}
+
+@media (min-width:1900px){
+  html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .main-nav,
+  html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .status-stack>.status-bar,
+  html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar,
+  html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .main-nav>button,
+  html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .subnav>button,
+  html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .page-actions>button{height:46px!important;min-height:46px!important;max-height:46px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .status-stack{grid-template-rows:repeat(3,46px)!important;height:146px!important;min-height:146px!important;max-height:146px!important}
+  html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar>.subnav,
+  html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar>.page-actions{height:46px!important;min-height:46px!important;max-height:46px!important}
+}

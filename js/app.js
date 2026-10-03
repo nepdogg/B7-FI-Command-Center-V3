@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='10.1.1', BUILD='20261003-V10.1.1-GEOMETRY-LOCK';
+const VERSION='10.1.2', BUILD='20261003-V10.1.2-GEOMETRY-LOCK';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -2143,3 +2143,38 @@ document.addEventListener('click',function modernHybridControls(e){
   let goBtn=e.target.closest('[data-go-center]');if(goBtn){go(goBtn.dataset.goCenter);return}
   let filt=e.target.closest('[data-modern-filter]');if(filt){let kind=filt.dataset.modernFilter,a=carouselTools(),i=a.findIndex(t=>kind==='shipped'?t.toolStatus==='Shipped':kind==='packing'?t.toolStatus==='Packing':kind==='fi'?['FI','Engineering','Powered Down'].includes(t.toolStatus):!t.fiHandoffDate&&!['Shipped','Packing'].includes(t.toolStatus));if(i>=0){liveIndex=i;render()}return}
 },true);
+
+/* V10.1.2 shell geometry contract: the whole upper shell is one fixed unit.
+   ResizeObserver keeps content offset exact at every browser zoom/reflow. */
+(function v1012GeometryContract(){
+  function syncShell(){
+    if(document.body.classList.contains('presentation-mode')||document.body.classList.contains('screenshot-mode')) return;
+    const shell=document.getElementById('stickyShell');
+    if(!shell)return;
+    const h=Math.ceil(shell.getBoundingClientRect().height);
+    document.documentElement.style.setProperty('--v1012-shell-h',h+'px');
+  }
+  function install(){
+    syncShell();
+    const shell=document.getElementById('stickyShell');
+    if(shell&&window.ResizeObserver){new ResizeObserver(syncShell).observe(shell)}
+    window.addEventListener('resize',syncShell,{passive:true});
+    window.addEventListener('load',syncShell,{once:true});
+    setTimeout(syncShell,0);setTimeout(syncShell,250);setTimeout(syncShell,1000);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install,{once:true});else install();
+  window.v1012LayoutDiagnostics=function(){
+    const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)], r=e=>e?e.getBoundingClientRect():null;
+    const main=r(q('#stickyShell .main-nav')), page=r(q('#stickyShell .pagebar')), bars=qa('#stickyShell .status-stack>.status-bar').map(r), heads=qa('#stickyShell .prototype-header>section').map(r);
+    const cols=qa('.v10-card-grid>.v10-column').map(r), utid=r(q('.v10-id-badge')), badges=qa('.v10-badge').map(r), heroes=qa('.v10-status-card>strong.hero');
+    const near=(a,b)=>Math.abs(a-b)<1.1;
+    return {
+      shellRowsEqual:!!(main&&page&&bars.length===3&&bars.every(x=>near(x.height,main.height))&&near(page.height,main.height)),
+      headerEqual:heads.length===3&&heads.every(x=>near(x.height,heads[0].height)),
+      columnsEqual:cols.length===3&&cols.every(x=>near(x.bottom,cols[0].bottom)),
+      badgesEqualUtId:!!(utid&&badges.length&&badges.every(x=>near(x.height,utid.height))),
+      heroBordersRemoved:heroes.every(e=>getComputedStyle(e).borderTopWidth==='0px'&&getComputedStyle(e).boxShadow==='none'),
+      measurements:{mainNav:main&&main.height,pageNav:page&&page.height,statusBars:bars.map(x=>x.height),headers:heads.map(x=>x.height),columnBottoms:cols.map(x=>x.bottom),utid:utid&&utid.height,badges:badges.slice(0,5).map(x=>x.height)}
+    };
+  };
+})();
