@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='10.0.6', BUILD='20261002-V10.0.6-UNIFIED-MODERN-SHELL-BUBBLE-CARD';
+const VERSION='10.0.8', BUILD='20261002-V10.0.8-MODERN-PROTOTYPE-PARITY';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -1016,8 +1016,8 @@ function quickCardFieldModal(id,key){
   else if(key==='fiHandoffDate'){title='FI HANDOFF / CYCLE START';body=`<div class="field"><label>${title}</label><input id="quick-field-value" type="date" value="${esc(t.fiHandoffDate||'')}"></div>`}
   else if(key==='forecastDate'){title='FI FORECAST DATE';body=`<div class="field"><label>${title}</label><input id="quick-field-value" type="date" value="${esc(t.nextForecastDate||calculatedForecastDate(t)||'')}"></div>`}
   else if(key==='fiStatus'){title='FI STATUS';let auto=(t.toolStatus==='FI'?(performance(t)[0]==='AHEAD'?'AHEAD OF SCHEDULE':performance(t)[0]==='BEHIND'?'BEHIND SCHEDULE':'ON SCHEDULE'):(t.toolStatus==='Engineering'?'ENGINEERING':t.toolStatus==='Powered Down'?'FI COMPLETE':t.toolStatus==='Packing'?'PACKING':t.toolStatus==='Shipped'?'COMPLETE':'NOT IN FI'));body=`<div class="field span4 quick-single-field"><label>FI STATUS</label><select id="quick-field-value"><option value="AUTO" ${!t.fiStatusOverride?'selected':''}>AUTO — ${esc(auto)}</option>${['AHEAD OF SCHEDULE','ON SCHEDULE','BEHIND SCHEDULE','AT RISK','SYSTEM LINE DOWN','WAITING FOR PARTS'].map(v=>`<option value="${esc(v)}" ${t.fiStatusOverride===v?'selected':''}>${esc(v)}</option>`).join('')}</select><small class="field-choice-hint">AUTO calculates schedule position from FI progress vs. micro schedule. SYSTEM LINE DOWN, AT RISK, and WAITING FOR PARTS are lead-entered overrides.</small></div>`}
-  else if(key==='latestStatus'){title='LIVE SYSTEM STATUS';let open=(t.ncs||[]).filter(n=>!['closed','complete','completed','resolved'].includes(String(n.state||n.status||'open').toLowerCase()));body=`<div class="field"><label>LATEST SYSTEM STATUS</label><textarea id="quick-field-value" rows="5">${esc(t.latestStatus||'')}</textarea></div><div class="field"><label>OPEN NC / ESCALATIONS</label><div class="quick-readonly-value">${open.length?open.map(n=>`${esc(displayNcId(n.id))} — ${esc(n.description||n.state||n.status||'OPEN')}`).join('<br>'):'NO OPEN NC / ESCALATION'}</div><small class="field-choice-hint">Use UPDATE TOOL STATUS for full NC / escalation editing.</small></div>`}
-  else if(key==='leadNotes'){title='LEAD NOTES';body=`<div class="field"><label>LEAD NOTES / REMINDERS</label><textarea id="quick-field-value" rows="7">${esc(t.notes||'')}</textarea><small class="field-choice-hint">Lead-only reminders and context. This is separate from Latest System Status.</small></div>`}
+  else if(key==='latestStatus'){title='LIVE SYSTEM STATUS';let open=(t.ncs||[]).filter(n=>!['closed','complete','completed','resolved'].includes(String(n.state||n.status||'open').toLowerCase()));body=`<div class="field"><label>${esc(alias)} LATEST SYSTEM STATUS</label><textarea id="quick-field-value" rows="5">${esc(t.latestStatus||'')}</textarea></div><div class="field"><label>OPEN NC / ESCALATIONS</label><div class="quick-readonly-value">${open.length?open.map(n=>`${esc(displayNcId(n.id))} — ${esc(n.description||n.state||n.status||'OPEN')}`).join('<br>'):'NO OPEN NC / ESCALATION'}</div><small class="field-choice-hint">Use UPDATE TOOL STATUS for full NC / escalation editing.</small></div>`}
+  else if(key==='leadNotes'){title='LEAD NOTES';body=`<div class="field"><label>${esc(alias)} LEAD NOTES / REMINDERS</label><textarea id="quick-field-value" rows="7">${esc(t.notes||'')}</textarea><small class="field-choice-hint">Lead-only reminders and context. This is separate from Latest System Status.</small></div>`}
   else if(key==='targetCycle'){title='TARGET CYCLE TIME';body=`<div class="field"><label>TARGET CYCLE TIME — ${esc(t.codename)}</label><input id="quick-field-value" type="number" min="0" step="1" value="${cycleAverageDays(t)||''}"></div><small class="field-choice-hint">Updates the current target cycle time for this tool type.</small>`}
   else if(key==='sourceWorkflow'){title='CUSTOMER SOURCE';body=`${strictSelect('CUSTOMER SOURCE REQUIRED',t.sourceRequired,CUSTOMER_SOURCE_REQUIRED_OPTIONS,'quick-source-required')}${strictSelect('CUSTOMER SOURCE STATUS',t.sourceStatus,CUSTOMER_SOURCE_STATUS_OPTIONS,'quick-source-status')}<div class="form-grid"><div class="field"><label>CA HANDOFF</label><input id="quick-source-handoff" type="date" value="${esc(t.sourceHandoff||'')}"></div><div class="field"><label>SOURCE START</label><input id="quick-source-start" type="date" value="${esc(t.sourceStart||'')}"></div><div class="field"><label>SOURCE COMPLETE</label><input id="quick-source-complete" type="date" value="${esc(t.sourceComplete||'')}"></div></div>`}
   else if(key==='strWorkflow'){title='STR';body=`${strictSelect('STR REQUIRED',t.strRequired,STR_REQUIRED_OPTIONS,'quick-str-required')}${strictSelect('STR STATUS',t.strStatus,STR_STATUS_OPTIONS,'quick-str-status')}<div class="field"><label>STR DUE</label><input id="quick-str-due" type="date" value="${esc(t.strDue||'')}"></div>`}
@@ -1126,7 +1126,7 @@ function liveToolCard(tool=null){
         </div>
 
         <div class="utc-status-section utc-system-status utc-quick-edit direct-editable" data-quick-field="toolStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" title="Click to update system status">
-          <div class="utc-kicker">CURRENT SYSTEM STATUS</div>
+          <div class="utc-kicker">${esc(alias)} CURRENT SYSTEM STATUS</div>
           <div class="utc-phase-big">${esc(system)}</div>
         </div>
 
@@ -1141,7 +1141,7 @@ function liveToolCard(tool=null){
         </div>
 
         <div class="utc-status-section utc-lead-notes utc-quick-edit direct-editable" data-quick-field="leadNotes" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" title="Click to update lead notes / reminders">
-          <div class="utc-kicker">LEAD NOTES / REMINDERS</div>
+          <div class="utc-kicker">${esc(alias)} LEAD NOTES / REMINDERS</div>
           <div class="utc-lead-notes-text">${esc(t.notes||'')}</div>
         </div>
 
@@ -1459,6 +1459,7 @@ function v9ToolCard(){
   let a=carouselTools();if(!a.length)return `<section class="v10-tool-card"><div class="v9-empty">NO ACTIVE TOOLS</div></section>`;
   liveIndex=((liveIndex%a.length)+a.length)%a.length;
   let t=a[liveIndex],count=shipCountdown(t),fi=fiProgress(t),mi=microProgress(t),cyc=actualCycleDays(t),target=cycleAverageDays(t)||25,cp=Math.round(cyc/target*100),tasks=nextSystemTasksRows(t),img=individualToolPhoto(t)||familyImage(t),carry=isCarryoverTool(t),p=priorityBadgeInfo(t),badges=evaluateTool(t).badgeList||[],intel=v10ToolIntelligence(t,count,p),forecast=v10ForecastProgress(t),lead=leadProgress(t),source=v10WorkflowProgress(t.sourceRequired,t.sourceStatus,'source'),str=v10WorkflowProgress(t.strRequired,t.strStatus,'str'),packing=shippingProgress(t),shipment=v10ShipmentProgress(t);
+  let alias=String(t.alias||t.id||t.codename||'TOOL').trim().toUpperCase();
   let orderedBadges=[...badges];
   let wi=orderedBadges.findIndex(x=>x.key==='systemWafers'), oi=orderedBadges.findIndex(x=>x.key==='optionFiles');
   if(wi>=0&&oi>=0){let tmp=orderedBadges[wi];orderedBadges[wi]=orderedBadges[oi];orderedBadges[oi]=tmp}
@@ -1472,8 +1473,8 @@ function v9ToolCard(){
   if(t.fiStatusOverride)currentStatus=t.fiStatusOverride;
   return `<section class="v10-tool-card" data-universal-tool-card="${esc(t.id)}">
     <div class="v10-intelligence">
-      <button type="button" class="v10-priority" data-direct-priority="${esc(t.id)}" title="Update priority"><b>#${esc(p.rank||t.priority||'—')}</b><span>${esc((p.tier||'PRIORITY').toUpperCase())}</span></button>
-      <button type="button" class="v10-tool-statusbar ${esc(intel.tone)}" data-open-tool="${esc(t.id)}" title="Open Tool Control Center"><i class="signal"></i><div class="copy"><strong>${esc(intel.message)}</strong></div><em>${esc(intel.detail)}</em></button>
+      <button type="button" class="v10-priority" data-direct-priority="${esc(t.id)}" title="Update priority"><b>#${esc(p.rank||t.priority||'—')}</b><span><strong>PRIORITY</strong><small>${esc((p.tier||'PRIORITY').toUpperCase())}</small></span></button>
+      <button type="button" class="v10-tool-statusbar ${esc(intel.tone)}" data-open-tool="${esc(t.id)}" title="Open Tool Control Center"><i class="signal"></i><div class="copy"><strong>${esc(intel.message)}</strong><small>${esc(intel.detail)}</small></div><span class="v1008-view-details">VIEW DETAILS ›</span></button>
     </div>
     <div class="v10-card-grid">
       <section class="v10-column v10-identity-column">
@@ -1493,24 +1494,24 @@ function v9ToolCard(){
         <button class="v10-update" data-tool="${esc(t.id)}">UPDATE TOOL STATUS →</button>
       </section>
       <section class="v10-column v10-status-column">
-        <div class="v10-status-card ship ${esc(intel.tone)} clickable" data-quick-field="shipDate" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">TOOL SHIP COUNTDOWN</span><strong class="hero">${esc(count.big||'NO SHIP DATE')}</strong><span class="sub">${esc(count.small||'SET MANUFACTURING SHIP DATE')}</span></div>
-        <div class="v10-status-card clickable" data-quick-field="fiStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">CURRENT TOOL STATUS · FI TESTING STATUS</span><strong class="hero">${esc(currentStatus)}</strong><span class="sub">${esc(checklistLabel(t,t.currentChecklist))}</span></div>
-        <div class="v10-status-card clickable" data-quick-field="toolStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">CURRENT SYSTEM STATUS</span><strong class="hero">${esc(statusLabel)}</strong><span class="sub">${esc(t.latestStatus||'No live system status entered.')}</span></div>
-        <div class="v10-status-card v10-bottom-card"><span class="label">NEXT SYSTEM TASKS</span><div class="v10-tasks">${tasks.length?tasks.slice(0,5).map((x,i)=>`<div class="v10-task"><i>${i+1}</i><span>${esc(x.text)}</span></div>`).join(''):'<div class="v10-task"><i>✓</i><span>NO OPEN SYSTEM TASKS</span></div>'}</div></div>
-        <div class="v10-status-card v10-bottom-card clickable" data-quick-field="latestStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">LATEST SYSTEM STATUS</span><div class="v10-lines">${esc(t.latestStatus||'No latest system status entered.')}</div></div>
-        <div class="v10-status-card v10-bottom-card clickable" data-quick-field="leadNotes" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">LEAD NOTES / REMINDERS</span><div class="v10-lines">${esc(t.notes||'No lead notes entered.')}</div></div>
+        <div class="v10-status-card ship ${esc(intel.tone)} clickable" data-quick-field="shipDate" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">${esc(alias)} TOOL SHIP COUNTDOWN</span><strong class="hero">${esc(count.big||'NO SHIP DATE')}</strong><span class="sub">${esc(count.small||'SET MANUFACTURING SHIP DATE')}</span></div>
+        <div class="v10-status-card clickable" data-quick-field="fiStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">${esc(alias)} CURRENT TOOL STATUS · FI TESTING STATUS</span><strong class="hero">${esc(currentStatus)}</strong><span class="sub">${esc(checklistLabel(t,t.currentChecklist))}</span></div>
+        <div class="v10-status-card clickable" data-quick-field="toolStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">${esc(alias)} CURRENT SYSTEM STATUS</span><strong class="hero">${esc(statusLabel)}</strong><span class="sub">${esc(t.latestStatus||'No live system status entered.')}</span></div>
+        <div class="v10-status-card v10-bottom-card"><span class="label">${esc(alias)} NEXT SYSTEM TASKS</span><div class="v10-tasks">${tasks.length?tasks.slice(0,5).map((x,i)=>`<div class="v10-task"><i>${i+1}</i><span>${esc(x.text)}</span></div>`).join(''):'<div class="v10-task"><i>✓</i><span>NO OPEN SYSTEM TASKS</span></div>'}</div></div>
+        <div class="v10-status-card v10-bottom-card clickable" data-quick-field="latestStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">${esc(alias)} LATEST SYSTEM STATUS</span><div class="v10-lines">${esc(t.latestStatus||'No latest system status entered.')}</div></div>
+        <div class="v10-status-card v10-bottom-card clickable" data-quick-field="leadNotes" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">${esc(alias)} LEAD NOTES / REMINDERS</span><div class="v10-lines">${esc(t.notes||'No lead notes entered.')}</div></div>
       </section>
       <section class="v10-column v10-progress-column">
-        ${v10ProgressRow('FI PROGRESS',fi,'cyan',checklistLabel(t,t.currentChecklist),t,'currentChecklist')}
-        ${v10ProgressRow('MICRO SCHEDULE',mi,performance(t)[0]==='BEHIND'?'red':'green',checklistLabel(t,t.microSchedule),t,'microSchedule')}
-        ${v10ProgressRow('FI FORECAST PROGRESS',forecast,forecast>=90?'yellow':'purple',`FORECAST · ${fmtDate(calculatedForecastDate(t)||t.nextForecastDate||'')}`,t,'forecastDate')}
-        ${v10ProgressRow('CYCLE TIME',cp,cp>100?'red':cp>=85?'yellow':'green',`TARGET ${target} DAYS`,t,'targetCycle',`${cyc} / ${target} DAYS · ${cp}%`)}
-        ${v10ProgressRow('LEAD / ADMIN PROGRESS',lead,lead>=85?'green':'cyan',`${Math.max(0,100-lead)}% REMAINING`,t,'currentLeadTask')}
-        ${v10ProgressRow('CUSTOMER SOURCE PROGRESS',source,source>=100?'green':source>0?'yellow':'cyan',`${String(t.sourceRequired||'TBD').toUpperCase()} · ${String(t.sourceStatus||'NOT STARTED').toUpperCase()}`,t,'sourceWorkflow')}
-        ${v10ProgressRow('STR PROGRESS',str,str>=100?'green':str>0?'yellow':'cyan',`${String(t.strRequired||'TBD').toUpperCase()} · ${String(t.strStatus||'NOT STARTED').toUpperCase()}`,t,'strWorkflow')}
-        ${v10ProgressRow('PACKING / SHIPPING PROGRESS',packing,packing>=100?'green':packing>0?'yellow':'cyan',shippingStep(t),t,'shippingWorkflow')}
-        ${v10ProgressRow('TOOL SHIPMENT PROGRESS',shipment,shipment>=100?'green':shipment>=75?'yellow':'cyan',t.toolStatus==='Shipped'?'SHIPMENT COMPLETE':`${statusLabel} · ${count.big||'NO SHIP DATE'}`,t,'shipDate')}
-        <div class="v10-readiness-widget"><div class="v10-readiness-title"><span>TOOL READINESS</span><strong>${Math.round((fi+mi+lead+packing+shipment)/5)}%</strong></div><div class="v10-readiness-grid"><div><small>FI</small><b>${fi}%</b></div><div><small>LEAD / ADMIN</small><b>${lead}%</b></div><div><small>PACKING</small><b>${packing}%</b></div><div><small>SHIPMENT</small><b>${shipment}%</b></div></div><div class="v10-readiness-alert ${esc(intel.tone)}">${esc(intel.message)}</div></div>
+        ${v10ProgressRow(`${alias} FI PROGRESS`,fi,'cyan',checklistLabel(t,t.currentChecklist),t,'currentChecklist')}
+        ${v10ProgressRow(`${alias} MICRO SCHEDULE`,mi,performance(t)[0]==='BEHIND'?'red':'green',checklistLabel(t,t.microSchedule),t,'microSchedule')}
+        ${v10ProgressRow(`${alias} FI FORECAST PROGRESS`,forecast,forecast>=90?'yellow':'purple',`FORECAST · ${fmtDate(calculatedForecastDate(t)||t.nextForecastDate||'')}`,t,'forecastDate')}
+        ${v10ProgressRow(`${alias} CYCLE TIME`,cp,cp>100?'red':cp>=85?'yellow':'green',`TARGET ${target} DAYS`,t,'targetCycle',`${cyc} / ${target} DAYS · ${cp}%`)}
+        ${v10ProgressRow(`${alias} LEAD / ADMIN PROGRESS`,lead,lead>=85?'green':'cyan',`${Math.max(0,100-lead)}% REMAINING`,t,'currentLeadTask')}
+        ${v10ProgressRow(`${alias} CUSTOMER SOURCE PROGRESS`,source,source>=100?'green':source>0?'yellow':'cyan',`${String(t.sourceRequired||'TBD').toUpperCase()} · ${String(t.sourceStatus||'NOT STARTED').toUpperCase()}`,t,'sourceWorkflow')}
+        ${v10ProgressRow(`${alias} STR PROGRESS`,str,str>=100?'green':str>0?'yellow':'cyan',`${String(t.strRequired||'TBD').toUpperCase()} · ${String(t.strStatus||'NOT STARTED').toUpperCase()}`,t,'strWorkflow')}
+        ${v10ProgressRow(`${alias} PACKING / SHIPPING PROGRESS`,packing,packing>=100?'green':packing>0?'yellow':'cyan',shippingStep(t),t,'shippingWorkflow')}
+        ${v10ProgressRow(`${alias} TOOL SHIPMENT PROGRESS`,shipment,shipment>=100?'green':shipment>=75?'yellow':'cyan',t.toolStatus==='Shipped'?'SHIPMENT COMPLETE':`${statusLabel} · ${count.big||'NO SHIP DATE'}`,t,'shipDate')}
+        <div class="v10-readiness-widget"><div class="v10-readiness-title"><span>${esc(alias)} TOOL READINESS</span><strong>${Math.round((fi+mi+lead+packing+shipment)/5)}%</strong></div><div class="v10-readiness-grid"><div><small>FI</small><b>${fi}%</b></div><div><small>LEAD / ADMIN</small><b>${lead}%</b></div><div><small>PACKING</small><b>${packing}%</b></div><div><small>SHIPMENT</small><b>${shipment}%</b></div></div><div class="v10-readiness-alert ${esc(intel.tone)}">${esc(intel.message)}</div></div>
       </section>
     </div>
   </section>`;
@@ -1824,7 +1825,7 @@ async function presentation(){if(route.center!=='operations')return;presentation
 function exitPresentation(){presentationActive=false;presentationEditorActive=false;clearPresentationLayout();if(presentationRestore){livePaused=!!presentationRestore.livePaused;snapshotPaused=!!presentationRestore.snapshotPaused;presentationRestore=null}document.querySelector('#exitScreenshot').classList.add('hidden');document.querySelector('#screenshotReportTitle')?.remove();if(document.fullscreenElement&&document.exitFullscreen){try{document.exitFullscreen()}catch(e){}}render();requestAnimationFrame(()=>requestAnimationFrame(()=>{syncStickyShellHeight();window.dispatchEvent(new Event('resize'));window.scrollTo(0,0)}))}
 function exitDisplayMode(){if(document.body.classList.contains('presentation-mode'))return exitPresentation();return exitScreenshot()}
 function closeModal(){document.querySelector('#modal').classList.add('hidden');document.querySelector('#modalBody').innerHTML=''}
-function handoffModal(id){let t=state.tools.find(x=>x.id===id);if(!t)return;modal(`<div class="modal-form handoff-modal"><h2>PACKING / SHIPPING MILESTONES — ${esc(t.id)}</h2><p class="helper">Update the live Packing / Shipping milestones. MST Installation appears only for REGERA and CELESTIQ.</p><div class="field"><label>CURRENT SYSTEM STATUS</label><select id="handoff-tool-status">${selectOptions(['FI','Powered Down','Packing','Shipped'],t.toolStatus)}</select></div><div class="shipping-milestone-editor modal-milestones">${shippingKeys(t).map(([k,l])=>milestoneEditor(t,k,l)).join('')}</div><label class="modal-notes-label">Shipping Notes<textarea id="handoff-notes">${esc(t.shipping.notes||'')}</textarea></label><div class="modal-actions"><button class="btn" data-modal-cancel>CANCEL</button><button class="btn save" data-save-handoffs="${esc(t.id)}">SAVE MILESTONES</button></div></div>`)}
+function handoffModal(id){let t=state.tools.find(x=>x.id===id);if(!t)return;modal(`<div class="modal-form handoff-modal"><h2>PACKING / SHIPPING MILESTONES — ${esc(t.id)}</h2><p class="helper">Update the live Packing / Shipping milestones. MST Installation appears only for REGERA and CELESTIQ.</p><div class="field"><label>${esc(alias)} CURRENT SYSTEM STATUS</label><select id="handoff-tool-status">${selectOptions(['FI','Powered Down','Packing','Shipped'],t.toolStatus)}</select></div><div class="shipping-milestone-editor modal-milestones">${shippingKeys(t).map(([k,l])=>milestoneEditor(t,k,l)).join('')}</div><label class="modal-notes-label">Shipping Notes<textarea id="handoff-notes">${esc(t.shipping.notes||'')}</textarea></label><div class="modal-actions"><button class="btn" data-modal-cancel>CANCEL</button><button class="btn save" data-save-handoffs="${esc(t.id)}">SAVE MILESTONES</button></div></div>`)}
 function modal(html){document.querySelector('#modalBody').innerHTML=html;let x=document.querySelector('#modalClose');if(x){x.textContent='×';x.title='Close';x.setAttribute('aria-label','Close popup')}document.querySelector('#modal').classList.remove('hidden');requestAnimationFrame(()=>{bindEditableComboControls();x?.focus({preventScroll:true})})}
 
 function applyUniversalComboSelection(select){

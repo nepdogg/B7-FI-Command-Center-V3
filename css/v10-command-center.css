@@ -539,3 +539,63 @@ html body.presentation-mode[data-center="operations"][data-sub="live"] .presenta
  .prototype-header{grid-template-columns:minmax(0,1fr) minmax(250px,32%) minmax(0,1fr)!important;overflow:visible!important}
  .pagebar{grid-template-columns:minmax(600px,5fr) minmax(600px,4fr)!important;overflow-x:auto!important}
 }
+
+/* =========================================================
+   V10.0.8 — MODERN PROTOTYPE PARITY + RESPONSIVE SHELL LOCK
+   ========================================================= */
+:root{--v1008-rail-h:42px}
+/* Open navigation rails: no enclosing border boxes. */
+.main-nav,.pagebar,.status-stack{border:0!important;outline:0!important;box-shadow:none!important;background:transparent!important}
+.main-nav{padding:5px 10px!important}
+.pagebar{padding:5px 10px!important;gap:7px!important}
+.main-nav button,.subnav button,.page-actions button,.nav69-mini,.nav69-pause{height:var(--v1008-rail-h)!important;min-height:var(--v1008-rail-h)!important;border-radius:12px!important}
+/* Page navigation uses the same modern button language and consumes all width. */
+.pagebar{display:grid!important;grid-template-columns:minmax(0,1fr)!important;width:100%!important}
+.pagebar .subnav{display:grid!important;grid-template-columns:repeat(4,minmax(120px,1fr))!important;gap:7px!important;min-width:0!important}
+.pagebar .page-actions{display:grid!important;grid-template-columns:minmax(38px,.35fr) minmax(105px,.85fr) minmax(38px,.35fr) minmax(105px,.85fr) minmax(150px,1.35fr) minmax(105px,.9fr)!important;gap:7px!important;min-width:0!important}
+.pagebar .subnav,.pagebar .page-actions{grid-row:1!important}
+.pagebar .subnav{grid-column:1!important;padding-right:min(36vw,680px)!important}
+.pagebar .page-actions{grid-column:1!important;justify-self:end!important;width:min(36vw,680px)!important}
+/* Status rails exactly match navigation height. */
+.status-stack{gap:5px!important;padding:0 10px 5px!important}
+.status-bar{height:var(--v1008-rail-h)!important;min-height:var(--v1008-rail-h)!important;border-radius:12px!important}
+.status-left,.status-message,.status-right{font-size:clamp(10px,.72vw,14px)!important}
+/* Remove master Tool Card / Tool Status row framing. Components provide structure. */
+.v10-tool-card{border:0!important;outline:0!important;box-shadow:none!important;background:transparent!important}
+.v10-intelligence{border:0!important;border-bottom:0!important;background:transparent!important;padding:8px 14px!important}
+.v10-card-grid{border:0!important;outline:0!important;box-shadow:none!important;background:transparent!important;gap:12px!important;padding:6px 14px 14px!important}
+.v10-column{border:0!important!important;background:transparent!important;padding:0!important}
+.v10-column+.v10-column{border-left:0!important}
+/* Modern prototype intelligence bar. */
+.v10-intelligence{grid-template-columns:minmax(230px,310px) minmax(0,1fr)!important;gap:10px!important}
+.v10-priority{min-height:66px!important;border-radius:14px!important;display:grid!important;grid-template-columns:auto 1fr!important;gap:12px!important;align-items:center!important;padding:8px 20px!important;background:linear-gradient(90deg,#ff174f,#781329)!important;border:1px solid #ff315d!important;box-shadow:0 0 18px rgba(255,23,79,.18)!important}
+.v10-priority>b{font-size:clamp(26px,2vw,42px)!important;line-height:1!important}.v10-priority>span{display:flex!important;flex-direction:column!important;align-items:flex-start!important}.v10-priority>span>strong{font-size:clamp(14px,1vw,21px)!important}.v10-priority>span>small{font-size:clamp(10px,.7vw,14px)!important;font-weight:800!important}
+.v10-tool-statusbar{min-height:66px!important;border-radius:14px!important;grid-template-columns:20px minmax(0,1fr) auto!important;padding:8px 14px!important;border:1px solid #ff8a22!important;background:linear-gradient(90deg,rgba(255,110,20,.18),#15100f 30%,#07131d)!important;box-shadow:0 0 18px rgba(255,128,25,.12),inset 0 0 22px rgba(255,128,25,.06)!important}
+.v10-tool-statusbar .signal{width:12px!important;height:12px!important;background:#ff9d27!important;box-shadow:0 0 14px #ff9d27!important}.v10-tool-statusbar .copy{text-align:left!important;display:flex!important;align-items:baseline!important;gap:16px!important;min-width:0!important}.v10-tool-statusbar .copy>strong{font-size:clamp(19px,1.35vw,28px)!important;color:#fff!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}.v10-tool-statusbar .copy>small{display:block!important;font-size:clamp(11px,.72vw,15px)!important;color:#cce8f4!important;font-weight:800!important;white-space:nowrap!important}.v1008-view-details{border:1px solid #5bbbe8!important;border-radius:12px!important;background:#0b2b43!important;padding:10px 16px!important;font-size:clamp(11px,.75vw,15px)!important;font-weight:900!important;color:#fff!important;white-space:nowrap!important}
+.v10-tool-statusbar.critical{border-color:#ff315d!important;background:linear-gradient(90deg,rgba(255,49,93,.22),#1b0c12 30%,#07131d)!important}.v10-tool-statusbar.critical .signal{background:#ff315d!important;box-shadow:0 0 14px #ff315d!important}.v10-tool-statusbar.complete{border-color:#14e6a4!important;background:linear-gradient(90deg,rgba(20,230,164,.16),#071b1a 30%,#07131d)!important}.v10-tool-statusbar.complete .signal{background:#14e6a4!important;box-shadow:0 0 14px #14e6a4!important}
+/* Every tool-card object is its own bubble; no divider-line visual language. */
+.v10-photo,.v10-id-badge,.v10-reduced,.v10-badge,.v10-status-card,.v10-progress-row,.v10-readiness-widget{border-radius:14px!important}
+.v10-photo{border:1px solid #245c78!important;background:#071d2c!important;padding:10px!important;margin-bottom:8px!important}
+.v10-status-column,.v10-progress-column{display:grid!important;gap:10px!important}
+.v10-status-column{grid-template-rows:repeat(3,minmax(155px,1fr)) repeat(3,minmax(135px,1fr))!important}
+.v10-status-card{border:1px solid #245c78!important;background:#082335!important;padding:18px!important;min-height:0!important}
+.v10-status-card.ship.critical{border-color:#ff315d!important;background:linear-gradient(110deg,rgba(255,49,93,.08),#082335 42%)!important}
+.v10-status-card .label{font-size:clamp(12px,.82vw,17px)!important}.v10-status-card .hero{font-size:clamp(27px,1.9vw,40px)!important;margin-top:7px!important}.v10-status-card .sub{font-size:clamp(11px,.72vw,15px)!important;margin-top:10px!important}
+/* Remove old cyan divider rules from the three top middle cards. */
+.v10-status-column>.v10-status-card:nth-child(-n+3) .label,.v10-status-column>.v10-status-card:nth-child(-n+3) .hero,.v10-status-column>.v10-status-card:nth-child(-n+3) .sub{border:0!important;border-top:0!important;border-bottom:0!important;box-shadow:none!important}
+.v10-status-column>.v10-status-card:nth-child(-n+3)::before,.v10-status-column>.v10-status-card:nth-child(-n+3)::after{display:none!important}
+/* Progress bubbles + larger typography. */
+.v10-progress-column{grid-template-rows:repeat(9,minmax(105px,1fr)) minmax(155px,1.35fr)!important}
+.v10-progress-row{border:1px solid #245c78!important;background:#082335!important;padding:14px 16px!important}
+.v10-progress-head b{font-size:clamp(13px,.88vw,18px)!important}.v10-progress-head strong{font-size:clamp(15px,1vw,21px)!important}.v10-progress-row small{font-size:clamp(10px,.68vw,14px)!important}.v10-progress-track{height:20px!important}
+.v10-readiness-widget{border:1px solid #245c78!important;background:#082335!important;margin-top:0!important;align-self:stretch!important}
+/* Responsive browser zoom: never transform/scale the normal app; let the CSS viewport grow. */
+html,body{width:100%!important;min-width:0!important;min-height:100%!important}
+body:not(.presentation-mode) .app-frame{width:100%!important;max-width:none!important;min-height:100vh!important;height:auto!important;transform:none!important;overflow:visible!important}
+body:not(.presentation-mode) .body-shell,body:not(.presentation-mode) #app.body-workspace{width:100%!important;max-width:none!important;height:auto!important;min-height:0!important;overflow:visible!important}
+body:not(.presentation-mode) .v10-tool-card{width:100%!important;max-width:none!important;height:auto!important;min-height:calc(100vh - var(--sticky-shell-height,0px) - 60px)!important;overflow:visible!important}
+body:not(.presentation-mode) .v10-card-grid{grid-template-columns:minmax(330px,31%) minmax(420px,37%) minmax(360px,32%)!important;align-items:stretch!important}
+/* Header stays three sections even when CSS viewport becomes wider/narrower through browser zoom. */
+.prototype-header{grid-template-columns:minmax(280px,1fr) minmax(360px,520px) minmax(280px,1fr)!important;overflow:visible!important}.prototype-header-center{min-width:0!important;overflow:visible!important}.prototype-kla-box{width:100%!important;max-width:100%!important}
+@media(max-width:1400px){.pagebar .subnav{padding-right:520px!important}.pagebar .page-actions{width:520px!important}.v10-tool-statusbar .copy>small{display:none!important}}
+@media(max-width:1100px){.prototype-header{grid-template-columns:minmax(220px,1fr) 320px minmax(220px,1fr)!important}.main-nav{grid-template-columns:repeat(10,minmax(105px,1fr))!important;overflow-x:auto!important}.pagebar{overflow-x:auto!important}.pagebar .subnav{min-width:620px!important;padding-right:500px!important}.pagebar .page-actions{width:500px!important}.v10-card-grid{grid-template-columns:minmax(300px,31%) minmax(360px,37%) minmax(320px,32%)!important}.v1008-view-details{padding:8px 10px!important}}
