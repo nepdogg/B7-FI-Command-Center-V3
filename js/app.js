@@ -262,7 +262,7 @@ function missedAtQuarterClose(t){let q=toolHomeQuarter(t),a=state.config?.quarte
 function isCarryoverTool(t){return !!t&&t.toolStatus!=='Archived'&&quarterOrdinal(toolHomeQuarter(t))<quarterOrdinal(state.quarter)&&missedAtQuarterClose(t)}
 function carryoverTools(){return state.tools.filter(isCarryoverTool)}
 function operationalFleetTools(){let ids=new Set(),out=[];for(const t of state.tools){if(t.toolStatus==='Archived')continue;let active=(t.quarter||state.quarter)===state.quarter;if(active||isCarryoverTool(t)){if(!ids.has(String(t.id))){ids.add(String(t.id));out.push(t)}}}return out}
-function summaryQuarters(){let qs=[...new Set(nonArchivedTools().map(t=>t.quarter||t.originalQuarter||state.quarter).filter(Boolean))].sort();return qs.length?qs:[state.quarter]}
+function summaryQuarters(){let archived=Object.keys(state.config?.quarterArchives||{}),qs=[...new Set([...nonArchivedTools().map(t=>t.quarter||t.originalQuarter||state.quarter),...archived,state.quarter].filter(Boolean))].sort();return qs.length?qs:[state.quarter]}
 function summaryViewQuarter(){let qs=summaryQuarters(),q=state.config?.summaryViewQuarter;return q&&qs.includes(q)?q:(qs.includes(state.quarter)?state.quarter:(qs[0]||state.quarter))}
 function summaryTools(q=summaryViewQuarter()){return activeTools(q)}
 function operationalTools(){return operationalFleetTools().filter(t=>t.toolStatus!=='Shipped')}

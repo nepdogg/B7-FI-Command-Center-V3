@@ -1175,3 +1175,66 @@ body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-prog
 body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-overall-progress{grid-template-rows:auto minmax(18px,.4fr) auto!important;padding:5px 8px!important;row-gap:3px!important}
 body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-progress-track,
 body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-overall-track{height:100%!important;min-height:18px!important;max-height:28px!important}
+
+/* ================================================================
+   V10.3.2 GEOMETRY + QUARTER NAVIGATION CORRECTION LOCK
+   ================================================================ */
+:root{--v1032-header-h:70px}
+
+/* Header: use the full width, widen the two outside regions, and make the
+   center connection region the same full height as its neighbors. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header{
+  grid-template-columns:minmax(0,30fr) minmax(0,40fr) minmax(0,30fr)!important;
+  height:var(--v1032-header-h)!important;min-height:var(--v1032-header-h)!important;max-height:var(--v1032-header-h)!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header>section{
+  height:var(--v1032-header-h)!important;min-height:var(--v1032-header-h)!important;max-height:var(--v1032-header-h)!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-kla-box{
+  width:100%!important;max-width:none!important;height:var(--v1032-header-h)!important;min-height:var(--v1032-header-h)!important;max-height:var(--v1032-header-h)!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .kla-user-side,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .kla-connection-core{
+  height:56px!important;min-height:56px!important;max-height:56px!important
+}
+
+/* Intelligence/status bar owns its own grid row. Its bottom margin can no
+   longer intrude into or cover the first row of the three-column card. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-card{
+  grid-template-rows:94px minmax(0,1fr)!important
+}
+html body[data-center="operations"][data-sub="live"] #app .v10-intelligence{
+  margin:0 0 12px!important;align-self:start!important;position:relative!important;z-index:2!important
+}
+html body[data-center="operations"][data-sub="live"] #app .v10-card-grid{
+  position:relative!important;z-index:1!important;margin-top:0!important
+}
+
+/* Middle column: six equal bubbles. No hero/lower weighting. */
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column{
+  display:grid!important;grid-template-rows:repeat(6,minmax(0,1fr))!important;gap:7px!important;height:100%!important;min-height:0!important
+}
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column>.v10-status-card,
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column>.v10-status-card:nth-child(-n+3),
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column>.v10-bottom-card{
+  min-height:0!important;height:auto!important;padding:12px 16px!important;overflow:hidden!important
+}
+
+/* Right column: all nine progress sections consume the complete column.
+   The final Overall Tool Progress row has exactly the same share. */
+html body[data-center="operations"][data-sub="live"] #app .v10-progress-column{
+  display:grid!important;grid-template-rows:repeat(9,minmax(0,1fr))!important;gap:7px!important;height:100%!important;min-height:0!important;align-self:stretch!important
+}
+html body[data-center="operations"][data-sub="live"] #app .v10-progress-row,
+html body[data-center="operations"][data-sub="live"] #app .v10-overall-progress{
+  min-height:0!important;height:100%!important;align-self:stretch!important;align-content:center!important
+}
+
+/* Presentation follows the same six/equal + nine/equal geometry contract. */
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-tool-card{
+  grid-template-rows:82px minmax(0,1fr)!important
+}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-intelligence{margin:0!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-card-grid{height:100%!important;max-height:none!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-status-column{grid-template-rows:repeat(6,minmax(0,1fr))!important;gap:5px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-progress-column{grid-template-rows:repeat(9,minmax(0,1fr))!important;gap:4px!important}
