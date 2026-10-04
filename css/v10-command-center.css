@@ -296,13 +296,6 @@ html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"
 html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-statusbar .copy strong{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;font-size:25px!important;line-height:1.12!important}
 html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-statusbar .tool-identity,
 html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-statusbar .tool-message{font:inherit!important;font-weight:950!important}
-/* Normal-mode responsive workspace: use all height exposed by browser zoom. */
-html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app{min-height:calc(100vh - var(--v1012-shell-h,300px) - 58px)!important;display:flex!important;flex-direction:column!important}
-html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v9-live-main{flex:1 1 auto!important;display:flex!important;min-height:0!important}
-html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-card{flex:1 1 auto!important;display:grid!important;grid-template-rows:auto minmax(0,1fr)!important;min-height:calc(100vh - var(--v1012-shell-h,300px) - 66px)!important}
-html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-card-grid{height:100%!important;min-height:0!important;align-items:stretch!important}
-html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-column{height:100%!important;min-height:0!important}
-html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-photo{height:auto!important;min-height:230px!important;flex:1 1 260px!important}
 /* Modern footer buttons. */
 .app-footer #adminButton,.app-footer #footerPresentationButton{height:38px!important;border:1px solid #20c9ff!important;border-radius:11px!important;background:linear-gradient(180deg,#073149,#041c2b)!important;color:#fff!important;font-weight:950!important;padding:0 18px!important;box-shadow:inset 0 0 14px rgba(0,200,255,.08),0 0 8px rgba(0,200,255,.12)!important}
 .app-footer #adminButton:hover,.app-footer #footerPresentationButton:hover{background:linear-gradient(180deg,#075277,#06334a)!important;box-shadow:0 0 14px rgba(0,200,255,.3)!important}
@@ -321,3 +314,63 @@ body.presentation-mode[data-sub="live"] #app .v10-status-column{grid-template-ro
 body.presentation-mode .presentation-inline-nav{position:fixed!important;left:4px!important;right:4px!important;bottom:4px!important;height:54px!important;z-index:2147483646!important}
 /* Quarter Summary presentation: selected quarter content fills viewport and full frame remains visible. */
 body.presentation-mode[data-sub="summary"] #app{padding:4px 4px 62px!important;overflow:hidden!important}body.presentation-mode[data-sub="summary"] .quarter-summary-page,body.presentation-mode[data-sub="summary"] .quarter-summary-view,body.presentation-mode[data-sub="summary"] .presentation-quarter-summary{height:100%!important;max-height:100%!important;min-height:0!important;overflow:hidden!important;border:1px solid #08bfe8!important;box-sizing:border-box!important}body.presentation-mode[data-sub="summary"] .quarter-summary-hero{max-height:26vh!important;min-height:0!important}body.presentation-mode[data-sub="summary"] .family-panel-v526{min-height:0!important;max-height:calc(74vh - 80px)!important;overflow:hidden!important}body.presentation-mode[data-sub="summary"] .family-rows-scroll{height:auto!important;max-height:none!important;overflow:hidden!important}
+\n\n/* =========================================================
+   V10.1.5 RENDERED GEOMETRY CORRECTION — FINAL OWNER
+   ========================================================= */
+:root{--v1015-shell-row:42px;--v1015-header-h:58px}
+/* Header: three equal-height sections; center uses two 2x2 user grids + KLA status. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header>section{height:var(--v1015-header-h)!important;min-height:var(--v1015-header-h)!important;max-height:var(--v1015-header-h)!important}
+html body #stickyShell .prototype-header-center{overflow:hidden!important;padding:3px 7px!important}
+html body #stickyShell .prototype-kla-box{height:52px!important;max-width:560px!important;grid-template-columns:minmax(0,1fr) 150px minmax(0,1fr)!important;gap:5px!important}
+html body #stickyShell .kla-user-side{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:repeat(2,minmax(0,1fr))!important;gap:4px!important;height:52px!important;overflow:hidden!important}
+html body #stickyShell .kla-presence-badge{min-width:0!important;min-height:0!important;height:auto!important;width:auto!important;margin:0!important;padding:0 3px!important;font-size:8px!important;line-height:1!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+html body #stickyShell .kla-connection-core{height:52px!important;min-height:52px!important;display:grid!important;grid-template-rows:minmax(0,1fr) 14px!important;align-items:center!important;justify-items:center!important;overflow:hidden!important;padding:2px 3px!important}
+html body #stickyShell .kla-connection-core img{max-height:31px!important;max-width:105px!important}
+html body #stickyShell .kla-connection-copy{width:100%!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:4px!important;white-space:nowrap!important;overflow:hidden!important;font-size:6.5px!important;line-height:1!important}
+html body #stickyShell .kla-connection-copy b,html body #stickyShell .kla-connection-copy small{font-size:6.5px!important;line-height:1!important;white-space:nowrap!important}
+/* Page navigation is ONE continuous dynamic row. No spacer groups, no clipping. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar{display:grid!important;grid-auto-flow:column!important;grid-auto-columns:minmax(0,1fr)!important;gap:4px!important;width:100%!important;max-width:100%!important;height:var(--v1015-shell-row)!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar>.subnav,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar>.page-actions,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .page-actions>.nav69-live-controls,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .page-actions>.nav69-live-controls>.nav69-control-group,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .page-actions>.nav69-live-actions{display:contents!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar button,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .tool-type-menu{min-width:0!important;max-width:none!important;width:auto!important;height:var(--v1015-shell-row)!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;border-radius:12px!important}
+/* One frameless Live Operations body; no inherited master perimeter. */
+html body[data-center="operations"][data-sub="live"] .body-shell,html body[data-center="operations"][data-sub="live"] .body-workspace,html body[data-center="operations"][data-sub="live"] #app,html body[data-center="operations"][data-sub="live"] .v92-live-page,html body[data-center="operations"][data-sub="live"] .v9-live-main,html body[data-center="operations"][data-sub="live"] .v10-tool-card,html body[data-center="operations"][data-sub="live"] .v10-card-grid{border:0!important;outline:0!important;box-shadow:none!important;background-color:transparent!important}
+html body[data-center="operations"][data-sub="live"] .body-shell::before,html body[data-center="operations"][data-sub="live"] .body-shell::after,html body[data-center="operations"][data-sub="live"] #app::before,html body[data-center="operations"][data-sub="live"] #app::after,html body[data-center="operations"][data-sub="live"] .v10-tool-card::before,html body[data-center="operations"][data-sub="live"] .v10-tool-card::after{content:none!important;display:none!important;border:0!important}
+/* Tool status = one outer element, internally Priority | Identity | Message | Details. */
+html body[data-center="operations"][data-sub="live"] #app .v10-intelligence{display:grid!important;grid-template-columns:320px 1px minmax(0,1fr)!important;border:1px solid #ff7d12!important;border-radius:14px!important;overflow:hidden!important;background:linear-gradient(90deg,#d80e43 0,#8d1234 18%,#351217 27%,#150d0b 44%,#06121b 100%)!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-priority strong{font-size:22px!important}html body[data-center="operations"][data-sub="live"] #app .v10-priority small{font-size:12px!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-tool-statusbar{display:grid!important;grid-template-columns:minmax(210px,.8fr) minmax(0,2.7fr) 150px!important;gap:0!important;padding:0!important;align-items:stretch!important}
+html body[data-center="operations"][data-sub="live"] #app .v1015-tool-identity{display:flex!important;flex-direction:column!important;justify-content:center!important;padding:8px 16px!important;border-right:1px solid rgba(255,190,110,.45)!important;min-width:0!important}
+html body[data-center="operations"][data-sub="live"] #app .v1015-tool-identity strong{font-size:22px!important;line-height:1.05!important;color:#fff!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+html body[data-center="operations"][data-sub="live"] #app .v1015-tool-identity small{font-size:13px!important;font-weight:850!important;color:#d9f4ff!important;margin-top:4px!important}
+html body[data-center="operations"][data-sub="live"] #app .v1015-message{display:grid!important;grid-template-columns:58px minmax(0,1fr)!important;align-items:center!important;gap:10px!important;padding:7px 12px!important;min-width:0!important}
+html body[data-center="operations"][data-sub="live"] #app .v1015-message strong{font-size:22px!important;line-height:1.12!important;color:#ffad2f!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important;display:block!important}
+html body[data-center="operations"][data-sub="live"] #app .v1008-view-details{align-self:center!important;margin:0 12px!important}
+/* Kill the legacy generic .hero pseudo-elements that were drawing the cyan lines. */
+html body #app .v10-status-card>strong.hero::before,html body #app .v10-status-card>strong.hero::after{content:none!important;display:none!important;border:0!important;background:none!important;box-shadow:none!important}
+html body #app .v10-status-card>strong.hero{border:0!important;border-top:0!important;border-bottom:0!important;outline:0!important;background:none!important;box-shadow:none!important}
+/* Normal zoom behavior: intrinsic dashboard height, bounded components; do NOT stretch bubbles to fill 100vh. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app{min-height:0!important;height:auto!important;display:block!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v9-live-main,html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-card{height:auto!important;min-height:0!important;display:block!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-card-grid{height:auto!important;align-items:stretch!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-column{height:auto!important;min-height:0!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-photo{height:clamp(230px,28vw,430px)!important;min-height:230px!important;max-height:430px!important;flex:none!important}
+/* Footer action pair: symmetrical and centered. */
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-admin{display:flex!important;align-items:center!important;justify-content:center!important;padding:0 10px!important;gap:0!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-admin>.footer-icon{display:none!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-global-actions{width:min(100%,460px)!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;margin:0 auto!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-global-actions button{width:100%!important;height:38px!important;margin:0!important;display:flex!important;align-items:center!important;justify-content:center!important}
+/* Presentation: reserve nav height and fit the complete card/summary inside the remaining viewport. */
+body.presentation-mode[data-sub="live"] #app .v10-tool-card{height:calc(100vh - 60px)!important;max-height:calc(100vh - 60px)!important;padding:3px!important;overflow:hidden!important}
+body.presentation-mode[data-sub="live"] #app .v10-card-grid{height:100%!important;max-height:calc(100vh - 126px)!important;overflow:hidden!important}
+body.presentation-mode[data-sub="live"] #app .v10-photo{min-height:110px!important;height:auto!important;max-height:28vh!important}
+body.presentation-mode[data-sub="live"] #app .v10-status-card .hero::before,body.presentation-mode[data-sub="live"] #app .v10-status-card .hero::after{content:none!important;display:none!important}
+body.presentation-mode[data-sub="summary"] #app{height:100vh!important;max-height:100vh!important;padding:4px 4px 60px!important;overflow:hidden!important}
+body.presentation-mode[data-sub="summary"] .quarter-summary-master{height:100%!important;max-height:100%!important;grid-template-rows:minmax(150px,28%) minmax(70px,10%) minmax(0,1fr) 54px!important;overflow:hidden!important;border:1px solid #08bfe8!important}
+body.presentation-mode[data-sub="summary"] .family-rows-scroll{height:100%!important;min-height:0!important;display:grid!important;grid-template-rows:repeat(var(--family-count),minmax(0,1fr))!important;overflow:hidden!important}
+body.presentation-mode[data-sub="summary"] .quarter-summary-switchbar{position:absolute!important;left:4px!important;right:4px!important;bottom:4px!important;height:52px!important}
