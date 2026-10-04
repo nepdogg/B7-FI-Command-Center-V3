@@ -1296,3 +1296,64 @@ body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-tool
 body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-card-grid{height:100%!important;max-height:none!important;min-height:0!important}
 body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-status-column{grid-template-rows:repeat(6,minmax(0,1fr))!important;gap:5px!important}
 body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-progress-column{grid-template-rows:repeat(9,minmax(0,1fr))!important;gap:4px!important}
+\n\n/* ================================================================
+   V10.3.4 MEASURED LIVE GEOMETRY LOCK
+   Final owner: explicit shared grid height + equal middle/right rows.
+   ================================================================ */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header{
+  grid-template-columns:minmax(0,34fr) minmax(0,32fr) minmax(0,34fr)!important;
+  min-height:76px!important;height:76px!important;max-height:76px!important;gap:8px!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header>section,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-kla-box{
+  min-height:76px!important;height:76px!important;max-height:76px!important;box-sizing:border-box!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center{align-items:stretch!important;padding:0!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-kla-box{width:100%!important;max-width:none!important;margin:0!important}
+
+/* Status/Priority owns a separate row above the columns. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-card{
+  display:grid!important;grid-template-rows:auto auto!important;row-gap:7px!important;min-height:0!important;height:auto!important;overflow:visible!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-intelligence{
+  position:relative!important;inset:auto!important;margin:0!important;z-index:3!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-card-grid{
+  position:relative!important;display:grid!important;align-items:stretch!important;margin:0!important;min-height:620px;z-index:1!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-card-grid>.v10-column{
+  height:auto!important;min-height:0!important;max-height:none!important;align-self:stretch!important;box-sizing:border-box!important
+}
+
+/* Six identical middle bubbles from the same shared top to the same shared bottom. */
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column{
+  display:grid!important;grid-template-rows:repeat(6,minmax(0,1fr))!important;grid-auto-rows:0!important;gap:7px!important;align-content:stretch!important
+}
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column>.v10-status-card,
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column>.v10-status-card:nth-child(-n+3),
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column>.v10-bottom-card{
+  min-height:0!important;height:auto!important;max-height:none!important;margin:0!important;box-sizing:border-box!important;overflow:hidden!important
+}
+
+/* Nine identical right bubbles; no unused area below Overall Tool Progress. */
+html body[data-center="operations"][data-sub="live"] #app .v10-progress-column{
+  display:grid!important;grid-template-rows:repeat(9,minmax(0,1fr))!important;grid-auto-rows:0!important;gap:7px!important;align-content:stretch!important
+}
+html body[data-center="operations"][data-sub="live"] #app .v10-progress-column>.v10-progress-row,
+html body[data-center="operations"][data-sub="live"] #app .v10-progress-column>.v10-overall-progress{
+  min-height:0!important;height:auto!important;max-height:none!important;margin:0!important;align-self:stretch!important;box-sizing:border-box!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-progress-row{
+  grid-template-rows:auto minmax(22px,34px) auto!important;padding:8px 12px!important;row-gap:5px!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-overall-progress{
+  grid-template-rows:auto minmax(22px,34px) auto!important;padding:8px 12px!important;gap:5px!important
+}
+
+/* Presentation stays viewport-fit but follows the same equal 6/9 contract. */
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-tool-card{grid-template-rows:auto minmax(0,1fr)!important;row-gap:5px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-card-grid{height:100%!important;max-height:none!important;min-height:0!important;align-items:stretch!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-card-grid>.v10-column{height:auto!important;align-self:stretch!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-status-column{grid-template-rows:repeat(6,minmax(0,1fr))!important;gap:5px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-progress-column{grid-template-rows:repeat(9,minmax(0,1fr))!important;gap:4px!important}

@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='10.3.3', BUILD='20261004-V10.3.3-GEOMETRY-QUARTER-NAV-LOCK';
+const VERSION='10.3.4', BUILD='20261004-V10.3.4-MEASURED-LIVE-GEOMETRY-LOCK';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -642,7 +642,7 @@ function fitHeaderGeometry(){
   fitSingleLineText(document.querySelector('#stickyShell .prototype-header-left'),10,27);
   fitSingleLineText(document.querySelector('#stickyShell .prototype-header-right'),10,27);
 }
-function render(){syncQuarterLifecycle();allRules();ensureQuarterArchives();shell();let titleMode=document.body.classList.contains('screenshot-mode')||document.body.classList.contains('presentation-mode');let summaryWallboard=document.body.classList.contains('presentation-mode')&&route.center==='operations'&&route.sub==='summary';let title=(titleMode&&!summaryWallboard)?`<div id="screenshotReportTitle" class="screenshot-report-title">${esc(screenshotReportTitle())}</div>`:'';document.querySelector('#app').innerHTML=title+(VIEWS[route.center]||VIEWS.operations)();bindInputs();bindCoreInteractions();persistRoute();requestAnimationFrame(()=>{syncStickyShellHeight();fitHeaderGeometry();balancePageNavigation();fitQuarterSummaryMasters()});if(document.body.classList.contains('presentation-mode'))requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}
+function render(){syncQuarterLifecycle();allRules();ensureQuarterArchives();shell();let titleMode=document.body.classList.contains('screenshot-mode')||document.body.classList.contains('presentation-mode');let summaryWallboard=document.body.classList.contains('presentation-mode')&&route.center==='operations'&&route.sub==='summary';let title=(titleMode&&!summaryWallboard)?`<div id="screenshotReportTitle" class="screenshot-report-title">${esc(screenshotReportTitle())}</div>`:'';document.querySelector('#app').innerHTML=title+(VIEWS[route.center]||VIEWS.operations)();bindInputs();bindCoreInteractions();persistRoute();requestAnimationFrame(()=>{syncStickyShellHeight();fitHeaderGeometry();balancePageNavigation();fitQuarterSummaryMasters();syncLiveCardGeometry()});if(document.body.classList.contains('presentation-mode'))requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}
 function go(center,sub){if(dirty&&!confirm('Discard unsaved changes?'))return;mode='view';toolEditorMode='view';draft=null;meetingDraft=null;dirty=false;selected=null;returnRoute=null;let first=(SUB[center]&&SUB[center][0])?SUB[center][0][0]:'home';route={center,sub:sub||first};let app=document.querySelector('#app');if(app)app.innerHTML='';render()}
 function fmtDate(x){if(!x)return'—';let p=String(x).slice(0,10).split('-');return p.length===3?`${p[1]}/${p[2]}/${p[0]}`:x}
 function fmtDayDate(x){if(!x)return'—';let p=String(x).slice(0,10).split('-');if(p.length!==3)return x;let y=Number(p[0]),m=Number(p[1]),d=Number(p[2]),day=['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'][new Date(y,m-1,d).getDay()];return `${day} · ${p[1]}/${p[2]}/${p[0]}`}
@@ -2166,7 +2166,7 @@ document.addEventListener('change',e=>{let sel=e.target.closest('.priority-rank-
 document.addEventListener('change',e=>{let input=e.target.closest('[data-tool-photo-upload]');if(!input||!input.files||!input.files[0])return;let f=input.dataset.toolPhotoUpload,file=input.files[0];if(file.size>2500000){alert('Please use an image smaller than 2.5 MB.');input.value='';return}let reader=new FileReader();reader.onload=()=>{state.config.toolPhotos=state.config.toolPhotos||{};state.config.toolPhotos[f]=String(reader.result||'');saveState('TOOL PHOTO UPDATED — '+String(f).toUpperCase());render()};reader.readAsDataURL(file)});
 document.addEventListener('click',e=>{let b=e.target.closest('[data-tool-photo-reset]');if(!b)return;e.preventDefault();let f=b.dataset.toolPhotoReset;if(state.config?.toolPhotos)delete state.config.toolPhotos[f];saveState('DEFAULT TOOL PHOTO RESTORED — '+String(f).toUpperCase());render()});
 document.addEventListener('fullscreenchange',()=>{if(presentationActive&&!document.fullscreenElement){presentationActive=false;clearPresentationLayout();if(presentationRestore){livePaused=!!presentationRestore.livePaused;snapshotPaused=!!presentationRestore.snapshotPaused;presentationRestore=null}document.querySelector('#exitScreenshot')?.classList.add('hidden');render();requestAnimationFrame(()=>requestAnimationFrame(()=>{syncStickyShellHeight();window.dispatchEvent(new Event('resize'));window.scrollTo(0,0)}))}else if(presentationActive&&document.fullscreenElement){requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}});document.querySelector('#adminButton').onclick=()=>go('admin','data');document.querySelector('#footerPresentationButton').onclick=()=>{if(route.center!=='operations'||!['live','summary'].includes(route.sub)){route={center:'operations',sub:'live'};mode='view';render()}presentation()};document.querySelector('#modalClose').onclick=closeModal;document.querySelector('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!document.querySelector('#modal').classList.contains('hidden'))closeModal()});document.querySelector('#exitScreenshot').onclick=exitDisplayMode;document.addEventListener('click',e=>{if(e.target.id==='importJson'){document.querySelector('#importFile')?.click()}if(e.target.id==='importSharedJson'){document.querySelector('#importSharedFile')?.click()}});window.addEventListener('storage',e=>{if(e.key!==KEY||!e.newValue)return;try{let currentId=carouselTools()[liveIndex]?.id||'';state=normalize(JSON.parse(e.newValue));allRules();let list=carouselTools(),ni=list.findIndex(t=>t.id===currentId);if(ni>=0)liveIndex=ni;else if(liveIndex>=list.length)liveIndex=Math.max(0,list.length-1);render();if(presentationActive)requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}catch(err){console.warn('Cross-window Command Center refresh failed',err)}});
-window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});window.addEventListener('resize',()=>{syncStickyShellHeight();fitQuarterSummaryMasters();if(presentationActive)fitPresentation();});setInterval(()=>{if(!livePaused&&mode==='view'&&route.center==='operations'&&route.sub==='live'&&carouselTools().length>1){liveIndex=(liveIndex+1)%carouselTools().length;render()}},8000);setInterval(()=>{if(!snapshotPaused&&mode==='view'&&route.center==='operations'&&route.sub==='live'){snapshotIndex=(snapshotIndex+1)%6;render()}},12000);setInterval(()=>{if(mode!=='view'||document.body.classList.contains('presentation-mode')||document.body.classList.contains('screenshot-mode'))return;statusRotationIndex=(statusRotationIndex+3)%Math.max(1,statusMessagePool().length);statusBars();},8000);render();
+window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});window.addEventListener('resize',()=>{syncStickyShellHeight();fitQuarterSummaryMasters();syncLiveCardGeometry();if(presentationActive)fitPresentation();});setInterval(()=>{if(!livePaused&&mode==='view'&&route.center==='operations'&&route.sub==='live'&&carouselTools().length>1){liveIndex=(liveIndex+1)%carouselTools().length;render()}},8000);setInterval(()=>{if(!snapshotPaused&&mode==='view'&&route.center==='operations'&&route.sub==='live'){snapshotIndex=(snapshotIndex+1)%6;render()}},12000);setInterval(()=>{if(mode!=='view'||document.body.classList.contains('presentation-mode')||document.body.classList.contains('screenshot-mode'))return;statusRotationIndex=(statusRotationIndex+3)%Math.max(1,statusMessagePool().length);statusBars();},8000);render();
 
 window.B7ApplySharedScenario=function(shared){if(!shared||!Array.isArray(shared.tools))return;state=normalize(shared);state.environment='SCENARIO TEST';try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}render()};
 })();
@@ -2195,6 +2195,31 @@ document.addEventListener('click',function modernHybridControls(e){
   let goBtn=e.target.closest('[data-go-center]');if(goBtn){go(goBtn.dataset.goCenter);return}
   let filt=e.target.closest('[data-modern-filter]');if(filt){let kind=filt.dataset.modernFilter,a=carouselTools(),i=a.findIndex(t=>kind==='shipped'?t.toolStatus==='Shipped':kind==='packing'?t.toolStatus==='Packing':kind==='fi'?['FI','Engineering','Powered Down'].includes(t.toolStatus):!t.fiHandoffDate&&!['Shipped','Packing'].includes(t.toolStatus));if(i>=0){liveIndex=i;render()}return}
 },true);
+
+
+/* V10.3.4 measured Live Operations geometry.
+   Normal Live Operations has an auto-height page, so percentage heights on the
+   middle/right columns cannot reliably consume the left column's intrinsic
+   height. Measure the real left-column content plus the remaining viewport and
+   give the three-column grid one explicit shared height. Presentation Mode has
+   its own fixed viewport contract and is intentionally excluded. */
+function syncLiveCardGeometry(){
+  if(document.body.classList.contains('presentation-mode')||document.body.classList.contains('screenshot-mode'))return;
+  if(route.center!=='operations'||route.sub!=='live'||mode!=='view')return;
+  const grid=document.querySelector('#app .v10-card-grid');
+  const left=grid?.querySelector('.v10-identity-column');
+  if(!grid||!left)return;
+  grid.style.removeProperty('height');
+  grid.style.removeProperty('min-height');
+  const footer=document.querySelector('.app-footer');
+  const top=grid.getBoundingClientRect().top;
+  const footerH=footer?footer.getBoundingClientRect().height:0;
+  const viewportAvailable=Math.max(0,window.innerHeight-top-footerH-8);
+  const intrinsic=Math.max(left.scrollHeight, left.getBoundingClientRect().height);
+  const target=Math.ceil(Math.max(620,intrinsic,viewportAvailable));
+  grid.style.setProperty('height',target+'px','important');
+  grid.style.setProperty('min-height',target+'px','important');
+}
 
 /* V10.1.2 shell geometry contract: the whole upper shell is one fixed unit.
    ResizeObserver keeps content offset exact at every browser zoom/reflow. */
