@@ -1357,3 +1357,26 @@ body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-card
 body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-card-grid>.v10-column{height:auto!important;align-self:stretch!important}
 body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-status-column{grid-template-rows:repeat(6,minmax(0,1fr))!important;gap:5px!important}
 body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-progress-column{grid-template-rows:repeat(9,minmax(0,1fr))!important;gap:4px!important}
+
+/* ================================================================
+   V10.3.5 EXPLICIT PIXEL GEOMETRY LOCK
+   JS owns exact shared column/row heights. CSS only removes constraints.
+   ================================================================ */
+html body:not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-card-grid{
+  align-items:stretch!important;grid-auto-rows:1fr!important
+}
+html body:not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-card-grid>.v10-column{
+  min-height:0!important;overflow:hidden!important;box-sizing:border-box!important
+}
+html body:not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-status-column>.v10-status-card,
+html body:not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-progress-column>.v10-progress-row,
+html body:not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-progress-column>.v10-overall-progress{
+  min-height:0!important;box-sizing:border-box!important;margin:0!important;overflow:hidden!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header{
+  grid-template-columns:minmax(0,35fr) minmax(0,30fr) minmax(0,35fr)!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-kla-box{
+  height:76px!important;min-height:76px!important;max-height:76px!important;align-self:stretch!important
+}

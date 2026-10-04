@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='10.3.4', BUILD='20261004-V10.3.4-MEASURED-LIVE-GEOMETRY-LOCK';
+const VERSION='10.3.5', BUILD='20261004-V10.3.5-EXPLICIT-PIXEL-GEOMETRY-LOCK';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -2204,21 +2204,80 @@ document.addEventListener('click',function modernHybridControls(e){
    give the three-column grid one explicit shared height. Presentation Mode has
    its own fixed viewport contract and is intentionally excluded. */
 function syncLiveCardGeometry(){
-  if(document.body.classList.contains('presentation-mode')||document.body.classList.contains('screenshot-mode'))return;
   if(route.center!=='operations'||route.sub!=='live'||mode!=='view')return;
-  const grid=document.querySelector('#app .v10-card-grid');
+  const card=document.querySelector('#app .v10-tool-card');
+  const grid=card?.querySelector('.v10-card-grid');
   const left=grid?.querySelector('.v10-identity-column');
-  if(!grid||!left)return;
-  grid.style.removeProperty('height');
-  grid.style.removeProperty('min-height');
-  const footer=document.querySelector('.app-footer');
-  const top=grid.getBoundingClientRect().top;
-  const footerH=footer?footer.getBoundingClientRect().height:0;
-  const viewportAvailable=Math.max(0,window.innerHeight-top-footerH-8);
-  const intrinsic=Math.max(left.scrollHeight, left.getBoundingClientRect().height);
-  const target=Math.ceil(Math.max(620,intrinsic,viewportAvailable));
+  const middle=grid?.querySelector('.v10-status-column');
+  const right=grid?.querySelector('.v10-progress-column');
+  if(!card||!grid||!left||!middle||!right)return;
+
+  const presentation=document.body.classList.contains('presentation-mode');
+  const screenshot=document.body.classList.contains('screenshot-mode');
+  if(screenshot)return;
+
+  // Remove prior inline geometry before measuring.  V10.3.5 intentionally
+  // assigns explicit pixel geometry after measurement so legacy CSS cannot
+  // leave the middle/right columns shorter than the identity column.
+  for(const el of [grid,left,middle,right]){
+    el.style.removeProperty('height');
+    el.style.removeProperty('min-height');
+    el.style.removeProperty('max-height');
+  }
+
+  let target;
+  if(presentation){
+    const nav=document.querySelector('.presentation-tool-nav');
+    const intel=card.querySelector('.v10-intelligence');
+    const cardRect=card.getBoundingClientRect();
+    const navH=nav?nav.getBoundingClientRect().height:56;
+    const intelH=intel?intel.getBoundingClientRect().height:72;
+    target=Math.floor(window.innerHeight-navH-intelH-18);
+    target=Math.max(420,target);
+  }else{
+    // Natural left content is the authoritative minimum because it contains
+    // the photo, identity fields, all badges, wafers and update control.
+    const kids=[...left.children];
+    const naturalBottom=kids.reduce((m,el)=>Math.max(m,el.offsetTop+el.offsetHeight),0);
+    const natural=Math.max(left.scrollHeight,naturalBottom);
+    const footer=document.querySelector('.app-footer');
+    const top=grid.getBoundingClientRect().top;
+    const footerH=footer?footer.getBoundingClientRect().height:0;
+    const viewportAvailable=Math.max(0,window.innerHeight-top-footerH-8);
+    target=Math.ceil(Math.max(620,natural,viewportAvailable));
+  }
+
+  // One literal shared height for the three columns.
   grid.style.setProperty('height',target+'px','important');
   grid.style.setProperty('min-height',target+'px','important');
+  grid.style.setProperty('max-height',target+'px','important');
+  for(const el of [left,middle,right]){
+    el.style.setProperty('height',target+'px','important');
+    el.style.setProperty('min-height',target+'px','important');
+    el.style.setProperty('max-height',target+'px','important');
+    el.style.setProperty('align-self','stretch','important');
+  }
+
+  // Explicit row pixels eliminate the accumulated min-height/flex rules from
+  // older builds.  Six middle rows and nine right rows end on the same line.
+  const midGap=presentation?5:7, rightGap=presentation?4:7;
+  const mh=(target-midGap*5)/6, rh=(target-rightGap*8)/9;
+  middle.style.setProperty('display','grid','important');
+  middle.style.setProperty('grid-template-rows',`repeat(6, ${mh}px)`,'important');
+  middle.style.setProperty('gap',midGap+'px','important');
+  right.style.setProperty('display','grid','important');
+  right.style.setProperty('grid-template-rows',`repeat(9, ${rh}px)`,'important');
+  right.style.setProperty('gap',rightGap+'px','important');
+  [...middle.children].slice(0,6).forEach(el=>{
+    el.style.setProperty('height',mh+'px','important');
+    el.style.setProperty('min-height','0','important');
+    el.style.setProperty('max-height',mh+'px','important');
+  });
+  [...right.children].slice(0,9).forEach(el=>{
+    el.style.setProperty('height',rh+'px','important');
+    el.style.setProperty('min-height','0','important');
+    el.style.setProperty('max-height',rh+'px','important');
+  });
 }
 
 /* V10.1.2 shell geometry contract: the whole upper shell is one fixed unit.

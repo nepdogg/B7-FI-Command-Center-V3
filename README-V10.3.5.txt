@@ -1,4 +1,4 @@
-B7 FI COMMAND CENTER V10.3.4 — MEASURED LIVE GEOMETRY LOCK
+B7 FI COMMAND CENTER V10.3.5 — MEASURED LIVE GEOMETRY LOCK
 
 SOURCE
 Built directly from the tested V10.3.3 package.
@@ -14,7 +14,7 @@ CHANGES
 - One-line page navigation and all V10.3.3 data/workflow behavior are preserved.
 
 TEST
-1. Confirm browser title and upper-left header show V10.3.4.
+1. Confirm browser title and upper-left header show V10.3.5.
 2. Live Operations at 100%: verify all three columns end on the same bottom line.
 3. Verify the middle has six equal sections and the right has nine equal sections with no empty area below Overall Tool Progress.
 4. Verify the Status/Priority bar is fully above the columns.
@@ -22,3 +22,12 @@ TEST
 6. Repeat at 80% and 67% zoom.
 7. Enter Presentation Mode and verify the complete card fits between the top status bar and bottom presentation navigation with six equal middle and nine equal right sections.
 8. Verify CY26Q3 SUMMARY and CY26Q4 SUMMARY navigation remains available as applicable.
+
+
+V10.3.5 GEOMETRY CORRECTION
+- Replaced inherited/percentage Live Operations sizing with explicit measured pixel geometry.
+- Left, middle and right columns receive one identical height.
+- Middle column receives exactly six equal pixel rows.
+- Right column receives exactly nine equal pixel rows.
+- Presentation Mode uses the same explicit 6/9 contract within its viewport.
+- Header outside sections widened to 35/30/35 and center locked to full header height.
