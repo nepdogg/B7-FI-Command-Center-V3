@@ -801,7 +801,7 @@ body.presentation-mode #app .v10-progress-row{grid-template-rows:auto 14px auto!
 body.presentation-mode #app .v10-progress-track{height:14px!important;min-height:14px!important}
 
 /* =====================================================================
-   V10.2.1 STABILIZATION LOCK
+   V10.2.2 STABILIZATION LOCK
    These are the single final runtime contracts for the repeated defects
    observed on the production FI monitor. Keep this block last.
    ===================================================================== */
@@ -890,3 +890,110 @@ html body:not(.presentation-mode):not(.screenshot-mode) .body-shell,
 html body:not(.presentation-mode):not(.screenshot-mode) #app,
 html body:not(.presentation-mode):not(.screenshot-mode) #app>.v92-live-page,
 html body:not(.presentation-mode):not(.screenshot-mode) #app>.v1014-tools-page{border:0!important;outline:0!important;box-shadow:none!important}
+
+/* ================================================================
+   V10.2.2 PRESENTATION PARITY + VERTICAL BALANCE LOCK
+   2026-10-03
+   This block is intentionally last and authoritative for the modern
+   V10 universal tool card. It does not change data/Brain logic.
+   ================================================================ */
+
+/* Keep a real visual gutter between intelligence/status bar and columns. */
+html body[data-center="operations"][data-sub="live"] #app .v10-intelligence{
+  margin-bottom:10px!important;
+}
+
+/* Live status message: keep the same complete message treatment visible in
+   normal Live Operations that is already visible in Presentation Mode. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-statusbar{
+  grid-template-columns:minmax(0,1fr) 142px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-statusbar>.v1015-message{
+  display:grid!important;grid-template-columns:56px minmax(0,1fr)!important;
+  width:100%!important;min-width:0!important;height:100%!important;
+  align-items:center!important;gap:12px!important;padding:7px 14px!important;
+  visibility:visible!important;opacity:1!important;overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-statusbar>.v1015-message>strong{
+  display:block!important;position:relative!important;z-index:5!important;
+  visibility:visible!important;opacity:1!important;color:#ffad2f!important;
+  font-size:clamp(18px,1.35vw,27px)!important;font-weight:1000!important;
+  line-height:1.08!important;white-space:normal!important;overflow:visible!important;
+  max-height:2.25em!important;text-overflow:clip!important;
+}
+
+/* Middle column balance: status summaries are compact hero cards (40% total),
+   information-heavy lower cards receive 60% of the column. */
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column{
+  display:grid!important;
+  grid-template-rows:repeat(3,minmax(0,.67fr)) repeat(3,minmax(0,1fr))!important;
+  gap:8px!important;height:100%!important;min-height:0!important;
+}
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column>.v10-status-card:nth-child(-n+3){
+  min-height:0!important;height:auto!important;padding:12px 18px!important;
+  display:flex!important;flex-direction:column!important;justify-content:center!important;gap:6px!important;
+}
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column>.v10-status-card:nth-child(-n+3) .label{
+  font-size:clamp(12px,.78vw,17px)!important;line-height:1.05!important;
+}
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column>.v10-status-card:nth-child(-n+3) .hero{
+  font-size:clamp(30px,2.25vw,52px)!important;line-height:.98!important;
+  font-weight:1000!important;letter-spacing:-.45px!important;white-space:normal!important;
+  overflow-wrap:anywhere!important;
+}
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column>.v10-status-card:nth-child(-n+3) .sub{
+  font-size:clamp(13px,.82vw,18px)!important;line-height:1.12!important;
+}
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column>.v10-bottom-card{
+  min-height:0!important;height:auto!important;padding:12px 16px!important;overflow:hidden!important;
+}
+
+/* Presentation: preserve its correct Tool Status Bar, but inherit the stronger
+   Live typography and thicker progress visualization. */
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-progress-row{
+  grid-template-rows:auto 22px auto!important;row-gap:5px!important;
+  padding:6px 9px!important;align-content:center!important;
+}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-progress-track{
+  height:22px!important;min-height:22px!important;border-radius:12px!important;
+}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-progress-track i{
+  height:100%!important;min-height:100%!important;border-radius:11px!important;
+}
+
+/* Presentation left column: photo gives height back to badges. */
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-identity-column{
+  min-height:0!important;overflow:hidden!important;
+}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-photo{
+  flex:0 0 27%!important;height:27%!important;min-height:120px!important;max-height:245px!important;
+}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-identity-stack{
+  gap:4px!important;
+}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-id-badge{
+  min-height:30px!important;height:30px!important;padding:4px 9px!important;
+}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-reduced,
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-carry,
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-update{
+  min-height:30px!important;height:30px!important;
+}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-badges{
+  gap:4px!important;
+}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-badge{
+  min-height:28px!important;height:28px!important;font-size:8px!important;padding:3px 5px!important;
+}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-wafer-badge{
+  min-height:30px!important;height:30px!important;
+}
+
+/* Presentation needs to fit the complete card inside its intentional frame. */
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .presentation-tool-only>.v10-tool-card{
+  height:calc(100vh - 62px)!important;max-height:calc(100vh - 62px)!important;
+}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-card-grid{
+  height:calc(100% - 92px)!important;max-height:calc(100% - 92px)!important;min-height:0!important;
+  gap:7px!important;
+}
