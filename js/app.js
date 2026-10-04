@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='10.1.6', BUILD='20261003-V10.1.5-RENDERED-GEOMETRY-CORRECTION';
+const VERSION='10.1.7', BUILD='20261003-V10.1.7-AUTHORITATIVE-GEOMETRY-LOCK';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -617,7 +617,19 @@ function renderActions(){
 }
 function syncStickyShellHeight(){if(document.body.classList.contains('screenshot-mode')||document.body.classList.contains('presentation-mode')){document.documentElement.style.setProperty('--sticky-shell-height','0px');return}let sh=document.querySelector('#stickyShell');if(sh)document.documentElement.style.setProperty('--sticky-shell-height',Math.ceil(sh.getBoundingClientRect().height)+'px')}
 function shell(){normalizeConsolidatedRoute();setTheme();document.body.dataset.build=BUILD;nav();statusBars();renderActions()}
-function render(){syncQuarterLifecycle();allRules();ensureQuarterArchives();shell();let titleMode=document.body.classList.contains('screenshot-mode')||document.body.classList.contains('presentation-mode');let summaryWallboard=document.body.classList.contains('presentation-mode')&&route.center==='operations'&&route.sub==='summary';let title=(titleMode&&!summaryWallboard)?`<div id="screenshotReportTitle" class="screenshot-report-title">${esc(screenshotReportTitle())}</div>`:'';document.querySelector('#app').innerHTML=title+(VIEWS[route.center]||VIEWS.operations)();bindInputs();bindCoreInteractions();persistRoute();requestAnimationFrame(()=>{syncStickyShellHeight();fitQuarterSummaryMasters()});if(document.body.classList.contains('presentation-mode'))requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}
+function balancePageNavigation(){
+  if(document.body.classList.contains('presentation-mode')||document.body.classList.contains('screenshot-mode'))return;
+  const bar=document.querySelector('#stickyShell .pagebar'); if(!bar)return;
+  const controls=[...bar.querySelectorAll('button,.tool-type-menu')].filter(el=>{const r=el.getBoundingClientRect();return r.width||r.height});
+  controls.forEach(el=>{
+    const txt=(el.innerText||el.textContent||'').replace(/\s+/g,' ').trim();
+    const mini=el.classList.contains('nav69-mini')||txt==='◀'||txt==='▶';
+    if(mini){el.style.flex='0 0 42px';return;}
+    const weight=Math.max(7,Math.min(28,txt.length+4));
+    el.style.flex=weight+' 1 0px'; el.style.minWidth='0';
+  });
+}
+function render(){syncQuarterLifecycle();allRules();ensureQuarterArchives();shell();let titleMode=document.body.classList.contains('screenshot-mode')||document.body.classList.contains('presentation-mode');let summaryWallboard=document.body.classList.contains('presentation-mode')&&route.center==='operations'&&route.sub==='summary';let title=(titleMode&&!summaryWallboard)?`<div id="screenshotReportTitle" class="screenshot-report-title">${esc(screenshotReportTitle())}</div>`:'';document.querySelector('#app').innerHTML=title+(VIEWS[route.center]||VIEWS.operations)();bindInputs();bindCoreInteractions();persistRoute();requestAnimationFrame(()=>{syncStickyShellHeight();balancePageNavigation();fitQuarterSummaryMasters()});if(document.body.classList.contains('presentation-mode'))requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}
 function go(center,sub){if(dirty&&!confirm('Discard unsaved changes?'))return;mode='view';toolEditorMode='view';draft=null;meetingDraft=null;dirty=false;selected=null;returnRoute=null;let first=(SUB[center]&&SUB[center][0])?SUB[center][0][0]:'home';route={center,sub:sub||first};let app=document.querySelector('#app');if(app)app.innerHTML='';render()}
 function fmtDate(x){if(!x)return'—';let p=String(x).slice(0,10).split('-');return p.length===3?`${p[1]}/${p[2]}/${p[0]}`:x}
 function fmtDayDate(x){if(!x)return'—';let p=String(x).slice(0,10).split('-');if(p.length!==3)return x;let y=Number(p[0]),m=Number(p[1]),d=Number(p[2]),day=['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'][new Date(y,m-1,d).getDay()];return `${day} · ${p[1]}/${p[2]}/${p[0]}`}
