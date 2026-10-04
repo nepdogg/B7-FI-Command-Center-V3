@@ -1238,3 +1238,61 @@ body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-inte
 body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-card-grid{height:100%!important;max-height:none!important}
 body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-status-column{grid-template-rows:repeat(6,minmax(0,1fr))!important;gap:5px!important}
 body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-progress-column{grid-template-rows:repeat(9,minmax(0,1fr))!important;gap:4px!important}
+
+/* ================================================================
+   V10.3.3 FINAL LIVE CARD GEOMETRY / HEADER / QUARTER NAV LOCK
+   This block intentionally comes last so older geometry experiments
+   cannot override the current tested contract.
+   ================================================================ */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header{
+  grid-template-columns:minmax(0,32fr) minmax(0,36fr) minmax(0,32fr)!important;
+  min-height:72px!important;height:72px!important;max-height:72px!important;gap:8px!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header>section,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-kla-box{
+  min-height:72px!important;height:72px!important;max-height:72px!important;box-sizing:border-box!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-left,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-right{width:100%!important;max-width:none!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center{display:flex!important;align-items:stretch!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-kla-box{width:100%!important;max-width:none!important}
+
+/* Keep every quarter-summary button on the one-line page navigation bar. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .subnav{min-width:0!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .subnav{display:flex!important;flex-wrap:nowrap!important;gap:5px!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .subnav>button{min-width:0!important;flex:1 1 auto!important;padding-left:9px!important;padding-right:9px!important;white-space:nowrap!important}
+
+/* Status/intelligence bar is a dedicated row and never overlays the columns. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-card{
+  display:grid!important;grid-template-rows:auto minmax(0,1fr)!important;row-gap:10px!important;overflow:visible!important
+}
+html body[data-center="operations"][data-sub="live"] #app .v10-intelligence{position:relative!important;inset:auto!important;margin:0!important;z-index:2!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-card-grid{position:relative!important;margin:0!important;height:100%!important;min-height:0!important;align-items:stretch!important;z-index:1!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-card-grid>.v10-column{height:100%!important;min-height:0!important;align-self:stretch!important;box-sizing:border-box!important}
+
+/* Six middle sections = six identical shares of the complete middle-column height. */
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column{
+  display:grid!important;grid-template-rows:repeat(6,minmax(0,1fr))!important;grid-auto-rows:minmax(0,1fr)!important;gap:7px!important;height:100%!important;min-height:0!important
+}
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column>.v10-status-card,
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column>.v10-status-card:nth-child(-n+3),
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column>.v10-bottom-card{
+  min-height:0!important;height:100%!important;max-height:none!important;margin:0!important;padding:12px 16px!important;box-sizing:border-box!important;overflow:hidden!important
+}
+
+/* Nine right sections = nine identical shares; the ninth ends at the column bottom. */
+html body[data-center="operations"][data-sub="live"] #app .v10-progress-column{
+  display:grid!important;grid-template-rows:repeat(9,minmax(0,1fr))!important;grid-auto-rows:minmax(0,1fr)!important;gap:7px!important;height:100%!important;min-height:0!important;align-content:stretch!important
+}
+html body[data-center="operations"][data-sub="live"] #app .v10-progress-column>.v10-progress-row,
+html body[data-center="operations"][data-sub="live"] #app .v10-progress-column>.v10-overall-progress{
+  min-height:0!important;height:100%!important;max-height:none!important;margin:0!important;box-sizing:border-box!important;align-self:stretch!important
+}
+
+/* Presentation Mode uses exactly the same 6/9 split without clipping. */
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-tool-card{grid-template-rows:auto minmax(0,1fr)!important;row-gap:5px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-card-grid{height:100%!important;max-height:none!important;min-height:0!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-status-column{grid-template-rows:repeat(6,minmax(0,1fr))!important;gap:5px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-progress-column{grid-template-rows:repeat(9,minmax(0,1fr))!important;gap:4px!important}

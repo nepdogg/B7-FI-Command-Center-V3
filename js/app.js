@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='10.3.1', BUILD='20261003-V10.3.1-LIVE-CARD-VERTICAL-GEOMETRY-FIX';
+const VERSION='10.3.3', BUILD='20261004-V10.3.3-GEOMETRY-QUARTER-NAV-LOCK';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
