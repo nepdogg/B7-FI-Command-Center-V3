@@ -1241,7 +1241,7 @@ body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-prog
 body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-overall-track{min-height:14px!important;max-height:24px!important}
 
 /* =========================================================
-   V10.5.0 RUNTIME AUTHORITY — ACTUAL v9ToolCard / v10 DOM
+   V10.5.1 RUNTIME AUTHORITY — ACTUAL v9ToolCard / v10 DOM
    This block intentionally targets the renderer used by VIEWS.
    ========================================================= */
 :root{--v105-header-h:64px;--v105-gap:7px}
@@ -1327,3 +1327,64 @@ html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-prog
 html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-progress-column>.v10-overall-progress{height:100%!important;min-height:0!important;max-height:none!important;margin:0!important;padding:5px 8px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;overflow:hidden!important}
 html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-progress-track{height:15px!important;min-height:15px!important;max-height:15px!important;flex:0 0 15px!important}
 html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-progress-row small{white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+
+/* ========================================================================== */
+/* V10.5.1 — SINGLE OWNER LIVE CARD GEOMETRY                                  */
+/* This block intentionally wins the historical cascade. Normal Live Ops uses */
+/* intrinsic left-column height; Presentation uses the viewport.               */
+/* ========================================================================== */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-tool-card{
+  display:grid!important;grid-template-rows:auto auto!important;height:auto!important;min-height:0!important;overflow:visible!important;gap:6px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-card-grid{
+  display:grid!important;grid-template-columns:minmax(0,29%) minmax(0,38%) minmax(0,33%)!important;
+  grid-template-rows:auto!important;align-items:stretch!important;height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;gap:6px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-card-grid>.v10-column{
+  height:auto!important;min-height:0!important;max-height:none!important;align-self:stretch!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-identity-column{
+  display:flex!important;flex-direction:column!important;gap:5px!important;height:auto!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-photo{height:360px!important;min-height:360px!important;flex:0 0 360px!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-photo img{width:100%!important;height:100%!important;object-fit:contain!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-badges{
+  display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-rows:34px!important;height:auto!important;min-height:0!important;align-content:start!important;gap:4px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-update{min-height:38px!important;flex:0 0 38px!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-status-column{
+  display:grid!important;grid-template-rows:repeat(6,minmax(0,1fr))!important;gap:6px!important;height:auto!important;align-self:stretch!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-status-column>.v10-status-card{
+  height:auto!important;min-height:0!important;max-height:none!important;margin:0!important;padding:12px 16px!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-progress-column{
+  display:grid!important;grid-template-rows:repeat(9,minmax(0,1fr))!important;gap:6px!important;height:auto!important;align-self:stretch!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-progress-column>.v10-progress-row,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-progress-column>.v10-overall-progress{
+  height:auto!important;min-height:0!important;max-height:none!important;margin:0!important;padding:8px 10px!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+/* Presentation: dense left content, no artificial blank rows between badges. */
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app{height:100vh!important;padding:0 5px 54px!important;overflow:hidden!important;box-sizing:border-box!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only,
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-tool-card{height:100%!important;min-height:0!important;max-height:100%!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-tool-card{display:grid!important;grid-template-rows:64px minmax(0,1fr)!important;gap:5px!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-card-grid{height:100%!important;min-height:0!important;display:grid!important;grid-template-columns:minmax(0,29%) minmax(0,38%) minmax(0,33%)!important;gap:5px!important;align-items:stretch!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-identity-column{display:flex!important;flex-direction:column!important;gap:3px!important;height:100%!important;min-height:0!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-photo{height:175px!important;min-height:130px!important;flex:0 1 175px!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-photo img{width:100%!important;height:100%!important;object-fit:contain!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-identity-stack{flex:0 0 auto!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-badges{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-rows:minmax(22px,1fr)!important;gap:3px!important;flex:1 1 auto!important;height:auto!important;min-height:0!important;align-content:stretch!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-badge{min-height:0!important;height:auto!important;margin:0!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-update{flex:0 0 30px!important;min-height:30px!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-status-column{display:grid!important;grid-template-rows:repeat(6,minmax(0,1fr))!important;gap:4px!important;height:100%!important;min-height:0!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-progress-column{display:grid!important;grid-template-rows:repeat(9,minmax(0,1fr))!important;gap:4px!important;height:100%!important;min-height:0!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-status-column>.v10-status-card,
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-progress-column>.v10-progress-row,
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-progress-column>.v10-overall-progress{height:auto!important;min-height:0!important;max-height:none!important;margin:0!important;overflow:hidden!important}
+/* Keep page navigation on one line without overlap. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar{display:flex!important;flex-wrap:nowrap!important;overflow:hidden!important;gap:5px!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #subnav,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #pageActions{min-width:0!important;display:flex!important;flex-wrap:nowrap!important;gap:5px!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar button{min-width:0!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important}

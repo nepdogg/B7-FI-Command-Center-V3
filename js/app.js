@@ -2209,26 +2209,11 @@ function syncLiveCardGeometry(){
   const grid=document.querySelector('#app .v10-card-grid');
   const left=grid?.querySelector('.v10-identity-column');
   if(!grid||!left)return;
-
-  /* Measure only the intrinsic left-column content. The measuring class removes
-     the middle/right columns from layout, preventing circular height feedback. */
-  grid.style.removeProperty('height');
-  grid.style.removeProperty('min-height');
-  grid.classList.add('v1040-measuring');
-  left.style.removeProperty('height');
-  left.style.removeProperty('min-height');
-  const intrinsic=Math.ceil(Math.max(left.scrollHeight,left.getBoundingClientRect().height));
-  grid.classList.remove('v1040-measuring');
-
-  /* Left is the normal Live Operations reference height. All three columns get
-     the exact same pixel height; middle/right then divide it into 6/9 rows. */
-  const target=Math.max(620,intrinsic);
-  grid.style.setProperty('height',target+'px','important');
-  grid.style.setProperty('min-height',target+'px','important');
+  /* V10.5.1: no circular height measurement.  The grid row is intrinsically
+     sized by the left column's real content. Middle/right merely stretch to it. */
+  grid.style.removeProperty('height');grid.style.removeProperty('min-height');
   for(const col of grid.querySelectorAll(':scope > .v10-column')){
-    col.style.setProperty('height',target+'px','important');
-    col.style.setProperty('min-height','0','important');
-    col.style.setProperty('max-height',target+'px','important');
+    col.style.removeProperty('height');col.style.removeProperty('min-height');col.style.removeProperty('max-height');
   }
 }
 
