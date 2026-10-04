@@ -1113,3 +1113,65 @@ html body[data-center="operations"][data-sub="tools"] #app .fleet-family-head{di
 html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-global-actions{width:min(100%,460px)!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;margin:0 auto!important}
 html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #adminButton,
 html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerPresentationButton{width:100%!important;height:38px!important;min-height:38px!important;margin:0!important;padding:0 8px!important}
+
+/* ============================================================
+   V10.3.1 LIVE CARD VERTICAL GEOMETRY CORRECTION
+   Corrects the actual rendered card rather than adding a new metric.
+   ============================================================ */
+/* Left column: the photo owns all genuinely spare height; never leave a dead grid row below it. */
+html body[data-center="operations"][data-sub="live"] #app .v10-identity-column{
+  display:flex!important;flex-direction:column!important;gap:6px!important;height:100%!important;min-height:0!important
+}
+html body[data-center="operations"][data-sub="live"] #app .v10-photo{
+  flex:1 1 0!important;height:auto!important;min-height:180px!important;max-height:none!important
+}
+html body[data-center="operations"][data-sub="live"] #app .v10-photo img{width:96%!important;height:96%!important;object-fit:contain!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-identity-stack,
+html body[data-center="operations"][data-sub="live"] #app .v10-reduced,
+html body[data-center="operations"][data-sub="live"] #app .v10-carry,
+html body[data-center="operations"][data-sub="live"] #app .v10-badges,
+html body[data-center="operations"][data-sub="live"] #app .v10-update{flex:0 0 auto!important}
+
+/* Middle: top three deliberately shorter; lower three receive the recovered height. */
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column{
+  display:grid!important;grid-template-rows:repeat(3,minmax(0,.68fr)) repeat(3,minmax(0,1.32fr))!important;gap:7px!important;height:100%!important;min-height:0!important
+}
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column>.v10-status-card:nth-child(-n+3){
+  min-height:0!important;height:auto!important;justify-content:flex-start!important;align-content:start!important;padding:11px 16px!important;gap:3px!important
+}
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column>.v10-status-card:nth-child(-n+3) .hero{
+  font-size:clamp(32px,2.55vw,56px)!important;line-height:.94!important;margin:1px 0!important
+}
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column>.v10-bottom-card{
+  min-height:0!important;height:auto!important;padding:13px 16px!important
+}
+
+/* Right: exactly nine equally useful rows. Removing duplicate Shipment gives every row more height. */
+html body[data-center="operations"][data-sub="live"] #app .v10-progress-column{
+  display:grid!important;grid-template-rows:repeat(9,minmax(0,1fr))!important;gap:7px!important;height:100%!important;min-height:0!important
+}
+html body[data-center="operations"][data-sub="live"] #app .v10-progress-row{
+  min-height:0!important;height:auto!important;grid-template-rows:auto minmax(34px,.42fr) auto!important;row-gap:7px!important;padding:10px 12px!important;align-content:center!important
+}
+html body[data-center="operations"][data-sub="live"] #app .v10-progress-track{
+  height:100%!important;min-height:34px!important;max-height:46px!important;border-radius:22px!important
+}
+html body[data-center="operations"][data-sub="live"] #app .v10-progress-track i{height:100%!important;border-radius:21px!important}
+
+/* Overall Tool Progress is intentionally the same visual component as every other progress row. */
+html body[data-center="operations"][data-sub="live"] #app .v10-overall-progress{
+  min-height:0!important;height:auto!important;border:1px solid #0879a7!important;border-radius:11px!important;background:linear-gradient(180deg,#082638,#061b29)!important;padding:10px 12px!important;display:grid!important;grid-template-rows:auto minmax(34px,.42fr) auto!important;row-gap:7px!important;align-content:center!important
+}
+html body[data-center="operations"][data-sub="live"] #app .v10-overall-progress .v10-progress-head b{color:#fff!important;font-size:12px!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-overall-progress .v10-progress-head strong{font-size:17px!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-overall-track{height:100%!important;min-height:34px!important;max-height:46px!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-overall-progress>small{font-size:10px!important;color:#51cfff!important;font-weight:800!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-overall-breakdown{display:none!important}
+
+/* Presentation uses the same nine-row contract while preserving its enclosing frame. */
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-status-column{grid-template-rows:repeat(3,minmax(0,.68fr)) repeat(3,minmax(0,1.32fr))!important;gap:5px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-progress-column{grid-template-rows:repeat(9,minmax(0,1fr))!important;gap:4px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-progress-row,
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-overall-progress{grid-template-rows:auto minmax(18px,.4fr) auto!important;padding:5px 8px!important;row-gap:3px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-progress-track,
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-overall-track{height:100%!important;min-height:18px!important;max-height:28px!important}

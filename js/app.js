@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='10.3.0', BUILD='20261003-V10.3.0-BRAIN-OVERALL-RESPONSIVE-LOCK';
+const VERSION='10.3.1', BUILD='20261003-V10.3.1-LIVE-CARD-VERTICAL-GEOMETRY-FIX';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -1483,7 +1483,7 @@ function overallToolProgress(t,fiValue=null,leadValue=null,packingValue=null){
 }
 function v10OverallProgressCard(alias,t,fi,lead,packing){
   const o=overallToolProgress(t,fi,lead,packing),tone=o.complete?'green':o.pct>=85?'yellow':o.pct>=50?'cyan':'red';
-  return `<div class="v10-overall-progress"><div class="v10-progress-head"><b>${esc(alias)} OVERALL TOOL PROGRESS</b><strong>${o.pct}%</strong></div><div class="v10-progress-track v10-overall-track"><i class="${tone}" style="width:${o.pct}%"></i></div><div class="v10-overall-breakdown"><span>FI <b>${o.fi}%</b></span><span>LEAD / ADMIN <b>${o.lead}%</b></span><span>PACKING / SHIPPING <b>${o.packing}%</b></span></div><small>${esc(o.message)}</small></div>`;
+  return `<div class="v10-overall-progress v10-progress-row"><div class="v10-progress-head"><b>${esc(alias)} OVERALL TOOL PROGRESS</b><strong>${o.pct}%</strong></div><div class="v10-progress-track v10-overall-track"><i class="${tone}" style="width:${o.pct}%"></i></div><small>${esc(o.message)}</small></div>`;
 }
 function v10ToolIntelligence(t,count,p){
   let carry=isCarryoverTool(t),open=(t.ncs||[]).filter(n=>!['closed','complete','completed','resolved'].includes(String(n.state||n.status||'').toLowerCase())),perf=performance(t)[0],parts=[],tone='normal';
