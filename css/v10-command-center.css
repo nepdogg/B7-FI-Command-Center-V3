@@ -1239,3 +1239,91 @@ body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-prog
 body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-progress-column>.v10-overall-progress{padding:4px 7px!important;row-gap:2px!important;grid-template-rows:auto minmax(14px,1fr) auto!important}
 body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-progress-track,
 body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-overall-track{min-height:14px!important;max-height:24px!important}
+
+/* =========================================================
+   V10.5.0 RUNTIME AUTHORITY — ACTUAL v9ToolCard / v10 DOM
+   This block intentionally targets the renderer used by VIEWS.
+   ========================================================= */
+:root{--v105-header-h:64px;--v105-gap:7px}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header{
+  display:grid!important;grid-template-columns:minmax(0,35fr) minmax(0,30fr) minmax(0,35fr)!important;
+  height:var(--v105-header-h)!important;min-height:var(--v105-header-h)!important;max-height:var(--v105-header-h)!important;
+  gap:8px!important;align-items:stretch!important;overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header>section{
+  height:100%!important;min-height:100%!important;max-height:100%!important;align-self:stretch!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center{height:100%!important;min-height:100%!important;max-height:100%!important;padding:3px 7px!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-kla-box{height:100%!important;max-height:none!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .kla-connection-core{height:100%!important;max-height:none!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:5px!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .subnav{display:flex!important;flex-wrap:nowrap!important;min-width:0!important;overflow:visible!important;gap:4px!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .subnav>button{flex:1 1 0!important;min-width:0!important;padding:0 7px!important;font-size:clamp(8px,.65vw,11px)!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .page-actions{display:flex!important;flex-wrap:nowrap!important;gap:4px!important;min-width:0!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .page-actions button{min-width:0!important;padding:0 9px!important;font-size:clamp(8px,.65vw,11px)!important}
+
+/* Normal Live Operations: one authoritative three-column card. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app{
+  padding:6px!important;overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v92-live-page,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v9-live-main{
+  width:100%!important;height:auto!important;min-height:0!important;overflow:visible!important;margin:0!important;padding:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-tool-card{
+  width:100%!important;height:auto!important;min-height:760px!important;display:grid!important;
+  grid-template-rows:auto minmax(680px,1fr)!important;row-gap:var(--v105-gap)!important;overflow:visible!important;padding:0!important;margin:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-intelligence{
+  position:relative!important;z-index:2!important;width:100%!important;margin:0!important;min-height:72px!important;height:auto!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-card-grid{
+  display:grid!important;grid-template-columns:minmax(0,29%) minmax(0,38%) minmax(0,33%)!important;
+  gap:var(--v105-gap)!important;align-items:stretch!important;width:100%!important;height:100%!important;min-height:680px!important;overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-card-grid>.v10-column{
+  height:100%!important;min-height:0!important;max-height:none!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+/* Left fills the same height; badge matrix absorbs spare space instead of leaving a black void. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-identity-column{
+  display:grid!important;grid-template-rows:minmax(220px,2.2fr) auto auto auto minmax(280px,3fr) 40px!important;gap:5px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-photo{height:100%!important;min-height:0!important;margin:0!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-photo img{width:100%!important;height:100%!important;object-fit:contain!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-badges{height:100%!important;min-height:0!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-rows:minmax(0,1fr)!important;align-content:stretch!important}
+/* Middle: exactly six equal-height sections. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-status-column{
+  display:grid!important;grid-template-rows:repeat(6,minmax(0,1fr))!important;gap:5px!important;height:100%!important;min-height:0!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-status-column>.v10-status-card{
+  min-height:0!important;height:100%!important;max-height:none!important;margin:0!important;padding:12px 16px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-status-card .hero{font-size:clamp(25px,2.2vw,48px)!important;line-height:1!important}
+/* Right: exactly nine equal-height sections, including Overall Tool Progress. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-progress-column{
+  display:grid!important;grid-template-rows:repeat(9,minmax(0,1fr))!important;gap:5px!important;height:100%!important;min-height:0!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-progress-column>.v10-progress-row,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-progress-column>.v10-overall-progress{
+  min-height:0!important;height:100%!important;max-height:none!important;margin:0!important;padding:8px 10px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .v10-progress-track{height:18px!important;min-height:18px!important;max-height:18px!important;flex:0 0 18px!important}
+
+/* Presentation Mode: priority/status bar above card, then three columns consume every remaining pixel. */
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app{height:100vh!important;min-height:100vh!important;max-height:100vh!important;overflow:hidden!important;padding:0 5px 56px!important;box-sizing:border-box!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only{height:100%!important;min-height:0!important;max-height:100%!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-tool-card{height:100%!important;min-height:0!important;max-height:100%!important;display:grid!important;grid-template-rows:auto minmax(0,1fr)!important;gap:5px!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-intelligence{position:relative!important;z-index:2!important;min-height:64px!important;height:64px!important;max-height:64px!important;margin:0!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-card-grid{display:grid!important;grid-template-columns:minmax(0,29%) minmax(0,38%) minmax(0,33%)!important;gap:5px!important;height:100%!important;min-height:0!important;max-height:100%!important;align-items:stretch!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-card-grid>.v10-column{height:100%!important;min-height:0!important;max-height:100%!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-identity-column{display:grid!important;grid-template-rows:minmax(150px,2fr) auto auto auto minmax(0,3fr) 34px!important;gap:3px!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-photo{height:100%!important;min-height:0!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-photo img{height:100%!important;width:100%!important;object-fit:contain!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-badges{height:100%!important;min-height:0!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-rows:minmax(0,1fr)!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-status-column{display:grid!important;grid-template-rows:repeat(6,minmax(0,1fr))!important;gap:4px!important;height:100%!important;min-height:0!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-status-column>.v10-status-card{height:100%!important;min-height:0!important;max-height:none!important;margin:0!important;padding:7px 10px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-progress-column{display:grid!important;grid-template-rows:repeat(9,minmax(0,1fr))!important;gap:4px!important;height:100%!important;min-height:0!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-progress-column>.v10-progress-row,
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-progress-column>.v10-overall-progress{height:100%!important;min-height:0!important;max-height:none!important;margin:0!important;padding:5px 8px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-progress-track{height:15px!important;min-height:15px!important;max-height:15px!important;flex:0 0 15px!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .v10-progress-row small{white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
