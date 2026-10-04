@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='10.1.7', BUILD='20261003-V10.1.7-AUTHORITATIVE-GEOMETRY-LOCK';
+const VERSION='10.1.8', BUILD='20261003-V10.1.8-RESPONSIVE-NAV-SHELL-LOCK';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -617,19 +617,41 @@ function renderActions(){
 }
 function syncStickyShellHeight(){if(document.body.classList.contains('screenshot-mode')||document.body.classList.contains('presentation-mode')){document.documentElement.style.setProperty('--sticky-shell-height','0px');return}let sh=document.querySelector('#stickyShell');if(sh)document.documentElement.style.setProperty('--sticky-shell-height',Math.ceil(sh.getBoundingClientRect().height)+'px')}
 function shell(){normalizeConsolidatedRoute();setTheme();document.body.dataset.build=BUILD;nav();statusBars();renderActions()}
+function fitSingleLineText(el,minPx=7,maxPx=27){
+  if(!el)return;
+  el.style.fontSize=maxPx+'px';
+  let px=maxPx, guard=60;
+  while(px>minPx && el.scrollWidth>el.clientWidth && guard--){px-=.5;el.style.fontSize=px+'px'}
+}
 function balancePageNavigation(){
   if(document.body.classList.contains('presentation-mode')||document.body.classList.contains('screenshot-mode'))return;
   const bar=document.querySelector('#stickyShell .pagebar'); if(!bar)return;
-  const controls=[...bar.querySelectorAll('button,.tool-type-menu')].filter(el=>{const r=el.getBoundingClientRect();return r.width||r.height});
-  controls.forEach(el=>{
+  const controls=[...bar.querySelectorAll('button,.tool-type-menu')].filter(el=>el.offsetParent!==null);
+  if(!controls.length)return;
+  const gap=parseFloat(getComputedStyle(bar).gap)||4;
+  const available=Math.max(0,bar.clientWidth-gap*(controls.length-1));
+  controls.forEach(el=>{el.style.flex='0 0 auto';el.style.width='auto';el.style.minWidth='0';el.style.fontSize='10px';el.style.paddingLeft='8px';el.style.paddingRight='8px'});
+  const intrinsic=controls.map(el=>{
     const txt=(el.innerText||el.textContent||'').replace(/\s+/g,' ').trim();
     const mini=el.classList.contains('nav69-mini')||txt==='◀'||txt==='▶';
-    if(mini){el.style.flex='0 0 42px';return;}
-    const weight=Math.max(7,Math.min(28,txt.length+4));
-    el.style.flex=weight+' 1 0px'; el.style.minWidth='0';
+    if(mini)return 38;
+    const inner=el.matches('.tool-type-menu')?el.querySelector('.tool-type-menu-button'):el;
+    const w=Math.ceil((inner?.scrollWidth||el.scrollWidth)+6);
+    return Math.max(58,w);
   });
+  let sum=intrinsic.reduce((a,b)=>a+b,0);
+  let font=10,pad=8;
+  while(sum>available && font>7){font-=.5;pad=Math.max(3,pad-1);controls.forEach(el=>{el.style.fontSize=font+'px';el.style.paddingLeft=pad+'px';el.style.paddingRight=pad+'px'});sum=controls.reduce((acc,el,i)=>{const txt=(el.innerText||el.textContent||'').replace(/\s+/g,' ').trim();if(el.classList.contains('nav69-mini')||txt==='◀'||txt==='▶'){intrinsic[i]=34;return acc+34}const inner=el.matches('.tool-type-menu')?el.querySelector('.tool-type-menu-button'):el;intrinsic[i]=Math.max(46,Math.ceil((inner?.scrollWidth||el.scrollWidth)+4));return acc+intrinsic[i]},0)}
+  const scale=sum>available&&sum?available/sum:1;
+  const used=intrinsic.reduce((a,w)=>a+w*scale,0),extra=Math.max(0,available-used),share=extra/controls.length;
+  controls.forEach((el,i)=>{const w=Math.max(30,intrinsic[i]*scale+share);el.style.flex='0 0 '+w+'px';el.style.width=w+'px';el.style.fontSize=font+'px'});
 }
-function render(){syncQuarterLifecycle();allRules();ensureQuarterArchives();shell();let titleMode=document.body.classList.contains('screenshot-mode')||document.body.classList.contains('presentation-mode');let summaryWallboard=document.body.classList.contains('presentation-mode')&&route.center==='operations'&&route.sub==='summary';let title=(titleMode&&!summaryWallboard)?`<div id="screenshotReportTitle" class="screenshot-report-title">${esc(screenshotReportTitle())}</div>`:'';document.querySelector('#app').innerHTML=title+(VIEWS[route.center]||VIEWS.operations)();bindInputs();bindCoreInteractions();persistRoute();requestAnimationFrame(()=>{syncStickyShellHeight();balancePageNavigation();fitQuarterSummaryMasters()});if(document.body.classList.contains('presentation-mode'))requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}
+function fitHeaderGeometry(){
+  if(document.body.classList.contains('presentation-mode')||document.body.classList.contains('screenshot-mode'))return;
+  fitSingleLineText(document.querySelector('#stickyShell .prototype-header-left'),13,27);
+  fitSingleLineText(document.querySelector('#stickyShell .prototype-header-right'),13,27);
+}
+function render(){syncQuarterLifecycle();allRules();ensureQuarterArchives();shell();let titleMode=document.body.classList.contains('screenshot-mode')||document.body.classList.contains('presentation-mode');let summaryWallboard=document.body.classList.contains('presentation-mode')&&route.center==='operations'&&route.sub==='summary';let title=(titleMode&&!summaryWallboard)?`<div id="screenshotReportTitle" class="screenshot-report-title">${esc(screenshotReportTitle())}</div>`:'';document.querySelector('#app').innerHTML=title+(VIEWS[route.center]||VIEWS.operations)();bindInputs();bindCoreInteractions();persistRoute();requestAnimationFrame(()=>{syncStickyShellHeight();fitHeaderGeometry();balancePageNavigation();fitQuarterSummaryMasters()});if(document.body.classList.contains('presentation-mode'))requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}
 function go(center,sub){if(dirty&&!confirm('Discard unsaved changes?'))return;mode='view';toolEditorMode='view';draft=null;meetingDraft=null;dirty=false;selected=null;returnRoute=null;let first=(SUB[center]&&SUB[center][0])?SUB[center][0][0]:'home';route={center,sub:sub||first};let app=document.querySelector('#app');if(app)app.innerHTML='';render()}
 function fmtDate(x){if(!x)return'—';let p=String(x).slice(0,10).split('-');return p.length===3?`${p[1]}/${p[2]}/${p[0]}`:x}
 function fmtDayDate(x){if(!x)return'—';let p=String(x).slice(0,10).split('-');if(p.length!==3)return x;let y=Number(p[0]),m=Number(p[1]),d=Number(p[2]),day=['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'][new Date(y,m-1,d).getDay()];return `${day} · ${p[1]}/${p[2]}/${p[0]}`}
