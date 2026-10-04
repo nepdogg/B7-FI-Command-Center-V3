@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='10.1.9', BUILD='20261003-V10.1.9-CANONICAL-SHELL-NAV-LOCK';
+const VERSION='10.2.0', BUILD='20261003-V10.2.0-AUTHORITATIVE-COMPONENT-RESET';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -625,30 +625,23 @@ function fitSingleLineText(el,minPx=7,maxPx=27){
 }
 function balancePageNavigation(){
   if(document.body.classList.contains('presentation-mode')||document.body.classList.contains('screenshot-mode'))return;
-  const bar=document.querySelector('#stickyShell .pagebar'); if(!bar)return;
+  const bar=document.querySelector('#stickyShell .pagebar');if(!bar)return;
   const controls=[...bar.querySelectorAll('button,.tool-type-menu')].filter(el=>el.offsetParent!==null&&!el.closest('.tool-type-dropdown'));
   if(!controls.length)return;
-  const gap=parseFloat(getComputedStyle(bar).gap)||4;
-  const available=Math.max(1,bar.clientWidth-gap*(controls.length-1));
-  let font=9,pad=5;
-  const measure=()=>controls.map(el=>{
-    const txt=(el.innerText||el.textContent||'').replace(/\s+/g,' ').trim();
-    const mini=el.classList.contains('nav69-mini')||txt==='◀'||txt==='▶';
-    if(mini)return 34;
-    const inner=el.matches('.tool-type-menu')?el.querySelector('.tool-type-menu-button'):el;
-    return Math.max(44,Math.ceil((inner?.scrollWidth||el.scrollWidth)+4));
-  });
-  controls.forEach(el=>{el.style.flex='0 0 auto';el.style.width='auto';el.style.minWidth='0';el.style.fontSize=font+'px';el.style.paddingLeft=pad+'px';el.style.paddingRight=pad+'px'});
-  let widths=measure(),sum=widths.reduce((a,b)=>a+b,0);
-  while(sum>available&&font>6){font-=.5;pad=Math.max(1,pad-1);controls.forEach(el=>{el.style.fontSize=font+'px';el.style.paddingLeft=pad+'px';el.style.paddingRight=pad+'px'});widths=measure();sum=widths.reduce((a,b)=>a+b,0)}
-  if(sum>available){const scale=available/sum;widths=widths.map(w=>Math.max(28,w*scale));sum=widths.reduce((a,b)=>a+b,0)}
-  const extra=Math.max(0,available-sum),weight=widths.reduce((a,b)=>a+b,0)||1;
-  controls.forEach((el,i)=>{const w=widths[i]+extra*(widths[i]/weight);el.style.flex='0 0 '+w+'px';el.style.width=w+'px';el.style.fontSize=font+'px'});
+  const gap=parseFloat(getComputedStyle(bar).gap)||4, available=Math.max(1,bar.clientWidth-gap*(controls.length-1));
+  const info=controls.map(el=>{const txt=(el.innerText||el.textContent||'').replace(/\s+/g,' ').trim();const mini=el.classList.contains('nav69-mini')||txt==='◀'||txt==='▶';return{el,txt,mini,weight:mini?3:Math.max(7,txt.length+5)}});
+  let font=10,pad=7;
+  const need=()=>info.reduce((sum,x)=>sum+(x.mini?36:Math.max(54,x.txt.length*font*.62+pad*2)),0);
+  while(need()>available&&font>7){font-=.5;pad=Math.max(2,pad-1)}
+  let mins=info.map(x=>x.mini?34:Math.max(48,x.txt.length*font*.58+pad*2)), minSum=mins.reduce((a,b)=>a+b,0);
+  if(minSum>available){const scale=available/minSum;mins=mins.map((w,i)=>info[i].mini?Math.max(28,w*scale):Math.max(38,w*scale));minSum=mins.reduce((a,b)=>a+b,0)}
+  const extra=Math.max(0,available-minSum), totalWeight=info.reduce((a,x)=>a+x.weight,0)||1;
+  info.forEach((x,i)=>{const w=mins[i]+extra*(x.weight/totalWeight);x.el.style.setProperty('flex',`0 0 ${w}px`,'important');x.el.style.setProperty('width',`${w}px`,'important');x.el.style.setProperty('min-width','0','important');x.el.style.setProperty('font-size',`${font}px`,'important');x.el.style.setProperty('padding-left',`${pad}px`,'important');x.el.style.setProperty('padding-right',`${pad}px`,'important');});
 }
 function fitHeaderGeometry(){
   if(document.body.classList.contains('presentation-mode')||document.body.classList.contains('screenshot-mode'))return;
-  fitSingleLineText(document.querySelector('#stickyShell .prototype-header-left'),13,27);
-  fitSingleLineText(document.querySelector('#stickyShell .prototype-header-right'),13,27);
+  fitSingleLineText(document.querySelector('#stickyShell .prototype-header-left'),10,27);
+  fitSingleLineText(document.querySelector('#stickyShell .prototype-header-right'),10,27);
 }
 function render(){syncQuarterLifecycle();allRules();ensureQuarterArchives();shell();let titleMode=document.body.classList.contains('screenshot-mode')||document.body.classList.contains('presentation-mode');let summaryWallboard=document.body.classList.contains('presentation-mode')&&route.center==='operations'&&route.sub==='summary';let title=(titleMode&&!summaryWallboard)?`<div id="screenshotReportTitle" class="screenshot-report-title">${esc(screenshotReportTitle())}</div>`:'';document.querySelector('#app').innerHTML=title+(VIEWS[route.center]||VIEWS.operations)();bindInputs();bindCoreInteractions();persistRoute();requestAnimationFrame(()=>{syncStickyShellHeight();fitHeaderGeometry();balancePageNavigation();fitQuarterSummaryMasters()});if(document.body.classList.contains('presentation-mode'))requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}
 function go(center,sub){if(dirty&&!confirm('Discard unsaved changes?'))return;mode='view';toolEditorMode='view';draft=null;meetingDraft=null;dirty=false;selected=null;returnRoute=null;let first=(SUB[center]&&SUB[center][0])?SUB[center][0][0]:'home';route={center,sub:sub||first};let app=document.querySelector('#app');if(app)app.innerHTML='';render()}

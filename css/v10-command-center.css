@@ -718,3 +718,84 @@ body #app .v10-progress-track i{border-radius:10px!important}
 /* Footer pair remains symmetric. */
 body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-global-actions{width:min(100%,440px)!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;margin:0 auto!important}
 body:not(.presentation-mode):not(.screenshot-mode) .app-footer #adminButton,body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerPresentationButton{width:100%!important;min-width:0!important;height:38px!important;padding:0 8px!important;margin:0!important;border-radius:12px!important}
+
+/* ==========================================================
+   V10.2.0 AUTHORITATIVE RUNTIME GEOMETRY
+   Final rules intentionally replace the accumulated V10.1.x
+   component overrides for header, page navigation, intelligence
+   bar, normal live viewport fill, and progress-track geometry.
+   ========================================================== */
+:root{--v1020-row-h:44px;--v1020-header-h:66px;--v1020-footer-h:48px}
+
+/* Header: three contained cells; center owns the space it needs, titles scale instead of clip. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header{
+  display:grid!important;grid-template-columns:minmax(0,24fr) minmax(0,52fr) minmax(0,24fr)!important;
+  width:100%!important;max-width:100%!important;height:var(--v1020-header-h)!important;gap:6px!important;overflow:hidden!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header>section{
+  min-width:0!important;width:100%!important;height:var(--v1020-header-h)!important;min-height:var(--v1020-header-h)!important;max-height:var(--v1020-header-h)!important;
+  box-sizing:border-box!important;overflow:hidden!important;white-space:nowrap!important;padding:0 8px!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-left,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-right{font-size:clamp(10px,1.25vw,26px)!important;line-height:1!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center{background:#02080d!important;border:0!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:0 3px!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-kla-box{
+  width:min(100%,840px)!important;height:56px!important;min-height:56px!important;max-height:56px!important;margin:0 auto!important;padding:3px!important;
+  grid-template-columns:minmax(0,1fr) 190px minmax(0,1fr)!important;gap:4px!important;align-self:center!important;box-sizing:border-box!important;overflow:hidden!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .kla-user-side{height:48px!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:repeat(2,minmax(0,1fr))!important;gap:3px!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .kla-connection-core{height:48px!important;min-height:48px!important;max-height:48px!important}
+
+/* One navigation contract. Never let a page action escape the viewport. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .main-nav,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar{width:100%!important;max-width:100%!important;min-width:0!important;height:var(--v1020-row-h)!important;min-height:var(--v1020-row-h)!important;max-height:var(--v1020-row-h)!important;box-sizing:border-box!important;border:0!important;overflow:hidden!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .main-nav{grid-template-columns:repeat(10,minmax(0,1fr))!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .main-nav>button{min-width:0!important;width:100%!important;height:100%!important;padding:0 3px!important;font-size:clamp(7px,.56vw,10px)!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar{display:flex!important;gap:4px!important;align-items:stretch!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar>.subnav,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar>.page-actions,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .page-actions>.nav69-live-controls,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .page-actions>.nav69-live-controls>.nav69-control-group,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .page-actions>.nav69-live-actions{display:contents!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar button,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .tool-type-menu{height:100%!important;min-width:0!important;max-width:100%!important;box-sizing:border-box!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important;padding:0 4px!important;font-size:9px!important}
+
+/* CANONICAL TOOL INTELLIGENCE BAR: same DOM and same geometry in Live + Presentation. */
+html body[data-center="operations"][data-sub="live"] #app .v10-intelligence{
+  display:grid!important;grid-template-columns:minmax(0,25%) minmax(0,75%)!important;gap:0!important;width:100%!important;
+  height:74px!important;min-height:74px!important;max-height:74px!important;margin:0 0 6px!important;padding:0!important;
+  border:1px solid #ff7d12!important;border-radius:14px!important;overflow:hidden!important;
+  background:linear-gradient(90deg,#d80e43 0,#8d1234 22%,#351217 31%,#150d0b 48%,#06121b 100%)!important
+}
+html body[data-center="operations"][data-sub="live"] #app .v10-intelligence-complete{border-color:#13e59a!important;background:linear-gradient(90deg,#07543e 0,#07382d 22%,#061b18 42%,#06121b 100%)!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-priority-identity{display:grid!important;grid-template-columns:1fr 1fr!important;height:72px!important;min-height:72px!important;max-height:72px!important;min-width:0!important;border-right:1px solid rgba(255,190,110,.55)!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-priority,
+html body[data-center="operations"][data-sub="live"] #app .v1016-priority-tool{height:72px!important;min-height:72px!important;max-height:72px!important;min-width:0!important;border:0!important;border-radius:0!important;margin:0!important;box-shadow:none!important;overflow:hidden!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-priority{padding:6px 14px!important;background:transparent!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-priority>b{font-size:38px!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-priority strong{font-size:20px!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-priority small{font-size:12px!important}
+html body[data-center="operations"][data-sub="live"] #app .v1016-priority-tool{display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:flex-start!important;padding:6px 14px!important;background:transparent!important;color:#fff!important;border-left:1px solid rgba(255,190,110,.45)!important}
+html body[data-center="operations"][data-sub="live"] #app .v1016-priority-tool strong{font-size:16px!important;line-height:1.1!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important;max-width:100%!important}
+html body[data-center="operations"][data-sub="live"] #app .v1016-priority-tool small{font-size:11px!important;line-height:1.1!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important;max-width:100%!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-tool-statusbar{display:grid!important;grid-template-columns:minmax(0,1fr) 132px!important;height:72px!important;min-height:72px!important;max-height:72px!important;min-width:0!important;padding:0!important;margin:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;overflow:hidden!important}
+html body[data-center="operations"][data-sub="live"] #app .v1015-message{height:72px!important;min-width:0!important;display:grid!important;grid-template-columns:52px minmax(0,1fr)!important;align-items:center!important;gap:10px!important;padding:6px 12px!important;box-sizing:border-box!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-tool-statusbar .signal{width:44px!important;height:44px!important;border-radius:10px!important;margin:0!important}
+html body[data-center="operations"][data-sub="live"] #app .v1015-message strong{font-size:clamp(15px,1.15vw,22px)!important;line-height:1.12!important;white-space:normal!important;overflow:hidden!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;color:#ffad2f!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-intelligence-complete .v1015-message strong{color:#fff!important}
+html body[data-center="operations"][data-sub="live"] #app .v1008-view-details{width:112px!important;height:40px!important;align-self:center!important;justify-self:center!important;margin:0!important;position:static!important}
+
+/* Normal Live Operations fills the effective browser viewport at every zoom level. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .body-shell{min-height:calc(100dvh - var(--v1012-shell-h,260px) - var(--v1020-footer-h))!important;display:flex!important;flex-direction:column!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app>.v92-live-page,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v9-live-main{flex:1 1 auto!important;min-height:0!important;height:auto!important;display:flex!important;flex-direction:column!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-card{flex:1 1 auto!important;min-height:0!important;height:auto!important;display:grid!important;grid-template-rows:74px minmax(0,1fr)!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-card-grid{height:100%!important;min-height:0!important;align-items:stretch!important}
+
+/* Progress bars: stronger visual weight inside every progress bubble. */
+html body #app .v10-progress-row{grid-template-rows:auto 24px auto!important;row-gap:6px!important;align-content:center!important}
+html body #app .v10-progress-track{height:24px!important;min-height:24px!important;border-radius:13px!important}
+html body #app .v10-progress-track i{height:100%!important;border-radius:12px!important}
+body.presentation-mode #app .v10-progress-row{grid-template-rows:auto 14px auto!important}
+body.presentation-mode #app .v10-progress-track{height:14px!important;min-height:14px!important}
