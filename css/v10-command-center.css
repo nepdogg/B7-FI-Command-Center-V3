@@ -997,3 +997,119 @@ body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-card
   height:calc(100% - 92px)!important;max-height:calc(100% - 92px)!important;min-height:0!important;
   gap:7px!important;
 }
+
+/* ================================================================
+   V10.3.0 AUTHORITATIVE RESPONSIVE + BRAIN OVERALL PROGRESS LOCK
+   ================================================================ */
+:root{--v1030-header-h:66px;--v1030-nav-h:46px;--v1030-gap:7px;--v1030-footer-h:50px}
+*{box-sizing:border-box}
+
+/* Header: three stable sections, larger center, no clipping/blue center fill. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header{
+  display:grid!important;grid-template-columns:minmax(0,26fr) minmax(0,48fr) minmax(0,26fr)!important;
+  gap:6px!important;width:100%!important;height:var(--v1030-header-h)!important;min-height:var(--v1030-header-h)!important;max-height:var(--v1030-header-h)!important;overflow:visible!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header>section{
+  min-width:0!important;width:100%!important;height:var(--v1030-header-h)!important;min-height:var(--v1030-header-h)!important;max-height:var(--v1030-header-h)!important;overflow:hidden!important;padding:0 12px!important;display:flex!important;align-items:center!important;white-space:nowrap!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-left{justify-content:flex-start!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-right{justify-content:flex-end!important;text-align:right!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center{background:#02080d!important;border:0!important;padding:2px 5px!important;justify-content:center!important;overflow:hidden!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-kla-box{
+  width:min(100%,760px)!important;min-width:0!important;max-width:760px!important;height:58px!important;min-height:58px!important;max-height:58px!important;
+  display:grid!important;grid-template-columns:minmax(150px,1fr) minmax(190px,.9fr) minmax(150px,1fr)!important;gap:5px!important;padding:4px!important;margin:0 auto!important;
+  border:2px solid #ff174f!important;border-radius:6px!important;background:#02080d!important;overflow:hidden!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .kla-user-side{height:46px!important;min-height:46px!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:repeat(2,minmax(0,1fr))!important;gap:4px!important;overflow:hidden!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .kla-connection-core{height:46px!important;min-height:46px!important;max-height:46px!important;overflow:hidden!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .kla-connection-core img{max-height:27px!important;max-width:130px!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .kla-connection-copy{font-size:8px!important;line-height:1!important;white-space:nowrap!important;overflow:visible!important}
+
+/* Main and page navigation use one responsive row contract. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .main-nav{
+  height:var(--v1030-nav-h)!important;min-height:var(--v1030-nav-h)!important;max-height:var(--v1030-nav-h)!important;display:grid!important;grid-template-columns:repeat(10,minmax(0,1fr))!important;gap:5px!important;border:0!important;padding:0!important;overflow:hidden!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .main-nav button{
+  width:100%!important;min-width:0!important;height:100%!important;padding:0 5px!important;font-size:clamp(7px,.62vw,11px)!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar{
+  height:var(--v1030-nav-h)!important;min-height:var(--v1030-nav-h)!important;max-height:var(--v1030-nav-h)!important;display:flex!important;align-items:stretch!important;gap:5px!important;width:100%!important;border:0!important;padding:0!important;overflow:hidden!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar>.subnav,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar>.page-actions{display:contents!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar button,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .tool-type-menu{height:100%!important;min-width:0!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important}
+
+/* No master/body frames in normal pages. Individual components provide structure. */
+html body:not(.presentation-mode):not(.screenshot-mode) .body-shell,
+html body:not(.presentation-mode):not(.screenshot-mode) .body-workspace,
+html body:not(.presentation-mode):not(.screenshot-mode) #app,
+html body:not(.presentation-mode):not(.screenshot-mode) #app>section,
+html body:not(.presentation-mode):not(.screenshot-mode) #app>.v92-live-page,
+html body:not(.presentation-mode):not(.screenshot-mode) #app>.v1014-tools-page{border:0!important;outline:0!important;box-shadow:none!important}
+
+/* True viewport reflow: never preserve the old 620px CSS minimum at browser zoom. */
+html body:not(.presentation-mode):not(.screenshot-mode),
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{min-height:100dvh!important;height:auto!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .body-shell,
+html body:not(.presentation-mode):not(.screenshot-mode) #app{min-height:calc(100dvh - var(--sticky-shell-height,260px) - var(--v1030-footer-h))!important;height:auto!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .v10-tool-card{min-height:calc(100dvh - var(--sticky-shell-height,260px) - var(--v1030-footer-h) - 6px)!important;height:auto!important;grid-template-rows:82px minmax(0,1fr)!important}
+
+/* Canonical status bar: same geometry in Live and Presentation. */
+html body[data-center="operations"][data-sub="live"] #app .v10-intelligence{height:82px!important;min-height:82px!important;max-height:82px!important;grid-template-columns:minmax(430px,26%) minmax(0,74%)!important;margin:0 0 12px!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-priority-identity{grid-template-columns:minmax(210px,1fr) minmax(220px,1fr)!important;height:80px!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-priority b{font-size:clamp(34px,2.25vw,48px)!important;line-height:.9!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-priority span strong{font-size:clamp(18px,1.15vw,25px)!important;line-height:1!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-priority span small{font-size:clamp(11px,.72vw,15px)!important;margin-top:5px!important}
+html body[data-center="operations"][data-sub="live"] #app .v1016-priority-tool strong{font-size:clamp(16px,1.05vw,22px)!important;line-height:1.05!important}
+html body[data-center="operations"][data-sub="live"] #app .v1016-priority-tool small{font-size:clamp(11px,.75vw,15px)!important;margin-top:5px!important}
+html body[data-center="operations"][data-sub="live"] #app .v1015-message strong{font-size:clamp(18px,1.35vw,28px)!important;line-height:1.08!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;white-space:normal!important}
+
+/* Middle column: compact top third, top-aligned; information-heavy lower half is taller. */
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column{display:grid!important;grid-template-rows:repeat(3,minmax(0,.58fr)) repeat(3,minmax(0,1.08fr))!important;gap:8px!important;height:100%!important;min-height:0!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column>.v10-status-card:nth-child(-n+3){min-height:0!important;height:auto!important;padding:14px 18px!important;justify-content:flex-start!important;align-content:flex-start!important;gap:5px!important;overflow:hidden!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column>.v10-status-card:nth-child(-n+3) .label{font-size:clamp(12px,.8vw,17px)!important;margin-top:0!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column>.v10-status-card:nth-child(-n+3) .hero{font-size:clamp(34px,2.65vw,58px)!important;line-height:.96!important;margin:2px 0!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column>.v10-status-card:nth-child(-n+3) .sub{font-size:clamp(13px,.86vw,18px)!important;line-height:1.08!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-status-column>.v10-bottom-card{min-height:0!important;padding:12px 16px!important;overflow:hidden!important}
+
+/* Right column: duplicate Shipment bar removed; 8 workflow rows + larger Brain roll-up. */
+html body[data-center="operations"][data-sub="live"] #app .v10-progress-column{display:grid!important;grid-template-rows:repeat(8,minmax(0,1fr)) minmax(112px,1.45fr)!important;gap:7px!important;height:100%!important;min-height:0!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-progress-row{min-height:0!important;height:auto!important;grid-template-rows:auto 34px auto!important;row-gap:7px!important;padding:9px 12px!important;align-content:center!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-progress-track{height:34px!important;min-height:34px!important;border-radius:18px!important}
+html body[data-center="operations"][data-sub="live"] #app .v10-progress-track i{height:100%!important;border-radius:17px!important}
+.v10-overall-progress{min-height:112px!important;border:1px solid #08a9dd!important;border-radius:12px!important;background:linear-gradient(180deg,#0a3044,#061b29)!important;padding:11px 12px!important;display:grid!important;grid-template-rows:auto 38px auto auto!important;gap:7px!important;align-content:center!important}
+.v10-overall-progress .v10-progress-head b{color:#17d2ff!important;font-size:13px!important}.v10-overall-progress .v10-progress-head strong{font-size:24px!important}.v10-overall-track{height:38px!important;min-height:38px!important}.v10-overall-breakdown{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:5px!important}.v10-overall-breakdown span{border:1px solid #0879a7!important;border-radius:7px!important;padding:5px 7px!important;text-align:center!important;font-size:9px!important;color:#75dfff!important}.v10-overall-breakdown b{color:#fff!important;font-size:12px!important}.v10-overall-progress>small{font-size:9px!important;font-weight:900!important;color:#dff8ff!important;white-space:normal!important}
+
+/* Presentation parity and fit. It intentionally retains its enclosing frame. */
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .presentation-tool-only{border:2px solid #08c8ff!important;border-radius:3px!important;padding:5px!important;height:calc(100dvh - 58px)!important;overflow:hidden!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .presentation-tool-only>.v10-tool-card{height:100%!important;max-height:100%!important;grid-template-rows:72px minmax(0,1fr)!important;overflow:hidden!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-intelligence{height:70px!important;min-height:70px!important;max-height:70px!important;margin-bottom:9px!important;grid-template-columns:minmax(400px,29%) minmax(0,71%)!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-priority-identity,
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-priority,
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v1016-priority-tool,
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-tool-statusbar,
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v1015-message{height:68px!important;min-height:68px!important;max-height:68px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-card-grid{height:calc(100% - 81px)!important;max-height:calc(100% - 81px)!important;min-height:0!important;gap:7px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-photo{flex:0 0 24%!important;height:24%!important;min-height:105px!important;max-height:210px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-badge{min-height:30px!important;height:30px!important;font-size:8.5px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-wafer-badge{min-height:32px!important;height:32px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-status-column{grid-template-rows:repeat(3,minmax(0,.58fr)) repeat(3,minmax(0,1.08fr))!important;gap:5px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-status-column>.v10-status-card:nth-child(-n+3){justify-content:flex-start!important;padding:8px 10px!important;gap:3px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-status-column>.v10-status-card:nth-child(-n+3) .hero{font-size:clamp(24px,2.2vw,44px)!important;line-height:.96!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-progress-column{grid-template-rows:repeat(8,minmax(0,1fr)) minmax(72px,1.35fr)!important;gap:4px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-progress-row{grid-template-rows:auto 20px auto!important;row-gap:4px!important;padding:5px 8px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-progress-track{height:20px!important;min-height:20px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-overall-progress{min-height:72px!important;grid-template-rows:auto 22px auto auto!important;padding:5px 8px!important;gap:3px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-overall-track{height:22px!important;min-height:22px!important}
+
+/* Tools page remains dense enough for a 23-tool quarter: three cards per row on FI monitor widths. */
+html body[data-center="operations"][data-sub="tools"] #app .fleet-card-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important}
+html body[data-center="operations"][data-sub="tools"] #app .fleet-family-head{display:flex!important;min-height:58px!important}
+@media(max-width:1180px){html body[data-center="operations"][data-sub="tools"] #app .fleet-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:760px){html body[data-center="operations"][data-sub="tools"] #app .fleet-card-grid{grid-template-columns:1fr!important}}
+
+/* Footer actions: exactly equal and centered. */
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer .footer-global-actions{width:min(100%,460px)!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;margin:0 auto!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #adminButton,
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer #footerPresentationButton{width:100%!important;height:38px!important;min-height:38px!important;margin:0!important;padding:0 8px!important}
