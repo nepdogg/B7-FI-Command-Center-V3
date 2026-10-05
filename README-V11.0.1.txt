@@ -1,4 +1,4 @@
-B7 FI COMMAND CENTER V11.0.0 — CLEAN UI ARCHITECTURE
+B7 FI COMMAND CENTER V11.0.1 — NAVIGATION + TOOLS PRIORITY IDENTITY
 
 This build replaces the Live Operations / Presentation Tool Card presentation layer with a new c11 component namespace. Historical v9/v10 card geometry rules cannot select the new card.
 
@@ -18,3 +18,10 @@ TEST ORDER
 3. Verify all 9 right sections fill the full column and Overall Tool Progress is the ninth row.
 4. Enter Presentation Mode and verify the entire card fits between the top intelligence bar and bottom presentation navigation.
 5. Verify page navigation is one line and current/previous quarter Summary/Tools controls remain accessible.
+
+
+V11.0.1 ADDITIONAL FIXES
+- Page navigation now has one V11 owner across normal pages. Sub-navigation and page actions remain on one line without the large dead-space/overlap behavior seen in prior builds.
+- Live Operations carousel controls and actions remain grouped and symmetrical.
+- Tools page priority header now displays Priority + UTID + Model + Tool Type in the same header, directly above the photo.
+- Clicking the priority portion still edits priority; clicking the UTID/model/type portion opens the tool.
