@@ -119,3 +119,102 @@ body.presentation-mode[data-center="operations"][data-sub="live"] .c11-priority>
 body.presentation-mode[data-center="operations"][data-sub="live"] .c11-priority strong{font-size:19px!important}
 body.presentation-mode[data-center="operations"][data-sub="live"] .c11-priority-tool strong{font-size:18px!important}
 body.presentation-mode[data-center="operations"][data-sub="live"] .c11-message strong{font-size:clamp(18px,1.45vw,28px)!important}
+
+/* =========================================================
+   V11.3.0 — PRODUCTION STABILITY LOCK
+   Final authority for header, page navigation, Tools page and Presentation.
+   ========================================================= */
+:root{--v113-header-h:68px;--v113-pagebar-h:48px}
+
+/* HEADER: one stable 35/30/35 row; center can never be shorter or clip users. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header{
+  display:grid!important;grid-template-columns:minmax(0,35%) minmax(420px,30%) minmax(0,35%)!important;
+  gap:10px!important;width:100%!important;height:var(--v113-header-h)!important;min-height:var(--v113-header-h)!important;
+  max-height:var(--v113-header-h)!important;align-items:stretch!important;overflow:hidden!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header>section{
+  height:var(--v113-header-h)!important;min-height:var(--v113-header-h)!important;max-height:var(--v113-header-h)!important;
+  width:auto!important;min-width:0!important;box-sizing:border-box!important;overflow:hidden!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center{height:var(--v113-header-h)!important;padding:4px 8px!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-kla-box,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .kla-user-side,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .kla-connection-core{height:60px!important;min-height:60px!important;max-height:60px!important}
+
+/* STICKY CONTRACT: header through page navigation/status stack stays together; footer remains normal flow. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell{position:sticky!important;top:0!important;z-index:10000!important;width:100%!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{position:relative!important;bottom:auto!important;z-index:1!important}
+
+/* PAGE NAVIGATION: one row with a protected right action region on every normal page. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar{
+  display:grid!important;grid-template-columns:minmax(0,1fr) minmax(330px,auto)!important;gap:8px!important;
+  min-height:var(--v113-pagebar-h)!important;height:var(--v113-pagebar-h)!important;overflow:visible!important;align-items:stretch!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #subnav{
+  display:flex!important;flex-wrap:nowrap!important;gap:5px!important;min-width:0!important;overflow:hidden!important
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #subnav>button{flex:1 1 0!important;min-width:0!important;height:100%!important;padding:0 6px!important;font-size:clamp(7px,.56vw,11px)!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #pageActions{display:flex!important;flex-wrap:nowrap!important;gap:5px!important;min-width:0!important;width:auto!important;overflow:visible!important;align-items:stretch!important;justify-content:flex-end!important;position:relative!important;z-index:12000!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #pageActions>button,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #pageActions>.tool-type-menu{height:100%!important;min-width:0!important}
+
+/* TOOLS page: Tool Type menu is always a real first-class action and cannot be squeezed away. */
+html body[data-center="operations"][data-sub="tools"]:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar{grid-template-columns:minmax(0,1fr) 520px!important}
+html body[data-center="operations"][data-sub="tools"]:not(.presentation-mode):not(.screenshot-mode) #pageActions{
+  display:grid!important;grid-template-columns:120px 180px 100px 105px!important;width:520px!important;min-width:520px!important;gap:5px!important;overflow:visible!important
+}
+html body[data-center="operations"][data-sub="tools"] #pageActions>.tool-type-menu{display:block!important;position:relative!important;visibility:visible!important;opacity:1!important;overflow:visible!important;z-index:13000!important}
+html body[data-center="operations"][data-sub="tools"] #pageActions .tool-type-menu-button{display:flex!important;width:100%!important;height:100%!important;align-items:center!important;justify-content:center!important;visibility:visible!important;opacity:1!important;white-space:nowrap!important}
+html body[data-center="operations"][data-sub="tools"] #pageActions .tool-type-dropdown{z-index:2147483000!important}
+
+/* TOOLS live boxes: fixed six-box matrix; no collapse to plain text. */
+html body[data-center="operations"][data-sub="tools"] .v10-fleet-kpis{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:7px!important;width:100%!important;margin:8px 0 12px!important}
+html body[data-center="operations"][data-sub="tools"] .v10-fleet-kpis>div{display:flex!important;min-width:0!important;min-height:58px!important;border:1px solid #08a9dd!important;border-radius:10px!important;background:#073047!important;align-items:center!important;justify-content:center!important;flex-direction:column!important;overflow:hidden!important}
+html body[data-center="operations"][data-sub="tools"] .v10-fleet-kpis>div>b{font-size:23px!important;line-height:1!important}
+html body[data-center="operations"][data-sub="tools"] .v10-fleet-kpis>div>span{font-size:10px!important;font-weight:950!important;margin-top:4px!important}
+html body[data-center="operations"][data-sub="tools"] .v10-fleet-kpis>div.critical{border-color:#ffb000!important;background:#3b2108!important;color:#ffc02e!important}
+
+/* Tools card priority + identity: uppercase, larger, and uses all available badge space. */
+.fleet-priority-wrap{grid-template-columns:minmax(190px,.95fr) minmax(245px,1.35fr)!important;min-height:58px!important;text-transform:uppercase!important}
+.fleet-priority-wrap .fleet-priority{display:grid!important;grid-template-columns:auto minmax(0,1fr)!important;align-items:center!important;gap:10px!important;padding:6px 12px!important;text-transform:uppercase!important}
+.fleet-priority-wrap .fleet-priority b{font-size:clamp(24px,2vw,38px)!important;line-height:.9!important}
+.fleet-priority-wrap .fleet-priority span{font-size:clamp(11px,.9vw,17px)!important;line-height:1!important;font-weight:1000!important;white-space:normal!important;text-transform:uppercase!important}
+.fleet-priority-identity{padding:6px 14px!important;text-transform:uppercase!important}
+.fleet-priority-identity strong{font-size:clamp(16px,1.25vw,23px)!important;line-height:1!important;text-transform:uppercase!important}
+.fleet-priority-identity small{font-size:clamp(10px,.72vw,13px)!important;text-transform:uppercase!important}
+
+/* C11 top intelligence is explicitly TWO pieces: Priority/Tool identity + Tool Status. */
+.c11-intelligence{grid-template-columns:minmax(420px,29%) minmax(0,71%)!important}
+.c11-priority-identity{text-transform:uppercase!important}
+.c11-priority,.c11-priority-tool{text-transform:uppercase!important}
+.c11-priority>b{font-size:clamp(30px,2.25vw,43px)!important;line-height:.9!important}
+.c11-priority strong{font-size:clamp(17px,1.25vw,25px)!important;line-height:1!important}
+.c11-priority small{font-size:clamp(10px,.72vw,14px)!important}
+.c11-priority-tool strong{font-size:clamp(18px,1.3vw,26px)!important;line-height:1!important;text-transform:uppercase!important}
+.c11-priority-tool small{font-size:clamp(10px,.72vw,14px)!important;text-transform:uppercase!important}
+
+/* PRESENTATION MODE: one bordered master rectangle fully above the 54px bottom navigation. */
+body.presentation-mode[data-center="operations"][data-sub="live"] #app{
+  position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;padding:4px 4px 62px!important;
+  box-sizing:border-box!important;overflow:hidden!important;transform:none!important
+}
+body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only{width:100%!important;height:100%!important;max-height:none!important;min-height:0!important;overflow:hidden!important;box-sizing:border-box!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-tool-card{
+  width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;box-sizing:border-box!important;
+  display:grid!important;grid-template-rows:62px minmax(0,1fr)!important;gap:4px!important;border:2px solid #08bfe8!important;border-radius:8px!important;padding:3px!important;overflow:hidden!important;background:#020b12!important
+}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-intelligence{height:62px!important;min-height:62px!important;max-height:62px!important;grid-template-columns:29% 71%!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-card-grid{width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;grid-template-columns:29% 38% 33%!important;gap:4px!important;overflow:hidden!important;align-items:stretch!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-column{height:100%!important;min-height:0!important;max-height:100%!important;overflow:hidden!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-identity-column{grid-template-rows:minmax(105px,1.5fr) auto 25px auto minmax(120px,2.2fr) 27px!important;gap:3px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-status-column{grid-template-rows:repeat(6,minmax(0,1fr))!important;gap:3px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-progress-column{grid-template-rows:repeat(9,minmax(0,1fr))!important;gap:3px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-status-card{padding:5px 8px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-status-card .c11-hero{font-size:clamp(18px,1.65vw,32px)!important;margin:2px 0!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-progress-row{padding:3px 7px!important;gap:2px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-progress-track{height:11px!important;min-height:11px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-id-badge{height:26px!important;min-height:26px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-reduced,
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-carry{height:25px!important;min-height:25px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-update{height:27px!important;min-height:27px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-inline-nav{position:fixed!important;left:4px!important;right:4px!important;bottom:4px!important;height:54px!important;z-index:2147483646!important}
