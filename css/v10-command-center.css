@@ -1388,3 +1388,35 @@ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar{di
 html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #subnav,
 html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #pageActions{min-width:0!important;display:flex!important;flex-wrap:nowrap!important;gap:5px!important}
 html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar button{min-width:0!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important}
+
+/* ============================================================
+   V11.2.1 TOOLS PAGE RECOVERY AUTHORITY
+   Restores Tool Type page-navigation control and Live Tool status boxes.
+   ============================================================ */
+html body[data-center="operations"][data-sub="tools"] #pageActions.page-actions{
+  display:grid!important;
+  grid-template-columns:minmax(130px,1fr) minmax(170px,1.25fr) minmax(110px,.75fr) minmax(110px,.75fr)!important;
+  align-items:stretch!important;
+  gap:6px!important;
+  min-width:520px!important;
+  width:min(100%,640px)!important;
+  overflow:visible!important;
+}
+html body[data-center="operations"][data-sub="tools"] #pageActions>.nav767-tool-type{
+  display:flex!important;visibility:visible!important;opacity:1!important;width:100%!important;min-width:0!important;height:100%!important;overflow:visible!important;
+}
+html body[data-center="operations"][data-sub="tools"] #pageActions>.nav767-tool-type>.tool-type-menu-button{
+  display:flex!important;visibility:visible!important;opacity:1!important;background:#06131d!important;color:#fff!important;border:1px solid #08a9dd!important;border-radius:10px!important;
+}
+html body[data-center="operations"][data-sub="tools"] #app .v10-fleet-kpis{
+  display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:7px!important;margin:8px 0 12px!important;width:100%!important;
+}
+html body[data-center="operations"][data-sub="tools"] #app .v10-fleet-kpis>div{
+  display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;min-width:0!important;min-height:58px!important;
+  padding:6px 8px!important;border:1px solid #0879a7!important;border-radius:10px!important;background:linear-gradient(180deg,#07334a,#041522)!important;color:#fff!important;text-align:center!important;
+}
+html body[data-center="operations"][data-sub="tools"] #app .v10-fleet-kpis>div b{display:block!important;font-size:22px!important;line-height:1!important;color:#fff!important}
+html body[data-center="operations"][data-sub="tools"] #app .v10-fleet-kpis>div span{display:block!important;margin-top:4px!important;font-size:9px!important;font-weight:950!important;line-height:1.05!important;color:#bfeeff!important;white-space:nowrap!important}
+html body[data-center="operations"][data-sub="tools"] #app .v10-fleet-kpis>div.critical{border-color:#ff9d00!important;background:linear-gradient(180deg,#4a2605,#211405)!important}
+html body[data-center="operations"][data-sub="tools"] #app .v10-fleet-kpis>div.critical b,html body[data-center="operations"][data-sub="tools"] #app .v10-fleet-kpis>div.critical span{color:#ffb42a!important}
+@media(max-width:1250px){html body[data-center="operations"][data-sub="tools"] #pageActions.page-actions{min-width:430px!important;grid-template-columns:110px 150px 90px 90px!important}html body[data-center="operations"][data-sub="tools"] #app .v10-fleet-kpis{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
