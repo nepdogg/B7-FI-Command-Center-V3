@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='11.5.0', BUILD='20261007-V11.6.0-LAYOUT-ARCHITECTURE-RECOVERY';
+const VERSION='11.5.0', BUILD='20261007-V11.5.0-LAYOUT-ARCHITECTURE-RECOVERY';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -615,7 +615,7 @@ function renderActions(){
   }
   host.innerHTML=normal;
 }
-function syncStickyShellHeight(){if(document.body.classList.contains('screenshot-mode')||document.body.classList.contains('presentation-mode')){document.documentElement.style.setProperty('--sticky-shell-height','0px');return}let sh=document.querySelector('#stickyShell');if(sh)document.documentElement.style.setProperty('--sticky-shell-height',Math.ceil(sh.getBoundingClientRect().height)+'px');document.documentElement.style.setProperty('--v116-shell-h',Math.ceil(sh.getBoundingClientRect().height)+'px')}
+function syncStickyShellHeight(){if(document.body.classList.contains('screenshot-mode')||document.body.classList.contains('presentation-mode')){document.documentElement.style.setProperty('--sticky-shell-height','0px');return}let sh=document.querySelector('#stickyShell');if(sh)document.documentElement.style.setProperty('--sticky-shell-height',Math.ceil(sh.getBoundingClientRect().height)+'px')}
 function shell(){normalizeConsolidatedRoute();setTheme();document.body.dataset.build=BUILD;nav();statusBars();renderActions()}
 function fitSingleLineText(el,minPx=7,maxPx=27){
   if(!el)return;
@@ -669,7 +669,7 @@ function enhanceSectionWorkspaces(){
     }
   }
 }
-function render(){syncQuarterLifecycle();allRules();ensureQuarterArchives();shell();let titleMode=document.body.classList.contains('screenshot-mode')||document.body.classList.contains('presentation-mode');let summaryWallboard=document.body.classList.contains('presentation-mode')&&route.center==='operations'&&route.sub==='summary';let title=(titleMode&&!summaryWallboard)?`<div id="screenshotReportTitle" class="screenshot-report-title">${esc(screenshotReportTitle())}</div>`:'';document.querySelector('#app').innerHTML=title+(VIEWS[route.center]||VIEWS.operations)();bindInputs();bindCoreInteractions();enhanceSectionWorkspaces();persistRoute();requestAnimationFrame(()=>{syncStickyShellHeight();enforceV116ShellGeometry();fitHeaderGeometry();balancePageNavigation();fitQuarterSummaryMasters();syncLiveCardGeometry()});if(document.body.classList.contains('presentation-mode'))requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}
+function render(){syncQuarterLifecycle();allRules();ensureQuarterArchives();shell();let titleMode=document.body.classList.contains('screenshot-mode')||document.body.classList.contains('presentation-mode');let summaryWallboard=document.body.classList.contains('presentation-mode')&&route.center==='operations'&&route.sub==='summary';let title=(titleMode&&!summaryWallboard)?`<div id="screenshotReportTitle" class="screenshot-report-title">${esc(screenshotReportTitle())}</div>`:'';document.querySelector('#app').innerHTML=title+(VIEWS[route.center]||VIEWS.operations)();bindInputs();bindCoreInteractions();enhanceSectionWorkspaces();persistRoute();requestAnimationFrame(()=>{syncStickyShellHeight();enforceV115ShellGeometry();fitHeaderGeometry();balancePageNavigation();fitQuarterSummaryMasters();syncLiveCardGeometry()});if(document.body.classList.contains('presentation-mode'))requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}
 function go(center,sub){if(dirty&&!confirm('Discard unsaved changes?'))return;mode='view';toolEditorMode='view';draft=null;meetingDraft=null;dirty=false;selected=null;returnRoute=null;let first=(SUB[center]&&SUB[center][0])?SUB[center][0][0]:'home';route={center,sub:sub||first};let app=document.querySelector('#app');if(app)app.innerHTML='';render()}
 function fmtDate(x){if(!x)return'—';let p=String(x).slice(0,10).split('-');return p.length===3?`${p[1]}/${p[2]}/${p[0]}`:x}
 function fmtDayDate(x){if(!x)return'—';let p=String(x).slice(0,10).split('-');if(p.length!==3)return x;let y=Number(p[0]),m=Number(p[1]),d=Number(p[2]),day=['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'][new Date(y,m-1,d).getDay()];return `${day} · ${p[1]}/${p[2]}/${p[0]}`}
@@ -1845,18 +1845,70 @@ function fitQuarterSummaryMasters(){/* V7: CSS owns Quarter Summary geometry. No
 
 function fitPresentation(){
   if(!document.body.classList.contains('presentation-mode'))return;
-  const frame=document.querySelector('.app-frame');if(!frame)return;
-  document.documentElement.style.overflow='hidden';document.body.style.overflow='hidden';
-  frame.style.removeProperty('width');frame.style.removeProperty('height');frame.style.removeProperty('min-width');frame.style.removeProperty('min-height');frame.style.removeProperty('max-width');frame.style.removeProperty('max-height');frame.style.removeProperty('transform');frame.style.removeProperty('transform-origin');frame.style.removeProperty('zoom');
-  if(route.center==='operations'&&route.sub==='tool'){
-    document.documentElement.classList.add('presentation-tool-edit');frame.classList.add('presentation-tool-scroll');
-    document.documentElement.style.overflowY='auto';document.body.style.overflowY='auto';return;
+  let frame=document.querySelector('.app-frame');if(!frame)return;
+  // V10.0.7: the live tool wallboard uses the real viewport. CSS fits the complete card
+  // between its intelligence bar and 58px presentation navigation without global scaling.
+  if(route.center==='operations'&&route.sub==='live'){
+    frame.style.zoom='';frame.style.setProperty('width','100vw','important');frame.style.setProperty('height','100vh','important');
+    frame.style.setProperty('min-width','0','important');frame.style.setProperty('min-height','0','important');
+    frame.style.transform='none';frame.style.transformOrigin='top left';
+    document.documentElement.style.overflow='hidden';document.body.style.overflow='hidden';
+    return;
   }
-  document.documentElement.classList.remove('presentation-tool-edit');frame.classList.remove('presentation-tool-scroll');
-  // V11.6: live Tool and Quarter Summary presentations use the real viewport directly.
-  // No virtual 1920x1080 canvas and no transform scaling: browser zoom therefore cannot move
-  // the bottom navigation outside the measured viewport.
-  if(route.center==='operations'&&(route.sub==='live'||route.sub==='summary'))return;
+  // Tool Edit is intentionally NOT scaled like the wallboard. In fullscreen Presentation
+  // it becomes a normal scrollable editor so every field and Save/Cancel can be reached.
+  if(route.center==='operations'&&route.sub==='tool'){
+    document.documentElement.classList.add('presentation-tool-edit');
+    frame.classList.add('presentation-tool-scroll');
+    frame.style.zoom='';
+    frame.style.setProperty('width','100%','important');
+    frame.style.setProperty('height','auto','important');
+    frame.style.setProperty('min-width','0','important');
+    frame.style.transform='none';frame.style.transformOrigin='top left';
+    document.documentElement.style.overflowX='hidden';document.documentElement.style.overflowY='auto';
+    document.body.style.overflowX='hidden';document.body.style.overflowY='auto';
+    if(!document.documentElement.dataset.presentationEditorScrollInitialized){
+      window.scrollTo(0,0);document.documentElement.dataset.presentationEditorScrollInitialized='1';
+    }
+    return;
+  }
+  document.documentElement.classList.remove('presentation-tool-edit');
+  frame.classList.remove('presentation-tool-scroll');frame.scrollTop=0;
+
+  // V6.6.04: strict Presentation viewport containment.
+  // The virtual wallboard may adapt to the real fullscreen aspect ratio, but the entire
+  // rendered frame must fit inside the actual browser viewport. A small safety gutter
+  // prevents the right/bottom borders from being clipped by Windows/Edge fullscreen rounding.
+  const DH=1080, GUTTER=0;
+  const vw=Math.max(1,window.innerWidth||document.documentElement.clientWidth||screen.width||1920);
+  const vh=Math.max(1,window.innerHeight||document.documentElement.clientHeight||screen.height||1080);
+  const usableW=Math.max(1,vw-(GUTTER*2));
+  const usableH=Math.max(1,vh-(GUTTER*2));
+  const aspect=usableW/usableH;
+  const DW=Math.max(1440,Math.round(DH*aspect));
+
+  // Override the legacy 1920px !important rules from older Presentation builds.
+  frame.style.zoom='';
+  frame.style.setProperty('width',DW+'px','important');
+  frame.style.setProperty('min-width','0','important');
+  frame.style.setProperty('max-width','none','important');
+  frame.style.setProperty('height',DH+'px','important');
+  frame.style.setProperty('min-height','0','important');
+  frame.style.setProperty('max-height','none','important');
+  frame.style.transform='none';
+  frame.style.transformOrigin='top left';
+
+  // Let layout settle, then fit against the larger of the declared canvas or actual content.
+  // This protects against any child with a legacy intrinsic width without changing UTC geometry.
+  const contentW=DW;
+  const contentH=DH;
+  const scale=Math.min(usableW/contentW,usableH/contentH);
+  const renderedW=contentW*scale, renderedH=contentH*scale;
+  const x=Math.max(GUTTER,(vw-renderedW)/2);
+  const y=Math.max(GUTTER,(vh-renderedH)/2);
+
+  frame.style.transform=`translate(${x/scale}px,${y/scale}px) scale(${scale})`;
+  document.documentElement.style.overflow='hidden';document.body.style.overflow='hidden';
 }
 function clearPresentationLayout(){delete document.documentElement.dataset.presentationEditorScrollInitialized;document.body.classList.remove('presentation-mode','presentation-editor-mode');document.documentElement.classList.remove('presentation-tool-edit','presentation-editor-document');let frame=document.querySelector('.app-frame');if(frame){frame.classList.remove('presentation-tool-scroll');frame.style.removeProperty('zoom');frame.style.removeProperty('transform');frame.style.removeProperty('transform-origin');frame.style.removeProperty('width');frame.style.removeProperty('height');frame.style.removeProperty('min-width');frame.style.removeProperty('min-height');frame.style.removeProperty('max-width');frame.style.removeProperty('max-height');frame.style.removeProperty('left');frame.style.removeProperty('top');frame.style.removeProperty('position')}document.documentElement.style.removeProperty('zoom');document.body.style.removeProperty('zoom');document.documentElement.style.removeProperty('overflow');document.body.style.removeProperty('overflow');document.documentElement.style.removeProperty('overflow-x');document.documentElement.style.removeProperty('overflow-y');document.body.style.removeProperty('overflow-x');document.body.style.removeProperty('overflow-y');document.documentElement.style.removeProperty('width');document.documentElement.style.removeProperty('height');document.body.style.removeProperty('width');document.body.style.removeProperty('height')}
 async function presentation(){if(route.center!=='operations')return;presentationEditorActive=false;if(document.body.classList.contains('screenshot-mode'))exitScreenshot();presentationRestore={livePaused,snapshotPaused};livePaused=false;snapshotPaused=false;presentationActive=true;document.body.classList.add('presentation-mode');let x=document.querySelector('#exitScreenshot');x.classList.add('hidden');try{if(!document.fullscreenElement&&document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen()}catch(e){}window.scrollTo(0,0);render();requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}
@@ -2152,16 +2204,15 @@ document.addEventListener('change',e=>{let sel=e.target.closest('.priority-rank-
 document.addEventListener('change',e=>{let input=e.target.closest('[data-tool-photo-upload]');if(!input||!input.files||!input.files[0])return;let f=input.dataset.toolPhotoUpload,file=input.files[0];if(file.size>2500000){alert('Please use an image smaller than 2.5 MB.');input.value='';return}let reader=new FileReader();reader.onload=()=>{state.config.toolPhotos=state.config.toolPhotos||{};state.config.toolPhotos[f]=String(reader.result||'');saveState('TOOL PHOTO UPDATED — '+String(f).toUpperCase());render()};reader.readAsDataURL(file)});
 document.addEventListener('click',e=>{let b=e.target.closest('[data-tool-photo-reset]');if(!b)return;e.preventDefault();let f=b.dataset.toolPhotoReset;if(state.config?.toolPhotos)delete state.config.toolPhotos[f];saveState('DEFAULT TOOL PHOTO RESTORED — '+String(f).toUpperCase());render()});
 document.addEventListener('fullscreenchange',()=>{if(presentationActive&&!document.fullscreenElement){presentationActive=false;clearPresentationLayout();if(presentationRestore){livePaused=!!presentationRestore.livePaused;snapshotPaused=!!presentationRestore.snapshotPaused;presentationRestore=null}document.querySelector('#exitScreenshot')?.classList.add('hidden');render();requestAnimationFrame(()=>requestAnimationFrame(()=>{syncStickyShellHeight();window.dispatchEvent(new Event('resize'));window.scrollTo(0,0)}))}else if(presentationActive&&document.fullscreenElement){requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}});document.querySelector('#adminButton').onclick=()=>go('admin','data');document.querySelector('#footerPresentationButton').onclick=()=>{if(route.center!=='operations'||!['live','summary'].includes(route.sub)){route={center:'operations',sub:'live'};mode='view';render()}presentation()};document.querySelector('#modalClose').onclick=closeModal;document.querySelector('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!document.querySelector('#modal').classList.contains('hidden'))closeModal()});document.querySelector('#exitScreenshot').onclick=exitDisplayMode;document.addEventListener('click',e=>{if(e.target.id==='importJson'){document.querySelector('#importFile')?.click()}if(e.target.id==='importSharedJson'){document.querySelector('#importSharedFile')?.click()}});window.addEventListener('storage',e=>{if(e.key!==KEY||!e.newValue)return;try{let currentId=carouselTools()[liveIndex]?.id||'';state=normalize(JSON.parse(e.newValue));allRules();let list=carouselTools(),ni=list.findIndex(t=>t.id===currentId);if(ni>=0)liveIndex=ni;else if(liveIndex>=list.length)liveIndex=Math.max(0,list.length-1);render();if(presentationActive)requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}catch(err){console.warn('Cross-window Command Center refresh failed',err)}});
-window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});function enforceV116ShellGeometry(){
+window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});function enforceV115ShellGeometry(){
   if(document.body.classList.contains('presentation-mode')||document.body.classList.contains('screenshot-mode'))return;
   const shell=document.getElementById('stickyShell');if(!shell)return;
   const h=Math.ceil(shell.getBoundingClientRect().height);
-  document.documentElement.style.setProperty('--v116-shell-h',h+'px');
-  document.documentElement.style.setProperty('--v116-shell-height',h+'px');
+  document.documentElement.style.setProperty('--v115-shell-height',h+'px');
   document.documentElement.style.setProperty('--sticky-shell-height',h+'px');
 }
-if(window.ResizeObserver){const v116Shell=document.getElementById('stickyShell');if(v116Shell)new ResizeObserver(enforceV116ShellGeometry).observe(v116Shell)}
-window.addEventListener('resize',enforceV116ShellGeometry);
+if(window.ResizeObserver){const v115Shell=document.getElementById('stickyShell');if(v115Shell)new ResizeObserver(enforceV115ShellGeometry).observe(v115Shell)}
+window.addEventListener('resize',enforceV115ShellGeometry);
 window.addEventListener('resize',()=>{syncStickyShellHeight();fitQuarterSummaryMasters();syncLiveCardGeometry();if(presentationActive)fitPresentation();});setInterval(()=>{if(!livePaused&&mode==='view'&&route.center==='operations'&&route.sub==='live'&&carouselTools().length>1){liveIndex=(liveIndex+1)%carouselTools().length;render()}},8000);setInterval(()=>{if(!snapshotPaused&&mode==='view'&&route.center==='operations'&&route.sub==='live'){snapshotIndex=(snapshotIndex+1)%6;render()}},12000);setInterval(()=>{if(mode!=='view'||route.center!=='operations'||route.sub!=='live'||document.body.classList.contains('presentation-mode')||document.body.classList.contains('screenshot-mode'))return;statusRotationIndex=(statusRotationIndex+3)%Math.max(1,statusMessagePool().length);statusBars();},8000);render();
 
 window.B7ApplySharedScenario=function(shared){if(!shared||!Array.isArray(shared.tools))return;state=normalize(shared);state.environment='SCENARIO TEST';try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}render()};
