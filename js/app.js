@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='11.3.0', BUILD='20261006-V11.3.0-PRODUCTION-STABILITY-LOCK';
+const VERSION='11.4.0', BUILD='20261006-V11.4.0-PRODUCTION-STABILITY-LOCK';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -642,7 +642,34 @@ function fitHeaderGeometry(){
   fitSingleLineText(document.querySelector('#stickyShell .prototype-header-left'),10,27);
   fitSingleLineText(document.querySelector('#stickyShell .prototype-header-right'),10,27);
 }
-function render(){syncQuarterLifecycle();allRules();ensureQuarterArchives();shell();let titleMode=document.body.classList.contains('screenshot-mode')||document.body.classList.contains('presentation-mode');let summaryWallboard=document.body.classList.contains('presentation-mode')&&route.center==='operations'&&route.sub==='summary';let title=(titleMode&&!summaryWallboard)?`<div id="screenshotReportTitle" class="screenshot-report-title">${esc(screenshotReportTitle())}</div>`:'';document.querySelector('#app').innerHTML=title+(VIEWS[route.center]||VIEWS.operations)();bindInputs();bindCoreInteractions();persistRoute();requestAnimationFrame(()=>{syncStickyShellHeight();fitHeaderGeometry();balancePageNavigation();fitQuarterSummaryMasters();syncLiveCardGeometry()});if(document.body.classList.contains('presentation-mode'))requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}
+let toolEditorSectionKey='tool-info',adminSectionKey='system';
+function enhanceSectionWorkspaces(){
+  if(route.center==='operations'&&route.sub==='tool'){
+    const editor=document.querySelector('#app .tool-editor'); if(editor&&!editor.dataset.sectionNavReady){
+      const sections=[...editor.querySelectorAll(':scope > .subsection')];
+      if(sections.length){
+        const classify=h=>{h=(h||'').toUpperCase();if(h.includes('TOOL INFORMATION')||h.includes('PHOTO')||h.includes('NEXT SYSTEM'))return'tool-info';if(h.includes('WAFER'))return'wafers';if(h.includes('FI TEST')||h.includes('KEY PROCESS')||h.includes('CHECKLIST'))return'fi';if(h.includes('LEAD')||h.includes('ADMIN'))return'lead';if(h.includes('CYCLE'))return'cycle';if(h.includes('SHIPPING')||h.includes('PACKING'))return'shipping';if(h.includes('CUSTOMER SOURCE'))return'source';if(h.includes('STR'))return'str';return'other'};
+        sections.forEach(x=>x.dataset.editorSection=classify(x.querySelector('h3')?.textContent));
+        const defs=[['tool-info','TOOL INFO'],['fi','FI PROGRESS'],['lead','LEAD / ADMIN'],['cycle','CYCLE TIME'],['shipping','SHIPPING'],['source','CUSTOMER SOURCE'],['str','STR'],['wafers','SYSTEM WAFERS'],['other','OTHER']].filter(([k])=>sections.some(x=>x.dataset.editorSection===k));
+        if(!defs.some(x=>x[0]===toolEditorSectionKey))toolEditorSectionKey=defs[0]?.[0]||'tool-info';
+        const head=editor.querySelector(':scope > .panel-head'); const shell=document.createElement('div');shell.className='section-workspace tool-section-workspace';
+        const nav=document.createElement('aside');nav.className='section-workspace-nav';nav.innerHTML=defs.map(([k,l])=>`<button type="button" data-editor-section-button="${k}" class="${k===toolEditorSectionKey?'active':''}">${l}</button>`).join('');
+        const body=document.createElement('div');body.className='section-workspace-body';sections.forEach(x=>body.appendChild(x));shell.append(nav,body);head.after(shell);editor.dataset.sectionNavReady='1';
+        const show=k=>{toolEditorSectionKey=k;body.querySelectorAll('[data-editor-section]').forEach(x=>x.hidden=x.dataset.editorSection!==k);nav.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.editorSectionButton===k));};show(toolEditorSectionKey);
+        nav.addEventListener('click',e=>{const b=e.target.closest('[data-editor-section-button]');if(b)show(b.dataset.editorSectionButton)});
+      }
+    }
+  }
+  if(route.center==='admin'&&route.sub!=='audit'){
+    const panels=[...document.querySelectorAll('#app > section.panel')]; if(panels.length&&!document.querySelector('#app>.admin-section-workspace')){
+      const keyFor=(x,i)=>{let h=(x.querySelector('h2')?.textContent||'').toUpperCase();if(h.includes('MODE'))return'system';if(h.includes('QUARTER PLANNING')||h.includes('ACTIVE QUARTER'))return'quarter';if(h.includes('BRAIN'))return'rules';if(h.includes('MYSTERY'))return'mystery';if(h.includes('PHOTO'))return'photos';if(h.includes('INTEGRITY'))return'diagnostics';return'other'};
+      panels.forEach((x,i)=>x.dataset.adminSection=keyFor(x,i));const defs=[['system','SYSTEM / DATA'],['quarter','QUARTER / CYCLE'],['rules','BRAIN / RULES'],['mystery','MYSTERY BOXES'],['photos','TOOL PHOTOS'],['diagnostics','DIAGNOSTICS'],['other','OTHER']].filter(([k])=>panels.some(x=>x.dataset.adminSection===k));if(!defs.some(x=>x[0]===adminSectionKey))adminSectionKey=defs[0]?.[0]||'system';
+      const shell=document.createElement('div');shell.className='admin-section-workspace section-workspace';const nav=document.createElement('aside');nav.className='section-workspace-nav';nav.innerHTML=defs.map(([k,l])=>`<button type="button" data-admin-section-button="${k}" class="${k===adminSectionKey?'active':''}">${l}</button>`).join('');const body=document.createElement('div');body.className='section-workspace-body';panels.forEach(x=>body.appendChild(x));shell.append(nav,body);document.querySelector('#app').appendChild(shell);
+      const show=k=>{adminSectionKey=k;body.querySelectorAll('[data-admin-section]').forEach(x=>x.hidden=x.dataset.adminSection!==k);nav.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.adminSectionButton===k));};show(adminSectionKey);nav.addEventListener('click',e=>{const b=e.target.closest('[data-admin-section-button]');if(b)show(b.dataset.adminSectionButton)});
+    }
+  }
+}
+function render(){syncQuarterLifecycle();allRules();ensureQuarterArchives();shell();let titleMode=document.body.classList.contains('screenshot-mode')||document.body.classList.contains('presentation-mode');let summaryWallboard=document.body.classList.contains('presentation-mode')&&route.center==='operations'&&route.sub==='summary';let title=(titleMode&&!summaryWallboard)?`<div id="screenshotReportTitle" class="screenshot-report-title">${esc(screenshotReportTitle())}</div>`:'';document.querySelector('#app').innerHTML=title+(VIEWS[route.center]||VIEWS.operations)();bindInputs();bindCoreInteractions();enhanceSectionWorkspaces();persistRoute();requestAnimationFrame(()=>{syncStickyShellHeight();fitHeaderGeometry();balancePageNavigation();fitQuarterSummaryMasters();syncLiveCardGeometry()});if(document.body.classList.contains('presentation-mode'))requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}
 function go(center,sub){if(dirty&&!confirm('Discard unsaved changes?'))return;mode='view';toolEditorMode='view';draft=null;meetingDraft=null;dirty=false;selected=null;returnRoute=null;let first=(SUB[center]&&SUB[center][0])?SUB[center][0][0]:'home';route={center,sub:sub||first};let app=document.querySelector('#app');if(app)app.innerHTML='';render()}
 function fmtDate(x){if(!x)return'—';let p=String(x).slice(0,10).split('-');return p.length===3?`${p[1]}/${p[2]}/${p[0]}`:x}
 function fmtDayDate(x){if(!x)return'—';let p=String(x).slice(0,10).split('-');if(p.length!==3)return x;let y=Number(p[0]),m=Number(p[1]),d=Number(p[2]),day=['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'][new Date(y,m-1,d).getDay()];return `${day} · ${p[1]}/${p[2]}/${p[0]}`}

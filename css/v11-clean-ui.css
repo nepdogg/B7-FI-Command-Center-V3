@@ -218,3 +218,78 @@ body.presentation-mode[data-center="operations"][data-sub="live"] .c11-reduced,
 body.presentation-mode[data-center="operations"][data-sub="live"] .c11-carry{height:25px!important;min-height:25px!important}
 body.presentation-mode[data-center="operations"][data-sub="live"] .c11-update{height:27px!important;min-height:27px!important}
 body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-inline-nav{position:fixed!important;left:4px!important;right:4px!important;bottom:4px!important;height:54px!important;z-index:2147483646!important}
+
+/* =========================================================
+   V11.4.0 GLOBAL LAYOUT + EDITOR RECOVERY — FINAL AUTHORITY
+   ========================================================= */
+:root{--v114-header-h:76px;--v114-pagebar-h:48px;--v114-gap:6px}
+html,body{min-width:0!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{display:block!important;min-height:100dvh!important;height:auto!important;padding:6px 8px 0!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell{position:sticky!important;top:0!important;z-index:2147483000!important;display:block!important;width:100%!important;height:auto!important;min-height:0!important;overflow:visible!important;transform:none!important;contain:none!important;background:#02080d!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .body-shell{display:block!important;min-height:0!important;height:auto!important;margin:var(--v114-gap) 0 0!important;padding:0!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #app.body-workspace{display:block!important;min-height:0!important;height:auto!important;margin:0!important;padding:0!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{position:relative!important;inset:auto!important;margin:6px 0 0!important}
+
+/* One header row; all three cells share one height. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header{display:grid!important;grid-template-columns:minmax(0,34%) minmax(380px,32%) minmax(0,34%)!important;gap:8px!important;height:var(--v114-header-h)!important;min-height:var(--v114-header-h)!important;max-height:var(--v114-header-h)!important;align-items:stretch!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header>section{height:100%!important;min-height:0!important;max-height:none!important;display:flex!important;align-items:center!important;box-sizing:border-box!important;overflow:hidden!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center{padding:5px 8px!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-kla-box{height:100%!important;min-height:0!important;max-height:none!important;width:100%!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .kla-user-side,html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .kla-connection-core{height:100%!important;min-height:0!important;max-height:none!important}
+
+/* Global page navigation: one row, no page-specific height ownership. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar{display:flex!important;flex-wrap:nowrap!important;align-items:stretch!important;gap:6px!important;width:100%!important;height:var(--v114-pagebar-h)!important;min-height:var(--v114-pagebar-h)!important;max-height:var(--v114-pagebar-h)!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #subnav{display:flex!important;flex:1 1 auto!important;min-width:0!important;gap:5px!important;overflow:hidden!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #pageActions{display:flex!important;flex:0 0 auto!important;min-width:0!important;width:auto!important;gap:5px!important;overflow:visible!important;justify-content:flex-end!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #subnav>button{flex:1 1 auto!important;min-width:0!important;height:100%!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #pageActions>button,html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #pageActions>.tool-type-menu{height:100%!important;flex:0 1 auto!important}
+html body[data-center="operations"][data-sub="tools"]:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar{display:flex!important}
+html body[data-center="operations"][data-sub="tools"]:not(.presentation-mode):not(.screenshot-mode) #pageActions{display:flex!important;width:auto!important;min-width:0!important}
+
+/* Priority is one bubble internally; status message is a separate bubble with visible gap. */
+.fleet-priority-wrap{display:block!important;border-radius:10px!important;overflow:hidden!important}
+.fleet-priority-wrap .fleet-priority{display:grid!important;grid-template-columns:auto minmax(0,1fr)!important;border:0!important;border-radius:0!important;padding:7px 10px!important;gap:8px!important}
+.fleet-priority-wrap .fleet-priority span{border:0!important;background:transparent!important;box-shadow:none!important;padding:0!important}
+.fleet-priority-identity{border:0!important;border-left:0!important;background:transparent!important;padding:5px 12px!important}
+.c11-intelligence{display:grid!important;grid-template-columns:minmax(360px,29%) minmax(0,71%)!important;gap:8px!important;background:transparent!important;border:0!important;overflow:visible!important}
+.c11-priority-identity,.c11-message{border-radius:10px!important;overflow:hidden!important}
+.c11-priority-identity{border:2px solid currentColor!important}
+.c11-message{border:2px solid #16c7ee!important}
+.c11-priority-identity .c11-priority,.c11-priority-identity .c11-priority-tool{border:0!important;background:transparent!important;box-shadow:none!important}
+.c11-priority-identity .c11-priority{border-right:0!important}
+.c11-priority strong,.c11-priority-tool strong{text-transform:uppercase!important;font-size:clamp(18px,1.65vw,32px)!important}
+.c11-priority>b{font-size:clamp(32px,2.8vw,52px)!important}
+.c11-priority small,.c11-priority-tool small{text-transform:uppercase!important;font-size:clamp(11px,.9vw,17px)!important}
+
+/* Section-switching Tool Edit + Administration Center. */
+.section-workspace{display:grid!important;grid-template-columns:210px minmax(0,1fr)!important;gap:10px!important;align-items:start!important}
+.section-workspace-nav{position:sticky!important;top:calc(var(--sticky-shell-height,0px) + 6px)!important;display:flex!important;flex-direction:column!important;gap:6px!important;padding:8px!important;border:1px solid var(--accent)!important;border-radius:10px!important;background:#06121d!important;z-index:20!important}
+.section-workspace-nav button{min-height:42px!important;border:1px solid rgba(var(--accent-rgb),.65)!important;border-radius:8px!important;background:#071b29!important;color:#dff7ff!important;font-weight:950!important;text-align:left!important;padding:8px 10px!important;cursor:pointer!important}
+.section-workspace-nav button.active{background:rgba(var(--accent-rgb),.30)!important;border-color:var(--accent)!important;box-shadow:0 0 12px rgba(var(--accent-rgb),.35)!important;color:#fff!important}
+.section-workspace-body{min-width:0!important}
+.section-workspace-body>[hidden]{display:none!important}
+.tool-section-workspace .subsection{margin-top:0!important}
+.admin-section-workspace>.section-workspace-body>section.panel{margin-top:0!important}
+@media(max-width:1050px){.section-workspace{grid-template-columns:170px minmax(0,1fr)!important}.section-workspace-nav button{font-size:11px!important}}
+
+/* Presentation Tool Card: full bordered rectangle must remain above nav at all zooms. */
+body.presentation-mode[data-center="operations"][data-sub="live"] #app{position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;min-height:0!important;max-height:100dvh!important;padding:4px 4px 64px!important;overflow:hidden!important;box-sizing:border-box!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only{width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;overflow:hidden!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-tool-card{height:100%!important;min-height:0!important;max-height:100%!important;display:grid!important;grid-template-rows:minmax(54px,8vh) minmax(0,1fr)!important;gap:5px!important;padding:4px!important;border:2px solid #08bfe8!important;border-radius:9px!important;overflow:hidden!important;box-sizing:border-box!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-intelligence{height:100%!important;min-height:0!important;max-height:none!important;gap:6px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-card-grid{height:100%!important;min-height:0!important;max-height:100%!important;grid-template-columns:29% 38% 33%!important;gap:4px!important;overflow:hidden!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-column{height:100%!important;min-height:0!important;max-height:100%!important;overflow:hidden!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-status-column{grid-template-rows:repeat(6,minmax(0,1fr))!important;gap:3px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-progress-column{grid-template-rows:repeat(9,minmax(0,1fr))!important;gap:3px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-inline-nav{position:fixed!important;left:4px!important;right:4px!important;bottom:4px!important;height:54px!important;z-index:2147483646!important}
+
+/* Quarter Summary presentation: preserve working structure, consume the space above nav. */
+body.presentation-mode[data-center="operations"][data-sub="summary"] #app{height:100dvh!important;padding:4px 4px 62px!important;box-sizing:border-box!important;overflow:hidden!important}
+body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-presentation{height:100%!important;min-height:0!important;max-height:100%!important;display:flex!important;flex-direction:column!important;overflow:hidden!important}
+body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-family-wrap{flex:1 1 auto!important;min-height:0!important;display:flex!important}
+body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-family-wrap>.panel{flex:1 1 auto!important;min-height:0!important}
+body.presentation-mode[data-center="operations"][data-sub="summary"] .presentation-inline-nav{position:fixed!important;left:4px!important;right:4px!important;bottom:4px!important;height:54px!important}
+
+/* Zoom resilience: geometry can compress but must not overlap or create artificial blank bands. */
+@media(max-width:1450px){html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header{grid-template-columns:32% 36% 32%!important}.prototype-header-left,.prototype-header-right{font-size:clamp(14px,1.45vw,23px)!important}.main-nav button{font-size:clamp(9px,.72vw,12px)!important}}
+@media(max-width:1180px){html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header{grid-template-columns:30% 40% 30%!important}.status-bar{font-size:clamp(8px,.8vw,11px)!important}}
