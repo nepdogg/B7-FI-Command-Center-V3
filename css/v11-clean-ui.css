@@ -31,7 +31,7 @@ body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][dat
 .c11-reduced,.c11-carry,.c11-update{height:34px;border:1px solid #0879a7;border-radius:8px;background:#062536;color:#fff;font-weight:900}.c11-reduced.active{border-color:#ffd21f;color:#ffd21f}.c11-carry{display:flex;align-items:center;justify-content:center;border-color:#e68a00;color:#ffb127;background:#28180a;font-size:12px}.c11-badges{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:30px;gap:4px}.c11-badge{border:1px solid #0879a7;border-radius:7px;background:#062536;color:#fff;font-size:9px;font-weight:900;min-width:0;overflow:hidden}.c11-badge.complete,.c11-badge.green{border-color:#00d58d;background:#073a30}.c11-badge.attention,.c11-badge.warning{border-color:#ffb000}.c11-badge.critical,.c11-badge.missing{border-color:#ff174f;background:#3a0b19}.c11-wafer-badge{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;align-items:center}.c11-wafer-badge small{font-size:9px}.c11-update{cursor:pointer;font-size:12px}
 
 body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .c11-status-column{display:grid;grid-template-rows:repeat(6,minmax(0,1fr));gap:6px;align-self:stretch;height:auto;min-height:0}
-.c11-status-card{min-height:0;border:1px solid #0879a7;border-radius:10px;background:#08283a;color:#fff;padding:12px 16px;box-sizing:border-box;overflow:hidden;display:flex;flex-direction:column;justify-content:center}.c11-status-card.ship{border-color:#c66c00;background:linear-gradient(110deg,#421708,#101820)}.c11-status-card .label{color:#12d1ff;font-size:13px;font-weight:900}.c11-status-card .hero{font-size:clamp(27px,2.25vw,46px);line-height:1;font-weight:1000;margin:7px 0}.c11-status-card .sub,.c11-lines{font-size:13px}.c11-tasks{display:grid;gap:4px;margin-top:8px}.c11-task{display:flex;gap:8px;align-items:center;font-size:12px}.c11-task i{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:#079ed3;font-style:normal;font-weight:900}
+.c11-status-card{min-height:0;border:1px solid #0879a7;border-radius:10px;background:#08283a;color:#fff;padding:12px 16px;box-sizing:border-box;overflow:hidden;display:flex;flex-direction:column;justify-content:center}.c11-status-card.ship{border-color:#c66c00;background:linear-gradient(110deg,#421708,#101820)}.c11-status-card .label{color:#12d1ff;font-size:13px;font-weight:900}.c11-status-card .c11-hero{font-size:clamp(27px,2.25vw,46px);line-height:1;font-weight:1000;margin:7px 0}.c11-status-card .sub,.c11-lines{font-size:13px}.c11-tasks{display:grid;gap:4px;margin-top:8px}.c11-task{display:flex;gap:8px;align-items:center;font-size:12px}.c11-task i{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:#079ed3;font-style:normal;font-weight:900}
 
 body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .c11-progress-column{display:grid;grid-template-rows:repeat(9,minmax(0,1fr));gap:6px;align-self:stretch;height:auto;min-height:0}
 .c11-progress-row{min-height:0;border:1px solid #0879a7;border-radius:10px;background:#08283a;color:#fff;padding:8px 10px;box-sizing:border-box;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:6px}.c11-progress-head{display:flex;justify-content:space-between;gap:8px;align-items:center}.c11-progress-head b{font-size:12px}.c11-progress-head strong{font-size:16px}.c11-progress-track{height:15px;min-height:15px;border:1px solid #2b87a8;border-radius:10px;background:#03131e;overflow:hidden}.c11-progress-track i{display:block;height:100%;border-radius:9px}.c11-progress-track i.cyan{background:#08c8ff}.c11-progress-track i.red{background:#ff174f}.c11-progress-track i.green{background:#13e59a}.c11-progress-track i.yellow{background:#ffd21f}.c11-progress-track i.purple{background:#8757f5}.c11-progress-row>small{font-size:9px;color:#38cfff;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -49,11 +49,11 @@ body.presentation-mode[data-center="operations"][data-sub="live"] .c11-id-badge{
 body.presentation-mode[data-center="operations"][data-sub="live"] .c11-reduced,body.presentation-mode[data-center="operations"][data-sub="live"] .c11-carry{height:27px;min-height:27px}
 body.presentation-mode[data-center="operations"][data-sub="live"] .c11-badges{height:100%;grid-auto-rows:minmax(0,1fr);gap:3px}.presentation-mode .c11-badge{min-height:0;font-size:8px}.presentation-mode .c11-update{height:30px;min-height:30px}
 body.presentation-mode[data-center="operations"][data-sub="live"] .c11-status-column{display:grid;grid-template-rows:repeat(6,minmax(0,1fr));gap:4px;height:100%;min-height:0}
-body.presentation-mode[data-center="operations"][data-sub="live"] .c11-status-card{min-height:0;padding:7px 10px}.presentation-mode .c11-status-card .label{font-size:11px}.presentation-mode .c11-status-card .hero{font-size:clamp(19px,1.8vw,34px);margin:3px 0}.presentation-mode .c11-status-card .sub,.presentation-mode .c11-lines,.presentation-mode .c11-task{font-size:10px}.presentation-mode .c11-tasks{gap:2px;margin-top:3px}.presentation-mode .c11-task i{width:17px;height:17px}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-status-card{min-height:0;padding:7px 10px}.presentation-mode .c11-status-card .label{font-size:11px}.presentation-mode .c11-status-card .c11-hero{font-size:clamp(19px,1.8vw,34px);margin:3px 0}.presentation-mode .c11-status-card .sub,.presentation-mode .c11-lines,.presentation-mode .c11-task{font-size:10px}.presentation-mode .c11-tasks{gap:2px;margin-top:3px}.presentation-mode .c11-task i{width:17px;height:17px}
 body.presentation-mode[data-center="operations"][data-sub="live"] .c11-progress-column{display:grid;grid-template-rows:repeat(9,minmax(0,1fr));gap:4px;height:100%;min-height:0}
 body.presentation-mode[data-center="operations"][data-sub="live"] .c11-progress-row{min-height:0;padding:4px 8px;gap:3px}.presentation-mode .c11-progress-head b{font-size:10px}.presentation-mode .c11-progress-head strong{font-size:13px}.presentation-mode .c11-progress-track{height:12px;min-height:12px}.presentation-mode .c11-progress-row>small{font-size:8px}
 
-@media(max-width:1450px){.c11-photo{height:300px;min-height:300px}.c11-badges{grid-auto-rows:28px}.c11-id-badge{height:33px}.c11-status-card .hero{font-size:30px}}
+@media(max-width:1450px){.c11-photo{height:300px;min-height:300px}.c11-badges{grid-auto-rows:28px}.c11-id-badge{height:33px}.c11-status-card .c11-hero{font-size:30px}}
 
 /* V11.1.0 PRODUCTION RECOVERY LOCKS */
 .fleet-priority-wrap{display:grid;grid-template-columns:minmax(165px,.9fr) minmax(220px,1.35fr);border-radius:10px;overflow:hidden;background:linear-gradient(90deg,#c60c3c,#64122d);border:1px solid #ff2a61}
@@ -73,3 +73,49 @@ body.presentation-mode[data-center="operations"][data-sub="live"] .c11-card-grid
 body.presentation-mode[data-center="operations"][data-sub="live"] .c11-update{height:26px!important;min-height:26px!important;font-size:10px!important}
 /* Keep normal page navigation one row. */
 body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar,body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #subnav,body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #pageActions{min-width:0!important;white-space:nowrap!important}
+
+
+/* V11.2.0 — LAYOUT ENGINE RECOVERY
+   One owner for C11 card geometry. These rules intentionally override legacy presentation
+   compression and prevent generic .hero rules from touching live-card status values. */
+.c11-status-card .c11-hero{
+  display:block!important;background:transparent!important;border:0!important;width:auto!important;height:auto!important;
+  min-height:0!important;max-height:none!important;overflow:visible!important;padding:0!important;
+  font-size:clamp(26px,2.15vw,44px)!important;line-height:.96!important;font-weight:1000!important;margin:7px 0!important;
+  white-space:normal!important;overflow-wrap:anywhere!important;color:#fff!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .c11-card-grid{
+  grid-template-columns:minmax(360px,29%) minmax(500px,38%) minmax(430px,33%)!important;
+  align-items:stretch!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .c11-status-column,
+body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .c11-progress-column{height:auto!important;align-self:stretch!important}
+body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .c11-status-card{min-height:118px!important}
+body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] .c11-progress-row{min-height:78px!important}
+
+/* Presentation: fill the available wallboard rectangle; do not globally shrink the application. */
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-tool-card{height:100%!important;min-height:0!important;grid-template-rows:64px minmax(0,1fr)!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-card-grid{height:100%!important;min-height:0!important;grid-template-columns:29% 38% 33%!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-identity-column{grid-template-rows:minmax(190px,1.45fr) auto 28px auto minmax(260px,2.15fr) 30px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-id-badge{height:30px!important;padding:3px 8px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-id-badge small{font-size:9px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-id-badge strong{font-size:12px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-badges{gap:3px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-badge{font-size:9px!important;line-height:1.05!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-status-column{grid-template-rows:repeat(6,minmax(0,1fr))!important;gap:4px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-status-card{padding:8px 10px!important;justify-content:center!important;overflow:hidden!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-status-card .label{font-size:12px!important;line-height:1.1!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-status-card .c11-hero{font-size:clamp(24px,2.0vw,39px)!important;line-height:.95!important;margin:4px 0!important;overflow:hidden!important;display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-status-card .sub,
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-lines,
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-task{font-size:11px!important;line-height:1.15!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-progress-column{grid-template-rows:repeat(9,minmax(0,1fr))!important;gap:4px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-progress-row{padding:5px 8px!important;gap:4px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-progress-head b{font-size:11px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-progress-head strong{font-size:14px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-progress-track{height:14px!important;min-height:14px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-progress-row>small{font-size:9px!important;line-height:1.1!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-priority>b{font-size:31px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-priority strong{font-size:19px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-priority-tool strong{font-size:18px!important}
+body.presentation-mode[data-center="operations"][data-sub="live"] .c11-message strong{font-size:clamp(18px,1.45vw,28px)!important}

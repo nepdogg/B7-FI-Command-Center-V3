@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='11.1.0', BUILD='20261004-V11.1.0-CLEAN-UI-ARCHITECTURE';
+const VERSION='11.2.0', BUILD='20261006-V11.2.0-LAYOUT-ENGINE-RECOVERY';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -464,7 +464,7 @@ function saveDirectIdentity(id,key){
 function carouselTools(){
   // Carousel visibility is broader than workload eligibility. Every non-archived tool stays visible
   // across quarter changes. Order: active FI/WIP by priority, then not-yet-FI, then shipped.
-  let a=nonArchivedTools(),ranks=(state.config?.priorityBadgeSource||'lead')==='commandCenter'?commandCenterPriorityRanks():leadPriorityRanks();
+  let a=nonArchivedTools().filter(t=>t.toolStatus!=='Shipped'),ranks=(state.config?.priorityBadgeSource||'lead')==='commandCenter'?commandCenterPriorityRanks():leadPriorityRanks();
   let group=t=>t.toolStatus==='Shipped'?2:((['FI','Engineering','Powered Down','Packing'].includes(t.toolStatus))?0:1);
   return [...a].sort((x,y)=>{
     let gx=group(x),gy=group(y);if(gx!==gy)return gx-gy;
@@ -1557,9 +1557,9 @@ function v11ToolCard(){
         <button class="c11-update" data-tool="${esc(t.id)}">UPDATE TOOL STATUS →</button>
       </section>
       <section class="c11-column c11-status-column">
-        <div class="c11-status-card ship ${esc(intel.tone)} clickable" data-quick-field="shipDate" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">${esc(alias)} TOOL SHIP COUNTDOWN</span><strong class="hero">${esc(count.big||'NO SHIP DATE')}</strong><span class="sub">${esc(count.small||'SET MANUFACTURING SHIP DATE')}</span></div>
-        <div class="c11-status-card clickable" data-quick-field="fiStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">${esc(alias)} CURRENT TOOL STATUS · FI TESTING STATUS</span><strong class="hero">${esc(currentStatus)}</strong><span class="sub">${esc(checklistLabel(t,t.currentChecklist))}</span></div>
-        <div class="c11-status-card clickable" data-quick-field="toolStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">${esc(alias)} CURRENT SYSTEM STATUS</span><strong class="hero">${esc(statusLabel)}</strong><span class="sub">${esc(t.latestStatus||'No live system status entered.')}</span></div>
+        <div class="c11-status-card ship ${esc(intel.tone)} clickable" data-quick-field="shipDate" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">${esc(alias)} TOOL SHIP COUNTDOWN</span><strong class="c11-hero">${esc(count.big||'NO SHIP DATE')}</strong><span class="sub">${esc(count.small||'SET MANUFACTURING SHIP DATE')}</span></div>
+        <div class="c11-status-card clickable" data-quick-field="fiStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">${esc(alias)} CURRENT TOOL STATUS · FI TESTING STATUS</span><strong class="c11-hero">${esc(currentStatus)}</strong><span class="sub">${esc(checklistLabel(t,t.currentChecklist))}</span></div>
+        <div class="c11-status-card clickable" data-quick-field="toolStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">${esc(alias)} CURRENT SYSTEM STATUS</span><strong class="c11-hero">${esc(statusLabel)}</strong><span class="sub">${esc(t.latestStatus||'No live system status entered.')}</span></div>
         <div class="c11-status-card c11-bottom-card"><span class="label">${esc(alias)} NEXT SYSTEM TASKS</span><div class="c11-tasks">${tasks.length?tasks.slice(0,5).map((x,i)=>`<div class="c11-task"><i>${i+1}</i><span>${esc(x.text)}</span></div>`).join(''):'<div class="c11-task"><i>✓</i><span>NO OPEN SYSTEM TASKS</span></div>'}</div></div>
         <div class="c11-status-card c11-bottom-card clickable" data-quick-field="latestStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">${esc(alias)} LATEST SYSTEM STATUS</span><div class="c11-lines">${esc(t.latestStatus||'No latest system status entered.')}</div></div>
         <div class="c11-status-card c11-bottom-card clickable" data-quick-field="leadNotes" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">${esc(alias)} LEAD NOTES / REMINDERS</span><div class="c11-lines">${esc(t.notes||'No lead notes entered.')}</div></div>
