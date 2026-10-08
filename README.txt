@@ -1,28 +1,22 @@
-B7 FI COMMAND CENTER — V11.11.0 STRUCTURAL REPAIR CANDIDATE
+B7 FI COMMAND CENTER V11.12.0 — HEADER AND NAVIGATION REPAIR CANDIDATE
 
-SOURCE: user-provided V11.10.0 archive. Existing app JavaScript, Microsoft List
-integration, and asset files preserved unchanged.
+WHAT WAS CHANGED
+- Header is one 78px grid with 3px panel gaps.
+- KLA user badges explicitly override legacy fixed 26px height and fill both grid rows.
+- KLA center box and logo cell stretch to the header height.
+- Page navigation removes the hard-coded 520px tools-page action track.
+- Browser tab and page version updated to V11.12.0.
+- Existing application and multi-user JavaScript preserved.
 
-CHANGED:
-- Header: reduced gaps between the three major panels; user badge cells stretch
-  vertically to use their grid rows.
-- Normal page navigation: explicit full button height and visible bottom border.
-- Tool presentation: single outer viewport border encloses card AND bottom nav;
-  removed second outer border on the card.
-- Quarter summary presentation: removed unused bottom padding and sized the
-  summary presentation to the available viewport.
+WHAT IS NOT VERIFIED / NOT CLAIMED FIXED
+- Interactive browser zoom behavior at all scales.
+- All universal card and presentation geometry across devices.
+- Microsoft List sync and multi-user authentication.
+- All page navigation functions and quarter archive behavior.
 
-LIMITATIONS: This is a targeted structural repair candidate, NOT a verified
-complete fix for all previously reported issues. Multi-user sync, archive
-snapshots, all browser zoom levels, and all page navigation actions have NOT
-been validated in a browser against your Microsoft List. The pre-existing CSS
-contains many conflicting !important overrides; deeper refactoring remains.
-
-TEST:
-1. Back up production data and the prior ZIP before replacing anything.
-2. Run START-COMMAND-CENTER.bat from this extracted folder.
-3. Test header and page navigation at 100%, 75%, 125% browser zoom.
-4. Enter Tool Presentation and Quarter Summary Presentation. Check one outer
-   border, navigation placement, tool switching and quarter navigation.
-5. Test all pages and editing before using the build for live production.
-6. Do not clear or reset Microsoft List production data for UI testing.
+INSTALLATION / TEST
+1. Back up your existing Command Center folder and any local data.
+2. Extract the ZIP to a NEW folder. Run START-COMMAND-CENTER.bat.
+3. Check header badge height, panel gaps and page nav at 100%, 75%, 125% zoom.
+4. Check both presentations and the Tools and Update pages.
+5. Do not replace the production folder until you confirm the behavior.

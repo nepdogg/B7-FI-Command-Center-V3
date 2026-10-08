@@ -1,0 +1,52 @@
+/* V11.12: replace conflicting legacy badge dimensions with one owner. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header {
+ display:grid!important; grid-template-columns:minmax(0,1fr) minmax(390px, .92fr) minmax(0,1fr)!important;
+ column-gap:3px!important; height:78px!important; min-height:78px!important; max-height:78px!important;
+ align-items:stretch!important; box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header > section {
+ height:78px!important; min-height:78px!important; max-height:78px!important; margin:0!important;
+ align-self:stretch!important; box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center {
+ padding:0 2px!important; overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center .kla-presence-box {
+ display:grid!important; grid-template-columns:minmax(0,1fr) minmax(150px,1.1fr) minmax(0,1fr)!important;
+ height:100%!important; min-height:0!important; max-height:none!important;
+ padding:2px!important; gap:3px!important; box-sizing:border-box!important; overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center .kla-user-side {
+ display:grid!important; grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ grid-template-rows:repeat(2,minmax(0,1fr))!important; height:100%!important;
+ min-height:0!important; max-height:none!important; gap:3px!important; align-self:stretch!important;
+ overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center .kla-user-side .kla-presence-badge,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center .kla-user-side > * {
+ display:flex!important; align-items:center!important; justify-content:center!important;
+ height:100%!important; min-height:0!important; max-height:none!important;
+ margin:0!important; padding:1px 3px!important; box-sizing:border-box!important; overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center .kla-connection-core {
+ height:100%!important; min-height:0!important; max-height:none!important;
+ align-self:stretch!important; box-sizing:border-box!important;
+}
+/* Remove zoom-sensitive fixed 520px page action track; navigation may wrap only on narrow viewports. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar {
+ display:flex!important; grid-template-columns:none!important; align-items:stretch!important;
+ gap:6px!important; height:auto!important; min-height:52px!important; max-height:none!important;
+ padding:2px 0 5px!important; overflow:visible!important; box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #subnav {flex:1 1 auto!important; min-width:0!important; overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #pageActions {flex:0 1 auto!important; min-width:0!important; overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar button,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar select {min-height:44px!important; height:44px!important; box-sizing:border-box!important}
+@media(max-width:1050px) {
+ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header {grid-template-columns:minmax(0,1fr) minmax(260px,1.05fr) minmax(0,1fr)!important}
+ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar {flex-wrap:wrap!important}
+ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #subnav,
+ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #pageActions {flex:1 1 100%!important}
+}
+/* The normal tools page must use available width; do not globally force a card to half of an enormous zoomed-out viewport. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tools"] .c11-tool-card {max-width:none!important}
