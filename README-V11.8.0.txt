@@ -1,3 +1,12 @@
+B7 FI COMMAND CENTER V11.8.0 — UPDATE WORKSPACE TEST
+
+CHANGED: Update Command Center now uses a left-side tool selector and per-tool section navigation (same design principle as Individual Tool Edit). All tool forms stay mounted when switching tools/sections, so SAVE UPDATES continues to collect every form. Existing shared List and local data formats are unchanged.
+
+NOT VERIFIED: browser visual regression tests, Microsoft List two-user synchronization, sticky shell, Presentation Mode, or all legacy geometry issues. This is a targeted test candidate, not a claim that all remaining issues are fixed.
+
+TEST: Open Update Command Center, switch UTIDs and sections, change two test tools, SAVE UPDATES, reopen each tool and verify values. Back up production data first. Do not use Master Reset/Clear List.
+
+PRIOR BASELINE NOTES:
 B7 FI COMMAND CENTER V11.7.0 — COMPLETION RECOVERY
 
 BASELINE

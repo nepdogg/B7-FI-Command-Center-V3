@@ -669,7 +669,38 @@ function enhanceSectionWorkspaces(){
     }
   }
 }
-function render(){syncQuarterLifecycle();allRules();ensureQuarterArchives();shell();let titleMode=document.body.classList.contains('screenshot-mode')||document.body.classList.contains('presentation-mode');let summaryWallboard=document.body.classList.contains('presentation-mode')&&route.center==='operations'&&route.sub==='summary';let title=(titleMode&&!summaryWallboard)?`<div id="screenshotReportTitle" class="screenshot-report-title">${esc(screenshotReportTitle())}</div>`:'';document.querySelector('#app').innerHTML=title+(VIEWS[route.center]||VIEWS.operations)();bindInputs();bindCoreInteractions();enhanceSectionWorkspaces();persistRoute();requestAnimationFrame(()=>{syncStickyShellHeight();enforceV115ShellGeometry();fitHeaderGeometry();balancePageNavigation();fitQuarterSummaryMasters();syncLiveCardGeometry()});if(document.body.classList.contains('presentation-mode'))requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}
+// V11.8: one in-place multi-tool workspace; all forms remain mounted for save/capture.
+let dailyWorkspaceToolId='',dailyWorkspaceSection='tool-info';
+function enhanceDailyWorkspace(){
+ if(!(route.center==='operations'&&route.sub==='daily'&&mode==='edit'))return;
+ const list=document.querySelector('#app .daily-list');if(!list||list.dataset.workspaceReady)return;
+ const cards=[...list.querySelectorAll(':scope > [data-daily]')];if(!cards.length)return;
+ const classify=h=>{h=(h||'').toUpperCase();if(h.includes('WAFER'))return'wafers';if(h.includes('FI TEST')||h.includes('KEY PROCESS')||h.includes('CHECKLIST'))return'fi';if(h.includes('LEAD')||h.includes('ADMIN'))return'lead';if(h.includes('CYCLE'))return'cycle';if(h.includes('SHIPPING')||h.includes('PACKING'))return'shipping';if(h.includes('CUSTOMER SOURCE'))return'source';if(h.includes('STR'))return'str';if(h.includes('TOOL INFORMATION')||h.includes('PHOTO')||h.includes('NEXT SYSTEM'))return'tool-info';return'other'};
+ const defs=[['tool-info','TOOL INFO'],['fi','FI PROGRESS'],['lead','LEAD / ADMIN'],['cycle','CYCLE TIME'],['shipping','SHIPPING'],['source','CUSTOMER SOURCE'],['str','STR'],['wafers','SYSTEM WAFERS'],['other','OTHER']];
+ const holder=document.createElement('div');holder.className='daily-workspace section-workspace';
+ const sidebar=document.createElement('aside');sidebar.className='section-workspace-nav daily-workspace-sidebar';
+ const picker=document.createElement('select');picker.className='daily-workspace-picker';picker.setAttribute('aria-label','Select tool UTID');
+ cards.forEach(card=>{let opt=document.createElement('option');opt.value=card.dataset.daily;opt.textContent=card.dataset.daily;picker.appendChild(opt);
+  const editor=card.querySelector('.tool-editor');if(!editor)return;
+  [...editor.querySelectorAll(':scope > .subsection')].forEach(section=>{section.dataset.dailySection=classify(section.querySelector('h3')?.textContent)});
+ });
+ sidebar.innerHTML='<div class="daily-workspace-caption">SELECT TOOL UTID</div>';
+ sidebar.appendChild(picker);
+ const nav=document.createElement('div');nav.className='daily-workspace-section-buttons';nav.innerHTML=defs.map(([k,label])=>`<button type="button" data-daily-section="${k}">${label}</button>`).join('');sidebar.appendChild(nav);
+ const content=document.createElement('div');content.className='section-workspace-body daily-workspace-content';
+ cards.forEach(card=>content.appendChild(card));holder.append(sidebar,content);list.appendChild(holder);list.dataset.workspaceReady='1';
+ const available=()=>{let card=cards.find(x=>x.dataset.daily===dailyWorkspaceToolId)||cards[0];return new Set([...card.querySelectorAll('[data-daily-section]')].map(x=>x.dataset.dailySection))};
+ const show=()=>{if(!cards.some(x=>x.dataset.daily===dailyWorkspaceToolId))dailyWorkspaceToolId=cards[0].dataset.daily;
+   let allowed=available();if(!allowed.has(dailyWorkspaceSection))dailyWorkspaceSection=defs.find(x=>allowed.has(x[0]))?.[0]||'tool-info';
+   picker.value=dailyWorkspaceToolId;
+   cards.forEach(card=>{let active=card.dataset.daily===dailyWorkspaceToolId;card.hidden=!active;card.style.display=active?'':'none';card.querySelectorAll('[data-daily-section]').forEach(section=>{section.hidden=!active||section.dataset.dailySection!==dailyWorkspaceSection;section.style.display=(!active||section.dataset.dailySection!==dailyWorkspaceSection)?'none':''})});
+   nav.querySelectorAll('button').forEach(b=>{let exists=allowed.has(b.dataset.dailySection);b.hidden=!exists;b.classList.toggle('active',b.dataset.dailySection===dailyWorkspaceSection)});
+ };
+ picker.addEventListener('change',()=>{dailyWorkspaceToolId=picker.value;show()});
+ nav.addEventListener('click',e=>{let b=e.target.closest('[data-daily-section]');if(b){dailyWorkspaceSection=b.dataset.dailySection;show()}});
+ show();
+}
+function render(){syncQuarterLifecycle();allRules();ensureQuarterArchives();shell();let titleMode=document.body.classList.contains('screenshot-mode')||document.body.classList.contains('presentation-mode');let summaryWallboard=document.body.classList.contains('presentation-mode')&&route.center==='operations'&&route.sub==='summary';let title=(titleMode&&!summaryWallboard)?`<div id="screenshotReportTitle" class="screenshot-report-title">${esc(screenshotReportTitle())}</div>`:'';document.querySelector('#app').innerHTML=title+(VIEWS[route.center]||VIEWS.operations)();bindInputs();bindCoreInteractions();enhanceSectionWorkspaces();enhanceDailyWorkspace();persistRoute();requestAnimationFrame(()=>{syncStickyShellHeight();enforceV115ShellGeometry();fitHeaderGeometry();balancePageNavigation();fitQuarterSummaryMasters();syncLiveCardGeometry()});if(document.body.classList.contains('presentation-mode'))requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}
 function go(center,sub){if(dirty&&!confirm('Discard unsaved changes?'))return;mode='view';toolEditorMode='view';draft=null;meetingDraft=null;dirty=false;selected=null;returnRoute=null;let first=(SUB[center]&&SUB[center][0])?SUB[center][0][0]:'home';route={center,sub:sub||first};let app=document.querySelector('#app');if(app)app.innerHTML='';render()}
 function fmtDate(x){if(!x)return'—';let p=String(x).slice(0,10).split('-');return p.length===3?`${p[1]}/${p[2]}/${p[0]}`:x}
 function fmtDayDate(x){if(!x)return'—';let p=String(x).slice(0,10).split('-');if(p.length!==3)return x;let y=Number(p[0]),m=Number(p[1]),d=Number(p[2]),day=['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'][new Date(y,m-1,d).getDay()];return `${day} · ${p[1]}/${p[2]}/${p[0]}`}

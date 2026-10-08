@@ -1,0 +1,17 @@
+/* V11.8 isolated Update Command Center workspace. */
+body[data-sub="daily"] .daily-update-frame{padding:10px!important;min-height:0!important}
+body[data-sub="daily"] .daily-list{display:block!important;min-height:0!important}
+body[data-sub="daily"] .daily-workspace{display:grid!important;grid-template-columns:190px minmax(0,1fr);gap:12px;align-items:start;min-height:480px}
+body[data-sub="daily"] .daily-workspace-sidebar{position:sticky;top:calc(var(--sticky-shell-height, 0px) + 8px);display:flex;flex-direction:column;gap:6px;padding:8px;border:1px solid #087da7;border-radius:8px;background:#031723;z-index:2}
+body[data-sub="daily"] .daily-workspace-caption{color:#36d9ff;font-size:11px;font-weight:900;padding:4px 2px}
+body[data-sub="daily"] .daily-workspace-picker{width:100%;min-height:39px;background:#03283a;color:white;border:1px solid #16bce8;border-radius:5px;font-weight:800;font-size:12px}
+body[data-sub="daily"] .daily-workspace-section-buttons{display:flex;flex-direction:column;gap:5px}
+body[data-sub="daily"] .daily-workspace-section-buttons button{width:100%;min-height:40px;text-align:left;padding:8px 10px;background:#05273a;border:1px solid #087da7;border-radius:6px;color:white;font-weight:800;cursor:pointer}
+body[data-sub="daily"] .daily-workspace-section-buttons button.active{background:#087ca2;border-color:#2ed9ff;box-shadow:inset 3px 0 #45eaff}
+body[data-sub="daily"] .daily-workspace-content{min-width:0}
+body[data-sub="daily"] .daily-workspace-content>.daily-card{margin:0!important;min-width:0}
+body[data-sub="daily"] .daily-workspace-content .daily-order{display:none!important}
+body[data-sub="daily"] .daily-workspace-content .daily-editor-body{width:100%;min-width:0}
+body[data-sub="daily"] .daily-workspace-content .tool-editor{width:100%;min-width:0}
+body[data-sub="daily"] .daily-workspace-content [hidden]{display:none!important}
+@media(max-width:760px){body[data-sub="daily"] .daily-workspace{grid-template-columns:1fr!important}body[data-sub="daily"] .daily-workspace-sidebar{position:static}body[data-sub="daily"] .daily-workspace-section-buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}}
