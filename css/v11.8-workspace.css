@@ -15,3 +15,45 @@ body[data-sub="daily"] .daily-workspace-content .daily-editor-body{width:100%;mi
 body[data-sub="daily"] .daily-workspace-content .tool-editor{width:100%;min-width:0}
 body[data-sub="daily"] .daily-workspace-content [hidden]{display:none!important}
 @media(max-width:760px){body[data-sub="daily"] .daily-workspace{grid-template-columns:1fr!important}body[data-sub="daily"] .daily-workspace-sidebar{position:static}body[data-sub="daily"] .daily-workspace-section-buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* V11.9: isolate the Update Command Center from the old two-track daily-card layout. */
+html body[data-center="operations"][data-sub="daily"] #app .daily-workspace{
+ display:grid!important;grid-template-columns:210px minmax(0,1fr)!important;
+ width:100%!important;max-width:none!important;align-items:start!important;
+}
+html body[data-center="operations"][data-sub="daily"] #app .daily-workspace-content{
+ display:block!important;grid-column:2!important;min-width:0!important;width:100%!important;
+ max-width:none!important;overflow:visible!important;
+}
+html body[data-center="operations"][data-sub="daily"] #app .daily-workspace-content>.daily-card{
+ display:block!important;grid-template-columns:none!important;min-width:0!important;
+ width:100%!important;max-width:none!important;padding:0!important;
+}
+html body[data-center="operations"][data-sub="daily"] #app .daily-workspace-content .daily-editor-body,
+html body[data-center="operations"][data-sub="daily"] #app .daily-workspace-content .tool-editor{
+ display:block!important;min-width:0!important;width:100%!important;max-width:none!important;
+ margin:0!important;padding:12px!important;box-sizing:border-box!important;
+}
+html body[data-center="operations"][data-sub="daily"] #app .daily-workspace-content .tool-editor>.subsection:not([hidden]){
+ display:block!important;width:100%!important;min-width:0!important;
+}
+html body[data-center="operations"][data-sub="daily"] #app .daily-workspace-content .form-grid{
+ display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+ gap:10px!important;min-width:0!important;
+}
+html body[data-center="operations"][data-sub="daily"] #app .daily-workspace-content .form-grid>*{min-width:0!important}
+html body[data-center="operations"][data-sub="daily"] #app .daily-workspace-content [hidden]{display:none!important}
+/* The tools page uses a consistent two-column layout; no tool-specific widths. */
+html body[data-center="operations"][data-sub="tools"] #app .fleet-card-grid{
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;
+}
+html body[data-center="operations"][data-sub="tools"] #app .fleet-identity-card{width:100%!important;min-width:0!important;max-width:none!important}
+@media(max-width:1050px){
+ html body[data-center="operations"][data-sub="daily"] #app .daily-workspace-content .form-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ html body[data-center="operations"][data-sub="tools"] #app .fleet-card-grid{grid-template-columns:1fr!important}
+}
+@media(max-width:650px){
+ html body[data-center="operations"][data-sub="daily"] #app .daily-workspace{grid-template-columns:1fr!important}
+ html body[data-center="operations"][data-sub="daily"] #app .daily-workspace-content{grid-column:1!important}
+ html body[data-center="operations"][data-sub="daily"] #app .daily-workspace-content .form-grid{grid-template-columns:1fr!important}
+}

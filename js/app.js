@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='11.7.0', BUILD='20261007-V11.7.0-LAYOUT-ARCHITECTURE-RECOVERY';
+const VERSION='11.9.0', BUILD='20261007-V11.9.0-WORKSPACE-GEOMETRY-RECOVERY';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -689,11 +689,11 @@ function enhanceDailyWorkspace(){
  const nav=document.createElement('div');nav.className='daily-workspace-section-buttons';nav.innerHTML=defs.map(([k,label])=>`<button type="button" data-daily-section="${k}">${label}</button>`).join('');sidebar.appendChild(nav);
  const content=document.createElement('div');content.className='section-workspace-body daily-workspace-content';
  cards.forEach(card=>content.appendChild(card));holder.append(sidebar,content);list.appendChild(holder);list.dataset.workspaceReady='1';
- const available=()=>{let card=cards.find(x=>x.dataset.daily===dailyWorkspaceToolId)||cards[0];return new Set([...card.querySelectorAll('[data-daily-section]')].map(x=>x.dataset.dailySection))};
+ const available=()=>{let card=cards.find(x=>x.dataset.daily===dailyWorkspaceToolId)||cards[0];return new Set([...card.querySelectorAll('.tool-editor > [data-daily-section]')].map(x=>x.dataset.dailySection))};
  const show=()=>{if(!cards.some(x=>x.dataset.daily===dailyWorkspaceToolId))dailyWorkspaceToolId=cards[0].dataset.daily;
    let allowed=available();if(!allowed.has(dailyWorkspaceSection))dailyWorkspaceSection=defs.find(x=>allowed.has(x[0]))?.[0]||'tool-info';
    picker.value=dailyWorkspaceToolId;
-   cards.forEach(card=>{let active=card.dataset.daily===dailyWorkspaceToolId;card.hidden=!active;card.style.display=active?'':'none';card.querySelectorAll('[data-daily-section]').forEach(section=>{section.hidden=!active||section.dataset.dailySection!==dailyWorkspaceSection;section.style.display=(!active||section.dataset.dailySection!==dailyWorkspaceSection)?'none':''})});
+   cards.forEach(card=>{let active=card.dataset.daily===dailyWorkspaceToolId;card.hidden=!active;card.style.display=active?'':'none';card.querySelectorAll('.tool-editor > [data-daily-section]').forEach(section=>{section.hidden=!active||section.dataset.dailySection!==dailyWorkspaceSection;section.style.display=(!active||section.dataset.dailySection!==dailyWorkspaceSection)?'none':''})});
    nav.querySelectorAll('button').forEach(b=>{let exists=allowed.has(b.dataset.dailySection);b.hidden=!exists;b.classList.toggle('active',b.dataset.dailySection===dailyWorkspaceSection)});
  };
  picker.addEventListener('change',()=>{dailyWorkspaceToolId=picker.value;show()});
