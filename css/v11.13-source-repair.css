@@ -1,0 +1,28 @@
+/* V11.13 targeted repairs: version is owned by JS VERSION; header uses a single shared grid. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header {
+ grid-template-columns:minmax(0,1fr) minmax(380px,34%) minmax(0,1fr)!important;
+ gap:4px!important; column-gap:4px!important; width:100%!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center {
+ padding:0!important; margin:0!important; min-width:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center .kla-presence-box {
+ width:100%!important; margin:0!important; height:100%!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center .kla-user-side {
+ align-content:stretch!important; align-items:stretch!important; grid-auto-rows:minmax(0,1fr)!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center .kla-user-side > * {
+ align-self:stretch!important; min-height:0!important; height:100%!important;
+}
+/* Keep the navigation and header together; avoid clipping the lower outline. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell {position:sticky!important;top:0!important;z-index:10000!important;overflow:visible!important;}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar {overflow:visible!important;padding-bottom:6px!important;box-sizing:border-box!important;}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .tool-type-menu-button {box-sizing:border-box!important;min-height:44px!important;}
+/* Tool presentation: one enclosing border shared by card and bottom controls. */
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app {border:2px solid #0bbde9!important;grid-template-rows:minmax(0,1fr) 51px!important;padding:4px!important;}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only,
+html body.presentation-mode[data-center="operations"][data-sub="live"] .c11-tool-card {border:0!important;outline:0!important;box-shadow:none!important;}
+/* Quarter presentation: let summary use all space above its navigation. */
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-presentation.quarter-summary-master {height:100%!important;}
+@media(max-width:1100px){html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header {grid-template-columns:minmax(0,1fr) minmax(260px,38%) minmax(0,1fr)!important;}}
