@@ -1,0 +1,12 @@
+/* V11.14: eliminate double-counting sticky shell height. Sticky remains in document flow. */
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame {display:block!important;min-height:100dvh!important;height:auto!important;overflow:visible!important;}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell {position:sticky!important;top:0!important;left:auto!important;right:auto!important;width:100%!important;z-index:2147483000!important;}
+html body:not(.presentation-mode):not(.screenshot-mode) .body-shell {margin:6px 0 0!important;padding:0!important;min-height:0!important;height:auto!important;}
+html body:not(.presentation-mode):not(.screenshot-mode) #app.body-workspace {margin:0!important;padding:0!important;height:auto!important;min-height:0!important;}
+/* Preserve badge improvements and narrow outer gaps. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header {grid-template-columns:minmax(0,1fr) minmax(360px,32%) minmax(0,1fr)!important;gap:4px!important;}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center {padding:0!important;}
+/* Navigation should be part of shell height, not visually clipped. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar {margin-bottom:0!important;overflow:visible!important;}
+/* Quarter presentation: footer navigation is bottom aligned within the single border. */
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-presentation.quarter-summary-master {min-height:100%!important;}

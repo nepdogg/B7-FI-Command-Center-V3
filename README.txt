@@ -1,7 +1,9 @@
-B7 FI COMMAND CENTER V11.13.0 - SOURCE REPAIR CANDIDATE
+B7 FI Command Center V11.14.0 - Flow Recovery Candidate
 
-Changes: corrected actual JavaScript VERSION constant (previously hard-coded V11.9.0, overwriting browser title), synchronized HTML title and header, added header grid sizing to reduce side gaps, badge stretching, sticky shell and navigation border rules, and presentation border rules.
+Root cause corrected: the old V11.5 CSS reserved sticky shell height as body margin, but later CSS changed the shell from fixed to sticky (in document flow). That double counted shell height and created a huge blank gap before the tool card. New final CSS restores normal 6px spacing while keeping shell sticky.
 
-LIMITATIONS: CSS layout changes are not browser-verified. Zoom, multi-user synchronization, editing, and quarter archives are NOT certified fixed. Keep your existing backup. Test locally before publishing to GitHub Pages.
+Also retains prior badge sizing, narrows header panel gaps, and synchronizes visible version/tab.
 
-Test: extract entire app folder, launch START-COMMAND-CENTER.bat, confirm tab and header V11.13.0, compare header and tool presentation at 100%, 75%, 125%; confirm tool edits and List connectivity before production.
+Test: 1) Back up production data and prior ZIP. 2) Extract to separate folder and run launcher. 3) On Live Operations verify card starts immediately after page navigation. 4) Scroll and verify header stays sticky. 5) Try 75%, 100%, 125% zoom and test tools/quarter presentation. 6) Verify multi-user connection separately.
+
+Not verified: browser rendering, multi-user sync, full presentation behavior. Do not overwrite production before confirming.
