@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='11.5.0', BUILD='20261007-V11.5.0-LAYOUT-ARCHITECTURE-RECOVERY';
+const VERSION='11.7.0', BUILD='20261007-V11.7.0-LAYOUT-ARCHITECTURE-RECOVERY';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -264,7 +264,7 @@ function carryoverTools(){return state.tools.filter(isCarryoverTool)}
 function operationalFleetTools(){let ids=new Set(),out=[];for(const t of state.tools){if(t.toolStatus==='Archived')continue;let active=(t.quarter||state.quarter)===state.quarter;if(active||isCarryoverTool(t)){if(!ids.has(String(t.id))){ids.add(String(t.id));out.push(t)}}}return out}
 function summaryQuarters(){let archived=Object.keys(state.config?.quarterArchives||{}),qs=[...new Set([...nonArchivedTools().map(t=>t.quarter||t.originalQuarter||state.quarter),...archived,state.quarter].filter(Boolean))].sort();return qs.length?qs:[state.quarter]}
 function summaryViewQuarter(){let qs=summaryQuarters(),q=state.config?.summaryViewQuarter;return q&&qs.includes(q)?q:(qs.includes(state.quarter)?state.quarter:(qs[0]||state.quarter))}
-function summaryTools(q=summaryViewQuarter()){return activeTools(q)}
+function summaryTools(q=summaryViewQuarter()){let a=state.config?.quarterArchives?.[q];if(a&&Array.isArray(a.tools))return a.tools.map(t=>clone(t));return activeTools(q)}
 function operationalTools(){return operationalFleetTools().filter(t=>t.toolStatus!=='Shipped')}
 function workInProgressTools(){return operationalFleetTools().filter(t=>t.toolStatus!=='Shipped')}
 function workloadTools(){return operationalFleetTools().filter(t=>t.toolStatus!=='Shipped'&&(['FI','Engineering','Powered Down','Packing'].includes(t.toolStatus)||!!t.fiHandoffDate))}
@@ -273,7 +273,7 @@ function morningSortGroup(t){let c=String(t.codename||'').trim().toLowerCase();r
 function morningSortTools(list){return [...list].sort((a,b)=>{let g=morningSortGroup(a)-morningSortGroup(b);if(g)return g;return String(a.id||'').localeCompare(String(b.id||''),undefined,{numeric:true,sensitivity:'base'})})}
 function nonArchivedTools(){return state.tools.filter(t=>t.toolStatus!=='Archived')}
 function activeQuarters(){let q=[...new Set(nonArchivedTools().map(t=>t.quarter||state.quarter).filter(Boolean))];if(!q.includes(state.quarter))q.push(state.quarter);return q.sort()}
-function lifecycleQuarters(){return [...new Set(nonArchivedTools().map(t=>t.quarter||state.quarter).filter(Boolean))].sort()}
+function lifecycleQuarters(){return [...new Set([...nonArchivedTools().map(t=>t.quarter||t.originalQuarter||state.quarter),...Object.keys(state.config?.quarterArchives||{}),state.quarter].filter(Boolean))].sort()}
 function centerQuarter(center){let qs=lifecycleQuarters(),key=center==='shipping'?'shippingViewQuarter':'cycleViewQuarter',saved=state.config[key];if(saved&&qs.includes(saved))return saved;if(qs.includes(state.quarter))return state.quarter;return qs[0]||state.quarter}
 function quarterLifecycleTools(center){let q=centerQuarter(center),base=q===state.quarter?operationalFleetTools():nonArchivedTools().filter(t=>(t.quarter||t.originalQuarter||state.quarter)===q);return morningSortTools(base.filter(t=>t.toolStatus==='Shipped'||['FI','Engineering','Powered Down','Packing'].includes(t.toolStatus)||t.fiHandoffDate))}
 function toolViewQuarter(){return state.config?.toolViewQuarter||state.quarter}
