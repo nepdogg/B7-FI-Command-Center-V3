@@ -1,0 +1,68 @@
+/* V11.11 structural corrections. Loaded last; scoped to normal vs presentation modes. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header{
+  grid-template-columns:minmax(0,1fr) minmax(360px,.90fr) minmax(0,1fr)!important;
+  gap:4px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header>section{
+  min-width:0!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center{padding:0!important;margin:0!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .kla-presence-box{
+  height:100%!important;min-height:0!important;box-sizing:border-box!important;
+  padding:2px!important;gap:3px!important;grid-template-columns:minmax(0,1fr) minmax(155px,1.25fr) minmax(0,1fr)!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .kla-user-side{
+  height:100%!important;min-height:0!important;grid-template-rows:repeat(2,minmax(0,1fr))!important;gap:3px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .kla-user-side>*{
+  box-sizing:border-box!important;height:100%!important;min-height:0!important;padding:1px 3px!important;
+}
+/* One continuous sticky shell and navigation with no clipped bottom edges. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar{
+  display:flex!important;align-items:stretch!important;overflow:visible!important;
+  min-height:54px!important;height:54px!important;max-height:none!important;padding:2px 0 4px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .subnav,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .page-actions{
+  height:46px!important;min-height:46px!important;max-height:46px!important;overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar button,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar select{
+  height:46px!important;min-height:46px!important;max-height:46px!important;box-sizing:border-box!important;
+}
+/* Presentation: the viewport itself is the ONE enclosing rectangle, including navigation. */
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app{
+  position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;
+  min-height:0!important;max-height:100dvh!important;padding:5px 5px 5px!important;
+  display:grid!important;grid-template-rows:minmax(0,1fr) 51px!important;gap:0!important;
+  border:2px solid #0bbde9!important;border-radius:5px!important;box-sizing:border-box!important;overflow:hidden!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-tool-only{
+  grid-row:1!important;min-height:0!important;height:100%!important;max-height:100%!important;
+  border:0!important;outline:0!important;overflow:hidden!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .c11-tool-card{
+  border:0!important;outline:0!important;border-radius:0!important;padding:2px!important;
+  min-height:0!important;height:100%!important;max-height:100%!important;
+  grid-template-rows:62px minmax(0,1fr)!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .presentation-inline-nav{
+  position:relative!important;grid-row:2!important;inset:auto!important;left:auto!important;right:auto!important;bottom:auto!important;
+  height:51px!important;min-height:51px!important;max-height:51px!important;width:100%!important;
+  margin:0!important;z-index:20!important;
+}
+/* Quarter presentation already has the correct outer border: remove its unused lower band. */
+html body.presentation-mode[data-center="operations"][data-sub="summary"] #app{
+  position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;
+  min-height:0!important;max-height:100dvh!important;padding:4px!important;
+  border:2px solid #0bbde9!important;box-sizing:border-box!important;overflow:hidden!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-presentation.quarter-summary-master{
+  height:100%!important;min-height:0!important;max-height:100%!important;
+  grid-template-rows:minmax(150px,34fr) 62px minmax(0,66fr) 46px!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-switchbar{
+  align-self:end!important;margin-bottom:0!important;
+}
+/* Small screens: don't crush the center panel below its content minimum. */
+@media(max-width:900px){html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header{grid-template-columns:minmax(0,1fr) minmax(250px,1fr) minmax(0,1fr)!important}}
