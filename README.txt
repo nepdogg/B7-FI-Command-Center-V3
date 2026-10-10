@@ -1,39 +1,51 @@
-B7 FI COMMAND CENTER V11.16.0 — DATA INTEGRITY RECOVERY CANDIDATE
+B7 FI COMMAND CENTER V12.0.0 — UNIVERSAL FOUNDATION TEST
+=========================================================
+IMPORTANT: THIS IS A CLEAN LOCAL RECOVERY FOUNDATION, NOT A PRODUCTION-READY REPLACEMENT.
 
-IMPORTANT: This is a TEST CANDIDATE, not a production-certified build.
-Back up the existing Command Center and export the Microsoft List before testing.
-DO NOT run Master Reset, Clear Microsoft List, bulk archive, or bulk save.
+WHAT IS NEW
+- Completely new application shell and single shared stylesheet (no V11 cascading patches).
+- Global header, status bars, navigation, footer and universal tool card components.
+- Responsive CSS grid designed to avoid clipping on narrower screens and at browser zoom.
+- Each physical tool is one IndexedDB record, not an entire state blob in localStorage.
+- Add/Edit Tool, badge editor, FI/Lead checklist editor, local saving and reload.
+- Local tool counts, shipping view, priorities, search, quarter summary and tool presentation.
+- JSON backup export and previewed import with invalid A-/P-/activity records excluded.
+- Python launcher prints useful messages and writes a persistent diagnostic log.
 
-PRIMARY DATA FIX
-- Shared Microsoft List activity/presence records are now excluded from tool decoding.
-- Rejects A-/P- activity-style IDs and malformed tool records.
-- Tool write path rejects non-tool records.
-- Removed automatic deletion of remote tool rows when a browser snapshot lacks them.
-- Prevents auto-importing local test tools into an existing shared list on connection.
-- Does not delete or clean existing incorrect Microsoft List records.
+CRITICAL LIMITATIONS
+- Microsoft List multi-user sync is NOT IMPLEMENTED in this foundation. It cannot be used for shared production updates.
+- V11 complex meeting, archive, screenshot, packing handoff and administrative workflows are NOT migrated yet.
+- V11 legacy browser storage is NEVER automatically loaded or modified.
+- No fake sample production tools are inserted. Use ADD TOOL or import a trusted backup.
+- This build has not been tested against corporate authentication, OneDrive network paths or live tool data.
+- Imported records from V11 may have custom fields that V12 retains but does not yet display/edit.
+- Use your verified spreadsheet as the authoritative source until production validation is complete.
 
-LAYOUT ADJUSTMENTS
-- Shared header spacing and user badge vertical fill.
-- Sticky shell and page-navigation spacing adjustments.
-- Tools grid auto-fit for zoom-out/one-card pages.
-- Update Command Center workspace width adjustments.
-- Presentation outer-frame and navigation containment refinements.
-- Version title and header set to V11.16.0.
-- Includes new tool photos from V11.15.0.
+SAFE TEST INSTRUCTIONS
+1. Extract into a NEW folder, not the V11 production folder. Keep all existing backups.
+2. Close any V11 server window on port 5500 before starting V12.
+3. Double-click START-COMMAND-CENTER.bat. The server should show V12 and its folder path.
+4. Use ADD TOOL to create a TEST-... tool. Save and refresh the browser. Confirm it persists.
+5. Edit its badge and checklists. Refresh and verify both changes.
+6. Export a JSON backup and save it in a safe location.
+7. Import only a trusted JSON file and review the preview counts before confirming.
+8. Test navigation and zoom at 67%, 80%, 100% and 125%.
+9. DO NOT use V12 for real multi-user production data until Microsoft List integration is implemented and tested.
 
-TEST PLAN
-1. Extract into a NEW folder. Do not overwrite your production folder.
-2. Launch and confirm V11.16.0 in both header and browser tab.
-3. Confirm the inflated 239/300 tool counts are no longer displayed. Compare actual tool IDs with Microsoft List.
-4. DO NOT DELETE the A- activity rows: they are intentionally excluded from the tool UI.
-5. Check header and page navigation at 100%, 75%, 125% zoom.
-6. Test switching tool cards and both Presentation Modes.
-7. Verify Update Command Center can switch sections WITHOUT SAVING to production.
-8. Test second-laptop connection read-only before making a harmless controlled edit.
+DIAGNOSTICS
+- Visible server messages show version, source folder, ready state, startup failure, HTTP errors.
+- Persistent server log: %LOCALAPPDATA%\B7-FI-Command-Center\logs\v12-diagnostics.log
+- Browser errors appear in browser DevTools console. Server-side log endpoint is available at /__client_error.
+- Local tool data is in browser IndexedDB for http://localhost:5500. Do not clear site data without exporting a backup.
+- If an old server is using port 5500, V12 will NOT silently open the old version.
 
-KNOWN LIMITATIONS
-- No interactive verification against your corporate Microsoft List was possible.
-- Headless layout checks passed at CSS viewport widths 1100, 1600 and 2200 px, and the tool Presentation card fits above its navigation. This is not equivalent to testing on a KLA laptop with real photos and Microsoft List data.
-- Live sync and data edits must be confirmed on authorized work laptops.
-- Automatic remote deletions are disabled for data safety. Use the Microsoft List directly for explicitly authorized removal after a backup.
-- Historic quarter snapshots have not been migrated or recovered automatically.
+VERIFICATION STATUS
+- Static JavaScript syntax: tested with node --check.
+- Python launcher syntax: tested with py_compile.
+- Browser interaction tests: results documented in delivery response.
+- Live Microsoft List sync: NOT TESTED / NOT IMPLEMENTED.
+- Corporate laptop/network launch: NOT TESTED.
+
+BUILD PHILOSOPHY
+V12 is an independent rewrite; it does not modify V11 and does not inherit V11 CSS overrides.
+One component definition per repeated UI element. Further features should be migrated only after passing regression tests.
