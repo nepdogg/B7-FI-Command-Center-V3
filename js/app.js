@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='11.14.0', BUILD='20261007-V11.14.0-SOURCE-REPAIR';
+const VERSION='11.16.0', BUILD='20261009-V11.16.0-DATA-INTEGRITY-RECOVERY';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
@@ -513,7 +513,23 @@ function scopedToolForm(t,i){
 function dailyCard(t,i,total){return scopedToolForm(t,i)}
 
 function defaultFamilyImageName(f){if(f==='Zephyr')return 'tool-zephyr.png';return ['Regera','Celestiq'].includes(f)?'tool-regera-celestiq.png':'tool-29xx-family.png'}
-function familyImage(t){let f=t.codename||t.family||'Panamera';return state.config?.toolPhotos?.[f]||('assets/'+defaultFamilyImageName(f))}
+function familyImage(t){
+  const f=String(t.codename||t.family||'Panamera');
+  const custom=state.config?.toolPhotos?.[f];
+  if(custom)return custom;
+  // Exact model-based photo defaults; individual tool photo still takes precedence.
+  const model=String(t.model||'').trim().toUpperCase().replace(/\s+/g,'');
+  const images={
+    '2965':'tool-2965.jpg',
+    '2915S2':'tool-2915s2.png',
+    'R915':'tool-r915.png',
+    '2950':'tool-295x.png',
+    '295X':'tool-295x.png'
+  };
+  if(images[model])return 'assets/'+images[model];
+  if(/^293[0-9A-Z]*$/.test(model))return 'assets/tool-293x.png';
+  return 'assets/'+defaultFamilyImageName(f);
+}
 function individualToolPhoto(t){return String(t?.toolPhoto||'').trim()}
 function normalizeConsolidatedRoute(){if(route.center==='update'){route.center='operations';if(!['tools','tool','daily'].includes(route.sub))route.sub='tools'}if(route.center==='operations'&&!route.sub)route.sub='live'}
 function setTheme(){let [name,color,rgb]=THEMES[route.center]||THEMES.operations;document.body.dataset.center=route.center;document.body.dataset.sub=route.sub||'';document.documentElement.style.setProperty('--accent',color);document.documentElement.style.setProperty('--accent-rgb',rgb);let title=`${name} — ${state.quarter}`;if(route.center==='operations'&&route.sub==='tool'){if(route.toolId==='new')title=`ADD TOOL — ${state.quarter}`;else{let t=(draft&&String(draft.id)===String(route.toolId))?draft:state.tools.find(x=>x.id===route.toolId);title=`${route.toolId}${t?.codename?` — ${String(t.codename).toUpperCase()}`:''} — ${state.quarter}`}}document.querySelector('#pageTitle').textContent=title;document.title=`B7 FI Command Center V${VERSION}`;{let versionLabel=document.querySelector('#versionLabel');if(versionLabel)versionLabel.textContent=`V${VERSION}`;}let envLabel=document.querySelector('#environmentLabel');if(envLabel)envLabel.textContent=`DATA: ${state.environment==='SCENARIO TEST'?'SHARED SCENARIO TEST':String(state.environment||'PRODUCTION').toUpperCase()}`;window.B7Shared?.updateFooter?.(state.environment)}

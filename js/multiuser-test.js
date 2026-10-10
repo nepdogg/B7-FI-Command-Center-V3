@@ -59,18 +59,32 @@ function col(label){return fieldMap()[label.toLowerCase()]}
 function setField(body,label,value){let c=col(label);if(c&&!c.readOnly)body[c.name]=value}
 function itemVal(it,label){let c=col(label);return c?it.fields?.[c.name]:undefined}
 function titleOf(it){return String(itemVal(it,'Title')||'')}
-function parseToolData(it){let raw=String(itemVal(it,TOOL_DATA_LABEL)||'').trim();if(!raw)return null;try{let t=JSON.parse(raw);return t&&typeof t==='object'&&t.id!==undefined&&String(t.id).trim()?t:null}catch(e){return null}}
+// V11.16: Shared list contains tools, presence, and activity in the SAME column.
+// Never infer that a row is a tool merely because it has an `id` property.
+function validToolRecord(t){
+ if(!t||typeof t!=='object'||Array.isArray(t)||t._recordType)return false;
+ const id=String(t.id??'').trim();
+ if(!id||/^(?:A-|P-|B7ACTIVITY:|B7PRESENCE:)/i.test(id))return false;
+ // A real tool has a recognizable tool payload, not just an identifier.
+ return !!(String(t.codename||t.model||t.toolStatus||'').trim() ||
+          (t.shipping&&typeof t.shipping==='object') ||
+          (t.keyTests&&typeof t.keyTests==='object'));
+}
+function parseToolData(it){
+ const raw=String(itemVal(it,TOOL_DATA_LABEL)||'').trim();if(!raw)return null;
+ try{const t=JSON.parse(raw);return validToolRecord(t)?t:null}catch(e){return null}
+}
 // V7.6.8: Tool Data is the authoritative one-row marker. Older shared rows may have a blank Title,
 // so do not hide a valid tool just because B7TOOL:<UTID> was not written to Title.
-function isToolRow(it){return titleOf(it).startsWith(TOOL_PREFIX)||!!parseToolData(it)}
-function toolIdFromRow(it){let t=titleOf(it);if(t.startsWith(TOOL_PREFIX))return t.slice(TOOL_PREFIX.length);let d=parseToolData(it);return d?String(d.id):''}
+function isToolRow(it){const title=titleOf(it);return !title.startsWith(ACTIVITY_PREFIX)&&!title.startsWith(PRESENCE_PREFIX)&&!!parseToolData(it)}
+function toolIdFromRow(it){const d=parseToolData(it);return d?String(d.id):''}
 function requireToolDataColumn(){let c=col(TOOL_DATA_LABEL);if(!c||c.readOnly)throw new Error('ONE-ROW SCHEMA REQUIRED — Add a Microsoft List column named “Tool Data” with type Multiple lines of text, then reconnect. V7.6.8 will not create chunk rows.');return c}
 async function refreshAllItems(){let all=[],path=`/sites/${encodeURIComponent(site.id)}/lists/${encodeURIComponent(list.id)}/items?$expand=fields&$top=200`;while(path){let d=await graph(path.replace(CFG.graph,''));all.push(...(d.value||[]));path=d['@odata.nextLink']||''}items=all;return items}
-function toolRowFields(tool){requireToolDataColumn();let b={},cleanTool=JSON.parse(JSON.stringify(tool));delete cleanTool._sharedRowId;setField(b,'Title',TOOL_PREFIX+String(cleanTool.id));setField(b,TOOL_DATA_LABEL,JSON.stringify(cleanTool));setField(b,'UTID',cleanTool.id);setField(b,'Code Name',cleanTool.codename||'');setField(b,'FI Status',cleanTool.toolStatus||'');setField(b,'Model',cleanTool.model||'');setField(b,'Customer',cleanTool.customer||'');setField(b,'Sales Order',cleanTool.salesOrder||'');if(cleanTool.shipDate)setField(b,'MFG Ship Date',cleanDate(cleanTool.shipDate));setField(b,'Quarter',cleanTool.quarter||'');setField(b,'Family',cleanTool.family||'');setField(b,'Last Updated By',account?.username||account?.name||'');setField(b,'Revision',String((Number(tool._sharedRevision)||0)+1));return b}
+function toolRowFields(tool){if(!validToolRecord(tool))throw new Error('SAVE BLOCKED: not a valid physical tool record.');requireToolDataColumn();let b={},cleanTool=JSON.parse(JSON.stringify(tool));delete cleanTool._sharedRowId;setField(b,'Title',TOOL_PREFIX+String(cleanTool.id));setField(b,TOOL_DATA_LABEL,JSON.stringify(cleanTool));setField(b,'UTID',cleanTool.id);setField(b,'Code Name',cleanTool.codename||'');setField(b,'FI Status',cleanTool.toolStatus||'');setField(b,'Model',cleanTool.model||'');setField(b,'Customer',cleanTool.customer||'');setField(b,'Sales Order',cleanTool.salesOrder||'');if(cleanTool.shipDate)setField(b,'MFG Ship Date',cleanDate(cleanTool.shipDate));setField(b,'Quarter',cleanTool.quarter||'');setField(b,'Family',cleanTool.family||'');setField(b,'Last Updated By',account?.username||account?.name||'');setField(b,'Revision',String((Number(tool._sharedRevision)||0)+1));return b}
 async function createRow(fields){return graph(`/sites/${encodeURIComponent(site.id)}/lists/${encodeURIComponent(list.id)}/items`,{method:'POST',body:JSON.stringify({fields})})}
 async function patchRow(id,fields){return graph(`/sites/${encodeURIComponent(site.id)}/lists/${encodeURIComponent(list.id)}/items/${encodeURIComponent(id)}/fields`,{method:'PATCH',body:JSON.stringify(fields)})}
 async function deleteRow(id){try{return await graph(`/sites/${encodeURIComponent(site.id)}/lists/${encodeURIComponent(list.id)}/items/${encodeURIComponent(id)}`,{method:'DELETE'})}catch(e){if(String(e.message||'').startsWith('404'))return null;throw e}}
-async function upsertTool(tool){requireToolDataColumn();await refreshAllItems();let id=String(tool.id),matches=items.filter(it=>isToolRow(it)&&toolIdFromRow(it)===id),row=matches[0],f=toolRowFields(tool);if(row)await patchRow(row.id,f);else await createRow(f);for(const extra of matches.slice(1))await deleteRow(extra.id)}
+async function upsertTool(tool){if(!validToolRecord(tool))throw new Error('SAVE BLOCKED: non-tool record cannot be synchronized.');requireToolDataColumn();await refreshAllItems();let id=String(tool.id),matches=items.filter(it=>isToolRow(it)&&toolIdFromRow(it)===id),row=matches[0],f=toolRowFields(tool);if(row)await patchRow(row.id,f);else await createRow(f);for(const extra of matches.slice(1))await deleteRow(extra.id)}
 function decodeSharedTools(){requireToolDataColumn();let out=[],seen=new Set();for(const it of items){let t=parseToolData(it);if(!t)continue;let id=String(t.id);if(seen.has(id))continue;seen.add(id);t=JSON.parse(JSON.stringify(t));
   // Friendly List columns can be edited directly in Microsoft Lists. When present/nonblank they override
   // the matching Tool Data value on read, while Tool Data continues to hold the complete UTC state.
@@ -80,24 +94,20 @@ function decodeSharedTools(){requireToolDataColumn();let out=[],seen=new Set();f
 async function loadSharedScenario(localState){requireToolDataColumn();await refreshAllItems();let sharedTools=decodeSharedTools(),have=new Set(sharedTools.map(t=>String(t.id)));
   // Repair legacy one-row records whose Tool Data is valid but Title was left blank.
   for(const it of items){let t=parseToolData(it);if(t&&!titleOf(it).startsWith(TOOL_PREFIX)){let b={};setField(b,'Title',TOOL_PREFIX+String(t.id));if(Object.keys(b).length)await patchRow(it.id,b)}}
-  for(const t of localState.tools||[])if(!have.has(String(t.id)))await upsertTool(t);await refreshAllItems();sharedTools=decodeSharedTools();let out=JSON.parse(JSON.stringify(localState));out.environment='SCENARIO TEST';out.tools=sharedTools;lastSharedState=JSON.parse(JSON.stringify(out));return out}
+  // Never seed a populated shared list with local/browser test tools automatically.
+  if(!sharedTools.length && items.length===0)console.warn('Shared list empty: explicit import is required to publish local tools.');await refreshAllItems();sharedTools=decodeSharedTools();let out=JSON.parse(JSON.stringify(localState));out.environment='SCENARIO TEST';out.tools=sharedTools;lastSharedState=JSON.parse(JSON.stringify(out));return out}
 async function syncChangedTools(nextState){
   if(!sharedActive||!list)return;requireToolDataColumn();
   let previousTools=(lastSharedState?.tools||[]), nextTools=(nextState.tools||[]);
   let prev=new Map(previousTools.map(t=>[String(t.id),JSON.stringify(t)])), nextIds=new Set(nextTools.map(t=>String(t.id)));
-  // V7.6.18: shared DELETE is authoritative. Delete missing tool rows from Microsoft List
-  // before upserting changed/created tools, then verify by reading the List back.
+  // V11.16 DATA SAFETY: missing tools in a browser snapshot MUST NOT delete
+  // remote Microsoft List rows. Explicit delete requires a separate confirmed operation.
   await refreshAllItems();
-  for(const oldTool of previousTools){
-    let id=String(oldTool.id); if(nextIds.has(id))continue;
-    let matches=items.filter(it=>isToolRow(it)&&toolIdFromRow(it)===id);
-    for(const row of matches)await deleteRow(row.id);
-  }
+  if(nextTools.some(t=>!validToolRecord(t)))throw new Error('SYNC BLOCKED: activity/presence or malformed tool record in tool dataset.');
   let changed=nextTools.filter(t=>prev.get(String(t.id))!==JSON.stringify(t));
   for(const t of changed)await upsertTool(t);
   await refreshAllItems();
   let verified=decodeSharedTools(), verifiedIds=new Set(verified.map(t=>String(t.id)));
-  for(const oldTool of previousTools)if(!nextIds.has(String(oldTool.id))&&verifiedIds.has(String(oldTool.id)))throw new Error('DELETE VERIFY FAILED — tool '+oldTool.id+' still exists in Microsoft List.');
   let out=JSON.parse(JSON.stringify(nextState));out.tools=verified;lastSharedState=out;lastAutoSyncSignature=toolSignature(verified);updateFooter('SCENARIO TEST');
 }
 let syncChain=Promise.resolve();
