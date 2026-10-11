@@ -2,3 +2,57 @@
 
 /* V12.0.1: keep large data tables inside their panel, not off-screen */
 .table-scroll{max-width:100%;overflow-x:auto}.table-scroll .data-table{min-width:600px}.global-nav button{flex:0 0 auto;min-width:125px}.page-nav button{flex:0 0 auto;min-width:125px}
+
+/* V12.1: universal responsive shell. Browser zoom changes CSS viewport width; no fixed content ceiling. */
+:root{--content:none}
+html,body{width:100%;overflow-x:clip}
+main{max-width:none;width:100%;padding:clamp(7px,1vw,15px)}
+.global-header{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)}
+.global-nav{display:grid;grid-template-columns:repeat(14,minmax(0,1fr));gap:3px;overflow:visible}
+.global-nav button{min-width:0!important;flex:auto!important;white-space:normal;overflow-wrap:normal;word-break:normal;line-height:1.15;font-size:clamp(8px,.72vw,12px);padding:7px 2px;min-height:36px}
+.page-nav{display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin;align-items:stretch}
+.page-nav button{min-width:0!important;flex:1 1 0!important;white-space:normal;line-height:1.2;font-size:clamp(9px,.85vw,12px)}
+.page-nav select{flex:0 0 auto}
+.tools{grid-template-columns:repeat(auto-fit,minmax(min(100%,590px),1fr))}
+.tool-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.tool-col:last-child{grid-column:auto}
+.tool-card{min-width:0}
+.tool-photo{max-width:100%;height:clamp(95px,13vw,170px)}
+.tool-top h2{font-size:clamp(12px,1.1vw,18px)}
+.tool-col{padding:clamp(5px,.75vw,12px);gap:clamp(4px,.55vw,10px)}
+.badge-grid{gap:3px}
+.badge button{padding:3px 1px;font-size:clamp(8px,.65vw,11px)}
+.pair strong{font-size:clamp(10px,.9vw,14px)}
+.panel+.panel{margin-top:12px}
+.table-scroll{width:100%;overflow-x:auto}
+.family-picker{display:flex;gap:5px;flex-wrap:wrap;margin:8px 0}
+.family-picker button{font-size:11px;padding:7px 10px}
+.countdown-group{margin-bottom:12px}
+.countdown-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,155px),1fr));gap:7px;margin:10px 0}
+.countdown-tile{min-height:75px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;overflow-wrap:anywhere}
+.countdown-tile span{font-size:11px;font-weight:400}
+.countdown-tile.shipped{background:#154b3c;border-color:#32bf87}
+.quarter-hero{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.batch-table{min-width:1050px}
+.batch-table input,.batch-table select,.batch-table textarea{background:#0c1b2e;color:white;border:1px solid #477a9f;border-radius:4px;width:100%;padding:6px}
+.batch-table textarea{min-height:70px;resize:vertical}
+.meeting-record{border-bottom:1px solid var(--line);padding:10px 0;white-space:pre-wrap}
+#referenceList a{color:#84d9ff}
+.presentation{display:flex!important;flex-direction:column;overflow:hidden!important;height:100dvh;padding:7px!important}
+.presentation .page-head{flex:0 0 auto}
+.presentation .tool-card{flex:1 1 0;min-height:0;width:100%;max-width:none;display:flex;flex-direction:column;overflow:hidden}
+.presentation .tool-grid{min-height:0;flex:1 1 0;overflow:hidden}
+.presentation .tool-col{overflow:hidden;gap:clamp(2px,.5vh,10px)}
+.presentation .tool-photo{height:clamp(65px,14vh,160px)}
+.presentation .badge-grid{overflow:hidden}
+.presentation .pair{gap:0}
+.presentation .pair small{font-size:clamp(8px,.7vw,11px)}
+.presentation .pair strong{font-size:clamp(9px,.85vw,14px)}
+.presentation .badge button{font-size:clamp(7px,.6vw,10px);padding:2px 1px}
+.presentation .tool-top{padding:5px 10px}
+.presentation>p{flex:0 0 auto;margin:5px}
+.presentation.quarter-presentation{display:block!important;overflow:auto!important}
+.presentation-frame{min-height:100%;display:flex;flex-direction:column;border:2px solid var(--blue);padding:8px}
+.presentation-controls{margin-top:auto;text-align:center;padding:8px}
+@media(max-width:1100px){.global-nav{display:flex;overflow-x:auto;scrollbar-width:thin}.global-nav button{flex:0 0 90px!important;min-width:90px!important}.global-header{grid-template-columns:repeat(3,minmax(0,1fr))}.identity{grid-column:auto;grid-row:auto}.header-right{grid-column:auto;grid-row:auto}.tools{grid-template-columns:1fr}.tool-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.tool-col:last-child{grid-column:auto}}
+@media(max-width:650px){.global-header{grid-template-columns:1fr 1fr}.identity{grid-column:1 / -1;grid-row:2}.header-right{grid-column:2;grid-row:1}.tool-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.tool-col:last-child{grid-column:auto}.badge-grid{grid-template-columns:1fr}.tool-photo{height:80px}.tool-col{padding:4px}.status-line{grid-template-columns:minmax(80px,23%) minmax(0,1fr)}.quarter-row{grid-template-columns:minmax(70px,100px) minmax(0,1fr) 70px}.editor-layout{grid-template-columns:1fr}.editor-nav{flex-direction:row;overflow-x:auto}.presentation .tool-photo{height:60px}}

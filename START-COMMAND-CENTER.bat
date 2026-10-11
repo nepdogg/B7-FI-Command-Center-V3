@@ -1,8 +1,8 @@
 @echo off
 setlocal
 pushd "%~dp0" || (echo Cannot access Command Center folder. & pause & exit /b 1)
-title B7 FI COMMAND CENTER V12.0.1 - NAVIGATION RECOVERY TEST
-echo B7 FI COMMAND CENTER V12.0.1 - NAVIGATION RECOVERY TEST
+title B7 FI COMMAND CENTER V12.1.0 - UNIVERSAL FRAMEWORK TEST
+echo B7 FI COMMAND CENTER V12.1.0 - UNIVERSAL FRAMEWORK TEST
 echo ----------------------------------------------------
 echo Application folder: %CD%
 echo Starting diagnostic server on localhost:5500 ...
