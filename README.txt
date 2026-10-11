@@ -1,6 +1,14 @@
-B7 FI COMMAND CENTER V12.0.0 — UNIVERSAL FOUNDATION TEST
+B7 FI COMMAND CENTER V12.0.1 — NAVIGATION AND ADMIN RECOVERY TEST
 =========================================================
 IMPORTANT: THIS IS A CLEAN LOCAL RECOVERY FOUNDATION, NOT A PRODUCTION-READY REPLACEMENT.
+
+WHAT CHANGED IN V12.0.1
+- Administration now has ADD NEW TOOL and MANAGE EXISTING TOOLS actions.
+- Restored center navigation for Cycle Time, Meeting, Action, Reference, Archive and their basic page routes.
+- Page navigation is now contextual to the active center.
+- Morning Meeting, Cycle Time and Update Command Center provide basic tool-based views.
+- Some restored routes are explicitly labeled NOT YET MIGRATED rather than implying missing functions work.
+- No sample/fake production tools are added.
 
 WHAT IS NEW
 - Completely new application shell and single shared stylesheet (no V11 cascading patches).

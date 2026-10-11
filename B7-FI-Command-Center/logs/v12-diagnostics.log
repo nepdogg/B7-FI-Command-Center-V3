@@ -1,0 +1,6 @@
+[2026-10-11T01:32:19] ====================================================
+[2026-10-11T01:32:19] B7 FI COMMAND CENTER V12.0.0 — FOUNDATION TEST
+[2026-10-11T01:32:19] Application folder: /mnt/data/v12_next
+[2026-10-11T01:32:19] Log file: /mnt/data/v12_next/B7-FI-Command-Center/logs/v12-diagnostics.log
+[2026-10-11T01:32:19] Data: Browser IndexedDB; NO Microsoft List writes
+[2026-10-11T01:32:19] SERVER READY: http://localhost:5500/
