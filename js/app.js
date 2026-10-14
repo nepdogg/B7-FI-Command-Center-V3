@@ -2274,7 +2274,13 @@ function equipmentStats(t,kind){
 function equipmentBadges(t,mode){return ['computers','components'].map(kind=>{
   const st=equipmentStats(t,kind),types=equipmentTypes(kind),label=kind==='computers'?'COMPUTER TRACKING':'COMPONENT TRACKING';
   const tally=types.map(([code])=>`${code} ${st.totals[code]||0}`).join(' · ');
-  return `<button type="button" class="equipment-badge ${mode==='c11'?'c11-badge':''} ${st.rows?'equipment-attention':''}" data-equipment-open="${esc(kind)}" data-equipment-tool="${esc(t.id)}" title="${esc(label)} — ${st.rows} recorded events. Click for swap history"><strong>${label}</strong><small>${esc(tally)}</small><em>${st.rows} events · ${st.unique} distinct units · ${st.swaps} swaps</em></button>`;
+  const rows=equipmentRows(t,kind),last=new Map();
+  rows.forEach(r=>{const key=String(r?.type||'')+'|'+String(r?.serial||r?.unitId||'').trim();if(r?.serial||r?.unitId)last.set(key,String(r.action||''))});
+  const states=[...last.values()];
+  const urgent=states.some(x=>/Failed|Missing/i.test(x));
+  const pending=states.some(x=>/Borrowed|Swap|Replacement/i.test(x));
+  const tone=urgent?'equipment-critical':pending?'equipment-warning':st.rows?'equipment-complete':'equipment-neutral';
+  return `<button type="button" class="equipment-badge ${mode==='c11'?'c11-badge':''} ${tone}" data-equipment-open="${esc(kind)}" data-equipment-tool="${esc(t.id)}" title="${esc(label)} — ${st.rows} recorded events. Click for swap history"><strong>${label}</strong><small>${esc(tally)}</small><em>${st.rows} events · ${st.unique} distinct units · ${st.swaps} swaps</em></button>`;
 }).join('')}
 function equipmentModal(id,kind){
  const t=state.tools.find(x=>String(x.id)===String(id));if(!t)return;

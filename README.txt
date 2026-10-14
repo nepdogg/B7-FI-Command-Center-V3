@@ -1,27 +1,26 @@
-B7 FI COMMAND CENTER V11.17.4 — RESPONSIVE CARD + PRESENTATION TEST
+B7 FI COMMAND CENTER V11.17.5 — ZOOM, NAVIGATION & BADGE REPAIR (TEST ONLY)
 
-Based on V11.17.3. Existing app, images, launchers and local data keys retained.
+BASED ON: Full-featured V11.17.4 package; all original app files, tool images, and launchers retained.
 
 CHANGES
-1. Tools Center: three compact identity-only cards per row at desktop widths, two at narrow tablet widths, one on small mobile widths.
-2. Tools Center: priority uses the same markup and source/ranking as Live Operations.
-3. Tools Center: adds Computer and Component Tracking badges to the compact card; retains the original 28 and wafer badge.
-4. Status message: replaces unexplained solid square with a small status dot.
-5. Page navigation: one responsive row with left page choices and right action controls, including Tool Type.
-6. Presentation Mode: single viewport outer border containing full card and bottom navigation; remove duplicate inner border.
-7. Cache-busted new CSS and JS for GitHub Pages.
+1. Page navigation now allocates room for carousel controls and readable action labels.
+2. Computer Tracking and Component Tracking badges use compact full-width badge geometry like System Wafers.
+3. Badge colors: neutral = no history, green = history accounted for, yellow = latest swap/replacement/borrowed, red = latest failed/missing. This is a preliminary indicator, not a complete inventory reconciliation.
+4. Presentation left column removes fixed minimum badge heights that caused clipping; three columns remain aligned in one perimeter.
+5. Normal Live Operations expands the tool card to better use viewport height when browser zoom is reduced.
+6. Cache version advanced to V11.17.5.
 
-TESTING
-Unzip to a NEW folder. Keep all earlier builds and data backups intact.
-Do not overwrite the operational OneDrive directory.
-Run START-COMMAND-CENTER.bat or serve static files using an approved local web server.
-Test Tools Center (3 per row at 100% on wide monitor), priority and both equipment badges.
-Test Tool Type menu and page navigation at 67%, 80%, 100%, 125%.
-Test Presentation Mode border, three aligned columns, no scroll and bottom nav at 100%.
-Test badge save and reload on nonproduction sample data only.
+HOW TO TEST TOMORROW
+1. Extract ZIP into a NEW folder; do not overwrite production or other versions.
+2. Run START-COMMAND-CENTER.bat locally, or deploy the extracted files to a TEST site.
+3. Check Live Operations at 67%, 80%, 100%, and 125% browser zoom.
+4. Check the navigation: Verify Tools, Update Command Center, Screenshot, and carousel controls.
+5. Open Presentation Mode; verify the entire left badge column, update button, three columns, and bottom nav remain visible.
+6. On a nonproduction tool, test both equipment badge modals and their colors after recording sample events.
 
-KNOWN LIMITATIONS / SAFETY
-Microsoft List sync has NOT been independently verified. List disconnected means no shared saves.
-Previous data-count issues are not resolved by this layout update. Do not reset or delete the List.
-The production save workflows must be verified on the user's actual work environment.
-This is a TEST build, not a production-certified release.
+IMPORTANT DATA SAFETY
+- No Microsoft List records were deleted or reset. No List schema or sync logic was changed.
+- Existing phantom-tool count, Microsoft List connection, and save failures are NOT resolved or production-verified by this update.
+- Do not import real production records, clear browser storage, or delete List data to test this package.
+- Keep the spreadsheet as source of truth until shared save/reload and cross-laptop sync pass.
+- Browser layout was updated from source inspection; real Edge fullscreen and SharePoint integration require onsite testing.
