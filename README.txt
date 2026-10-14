@@ -1,67 +1,19 @@
-B7 FI COMMAND CENTER V11.17.1 — TOOL CARD SCOPE FIX (TEST ONLY)
+B7 FI COMMAND CENTER V11.17.3 - PRESENTATION PERIMETER TEST
 
-FIX: Integrated equipment tracking functions into the main app closure so the shared state, escaping, modal and save helpers are accessible. The previous version loaded these in a separate script and caused the Tool Card to fail.
+Based on V11.17.2.
 
-VERIFIED: JavaScript syntax, scope placement and ZIP integrity.
-NOT VERIFIED: Corporate Microsoft List synchronization, save reliability, actual browser rendering, sticky header, zoom, and complete V11 functionality.
+CHANGES
+- Tool Presentation Mode uses one cyan outer border enclosing tool card and navigation.
+- Removes extra frame/border from the card wrapper and grid without removing individual column/section dividers.
+- Reserves a fixed 48px bottom navigation row and sizes the card to the remaining viewport height.
+- Normal pages, Quarter Summary Presentation, tool data, save logic and Microsoft List connector unchanged.
 
-SAFETY: Extract to a new folder. Do not overwrite working files. Do not reset browser storage or Microsoft List. Avoid production writes until backups and save tests are successful.
+TEST
+1. Extract to a separate folder; do not overwrite the production Command Center.
+2. Open a test tool in Tool Presentation Mode.
+3. Check full outer border and bottom navigation at 67%, 80%, 100%, 125% browser zoom.
+4. Confirm all 3 columns end above nav; no second outer cyan frame; nav remains clickable.
+5. Do not assume Microsoft List saving works; connection has not been verified.
 
-NOTE: The screenshot showed Microsoft List disconnected; this update does not repair that connection.
-
-B7 FI COMMAND CENTER V11.17.0 — EQUIPMENT TRACKING — TEST BUILD
-October 13, 2026
-
-IMPORTANT: THIS IS NOT A VERIFIED PRODUCTION RELEASE.
-
-SOURCE: V11.16.0 full Command Center ZIP, not the incomplete V12 rebuild.
-This package retains the V11 centers/pages, launcher, images, styles, and
-Microsoft List integration code. The original V11 issues are NOT all fixed.
-
-NEW
-- Adds TWO full-width clickable badges to the existing 28-badge tool card:
-  COMPUTER TRACKING and COMPONENT TRACKING (30 total).
-- Computer types: SS (Subswath Server), GPU (GPU Servers), DBB (Global
-  Storage Server), RTAT (RTAT Server), SCC (SCC Computer), DAS (DAS Server),
-  Host (Host Server), Dart (Dart Server).
-- Component types: FWA (Filter Wheel Assembly), LCA (Lamp Cooling Assembly).
-- Admin Center: Manage Component Types; add custom types as list grows.
-- Each badge opens a history editor with type, unit/serial number, action,
-  date, source tool UTID, destination tool UTID and notes.
-- Each badge shows event count, distinct identified units and swap count.
-  A repeated serial/type counts as one distinct unit on that tool. An entry
-  without a serial/ID cannot be counted as a distinct unit.
-- All records are stored on the tool in equipmentTracking.computers and
-  equipmentTracking.components; catalog is stored in config.componentTypes.
-- Tool records survive the existing normalization and JSON export/import.
-
-BEFORE TESTING
-1. Keep your current OneDrive production folder and spreadsheet unchanged.
-2. Extract this ZIP to a SEPARATE local test folder.
-3. Do not reset or delete the Microsoft List, do not run bulk imports.
-4. Start using START-COMMAND-CENTER.bat from the test folder.
-5. Check tool counts BEFORE editing; V11.16.0 had unresolved inflated tool
-   counts and storage-quota/save problems.
-6. Use a temporary test tool; click COMPUTER TRACKING, add an entry, save,
-   refresh, and reopen. Repeat with COMPONENT TRACKING.
-7. In Administration, add one sample component type, save, refresh, verify.
-8. Export a JSON backup after a successful local test.
-9. Do not rely on this build for tomorrow's production tracking until saves
-   persist after reload and the correct tools are shown.
-
-NOT VERIFIED / KNOWN RISKS
-- Corporate Microsoft List sync, cross-laptop writes, and permissions.
-- The legacy saveState writes the entire application state to browser storage;
-  if the browser quota is exceeded, new equipment changes will NOT save.
-- Incorrect A- activity-record tool counts may still occur in V11.
-- Sticky header, responsive zoom, presentation layout, and other V11 bugs
-  remain unresolved; this release does not claim to fix them.
-- Browser interaction tests were blocked by the execution environment.
-- Transfer entries store both UTIDs for reference; they do not automatically
-  create/update a second tool's equipment history.
-
-VALIDATION COMPLETED
-- JavaScript syntax checks for app.js and equipment-tracking.js.
-- ZIP integrity and file presence checked.
-
-One README file only. Keep this test version separate from production.
+VERIFICATION
+- Package file checks only; visual behavior requires confirmation on the actual monitor.

@@ -1,0 +1,66 @@
+/* V11.17.2 single global normal-page layout contract. Presentation and screenshot modes unaffected. */
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame {
+  display:block!important; overflow:visible!important; padding-top:var(--b7-fixed-shell-height, 0px)!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell {
+  position:fixed!important; top:0!important; left:8px!important; right:8px!important;
+  width:auto!important; height:auto!important; max-height:none!important;
+  display:block!important; z-index:2147483000!important;
+  overflow:visible!important; transform:none!important; contain:none!important;
+  background:#020b13!important; padding:0 0 5px!important; box-sizing:border-box!important;
+}
+/* Clear, intentional separation between the top header and the primary center navigation. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header {
+  margin:0 0 9px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .main-nav {
+  margin:0 0 5px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .status-stack {
+  margin:0 0 7px!important;
+}
+/* Single balanced page navigation: page choices to left, actions to right. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar {
+  display:grid!important;
+  grid-template-columns:minmax(0, 1fr) minmax(320px, 34%)!important;
+  grid-template-rows:48px!important;
+  flex-wrap:nowrap!important; gap:9px!important; margin:0!important;
+  padding:0!important; height:48px!important; min-height:48px!important;
+  max-height:48px!important; align-items:stretch!important; overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #subnav,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #pageActions {
+  display:flex!important; flex-wrap:nowrap!important; flex:initial!important;
+  min-width:0!important; width:100%!important; height:48px!important;
+  min-height:48px!important; max-height:48px!important; gap:5px!important;
+  align-items:stretch!important; overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #pageActions {
+  border-left:2px solid #10b8e8!important; padding-left:9px!important;
+  box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar button,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar select {
+  flex:1 1 0!important; width:0!important; min-width:0!important;
+  height:48px!important; min-height:48px!important; max-height:48px!important;
+  padding:3px 5px!important; margin:0!important;
+  font-size:clamp(8px,.66vw,11px)!important; line-height:1.1!important;
+  white-space:normal!important; overflow:hidden!important; text-overflow:clip!important;
+  box-sizing:border-box!important;
+}
+/* Taller visible fill tracks without changing any progress values. */
+html body:not(.presentation-mode):not(.screenshot-mode) .c11-progress-track {
+  height:clamp(20px,2.4vh,30px)!important;
+  min-height:20px!important; flex:0 0 auto!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .c11-progress-row {
+  gap:clamp(3px,.65vh,7px)!important; justify-content:space-evenly!important;
+}
+@media (max-width:1150px) {
+  html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar {
+    grid-template-columns:minmax(0, 1fr) minmax(245px, 35%)!important;gap:5px!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #pageActions {padding-left:5px!important;gap:3px!important;}
+  html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar button,
+  html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar select {font-size:8px!important;padding:2px!important;}
+}
