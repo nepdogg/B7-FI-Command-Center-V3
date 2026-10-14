@@ -64,7 +64,7 @@ function titleOf(it){return String(itemVal(it,'Title')||'')}
 function validToolRecord(t){
  if(!t||typeof t!=='object'||Array.isArray(t)||t._recordType)return false;
  const id=String(t.id??'').trim();
- if(!id||/^(?:A-|P-|B7ACTIVITY:|B7PRESENCE:)/i.test(id))return false;
+ if(!id||!/^[A-Za-z0-9][A-Za-z0-9_-]{1,39}$/.test(id)||/^(?:A-|P-|B7ACTIVITY:|B7PRESENCE:)/i.test(id))return false;
  // A real tool has a recognizable tool payload, not just an identifier.
  return !!(String(t.codename||t.model||t.toolStatus||'').trim() ||
           (t.shipping&&typeof t.shipping==='object') ||
@@ -84,12 +84,12 @@ function toolRowFields(tool){if(!validToolRecord(tool))throw new Error('SAVE BLO
 async function createRow(fields){return graph(`/sites/${encodeURIComponent(site.id)}/lists/${encodeURIComponent(list.id)}/items`,{method:'POST',body:JSON.stringify({fields})})}
 async function patchRow(id,fields){return graph(`/sites/${encodeURIComponent(site.id)}/lists/${encodeURIComponent(list.id)}/items/${encodeURIComponent(id)}/fields`,{method:'PATCH',body:JSON.stringify(fields)})}
 async function deleteRow(id){try{return await graph(`/sites/${encodeURIComponent(site.id)}/lists/${encodeURIComponent(list.id)}/items/${encodeURIComponent(id)}`,{method:'DELETE'})}catch(e){if(String(e.message||'').startsWith('404'))return null;throw e}}
-async function upsertTool(tool){if(!validToolRecord(tool))throw new Error('SAVE BLOCKED: non-tool record cannot be synchronized.');requireToolDataColumn();await refreshAllItems();let id=String(tool.id),matches=items.filter(it=>isToolRow(it)&&toolIdFromRow(it)===id),row=matches[0],f=toolRowFields(tool);if(row)await patchRow(row.id,f);else await createRow(f);for(const extra of matches.slice(1))await deleteRow(extra.id)}
+async function upsertTool(tool,refresh=true){if(!validToolRecord(tool))throw new Error('SAVE BLOCKED: non-tool record cannot be synchronized.');requireToolDataColumn();if(refresh)await refreshAllItems();let id=String(tool.id),matches=items.filter(it=>isToolRow(it)&&toolIdFromRow(it)===id),row=matches[0],f=toolRowFields(tool);if(row)await patchRow(row.id,f);else await createRow(f);if(matches.length>1)console.warn('Duplicate UTID in List; no automatic deletion:',id,matches.length)}
 function decodeSharedTools(){requireToolDataColumn();let out=[],seen=new Set();for(const it of items){let t=parseToolData(it);if(!t)continue;let id=String(t.id);if(seen.has(id))continue;seen.add(id);t=JSON.parse(JSON.stringify(t));
   // Friendly List columns can be edited directly in Microsoft Lists. When present/nonblank they override
   // the matching Tool Data value on read, while Tool Data continues to hold the complete UTC state.
   let overlays=[['UTID','id'],['Code Name','codename'],['FI Status','toolStatus'],['Model','model'],['Customer','customer'],['Sales Order','salesOrder'],['MFG Ship Date','shipDate'],['Quarter','quarter'],['Family','family']];
-  for(const [label,key] of overlays){let v=itemVal(it,label);if(v!==undefined&&v!==null&&String(v).trim()!=='')t[key]=label==='MFG Ship Date'?cleanDate(v):v}
+  for(const [label,key] of overlays){let v=itemVal(it,label);if(v!==undefined&&v!==null&&String(v).trim()!==''){if(key==='id'&&String(v)!==String(t.id)){console.warn('UTID column differs from Tool Data; keeping validated ID',t.id);continue}t[key]=label==='MFG Ship Date'?cleanDate(v):v}}
   t._sharedRowId=String(it.id);out.push(t)}return out}
 async function loadSharedScenario(localState){requireToolDataColumn();await refreshAllItems();let sharedTools=decodeSharedTools(),have=new Set(sharedTools.map(t=>String(t.id)));
   // Repair legacy one-row records whose Tool Data is valid but Title was left blank.
@@ -99,13 +99,14 @@ async function loadSharedScenario(localState){requireToolDataColumn();await refr
 async function syncChangedTools(nextState){
   if(!sharedActive||!list)return;requireToolDataColumn();
   let previousTools=(lastSharedState?.tools||[]), nextTools=(nextState.tools||[]);
-  let prev=new Map(previousTools.map(t=>[String(t.id),JSON.stringify(t)])), nextIds=new Set(nextTools.map(t=>String(t.id)));
+  let stable=t=>{let x=JSON.parse(JSON.stringify(t));delete x._sharedRowId;return JSON.stringify(typeof normalizeTool==='function'?normalizeTool(x):x)};
+  let prev=new Map(previousTools.map(t=>[String(t.id),stable(t)])), nextIds=new Set(nextTools.map(t=>String(t.id)));
   // V11.16 DATA SAFETY: missing tools in a browser snapshot MUST NOT delete
   // remote Microsoft List rows. Explicit delete requires a separate confirmed operation.
   await refreshAllItems();
   if(nextTools.some(t=>!validToolRecord(t)))throw new Error('SYNC BLOCKED: activity/presence or malformed tool record in tool dataset.');
-  let changed=nextTools.filter(t=>prev.get(String(t.id))!==JSON.stringify(t));
-  for(const t of changed)await upsertTool(t);
+  let changed=nextTools.filter(t=>prev.get(String(t.id))!==stable(t));
+  for(const t of changed)await upsertTool(t,false);
   await refreshAllItems();
   let verified=decodeSharedTools(), verifiedIds=new Set(verified.map(t=>String(t.id)));
   let out=JSON.parse(JSON.stringify(nextState));out.tools=verified;lastSharedState=out;lastAutoSyncSignature=toolSignature(verified);updateFooter('SCENARIO TEST');
@@ -116,8 +117,9 @@ function metaData(it){let raw=String(itemVal(it,TOOL_DATA_LABEL)||'').trim();if(
 function presenceRows(){let now=Date.now();return items.map(it=>({it,data:metaData(it)})).filter(x=>x.data?._recordType==='presence'&&now-Date.parse(x.data.lastSeen||0)<20000)}
 function activityRows(){return items.map(it=>({it,data:metaData(it)})).filter(x=>x.data?._recordType==='activity').sort((a,b)=>Date.parse(b.data.at||0)-Date.parse(a.data.at||0))}
 async function publishPresence(){if(!sharedActive||!list||!account)return;let username=String(account.username||account.name||'').toLowerCase(),title=PRESENCE_PREFIX+username,data={_recordType:'presence',sessionId,user:account.name||account.username,username:account.username||'',lastSeen:new Date().toISOString()};await refreshAllItems();let row=items.find(it=>titleOf(it)===title),b={};setField(b,'Title',title);setField(b,TOOL_DATA_LABEL,JSON.stringify(data));if(row)await patchRow(row.id,b);else await createRow(b);await refreshAllItems();renderPresenceBadges()}
-function startPresence(){if(presenceTimer)clearInterval(presenceTimer);publishPresence().catch(()=>{});presenceTimer=setInterval(()=>publishPresence().catch(()=>{}),5000)}
-async function publishActivityRecord(msg,type='ok'){if(!sharedActive||!list||!account)return;let data={_recordType:'activity',id:'A-'+Date.now()+'-'+Math.random().toString(16).slice(2),at:new Date().toISOString(),user:account.name||account.username,username:account.username||'',message:String(msg||''),type};let b={};setField(b,'Title',ACTIVITY_PREFIX+data.id);setField(b,TOOL_DATA_LABEL,JSON.stringify(data));try{await createRow(b)}catch(e){console.warn('activity publish',e)}}
+function startPresence(){if(presenceTimer)clearInterval(presenceTimer);publishPresence().catch(()=>{});presenceTimer=setInterval(()=>publishPresence().catch(()=>{}),12000)}
+async function publishActivityRecord(){/* Disabled: activity events are local UI messages, not Microsoft List rows. */}
+
 function applyLatestSharedActivity(){let a=activityRows()[0]?.data;if(!a)return;let tm=new Date(a.at).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}),full=`${a.type==='err'?'✕':'✓'} ${a.message} · ${String(a.user||a.username||'USER').toUpperCase()} · ${tm}`;let m=document.querySelector('#commandCenterActivityMessage'),st=document.querySelector('#commandCenterActivityState'),time=document.querySelector('#commandCenterActivityTime');if(m)m.textContent=full;if(st)st.textContent=a.type==='err'?'ACTIVITY · ERROR':'ACTIVITY · UPDATED';if(time)time.textContent='↻ SYNC: '+tm}
 function activeUserDetails(){return presenceRows().map(x=>x.data)}
 function activeUsers(){let n=activeUserDetails().map(x=>String(x.user||x.username||'').trim()).filter(Boolean);let me=account?String(account.name||account.username||'').trim():'';if(me&&!n.includes(me))n.unshift(me);return [...new Set(n)]}
@@ -131,7 +133,8 @@ function renderPresenceBadges(){
   let l=document.querySelector('#klaUsersLeft'),r=document.querySelector('#klaUsersRight');if(l)l.innerHTML=badge(names[0],1)+badge(names[1],2)+badge(names[2],3)+badge(names[3],4);if(r)r.innerHTML=badge(names[4],5)+badge(names[5],6)+badge(names[6],7)+badge(names[7],8);
 }
 function activity(msg,type='ok'){
-  if(sharedActive)publishActivityRecord(msg,type).catch(()=>{});
+  // Activity is displayed locally, not written as an unbounded Microsoft List row.
+  // Legacy A- rows remain untouched for backup/review.
   let e=document.querySelector('#footerActivity');
   let who=account?displayUserName(account.name||account.username||'').toUpperCase():'';
   let tm=new Date().toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});
@@ -215,10 +218,10 @@ async function autoSync(){
     syncState='SYNCED';updateFooter('SCENARIO TEST');
   }catch(e){syncState='ERROR';setFooterStatus('LIST CONNECTED · SYNC RETRYING');updateFooter('SCENARIO TEST');console.warn('B7 auto sync',e)}finally{autoSyncBusy=false}
 }
-function showConnectionPanel(){let who=account?`${account.name||''}${account.username?' · '+account.username:''}`:'Not signed in';let listText=list?(CFG.listName+' · CONNECTED'):(CFG.listName+' · DISCONNECTED');alert(`KLA MULTI-USER CONNECTION\n\nUSER: ${who}\nLIST: ${listText}\nMODE: ${sharedActive?'MULTI-USER MODE':'LOCAL PRODUCTION'}\n\nAutomatic shared synchronization: ${sharedActive?'ACTIVE (2 second check)':'OFF'}`)}
+function showConnectionPanel(){let who=account?`${account.name||''}${account.username?' · '+account.username:''}`:'Not signed in';let listText=list?(CFG.listName+' · CONNECTED'):(CFG.listName+' · DISCONNECTED');alert(`KLA MULTI-USER CONNECTION\n\nUSER: ${who}\nLIST: ${listText}\nMODE: ${sharedActive?'MULTI-USER MODE':'LOCAL PRODUCTION'}\n\nAutomatic shared synchronization: ${sharedActive?'ACTIVE (15 second check)':'OFF'}`)}
 function bindHeaderLogin(){let h=document.getElementById('headerModeCenter');if(!h)return;h.setAttribute('role','button');h.setAttribute('tabindex','0');h.title='KLA MULTI-USER SIGN IN / CONNECTION';let go=()=>{if(sharedActive){showConnectionPanel();return}oneClickConnect().catch(()=>{})};h.onclick=go;h.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}}}
 window.B7Shared={enterScenario,leaveScenario,oneClickConnect,autoSync,queueStateSync,isActive:()=>sharedActive,updateFooter,activity,resetSharedScenario,clearEntireList,refreshScenario,showActiveUsers,activeUsers,exportSharedBackup,restoreSharedBackup,replaceSharedScenario,publishLocalProduction,datasetKind:sharedKind};
-setInterval(autoSync,2000);
+setInterval(autoSync,15000);
 
 document.addEventListener('DOMContentLoaded',async()=>{inject();bindHeaderLogin();document.querySelector('#activeUsers')?.addEventListener('click',showActiveUsers);try{await initMsal();let resume=localStorage.getItem(SHARED_MODE_KEY)==='1';if(resume){setModeIdentity('shared','connecting');if(!account){try{let r=await msalApp.ssoSilent({scopes:CFG.scopes,redirectUri:CFG.redirectUri});account=r.account;msalApp.setActiveAccount?.(account);setSignedIn()}catch(e){}}if(account){await connect();sharedActive=true;let seed={environment:'SCENARIO TEST',tools:[]};await refreshAllItems();let tools=decodeSharedTools();if(items.length&&tools.length===0)throw new Error(`SHARED LOAD BLOCKED — ${items.length} List row(s) were found but none contained valid Tool Data. Local cards were retained.`);seed.tools=tools;lastSharedState=JSON.parse(JSON.stringify(seed));lastAutoSyncSignature=toolSignature(tools);lastSyncSuccess=Date.now();syncState='SYNCED';updateFooter('SCENARIO TEST');if(window.B7ApplySharedScenario)window.B7ApplySharedScenario(seed);status(`PASS — Multi-User session restored automatically · ${tools.length} tool(s) loaded from Microsoft List.`,'ok')}else{syncState='PAUSED';updateFooter('SCENARIO TEST');status('MULTI-USER SESSION PAUSED — click the KLA logo only if automatic session restore is unavailable.','err')}}else{updateFooter('PRODUCTION');if(account)status('Existing Microsoft sign-in detected. Local data remains active until Shared Multi-User is started.','ok')}}catch(e){syncState='ERROR';setModeIdentity('shared','offline');updateFooter('SCENARIO TEST');status('Authentication / shared restore warning — '+friendly(e),'err')}});
 })();

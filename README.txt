@@ -1,23 +1,31 @@
-B7 FI COMMAND CENTER V11.17.6 — PRESENTATION / QUARTER / ZOOM TEST
+B7 FI COMMAND CENTER V11.17.7 — DATA SAFETY / PERFORMANCE CANDIDATE
 
-Based on the existing full-featured V11.17.5 package. No tool records or Microsoft List settings are modified by this build.
+STATUS: TEST ONLY. NOT CERTIFIED FOR PRODUCTION MULTI-USER USE.
 
-CHANGES
-- Quarter Summary presentation CY26Q3/CY26Q4 TOOLS links: fixed a click blocker that swallowed tool-quarter navigation.
-- Quarter selection for historical tool presentations: selected quarter now determines the displayed tools.
-- Quarter Summary links: one event handler handles the navigation, avoiding duplicate clicks.
-- Tool presentation: stronger single outer cyan border containing card and bottom navigation.
-- Status lamp: larger 17–22px red/yellow/green dot with glow, reduced-motion support.
-- Computer / Component badges: standardized compact full-width geometry across fleet and live tool cards.
-- Live Operations: improved flexible vertical fill when zoomed out.
+Confirmed source defect: every shared activity update previously created a permanent A-<timestamp> record in the SAME Microsoft List as tools. Those are activity records, not physical tools. This candidate stops writing new activity rows; it does not delete any existing rows.
 
-TESTING (Edge)
-1. Extract ZIP into a NEW folder, preserving V11.17.5 as backup. Run START-COMMAND-CENTER.bat.
-2. Test Live Operations at 67%, 80%, 100%, and 125% zoom. Inspect all three columns, footer and page navigation.
-3. Open Presentation Mode. Verify one outer cyan border encloses the full card and navigation.
-4. Open CY26Q3 SUMMARY presentation; click Q3 TOOLS, Q4 TOOLS, Q3 SUMMARY and Q4 SUMMARY. Verify each target.
-5. Compare Computer/Component badges on different tools and Tools Center cards; click to inspect tracking history.
-6. Check the larger alert lamp.
+Changes:
+- Stops unbounded activity-row creation from save/activity events.
+- Full-list sync interval changed from 2 seconds to 15 seconds; presence interval from 5 to 12 seconds.
+- Quarantines A-/P- and typed activity/presence records from the physical-tool collection.
+- Validates tool identifiers before shared writes.
+- Refuses to delete duplicate List rows automatically during tool updates.
+- Adds a defensive Tool Card renderer to skip a malformed tool rather than blank Live Operations; logs errors to F12 Console.
+- Removes an accidental duplicate UTID row from the Universal Tool Card.
+- Preserves all existing pages and assets. Does NOT delete Microsoft List records or clear browser data.
+- Launcher prints its served folder and refuses to open if port 5500 is already used by another server.
 
-SAFETY / LIMITATIONS
-TEST ONLY. Microsoft List sync, save reliability and phantom 200+ records remain unverified. Do not delete or reset List data without a verified backup. This build does NOT fix or reset those records.
+IMPORTANT LIMITATIONS:
+- Microsoft Graph authentication, two-user synchronization, saves, and browser zoom were NOT verified in a live corporate environment.
+- Existing 200+ A- rows remain in SharePoint and should be exported/backed up before selective cleanup.
+- Local and localhost browser storage are separate. Keep your working Local Mode backup.
+- Do not overwrite your working application folder. Extract this ZIP into a separate test folder.
+- No claim is made that all remaining layout and sync issues are fixed.
+
+TESTING:
+1. Back up the Microsoft List and export Local Mode data first.
+2. Launch from a separate folder and check Live Operations, Priority Center, Tool Edit.
+3. Check that A- entries do not appear as tools. Do not delete List rows.
+4. On a TEST List only, edit one tool and confirm the Tool Data row updates without new A- activity rows.
+5. Check Console for Tool Card errors. Check performance at 100% and 67% zoom.
+6. Only after successful tests on two laptops should production use be considered.
