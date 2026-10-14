@@ -1,3 +1,14 @@
+B7 FI COMMAND CENTER V11.17.1 — TOOL CARD SCOPE FIX (TEST ONLY)
+
+FIX: Integrated equipment tracking functions into the main app closure so the shared state, escaping, modal and save helpers are accessible. The previous version loaded these in a separate script and caused the Tool Card to fail.
+
+VERIFIED: JavaScript syntax, scope placement and ZIP integrity.
+NOT VERIFIED: Corporate Microsoft List synchronization, save reliability, actual browser rendering, sticky header, zoom, and complete V11 functionality.
+
+SAFETY: Extract to a new folder. Do not overwrite working files. Do not reset browser storage or Microsoft List. Avoid production writes until backups and save tests are successful.
+
+NOTE: The screenshot showed Microsoft List disconnected; this update does not repair that connection.
+
 B7 FI COMMAND CENTER V11.17.0 — EQUIPMENT TRACKING — TEST BUILD
 October 13, 2026
 
