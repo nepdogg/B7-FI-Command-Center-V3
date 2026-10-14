@@ -1,23 +1,27 @@
 @echo off
 setlocal
-pushd "%~dp0" || (echo Cannot access Command Center folder. & pause & exit /b 1)
-title B7 FI COMMAND CENTER V12.1.0 - UNIVERSAL FRAMEWORK TEST
-echo B7 FI COMMAND CENTER V12.1.0 - UNIVERSAL FRAMEWORK TEST
-echo ----------------------------------------------------
-echo Application folder: %CD%
-echo Starting diagnostic server on localhost:5500 ...
+cd /d "%~dp0"
+set "B7LOG=%TEMP%\B7-FI-Command-Center-server.log"
+echo ============================================================
+echo B7 FI COMMAND CENTER V7.7.4 - FOUNDATION LOCK
+echo ============================================================
+echo Local server: http://localhost:5500/
+echo Routine browser GET messages are hidden from this window.
+echo Server log: %B7LOG%
+echo Keep this window open while using the Command Center.
 echo.
 where py >nul 2>nul
-if not errorlevel 1 (
-  py -3 -u server.py
-  goto done
+if %errorlevel%==0 (
+  start "" http://localhost:5500/
+  py -m http.server 5500 --bind localhost > "%B7LOG%" 2>&1
+  goto :eof
 )
 where python >nul 2>nul
-if not errorlevel 1 (
-  python -u server.py
-  goto done
+if %errorlevel%==0 (
+  start "" http://localhost:5500/
+  python -m http.server 5500 --bind localhost > "%B7LOG%" 2>&1
+  goto :eof
 )
-echo ERROR: Python 3 was not found. Contact IT or use an approved local web server.
+echo Python was not found on this computer.
+echo Serve THIS folder on port 5500 and open http://localhost:5500/
 pause
-:done
-popd
