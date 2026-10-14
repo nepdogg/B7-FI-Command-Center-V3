@@ -1,31 +1,27 @@
-B7 FI COMMAND CENTER V11.17.7 — DATA SAFETY / PERFORMANCE CANDIDATE
+B7 FI COMMAND CENTER V11.17.8 — NAVIGATION / PRESENTATION / STARTUP TEST
+====================================================================
+BASE: V11.17.7 Data Safety & Performance Candidate.
 
-STATUS: TEST ONLY. NOT CERTIFIED FOR PRODUCTION MULTI-USER USE.
+CHANGES
+- Corrected equipment catalog initialization order: both tracking catalogs are now initialized before the initial application render. Addresses the EQUIPMENT_COMPUTERS temporal-dead-zone error.
+- Shared page navigation uses content-sized buttons, not equal-width button slots. Left page links scroll horizontally only if the available viewport cannot accommodate all links. Right actions and carousel controls preserve full labels and widths.
+- Presentation Tool Card progress bars and text sizes now match Live Operations styles, while preserving the existing outer presentation border.
+- Build version incremented to V11.17.8.
 
-Confirmed source defect: every shared activity update previously created a permanent A-<timestamp> record in the SAME Microsoft List as tools. Those are activity records, not physical tools. This candidate stops writing new activity rows; it does not delete any existing rows.
+DATA SAFETY
+- No changes to tool data, storage keys, List schema, or List rows.
+- Existing 200+ unwanted Microsoft List records are NOT deleted or cleaned up.
+- Microsoft List multi-user sign-in and sync are NOT verified; do not rely on this candidate for production writes.
+- Preserve your working local data backups and the previous installation. Extract to a NEW folder.
 
-Changes:
-- Stops unbounded activity-row creation from save/activity events.
-- Full-list sync interval changed from 2 seconds to 15 seconds; presence interval from 5 to 12 seconds.
-- Quarantines A-/P- and typed activity/presence records from the physical-tool collection.
-- Validates tool identifiers before shared writes.
-- Refuses to delete duplicate List rows automatically during tool updates.
-- Adds a defensive Tool Card renderer to skip a malformed tool rather than blank Live Operations; logs errors to F12 Console.
-- Removes an accidental duplicate UTID row from the Universal Tool Card.
-- Preserves all existing pages and assets. Does NOT delete Microsoft List records or clear browser data.
-- Launcher prints its served folder and refuses to open if port 5500 is already used by another server.
+TEST
+1. Back up the working local dataset before switching builds.
+2. Open index.html in Local Mode; check Live Operations immediately after load.
+3. Inspect navigation labels on Operations, Tools, and other centers at 67/80/100/125% browser zoom.
+4. Test previous/pause/next and the Verify/Update/Screenshot buttons.
+5. Test Presentation Mode: border, progress bars, text, next/previous tool and exit.
+6. Test the BAT server mode separately; verify Microsoft List connection before editing any real records.
+7. Do NOT delete or reset List records based solely on an A- prefix without confirming a backup and record type.
 
-IMPORTANT LIMITATIONS:
-- Microsoft Graph authentication, two-user synchronization, saves, and browser zoom were NOT verified in a live corporate environment.
-- Existing 200+ A- rows remain in SharePoint and should be exported/backed up before selective cleanup.
-- Local and localhost browser storage are separate. Keep your working Local Mode backup.
-- Do not overwrite your working application folder. Extract this ZIP into a separate test folder.
-- No claim is made that all remaining layout and sync issues are fixed.
-
-TESTING:
-1. Back up the Microsoft List and export Local Mode data first.
-2. Launch from a separate folder and check Live Operations, Priority Center, Tool Edit.
-3. Check that A- entries do not appear as tools. Do not delete List rows.
-4. On a TEST List only, edit one tool and confirm the Tool Data row updates without new A- activity rows.
-5. Check Console for Tool Card errors. Check performance at 100% and 67% zoom.
-6. Only after successful tests on two laptops should production use be considered.
+LIMITATIONS
+Static syntax and package checks are performed. Full Edge/SharePoint multi-user testing requires your environment. Existing performance, save, and multi-user issues may remain.

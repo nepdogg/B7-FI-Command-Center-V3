@@ -1,7 +1,9 @@
 (()=>{'use strict';
-const VERSION='11.17.7', BUILD='20261014-V11.17.7-DATA-SAFETY-PERFORMANCE-TEST';
+const VERSION='11.17.8', BUILD='20261014-V11.17.8-NAV-PRESENTATION-STARTUP-TEST';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
+const EQUIPMENT_COMPUTERS=[['SS','Subswath Server'],['GPU','GPU Servers'],['DBB','Global Storage Server'],['RTAT','RTAT Server'],['SCC','SCC Computer'],['DAS','DAS Server'],['Host','Host Server'],['Dart','Dart Server']];
+const EQUIPMENT_COMPONENT_DEFAULT=[['FWA','Filter Wheel Assembly'],['LCA','Lamp Cooling Assembly']];
 const STATUS=['OPI','OI','FI','Engineering','Powered Down','Packing','Shipped','Archived'];
 const FAMILIES=['Targa','Panamera','Vanquish','Zephyr','Macan','Boxster','Regera','Celestiq','Taycan'];
 const MYSTERY_MEDIA=['raiders.jpg','raiders-win.gif','celebration-raiders-white-team.png','celebration-raiders-black-team.png','celebration-raiders-24.png'];
@@ -2280,8 +2282,7 @@ window.B7ApplySharedScenario=function(shared){if(!shared||!Array.isArray(shared.
 
 /* V11.17.1: Equipment tracking now runs INSIDE the application closure, sharing the real state and helpers. */
 /* V11.17: centralized computer/component tracking. Shared app state; no parallel localStorage key. */
-const EQUIPMENT_COMPUTERS=[['SS','Subswath Server'],['GPU','GPU Servers'],['DBB','Global Storage Server'],['RTAT','RTAT Server'],['SCC','SCC Computer'],['DAS','DAS Server'],['Host','Host Server'],['Dart','Dart Server']];
-const EQUIPMENT_COMPONENT_DEFAULT=[['FWA','Filter Wheel Assembly'],['LCA','Lamp Cooling Assembly']];
+/* Equipment catalogs initialized at startup, before the first render. */
 function equipmentTypes(kind){
   if(kind==='computers')return EQUIPMENT_COMPUTERS;
   const x=state?.config?.componentTypes;
