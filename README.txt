@@ -1,27 +1,19 @@
-B7 FI COMMAND CENTER V11.17.8 — NAVIGATION / PRESENTATION / STARTUP TEST
-====================================================================
-BASE: V11.17.7 Data Safety & Performance Candidate.
+B7 FI COMMAND CENTER V11.17.9 — NAVIGATION AND PRESENTATION TEST
 
 CHANGES
-- Corrected equipment catalog initialization order: both tracking catalogs are now initialized before the initial application render. Addresses the EQUIPMENT_COMPUTERS temporal-dead-zone error.
-- Shared page navigation uses content-sized buttons, not equal-width button slots. Left page links scroll horizontally only if the available viewport cannot accommodate all links. Right actions and carousel controls preserve full labels and widths.
-- Presentation Tool Card progress bars and text sizes now match Live Operations styles, while preserving the existing outer presentation border.
-- Build version incremented to V11.17.8.
+- Replaced the previous equal-width pagebar button sizing with content-width buttons.
+- Preserved carousel and action button widths; page tabs can scroll if the viewport is too narrow.
+- Applied the same navigation sizing across centers.
+- Increased presentation progress bar thickness and heading text sizes.
+- Preserved tool data and Microsoft List integration code unchanged.
 
-DATA SAFETY
-- No changes to tool data, storage keys, List schema, or List rows.
-- Existing 200+ unwanted Microsoft List records are NOT deleted or cleaned up.
-- Microsoft List multi-user sign-in and sync are NOT verified; do not rely on this candidate for production writes.
-- Preserve your working local data backups and the previous installation. Extract to a NEW folder.
-
-TEST
-1. Back up the working local dataset before switching builds.
-2. Open index.html in Local Mode; check Live Operations immediately after load.
-3. Inspect navigation labels on Operations, Tools, and other centers at 67/80/100/125% browser zoom.
-4. Test previous/pause/next and the Verify/Update/Screenshot buttons.
-5. Test Presentation Mode: border, progress bars, text, next/previous tool and exit.
-6. Test the BAT server mode separately; verify Microsoft List connection before editing any real records.
-7. Do NOT delete or reset List records based solely on an A- prefix without confirming a backup and record type.
+TESTING
+1. Extract to a NEW folder; do not overwrite a known working version.
+2. Open index.html in local mode and verify page buttons, Tool Cards, and Presentation Mode.
+3. At 67%, 80%, 100%, 125% browser zoom, confirm action labels are fully visible and page tabs do not squeeze them.
+4. Deploy the entire package to GitHub Pages before testing the hosted version. The title should show V11.17.9.
+5. Do not delete Microsoft List records or browser storage. Keep daily backups.
 
 LIMITATIONS
-Static syntax and package checks are performed. Full Edge/SharePoint multi-user testing requires your environment. Existing performance, save, and multi-user issues may remain.
+Microsoft List synchronization and the existing 200+ bogus records are not repaired by this layout build.
+The ZIP and JavaScript can be checked locally, but work-environment Microsoft List integration must be verified on site.
