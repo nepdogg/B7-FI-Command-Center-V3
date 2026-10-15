@@ -68,3 +68,147 @@ body[data-center="operations"][data-sub="tools"] #app .v1014-tools-page{display:
 /* Keep popup menus above sticky navigation and do not hide their options. */
 body #stickyShell .tool-type-menu{position:relative!important}
 body #stickyShell .tool-type-dropdown{z-index:100000!important}
+
+/* V11.17.16: equipment badges also carry .c11-badge, so an older
+   .c11-badge:not(.c11-wafer-badge) selector was overriding the full-row rule.
+   Override that exact conflict in both Live Operations and Presentation Mode. */
+html body #app .c11-badges > .c11-badge.equipment-badge:not(.c11-wafer-badge){
+  grid-column:1 / -1!important;
+  grid-row:auto / span 1!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  min-height:0!important;
+  height:100%!important;
+  margin:0!important;
+  padding:1px 7px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,40%) minmax(0,60%)!important;
+  grid-template-rows:minmax(0,1fr)!important;
+  align-items:center!important;
+  justify-items:stretch!important;
+  gap:5px!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+  white-space:normal!important;
+}
+html body #app .c11-badges > .c11-badge.equipment-badge:not(.c11-wafer-badge) strong{
+  min-width:0!important;text-align:center!important;line-height:1.1!important;
+}
+html body #app .c11-badges > .c11-badge.equipment-badge:not(.c11-wafer-badge) small{
+  min-width:0!important;text-align:center!important;overflow-wrap:normal!important;
+  word-break:normal!important;line-height:1.1!important;
+}
+html body #app .c11-badges > .c11-badge.equipment-badge:not(.c11-wafer-badge) em{display:none!important}
+
+
+/* V11.17.17: definitive geometry + navigation owner.  No data logic changed. */
+/* Content-sized controls: never use inherited equal fraction widths. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar{
+ display:flex!important; flex-flow:row nowrap!important; align-items:center!important;
+ justify-content:flex-start!important; gap:8px!important;
+ width:100%!important; min-width:0!important; overflow-x:auto!important;
+ overflow-y:hidden!important; padding:4px 8px!important; height:58px!important;
+ min-height:58px!important;max-height:58px!important;scrollbar-width:thin!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #subnav,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #pageActions{
+ display:flex!important; flex:0 0 max-content!important; flex-flow:row nowrap!important;
+ align-items:center!important;justify-content:flex-start!important;
+ width:max-content!important;min-width:max-content!important;max-width:none!important;
+ grid-template-columns:none!important;grid-template-rows:none!important;
+ height:46px!important;min-height:46px!important;max-height:46px!important;
+ overflow:visible!important;border:0!important;border-left:0!important;
+ margin:0!important;padding:0!important;gap:6px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #pageActions{margin-left:auto!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #subnav > *,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #pageActions > *,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .nav69-live-controls,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .nav69-live-actions,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .nav69-control-group{
+ flex:0 0 auto!important;width:max-content!important;min-width:max-content!important;
+ max-width:none!important;display:flex!important;align-items:center!important;
+ gap:5px!important;grid-template-columns:none!important;grid-template-rows:none!important;
+ margin:0!important;padding:0!important;border:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar button,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar select,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .tool-type-menu-button{
+ flex:0 0 auto!important;width:max-content!important;min-width:max-content!important;
+ max-width:none!important;box-sizing:border-box!important;
+ height:44px!important;min-height:44px!important;max-height:44px!important;
+ padding:0 14px!important;line-height:1.2!important;
+ font-size:clamp(11px,.75vw,14px)!important;white-space:nowrap!important;
+ text-overflow:clip!important;overflow:visible!important;letter-spacing:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .nav69-mini{padding:0 10px!important;min-width:42px!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .compact-carousel-pause{min-width:80px!important;flex-direction:column!important}
+/* The live tool card is fixed-height at a given viewport: tool data cannot resize its sections. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-card-grid{
+ display:grid!important;grid-template-columns:minmax(0,29%) minmax(0,38%) minmax(0,33%)!important;
+ grid-template-rows:minmax(0,1fr)!important;align-items:stretch!important;
+ height:870px!important;min-height:870px!important;max-height:870px!important;
+ width:100%!important;gap:5px!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-identity-column{
+ display:grid!important;grid-template-rows:250px 128px 24px 24px minmax(0,1fr) 32px!important;
+ height:100%!important;min-height:0!important;max-height:100%!important;
+ gap:4px!important;overflow:hidden!important;align-self:stretch!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-photo{
+ height:250px!important;min-height:250px!important;max-height:250px!important;
+ overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-photo img{
+ display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-identity-stack{
+ min-height:0!important;max-height:128px!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-status-column{
+ display:grid!important;grid-template-rows:repeat(6,minmax(0,1fr))!important;
+ height:100%!important;min-height:0!important;max-height:100%!important;gap:5px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-status-card{
+ min-height:0!important;max-height:100%!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-progress-column{
+ display:grid!important;grid-template-rows:repeat(9,minmax(0,1fr))!important;
+ height:100%!important;min-height:0!important;max-height:100%!important;gap:5px!important;
+}
+html body #app .c11-progress-column .c11-progress-track{
+ height:20px!important;min-height:20px!important;max-height:20px!important;
+ border-radius:10px!important;flex-shrink:0!important;
+}
+/* 27 standard badges in 3 columns, then three separate full-width tracking badges. */
+html body #app .c11-identity-column .c11-badges{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ grid-template-rows:repeat(12,minmax(0,1fr))!important;grid-auto-flow:row!important;
+ gap:3px!important;min-height:0!important;height:100%!important;overflow:hidden!important;
+}
+html body #app .c11-identity-column .c11-badges > .equipment-badge.c11-wafer-badge{
+ grid-column:1/-1!important;grid-row:auto!important;display:grid!important;
+ grid-template-columns:minmax(0,40%) minmax(0,60%)!important;
+ align-items:center!important;width:100%!important;max-width:100%!important;
+ min-height:0!important;height:100%!important;gap:3px!important;
+ padding:1px 6px!important;overflow:hidden!important;white-space:normal!important;
+}
+html body #app .c11-identity-column .c11-badges > .equipment-badge.c11-wafer-badge strong,
+html body #app .c11-identity-column .c11-badges > .equipment-badge.c11-wafer-badge small{
+ font-size:clamp(8px,.65vw,11px)!important;line-height:1.05!important;
+ text-align:center!important;min-width:0!important;overflow-wrap:anywhere!important;
+}
+html body #app .c11-identity-column .c11-badges > .equipment-badge.c11-wafer-badge em{display:none!important}
+/* On small monitors keep every field usable instead of squeezing three columns into unreadable slivers. */
+@media(max-width:1050px){
+ html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-card-grid{
+  grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto auto auto!important;
+  height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;
+ }
+ html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-identity-column{
+  height:870px!important;min-height:870px!important;max-height:870px!important;
+ }
+ html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-status-column{height:660px!important;min-height:660px!important}
+ html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-progress-column{height:750px!important;min-height:750px!important}
+}

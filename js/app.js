@@ -2312,7 +2312,7 @@ function equipmentBadges(t,mode){return ['computers','components'].map(kind=>{
   const urgent=states.some(x=>/Failed|Missing/i.test(x));
   const pending=states.some(x=>/Borrowed|Swap|Replacement/i.test(x));
   const tone=urgent?'equipment-critical':pending?'equipment-warning':st.rows?'equipment-complete':'equipment-neutral';
-  return `<button type="button" class="equipment-badge ${mode==='c11'?'c11-badge':''} ${tone}" data-equipment-open="${esc(kind)}" data-equipment-tool="${esc(t.id)}" title="${esc(label)} — ${st.rows} recorded events. Click for swap history"><strong>${label}</strong><small>${esc(tally)}</small><em>${st.rows} events · ${st.unique} distinct units · ${st.swaps} swaps</em></button>`;
+  return `<button type="button" class="equipment-badge ${mode==='c11'?'c11-badge c11-wafer-badge':''} ${tone}" data-equipment-open="${esc(kind)}" data-equipment-tool="${esc(t.id)}" title="${esc(label)} — ${st.rows} recorded events. Click for swap history"><strong>${label}</strong><small>${esc(tally)}</small><em>${st.rows} events · ${st.unique} distinct units · ${st.swaps} swaps</em></button>`;
 }).join('')}
 function equipmentModal(id,kind){
  const t=state.tools.find(x=>String(x.id)===String(id));if(!t)return;

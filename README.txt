@@ -1,20 +1,19 @@
-B7 FI COMMAND CENTER — V11.17.15 LAYOUT REPAIR TEST
+B7 FI COMMAND CENTER V11.17.17 — GEOMETRY AND NAVIGATION TEST
 
-WHAT CHANGED
-- Added one isolated CSS layout repair layer (css/layout-repair.css), loaded after legacy CSS.
-- Navigation buttons size to text with internal padding. Navigation scrolls horizontally only if there is not enough width to fit all controls; labels are not deliberately truncated.
-- Full three-column tool card uses stable column proportions and a 16px progress track.
-- Identity photo is contained; wafer/computer/component badges occupy consistent full-width rows.
-- Removes the forced 940px minimum tool-card width at narrow screen sizes, stacking columns instead.
-- Tools Center uses 3 columns on wide screens, 2 on medium screens, 1 on narrow screens.
+This is a TEST package, not a verified production or Microsoft List repair.
 
-TESTING
-1. BACK UP your local data and Microsoft List separately before testing.
-2. Extract into a NEW folder. Do not overwrite your current working copy.
-3. Open index.html in local mode. Check Tools Center and Live Operations at 67%, 80%, 100%, 125% zoom and on both monitors.
-4. Check tool cards for Targa, Vanquish, Regera; verify the 30 badges and progress bars.
-5. Check each page navigation bar; on small screens a horizontal scrollbar is intentional rather than cutting labels.
-6. Check Presentation Mode, tool editing, save and reload on test records only.
+Changes:
+- Computer and Component Tracking badges now share the full-row wafer-badge CSS path in the full Universal Tool Card, matching Tools Center layout.
+- Live Operations three-column card uses a fixed 870px content grid: fixed 250px photo, six equal status panels, nine equal progress panels, 12 badge rows. Content varies; geometry does not.
+- Progress tracks increased to 20px in Live Operations and Presentation Mode.
+- Page navigation overrides legacy fixed-width grid and equal-width button rules. Labels get content-width controls with 14px padding. At narrow zoom/monitor widths the pagebar scrolls horizontally rather than truncating buttons.
+- At CSS viewport widths <=1050px Live Operations stacks the three sections instead of crushing them.
 
-LIMITATIONS
-This is a targeted layout TEST, not a verified production-safe release. Microsoft List sign-in, sync, phantom records, and data migration are not fixed or validated by this package. Do not reset/delete production list records. Real multi-user access requires testing in the KLA environment.
+Test:
+1. Back up local data. Extract into a separate folder. Do not overwrite the working copy.
+2. Open index.html and compare Targa, Vanquish, Regera, and Taycan in Live Operations and Presentation Mode.
+3. Compare all three full-width badges with Tools Center.
+4. Test navigation at 67%, 80%, 100%, 125%, and on laptop/monitor.
+5. If testing via GitHub Pages, upload the entire new folder and refresh cache; the CSS cache query is now 111717.
+
+Limitations: Microsoft List disconnection, bogus A-... records, saves and multi-user sync were NOT modified or validated. Browser rendering needs verification on your devices. Do not use this test build as the only source of production data.
