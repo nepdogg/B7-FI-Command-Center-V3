@@ -1,0 +1,71 @@
+/* V11.17.35: canonical non-presentation badge geometry. Overrides legacy style layers. */
+:root{--b7-badge-row:50px;--b7-badge-gap:5px;--b7-badge-total:655px}
+/* Keep the sticky navigation in document flow; never overlay tool content. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell{position:sticky!important;top:0!important;inset-inline:auto!important;transform:none!important;z-index:900!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .body-shell{position:relative!important;top:auto!important;margin-top:0!important;padding-top:8px!important;transform:none!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #app.body-workspace{position:relative!important;top:auto!important;transform:none!important}
+/* One fixed physical card height for all live tools, independent of data. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-tool-card{display:block!important;height:auto!important;min-height:0!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-card-grid{display:grid!important;grid-template-columns:minmax(0,29%) minmax(0,38%) minmax(0,33%)!important;height:1190px!important;min-height:1190px!important;max-height:1190px!important;overflow:visible!important;align-items:stretch!important}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-identity-column{display:grid!important;grid-template-rows:250px 128px 28px 28px 655px 40px!important;gap:6px!important;align-content:start!important;height:1190px!important;min-height:1190px!important;max-height:1190px!important;overflow:visible!important}
+/* A badge occupies one row, with no implicit placement or shrinking. */
+html body:not(.presentation-mode) #app .c11-identity-column .c11-badges,
+html body:not(.presentation-mode) #app .fleet-identity-card .fleet-badges{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ grid-template-rows:repeat(12,var(--b7-badge-row))!important;
+ grid-auto-rows:var(--b7-badge-row)!important;grid-auto-flow:row!important;
+ column-gap:var(--b7-badge-gap)!important;row-gap:var(--b7-badge-gap)!important;
+ align-content:start!important;align-items:stretch!important;justify-content:stretch!important;
+ height:var(--b7-badge-total)!important;min-height:var(--b7-badge-total)!important;max-height:var(--b7-badge-total)!important;
+ width:100%!important;min-width:0!important;padding:0!important;margin:0!important;
+ overflow:visible!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode) #app .c11-identity-column .c11-badges > .c11-badge,
+html body:not(.presentation-mode) #app .fleet-identity-card .fleet-badges > .v10-badge,
+html body:not(.presentation-mode) #app .fleet-identity-card .fleet-badges > .equipment-badge{
+ box-sizing:border-box!important;position:relative!important;display:flex!important;flex-direction:column!important;
+ justify-content:center!important;align-items:center!important;grid-row:span 1!important;
+ height:var(--b7-badge-row)!important;min-height:var(--b7-badge-row)!important;max-height:var(--b7-badge-row)!important;
+ width:100%!important;min-width:0!important;max-width:100%!important;
+ margin:0!important;padding:3px 5px!important;gap:2px!important;
+ overflow:hidden!important;white-space:normal!important;transform:none!important;
+ line-height:1.1!important;text-align:center!important;
+}
+html body:not(.presentation-mode) #app .c11-identity-column .c11-badges > .c11-wafer-badge,
+html body:not(.presentation-mode) #app .c11-identity-column .c11-badges > .equipment-badge,
+html body:not(.presentation-mode) #app .fleet-identity-card .fleet-badges > .v10-wafer-badge,
+html body:not(.presentation-mode) #app .fleet-identity-card .fleet-badges > .equipment-badge{
+ display:grid!important;grid-column:1/-1!important;grid-row:span 1!important;
+ grid-template-columns:minmax(0,36%) minmax(0,1fr)!important;grid-template-rows:1fr!important;
+ align-items:center!important;gap:6px!important;
+ height:var(--b7-badge-row)!important;min-height:var(--b7-badge-row)!important;max-height:var(--b7-badge-row)!important;
+ padding:3px 8px!important;
+}
+html body:not(.presentation-mode) #app .c11-badges .badge-face-label,
+html body:not(.presentation-mode) #app .fleet-badges .badge-face-label{
+ display:block!important;flex:none!important;font-size:clamp(9px,.64vw,11px)!important;
+ line-height:1.12!important;max-width:100%!important;overflow:visible!important;white-space:normal!important;overflow-wrap:break-word!important;
+}
+html body:not(.presentation-mode) #app .c11-badges .badge-face-state,
+html body:not(.presentation-mode) #app .fleet-badges .badge-face-state{
+ display:block!important;flex:none!important;font-size:clamp(8px,.57vw,10px)!important;
+ line-height:1.12!important;max-width:100%!important;overflow:visible!important;white-space:normal!important;overflow-wrap:break-word!important;
+ -webkit-line-clamp:unset!important;line-clamp:unset!important;
+}
+html body:not(.presentation-mode) #app .c11-badges > .equipment-badge em,
+html body:not(.presentation-mode) #app .fleet-badges > .equipment-badge em{display:none!important}
+html body:not(.presentation-mode) #app .c11-badges > .equipment-badge strong,
+html body:not(.presentation-mode) #app .c11-badges > .equipment-badge small,
+html body:not(.presentation-mode) #app .fleet-badges > .equipment-badge strong,
+html body:not(.presentation-mode) #app .fleet-badges > .equipment-badge small{
+ font-size:clamp(9px,.6vw,11px)!important;line-height:1.15!important;
+ overflow-wrap:break-word!important;white-space:normal!important;min-width:0!important;
+}
+/* Progress cards: same full-height bar in each view. */
+html body #app .c11-progress-column .c11-progress-track{height:20px!important;min-height:20px!important;max-height:20px!important}
+/* The three right and six middle sections retain equal geometry across tools. */
+html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-status-column{display:grid!important;grid-template-rows:repeat(6,minmax(0,1fr))!important;min-height:0!important;height:100%!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-progress-column{display:grid!important;grid-template-rows:repeat(9,minmax(0,1fr))!important;min-height:0!important;height:100%!important}
+/* Small screens keep all three columns accessible instead of compressing badges. */
+@media(max-width:1150px){html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-card-grid{min-width:1120px!important}html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-tool-card{overflow-x:auto!important}}
+/* Presentation must retain its own viewport-fitting card geometry. */
