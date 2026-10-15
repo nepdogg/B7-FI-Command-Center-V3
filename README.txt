@@ -1,19 +1,20 @@
-B7 FI COMMAND CENTER V11.17.14 — RESPONSIVE LAYOUT TEST
+B7 FI COMMAND CENTER — V11.17.15 LAYOUT REPAIR TEST
 
-This build is based on V11.17.13. It targets CSS layout only and does not modify Microsoft List synchronization, stored tool data, import/export or deletion behavior.
+WHAT CHANGED
+- Added one isolated CSS layout repair layer (css/layout-repair.css), loaded after legacy CSS.
+- Navigation buttons size to text with internal padding. Navigation scrolls horizontally only if there is not enough width to fit all controls; labels are not deliberately truncated.
+- Full three-column tool card uses stable column proportions and a 16px progress track.
+- Identity photo is contained; wafer/computer/component badges occupy consistent full-width rows.
+- Removes the forced 940px minimum tool-card width at narrow screen sizes, stacking columns instead.
+- Tools Center uses 3 columns on wide screens, 2 on medium screens, 1 on narrow screens.
 
-CHANGES
-- Tools Center: tool-family tiles now form the responsive 3/2/1 column grid. This fixes the prior error of applying three columns INSIDE each family, which leaves blank space when each family has only one tool.
-- Navigation: one horizontally scrollable bar instead of two independently clipped scroll areas. Buttons size to content, with consistent padding and no divider bars.
-- Full-size Live Operations tool cards: consistent column proportions, full-width System Wafers/Computer Tracking/Component Tracking badges and 16px progress bars.
-- Laptop-width viewports: full tool card retains readable geometry and can scroll horizontally instead of crushing the three columns.
+TESTING
+1. BACK UP your local data and Microsoft List separately before testing.
+2. Extract into a NEW folder. Do not overwrite your current working copy.
+3. Open index.html in local mode. Check Tools Center and Live Operations at 67%, 80%, 100%, 125% zoom and on both monitors.
+4. Check tool cards for Targa, Vanquish, Regera; verify the 30 badges and progress bars.
+5. Check each page navigation bar; on small screens a horizontal scrollbar is intentional rather than cutting labels.
+6. Check Presentation Mode, tool editing, save and reload on test records only.
 
-TEST
-1. Extract to a NEW folder and launch index.html for LOCAL testing. Do not overwrite your production folder.
-2. At 67%, 80%, 100% and 125% browser zoom check Tools Center: three family cards per row on wide screens, two on medium, one on narrow.
-3. Check navigation labels at each zoom; if bar is wider than the screen, scroll the bar horizontally.
-4. Check Live Operations and Presentation Mode for geometry and badges.
-5. If deploying to GitHub Pages, upload the entire extracted package and refresh. The header should read V11.17.14.
-
-KNOWN LIMITATIONS
-Microsoft List disconnection and 200+ bogus List rows are NOT fixed in this build. Do not reset/delete shared data or use shared migration for this test. Interactive rendering and Microsoft authentication require testing in your environment.
+LIMITATIONS
+This is a targeted layout TEST, not a verified production-safe release. Microsoft List sign-in, sync, phantom records, and data migration are not fixed or validated by this package. Do not reset/delete production list records. Real multi-user access requires testing in the KLA environment.

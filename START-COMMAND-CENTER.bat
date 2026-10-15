@@ -3,7 +3,7 @@ setlocal
 cd /d "%~dp0"
 set "B7LOG=%TEMP%\B7-FI-Command-Center-server.log"
 echo ============================================================
-echo B7 FI COMMAND CENTER V11.17.7 - DATA SAFETY TEST
+echo B7 FI COMMAND CENTER V11.17.15 - LAYOUT REPAIR TEST
 echo ============================================================
 echo Serving folder: %CD%
 echo Local server: http://localhost:5500/
