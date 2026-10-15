@@ -1,28 +1,23 @@
-B7 FI COMMAND CENTER — V11.17.27 — EQUAL HEIGHT BADGE TEST
+B7 FI COMMAND CENTER V11.17.28 — UNIFORM BADGE GRID TEST
 
-SOURCE: Complete V11.17.26 full package, with an additional final badge geometry stylesheet.
+Base: V11.17.27 full source package.
 
 CHANGES
-- Standard badges on Live Operations and Tools Center use a fixed 42px row,
-  matching the SCC CLEANUP badge example. Every standard badge has the same height.
-- Two-line name/status faces are centered; longer statuses use compact text.
-- System Wafers, Computer Tracking and Component Tracking span all three columns
-  and use the same 42px row height.
-- Presentation Mode preserves one-screen geometry and twelve equal badge rows.
-  Its badge row height is scaled uniformly to fit the available viewport.
-- Live Operations uses fixed photo and identity heights across all tools.
-- All existing edit, badge state/color, POD, Driver, and List sync logic retained.
+- One final stylesheet controls all standard badge cells in Live Operations, Tools Center and Presentation Mode.
+- 27 standard badges in 9 rows of 3, plus 3 full-width tracking rows.
+- Every standard badge fixed at 42px high on normal pages with 4px horizontal and vertical gaps.
+- Consistent 42px height for full-width tracking badges, separate from standard grid.
+- Live card reserves exact badge-grid space rather than shrinking rows to fit content.
+- Presentation Mode keeps equal-sized rows with 3px gaps and scales all rows together to the available viewport.
+- Badge labels and selected status are centered with compact type; badge state logic and saving code are unchanged.
 
-TEST AT WORK
-1. Back up real tool data. Do NOT reset the Microsoft List.
-2. Extract ZIP to a NEW folder. For GitHub Pages, deploy the entire extracted
-   folder contents, not only index.html; then hard-refresh the browser.
-3. Compare the SCC CLEANUP row to EQ CHECKLISTS, OPTIONS TESTING, POD and
-   the three full-width tracking badges on Tools, Live and Presentation views.
-4. Save a badge state, refresh, and confirm its text and color persist.
-5. Confirm LIST CONNECTED and verify a harmless edit from a second laptop
-   before trusting shared production data.
+TESTING
+1. Extract to a NEW folder; keep previous ZIP and real-data backups.
+2. Inspect all 27 badges plus System Wafers, Computer Tracking, Component Tracking in Live Operations, Tools Center and Presentation Mode.
+3. Check long states (EQ Checklists, Options Testing, POD), and 0/100% browser zoom.
+4. Change a badge, save, refresh and verify state and color persist.
+5. Verify Microsoft List connection and cross-device sync at work before relying on production data.
 
-VALIDATION LIMITATIONS
-Static code/ZIP checks do not prove visual correctness in every browser or
-Microsoft List connectivity in your workplace. This remains a TEST build.
+LIMITATIONS
+- This build repairs CSS geometry only. No corporate Microsoft List connectivity test has been performed.
+- Browser rendering may differ on your monitors; use screenshots to report remaining issues.
