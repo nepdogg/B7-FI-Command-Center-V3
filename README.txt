@@ -1,16 +1,19 @@
-B7 FI COMMAND CENTER — V11.17.13 RESPONSIVE LAYOUT REPAIR (TEST ONLY)
+B7 FI COMMAND CENTER V11.17.14 — RESPONSIVE LAYOUT TEST
 
-BASE: V11.17.12 package; existing application logic, assets and Microsoft List integration retained.
+This build is based on V11.17.13. It targets CSS layout only and does not modify Microsoft List synchronization, stored tool data, import/export or deletion behavior.
 
-ROOT CAUSE FIXES:
-- Consolidated 21 historical stylesheet loads into one ordered stylesheet with final authoritative layout rules.
-- Fixed Tools Center: each tool FAMILY spans the page; the CARDS within it form 3/2/1 columns based on viewport. Previous patch mistakenly made each family 1/3 of the page.
-- Removed page navigation divider borders and forced intrinsic button widths with consistent padding.
-- Navigation groups scroll independently rather than clip text.
-- Fixed computer/component badge rows to full width in compact and full tool cards.
-- Standardized progress track height at 16px.
-- Maintained all existing application JavaScript and local data storage keys.
+CHANGES
+- Tools Center: tool-family tiles now form the responsive 3/2/1 column grid. This fixes the prior error of applying three columns INSIDE each family, which leaves blank space when each family has only one tool.
+- Navigation: one horizontally scrollable bar instead of two independently clipped scroll areas. Buttons size to content, with consistent padding and no divider bars.
+- Full-size Live Operations tool cards: consistent column proportions, full-width System Wafers/Computer Tracking/Component Tracking badges and 16px progress bars.
+- Laptop-width viewports: full tool card retains readable geometry and can scroll horizontally instead of crushing the three columns.
 
-TEST: Back up local production data first. Unzip to a NEW directory; do not overwrite your production folder. Check laptop and large monitor at 67, 80, 100, 125 percent browser zoom; Tools Center, Live Operations, Presentation Mode and navigation.
+TEST
+1. Extract to a NEW folder and launch index.html for LOCAL testing. Do not overwrite your production folder.
+2. At 67%, 80%, 100% and 125% browser zoom check Tools Center: three family cards per row on wide screens, two on medium, one on narrow.
+3. Check navigation labels at each zoom; if bar is wider than the screen, scroll the bar horizontally.
+4. Check Live Operations and Presentation Mode for geometry and badges.
+5. If deploying to GitHub Pages, upload the entire extracted package and refresh. The header should read V11.17.14.
 
-LIMITATIONS: Microsoft List connectivity and bogus A-... records have not been repaired or validated in this layout-only build. DO NOT use shared production List data or perform destructive reset/cleanup. Browser and Microsoft corporate sign-in testing are still required.
+KNOWN LIMITATIONS
+Microsoft List disconnection and 200+ bogus List rows are NOT fixed in this build. Do not reset/delete shared data or use shared migration for this test. Interactive rendering and Microsoft authentication require testing in your environment.
