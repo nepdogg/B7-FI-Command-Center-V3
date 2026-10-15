@@ -130,7 +130,14 @@ function displayUserName(n){return String(n||'').trim().replace(/\s+/g,' ')}
 function renderPresenceBadges(){
   let names=activeUsers().filter(Boolean).slice(0,8);while(names.length<8)names.push('');
   let badge=(n,i)=>{let full=displayUserName(n),label=full?full.toUpperCase():'—';return `<button type="button" class="kla-presence-badge ${full&&sharedActive?'active':''}" data-presence-slot="${i+1}" title="${full||'Available user slot'}">${label}</button>`};
-  let l=document.querySelector('#klaUsersLeft'),r=document.querySelector('#klaUsersRight');if(l)l.innerHTML=badge(names[0],1)+badge(names[1],2)+badge(names[2],3)+badge(names[3],4);if(r)r.innerHTML=badge(names[4],5)+badge(names[5],6)+badge(names[6],7)+badge(names[7],8);
+  let l=document.querySelector('#klaUsersLeft'),r=document.querySelector('#klaUsersRight');if(l)l.innerHTML=badge(names[0],1)+badge(names[1],2);
+  if(r)r.innerHTML=badge(names[2],3)+badge(names[3],4);
+  // The shared presence system still tracks up to eight users.
+  // Users beyond the four header slots remain available in the user roster.
+  let extra=names.slice(4).filter(Boolean);
+  let box=document.querySelector('#headerModeCenter .kla-presence-box');
+  if(box)box.title=extra.length?`${extra.length} additional active user(s): ${extra.join(', ')}`:'';
+
 }
 function activity(msg,type='ok'){
   // Activity is displayed locally, not written as an unbounded Microsoft List row.
