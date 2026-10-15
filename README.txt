@@ -1,3 +1,14 @@
+B7 FI Command Center V11.17.12 — Responsive Monitor & Zoom Test
+
+Based on the uploaded V11.17.10 full source.
+
+Changes: tools center groups laid out in 3 columns on wide displays, 2 on medium and 1 on narrow; each tool family can hold multiple compact cards. Tool image and identity badge geometry is bounded. Navigation buttons use content width and independent horizontal scrolling for page tabs/actions. Removed vertical nav divider rules. Presentation Mode remains unchanged.
+
+Testing: 67%, 80%, 100%, 125% zoom; laptop and large monitor; verify tools with multiple units in same family, all nav actions and dropdown, scroll horizontally when needed. Browser zoom does change physical text size; no CSS can override user zoom completely.
+
+IMPORTANT: This is a UI-only test. No Microsoft List data repair, bogus-row cleanup or sync reliability fixes. Back up local data and do not delete Microsoft List records. Browser verification is limited; corporate multi-user connectivity not tested.
+
+--- Prior notes ---
 B7 FI COMMAND CENTER V11.17.10 — CARD GEOMETRY / NAVIGATION TEST
 
 CHANGES

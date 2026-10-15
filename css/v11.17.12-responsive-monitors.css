@@ -1,0 +1,116 @@
+/* V11.17.12: viewport/zoom responsive shell. Loaded LAST; presentation is deliberately excluded. */
+html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame,
+html body:not(.presentation-mode):not(.screenshot-mode) .body-shell,
+html body:not(.presentation-mode):not(.screenshot-mode) #app.body-workspace{
+  width:100%!important;max-width:100%!important;min-width:0!important;box-sizing:border-box!important;
+}
+/* The family wrapper previously put ONE 1/3-width card on each full-width row.
+   Instead arrange family tiles across the available width. */
+html body[data-center="operations"][data-sub="tools"] #app .v1014-tools-page{
+  display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:12px!important;align-content:start!important;align-items:start!important;
+  width:100%!important;min-width:0!important;max-width:none!important;
+}
+html body[data-center="operations"][data-sub="tools"] #app .v1014-tools-page > .v10-fleet-kpis,
+html body[data-center="operations"][data-sub="tools"] #app .v1014-tools-page > .v9-empty{
+  grid-column:1/-1!important;min-width:0!important;
+}
+html body[data-center="operations"][data-sub="tools"] #app .fleet-family{
+  min-width:0!important;width:100%!important;margin:0!important;overflow:visible!important;
+}
+html body[data-center="operations"][data-sub="tools"] #app .fleet-card-grid{
+  display:grid!important;grid-template-columns:minmax(0,1fr)!important;
+  gap:10px!important;width:100%!important;min-width:0!important;
+}
+html body[data-center="operations"][data-sub="tools"] #app .fleet-family-head{
+  display:flex!important;flex-wrap:wrap!important;gap:5px!important;
+  height:auto!important;min-height:44px!important;padding:5px 7px!important;
+}
+html body[data-center="operations"][data-sub="tools"] #app .fleet-family-head > strong{
+  font-size:clamp(14px,1.1rem,19px)!important;line-height:1.15!important;
+}
+html body[data-center="operations"][data-sub="tools"] #app .fleet-family-head > div{
+  display:flex!important;flex-wrap:wrap!important;gap:3px!important;min-width:0!important;
+}
+html body[data-center="operations"][data-sub="tools"] #app .fleet-family-head span{
+  font-size:10px!important;padding:3px 5px!important;white-space:nowrap!important;
+}
+html body[data-center="operations"][data-sub="tools"] #app .fleet-identity-card{
+  min-width:0!important;width:100%!important;max-width:100%!important;
+}
+html body[data-center="operations"][data-sub="tools"] #app .fleet-photo{
+  height:clamp(180px,20vh,275px)!important;min-height:180px!important;
+}
+html body[data-center="operations"][data-sub="tools"] #app .fleet-id-grid .v10-id-badge{
+  min-width:0!important;overflow:hidden!important;
+}
+html body[data-center="operations"][data-sub="tools"] #app .fleet-id-grid .v10-id-badge strong{
+  font-size:clamp(10px,.78rem,13px)!important;min-width:0!important;
+  overflow:hidden!important;text-overflow:ellipsis!important;
+}
+html body[data-center="operations"][data-sub="tools"] #app .fleet-badges{
+  display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:4px!important;width:100%!important;
+}
+html body[data-center="operations"][data-sub="tools"] #app .fleet-badges > .equipment-badge,
+html body[data-center="operations"][data-sub="tools"] #app .fleet-badges > .v10-wafer-badge{
+  grid-column:1/-1!important;grid-row:auto!important;width:100%!important;
+  min-width:0!important;max-width:100%!important;
+}
+/* Page nav: two independent scrollable groups; never compress a button to hide its label. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar{
+  display:flex!important;flex-flow:row nowrap!important;align-items:center!important;
+  width:100%!important;min-width:0!important;gap:8px!important;
+  height:48px!important;min-height:48px!important;max-height:48px!important;
+  overflow:hidden!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #subnav,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #pageActions{
+  display:flex!important;flex-flow:row nowrap!important;align-items:center!important;
+  min-width:0!important;width:auto!important;max-width:none!important;
+  height:46px!important;gap:5px!important;padding:0!important;margin:0!important;
+  border:0!important;box-shadow:none!important;
+  overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:thin!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #subnav{
+  flex:1 1 auto!important;justify-content:flex-start!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #pageActions{
+  flex:0 1 auto!important;max-width:50%!important;justify-content:flex-start!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar button,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar select,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .tool-type-menu-button{
+  flex:0 0 auto!important;flex-grow:0!important;flex-shrink:0!important;
+  width:max-content!important;min-width:max-content!important;max-width:none!important;
+  height:42px!important;min-height:42px!important;max-height:42px!important;
+  padding:0 12px!important;box-sizing:border-box!important;
+  font-size:clamp(11px,.78rem,13px)!important;line-height:1.2!important;
+  white-space:nowrap!important;overflow:visible!important;text-overflow:clip!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #pageActions > *,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .nav69-live-controls,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .nav69-live-actions,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .nav69-control-group{
+  flex:0 0 auto!important;width:max-content!important;min-width:max-content!important;
+  max-width:none!important;border-left:0!important;border-right:0!important;
+  margin:0!important;padding-left:0!important;
+}
+/* Zoom changes the CSS viewport width. These breakpoints also cover laptop monitors. */
+@media(max-width:1399px){
+ html body[data-center="operations"][data-sub="tools"] #app .v1014-tools-page{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+}
+@media(max-width:900px){
+ html body[data-center="operations"][data-sub="tools"] #app .v1014-tools-page{grid-template-columns:minmax(0,1fr)!important;}
+ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #pageActions{max-width:46%!important;}
+ html body:not(.presentation-mode):not(.screenshot-mode) .prototype-header-left,
+ html body:not(.presentation-mode):not(.screenshot-mode) .prototype-header-right{
+  font-size:clamp(11px,1.4vw,19px)!important;min-width:0!important;overflow:hidden!important;
+ }
+}
+@media(max-width:560px){
+ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar{gap:4px!important;}
+ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #pageActions{max-width:48%!important;}
+ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar button{padding-left:9px!important;padding-right:9px!important;}
+}
