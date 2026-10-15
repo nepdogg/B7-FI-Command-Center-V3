@@ -109,10 +109,36 @@ async function syncChangedTools(nextState){
   for(const t of changed)await upsertTool(t,false);
   await refreshAllItems();
   let verified=decodeSharedTools(), verifiedIds=new Set(verified.map(t=>String(t.id)));
+  // Verify the actual Tool Data payload after Microsoft Graph write, not merely its UTID.
+  for(const tool of changed){
+    const row=items.find(it=>toolIdFromRow(it)===String(tool.id));
+    const remote=row?parseToolData(row):null;
+    if(!remote)throw new Error('LIST READ-BACK FAILED: '+tool.id+' missing after save');
+    const fields=['indicatorStates','keyTests','leadTasks','equipmentTracking','waferTracking','reducedProcess','toolStatus'];
+    for(const field of fields){
+      if(JSON.stringify(tool[field]??null)!==JSON.stringify(remote[field]??null))
+        throw new Error('LIST READ-BACK FAILED: '+tool.id+' / '+field+' differs from saved data');
+    }
+  }
   let out=JSON.parse(JSON.stringify(nextState));out.tools=verified;lastSharedState=out;lastAutoSyncSignature=toolSignature(verified);updateFooter('SCENARIO TEST');
 }
 let syncChain=Promise.resolve();
-function queueStateSync(st,msg){let snap=JSON.parse(JSON.stringify(st));syncState='SYNCING';updateFooter('SCENARIO TEST');syncChain=syncChain.then(async()=>{await syncChangedTools(snap);lastSyncSuccess=Date.now();lastSyncChange=Date.now();syncState='SYNCED';updateFooter('SCENARIO TEST');activity(`SYNCED · ${msg||'CHANGES SAVED'}`,'ok')}).catch(e=>{console.error(e);syncState='ERROR';setFooterStatus('SCENARIO TEST · SYNC ERROR');updateFooter('SCENARIO TEST');status('SHARED SAVE FAILED — '+friendly(e),'err')})}
+function queueStateSync(st,msg){
+  if(!sharedActive||!list){alert('MICROSOFT LIST IS NOT CONNECTED. Change saved locally only.');return Promise.resolve(false);}
+  let snap=JSON.parse(JSON.stringify(st));syncState='SYNCING';updateFooter('SCENARIO TEST');
+  syncChain=syncChain.then(async()=>{
+    await syncChangedTools(snap);
+    lastSyncSuccess=Date.now();lastSyncChange=Date.now();syncState='SYNCED';updateFooter('SCENARIO TEST');
+    activity(`MICROSOFT LIST VERIFIED · ${msg||'CHANGES SAVED'}`,'ok');
+    status('MICROSOFT LIST SAVE VERIFIED — '+(msg||'CHANGES SAVED'),'ok');
+    return true;
+  }).catch(e=>{
+    console.error(e);syncState='ERROR';setFooterStatus('LIST SYNC ERROR · LOCAL COPY SAVED');
+    updateFooter('SCENARIO TEST');status('MICROSOFT LIST SAVE FAILED — '+friendly(e),'err');
+    alert('MICROSOFT LIST SAVE NOT CONFIRMED.\n\n'+friendly(e)+'\n\nYour local browser copy was saved. Do not assume other laptops received the change.');
+    return false;
+  });return syncChain;
+}
 function metaData(it){let raw=String(itemVal(it,TOOL_DATA_LABEL)||'').trim();if(!raw)return null;try{let x=JSON.parse(raw);return x&&x._recordType?x:null}catch(e){return null}}
 function presenceRows(){let now=Date.now();return items.map(it=>({it,data:metaData(it)})).filter(x=>x.data?._recordType==='presence'&&now-Date.parse(x.data.lastSeen||0)<20000)}
 function activityRows(){return items.map(it=>({it,data:metaData(it)})).filter(x=>x.data?._recordType==='activity').sort((a,b)=>Date.parse(b.data.at||0)-Date.parse(a.data.at||0))}
@@ -215,7 +241,7 @@ async function oneClickConnect(){
   }catch(e){setModeIdentity('shared','offline');status('ONE-CLICK CONNECTION FAILED — '+friendly(e),'err');throw e}
 }
 async function autoSync(){
-  if(!sharedActive||!account||!list||autoSyncBusy)return;
+  if(!sharedActive||!account||!list||autoSyncBusy||syncState==='SYNCING')return;
   lastSyncCheck=Date.now();
   if(editingIsActive()){syncState='PAUSED';updateFooter('SCENARIO TEST');return}
   autoSyncBusy=true;syncState='SYNCING';updateFooter('SCENARIO TEST');

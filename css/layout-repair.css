@@ -374,3 +374,34 @@ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-
     max-height:38px!important;
   }
 }
+
+/* V11.17.21: minimize header gaps and prevent title truncation. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header{
+ grid-template-columns:minmax(0,1.05fr) minmax(0,1.1fr) minmax(0,1.05fr)!important;
+ gap:1px!important;column-gap:1px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header > *{
+ min-width:0!important;margin-inline:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header > :first-child,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header > :last-child{
+ font-size:clamp(11px,1.45vw,28px)!important;
+ white-space:nowrap!important;letter-spacing:0!important;
+ padding-inline:clamp(4px,.65vw,12px)!important;
+ overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center .kla-presence-box{
+ grid-template-columns:minmax(0,1fr) minmax(0,1.45fr) minmax(0,1fr)!important;
+}
+/* Live Operations badges match the three-column Tools page badges. */
+html body #app .c11-identity-column .c11-badges>.equipment-badge,
+html body.presentation-mode #app .c11-identity-column .c11-badges>.equipment-badge{
+ grid-column:1 / -1!important; width:100%!important;min-width:0!important;
+ display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1.7fr)!important;
+ align-items:center!important;gap:5px!important;
+}
+html body #app .c11-identity-column .c11-badges>.equipment-badge strong,
+html body #app .c11-identity-column .c11-badges>.equipment-badge small{
+ min-width:0!important;max-width:100%!important;overflow:hidden!important;
+ text-overflow:ellipsis!important;white-space:nowrap!important;
+}
