@@ -1,0 +1,147 @@
+/* V11.17.29 — one authoritative geometry for all operational badge faces.
+   Previous versions used min-height/auto-height/1fr rules that conflicted with
+   each other, and some full-width rows were inheriting standard button rules.
+   This file is loaded last and contains the only intended final geometry. */
+:root {
+  --b7-standard-badge-h: 42px;
+  --b7-standard-badge-gap: 5px;
+  --b7-standard-badge-grid-h: 559px; /* 12 x 42px + 11 x 5px */
+}
+/* Grid: 27 standard badges (9 rows of 3) + 3 full-width badges (3 rows). */
+html body #app .c11-identity-column .c11-badges,
+html body[data-center="operations"][data-sub="tools"] #app .fleet-badges {
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-template-rows:repeat(12,var(--b7-standard-badge-h))!important;
+  grid-auto-rows:var(--b7-standard-badge-h)!important;
+  grid-auto-flow:row!important;
+  column-gap:var(--b7-standard-badge-gap)!important;
+  row-gap:var(--b7-standard-badge-gap)!important;
+  align-items:stretch!important;
+  align-content:start!important;
+  min-width:0!important;
+  box-sizing:border-box!important;
+  height:var(--b7-standard-badge-grid-h)!important;
+  min-height:var(--b7-standard-badge-grid-h)!important;
+  max-height:var(--b7-standard-badge-grid-h)!important;
+  overflow:visible!important;
+}
+/* Every badge takes exactly its own grid cell, never grows or overlaps. */
+html body #app .c11-identity-column .c11-badges > button,
+html body[data-center="operations"][data-sub="tools"] #app .fleet-badges > button {
+  position:relative!important;
+  min-width:0!important;
+  width:100%!important;
+  height:var(--b7-standard-badge-h)!important;
+  min-height:var(--b7-standard-badge-h)!important;
+  max-height:var(--b7-standard-badge-h)!important;
+  margin:0!important;
+  padding:2px 3px!important;
+  box-sizing:border-box!important;
+  border-radius:5px!important;
+  overflow:hidden!important;
+  align-self:stretch!important;
+  transform:none!important;
+}
+/* Standard faces: text is centered, fitted to two/three lines without expanding row. */
+html body #app .c11-identity-column .c11-badges > .c11-badge:not(.c11-wafer-badge):not(.equipment-badge),
+html body[data-center="operations"][data-sub="tools"] #app .fleet-badges > .v10-badge:not(.v10-wafer-badge):not(.equipment-badge) {
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:1px!important;
+  white-space:normal!important;
+  line-height:1!important;
+}
+html body #app .c11-identity-column .c11-badges .badge-face-label,
+html body[data-center="operations"][data-sub="tools"] #app .fleet-badges .badge-face-label {
+  display:block!important;
+  flex:0 0 auto!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  font-size:9px!important;
+  line-height:10px!important;
+  font-weight:900!important;
+  text-align:center!important;
+  white-space:normal!important;
+  overflow-wrap:break-word!important;
+  word-break:normal!important;
+  overflow:visible!important;
+}
+html body #app .c11-identity-column .c11-badges .badge-face-state,
+html body[data-center="operations"][data-sub="tools"] #app .fleet-badges .badge-face-state {
+  display:block!important;
+  flex:0 1 auto!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  font-size:8px!important;
+  line-height:9px!important;
+  font-weight:700!important;
+  text-align:center!important;
+  white-space:normal!important;
+  overflow-wrap:break-word!important;
+  word-break:normal!important;
+  overflow:visible!important;
+}
+/* Full-width badges are three additional grid rows, not nested into row 9. */
+html body #app .c11-identity-column .c11-badges > .c11-wafer-badge,
+html body #app .c11-identity-column .c11-badges > .equipment-badge,
+html body[data-center="operations"][data-sub="tools"] #app .fleet-badges > .v10-wafer-badge,
+html body[data-center="operations"][data-sub="tools"] #app .fleet-badges > .equipment-badge {
+  grid-column:1/-1!important;
+  grid-row:auto!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,38%) minmax(0,1fr)!important;
+  grid-template-rows:minmax(0,1fr)!important;
+  align-items:center!important;
+  gap:4px!important;
+  padding:2px 6px!important;
+  overflow:hidden!important;
+}
+html body #app .c11-identity-column .c11-badges > .equipment-badge em,
+html body[data-center="operations"][data-sub="tools"] #app .fleet-badges > .equipment-badge em {display:none!important;}
+html body #app .c11-identity-column .c11-badges > .equipment-badge strong,
+html body #app .c11-identity-column .c11-badges > .equipment-badge small,
+html body[data-center="operations"][data-sub="tools"] #app .fleet-badges > .equipment-badge strong,
+html body[data-center="operations"][data-sub="tools"] #app .fleet-badges > .equipment-badge small {
+  font-size:9px!important;
+  line-height:10px!important;
+  white-space:normal!important;
+  overflow-wrap:break-word!important;
+  text-align:center!important;
+  overflow:hidden!important;
+}
+/* The normal Live Operations card allocates space for all 12 rows and gutters.
+   Fixed photo and identity heights remain unchanged between tools. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-card-grid {
+  height:1070px!important; min-height:1070px!important; max-height:1070px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-identity-column {
+  display:grid!important;
+  grid-template-rows:250px 128px 24px 24px var(--b7-standard-badge-grid-h) 32px!important;
+  row-gap:5px!important;
+  height:1070px!important;min-height:1070px!important;max-height:1070px!important;
+  align-content:start!important;overflow:visible!important;
+}
+/* Presentation mode has a fixed viewport. Divide the *available* badge area
+   equally; don't let any badge content resize one row. */
+html body.presentation-mode #app .c11-identity-column .c11-badges {
+  grid-template-rows:repeat(12,minmax(0,1fr))!important;
+  grid-auto-rows:minmax(0,1fr)!important;
+  row-gap:3px!important;column-gap:3px!important;
+  height:100%!important;min-height:0!important;max-height:100%!important;
+  align-content:stretch!important;overflow:hidden!important;
+}
+html body.presentation-mode #app .c11-identity-column .c11-badges > button {
+  height:100%!important;min-height:0!important;max-height:100%!important;
+  padding:1px 2px!important;
+}
+html body.presentation-mode #app .c11-identity-column .c11-badges .badge-face-label {
+  font-size:clamp(6px,.50vw,9px)!important;line-height:1.02!important;
+}
+html body.presentation-mode #app .c11-identity-column .c11-badges .badge-face-state {
+  font-size:clamp(6px,.43vw,8px)!important;line-height:1.02!important;
+}

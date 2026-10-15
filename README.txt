@@ -1,23 +1,19 @@
-B7 FI COMMAND CENTER V11.17.28 — UNIFORM BADGE GRID TEST
+B7 FI COMMAND CENTER V11.17.29 — BADGE LAYOUT CONSOLIDATION (TEST ONLY)
 
-Base: V11.17.27 full source package.
+Based on the uploaded V11.17.28 full application. No changes to tool data, badge state editing, Microsoft List, or persistence code.
 
-CHANGES
-- One final stylesheet controls all standard badge cells in Live Operations, Tools Center and Presentation Mode.
-- 27 standard badges in 9 rows of 3, plus 3 full-width tracking rows.
-- Every standard badge fixed at 42px high on normal pages with 4px horizontal and vertical gaps.
-- Consistent 42px height for full-width tracking badges, separate from standard grid.
-- Live card reserves exact badge-grid space rather than shrinking rows to fit content.
-- Presentation Mode keeps equal-sized rows with 3px gaps and scales all rows together to the available viewport.
-- Badge labels and selected status are centered with compact type; badge state logic and saving code are unchanged.
+Changes:
+- Replaced the last-loaded badge override with one shared 12-row / 3-column geometry for Live Operations and Tools Center.
+- 27 operational badges in nine rows of three, followed by System Wafers, Computer Tracking, and Component Tracking as three full-width rows.
+- Exactly 42px height per badge and 5px gutters in regular views; all rows equal within the fixed presentation viewport.
+- Two-line badge labels/states use consistent compact font sizes and wrapping.
+- Fixed photo/identity region dimensions are retained.
 
-TESTING
-1. Extract to a NEW folder; keep previous ZIP and real-data backups.
-2. Inspect all 27 badges plus System Wafers, Computer Tracking, Component Tracking in Live Operations, Tools Center and Presentation Mode.
-3. Check long states (EQ Checklists, Options Testing, POD), and 0/100% browser zoom.
-4. Change a badge, save, refresh and verify state and color persist.
-5. Verify Microsoft List connection and cross-device sync at work before relying on production data.
+TEST PLAN
+1. Extract to a new folder, preserving the previous build and any real data.
+2. At 100% zoom inspect all 27 badges + three full-width rows on Celestiq, Zephyr, and Panamera in Live Operations, Tools Center, and Presentation Mode.
+3. Check EQ CHECKLISTS, OPTIONS TESTING, POD and all full-width badges.
+4. Update a badge, save, refresh, verify text and color.
+5. Verify Microsoft List connection and sync on-site before trusting production edits.
 
-LIMITATIONS
-- This build repairs CSS geometry only. No corporate Microsoft List connectivity test has been performed.
-- Browser rendering may differ on your monitors; use screenshots to report remaining issues.
+Validation limitations: CSS was structurally parsed and JS syntax checked. Automated browser rendering is blocked in this environment, so visual success is not yet verified.
