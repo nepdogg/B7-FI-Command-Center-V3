@@ -440,3 +440,54 @@ html body #app .c11-badges > .c11-badge:not(.c11-wafer-badge){min-width:0!import
 /* Full badge editing panel: do not crop modal buttons on narrow screens. */
 html body .badge-quick-edit{min-width:0!important;max-width:100%!important;}
 html body .badge-quick-edit select{max-width:100%!important;width:100%!important;}
+
+/* V11.17.23: preserve all 27 standard badges (including POD) plus three
+   full-width tracking rows. Grid cells must not clip labels or disappear. */
+html body #app .c11-identity-column .c11-badges {
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-template-rows:repeat(12,minmax(0,1fr))!important;
+  grid-auto-rows:minmax(0,1fr)!important;
+  grid-auto-flow:row!important;
+  gap:3px!important;
+  padding:0!important;
+  min-width:0!important;
+  box-sizing:border-box!important;
+}
+html body #app .c11-identity-column .c11-badges>.c11-badge:not(.c11-wafer-badge):not(.equipment-badge) {
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  line-height:1.1!important;
+  padding:1px 3px!important;
+  min-width:0!important;
+  min-height:0!important;
+  overflow:hidden!important;
+  box-sizing:border-box!important;
+}
+html body #app .c11-identity-column .c11-badges>.c11-wafer-badge,
+html body #app .c11-identity-column .c11-badges>.equipment-badge {
+  grid-column:1/-1!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  box-sizing:border-box!important;
+}
+html body #app .c11-identity-column .c11-badges>.c11-wafer-badge {
+  display:grid!important;
+  grid-template-columns:minmax(0,42%) minmax(0,58%)!important;
+  align-items:center!important;
+  gap:4px!important;
+  padding:1px 6px!important;
+}
+html body #app .c11-identity-column .c11-badges>.c11-wafer-badge span,
+html body #app .c11-identity-column .c11-badges>.c11-wafer-badge small {
+  min-width:0!important;
+  text-align:center!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  line-height:1.1!important;
+}

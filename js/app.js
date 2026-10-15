@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='11.17.22', BUILD='20261014-V11.17.22-BADGE-CARD-TEST';
+const VERSION='11.17.23', BUILD='20261015-V11.17.23-POD-SHARED-BADGES-TEST';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const EQUIPMENT_COMPUTERS=[['SS','Subswath Server'],['GPU','GPU Servers'],['DBB','Global Storage Server'],['RTAT','RTAT Server'],['SCC','SCC Computer'],['DAS','DAS Server'],['Host','Host Server'],['Dart','Dart Server']];
@@ -1682,15 +1682,15 @@ function v11ToolCard(){
   liveIndex=((liveIndex%a.length)+a.length)%a.length;
   let t=a[liveIndex],count=shipCountdown(t),fi=fiProgress(t),mi=microProgress(t),cyc=actualCycleDays(t),target=cycleAverageDays(t)||25,cp=Math.round(cyc/target*100),tasks=nextSystemTasksRows(t),img=individualToolPhoto(t)||familyImage(t),carry=isCarryoverTool(t),p=priorityBadgeInfo(t),badges=evaluateTool(t).badgeList||[],intel=v10ToolIntelligence(t,count,p),forecast=v10ForecastProgress(t),lead=leadProgress(t),source=v10WorkflowProgress(t.sourceRequired,t.sourceStatus,'source'),str=v10WorkflowProgress(t.strRequired,t.strStatus,'str'),packing=shippingProgress(t);
   let alias=String(t.alias||t.id||t.codename||'TOOL').trim().toUpperCase();
-  let orderedBadges=[...badges];
-  let wi=orderedBadges.findIndex(x=>x.key==='systemWafers'), oi=orderedBadges.findIndex(x=>x.key==='optionFiles');
-  if(wi>=0&&oi>=0){let tmp=orderedBadges[wi];orderedBadges[wi]=orderedBadges[oi];orderedBadges[oi]=tmp}
-  if(wi<0)orderedBadges.push({key:'systemWafers',label:'SYSTEM WAFERS',tone:'attention',state:'SYSTEM WAFERS'});
-  let badgeRows=orderedBadges.slice(0,28), waferBadge=badgeRows.find(x=>x.key==='systemWafers');
-  let standardBadges=badgeRows.filter(x=>x.key!=='systemWafers');
-  let badgeHtml=standardBadges.map(x=>`<button type="button" class="c11-badge ${esc(x.tone||'normal')}" data-direct-indicator="${esc(x.key||'')}" data-indicator-tool="${esc(t.id)}" title="${esc(x.state||x.label||'')} — click to update">${esc(x.label||x.key||'BADGE')}</button>`).join('');
-  
-  if(waferBadge)badgeHtml+=`<button type="button" class="c11-badge c11-wafer-badge ${esc(waferBadge.tone||'normal')}" data-direct-indicator="systemWafers" data-indicator-tool="${esc(t.id)}" title="${esc(waferBadge.state||waferBadge.label||'SYSTEM WAFERS')} — click to update"><span>${esc(waferBadge.label||'SYSTEM WAFERS')}</span><small>${esc(waferTally(t))}</small></button>`;
+  // Render the exact canonical indicator set used on the Tools page.
+  // Do not slice the evaluated list: derived/extra badges could push POD out.
+  const standardKeys=INDICATOR_SLOT_KEYS.filter(k=>k!=='systemWafers');
+  const badgeHtmlStandard=standardKeys.map(k=>{
+    const x=indicatorState(t,k);
+    return `<button type="button" class="c11-badge ${esc(x.tone||'idle')}" data-direct-indicator="${esc(k)}" data-indicator-tool="${esc(t.id)}" title="${esc(x.state||x.label||'')} — click to update">${esc(x.label||BADGE_PANEL_LABELS[k]||k)}</button>`;
+  }).join('');
+  const waferBadge=indicatorState(t,'systemWafers');
+  let badgeHtml=badgeHtmlStandard+`<button type="button" class="c11-badge c11-wafer-badge ${esc(waferBadge.tone||'idle')}" data-direct-indicator="systemWafers" data-indicator-tool="${esc(t.id)}" title="${esc(waferBadge.state||'SYSTEM WAFERS')} — click to update"><span>SYSTEM WAFERS</span><small>${esc(waferTally(t))}</small></button>`;
   badgeHtml+=equipmentBadges(t,'c11');
   let statusLabel=t.toolStatus==='FI'?'FI TESTING':String(t.toolStatus||fiSummaryStatus(t)).toUpperCase();
   let currentStatus=performance(t)[0]==='BEHIND'?'BEHIND SCHEDULE':performance(t)[0]==='AHEAD'?'AHEAD OF SCHEDULE':'ON SCHEDULE';
