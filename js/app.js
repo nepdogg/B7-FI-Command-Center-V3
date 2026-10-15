@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='11.17.15', BUILD='20261014-V11.17.15-LAYOUT-REPAIR-TEST';
+const VERSION='11.17.19', BUILD='20261014-V11.17.19-OTHER-PAGES-NAVIGATION-TEST';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const EQUIPMENT_COMPUTERS=[['SS','Subswath Server'],['GPU','GPU Servers'],['DBB','Global Storage Server'],['RTAT','RTAT Server'],['SCC','SCC Computer'],['DAS','DAS Server'],['Host','Host Server'],['Dart','Dart Server']];
@@ -572,6 +572,12 @@ function nav(){
     html=ss.map(x=>`<button class="${route.sub===x[0]?'active':''}" data-sub="${x[0]}">${x[1]}</button>`).join('');
   }
   document.querySelector('#subnav').innerHTML=html;
+  // Other pages use a tab count matching their actual navigation items.
+  // Deliberately do not modify the working Live Operations navigation.
+  if(!(route.center==='operations'&&route.sub==='live')){
+    const tabs=document.querySelector('#subnav');
+    tabs.style.setProperty('--b7-other-tab-count',String(Math.max(1,tabs.children.length)));
+  }
 }
 function openIssueCount(){let manual=state.actions.filter(a=>a.status!=='Complete').length,escalated=state.tools.reduce((n,t)=>n+t.ncs.filter(x=>String(x.state||x.status||'').toLowerCase()==='escalated').length,0),e=commandCenterEngine(),auto=e.critical.length+e.attention.length;return manual+escalated+auto}
 function quarterCloseBrain(){let cfg=state.config?.brain||{},q=state.quarter,qt=quarterTimeProgress(q),a=activeTools(q),left=a.filter(t=>fiSummaryStatus(t)!=='Shipped'),limit=Math.max(1,Number(cfg.listUtidsAt)||5),ids=left.length&&left.length<=limit?left.map(t=>t.id):[],carry=carryoverTools(),msg='',level='normal',label='READY';if(carry.length&&cfg.carryoverEscalation!==false){let ids2=carry.slice(0,limit).map(t=>t.id);level='critical';label='CARRYOVER';msg=`${q} ACTIVE · ${carry.length} PRIOR-QUARTER CARRYOVER TOOL${carry.length===1?'':'S'} · SHIP ASAP${ids2.length?' · '+ids2.join(' · '):''}`;return{level,label,msg,tools:carry}}if(qt.finalDay){level=left.length?'critical':'complete';label='FINAL DAY';msg=left.length?`LAST DAY OF ${q} · ${left.length} TOOL${left.length===1?'':'S'} STILL NEED${left.length===1?'S':''} TO SHIP${ids.length?' · '+ids.join(' · '):''}`:`LAST DAY OF ${q} · ALL ${a.length} TOOLS SHIPPED`;return{level,label,msg,tools:left}}if(!qt.notStarted&&!qt.ended&&qt.remaining<=Number(cfg.awarenessDays||15)){level=qt.remaining<=Number(cfg.criticalDays||2)?'critical':qt.remaining<=Number(cfg.urgentDays||5)?'critical':qt.remaining<=Number(cfg.attentionDays||10)?'attention':'normal';label=qt.remaining<=Number(cfg.urgentDays||5)?'QUARTER CLOSE URGENT':'QUARTER CLOSE';msg=`${q} QUARTER CLOSE · ${qt.remaining} DAY${qt.remaining===1?'':'S'} LEFT · ${left.length} TOOL${left.length===1?'':'S'} STILL NEED TO SHIP${ids.length?' · '+ids.join(' · '):''}`;return{level,label,msg,tools:left}}return{level,label,msg:'',tools:[]}}

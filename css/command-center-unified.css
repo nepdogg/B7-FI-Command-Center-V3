@@ -29545,3 +29545,57 @@ html body #app .c11-progress-column .c11-progress-track{
  font-size:12px!important;line-height:1.25!important;overflow-wrap:anywhere!important;
  }
 }
+
+
+/* V11.17.19 — OTHER PAGES ONLY.
+   Live Operations (data-center=operations, data-sub=live) is intentionally
+   excluded from EVERY rule below; its working V11.17.18 geometry stays locked.
+   The page tabs share the remaining space, while action buttons keep their
+   intrinsic width. If the viewport is too narrow, scroll the entire row. */
+html body:not(.presentation-mode):not(.screenshot-mode):not([data-center="operations"][data-sub="live"]) #stickyShell .pagebar{
+  display:flex!important;flex-flow:row nowrap!important;align-items:center!important;
+  gap:7px!important;width:100%!important;min-width:0!important;
+  height:52px!important;min-height:52px!important;max-height:52px!important;
+  padding:2px 5px!important;box-sizing:border-box!important;
+  overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:thin!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode):not([data-center="operations"][data-sub="live"]) #stickyShell .pagebar #subnav{
+  display:grid!important;
+  grid-template-columns:repeat(var(--b7-other-tab-count,5),minmax(0,1fr))!important;
+  grid-template-rows:44px!important;
+  flex:1 0 calc(var(--b7-other-tab-count,5) * 142px)!important;
+  width:auto!important;min-width:calc(var(--b7-other-tab-count,5) * 142px)!important;
+  max-width:none!important;height:44px!important;min-height:44px!important;
+  gap:6px!important;padding:0!important;margin:0!important;
+  overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode):not([data-center="operations"][data-sub="live"]) #stickyShell .pagebar #subnav>button{
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  flex:none!important;width:100%!important;min-width:0!important;max-width:100%!important;
+  height:44px!important;min-height:44px!important;max-height:44px!important;
+  padding:0 10px!important;margin:0!important;box-sizing:border-box!important;
+  border:1px solid #0d92c0!important;border-radius:8px!important;
+  font-size:clamp(9px,.72vw,12px)!important;line-height:1.15!important;
+  white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode):not([data-center="operations"][data-sub="live"]) #stickyShell .pagebar #pageActions{
+  display:flex!important;flex:0 0 auto!important;flex-flow:row nowrap!important;
+  align-items:center!important;justify-content:flex-end!important;
+  gap:6px!important;width:max-content!important;min-width:max-content!important;
+  max-width:none!important;height:44px!important;min-height:44px!important;
+  max-height:44px!important;margin:0!important;margin-left:auto!important;
+  padding:0!important;overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode):not([data-center="operations"][data-sub="live"]) #stickyShell .pagebar #pageActions>button,
+html body:not(.presentation-mode):not(.screenshot-mode):not([data-center="operations"][data-sub="live"]) #stickyShell .pagebar #pageActions .tool-type-menu-button{
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  flex:0 0 auto!important;width:max-content!important;min-width:max-content!important;
+  max-width:none!important;height:44px!important;min-height:44px!important;
+  max-height:44px!important;padding:0 12px!important;box-sizing:border-box!important;
+  font-size:clamp(10px,.72vw,12px)!important;white-space:nowrap!important;
+  overflow:visible!important;text-overflow:clip!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode):not([data-center="operations"][data-sub="live"]) #stickyShell .pagebar #pageActions .tool-type-menu{
+  flex:0 0 auto!important;width:max-content!important;min-width:max-content!important;
+  max-width:none!important;overflow:visible!important;
+}
