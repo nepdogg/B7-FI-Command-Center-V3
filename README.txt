@@ -1,13 +1,11 @@
-B7 FI Command Center V11.17.35 - Canonical Badge Layout Test
+B7 FI COMMAND CENTER V11.17.36 - BADGE CONTAINER REPAIR - TEST
 
-Based on full V11.17.34 application; no tool data intentionally changed.
+Based on complete V11.17.35 application.
 
-Changes:
-- Removed three competing legacy badge overlay stylesheet links.
-- Added a single final authoritative badge layout for standard Live Operations and Tools Center.
-- 27 standard badges + System Wafers + Computer Tracking + Component Tracking: 12 rows, 50px high, 5px gaps.
-- Fixed Live Operations card height and column layout; preserve Presentation Mode sizing.
-- Kept status colors and 20px progress bars.
-- Sticky header retained in document flow.
+CHANGE: One final layout contract for 27 standard badges (9 x 3) plus System Wafers, Computer Tracking, Component Tracking (three full-width rows). All badge rows 50px, gaps 5px.
+CHANGE: Live Operations card now grows to fit the full left column; removed fixed parent height clipping. Identity stack reserves 4 rows including Quarter and Ship Date. Tools Center uses the same badge geometry.
+UNCHANGED: Existing badge click/edit/save code, colors, tool data and Microsoft List connection logic. Presentation Mode viewport layout unchanged.
 
-Test with disposable tool data. Browser refresh (Ctrl+Shift+R), scroll through all badges, then test badge state save/reload. Microsoft List sync is NOT verified.
+IMPORTANT: This is a TEST BUILD. Source/ZIP validation performed; interactive browser testing and Microsoft List sync NOT verified. Do not replace your production data with test data.
+
+TEST: Use Live Operations and scroll to the bottom of a tool card. Verify POD, System Wafers, Computer Tracking, Component Tracking and Update Tool Status are all visible. Compare Tools Center. Test editing a badge and reload to verify persistence.
