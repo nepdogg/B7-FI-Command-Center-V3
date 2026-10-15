@@ -1,17 +1,11 @@
-B7 FI Command Center V11.17.31 — Badge Grid Structural Repair (TEST)
+B7 FI COMMAND CENTER V11.17.32 - BADGE STYLESHEET LOAD FIX
 
-Based on the full V11.17.30 package.
+ROOT CAUSE FOUND: V11.17.31 index.html referenced css/badge-geometry-v11.17.31.css but the actual ZIP contained css/badge-grid-v11.17.31.css. The browser therefore did not load the new badge layout rules.
 
-Changes:
-- A single badge geometry stylesheet for Live Operations and Tools Center: 27 standard badges in 9 rows and 3 full-width badges, 44px high, 4px gaps.
-- Fixed parent left-column allocation so the grid does not shrink.
-- Controlled two-line/three-line status typography; no badge can grow beyond its row.
-- Presentation Mode keeps proportional equal-height rows within its fixed screen.
-- No change to badge state, editing, persistence, or Microsoft List code.
+FIX: index.html now references the existing css/badge-grid-v11.17.31.css with an updated cache-busting version. No badge editing/saving code changed.
 
-Testing:
-1. Back up existing real data and retain your previous build.
-2. Compare the same tool in Live Operations, Tools Center, and Presentation Mode.
-3. Confirm all 27 standard and 3 full-width badges are visible, with 4px gaps in regular views.
-4. Edit a badge, save, refresh, and check its text/color.
-5. Microsoft List multi-user saving is NOT independently verified. Do not use as production source until confirmed.
+VALIDATION: Confirmed all linked local CSS files exist. Chromium isolated fixture test with the actual three app CSS files measured 30 badges per card, standard/full-width row height 44px, row gap 4px, no overflow in test content. Browser navigation to the full application was blocked in this environment, so full app UI and Microsoft List synchronization remain unverified.
+
+TEST: Unzip to a NEW folder, start app, verify V11.17.32 in header, open Live Operations/Tools/Presentation and compare same tool. Inspect Network tab to ensure badge-grid-v11.17.31.css loads with HTTP 200. Save badge, reload and verify persistence. Do not delete production tool data.
+
+All other behavior is inherited from V11.17.31.
