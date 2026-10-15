@@ -652,9 +652,18 @@ function fitSingleLineText(el,minPx=7,maxPx=27){
   while(px>minPx && el.scrollWidth>el.clientWidth && guard--){px-=.5;el.style.fontSize=px+'px'}
 }
 function balancePageNavigation(){
-  // V11.17.4: CSS alone owns page-navigation widths. Never set inline widths
-  // after rendering: doing so conflicted with zoom and the Tool Type menu.
-  return;
+  // V11.17.10: measure real rendered widths instead of assigning equal button widths.
+  // Keep controls and actions readable; page tabs scroll only when truly necessary.
+  if(document.body.classList.contains('presentation-mode')||document.body.classList.contains('screenshot-mode'))return;
+  const bar=document.querySelector('#stickyShell .pagebar');
+  const tabs=document.getElementById('subnav'),actions=document.getElementById('pageActions');
+  if(!bar||!tabs||!actions)return;
+  bar.style.setProperty('--b7-nav-font','12px');
+  bar.style.setProperty('--b7-nav-pad','12px');
+  const required=()=>[...tabs.querySelectorAll(':scope > button'),...actions.querySelectorAll('button')].reduce((n,b)=>n+Math.ceil(b.scrollWidth)+6,0);
+  const available=bar.clientWidth-24;
+  if(required()>available){bar.style.setProperty('--b7-nav-font','11px');bar.style.setProperty('--b7-nav-pad','8px');}
+  if(required()>available){bar.style.setProperty('--b7-nav-font','10px');bar.style.setProperty('--b7-nav-pad','6px');}
 }
 function fitHeaderGeometry(){
   if(document.body.classList.contains('presentation-mode')||document.body.classList.contains('screenshot-mode'))return;
@@ -1630,7 +1639,7 @@ function v11ToolCard(){
           <button type="button" class="c11-id-badge ${!t.shipDate?'missing':''}" data-quick-field="shipDate" data-quick-tool="${esc(t.id)}" title="SHIP DATE — click to update"><small>SHIP DATE</small><strong>${esc(t.shipDate?fmtDate(t.shipDate):'NO SHIP DATE')}</strong></button>
         </div>
         <button type="button" class="c11-reduced ${t.reducedProcess?'active':''}" data-direct-indicator="reduced" data-indicator-tool="${esc(t.id)}">${t.reducedProcess?'REDUCED PROCESS':'NORMAL PROCESS'}</button>
-        ${carry?`<div class="c11-carry">⚠ QUARTER CARRYOVER — SHIP ASAP ⚠</div>`:''}
+        ${carry?`<div class="c11-carry">⚠ QUARTER CARRYOVER — SHIP ASAP ⚠</div>`:`<div class="c11-carry c11-carry-placeholder" aria-hidden="true"></div>`}
         <div class="c11-badges">${badgeHtml}</div>
         <button class="c11-update" data-tool="${esc(t.id)}">UPDATE TOOL STATUS →</button>
       </section>

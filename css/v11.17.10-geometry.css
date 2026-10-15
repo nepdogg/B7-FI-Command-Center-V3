@@ -1,0 +1,58 @@
+/* V11.17.10 — one geometry contract for full tool cards and every page navigation. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar{
+ display:flex!important;align-items:center!important;flex-wrap:nowrap!important;
+ gap:8px!important;overflow:hidden!important;min-width:0!important;width:100%!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #subnav{
+ display:flex!important;flex:1 1 0!important;min-width:0!important;width:auto!important;
+ max-width:none!important;gap:5px!important;overflow-x:auto!important;overflow-y:hidden!important;
+ scrollbar-width:thin!important;justify-content:flex-start!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #pageActions{
+ display:flex!important;flex:0 1 auto!important;min-width:0!important;width:auto!important;
+ max-width:55%!important;gap:5px!important;overflow-x:auto!important;overflow-y:hidden!important;
+ margin-left:0!important;justify-content:flex-end!important;scrollbar-width:thin!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar button,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar select,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .tool-type-menu-button{
+ flex:0 0 auto!important;width:max-content!important;min-width:max-content!important;
+ max-width:none!important;white-space:nowrap!important;overflow:visible!important;
+ padding-left:var(--b7-nav-pad,12px)!important;padding-right:var(--b7-nav-pad,12px)!important;
+ font-size:var(--b7-nav-font,12px)!important;text-overflow:clip!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .nav69-live-actions,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .nav69-live-controls{
+ display:flex!important;flex:0 0 auto!important;width:max-content!important;min-width:max-content!important;
+}
+/* Twelve consistent rows: nine rows of 27 ordinary badges, one wafer row,
+   one computer row and one component row. Equipment badges must NOT span two rows. */
+html body #app .c11-badges{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ grid-template-rows:repeat(12,minmax(0,1fr))!important;gap:3px!important;min-width:0!important;}
+html body #app .c11-badges > .c11-badge:not(.c11-wafer-badge){grid-column:span 1!important;grid-row:span 1!important;}
+html body #app .c11-badges > .c11-wafer-badge,
+html body #app .c11-badges > .equipment-badge{grid-column:1/-1!important;grid-row:span 1!important;
+ min-height:0!important;height:100%!important;max-height:none!important;align-self:stretch!important;
+ box-sizing:border-box!important;margin:0!important;}
+html body #app .c11-badges > .equipment-badge{display:grid!important;
+ grid-template-columns:minmax(0,40%) minmax(0,60%)!important;grid-template-rows:minmax(0,1fr)!important;
+ padding:1px 5px!important;gap:3px!important;overflow:hidden!important;}
+html body #app .c11-badges > .equipment-badge em{display:none!important;}
+html body #app .c11-badges > .equipment-badge strong,
+html body #app .c11-badges > .equipment-badge small{min-width:0!important;line-height:1.05!important;}
+html body #app .c11-badges > .c11-badge{margin:0!important;box-sizing:border-box!important;
+ min-height:0!important;height:100%!important;}
+/* Every tool has the same six identity sections, even without carryover. */
+html body #app .c11-identity-column{display:grid!important;
+ grid-template-rows:minmax(0,1.4fr) auto 24px 24px minmax(0,2.9fr) 27px!important;
+ gap:3px!important;min-height:0!important;overflow:hidden!important;}
+html body #app .c11-identity-column .c11-carry-placeholder{visibility:hidden!important;}
+html body #app .c11-identity-column .c11-photo{min-height:0!important;height:100%!important;overflow:hidden!important;}
+html body #app .c11-identity-column .c11-photo img{width:100%!important;height:100%!important;object-fit:contain!important;}
+html body #app .c11-identity-column .c11-badges{min-height:0!important;height:100%!important;overflow:hidden!important;}
+html body #app .c11-identity-column .c11-update{height:27px!important;min-height:27px!important;max-height:27px!important;}
+/* Shared progress style in Live Operations and Presentation Mode. */
+html body #app .c11-progress-column .c11-progress-track{height:clamp(13px,1.65vh,19px)!important;min-height:13px!important;border-radius:10px!important;}
+html body #app .c11-progress-column .c11-progress-head b{font-size:clamp(10px,.75vw,13px)!important;line-height:1.12!important;}
+html body #app .c11-progress-column .c11-progress-head strong{font-size:clamp(12px,.95vw,17px)!important;line-height:1.12!important;}
+html body #app .c11-progress-column .c11-progress-row>small{font-size:clamp(8px,.62vw,11px)!important;line-height:1.1!important;}

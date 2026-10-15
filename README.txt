@@ -1,19 +1,21 @@
-B7 FI COMMAND CENTER V11.17.9 — NAVIGATION AND PRESENTATION TEST
+B7 FI COMMAND CENTER V11.17.10 — CARD GEOMETRY / NAVIGATION TEST
 
 CHANGES
-- Replaced the previous equal-width pagebar button sizing with content-width buttons.
-- Preserved carousel and action button widths; page tabs can scroll if the viewport is too narrow.
-- Applied the same navigation sizing across centers.
-- Increased presentation progress bar thickness and heading text sizes.
-- Preserved tool data and Microsoft List integration code unchanged.
+- Unified the Universal Tool Card left-column grid for carryover and non-carryover tools.
+- Fixed the root badge-row overflow: equipment badges no longer consume two grid rows.
+- Standardized all 12 badge rows, image containers, and update-button placement.
+- Reworked page navigation: intrinsic button widths, measured text sizing, independently scrollable tab/action groups as a narrow-screen fallback.
+- Aligned presentation and live-operation progress-bar dimensions and typography.
+- No intentional changes to stored tool data, Microsoft List schemas, or authentication.
 
 TESTING
-1. Extract to a NEW folder; do not overwrite a known working version.
-2. Open index.html in local mode and verify page buttons, Tool Cards, and Presentation Mode.
-3. At 67%, 80%, 100%, 125% browser zoom, confirm action labels are fully visible and page tabs do not squeeze them.
-4. Deploy the entire package to GitHub Pages before testing the hosted version. The title should show V11.17.9.
-5. Do not delete Microsoft List records or browser storage. Keep daily backups.
+1. Extract to a new folder; keep the last working copy and all backups.
+2. Open index.html in local mode; compare TEST-TAYCAN and TEST-VANQUISH in Presentation Mode.
+3. Check all 12 badge rows, photo dimensions, update-button alignment and the three columns.
+4. At 67%, 80%, 100% and 125% zoom check page navigation on Operations and Tools Center. If the viewport is too narrow, horizontal scrolling is intentional instead of clipping text.
+5. Before hosted testing, deploy the complete new package and verify the visible title says V11.17.10.
+6. Test Microsoft List connectivity separately with backed-up test data only.
 
 LIMITATIONS
-Microsoft List synchronization and the existing 200+ bogus records are not repaired by this layout build.
-The ZIP and JavaScript can be checked locally, but work-environment Microsoft List integration must be verified on site.
+- Not browser-verified in the corporate environment.
+- Microsoft List sync and the 200+ bogus records are NOT fixed in this layout release. Do not delete list records or local data.
