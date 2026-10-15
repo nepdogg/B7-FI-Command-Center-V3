@@ -491,3 +491,11 @@ html body #app .c11-identity-column .c11-badges>.c11-wafer-badge small {
   overflow-wrap:anywhere!important;
   line-height:1.1!important;
 }
+
+/* V11.17.24: consistent two-line badge state in all card views. */
+.fleet-badges .v10-badge:not(.v10-wafer-badge),
+.c11-badge:not(.c11-wafer-badge){display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;gap:2px!important;min-width:0!important;min-height:36px!important;height:auto!important;padding:3px 5px!important;white-space:normal!important;overflow:hidden!important;box-sizing:border-box!important;text-align:center!important;}
+.fleet-badges .badge-face-label,.c11-badge .badge-face-label{display:block;font-size:clamp(8px,.65vw,12px);font-weight:900;line-height:1.12;max-width:100%;overflow-wrap:anywhere;}
+.fleet-badges .badge-face-state,.c11-badge .badge-face-state{display:block;font-size:clamp(7px,.54vw,10px);font-weight:700;line-height:1.1;color:inherit;opacity:.95;max-width:100%;overflow-wrap:anywhere;}
+#modal:not(.hidden){z-index:2147483647!important;pointer-events:auto!important;}
+#modal:not(.hidden) .modal-card{pointer-events:auto!important;}
