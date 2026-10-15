@@ -1,32 +1,16 @@
-B7 FI Command Center V11.17.12 — Responsive Monitor & Zoom Test
+B7 FI COMMAND CENTER — V11.17.13 RESPONSIVE LAYOUT REPAIR (TEST ONLY)
 
-Based on the uploaded V11.17.10 full source.
+BASE: V11.17.12 package; existing application logic, assets and Microsoft List integration retained.
 
-Changes: tools center groups laid out in 3 columns on wide displays, 2 on medium and 1 on narrow; each tool family can hold multiple compact cards. Tool image and identity badge geometry is bounded. Navigation buttons use content width and independent horizontal scrolling for page tabs/actions. Removed vertical nav divider rules. Presentation Mode remains unchanged.
+ROOT CAUSE FIXES:
+- Consolidated 21 historical stylesheet loads into one ordered stylesheet with final authoritative layout rules.
+- Fixed Tools Center: each tool FAMILY spans the page; the CARDS within it form 3/2/1 columns based on viewport. Previous patch mistakenly made each family 1/3 of the page.
+- Removed page navigation divider borders and forced intrinsic button widths with consistent padding.
+- Navigation groups scroll independently rather than clip text.
+- Fixed computer/component badge rows to full width in compact and full tool cards.
+- Standardized progress track height at 16px.
+- Maintained all existing application JavaScript and local data storage keys.
 
-Testing: 67%, 80%, 100%, 125% zoom; laptop and large monitor; verify tools with multiple units in same family, all nav actions and dropdown, scroll horizontally when needed. Browser zoom does change physical text size; no CSS can override user zoom completely.
+TEST: Back up local production data first. Unzip to a NEW directory; do not overwrite your production folder. Check laptop and large monitor at 67, 80, 100, 125 percent browser zoom; Tools Center, Live Operations, Presentation Mode and navigation.
 
-IMPORTANT: This is a UI-only test. No Microsoft List data repair, bogus-row cleanup or sync reliability fixes. Back up local data and do not delete Microsoft List records. Browser verification is limited; corporate multi-user connectivity not tested.
-
---- Prior notes ---
-B7 FI COMMAND CENTER V11.17.10 — CARD GEOMETRY / NAVIGATION TEST
-
-CHANGES
-- Unified the Universal Tool Card left-column grid for carryover and non-carryover tools.
-- Fixed the root badge-row overflow: equipment badges no longer consume two grid rows.
-- Standardized all 12 badge rows, image containers, and update-button placement.
-- Reworked page navigation: intrinsic button widths, measured text sizing, independently scrollable tab/action groups as a narrow-screen fallback.
-- Aligned presentation and live-operation progress-bar dimensions and typography.
-- No intentional changes to stored tool data, Microsoft List schemas, or authentication.
-
-TESTING
-1. Extract to a new folder; keep the last working copy and all backups.
-2. Open index.html in local mode; compare TEST-TAYCAN and TEST-VANQUISH in Presentation Mode.
-3. Check all 12 badge rows, photo dimensions, update-button alignment and the three columns.
-4. At 67%, 80%, 100% and 125% zoom check page navigation on Operations and Tools Center. If the viewport is too narrow, horizontal scrolling is intentional instead of clipping text.
-5. Before hosted testing, deploy the complete new package and verify the visible title says V11.17.10.
-6. Test Microsoft List connectivity separately with backed-up test data only.
-
-LIMITATIONS
-- Not browser-verified in the corporate environment.
-- Microsoft List sync and the 200+ bogus records are NOT fixed in this layout release. Do not delete list records or local data.
+LIMITATIONS: Microsoft List connectivity and bogus A-... records have not been repaired or validated in this layout-only build. DO NOT use shared production List data or perform destructive reset/cleanup. Browser and Microsoft corporate sign-in testing are still required.
