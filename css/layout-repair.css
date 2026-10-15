@@ -405,3 +405,38 @@ html body #app .c11-identity-column .c11-badges>.equipment-badge small{
  min-width:0!important;max-width:100%!important;overflow:hidden!important;
  text-overflow:ellipsis!important;white-space:nowrap!important;
 }
+
+/* V11.17.22 — Header text must remain visible without changing other navigation. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header{
+ display:grid!important;grid-template-columns:minmax(0,1.1fr) minmax(0,1.08fr) minmax(0,1.1fr)!important;
+ gap:0!important;column-gap:0!important;width:100%!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header > *{
+ margin:0!important;min-width:0!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header > :first-child,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header > :last-child{
+ font-size:clamp(10px,1.27vw,26px)!important;letter-spacing:-.025em!important;
+ padding-inline:clamp(3px,.5vw,10px)!important;
+ white-space:nowrap!important;text-overflow:clip!important;
+}
+/* Badge row geometry is identical in all 3-column tool cards. */
+html body #app .c11-badges{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:3px!important;min-width:0!important;}
+html body #app .c11-badges > .equipment-badge,
+html body #app .c11-badges > .c11-wafer-badge{
+ grid-column:1/-1!important;grid-row:auto!important;display:grid!important;
+ grid-template-columns:minmax(0,36%) minmax(0,64%)!important;
+ width:100%!important;max-width:100%!important;min-width:0!important;
+ padding:1px 5px!important;box-sizing:border-box!important;overflow:hidden!important;
+}
+html body #app .c11-badges > .equipment-badge strong,
+html body #app .c11-badges > .equipment-badge small{
+ min-width:0!important;max-width:100%!important;overflow:hidden!important;
+ white-space:nowrap!important;text-overflow:ellipsis!important;
+ font-size:clamp(7px,.64vw,11px)!important;line-height:1.1!important;
+}
+html body #app .c11-badges > .equipment-badge em{display:none!important;}
+html body #app .c11-badges > .c11-badge:not(.c11-wafer-badge){min-width:0!important;max-width:100%!important;}
+/* Full badge editing panel: do not crop modal buttons on narrow screens. */
+html body .badge-quick-edit{min-width:0!important;max-width:100%!important;}
+html body .badge-quick-edit select{max-width:100%!important;width:100%!important;}
