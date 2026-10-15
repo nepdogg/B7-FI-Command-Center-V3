@@ -1,31 +1,27 @@
-B7 FI COMMAND CENTER V11.17.33 — BADGE GEOMETRY CONSOLIDATION — TEST BUILD
+B7 FI COMMAND CENTER — V11.17.34 — STRUCTURAL BADGES + STATUS COLORS (TEST)
 
-BASE: Complete uploaded V11.17.32 package. All original pages, photos, editing handlers, tool records, and Microsoft List integration code remain included.
+BASE: Existing complete V11.17.33 application; no data reset or schema change.
 
-WHAT CHANGED
-- Added one last-loaded stylesheet: css/badge-geometry-v11.17.33.css.
-- Resolved competing badge height rules in the Live Operations and Tools Center cards.
-- Standard badge grid: 27 standard badges in nine 3-column rows, followed by System Wafers, Computer Tracking and Component Tracking in three full-width rows.
-- All 30 badge cells have equal 50px heights and 4px horizontal/vertical spacing on standard cards. The badge grid reserves 644px and the full Live Operations card reserves enough vertical space instead of shrinking or clipping the bottom rows.
-- Label and selected state remain visible in separate lines; existing color state and click/save handlers are preserved.
-- Presentation Mode retains screen-fitting equal rows, with its own compact text scaling; it does not inherit the standard card's 644px minimum.
-- Version updated to V11.17.33 in the header.
+CHANGES
+- 27 standard operational badges in a consistent 3-column x 9-row grid.
+- POD retained. System Wafers, Computer Tracking, Component Tracking occupy 3 additional full-width rows.
+- Standard and full-width badges use 44px rows and 4px spacing on normal pages.
+- Live Operations left/middle/right card geometry is fixed between tools; entire 30-badge grid gets reserved vertical space. The full card can extend below the viewport; scroll to see all rows. No rows should be intentionally hidden.
+- The Tools Center badge grid uses the same 44px/4px geometry.
+- Presentation Mode retains its fixed single-screen geometry and uses 12 equal badge tracks (separate from 44px normal-page sizing).
+- FI schedule status, current system status, next tasks, notes and progress panels receive restrained state-dependent border/background tints. Progress bar colors remain as before, and bar height remains 20px.
+- Existing click-to-edit badge actions, badge color state logic, Microsoft List connector code, navigation and other centers preserved.
 
-VALIDATION COMPLETED
-- JavaScript syntax check passed for js/app.js.
-- Chromium isolated CSS fixture using the real stylesheet stack, at 1920px, 1366px and 1024px viewport widths: each of the Live and Tools badge grids rendered 30 cells in 12 rows, all 50px high, 4px gap, and no grid overflow.
+TESTING (USE TEST DATA, NOT PRODUCTION)
+1. Unzip all files and launch START-COMMAND-CENTER.bat. Verify header shows V11.17.34. For GitHub Pages, upload all changed files, wait for deployment, then hard-refresh (Ctrl+Shift+R).
+2. Live Operations: switch through 9 tools. Verify 27 standard badges, POD, System Wafers, Computer Tracking and Component Tracking. Check bottom rows by scrolling.
+3. Compare the same badge in Tools Center and Presentation Mode. Verify its state text and color match.
+4. Click badge, select another state, save, navigate away, return, reload and check persistence. Do not reset any storage or lists.
+5. At work: check LIST CONNECTED before making multi-user changes; verify the same saved badge on a second laptop. Do not assume list synchronization is working if disconnected.
+6. Compare normal zoom at 100%, 80%, 125%, and narrow laptop viewport. At widths under 1100 CSS px, horizontal scrolling may be required to keep the 3-column card readable.
 
-LIMITATIONS
-- Isolated CSS fixture testing is NOT a full production browser test. Full application startup, all badge save workflows, Presentation Mode interactions and corporate Microsoft List connection were not verified. Do not treat this test build as production approved.
-- The old CSS files are retained for compatibility. The new stylesheet must remain the last stylesheet in index.html.
-- If a small screen cannot display the full height of the tool card at once, the page must scroll vertically; this is intentional to prevent badge clipping. Presentation Mode uses a separate fit-to-screen layout.
-
-HOW TO TEST
-1. Unzip into a NEW folder and run START-COMMAND-CENTER.bat (or deploy the entire folder to your test GitHub Pages branch). Confirm V11.17.33 in the header.
-2. Hard refresh (Ctrl+F5). In DevTools Network, verify badge-geometry-v11.17.33.css returns HTTP 200.
-3. In Live Operations and Tools Center, check every row, including POD, System Wafers, Computer Tracking, Component Tracking. Confirm uniform height and spacing.
-4. Test at 100%, 80%, 67%, 125% browser zoom and on your laptop. Scroll to the bottom of the card if needed.
-5. Open Presentation Mode and check the same tool. Test badge editing, saving, page reload, and persistence. Confirm current state text and color.
-6. Test Microsoft List syncing separately at work with test tools only; confirm another laptop sees a saved change. Do not delete/reset production list or browser data.
-
-If badge updates or Microsoft List sync fail, collect the exact error text and note which mode (local/GitHub Pages) and tool UTID. These behaviors were not changed in this geometry-only update.
+VERIFICATION LIMITATIONS
+- JavaScript syntax checked with node --check.
+- Browser-based interactive test could not run because the browser navigation was blocked by the environment. Layout, persistence and Microsoft List connectivity are NOT certified.
+- Existing multiple legacy CSS files remain. The last-loaded b7-structural-v11.17.34.css establishes the final geometry rules for the updated selectors. Further CSS consolidation may be necessary if a real-browser test exposes conflicts.
+- No data migration, list connection repair, or live backend write test was performed.
