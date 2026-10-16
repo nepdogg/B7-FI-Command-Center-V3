@@ -1,0 +1,61 @@
+/* V11.17.40 — repair duplicated fixed-header offsets and stabilize normal-mode badges.
+   No changes to data, routing, storage, authentication or presentation-mode geometry. */
+:root{--b7-v40-badge-row:52px;--b7-v40-badge-gap:4px}
+/* Legacy bundles independently apply margin-top AND padding-top to the same body shell.
+   Only one offset is allowed. The measured header height comes from app.js. */
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.body-shell{
+  margin:0!important;
+  padding-top:calc(var(--v115-shell-height, var(--sticky-shell-height, 260px)) + 6px)!important;
+  box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell{
+  top:0!important;margin-top:0!important;transform:none!important;
+}
+/* Let the standard card grow to fit the full identity and badge content rather than
+   forcing all 12 rows into a viewport-dependent fractional height. */
+html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-identity-column .c11-badges,
+html body:not(.presentation-mode):not(.screenshot-mode) #app .fleet-identity-card .fleet-badges{
+  display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-template-rows:repeat(12,minmax(var(--b7-v40-badge-row),auto))!important;
+  grid-auto-rows:minmax(var(--b7-v40-badge-row),auto)!important;
+  grid-auto-flow:row!important;gap:var(--b7-v40-badge-gap)!important;
+  height:auto!important;min-height:calc(12 * var(--b7-v40-badge-row) + 11 * var(--b7-v40-badge-gap))!important;
+  max-height:none!important;align-content:start!important;overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-identity-column .c11-badges > .c11-badge,
+html body:not(.presentation-mode):not(.screenshot-mode) #app .fleet-identity-card .fleet-badges > .v10-badge,
+html body:not(.presentation-mode):not(.screenshot-mode) #app .fleet-identity-card .fleet-badges > .equipment-badge{
+  box-sizing:border-box!important;height:auto!important;min-height:var(--b7-v40-badge-row)!important;
+  max-height:none!important;overflow:visible!important;align-self:stretch!important;
+  padding:4px 5px!important;line-height:1.15!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-identity-column .c11-badges > :is(.c11-wafer-badge,.equipment-badge),
+html body:not(.presentation-mode):not(.screenshot-mode) #app .fleet-identity-card .fleet-badges > :is(.v10-wafer-badge,.equipment-badge){
+  grid-column:1/-1!important;min-width:0!important;
+}
+/* Stop the left column from covering its own last identity rows when text wraps. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-identity-column{
+  grid-template-rows:minmax(210px,auto) minmax(148px,auto) 30px 30px auto 40px!important;
+  height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-card-grid,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-tool-card{
+  height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;
+}
+/* Tools Center must remain a full-width family section; only cards inside each
+   family form columns. Do not force every family into its own narrow tile. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tools"] #app .v1014-tools-page{
+  display:block!important;width:100%!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tools"] #app .fleet-family{
+  width:100%!important;margin-bottom:14px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tools"] #app .fleet-card-grid{
+  display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important;
+}
+@media(max-width:1250px){
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tools"] #app .fleet-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:800px){
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="tools"] #app .fleet-card-grid{grid-template-columns:minmax(0,1fr)!important}
+}
