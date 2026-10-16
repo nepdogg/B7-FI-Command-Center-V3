@@ -1,23 +1,23 @@
-B7 FI COMMAND CENTER V11.17.43 — RESPONSIVE + VISUAL EDITOR TEST
+B7 FI COMMAND CENTER V11.17.45 — BROWSER ZOOM RECOVERY TEST
 
-Based on V11.17.42; all original application and Microsoft List scripts preserved.
+SOURCE: V11.17.44 full application. No tool records or Microsoft List settings intentionally modified.
 
-CHANGES IN THIS BUILD
-- New final-loaded responsive CSS contract removes double-offset body-shell padding and fixed top spacing.
-- Shared badge renderer from V11.17.42 retained; 12 equal rows, 48px each in standard cards.
-- Normal Live Operations tool card left column flows with content instead of fixed height.
-- Tool Edit: visual tool identity banner, one-tool dropdown, Quick Update and Full Edit category tabs; original fields and save/cancel remain.
-- Version updated to V11.17.43.
+CHANGES:
+- Introduced a low-browser-zoom normalization layer for standard pages. Edge/Chrome browser zoom below 100% reduces devicePixelRatio; the new logic adjusts application layout zoom and CSS viewport width together to keep the interface from collapsing into tiny text at very low zoom.
+- Removed the V11.17.44 forced 760px minimum height from the normal Live Operations Tool Card so middle/right columns do not stretch into oversized empty sections.
+- Preserved the existing shared badge styling and card functionality.
+- Version updated to 11.17.45.
 
-LIMITATIONS / NOT YET COMPLETE
-- Browser appearance could not be validated automatically in this environment.
-- Presentation Mode retains its own fit-to-screen geometry and may still need work.
-- Brain rule engine, full shipping/priority report builders, new tool master-data editor, multi-user coworker sign-in, historical archive corrections are NOT implemented by this patch.
-- Do not use production reset/import or change real Microsoft List data during test.
+KNOWN LIMITATIONS / SAFETY:
+- Browser-rendered visual verification was blocked by this environment. This is an UNVERIFIED TEST BUILD, not a production-ready fix.
+- DevicePixelRatio also reflects Windows display scaling, so zoom normalization may be imperfect on displays with 125%/150% Windows scaling or multiple monitors.
+- The accumulated legacy CSS still exists; this build is a targeted zoom experiment, not a full layout rewrite.
+- Do not use production reset/import, and do not overwrite the working production deployment without backup.
+- Microsoft List sign-in for different users and the planned Brain, reporting, and editor redesign are NOT repaired here.
 
-TEST PROCEDURE
-1. Back up existing files and data. Extract to a new folder; test Local Mode with TEST records.
-2. At browser zoom 67, 80, 100, 125%, check header position, Tool Card clipping, and badge row heights.
-3. Open the same UTID in Live Operations and Tools Center; compare badge colors.
-4. Open Tool Edit; test one-tool dropdown, Full Edit tabs, Quick Update and Save with TEST records only.
-5. Do not deploy to GitHub Pages production until these checks pass.
+TEST:
+1. Extract to a new folder. Keep V11.17.44 and your live data safe.
+2. Open the test site and check browser zoom 25%, 50%, 67%, 80%, 100%, 125%.
+3. Compare header spacing, badge readability, card alignment, and footer position.
+4. Verify the same tool UTID in Live Operations, Tools Center, and Presentation Mode.
+5. If a layout issue remains, record zoom %, Windows display scaling %, and a screenshot.
