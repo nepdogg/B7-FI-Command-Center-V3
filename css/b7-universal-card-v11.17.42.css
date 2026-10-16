@@ -1,0 +1,60 @@
+/* V11.17.42 — canonical badge geometry. All three tool-card views use
+   canonicalToolBadges() in app.js; only the available row height differs. */
+:root{--b7-universal-badge-row:52px;--b7-universal-badge-gap:4px}
+html body #app :is(.c11-badges,.fleet-badges){
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ grid-template-rows:repeat(12,minmax(0,var(--b7-universal-badge-row)))!important;
+ grid-auto-rows:minmax(0,var(--b7-universal-badge-row))!important;
+ grid-auto-flow:row!important;gap:var(--b7-universal-badge-gap)!important;
+ height:auto!important;min-height:calc(12 * var(--b7-universal-badge-row) + 11 * var(--b7-universal-badge-gap))!important;
+ max-height:none!important;align-content:start!important;align-items:stretch!important;
+ overflow:visible!important;box-sizing:border-box!important;
+}
+html body #app :is(.c11-badges,.fleet-badges) > :is(.c11-badge,.v10-badge,.equipment-badge){
+ height:var(--b7-universal-badge-row)!important;min-height:var(--b7-universal-badge-row)!important;
+ max-height:var(--b7-universal-badge-row)!important;width:100%!important;
+ box-sizing:border-box!important;margin:0!important;padding:3px 5px!important;
+ align-self:stretch!important;overflow:hidden!important;line-height:1.12!important;
+ border-radius:5px!important;white-space:normal!important;
+}
+html body #app :is(.c11-badges,.fleet-badges) > :is(.c11-badge,.v10-badge):not(.c11-wafer-badge):not(.equipment-badge){
+ display:flex!important;flex-direction:column!important;justify-content:center!important;
+ align-items:center!important;gap:2px!important;text-align:center!important;
+ grid-column:span 1!important;grid-row:span 1!important;
+}
+html body #app :is(.c11-badges,.fleet-badges) > :is(.c11-wafer-badge,.equipment-badge){
+ grid-column:1/-1!important;grid-row:span 1!important;
+ display:grid!important;grid-template-columns:minmax(0,36%) minmax(0,1fr)!important;
+ grid-template-rows:minmax(0,1fr)!important;align-items:center!important;gap:4px!important;
+}
+html body #app :is(.c11-badges,.fleet-badges) .badge-face-label,
+html body #app :is(.c11-badges,.fleet-badges) .badge-face-state{
+ display:block!important;min-width:0!important;max-width:100%!important;
+ overflow:visible!important;white-space:normal!important;overflow-wrap:break-word!important;
+ -webkit-line-clamp:unset!important;line-clamp:unset!important;
+}
+html body #app :is(.c11-badges,.fleet-badges) .badge-face-label{font-size:clamp(9px,.7vw,12px)!important;line-height:1.1!important;font-weight:800!important}
+html body #app :is(.c11-badges,.fleet-badges) .badge-face-state{font-size:clamp(8px,.58vw,10px)!important;line-height:1.1!important}
+html body #app :is(.c11-badges,.fleet-badges) > .equipment-badge em{display:none!important}
+html body #app :is(.c11-badges,.fleet-badges) > .equipment-badge :is(strong,small){min-width:0!important;overflow-wrap:anywhere!important;line-height:1.1!important}
+/* Standard Live Operations: content determines height; do not compress badge rows. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-identity-column{
+ display:grid!important;grid-template-rows:minmax(205px,auto) 148px 30px 30px auto 40px!important;
+ height:auto!important;max-height:none!important;overflow:visible!important;align-content:start!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app :is(.c11-tool-card,.c11-card-grid){height:auto!important;max-height:none!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #app .fleet-identity-card{height:auto!important;max-height:none!important;overflow:visible!important}
+/* Presentation Mode must fit within the full-screen tool card. All twelve
+   rows share the exact same fractional height, including the three wide rows. */
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app .c11-badges{
+ grid-template-rows:repeat(12,minmax(0,1fr))!important;
+ grid-auto-rows:minmax(0,1fr)!important;height:100%!important;min-height:0!important;
+ max-height:100%!important;overflow:hidden!important;align-content:stretch!important;
+ gap:2px!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app .c11-badges > :is(.c11-badge,.equipment-badge){
+ height:100%!important;min-height:0!important;max-height:100%!important;
+ padding:1px 3px!important;overflow:hidden!important;
+}
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app .c11-badges .badge-face-label{font-size:clamp(7px,.65vw,11px)!important;line-height:1.04!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app .c11-badges .badge-face-state{font-size:clamp(6px,.5vw,9px)!important;line-height:1.04!important}

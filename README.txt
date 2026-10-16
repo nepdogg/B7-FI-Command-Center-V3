@@ -1,31 +1,23 @@
-B7 FI COMMAND CENTER V11.17.40 — GEOMETRY RECOVERY TEST
-=======================================================
-Based on V11.17.39. This is a targeted CSS recovery build, NOT a verified production release.
+B7 FI COMMAND CENTER V11.17.43 — RESPONSIVE + VISUAL EDITOR TEST
 
-CHANGES
-- Removed the duplicate header offset (one stylesheet set margin-top while another
-  separately set padding-top). The body now uses one measured header clearance.
-- Replaced fixed/percentage-clipped normal-mode badge grid heights with 12 rows
-  that can grow to contain their text. Retained all 30 existing badges and data.
-- Made the normal Live Operations left identity column grow with badge content.
-- Kept Tools Center family sections full-width and grouped cards inside them.
-- Left Presentation Mode geometry, Microsoft List authentication, storage and
-  tool update logic unchanged.
-- Updated visible version and JS version to V11.17.40.
+Based on V11.17.42; all original application and Microsoft List scripts preserved.
 
-TESTING
-1. BACK UP V11.17.39 and any production data. Unzip into a NEW directory.
-2. Test in Local Mode with test data before trying any connected production use.
-3. At browser zoom 67%, 80%, 100%, 125%: inspect top of header, all badges,
-   left column identity rows, tool card bottom, and Tools Center group layout.
-4. Compare the same UTID in Live Operations, Tools Center and Presentation Mode.
-5. Do not reset/import/clear Microsoft List data as part of these layout tests.
-6. Report exact zoom and view if any text still clips. Browser zoom intentionally
-   changes the physical size of all content; the goal is no clipping/overlap,
-   not identical physical text size at every zoom.
+CHANGES IN THIS BUILD
+- New final-loaded responsive CSS contract removes double-offset body-shell padding and fixed top spacing.
+- Shared badge renderer from V11.17.42 retained; 12 equal rows, 48px each in standard cards.
+- Normal Live Operations tool card left column flows with content instead of fixed height.
+- Tool Edit: visual tool identity banner, one-tool dropdown, Quick Update and Full Edit category tabs; original fields and save/cancel remain.
+- Version updated to V11.17.43.
 
-NOT YET VERIFIED
-No browser-based visual regression tests or coworker authentication tests were
-run in this environment. The new stylesheet has not been verified on your monitor.
-The major Brain, Shipping/Priority report builders, and other previously listed
-features are NOT included in this targeted geometry patch.
+LIMITATIONS / NOT YET COMPLETE
+- Browser appearance could not be validated automatically in this environment.
+- Presentation Mode retains its own fit-to-screen geometry and may still need work.
+- Brain rule engine, full shipping/priority report builders, new tool master-data editor, multi-user coworker sign-in, historical archive corrections are NOT implemented by this patch.
+- Do not use production reset/import or change real Microsoft List data during test.
+
+TEST PROCEDURE
+1. Back up existing files and data. Extract to a new folder; test Local Mode with TEST records.
+2. At browser zoom 67, 80, 100, 125%, check header position, Tool Card clipping, and badge row heights.
+3. Open the same UTID in Live Operations and Tools Center; compare badge colors.
+4. Open Tool Edit; test one-tool dropdown, Full Edit tabs, Quick Update and Save with TEST records only.
+5. Do not deploy to GitHub Pages production until these checks pass.

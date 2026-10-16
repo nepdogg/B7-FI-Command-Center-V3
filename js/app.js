@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='11.17.41', BUILD='20261015-V11.17.41-GEOMETRY-RECOVERY-TEST';
+const VERSION='11.17.43', BUILD='20261015-V11.17.43-RESPONSIVE-EDITOR-TEST';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const EQUIPMENT_COMPUTERS=[['SS','Subswath Server'],['GPU','GPU Servers'],['DBB','Global Storage Server'],['RTAT','RTAT Server'],['SCC','SCC Computer'],['DAS','DAS Server'],['Host','Host Server'],['Dart','Dart Server']];
@@ -1370,18 +1370,28 @@ function cycleStatusItem(t,target,color,name='CYCLE TIME'){let days=t.fiHandoffD
 function keyTestBadge(name,status){let v=String(status||'').toUpperCase(),tone=(v==='PASSED'||v==='COMPLETED & APPROVED'||v==='COMPLETED')?'done':(v==='FAILED'?'failed':(v==='RUNNING'||v==='UNDER WAY'||v==='IN PROGRESS'?'active':'idle'));return `<div class="key-test-badge ${tone}"><b>${esc(name)}</b><span>${esc(v||'NOT STARTED')}</span></div>`}
 function conditionChip(name,on,tone='active'){return `<div class="utc-condition-chip ${on?'on '+tone:'off'}">${esc(name)}</div>`}
 function workflowBadge(name,required,status){let r=String(required||'TBD').toUpperCase(),v=String(status||'NOT STARTED').toUpperCase(),tone='idle',label=v;if(r==='NO'){label='NOT REQUIRED';tone='idle'}else if(r==='TBD'){label='REQUIREMENT TBD';tone='idle'}else if(v.includes('COMPLETE')||v.includes('APPROV')||v.includes('RETURNED TO FI'))tone='done';else{tone='active';label=v||'NOT STARTED'}return `<div class="key-test-badge workflow-badge ${tone}"><b>${esc(name)}</b><span>${esc(label)}</span></div>`}
+/* V11.17.42: one canonical 30-badge renderer for full, compact and presentation cards. */
+function canonicalToolBadges(t){
+  const ordinary=INDICATOR_SLOT_KEYS.filter(k=>k!=='systemWafers').map(k=>{
+    const x=indicatorState(t,k);
+    return `<button type="button" class="c11-badge v10-badge ${esc(x.tone||'idle')}" data-direct-indicator="${esc(k)}" data-indicator-tool="${esc(t.id)}" title="${esc(x.state||x.label||'')} — click to update">${badgeFace(x,x.label||BADGE_PANEL_LABELS[k]||k)}</button>`;
+  }).join('');
+  const wafer=indicatorState(t,'systemWafers');
+  const waferHtml=`<button type="button" class="c11-badge v10-badge c11-wafer-badge v10-wafer-badge ${esc(wafer.tone||'idle')}" data-direct-indicator="systemWafers" data-indicator-tool="${esc(t.id)}" title="${esc(wafer.state||'SYSTEM WAFERS')} — click to update"><span>SYSTEM WAFERS</span><small>${esc(waferTally(t))}</small></button>`;
+  return ordinary+waferHtml+equipmentBadges(t,'c11');
+}
 function toolCard(t){return liveToolCard(t)}
 function toolsDashboard(){
   let q=toolViewQuarter(),visible=q==='ALL'?nonArchivedTools():toolsForQuarter(q),rank=commandCenterPriorityRanks();
   let counts={all:visible.length,waiting:visible.filter(t=>fiSummaryStatus(t)==='Waiting').length,fi:visible.filter(t=>fiSummaryStatus(t)==='In FI').length,packing:visible.filter(t=>fiSummaryStatus(t)==='Packing').length,shipped:visible.filter(t=>fiSummaryStatus(t)==='Shipped').length,carry:visible.filter(isCarryoverTool).length};
   let families=[...new Set(visible.map(t=>String(t.codename||'UNKNOWN').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
-  let card=t=>{let p=priorityBadgeInfo(t),img=individualToolPhoto(t)||familyImage(t),badges=INDICATOR_SLOT_KEYS.map(k=>({key:k,...indicatorState(t,k)})),carry=isCarryoverTool(t);let standard=badges.filter(x=>x.key!=='systemWafers'),wafer=badges.find(x=>x.key==='systemWafers');return `<article class="fleet-identity-card" data-tool="${esc(t.id)}">
+  let card=t=>{let p=priorityBadgeInfo(t),img=individualToolPhoto(t)||familyImage(t),carry=isCarryoverTool(t);return `<article class="fleet-identity-card" data-tool="${esc(t.id)}">
     <div class="fleet-priority-wrap c11-priority-identity"><button type="button" class="fleet-priority c11-priority" data-direct-priority="${esc(t.id)}" title="Update priority"><b>#${esc(p.rank||t.priority||'—')}</b><span><strong>PRIORITY</strong><small>${esc(p.source==='commandCenter'?'COMMAND CENTER':'LEADS')}</small></span></button><button type="button" class="fleet-priority-identity c11-priority-tool" data-tool="${esc(t.id)}"><strong>${esc(t.id||'NO UTID')}</strong><small>${esc((t.codename||'NO TYPE')+' · '+(t.model||'NO MODEL'))}</small></button></div>
     <button class="fleet-photo" data-tool="${esc(t.id)}"><img src="${esc(img)}" alt="${esc(t.codename||'Tool')}"></button>
     <div class="fleet-id-grid">${v10IdentityButton(t,'utid','UTID',t.id,!t.id)}${v10IdentityButton(t,'toolType','TOOL TYPE',t.codename,!t.codename)}${v10IdentityButton(t,'model','MODEL',t.model,!t.model)}${v10IdentityButton(t,'customer','CUSTOMER',t.customer||'NO CUSTOMER',!t.customer)}${v10IdentityButton(t,'salesOrder','SALES ORDER',t.salesOrder||'NO SALES ORDER',!t.salesOrder)}<button class="v10-id-badge ${!t.driver||/^unassigned$/i.test(t.driver)?'missing':''}" data-direct-indicator="driver" data-indicator-tool="${esc(t.id)}"><small>DRIVER</small><strong>${esc(t.driver||'UNASSIGNED')}</strong></button><div class="v10-id-badge"><small>QUARTER</small><strong>${esc(toolHomeQuarter(t))}</strong></div><button class="v10-id-badge ${!t.shipDate?'missing':''}" data-quick-field="shipDate" data-quick-tool="${esc(t.id)}"><small>SHIP DATE</small><strong>${esc(t.shipDate?fmtDate(t.shipDate):'NO SHIP DATE')}</strong></button></div>
     <button class="v10-reduced ${t.reducedProcess?'active':''}" data-direct-indicator="reduced" data-indicator-tool="${esc(t.id)}">${t.reducedProcess?'REDUCED PROCESS':'NORMAL PROCESS'}</button>
     ${carry?'<div class="v10-carry">⚠ QUARTER CARRYOVER — SHIP ASAP ⚠</div>':''}
-    <div class="fleet-badges">${standard.map(x=>`<button class="v10-badge ${esc(x.tone||'normal')}" data-direct-indicator="${esc(x.key||'')}" data-indicator-tool="${esc(t.id)}">${badgeFace(x,x.label||x.key||'BADGE')}</button>`).join('')}${wafer?`<button class="v10-badge v10-wafer-badge ${esc(wafer.tone||'normal')}" data-direct-indicator="systemWafers" data-indicator-tool="${esc(t.id)}"><span>SYSTEM WAFERS</span><small>${esc(waferTally(t))}</small></button>`:''}${equipmentBadges(t,'fleet')}</div>
+    <div class="fleet-badges">${canonicalToolBadges(t)}</div>
     <button class="v10-update" data-tool="${esc(t.id)}">UPDATE TOOL STATUS →</button></article>`};
   let groups=families.map(f=>{let tools=visible.filter(t=>String(t.codename||'UNKNOWN').trim()===f),states={waiting:tools.filter(t=>fiSummaryStatus(t)==='Waiting').length,fi:tools.filter(t=>fiSummaryStatus(t)==='In FI').length,packing:tools.filter(t=>fiSummaryStatus(t)==='Packing').length,shipped:tools.filter(t=>fiSummaryStatus(t)==='Shipped').length};return `<section class="fleet-family" id="tool-family-${esc(f.replace(/[^a-z0-9]/gi,'-').toLowerCase())}"><header class="fleet-family-head"><strong>${esc(f.toUpperCase())}</strong><div><span>${tools.length} TOTAL</span><span>${states.waiting} WAITING FI</span><span>${states.fi} IN FI</span><span>${states.packing} PACKING</span><span>${states.shipped} SHIPPED</span></div></header><div class="fleet-card-grid">${tools.sort((a,b)=>(rank.get(String(a.id))||999)-(rank.get(String(b.id))||999)||morningCompare(a,b)).map(card).join('')}</div></section>`}).join('');
   return `${centerPageTitle(`${q==='ALL'?'ALL':q} TOOL CENTER`)}<section class="v1014-tools-page"><div class="v10-fleet-kpis"><div><b>${counts.all}</b><span>ALL TOOLS</span></div><div><b>${counts.waiting}</b><span>WAITING FI</span></div><div><b>${counts.fi}</b><span>IN FI</span></div><div><b>${counts.packing}</b><span>PACKING</span></div><div><b>${counts.shipped}</b><span>SHIPPED</span></div><div class="${counts.carry?'critical':''}"><b>${counts.carry}</b><span>CARRYOVER</span></div></div>${groups||'<div class="v9-empty">NO TOOLS IN THIS QUARTER</div>'}</section>`;
@@ -1685,16 +1695,7 @@ function v11ToolCard(){
   liveIndex=((liveIndex%a.length)+a.length)%a.length;
   let t=a[liveIndex],count=shipCountdown(t),fi=fiProgress(t),mi=microProgress(t),cyc=actualCycleDays(t),target=cycleAverageDays(t)||25,cp=Math.round(cyc/target*100),tasks=nextSystemTasksRows(t),img=individualToolPhoto(t)||familyImage(t),carry=isCarryoverTool(t),p=priorityBadgeInfo(t),badges=evaluateTool(t).badgeList||[],intel=v10ToolIntelligence(t,count,p),forecast=v10ForecastProgress(t),lead=leadProgress(t),source=v10WorkflowProgress(t.sourceRequired,t.sourceStatus,'source'),str=v10WorkflowProgress(t.strRequired,t.strStatus,'str'),packing=shippingProgress(t);
   let alias=String(t.alias||t.id||t.codename||'TOOL').trim().toUpperCase();
-  // Render the exact canonical indicator set used on the Tools page.
-  // Do not slice the evaluated list: derived/extra badges could push POD out.
-  const standardKeys=INDICATOR_SLOT_KEYS.filter(k=>k!=='systemWafers');
-  const badgeHtmlStandard=standardKeys.map(k=>{
-    const x=indicatorState(t,k);
-    return `<button type="button" class="c11-badge ${esc(x.tone||'idle')}" data-direct-indicator="${esc(k)}" data-indicator-tool="${esc(t.id)}" title="${esc(x.state||x.label||'')} — click to update">${badgeFace(x,x.label||BADGE_PANEL_LABELS[k]||k)}</button>`;
-  }).join('');
-  const waferBadge=indicatorState(t,'systemWafers');
-  let badgeHtml=badgeHtmlStandard+`<button type="button" class="c11-badge c11-wafer-badge ${esc(waferBadge.tone||'idle')}" data-direct-indicator="systemWafers" data-indicator-tool="${esc(t.id)}" title="${esc(waferBadge.state||'SYSTEM WAFERS')} — click to update"><span>SYSTEM WAFERS</span><small>${esc(waferTally(t))}</small></button>`;
-  badgeHtml+=equipmentBadges(t,'c11');
+  const badgeHtml=canonicalToolBadges(t);
   let statusLabel=t.toolStatus==='FI'?'FI TESTING':String(t.toolStatus||fiSummaryStatus(t)).toUpperCase();
   let currentStatus=performance(t)[0]==='BEHIND'?'BEHIND SCHEDULE':performance(t)[0]==='AHEAD'?'AHEAD OF SCHEDULE':'ON SCHEDULE';
   if(t.fiStatusOverride)currentStatus=t.fiStatusOverride;
@@ -1807,6 +1808,33 @@ function restorePresentationFromToolEditor(){
   window.scrollTo(0,0);
   return true;
 }
+
+/* V11.17.43: visual navigation layer over the EXISTING editor and save handlers. */
+function enhanceVisualToolEditor(){
+ const editor=document.querySelector('#app .tool-editor');if(!editor||editor.dataset.visualReady)return;
+ editor.dataset.visualReady='1';
+ const t=draft||{};const groups=[
+  ['quick','⚡','Quick Update',/Next System Tasks|Latest|Lead Notes|Reminders/i],
+  ['identity','▣','Tool Information',/Tool Information|Tool Photo/i],
+  ['badges','◈','Badges & Wafers',/System Wafers|Key Process|Indicator|Computer Tracking|Component Tracking|Equipment/i],
+  ['fi','◷','FI & Cycle Time',/FI Testing|Micro Schedule|Checklist|Cycle Time|Forecast/i],
+  ['lead','☑','Lead \/ Admin',/Lead|Admin|Tasks/i],
+  ['shipping','⇥','Shipping & Customer',/Shipping|Packing|Customer Source|STR/i],
+  ['other','⚙','Other Fields',/.*/]
+ ];
+ const sections=[...editor.querySelectorAll(':scope > .subsection')];
+ sections.forEach(section=>{let heading=section.querySelector('h3')?.textContent||'';let match=groups.find(g=>g[0]!=='quick'&&g[0]!=='other'&&g[3].test(heading));section.dataset.editorGroup=match?match[0]:'other'});
+ const toolbar=document.createElement('div');toolbar.className='b7-visual-editor';
+ const tools=state.tools.filter(x=>x.toolStatus!=='Archived').sort((a,b)=>String(a.codename).localeCompare(String(b.codename))||String(a.id).localeCompare(String(b.id)));
+ toolbar.innerHTML=`<div class="b7-editor-title"><div><span>VISUAL TOOL EDITOR · ${esc(t.quarter||state.quarter||'')}</span><h2>${esc(t.codename||'NEW TOOL')} · ${esc(t.model||'MODEL TBD')}</h2><strong>UTID ${esc(t.id||'NEW')} · ${esc(t.customer||'NO CUSTOMER')} · ${esc(t.driver||'UNASSIGNED')}</strong></div><span class="b7-editor-status">${esc(t.toolStatus||'NEW')}</span></div><div class="b7-editor-tool-select"><label for="b7-edit-tool-select">SELECT TOOL TO UPDATE</label><select id="b7-edit-tool-select">${tools.map(x=>`<option value="${esc(x.id)}" ${x.id===t.id?'selected':''}>${esc(x.codename||'UNKNOWN')} · ${esc(x.id)} · ${esc(x.model||'')}</option>`).join('')}</select></div><div class="b7-editor-mode"><button type="button" data-b7-mode="quick">⚡ QUICK UPDATE</button><button type="button" data-b7-mode="full" class="selected">▦ FULL EDIT</button></div><div class="b7-editor-tabs">${groups.filter(g=>g[0]!=='quick').map(g=>`<button type="button" data-b7-section="${g[0]}" class="${g[0]==='identity'?'selected':''}"><span>${g[1]}</span>${g[2]}</button>`).join('')}</div><p class="b7-editor-help">One tool at a time. The original field controls and Save / Cancel actions are preserved.</p>`;
+ const first=editor.querySelector('.panel-head');if(first)first.after(toolbar);else editor.prepend(toolbar);
+ let active='identity',mode='full';
+ const apply=()=>{sections.forEach(el=>{let g=el.dataset.editorGroup;el.hidden=mode==='quick'?!(/Next System Tasks|Latest|Lead Notes|Reminders/i.test(el.querySelector('h3')?.textContent||'')):g!==active});toolbar.querySelector('.b7-editor-tabs').hidden=mode==='quick';toolbar.querySelectorAll('[data-b7-mode]').forEach(b=>b.classList.toggle('selected',b.dataset.b7Mode===mode));toolbar.querySelectorAll('[data-b7-section]').forEach(b=>b.classList.toggle('selected',b.dataset.b7Section===active));};
+ toolbar.querySelectorAll('[data-b7-mode]').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.b7Mode;apply()}));
+ toolbar.querySelectorAll('[data-b7-section]').forEach(b=>b.addEventListener('click',()=>{active=b.dataset.b7Section;apply()}));
+ toolbar.querySelector('#b7-edit-tool-select')?.addEventListener('change',e=>{let id=e.target.value;if(dirty&&!confirm('You have unsaved changes. Discard them and switch tools?')){e.target.value=t.id;return;}openTool(id)});
+ apply();
+}
 function renderToolEditorPage(){
   allRules();
   shell();
@@ -1830,6 +1858,7 @@ function renderToolEditorPage(){
   bindInputs();
   bindCoreInteractions();
   enhanceSectionWorkspaces();
+  enhanceVisualToolEditor();
   // openTool() renders this page directly rather than through render(). Re-fit immediately
   // so Presentation Mode drops the wallboard transform and enables normal editor scrolling.
   if(document.body.classList.contains('presentation-mode'))requestAnimationFrame(()=>requestAnimationFrame(fitPresentation));
