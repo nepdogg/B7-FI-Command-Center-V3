@@ -1,25 +1,27 @@
-B7 FI COMMAND CENTER V11.17.49 — BADGE GEOMETRY REPAIR — TEST ONLY
+B7 FI COMMAND CENTER V11.17.50 - STRUCTURAL LAYOUT TEST
 
-BASELINE: Complete V11.17.48 application, retained with its existing JavaScript logic, assets, launcher, Microsoft List integration, and reports.
+Baseline: V11.17.49. Test only; DO NOT replace work production deployment.
 
-CHANGES:
-- New final stylesheet css/b7-badge-geometry-v11.17.49.css to resolve contradictory badge row geometry.
-- Normal Universal Tool Card identity stack has four intrinsic rows (eight identity fields), not a fixed 148px block that can hide the bottom fields.
-- Normal card badge grid, compact tool badges, and visual editor badge grid use 58px rows.
-- System Wafers, Computer Tracking, Component Tracking each occupy one full-width row, not two rows.
-- Badge cells no longer rely on conflicting 52px fixed/max heights and 54px auto heights.
-- Presentation tracking badges forced to one row; existing Presentation Mode viewport fitting preserved.
-- Application version set to 11.17.49.
+CHANGES
+- Removed references to 8 accumulated intermediate layout overlays in index.html. Their files remain in the package for reference, but are not loaded.
+- Added one final geometry stylesheet for normal pages. No devicePixelRatio zoom compensation.
+- Sticky header is in normal document flow with top:0; no duplicate spacer.
+- Rebuilt normal card identity stack and 12-row badge grid; all rows 56 CSS px, full-width tracking badges occupy one row.
+- Added category accents to Tool Card, editor and Administration navigation without overriding individual badge state colors.
+- Visual Tool Editor opens with dedicated Badges category selected. Existing save controls preserved.
+- Kept the existing Microsoft List integration and reports. No data migrations or destructive changes.
 
-TEST:
-1. Extract to a NEW folder; preserve previous production application and List data.
-2. Test one UTID in Live Operations, Tools Center, and Presentation Mode.
-3. Check eight identity fields, Normal Process, Carryover, 27 standard badge slots, three tracking badges, and Update Tool Status.
-4. Check 67%, 80%, 100%, 125% browser zoom and actual scroll behavior.
-5. Verify that clicking existing controls and saving still works with TEST data.
-6. For GitHub Pages testing, upload all files from this folder and hard-refresh the test site.
+VERIFICATION
+- Syntax, file references and ZIP integrity checked.
+- Automated browser navigation is blocked in this environment, so visual results are NOT verified.
+- Do not treat this as production-ready.
 
-LIMITATIONS:
-- Browser rendering, Microsoft List authentication, and coworker sync have not been verified.
-- This is a focused badge and identity clipping correction, NOT a completed browser-zoom architectural rewrite or Brain/Admin/Shipping/Priority redesign.
-- No production records or Microsoft List schemas are changed by this package.
+TEST
+1. Extract to new folder. Do not reset or import production data.
+2. At 100%, 80%, 67%, 125% inspect sticky header while scrolling and same UTID in all card views.
+3. Check identity fields and every badge, including tracking rows.
+4. Open Tool Edit > Badges, and Administration > Brain; verify saved edits only with test records.
+5. Verify Outlook email previews from Shipping and Priority Center.
+
+LIMITATIONS
+This release is a focused structural layout recovery, not a verified full application rewrite. Remaining Brain, editing, reporting and multi-user defects require separate functional validation.

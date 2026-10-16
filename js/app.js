@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='11.17.49', BUILD='20261015-V11.17.49-BADGE-GEOMETRY-TEST';
+const VERSION='11.17.50', BUILD='20261015-V11.17.50-STRUCTURAL-TEST';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const EQUIPMENT_COMPUTERS=[['SS','Subswath Server'],['GPU','GPU Servers'],['DBB','Global Storage Server'],['RTAT','RTAT Server'],['SCC','SCC Computer'],['DAS','DAS Server'],['Host','Host Server'],['Dart','Dart Server']];
@@ -1882,7 +1882,7 @@ function enhanceVisualToolEditor(){
    if(target)target.scrollIntoView({block:'start',behavior:'smooth'});
  });
 
- let active='identity',mode='full';
+ let active='badges',mode='full';
  const apply=()=>{sections.forEach(el=>{let g=el.dataset.editorGroup;el.hidden=mode==='quick'?!(/Next System Tasks|Latest|Lead Notes|Reminders/i.test(el.querySelector('h3')?.textContent||'')):g!==active});badgeOverview.hidden=mode==='quick'||active!=='badges';toolbar.querySelector('.b7-editor-tabs').hidden=mode==='quick';toolbar.querySelectorAll('[data-b7-mode]').forEach(b=>b.classList.toggle('selected',b.dataset.b7Mode===mode));toolbar.querySelectorAll('[data-b7-section]').forEach(b=>b.classList.toggle('selected',b.dataset.b7Section===active));};
  toolbar.querySelectorAll('[data-b7-mode]').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.b7Mode;apply()}));
  toolbar.querySelectorAll('[data-b7-section]').forEach(b=>b.addEventListener('click',()=>{active=b.dataset.b7Section;apply()}));
