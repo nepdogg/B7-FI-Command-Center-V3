@@ -1,36 +1,47 @@
 @echo off
-setlocal
+setlocal EnableExtensions
 cd /d "%~dp0"
 set "B7LOG=%TEMP%\B7-FI-Command-Center-server.log"
-echo ============================================================
-echo B7 FI COMMAND CENTER V11.17.15 - LAYOUT REPAIR TEST
-echo ============================================================
-echo Serving folder: %CD%
-echo Local server: http://localhost:5500/
-echo Routine browser GET messages are hidden from this window.
-echo Server log: %B7LOG%
-echo Keep this window open while using the Command Center.
-echo.
-REM Never silently show an older app already running on port 5500.
+title B7 FI COMMAND CENTER V11.17.37 - STARTUP
+ echo ============================================================
+ echo B7 FI COMMAND CENTER V11.17.37 - TEST BUILD
+ echo ============================================================
+ echo Folder: %CD%
+ echo URL: http://localhost:5500/
+ echo Server log: %B7LOG%
+ echo.
+if not exist "index.html" (
+ echo ERROR: index.html is missing. Extract the complete ZIP before launching.
+ goto :failed
+)
 powershell -NoProfile -Command "try { $c = New-Object System.Net.Sockets.TcpClient('127.0.0.1',5500); $c.Close(); exit 0 } catch { exit 1 }" >nul 2>nul
 if not errorlevel 1 (
-  echo ERROR: Port 5500 is already in use. Close the OLD Command Center server window first.
-  echo This launcher will NOT open an existing server that might serve another version.
-  pause
-  exit /b 1
+ echo ERROR: Port 5500 is in use. Close the previous Command Center server.
+ goto :failed
 )
+set "PYRUN="
 where py >nul 2>nul
-if %errorlevel%==0 (
-  start "" http://localhost:5500/
-  py -m http.server 5500 --bind localhost > "%B7LOG%" 2>&1
-  goto :eof
+if not errorlevel 1 set "PYRUN=py"
+if not defined PYRUN (
+ where python >nul 2>nul
+ if not errorlevel 1 set "PYRUN=python"
 )
-where python >nul 2>nul
-if %errorlevel%==0 (
-  start "" http://localhost:5500/
-  python -m http.server 5500 --bind localhost > "%B7LOG%" 2>&1
-  goto :eof
+if not defined PYRUN (
+ echo ERROR: Neither Python launcher 'py' nor 'python' is installed or available on PATH.
+ echo Ask IT to install/approve Python or provide an approved local HTTP server.
+ echo Opening index.html directly is not equivalent for Microsoft authentication.
+ goto :failed
 )
-echo Python was not found on this computer.
-echo Serve THIS folder on port 5500 and open http://localhost:5500/
-pause
+echo Starting local server using %PYRUN% ...
+start "" "http://localhost:5500/"
+%PYRUN% -m http.server 5500 --bind localhost > "%B7LOG%" 2>&1
+set "B7EXIT=%errorlevel%"
+echo.
+echo ERROR: The local server exited with code %B7EXIT%.
+echo Startup log: %B7LOG%
+if exist "%B7LOG%" type "%B7LOG%"
+:failed
+echo.
+echo Press any key to close this window. If contacting support, send the error text.
+pause >nul
+exit /b 1

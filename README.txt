@@ -1,11 +1,25 @@
-B7 FI COMMAND CENTER V11.17.36 - BADGE CONTAINER REPAIR - TEST
+B7 FI COMMAND CENTER V11.17.37 — TARGETED FINALIZATION TEST
+15 October 2026
 
-Based on complete V11.17.35 application.
+SOURCE
+Full original V11.17.36 Badge Container Repair TEST ZIP. Original package remains unchanged.
 
-CHANGE: One final layout contract for 27 standard badges (9 x 3) plus System Wafers, Computer Tracking, Component Tracking (three full-width rows). All badge rows 50px, gaps 5px.
-CHANGE: Live Operations card now grows to fit the full left column; removed fixed parent height clipping. Identity stack reserves 4 rows including Quarter and Ship Date. Tools Center uses the same badge geometry.
-UNCHANGED: Existing badge click/edit/save code, colors, tool data and Microsoft List connection logic. Presentation Mode viewport layout unchanged.
+IMPLEMENTED IN THIS TEST BUILD
+1. Screenshot Mode: suppresses the X button, header, navigation, footer, modal chrome and auto-generated report title. Escape exits Screenshot Mode. Retains selected page content and existing underlying rendering.
+2. Administration Center: adds an icon/color-coded directory with links to the existing equipment, data/multi-user, quarter, cycle-time, Brain, mystery box, photos, and integrity sections. Existing controls and data operations remain intact.
+3. Launcher: clearer version, missing-Python diagnosis, startup logging and readable error on unexpected server exit. Does NOT install Python or resolve Microsoft account authentication.
+4. Full V11.17.36 application and assets preserved; no intentional changes to tool data schemas or Microsoft List endpoints.
 
-IMPORTANT: This is a TEST BUILD. Source/ZIP validation performed; interactive browser testing and Microsoft List sync NOT verified. Do not replace your production data with test data.
+NOT IMPLEMENTED OR NOT VERIFIED
+The requested major Command Center Brain lifecycle rewrite, tool/model master-data editor, redesigned one-tool Quick/Full editor, new Shipping/Priority report composers, badge logic/layout correction, archived-quarter snapshot recovery, missing CY26Q4 status reconciliation, Lead/Admin calculation correction, multi-user sign-in and conflict handling, and presentation auto-rotation are NOT delivered in this patch. Do not treat this as the all-issues-fixed release.
 
-TEST: Use Live Operations and scroll to the bottom of a tool card. Verify POD, System Wafers, Computer Tracking, Component Tracking and Update Tool Status are all visible. Compare Tools Center. Test editing a badge and reload to verify persistence.
+SAFE TEST INSTRUCTIONS
+- Keep the original V11.17.36 folder and a verified backup of your production List.
+- Extract the ZIP into a NEW folder; do not overwrite the working version.
+- First test in Local Mode with disposable test data, then inspect Screenshot Mode on Status, Shipping, Live Operations, and other pages. Press Escape to exit.
+- Test Administration directory navigation without using reset/import/publish buttons.
+- Run START-COMMAND-CENTER.bat; a missing Python runtime should show a readable message rather than disappear.
+- Do NOT run Master Reset, shared scenario, restore, import, or production publish against the real List.
+- Work-connected Microsoft List login and synchronization were not verified in this environment. Do not deploy to production without an onsite validation and rollback plan.
+
+This is a limited, real code patch and not the full major release discussed today.
