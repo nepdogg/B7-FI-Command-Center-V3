@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='11.17.47', BUILD='20261015-V11.17.47-REPORTS-LAYOUT-TEST';
+const VERSION='11.17.48', BUILD='20261015-V11.17.48-REPORTS-LAYOUT-TEST';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const EQUIPMENT_COMPUTERS=[['SS','Subswath Server'],['GPU','GPU Servers'],['DBB','Global Storage Server'],['RTAT','RTAT Server'],['SCC','SCC Computer'],['DAS','DAS Server'],['Host','Host Server'],['Dart','Dart Server']];
@@ -788,7 +788,7 @@ function enhanceDailyWorkspace(){
  show();
 }
 
-/* V11.17.47: Reports use the existing saved shipping milestones and priority rows.
+/* V11.17.48: Reports use the existing saved shipping milestones and priority rows.
    Copy is a user-initiated action; no emails are sent and no production data is modified. */
 function b7ReportHtml(){
  const shipping=route.center==='shipping',kind=route.sub==='weekend'?'weekend':'weekday';
@@ -1870,8 +1870,20 @@ function enhanceVisualToolEditor(){
  const tools=state.tools.filter(x=>x.toolStatus!=='Archived').sort((a,b)=>String(a.codename).localeCompare(String(b.codename))||String(a.id).localeCompare(String(b.id)));
  toolbar.innerHTML=`<div class="b7-editor-title"><div><span>VISUAL TOOL EDITOR · ${esc(t.quarter||state.quarter||'')}</span><h2>${esc(t.codename||'NEW TOOL')} · ${esc(t.model||'MODEL TBD')}</h2><strong>UTID ${esc(t.id||'NEW')} · ${esc(t.customer||'NO CUSTOMER')} · ${esc(t.driver||'UNASSIGNED')}</strong></div><span class="b7-editor-status">${esc(t.toolStatus||'NEW')}</span></div><div class="b7-editor-tool-select"><label for="b7-edit-tool-select">SELECT TOOL TO UPDATE</label><select id="b7-edit-tool-select">${tools.map(x=>`<option value="${esc(x.id)}" ${x.id===t.id?'selected':''}>${esc(x.codename||'UNKNOWN')} · ${esc(x.id)} · ${esc(x.model||'')}</option>`).join('')}</select></div><div class="b7-editor-mode"><button type="button" data-b7-mode="quick">⚡ QUICK UPDATE</button><button type="button" data-b7-mode="full" class="selected">▦ FULL EDIT</button></div><div class="b7-editor-tabs">${groups.filter(g=>g[0]!=='quick').map(g=>`<button type="button" data-b7-section="${g[0]}" class="${g[0]==='identity'?'selected':''}"><span>${g[1]}</span>${g[2]}</button>`).join('')}</div><p class="b7-editor-help">One tool at a time. The original field controls and Save / Cancel actions are preserved.</p>`;
  const first=editor.querySelector('.panel-head');if(first)first.after(toolbar);else editor.prepend(toolbar);
+ // Badge overview reuses the production card's canonical renderer and status logic.
+ // The actual badge field controls remain in the existing editor sections below.
+ const badgeOverview=document.createElement('section');
+ badgeOverview.className='b7-editor-badge-overview';
+ badgeOverview.innerHTML=`<div class="b7-editor-badge-head"><strong>TOOL BADGES · ${esc(t.id||'NEW TOOL')}</strong><span>Same saved badge states as the Universal Tool Card · edit controls below</span></div><div class="c11-badges b7-editor-badge-grid">${canonicalToolBadges(t)}</div><button type="button" class="b7-jump-badge-fields">EDIT BADGE FIELDS ↓</button>`;
+ toolbar.after(badgeOverview);
+ badgeOverview.querySelector('.b7-jump-badge-fields').addEventListener('click',()=>{
+   mode='full';active='badges';apply();
+   const target=sections.find(el=>el.dataset.editorGroup==='badges');
+   if(target)target.scrollIntoView({block:'start',behavior:'smooth'});
+ });
+
  let active='identity',mode='full';
- const apply=()=>{sections.forEach(el=>{let g=el.dataset.editorGroup;el.hidden=mode==='quick'?!(/Next System Tasks|Latest|Lead Notes|Reminders/i.test(el.querySelector('h3')?.textContent||'')):g!==active});toolbar.querySelector('.b7-editor-tabs').hidden=mode==='quick';toolbar.querySelectorAll('[data-b7-mode]').forEach(b=>b.classList.toggle('selected',b.dataset.b7Mode===mode));toolbar.querySelectorAll('[data-b7-section]').forEach(b=>b.classList.toggle('selected',b.dataset.b7Section===active));};
+ const apply=()=>{sections.forEach(el=>{let g=el.dataset.editorGroup;el.hidden=mode==='quick'?!(/Next System Tasks|Latest|Lead Notes|Reminders/i.test(el.querySelector('h3')?.textContent||'')):g!==active});badgeOverview.hidden=mode==='quick'||active!=='badges';toolbar.querySelector('.b7-editor-tabs').hidden=mode==='quick';toolbar.querySelectorAll('[data-b7-mode]').forEach(b=>b.classList.toggle('selected',b.dataset.b7Mode===mode));toolbar.querySelectorAll('[data-b7-section]').forEach(b=>b.classList.toggle('selected',b.dataset.b7Section===active));};
  toolbar.querySelectorAll('[data-b7-mode]').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.b7Mode;apply()}));
  toolbar.querySelectorAll('[data-b7-section]').forEach(b=>b.addEventListener('click',()=>{active=b.dataset.b7Section;apply()}));
  toolbar.querySelector('#b7-edit-tool-select')?.addEventListener('change',e=>{let id=e.target.value;if(dirty&&!confirm('You have unsaved changes. Discard them and switch tools?')){e.target.value=t.id;return;}openTool(id)});
