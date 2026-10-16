@@ -1,27 +1,18 @@
-B7 FI COMMAND CENTER V11.17.50 - STRUCTURAL LAYOUT TEST
+B7 FI COMMAND CENTER V11.17.51 — STRUCTURAL TEST BUILD
 
-Baseline: V11.17.49. Test only; DO NOT replace work production deployment.
+BASE: V11.17.50. Preserve your existing production installation and Microsoft List.
 
-CHANGES
-- Removed references to 8 accumulated intermediate layout overlays in index.html. Their files remain in the package for reference, but are not loaded.
-- Added one final geometry stylesheet for normal pages. No devicePixelRatio zoom compensation.
-- Sticky header is in normal document flow with top:0; no duplicate spacer.
-- Rebuilt normal card identity stack and 12-row badge grid; all rows 56 CSS px, full-width tracking badges occupy one row.
-- Added category accents to Tool Card, editor and Administration navigation without overriding individual badge state colors.
-- Visual Tool Editor opens with dedicated Badges category selected. Existing save controls preserved.
-- Kept the existing Microsoft List integration and reports. No data migrations or destructive changes.
+IMPLEMENTED:
+- Unified normal-page CSS geometry contract for header, body, footer, three-column cards, identity fields, badge grid, and fleet cards.
+- All standard and full-width badges have 60px row height on normal pages; saved badge status colors are not replaced.
+- Section border accents for Tool Identity, FI Status, Progress, Shipping and Lead/Admin.
+- Browser zoom handled by browser; no devicePixelRatio zoom compensation. Narrow layouts scroll rather than shrinking all text.
+- Tool Editor defaults to Badges category with corresponding selected navigation state.
+- Diagnostic overlay: append ?b7diagnostics=1 to the URL to inspect the loaded layout stylesheet, sticky position, card/badge heights and viewport. This never edits production data.
+- Updated application version and cache-busting query parameters.
 
-VERIFICATION
-- Syntax, file references and ZIP integrity checked.
-- Automated browser navigation is blocked in this environment, so visual results are NOT verified.
-- Do not treat this as production-ready.
+NOT CLAIMED FIXED: Complete Brain admin editor, full shipping/priority schedule editing, historical archive repair, and coworker Microsoft authentication. They need functional implementation and testing.
 
-TEST
-1. Extract to new folder. Do not reset or import production data.
-2. At 100%, 80%, 67%, 125% inspect sticky header while scrolling and same UTID in all card views.
-3. Check identity fields and every badge, including tracking rows.
-4. Open Tool Edit > Badges, and Administration > Brain; verify saved edits only with test records.
-5. Verify Outlook email previews from Shipping and Priority Center.
+VALIDATION: JavaScript syntax, archive integrity, stylesheet references and source structure checked. Real browser rendering could not be verified in this environment.
 
-LIMITATIONS
-This release is a focused structural layout recovery, not a verified full application rewrite. Remaining Brain, editing, reporting and multi-user defects require separate functional validation.
+TEST: Use a separate extracted folder/test URL. Test 67%,80%,100%,125% and scroll the page to verify sticky header. Compare the same UTID across Live Operations, Tools Center and Presentation Mode. Use ?b7diagnostics=1 to see if the expected CSS actually loaded. Do not reset or delete production Microsoft List records.
