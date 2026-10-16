@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='11.17.23', BUILD='20261015-V11.17.23-POD-SHARED-BADGES-TEST';
+const VERSION='11.17.39', BUILD='20261015-V11.17.39-BADGE-VERSION-REPAIR-TEST';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const EQUIPMENT_COMPUTERS=[['SS','Subswath Server'],['GPU','GPU Servers'],['DBB','Global Storage Server'],['RTAT','RTAT Server'],['SCC','SCC Computer'],['DAS','DAS Server'],['Host','Host Server'],['Dart','Dart Server']];
