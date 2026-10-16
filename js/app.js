@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='11.17.46', BUILD='20261015-V11.17.46-FOUNDATION-TEST';
+const VERSION='11.17.47', BUILD='20261015-V11.17.47-REPORTS-LAYOUT-TEST';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const EQUIPMENT_COMPUTERS=[['SS','Subswath Server'],['GPU','GPU Servers'],['DBB','Global Storage Server'],['RTAT','RTAT Server'],['SCC','SCC Computer'],['DAS','DAS Server'],['Host','Host Server'],['Dart','Dart Server']];
@@ -787,7 +787,49 @@ function enhanceDailyWorkspace(){
  nav.addEventListener('click',e=>{let b=e.target.closest('[data-daily-section]');if(b){dailyWorkspaceSection=b.dataset.dailySection;show()}});
  show();
 }
-function render(){syncQuarterLifecycle();allRules();ensureQuarterArchives();shell();let titleMode=document.body.classList.contains('screenshot-mode')||document.body.classList.contains('presentation-mode');let summaryWallboard=document.body.classList.contains('presentation-mode')&&route.center==='operations'&&route.sub==='summary';let title=(document.body.classList.contains('presentation-mode')&&!summaryWallboard)?`<div id="screenshotReportTitle" class="screenshot-report-title">${esc(screenshotReportTitle())}</div>`:'';document.querySelector('#app').innerHTML=title+(VIEWS[route.center]||VIEWS.operations)();bindInputs();bindCoreInteractions();enhanceSectionWorkspaces();enhanceDailyWorkspace();persistRoute();requestAnimationFrame(()=>{syncStickyShellHeight();enforceV115ShellGeometry();fitHeaderGeometry();balancePageNavigation();fitQuarterSummaryMasters();syncLiveCardGeometry()});if(document.body.classList.contains('presentation-mode'))requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}
+
+/* V11.17.47: Reports use the existing saved shipping milestones and priority rows.
+   Copy is a user-initiated action; no emails are sent and no production data is modified. */
+function b7ReportHtml(){
+ const shipping=route.center==='shipping',kind=route.sub==='weekend'?'weekend':'weekday';
+ const title=shipping?`${centerQuarter('shipping')} SHIPPING PLAN`:priorityTitle(kind);
+ const td=(v)=>`<td style="border:1px solid #b8c4cf;padding:7px 9px;vertical-align:top;white-space:pre-line">${esc(String(v??'—'))}</td>`;
+ const th=(v)=>`<th style="background:#113e58;color:white;border:1px solid #829eaf;padding:8px;text-align:left">${esc(v)}</th>`;
+ let headers=[],rows=[];
+ if(shipping){
+  headers=['UTID / TOOL','MODEL','SHIP DATE','FI STATUS','SUBSYSTEMS','CABLE KIT','ACCESSORIES','MST INSTALL','IS','NOTES'];
+  rows=quarterLifecycleTools('shipping').map(t=>{
+   const val=k=>{if(k==='mat'&&!requiresMST(t))return 'N/A';let date=t.shipping?.[k]||'',actual=t.shipping?.completed?.[k]||'';return `${date?fmtDate(date):'Not planned'}${actual?' | Actual: '+fmtDate(actual):''}`};
+   return [t.id+' / '+(t.codename||''),t.model||'',fmtDate(t.shipDate||''),t.toolStatus||'',val('subsystems'),val('cables'),val('accessories'),val('mat'),val('is'),t.shipping?.notes||''];
+  });
+ }else{
+  headers=['LEAD PRIORITY','UTID','MODEL','SALES ORDER','CUSTOMER','SHIP DATE','ASSIGNMENT','NOTES'];
+  const map=new Map(nonArchivedTools().map(t=>[String(t.id),t]));
+  rows=[...syncPriorityList(kind)].sort((a,b)=>(Number(a.priority)||999)-(Number(b.priority)||999)).map(x=>{let t=map.get(String(x.tool))||{};return ['#'+(x.priority||'—'),x.tool,t.model||'',t.salesOrder||'',t.customer||'',fmtDate(t.shipDate||''),x.assignment||t.driver||'',x.notes||'']});
+ }
+ const html=`<div style="font-family:Arial,Helvetica,sans-serif;color:#17212b"><h2>${esc(title)}</h2><table style="border-collapse:collapse;width:100%;font-size:12px"><thead><tr>${headers.map(th).join('')}</tr></thead><tbody>${rows.map(r=>'<tr>'+r.map(td).join('')+'</tr>').join('')}</tbody></table><p style="font-size:11px;color:#526372">Generated from B7 FI Command Center. Review dates and notes before sending.</p></div>`;
+ const plain=[title,headers.join('\t'),...rows.map(r=>r.map(v=>String(v??'').replace(/[\t\r\n]+/g,' ')).join('\t'))].join('\n');
+ return {html,plain,rows:rows.length};
+}
+function b7EnhanceReports(){
+ if(!['shipping','priority'].includes(route.center)||mode==='edit')return;
+ const host=document.querySelector('#app');if(!host||host.querySelector('.b7-report-actions'))return;
+ const bar=document.createElement('div');bar.className='b7-report-actions';
+ bar.innerHTML='<strong>EMAIL REPORT</strong><span>Save edits first, then copy a formatted table into Outlook.</span><button type="button" class="btn primary" id="b7-copy-email-report">COPY EMAIL REPORT</button><button type="button" class="btn" id="b7-preview-email-report">PREVIEW REPORT</button>';
+ host.prepend(bar);
+ bar.querySelector('#b7-preview-email-report').addEventListener('click',()=>{let r=b7ReportHtml();modal(`<div class="b7-report-preview"><h2>EMAIL REPORT PREVIEW</h2><p>${r.rows} tools. No email has been sent.</p>${r.html}<div class="modal-actions"><button class="btn" data-modal-cancel>CLOSE</button></div></div>`)});
+ bar.querySelector('#b7-copy-email-report').addEventListener('click',async()=>{
+  let r=b7ReportHtml();try{
+   if(navigator.clipboard?.write&&window.ClipboardItem){await navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([r.html],{type:'text/html'}),'text/plain':new Blob([r.plain],{type:'text/plain'})})]);toast('✓ FORMATTED EMAIL TABLE COPIED · '+r.rows+' TOOLS');return}
+   throw new Error('Rich clipboard API unavailable');
+  }catch(err){
+   try{let el=document.createElement('div');el.contentEditable='true';el.innerHTML=r.html;el.style.cssText='position:fixed;left:-99999px;top:0';document.body.append(el);let range=document.createRange();range.selectNodeContents(el);let sel=window.getSelection();sel.removeAllRanges();sel.addRange(range);let ok=document.execCommand('copy');sel.removeAllRanges();el.remove();if(ok){toast('✓ EMAIL TABLE COPIED · '+r.rows+' TOOLS');return}}catch(_){}
+   modal(`<div class="b7-report-preview"><h2>COPY EMAIL REPORT</h2><p>Automatic clipboard access was blocked. Select and copy the report below into Outlook.</p>${r.html}<div class="modal-actions"><button class="btn" data-modal-cancel>CLOSE</button></div></div>`);
+  }
+ });
+}
+
+function render(){syncQuarterLifecycle();allRules();ensureQuarterArchives();shell();let titleMode=document.body.classList.contains('screenshot-mode')||document.body.classList.contains('presentation-mode');let summaryWallboard=document.body.classList.contains('presentation-mode')&&route.center==='operations'&&route.sub==='summary';let title=(document.body.classList.contains('presentation-mode')&&!summaryWallboard)?`<div id="screenshotReportTitle" class="screenshot-report-title">${esc(screenshotReportTitle())}</div>`:'';document.querySelector('#app').innerHTML=title+(VIEWS[route.center]||VIEWS.operations)();bindInputs();bindCoreInteractions();enhanceSectionWorkspaces();enhanceDailyWorkspace();b7EnhanceReports();persistRoute();requestAnimationFrame(()=>{syncStickyShellHeight();enforceV115ShellGeometry();fitHeaderGeometry();balancePageNavigation();fitQuarterSummaryMasters();syncLiveCardGeometry()});if(document.body.classList.contains('presentation-mode'))requestAnimationFrame(()=>requestAnimationFrame(fitPresentation))}
 function go(center,sub){if(dirty&&!confirm('Discard unsaved changes?'))return;mode='view';toolEditorMode='view';draft=null;meetingDraft=null;dirty=false;selected=null;returnRoute=null;let first=(SUB[center]&&SUB[center][0])?SUB[center][0][0]:'home';route={center,sub:sub||first};let app=document.querySelector('#app');if(app)app.innerHTML='';render()}
 function fmtDate(x){if(!x)return'—';let p=String(x).slice(0,10).split('-');return p.length===3?`${p[1]}/${p[2]}/${p[0]}`:x}
 function fmtDayDate(x){if(!x)return'—';let p=String(x).slice(0,10).split('-');if(p.length!==3)return x;let y=Number(p[0]),m=Number(p[1]),d=Number(p[2]),day=['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'][new Date(y,m-1,d).getDay()];return `${day} · ${p[1]}/${p[2]}/${p[0]}`}
