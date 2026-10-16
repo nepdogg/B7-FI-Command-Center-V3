@@ -1,25 +1,23 @@
-B7 FI COMMAND CENTER V11.17.37 — TARGETED FINALIZATION TEST
-15 October 2026
+B7 FI COMMAND CENTER V11.17.38 — UNIVERSAL BADGE PARITY TEST
 
-SOURCE
-Full original V11.17.36 Badge Container Repair TEST ZIP. Original package remains unchanged.
+Based on the complete V11.17.37 test package.
 
-IMPLEMENTED IN THIS TEST BUILD
-1. Screenshot Mode: suppresses the X button, header, navigation, footer, modal chrome and auto-generated report title. Escape exits Screenshot Mode. Retains selected page content and existing underlying rendering.
-2. Administration Center: adds an icon/color-coded directory with links to the existing equipment, data/multi-user, quarter, cycle-time, Brain, mystery box, photos, and integrity sections. Existing controls and data operations remain intact.
-3. Launcher: clearer version, missing-Python diagnosis, startup logging and readable error on unexpected server exit. Does NOT install Python or resolve Microsoft account authentication.
-4. Full V11.17.36 application and assets preserved; no intentional changes to tool data schemas or Microsoft List endpoints.
+FIXED IN THIS BUILD
+- Corrected the missing canonical CSS reference: index.html pointed to v11.17.36 but the shipped file is v11.17.35.
+- Added a final shared badge semantic color stylesheet for Live Operations, Presentation Mode, and compact Tools Center cards.
+- Unified critical/red, attention/warning/amber, complete/green, purple, and idle/blue tone mapping across c11 and v10 badge families.
+- Preserved all 30 badges, existing badge order, click-to-edit actions, Microsoft List integration, and tool data.
+- Preserved existing presentation-specific geometry and compact Tools Center geometry; only badge colors/styles changed.
 
-NOT IMPLEMENTED OR NOT VERIFIED
-The requested major Command Center Brain lifecycle rewrite, tool/model master-data editor, redesigned one-tool Quick/Full editor, new Shipping/Priority report composers, badge logic/layout correction, archived-quarter snapshot recovery, missing CY26Q4 status reconciliation, Lead/Admin calculation correction, multi-user sign-in and conflict handling, and presentation auto-rotation are NOT delivered in this patch. Do not treat this as the all-issues-fixed release.
+TEST PLAN
+1. Extract to a NEW folder. Keep the previous version and production data backups untouched.
+2. Launch with START-COMMAND-CENTER.bat and verify styles load (browser DevTools Network should show no missing CSS).
+3. Choose the SAME UTID in Live Operations, Presentation Mode and Tools Center; compare all badge statuses and colors.
+4. Verify red, green, yellow and inactive states; wafer and equipment tracking badges.
+5. Click a badge in each view and ensure the correct tool and badge editor opens.
+6. Test at 100% and 80% zoom. Do not run shared data resets or scenario imports.
 
-SAFE TEST INSTRUCTIONS
-- Keep the original V11.17.36 folder and a verified backup of your production List.
-- Extract the ZIP into a NEW folder; do not overwrite the working version.
-- First test in Local Mode with disposable test data, then inspect Screenshot Mode on Status, Shipping, Live Operations, and other pages. Press Escape to exit.
-- Test Administration directory navigation without using reset/import/publish buttons.
-- Run START-COMMAND-CENTER.bat; a missing Python runtime should show a readable message rather than disappear.
-- Do NOT run Master Reset, shared scenario, restore, import, or production publish against the real List.
-- Work-connected Microsoft List login and synchronization were not verified in this environment. Do not deploy to production without an onsite validation and rollback plan.
-
-This is a limited, real code patch and not the full major release discussed today.
+LIMITATIONS
+- Visual parity was corrected at the stylesheet level and source inspected, but browser screenshots and Microsoft List behavior could not be validated in your corporate environment.
+- The compact Tools Center remains a different geometry from the full three-column Tool Card by design.
+- This targeted release does not include the broader Brain and workflow overhaul.
