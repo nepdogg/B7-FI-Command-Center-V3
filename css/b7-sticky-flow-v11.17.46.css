@@ -1,0 +1,25 @@
+/* V11.17.46: eliminate DPR-based application zoom and preserve normal document flow. */
+html, body { margin:0!important; padding:0!important; }
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame {
+  position:relative!important; display:flex!important; flex-direction:column!important;
+  box-sizing:border-box!important; width:100%!important; max-width:none!important;
+  min-height:100dvh!important; height:auto!important; margin:0!important;
+  padding:0!important; top:0!important; left:auto!important;
+  transform:none!important; zoom:1!important; overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell {
+  position:sticky!important; top:0!important; bottom:auto!important;
+  display:block!important; flex:0 0 auto!important; width:100%!important;
+  margin:0!important; padding:0!important; transform:none!important;
+  z-index:1000!important; isolation:isolate;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.body-shell {
+  position:relative!important; top:auto!important; display:block!important;
+  flex:1 0 auto!important; width:100%!important; height:auto!important;
+  min-height:0!important; margin:0!important; padding:4px 0!important;
+  transform:none!important; overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer {
+  position:relative!important; flex:0 0 auto!important; margin-top:auto!important;
+}
+/* Keep the browser in control of zoom. No JS devicePixelRatio compensation. */
