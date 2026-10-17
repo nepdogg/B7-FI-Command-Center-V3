@@ -1,0 +1,28 @@
+/* V11.17.69 – targeted geometry overhaul, loaded LAST */
+:root{--b7-gap:5px;--b7-round:9px}
+html,body{margin:0;max-width:100%;overflow-x:hidden}
+.app-frame{width:100%;max-width:100vw;min-width:0;box-sizing:border-box}
+#stickyShell{position:relative;z-index:20;min-width:0}
+#stickyShell .status-stack{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important;height:auto!important;min-height:76px!important;max-height:none!important;align-items:stretch!important;overflow:visible!important;padding:4px!important;box-sizing:border-box}
+#stickyShell .status-stack>.status-bar{position:relative!important;display:flex!important;flex-direction:column!important;gap:5px!important;height:auto!important;min-height:68px!important;max-height:none!important;overflow:visible!important;padding:7px 9px!important;box-sizing:border-box!important;border-radius:10px!important}
+#stickyShell .status-stack .status-left{height:auto!important;min-height:16px!important;flex:0 0 auto!important}
+#stickyShell .status-stack .status-message{display:block!important;position:static!important;height:auto!important;max-height:none!important;min-height:0!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important;overflow-wrap:anywhere!important;word-break:normal!important;font-size:clamp(10px,.73vw,13px)!important;line-height:1.28!important;font-weight:650!important;padding:0 30px 0 0!important;-webkit-line-clamp:unset!important}
+#stickyShell .status-stack .status-label strong{font-size:clamp(10px,.75vw,13px)!important}
+#stickyShell .status-stack .status-right{position:absolute!important;right:6px!important;bottom:5px!important;font-size:9px!important}
+#app .c11-card-grid,#app .universal-tool-card{min-width:0;max-width:100%;box-sizing:border-box}
+#app .c11-card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+#app .c11-card-grid>*,#app .c11-card-grid>* *{min-width:0;box-sizing:border-box}
+#app .c11-card-grid>*>*,#app .tool-badge,#app .tool-badges .badge,#app .progress-section{border-radius:8px!important}
+#app .c11-card-grid>.c11-left,#app .c11-card-grid>.c11-middle,#app .c11-card-grid>.c11-right{border:0!important;outline:0!important;background:transparent!important}
+#app .c11-card-grid .progress-section{overflow:visible!important}
+#app .c11-card-grid .progress-section progress{max-width:100%}
+#app .volunteer-row{display:grid;grid-template-columns:minmax(120px,1fr) minmax(70px,.4fr) minmax(160px,2fr) auto;gap:6px;align-items:start}
+#app .volunteer-row input,#app .volunteer-row textarea{min-width:0;width:100%;box-sizing:border-box}
+#app .panel,#app .admin-panel,#app .volunteer-panel{border-radius:9px}
+#app .body-workspace{min-width:0}
+#modal:has(.mystery-celebration){position:fixed!important;inset:0!important;z-index:2147483000!important}
+#modal:has(.mystery-celebration) .modal-card{position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;max-width:none!important;max-height:none!important;margin:0!important;border-radius:0!important;display:flex!important;align-items:center!important;justify-content:center!important;overflow:auto!important}
+#modal .mystery-celebration{width:min(96vw,1500px);height:90dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+#modal .mystery-celebration img{max-width:95%;max-height:65dvh;object-fit:contain}
+@media(max-width:1000px){#stickyShell .status-stack{gap:3px!important}#stickyShell .status-stack>.status-bar{padding:5px!important}#stickyShell .status-stack .status-message{font-size:10px!important}}
+@media(max-width:650px){#stickyShell .status-stack{grid-template-columns:1fr!important}#stickyShell .status-stack>.status-bar{min-height:45px!important}#app .c11-card-grid{grid-template-columns:1fr!important}}

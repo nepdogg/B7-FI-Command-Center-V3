@@ -1,28 +1,11 @@
-B7 FI COMMAND CENTER — V11.17.67 RECOVERY TEST
-Based on V11.17.66 Brain Responsive Pilot. TEST ONLY — back up production data first.
+B7 FI COMMAND CENTER V11.17.69 – LAYOUT REBUILD TEST
 
-CHANGES INCLUDED
-- Weekend Priority volunteers: clicking Add/Remove now captures all existing unsaved volunteer name/hours/notes fields before rebuilding rows, preventing previous entries from being cleared.
-- Visual recovery CSS: rounded individual section/badge styling, soft white outlines, removal of outer card-column boxes, smaller gaps and responsive padding.
-- Screenshot mode: additional suppression of screenshot exit button and common app chrome, plus print stylesheet.
-- Mystery reveal: celebration overlay fills viewport, with image sized to fit.
-- Existing Brain status and three independently rotating status panels are retained from V11.17.66.
+This is an incremental update to the existing Command Center, not a fully verified production release.
 
-NOT VERIFIED / NOT CLAIMED FIXED
-- Priority persistence after a Microsoft List refresh, shared-list conflict resolution, throttling and VPN multi-user behavior.
-- Email export layout and Outlook integration.
-- Full responsiveness across all monitor sizes at 100% zoom.
-- All Administration, Shipping and Cycle Time controls.
-- Complete screenshot-only page-body selection for every route.
-- All historical regressions and functional paths.
+Changes: unique build version in header and application; final-loaded layout stylesheet; three side-by-side status panels with wrapping messages; rounded section styling; no extra column outlines for matched card classes; improved volunteer row sizing; full-viewport mystery celebration overlay.
 
-TEST PROCEDURE
-1. Back up production data and test with a disposable scenario first.
-2. Launch START-COMMAND-CENTER.bat and open the application at 100% zoom.
-3. Enter Saturday volunteer details, add a second volunteer, and confirm the first remains populated. Repeat for Sunday. Save and reload.
-4. Verify independent rounded sections, badges and column outlines in Live Operations and Tool Edit.
-5. Test screenshot mode (Esc exits) and full-screen mystery celebration.
-6. Test priority saving, reload, and second-device Microsoft List sync; treat failures as unresolved.
-7. Verify all controls before production use.
+IMPORTANT: Priority save persistence, Microsoft List throttling and cross-user consistency, editor simplification, email and screenshot output, and shipping/cycle redesign are NOT verified as fixed in this build.
 
-This build is an incremental recovery package, not a certified all-issues-resolved release.
+DEPLOYMENT: Back up existing files and data. Extract the ZIP. Upload ALL extracted files and directories to the GitHub Pages repository root, preserving paths. Commit and wait for Pages deployment. Open the hosted page and verify the blue header reads V11.17.69 (NOT V11.17.66). Hard-refresh (Ctrl+Shift+R). If it still reads an older version, the new build is not being served. Do not test functionality against an old deployed version.
+
+TEST: 1. Verify build header. 2. Check three status panels for message clipping. 3. Test Universal Tool Card at 100% browser zoom on laptop and external monitor. 4. Test full-screen mystery reveal. 5. Test weekend volunteer entries with multiple rows and reload. Do not use destructive admin controls with production data. Record browser resolution and screenshots for regressions.
