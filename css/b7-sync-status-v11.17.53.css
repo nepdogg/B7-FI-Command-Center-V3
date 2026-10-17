@@ -1,0 +1,11 @@
+/* V11.17.53: header connection status is controlled by actual sync state. */
+body:not(.presentation-mode):not(.screenshot-mode) #headerModeCenter.shared-connected,
+body:not(.presentation-mode):not(.screenshot-mode) #headerModeCenter.shared-connected #klaConnectionCore{border-color:#00e783!important;box-shadow:0 0 10px rgba(0,231,131,.35)!important}
+body:not(.presentation-mode):not(.screenshot-mode) #headerModeCenter.shared-syncing,
+body:not(.presentation-mode):not(.screenshot-mode) #headerModeCenter.shared-syncing #klaConnectionCore{border-color:#3ba8ff!important;box-shadow:0 0 10px rgba(59,168,255,.3)!important}
+body:not(.presentation-mode):not(.screenshot-mode) #headerModeCenter.shared-paused,
+body:not(.presentation-mode):not(.screenshot-mode) #headerModeCenter.shared-paused #klaConnectionCore,
+body:not(.presentation-mode):not(.screenshot-mode) #headerModeCenter.shared-connecting{border-color:#f2c14e!important}
+body:not(.presentation-mode):not(.screenshot-mode) #headerModeCenter.shared-error,
+body:not(.presentation-mode):not(.screenshot-mode) #headerModeCenter.shared-error #klaConnectionCore,
+body:not(.presentation-mode):not(.screenshot-mode) #headerModeCenter.shared-disconnected{border-color:#ff5266!important}

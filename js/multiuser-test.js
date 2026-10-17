@@ -139,6 +139,27 @@ function queueStateSync(st,msg){
     return false;
   });return syncChain;
 }
+// V11.17.53: Explicit, server-verified single-tool deletion. Never infer deletes from snapshots.
+async function deleteSharedTool(toolId){
+  if(!sharedActive||!list)throw new Error('Microsoft List is not connected. Deletion cancelled.');
+  const id=String(toolId), pending=syncChain;
+  syncState='SYNCING';updateFooter('SCENARIO TEST');
+  try{
+    await pending; // drain queued writes so a stale save cannot recreate the deleted tool
+    await refreshAllItems();
+    const rows=items.filter(it=>toolIdFromRow(it)===id && isToolRow(it));
+    for(const row of rows)await deleteRow(row.id);
+    await refreshAllItems();
+    if(items.some(it=>toolIdFromRow(it)===id && isToolRow(it)))throw new Error('Microsoft List still contains tool '+id);
+    const verified=decodeSharedTools();
+    lastSharedState={environment:'SCENARIO TEST',tools:verified};
+    lastAutoSyncSignature=toolSignature(verified);
+    lastSyncSuccess=Date.now();lastSyncChange=lastSyncSuccess;
+    syncState='SYNCED';updateFooter('SCENARIO TEST');
+    status('DELETE VERIFIED IN MICROSOFT LIST — '+id,'ok');
+    return true;
+  }catch(e){syncState='ERROR';updateFooter('SCENARIO TEST');status('DELETE FAILED — '+friendly(e),'err');throw e}
+}
 function metaData(it){let raw=String(itemVal(it,TOOL_DATA_LABEL)||'').trim();if(!raw)return null;try{let x=JSON.parse(raw);return x&&x._recordType?x:null}catch(e){return null}}
 function presenceRows(){let now=Date.now();return items.map(it=>({it,data:metaData(it)})).filter(x=>x.data?._recordType==='presence'&&now-Date.parse(x.data.lastSeen||0)<20000)}
 function activityRows(){return items.map(it=>({it,data:metaData(it)})).filter(x=>x.data?._recordType==='activity').sort((a,b)=>Date.parse(b.data.at||0)-Date.parse(a.data.at||0))}
@@ -151,7 +172,7 @@ function activeUserDetails(){return presenceRows().map(x=>x.data)}
 function activeUsers(){let n=activeUserDetails().map(x=>String(x.user||x.username||'').trim()).filter(Boolean);let me=account?String(account.name||account.username||'').trim():'';if(me&&!n.includes(me))n.unshift(me);return [...new Set(n)]}
 function setFooterStatus(txt){let e=document.querySelector('#sharedStatus');if(e)e.textContent=txt}
 function sharedKind(){return localStorage.getItem(SHARED_KIND_KEY)==='PRODUCTION'?'PRODUCTION':'TEST'}
-function setModeIdentity(mode,connection){let shared=mode==='shared',connected=connection==='connected',connecting=connection==='connecting';let h=document.getElementById('headerModeCenter');if(h){h.classList.toggle('shared-connected',shared&&connected);h.classList.toggle('shared-connecting',shared&&connecting);h.classList.toggle('shared-disconnected',shared&&!connected&&!connecting);h.classList.toggle('local-mode',!shared)}let fl=document.getElementById('headerModeLabel'),fc=document.getElementById('headerConnectionLabel');let kind=sharedKind();if(fl)fl.textContent=shared?(kind==='PRODUCTION'?'MULTI-USER PRODUCTION':'MULTI-USER MODE'):'LOCAL MODE';let txt=shared?(connected?'LIST CONNECTED':connecting?'CONNECTING TO LIST':'LIST DISCONNECTED'):'LOCAL DATA';if(fc)fc.textContent=txt;let core=document.getElementById('klaConnectionCore');if(core){core.classList.toggle('shared-connected',shared&&connected);core.classList.toggle('shared-connecting',shared&&connecting);core.classList.toggle('shared-disconnected',shared&&!connected&&!connecting);core.classList.toggle('local-mode',!shared)}}
+function setModeIdentity(mode,connection){let shared=mode==='shared',connected=connection==='connected',connecting=connection==='connecting',syncing=connection==='syncing',error=connection==='error',paused=connection==='paused';let h=document.getElementById('headerModeCenter');if(h){h.classList.toggle('shared-connected',shared&&connected);h.classList.toggle('shared-connecting',shared&&connecting);h.classList.toggle('shared-disconnected',shared&&!connected&&!connecting);h.classList.toggle('shared-syncing',shared&&syncing);h.classList.toggle('shared-error',shared&&error);h.classList.toggle('shared-paused',shared&&paused);h.classList.toggle('local-mode',!shared)}let fl=document.getElementById('headerModeLabel'),fc=document.getElementById('headerConnectionLabel');let kind=sharedKind();if(fl)fl.textContent=shared?(kind==='PRODUCTION'?'MULTI-USER PRODUCTION':'MULTI-USER MODE'):'LOCAL MODE';let txt=shared?(connected?'LIST CONNECTED':connecting?'CONNECTING TO LIST':syncing?'SYNCING LIST':error?'LIST SYNC FAILED':paused?'SYNC PAUSED':'LIST DISCONNECTED'):'LOCAL DATA';if(fc)fc.textContent=txt;let core=document.getElementById('klaConnectionCore');if(core){core.classList.toggle('shared-connected',shared&&connected);core.classList.toggle('shared-connecting',shared&&connecting);core.classList.toggle('shared-disconnected',shared&&!connected&&!connecting);core.classList.toggle('shared-syncing',shared&&syncing);core.classList.toggle('shared-error',shared&&error);core.classList.toggle('shared-paused',shared&&paused);core.classList.toggle('local-mode',!shared)}}
 function displayUserName(n){return String(n||'').trim().replace(/\s+/g,' ')}
 function renderPresenceBadges(){
   let names=activeUsers().filter(Boolean).slice(0,8);while(names.length<8)names.push('');
@@ -192,13 +213,13 @@ function updateFooter(env){
   if(env==='PRODUCTION'){
     setFooterStatus('LOCAL DATA');if(au)au.textContent='USERS: —/7';if(health)health.textContent=`DATA HEALTH: ${window.state?.tools?.length||0} LOCAL TOOLS`;if(sync)sync.textContent='LOCAL MODE · SYNC NOT REQUIRED';let topSync=document.querySelector('#commandCenterActivityTime');if(topSync&&!window.B7ActivityState)topSync.textContent='↻ LOCAL';setModeIdentity('local','offline');return;
   }
-  setFooterStatus(sharedActive?'LIST CONNECTED · 1 ROW/TOOL':'LIST DISCONNECTED');
+  setFooterStatus(!sharedActive?'LIST DISCONNECTED':syncState==='ERROR'?'LIST SYNC FAILED':syncState==='SYNCING'?'LIST SYNCING':'LIST CONNECTED · 1 ROW/TOOL');
   if(au)au.textContent=sharedActive?`USERS: ${activeUsers().length}/8`:'USERS: 0/8';
   if(health)health.textContent=`DATA HEALTH: ${sharedActive?'SHARED READY':'WAITING'}`;
   let label=!sharedActive?'MULTI-USER · LIST DISCONNECTED':syncState==='SYNCING'?'MULTI-USER · LIST CONNECTED · SYNCING…':syncState==='ERROR'?`MULTI-USER · LIST CONNECTED · SYNC ERROR · LAST OK ${tm}`:syncState==='PAUSED'?`MULTI-USER · LIST CONNECTED · SYNC PAUSED WHILE EDITING · LAST OK ${tm}`:`MULTI-USER · LIST CONNECTED · SYNCED · ${tm}`;
   if(sync)sync.textContent=label;
   let topSync=document.querySelector('#commandCenterActivityTime');if(topSync)topSync.textContent=sharedActive?(syncState==='SYNCING'?'↻ SYNCING…':`↻ SYNC: ${tm}`):'↻ SYNC: —';
-  setModeIdentity('shared',sharedActive?'connected':'offline');renderPresenceBadges();
+  setModeIdentity('shared',!sharedActive?'offline':syncState==='ERROR'?'error':syncState==='SYNCING'?'syncing':syncState==='PAUSED'?'paused':'connected');renderPresenceBadges();
 }
 function showActiveUsers(){let a=activeUserDetails();alert(a.length?'ACTIVE USERS\n\n'+a.map(x=>`${x.user||x.username} · last seen ${new Date(x.lastSeen).toLocaleTimeString()}`).join('\n'):'No shared users are currently active.')}
 function downloadJson(obj,name){let blob=new Blob([JSON.stringify(obj,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
@@ -253,7 +274,7 @@ async function autoSync(){
 }
 function showConnectionPanel(){let who=account?`${account.name||''}${account.username?' · '+account.username:''}`:'Not signed in';let listText=list?(CFG.listName+' · CONNECTED'):(CFG.listName+' · DISCONNECTED');alert(`KLA MULTI-USER CONNECTION\n\nUSER: ${who}\nLIST: ${listText}\nMODE: ${sharedActive?'MULTI-USER MODE':'LOCAL PRODUCTION'}\n\nAutomatic shared synchronization: ${sharedActive?'ACTIVE (15 second check)':'OFF'}`)}
 function bindHeaderLogin(){let h=document.getElementById('headerModeCenter');if(!h)return;h.setAttribute('role','button');h.setAttribute('tabindex','0');h.title='KLA MULTI-USER SIGN IN / CONNECTION';let go=()=>{if(sharedActive){showConnectionPanel();return}oneClickConnect().catch(()=>{})};h.onclick=go;h.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}}}
-window.B7Shared={enterScenario,leaveScenario,oneClickConnect,autoSync,queueStateSync,isActive:()=>sharedActive,updateFooter,activity,resetSharedScenario,clearEntireList,refreshScenario,showActiveUsers,activeUsers,exportSharedBackup,restoreSharedBackup,replaceSharedScenario,publishLocalProduction,datasetKind:sharedKind};
+window.B7Shared={enterScenario,leaveScenario,oneClickConnect,autoSync,queueStateSync,deleteSharedTool,isActive:()=>sharedActive,updateFooter,activity,resetSharedScenario,clearEntireList,refreshScenario,showActiveUsers,activeUsers,exportSharedBackup,restoreSharedBackup,replaceSharedScenario,publishLocalProduction,datasetKind:sharedKind};
 setInterval(autoSync,15000);
 
 document.addEventListener('DOMContentLoaded',async()=>{inject();bindHeaderLogin();document.querySelector('#activeUsers')?.addEventListener('click',showActiveUsers);try{await initMsal();let resume=localStorage.getItem(SHARED_MODE_KEY)==='1';if(resume){setModeIdentity('shared','connecting');if(!account){try{let r=await msalApp.ssoSilent({scopes:CFG.scopes,redirectUri:CFG.redirectUri});account=r.account;msalApp.setActiveAccount?.(account);setSignedIn()}catch(e){}}if(account){await connect();sharedActive=true;let seed={environment:'SCENARIO TEST',tools:[]};await refreshAllItems();let tools=decodeSharedTools();if(items.length&&tools.length===0)throw new Error(`SHARED LOAD BLOCKED — ${items.length} List row(s) were found but none contained valid Tool Data. Local cards were retained.`);seed.tools=tools;lastSharedState=JSON.parse(JSON.stringify(seed));lastAutoSyncSignature=toolSignature(tools);lastSyncSuccess=Date.now();syncState='SYNCED';updateFooter('SCENARIO TEST');if(window.B7ApplySharedScenario)window.B7ApplySharedScenario(seed);status(`PASS — Multi-User session restored automatically · ${tools.length} tool(s) loaded from Microsoft List.`,'ok')}else{syncState='PAUSED';updateFooter('SCENARIO TEST');status('MULTI-USER SESSION PAUSED — click the KLA logo only if automatic session restore is unavailable.','err')}}else{updateFooter('PRODUCTION');if(account)status('Existing Microsoft sign-in detected. Local data remains active until Shared Multi-User is started.','ok')}}catch(e){syncState='ERROR';setModeIdentity('shared','offline');updateFooter('SCENARIO TEST');status('Authentication / shared restore warning — '+friendly(e),'err')}});
