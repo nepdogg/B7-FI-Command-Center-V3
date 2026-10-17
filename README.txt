@@ -1,7 +1,8 @@
-B7 FI COMMAND CENTER V11.17.57 — LAYOUT REPAIR TEST
+B7 FI Command Center V11.17.58 — TEST BUILD
 
-Reworked the normal-page Universal Tool Card with final authoritative selectors matching actual c11-badge elements. Badge rows have a 52px minimum and grow for content; the 3-column card grows vertically rather than clipping. Removed inner middle/right section borders while keeping horizontal dividers. Restored sticky shell and normal page scrolling. Narrow viewports stack the columns. Presentation mode remains unchanged. Existing Microsoft List code preserved.
+Fixed packaging: removed references to missing CSS and loaded a real final layout stylesheet.
+Normal-page layout: uniform badge row sizing, full-width computer/component badges, no section box borders, responsive card reflow, sticky header, non-sticky footer.
+Existing Microsoft List code unchanged.
 
-TEST: Open separately from production. Test normal Live Operations at 80%, 100%, 125%, and 150% browser zoom; verify badges, middle/right dividers, sticky header during scrolling, and footer. Test two-laptop list deletion separately with disposable records.
-
-LIMITATIONS: Multi-user live sync and full browser interaction not verified. Do not replace production without testing.
+TEST: deploy all files from ZIP together, hard refresh Ctrl+Shift+R, inspect at 80%, 100%, 125%, 150%; test scrolling and shared deletion using disposable records only.
+Browser appearance and live Microsoft List synchronization have not been fully verified. Keep production backup.
