@@ -1,31 +1,11 @@
-B7 FI COMMAND CENTER V11.17.53 — MULTI-USER DELETE AND CONNECTION STATUS TEST
+B7 FI Command Center V11.17.55 — Geometry Test
 
-Based on V11.17.52 Quarter Graphs test build. All existing graphs, computer/component tracking, and application assets retained.
+Based on V11.17.54; preserves V11.17.53 Microsoft List deletion changes and Quarter Graphs.
 
-CHANGES
-- Explicit Microsoft List tool deletion: await queued saves, delete matching List rows, re-read and verify absence BEFORE removing tool locally.
-- If remote deletion fails, local tool is preserved and an error is displayed.
-- Prevent normal local snapshot synchronization from re-uploading a tool during the confirmed deletion action.
-- Header border reflects connected (green), syncing (blue), paused/connecting (yellow), or failed/disconnected (red).
-- Last successful sync timestamp remains unchanged on failed requests; successful deletion updates it after verification.
+Changes: corrected actual c11-* card selectors, removed section frames, equalized badge row heights, let badges expand without clipping, responsive 3-to-1-column layout at high zoom, restored sticky header and non-sticky footer, corrected launcher version text.
 
-IMPORTANT LIMITATIONS
-- Microsoft Graph and two-laptop operation cannot be tested offline. These fixes require live work testing.
-- Existing section borders/geometry were not rewritten in this build to avoid destabilizing the locked card design; they remain to be visually reviewed.
-- No changes to Microsoft List structure or credentials.
+Verification: ZIP integrity and JS syntax checked. Real browser visual behavior and two-laptop Microsoft List sync remain unverified. This is not a production-certified release.
 
-TEST PLAN (USE ONLY TWO DISPOSABLE TEST TOOLS)
-1. Back up Microsoft List and browser data; open two laptops and connect both to the same test List.
-2. Add two test tools on laptop A. Verify both appear on B.
-3. Delete one on A; verify it stays absent after several 15-second sync intervals on BOTH laptops and after refreshing.
-4. Delete the other from B; repeat checks on A.
-5. Confirm header green when synced, blue during sync, and that the last successful sync time updates after verified requests.
-6. Test temporary loss of network: failed delete should leave the tool present; do not test with production tools.
-7. Report any errors and screenshots, especially unexpected Microsoft sign-outs.
+Test: extract to a NEW folder, use its START-COMMAND-CENTER.bat, check 80/100/125/150% zoom and scrolling, compare badge heights, then test deletion using disposable records only. The launcher requires an IT-approved Python installation; no Python means the local server will not start.
 
-
-V11.17.54 VISUAL REPAIR TEST
-- Added final CSS override to remove bright inner section rectangles, preserve column dividers, allow badges to grow instead of clipping, and restore normal-page sticky header / non-sticky footer flow.
-- At narrow effective viewports the tool card stacks columns instead of clipping.
-- Existing multi-user deletion code remains unchanged from V11.17.53.
-- Not browser-rendered or validated at work on two laptops. Test at 100%, 125%, 150% and browser zoom-out, and verify header sticks while scrolling.
+Do not overwrite production data or existing installation.
