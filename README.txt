@@ -22,3 +22,10 @@ TEST PLAN (USE ONLY TWO DISPOSABLE TEST TOOLS)
 5. Confirm header green when synced, blue during sync, and that the last successful sync time updates after verified requests.
 6. Test temporary loss of network: failed delete should leave the tool present; do not test with production tools.
 7. Report any errors and screenshots, especially unexpected Microsoft sign-outs.
+
+
+V11.17.54 VISUAL REPAIR TEST
+- Added final CSS override to remove bright inner section rectangles, preserve column dividers, allow badges to grow instead of clipping, and restore normal-page sticky header / non-sticky footer flow.
+- At narrow effective viewports the tool card stacks columns instead of clipping.
+- Existing multi-user deletion code remains unchanged from V11.17.53.
+- Not browser-rendered or validated at work on two laptops. Test at 100%, 125%, 150% and browser zoom-out, and verify header sticks while scrolling.
