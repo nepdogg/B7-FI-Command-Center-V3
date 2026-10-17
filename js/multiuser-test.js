@@ -33,9 +33,31 @@ function pass(k){checks[k]=true;renderChecks()}
 async function signIn(){try{await initMsal();let r=await msalApp.loginPopup({scopes:CFG.scopes,redirectUri:CFG.redirectUri});account=r.account;msalApp.setActiveAccount?.(account);setSignedIn();pass('signin');status('PASS — KLA Microsoft sign-in succeeded.','ok')}catch(e){status('SIGN-IN FAILED — '+friendly(e),'err')}}
 async function signOut(){try{if(msalApp&&account)await msalApp.logoutPopup({account,postLogoutRedirectUri:'http://localhost:5500/'});account=null;site=list=null;items=[];setSignedIn();document.querySelector('#mu-grid').innerHTML='';status('Signed out.')}catch(e){status('SIGN-OUT FAILED — '+friendly(e),'err')}}
 async function token(){await initMsal();if(!account)throw new Error('Sign in first.');try{return (await msalApp.acquireTokenSilent({account,scopes:CFG.scopes})).accessToken}catch(e){return (await msalApp.acquireTokenPopup({account,scopes:CFG.scopes})).accessToken}}
-async function graph(path,opt={}){let t=await token();let r=await fetch(CFG.graph+path,{...opt,headers:{Authorization:'Bearer '+t,'Content-Type':'application/json',...(opt.headers||{})}});let txt=await r.text(),data=null;try{data=txt?JSON.parse(txt):null}catch{}if(!r.ok){let msg=data?.error?.message||txt||`${r.status} ${r.statusText}`;throw new Error(`${r.status} — ${msg}`)}return data}
-async function connect(){try{status('Connecting to Microsoft Graph…');site=await graph(`/sites/${CFG.siteHost}:${CFG.sitePath}`);let saved=String(localStorage.getItem(LIST_ID_KEY)||CFG.listId||'').trim();list=null;if(saved){try{list=await graph(`/sites/${encodeURIComponent(site.id)}/lists/${encodeURIComponent(saved)}?$select=id,name,displayName`)}catch(e){localStorage.removeItem(LIST_ID_KEY);list=null}}if(!list){let ls=await graph(`/sites/${encodeURIComponent(site.id)}/lists?$select=id,name,displayName&$top=999`);list=(ls.value||[]).find(x=>(x.displayName||x.name||'').trim().toLowerCase()===CFG.listName.trim().toLowerCase())}if(!list)throw new Error(`The shared list could not be enumerated for this account even though SharePoint access may be granted. On a laptop that connects successfully, open Multi-User Diagnostics and copy its LIST ID, then use SET LIST ID on this laptop.`);localStorage.setItem(LIST_ID_KEY,list.id);let cs=await graph(`/sites/${encodeURIComponent(site.id)}/lists/${encodeURIComponent(list.id)}/columns?$select=id,name,displayName,readOnly,hidden`);columns=(cs.value||[]).filter(c=>!c.hidden);pass('connect');setSignedIn();status(`PASS — Connected to “${list.displayName||list.name}” · LIST ID ${list.id}. Reading shared tools…`,'ok');document.querySelector('#mu-refresh').disabled=false;await loadItems();startPresence()}catch(e){status('CONNECTION FAILED — '+friendly(e),'err')}}
-async function loadItems(){try{if(!list)return connect();status('Refreshing shared Microsoft List data…');let d=await graph(`/sites/${encodeURIComponent(site.id)}/lists/${encodeURIComponent(list.id)}/items?$expand=fields&$top=200`);items=d.value||[];renderGrid();pass('read');status(`PASS — Read ${items.length} shared list item${items.length===1?'':'s'}. If you add a third row directly in Microsoft Lists, press 3 · REFRESH and confirm it appears here.`, 'ok')}catch(e){status('READ FAILED — '+friendly(e),'err')}}
+// V11.17.62: honor Graph throttling; do not blindly replay non-idempotent POSTs.
+let graphCooldownUntil=0;
+const waitGraph=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+async function graph(path,opt={}){
+  const method=String(opt.method||'GET').toUpperCase();
+  const retryable=['GET','HEAD','PATCH','DELETE','PUT'].includes(method);
+  for(let attempt=0;;attempt++){
+    let pause=graphCooldownUntil-Date.now();if(pause>0)await waitGraph(pause);
+    let t=await token();let r;
+    try{r=await fetch(CFG.graph+path,{...opt,headers:{Authorization:'Bearer '+t,'Content-Type':'application/json',...(opt.headers||{})}})}catch(e){if(retryable&&attempt<3){await waitGraph(Math.min(30000,1500*2**attempt));continue}throw e}
+    if((r.status===429||r.status===503||r.status===504)){
+      let retryAfter=r.headers.get('Retry-After');let seconds=Number(retryAfter);
+      let dateDelay=retryAfter&&!Number.isFinite(seconds)?Date.parse(retryAfter)-Date.now():0;
+      let delay=Math.max(2000,Math.min(120000,Number.isFinite(seconds)&&retryAfter?seconds*1000:dateDelay>0?dateDelay:3000*2**attempt));
+      graphCooldownUntil=Math.max(graphCooldownUntil,Date.now()+delay);
+      if(retryable&&attempt<4){console.warn('Graph throttled; waiting',delay,'ms');await waitGraph(delay);continue}
+    }
+    let txt=await r.text(),data=null;try{data=txt?JSON.parse(txt):null}catch{}
+    if(!r.ok){let msg=data?.error?.message||txt||`${r.status} ${r.statusText}`;throw new Error(`${r.status} — ${msg}`)}return data;
+  }
+}
+let connectPending=null;
+async function connect(){if(connectPending)return connectPending;connectPending=connectCore().finally(()=>{connectPending=null});return connectPending}
+async function connectCore(){try{status('Connecting to Microsoft Graph…');site=await graph(`/sites/${CFG.siteHost}:${CFG.sitePath}`);let saved=String(localStorage.getItem(LIST_ID_KEY)||CFG.listId||'').trim();list=null;if(saved){try{list=await graph(`/sites/${encodeURIComponent(site.id)}/lists/${encodeURIComponent(saved)}?$select=id,name,displayName`)}catch(e){localStorage.removeItem(LIST_ID_KEY);list=null}}if(!list){let ls=await graph(`/sites/${encodeURIComponent(site.id)}/lists?$select=id,name,displayName&$top=999`);list=(ls.value||[]).find(x=>(x.displayName||x.name||'').trim().toLowerCase()===CFG.listName.trim().toLowerCase())}if(!list)throw new Error(`The shared list could not be enumerated for this account even though SharePoint access may be granted. On a laptop that connects successfully, open Multi-User Diagnostics and copy its LIST ID, then use SET LIST ID on this laptop.`);localStorage.setItem(LIST_ID_KEY,list.id);let cs=await graph(`/sites/${encodeURIComponent(site.id)}/lists/${encodeURIComponent(list.id)}/columns?$select=id,name,displayName,readOnly,hidden`);columns=(cs.value||[]).filter(c=>!c.hidden);pass('connect');setSignedIn();status(`PASS — Connected to “${list.displayName||list.name}” · LIST ID ${list.id}. Reading shared tools…`,'ok');document.querySelector('#mu-refresh').disabled=false;await loadItems();startPresence()}catch(e){status('CONNECTION FAILED — '+friendly(e),'err');throw e}}
+async function loadItems(){try{if(!list)return connect();status('Refreshing shared Microsoft List data…');let d=await graph(`/sites/${encodeURIComponent(site.id)}/lists/${encodeURIComponent(list.id)}/items?$expand=fields&$top=200`);items=d.value||[];renderGrid();pass('read');status(`PASS — Read ${items.length} shared list item${items.length===1?'':'s'}. If you add a third row directly in Microsoft Lists, press 3 · REFRESH and confirm it appears here.`, 'ok')}catch(e){status('READ FAILED — '+friendly(e),'err');throw e}}
 function fieldMap(){let m={};columns.forEach(c=>m[(c.displayName||c.name).trim().toLowerCase()]=c);return m}
 function val(it,label){let c=fieldMap()[label.toLowerCase()];return c?it.fields?.[c.name]??'':''}
 function editableColumns(){let wanted=['Title','UTID','Code Name','FI Status','Model','Customer','Sales Order','MFG Ship Date','Quarter','Family'],m=fieldMap();return wanted.map(x=>m[x.toLowerCase()]).filter(c=>c&&!c.readOnly)}
@@ -122,10 +144,11 @@ async function syncChangedTools(nextState){
   }
   let out=JSON.parse(JSON.stringify(nextState));out.tools=verified;lastSharedState=out;lastAutoSyncSignature=toolSignature(verified);updateFooter('SCENARIO TEST');
 }
-let syncChain=Promise.resolve();
+let syncChain=Promise.resolve(),pendingWrites=0;
 function queueStateSync(st,msg){
   if(!sharedActive||!list){alert('MICROSOFT LIST IS NOT CONNECTED. Change saved locally only.');return Promise.resolve(false);}
   let snap=JSON.parse(JSON.stringify(st));syncState='SYNCING';updateFooter('SCENARIO TEST');
+  pendingWrites++;
   syncChain=syncChain.then(async()=>{
     await syncChangedTools(snap);
     lastSyncSuccess=Date.now();lastSyncChange=Date.now();syncState='SYNCED';updateFooter('SCENARIO TEST');
@@ -137,7 +160,7 @@ function queueStateSync(st,msg){
     updateFooter('SCENARIO TEST');status('MICROSOFT LIST SAVE FAILED — '+friendly(e),'err');
     alert('MICROSOFT LIST SAVE NOT CONFIRMED.\n\n'+friendly(e)+'\n\nYour local browser copy was saved. Do not assume other laptops received the change.');
     return false;
-  });return syncChain;
+  }).finally(()=>{pendingWrites=Math.max(0,pendingWrites-1)});return syncChain;
 }
 // V11.17.53: Explicit, server-verified single-tool deletion. Never infer deletes from snapshots.
 async function deleteSharedTool(toolId){
@@ -161,10 +184,10 @@ async function deleteSharedTool(toolId){
   }catch(e){syncState='ERROR';updateFooter('SCENARIO TEST');status('DELETE FAILED — '+friendly(e),'err');throw e}
 }
 function metaData(it){let raw=String(itemVal(it,TOOL_DATA_LABEL)||'').trim();if(!raw)return null;try{let x=JSON.parse(raw);return x&&x._recordType?x:null}catch(e){return null}}
-function presenceRows(){let now=Date.now();return items.map(it=>({it,data:metaData(it)})).filter(x=>x.data?._recordType==='presence'&&now-Date.parse(x.data.lastSeen||0)<20000)}
+function presenceRows(){let now=Date.now();return items.map(it=>({it,data:metaData(it)})).filter(x=>x.data?._recordType==='presence'&&now-Date.parse(x.data.lastSeen||0)<300000)}
 function activityRows(){return items.map(it=>({it,data:metaData(it)})).filter(x=>x.data?._recordType==='activity').sort((a,b)=>Date.parse(b.data.at||0)-Date.parse(a.data.at||0))}
-async function publishPresence(){if(!sharedActive||!list||!account)return;let username=String(account.username||account.name||'').toLowerCase(),title=PRESENCE_PREFIX+username,data={_recordType:'presence',sessionId,user:account.name||account.username,username:account.username||'',lastSeen:new Date().toISOString()};await refreshAllItems();let row=items.find(it=>titleOf(it)===title),b={};setField(b,'Title',title);setField(b,TOOL_DATA_LABEL,JSON.stringify(data));if(row)await patchRow(row.id,b);else await createRow(b);await refreshAllItems();renderPresenceBadges()}
-function startPresence(){if(presenceTimer)clearInterval(presenceTimer);publishPresence().catch(()=>{});presenceTimer=setInterval(()=>publishPresence().catch(()=>{}),12000)}
+async function publishPresence(){if(!sharedActive||!list||!account||Date.now()<graphCooldownUntil||autoSyncBusy||pendingWrites>0)return;let username=String(account.username||account.name||'').toLowerCase(),title=PRESENCE_PREFIX+username,data={_recordType:'presence',sessionId,user:account.name||account.username,username:account.username||'',lastSeen:new Date().toISOString()};await refreshAllItems();let row=items.find(it=>titleOf(it)===title),b={};setField(b,'Title',title);setField(b,TOOL_DATA_LABEL,JSON.stringify(data));if(row)await patchRow(row.id,b);else await createRow(b);await refreshAllItems();renderPresenceBadges()}
+function startPresence(){if(presenceTimer)clearInterval(presenceTimer);publishPresence().catch(e=>console.warn('Presence publish:',e));presenceTimer=setInterval(()=>{if(!autoSyncBusy&&syncState!=='SYNCING')publishPresence().catch(e=>console.warn('Presence publish:',e))},120000)}
 async function publishActivityRecord(){/* Disabled: activity events are local UI messages, not Microsoft List rows. */}
 
 function applyLatestSharedActivity(){let a=activityRows()[0]?.data;if(!a)return;let tm=new Date(a.at).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}),full=`${a.type==='err'?'✕':'✓'} ${a.message} · ${String(a.user||a.username||'USER').toUpperCase()} · ${tm}`;let m=document.querySelector('#commandCenterActivityMessage'),st=document.querySelector('#commandCenterActivityState'),time=document.querySelector('#commandCenterActivityTime');if(m)m.textContent=full;if(st)st.textContent=a.type==='err'?'ACTIVITY · ERROR':'ACTIVITY · UPDATED';if(time)time.textContent='↻ SYNC: '+tm}
@@ -201,7 +224,7 @@ function activity(msg,type='ok'){
   let syncCompact=`↻ SYNC: ${tm}`;
   window.B7ActivityState={state:type==='err'?'ACTIVITY · ERROR':'ACTIVITY · UPDATED',message:full,sync:syncText,syncCompact:syncCompact,toolId:toolId,type:type,at:Date.now()};
   if(e){e.textContent='LAST ACTIVITY: '+full;e.classList.toggle('activity-error',type==='err')}
-  let fs=document.querySelector('#footerLastSync');if(fs)fs.textContent=`LAST SYNC: ${localMode?'LOCAL · ':''}${tm}`;
+  let fs=document.querySelector('#footerLastSync');if(fs&&(!sharedActive||!lastSyncSuccess))fs.textContent=sharedActive?'LAST SYNC: NOT YET VERIFIED':`LAST LOCAL ACTIVITY: ${tm}`;
   let m=document.querySelector('#commandCenterActivityMessage'),st=document.querySelector('#commandCenterActivityState'),bar=document.querySelector('#commandCenterActivityBar'),time=document.querySelector('#commandCenterActivityTime');
   if(m){m.textContent=full;if(toolId){m.dataset.tool=toolId;m.setAttribute('role','button');m.tabIndex=0;m.title='Open last updated tool '+toolId}else{delete m.dataset.tool;m.removeAttribute('role');m.removeAttribute('tabindex');m.removeAttribute('title')}}if(st)st.textContent=window.B7ActivityState.state;if(time)time.textContent=syncCompact;
   if(bar){bar.classList.toggle('critical',type==='err');bar.classList.toggle('normal',type!=='err')}
@@ -213,7 +236,7 @@ function updateFooter(env){
   if(env==='PRODUCTION'){
     setFooterStatus('LOCAL DATA');if(au)au.textContent='USERS: —/7';if(health)health.textContent=`DATA HEALTH: ${window.state?.tools?.length||0} LOCAL TOOLS`;if(sync)sync.textContent='LOCAL MODE · SYNC NOT REQUIRED';let topSync=document.querySelector('#commandCenterActivityTime');if(topSync&&!window.B7ActivityState)topSync.textContent='↻ LOCAL';setModeIdentity('local','offline');return;
   }
-  setFooterStatus(!sharedActive?'LIST DISCONNECTED':syncState==='ERROR'?'LIST SYNC FAILED':syncState==='SYNCING'?'LIST SYNCING':'LIST CONNECTED · 1 ROW/TOOL');
+  setFooterStatus(!sharedActive?'LIST DISCONNECTED':syncState==='ERROR'?'LIST SYNC ERROR · RETRY PENDING':syncState==='SYNCING'?'LIST SYNCING':'LIST CONNECTED · 1 ROW/TOOL');
   if(au)au.textContent=sharedActive?`USERS: ${activeUsers().length}/8`:'USERS: 0/8';
   if(health)health.textContent=`DATA HEALTH: ${sharedActive?'SHARED READY':'WAITING'}`;
   let label=!sharedActive?'MULTI-USER · LIST DISCONNECTED':syncState==='SYNCING'?'MULTI-USER · LIST CONNECTED · SYNCING…':syncState==='ERROR'?`MULTI-USER · LIST CONNECTED · SYNC ERROR · LAST OK ${tm}`:syncState==='PAUSED'?`MULTI-USER · LIST CONNECTED · SYNC PAUSED WHILE EDITING · LAST OK ${tm}`:`MULTI-USER · LIST CONNECTED · SYNCED · ${tm}`;
@@ -248,7 +271,7 @@ async function refreshScenario(){if(!sharedActive)throw new Error('Start Shared 
 async function enterScenario(localState){await ensureConnected();requireToolDataColumn();localStorage.setItem(SHARED_KIND_KEY,'TEST');sharedActive=true;localStorage.setItem(SHARED_MODE_KEY,'1');let out=await loadSharedScenario(localState);updateFooter('SCENARIO TEST');status(`PASS — SHARED SCENARIO ACTIVE · ONE TOOL = ONE ROW · ${out.tools.length} tool(s).`,'ok');return out}
 function leaveScenario(){sharedActive=false;localStorage.removeItem(SHARED_MODE_KEY);localStorage.removeItem(SHARED_KIND_KEY);updateFooter('PRODUCTION')}
 // V7.6.12 — production one-click connection + background synchronization.
-let autoSyncBusy=false,lastAutoSyncSignature='',lastSyncCheck=0,lastSyncSuccess=0,lastSyncChange=0,syncState='IDLE';
+let autoSyncBusy=false,lastAutoSyncSignature='',lastSyncCheck=0,lastSyncSuccess=0,lastSyncChange=0,syncState='IDLE',syncFailures=0,autoRecoverBusy=false;
 function toolSignature(ts){return JSON.stringify((ts||[]).map(t=>{let x=JSON.parse(JSON.stringify(t));delete x._sharedRowId;return x}).sort((a,b)=>String(a.id).localeCompare(String(b.id))))}
 function editingIsActive(){let m=document.querySelector('#modal');if(m&&!m.classList.contains('hidden'))return true;let a=document.activeElement;return !!(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName))}
 async function oneClickConnect(){
@@ -257,25 +280,25 @@ async function oneClickConnect(){
     await ensureConnected();sharedActive=true;localStorage.setItem(SHARED_MODE_KEY,'1');
     await refreshAllItems();let tools=decodeSharedTools();
     let out={environment:'SCENARIO TEST',tools};lastSharedState=JSON.parse(JSON.stringify(out));lastAutoSyncSignature=toolSignature(tools);
-    lastSyncSuccess=Date.now();syncState='SYNCED';updateFooter('SCENARIO TEST');if(window.B7ApplySharedScenario)window.B7ApplySharedScenario(out);
+    lastSyncSuccess=Date.now();syncState='SYNCED';updateFooter('SCENARIO TEST');startPresence();if(window.B7ApplySharedScenario)window.B7ApplySharedScenario(out);
     status(`PASS — MULTI-USER READY · ${tools.length} shared tool(s) loaded. Automatic sync is active.`,'ok');return out;
   }catch(e){setModeIdentity('shared','offline');status('ONE-CLICK CONNECTION FAILED — '+friendly(e),'err');throw e}
 }
 async function autoSync(){
-  if(!sharedActive||!account||!list||autoSyncBusy||syncState==='SYNCING')return;
+  if(!sharedActive||!account||!list||autoSyncBusy||Date.now()<graphCooldownUntil||pendingWrites>0)return;
   lastSyncCheck=Date.now();
   if(editingIsActive()){syncState='PAUSED';updateFooter('SCENARIO TEST');return}
   autoSyncBusy=true;syncState='SYNCING';updateFooter('SCENARIO TEST');
   try{
     await refreshAllItems();renderPresenceBadges();applyLatestSharedActivity();let tools=decodeSharedTools(),sig=toolSignature(tools);lastSyncSuccess=Date.now();
     if(sig!==lastAutoSyncSignature){lastSyncChange=Date.now();let out={environment:'SCENARIO TEST',tools};lastSharedState=JSON.parse(JSON.stringify(out));lastAutoSyncSignature=sig;if(window.B7ApplySharedScenario)window.B7ApplySharedScenario(out);status(`AUTO SYNC — ${tools.length} shared tool(s) current.`,'ok')}
-    syncState='SYNCED';updateFooter('SCENARIO TEST');
-  }catch(e){syncState='ERROR';setFooterStatus('LIST CONNECTED · SYNC RETRYING');updateFooter('SCENARIO TEST');console.warn('B7 auto sync',e)}finally{autoSyncBusy=false}
+    syncFailures=0;syncState='SYNCED';updateFooter('SCENARIO TEST');
+  }catch(e){syncFailures++;syncState='ERROR';setFooterStatus('LIST CONNECTED · SYNC RETRYING');updateFooter('SCENARIO TEST');console.warn('B7 auto sync',e);if(syncFailures>=2&&!autoRecoverBusy&&Date.now()>=graphCooldownUntil&&pendingWrites===0){autoRecoverBusy=true;Promise.resolve().then(async()=>{try{await initMsal();if(account){await connect();sharedActive=true;syncFailures=0;syncState='SYNCED';updateFooter('SCENARIO TEST')}}catch(err){console.warn('B7 reconnect:',err);syncState='ERROR';updateFooter('SCENARIO TEST')}finally{autoRecoverBusy=false}})}}finally{autoSyncBusy=false}
 }
-function showConnectionPanel(){let who=account?`${account.name||''}${account.username?' · '+account.username:''}`:'Not signed in';let listText=list?(CFG.listName+' · CONNECTED'):(CFG.listName+' · DISCONNECTED');alert(`KLA MULTI-USER CONNECTION\n\nUSER: ${who}\nLIST: ${listText}\nMODE: ${sharedActive?'MULTI-USER MODE':'LOCAL PRODUCTION'}\n\nAutomatic shared synchronization: ${sharedActive?'ACTIVE (15 second check)':'OFF'}`)}
-function bindHeaderLogin(){let h=document.getElementById('headerModeCenter');if(!h)return;h.setAttribute('role','button');h.setAttribute('tabindex','0');h.title='KLA MULTI-USER SIGN IN / CONNECTION';let go=()=>{if(sharedActive){showConnectionPanel();return}oneClickConnect().catch(()=>{})};h.onclick=go;h.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}}}
+function showConnectionPanel(){let who=account?`${account.name||''}${account.username?' · '+account.username:''}`:'Not signed in';let listText=list?(CFG.listName+' · CONNECTED'):(CFG.listName+' · DISCONNECTED');alert(`KLA MULTI-USER CONNECTION\n\nUSER: ${who}\nLIST: ${listText}\nMODE: ${sharedActive?'MULTI-USER MODE':'LOCAL PRODUCTION'}\n\nAutomatic shared synchronization: ${sharedActive?'ACTIVE (60 second check)':'OFF'}`)}
+function bindHeaderLogin(){let h=document.getElementById('headerModeCenter');if(!h)return;h.setAttribute('role','button');h.setAttribute('tabindex','0');h.title='KLA MULTI-USER SIGN IN / CONNECTION';let go=()=>{if(sharedActive&&syncState!=='ERROR'){showConnectionPanel();return}oneClickConnect().catch(e=>console.warn('Manual reconnect:',e))};h.onclick=go;h.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}}}
 window.B7Shared={enterScenario,leaveScenario,oneClickConnect,autoSync,queueStateSync,deleteSharedTool,isActive:()=>sharedActive,updateFooter,activity,resetSharedScenario,clearEntireList,refreshScenario,showActiveUsers,activeUsers,exportSharedBackup,restoreSharedBackup,replaceSharedScenario,publishLocalProduction,datasetKind:sharedKind};
-setInterval(autoSync,15000);
+setInterval(autoSync,60000);
 
-document.addEventListener('DOMContentLoaded',async()=>{inject();bindHeaderLogin();document.querySelector('#activeUsers')?.addEventListener('click',showActiveUsers);try{await initMsal();let resume=localStorage.getItem(SHARED_MODE_KEY)==='1';if(resume){setModeIdentity('shared','connecting');if(!account){try{let r=await msalApp.ssoSilent({scopes:CFG.scopes,redirectUri:CFG.redirectUri});account=r.account;msalApp.setActiveAccount?.(account);setSignedIn()}catch(e){}}if(account){await connect();sharedActive=true;let seed={environment:'SCENARIO TEST',tools:[]};await refreshAllItems();let tools=decodeSharedTools();if(items.length&&tools.length===0)throw new Error(`SHARED LOAD BLOCKED — ${items.length} List row(s) were found but none contained valid Tool Data. Local cards were retained.`);seed.tools=tools;lastSharedState=JSON.parse(JSON.stringify(seed));lastAutoSyncSignature=toolSignature(tools);lastSyncSuccess=Date.now();syncState='SYNCED';updateFooter('SCENARIO TEST');if(window.B7ApplySharedScenario)window.B7ApplySharedScenario(seed);status(`PASS — Multi-User session restored automatically · ${tools.length} tool(s) loaded from Microsoft List.`,'ok')}else{syncState='PAUSED';updateFooter('SCENARIO TEST');status('MULTI-USER SESSION PAUSED — click the KLA logo only if automatic session restore is unavailable.','err')}}else{updateFooter('PRODUCTION');if(account)status('Existing Microsoft sign-in detected. Local data remains active until Shared Multi-User is started.','ok')}}catch(e){syncState='ERROR';setModeIdentity('shared','offline');updateFooter('SCENARIO TEST');status('Authentication / shared restore warning — '+friendly(e),'err')}});
+document.addEventListener('DOMContentLoaded',async()=>{inject();bindHeaderLogin();document.querySelector('#activeUsers')?.addEventListener('click',showActiveUsers);try{await initMsal();let resume=localStorage.getItem(SHARED_MODE_KEY)==='1';if(resume){setModeIdentity('shared','connecting');if(!account){try{let r=await msalApp.ssoSilent({scopes:CFG.scopes,redirectUri:CFG.redirectUri});account=r.account;msalApp.setActiveAccount?.(account);setSignedIn()}catch(e){}}if(account){await connect();sharedActive=true;let seed={environment:'SCENARIO TEST',tools:[]};await refreshAllItems();let tools=decodeSharedTools();if(items.length&&tools.length===0)throw new Error(`SHARED LOAD BLOCKED — ${items.length} List row(s) were found but none contained valid Tool Data. Local cards were retained.`);seed.tools=tools;lastSharedState=JSON.parse(JSON.stringify(seed));lastAutoSyncSignature=toolSignature(tools);lastSyncSuccess=Date.now();syncState='SYNCED';updateFooter('SCENARIO TEST');startPresence();if(window.B7ApplySharedScenario)window.B7ApplySharedScenario(seed);status(`PASS — Multi-User session restored automatically · ${tools.length} tool(s) loaded from Microsoft List.`,'ok')}else{syncState='PAUSED';updateFooter('SCENARIO TEST');status('SIGN-IN REQUIRED — Microsoft could not silently restore this session. Click the KLA logo to sign in.','err')}}else{updateFooter('PRODUCTION');if(account)status('Existing Microsoft sign-in detected. Local data remains active until Shared Multi-User is started.','ok')}}catch(e){syncState='ERROR';setModeIdentity('shared','offline');updateFooter('SCENARIO TEST');status('Authentication / shared restore warning — '+friendly(e),'err')}});
 })();

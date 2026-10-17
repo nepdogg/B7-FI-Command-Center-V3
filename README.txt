@@ -1,11 +1,28 @@
-B7 FI COMMAND CENTER V11.17.59 — CANONICAL LAYOUT TEST
+B7 FI COMMAND CENTER — V11.17.67 RECOVERY TEST
+Based on V11.17.66 Brain Responsive Pilot. TEST ONLY — back up production data first.
 
-Source: V11.17.58 user-uploaded package.
+CHANGES INCLUDED
+- Weekend Priority volunteers: clicking Add/Remove now captures all existing unsaved volunteer name/hours/notes fields before rebuilding rows, preventing previous entries from being cleared.
+- Visual recovery CSS: rounded individual section/badge styling, soft white outlines, removal of outer card-column boxes, smaller gaps and responsive padding.
+- Screenshot mode: additional suppression of screenshot exit button and common app chrome, plus print stylesheet.
+- Mystery reveal: celebration overlay fills viewport, with image sized to fit.
+- Existing Brain status and three independently rotating status panels are retained from V11.17.66.
 
-Changes: Removed V11.17.58 last stylesheet reference and replaced it with one targeted canonical stylesheet for normal Universal Tool Cards. Explicitly target the actual .c11-identity-column > .c11-badges > .c11-badge markup. Operational badges have 43px minimum row height, consistent grid row stretching, and no text clipping. Full-width System Wafer, Computer and Component rows have independent sizing. Photo height reduced to release space. Middle/right individual section outlines replaced by horizontal dividers. Three-column desktop layout; stacks only below 850 CSS pixels. Sticky header and normal document scrolling restored; footer remains in normal flow. Browser tab, application heading and startup launcher updated to V11.17.59.
+NOT VERIFIED / NOT CLAIMED FIXED
+- Priority persistence after a Microsoft List refresh, shared-list conflict resolution, throttling and VPN multi-user behavior.
+- Email export layout and Outlook integration.
+- Full responsiveness across all monitor sizes at 100% zoom.
+- All Administration, Shipping and Cycle Time controls.
+- Complete screenshot-only page-body selection for every route.
+- All historical regressions and functional paths.
 
-Preserved: existing application JS and Microsoft List code, presentation-mode styles, graph features and assets. This is not a verified fix for authentication or multi-user deletion.
+TEST PROCEDURE
+1. Back up production data and test with a disposable scenario first.
+2. Launch START-COMMAND-CENTER.bat and open the application at 100% zoom.
+3. Enter Saturday volunteer details, add a second volunteer, and confirm the first remains populated. Repeat for Sunday. Save and reload.
+4. Verify independent rounded sections, badges and column outlines in Live Operations and Tool Edit.
+5. Test screenshot mode (Esc exits) and full-screen mystery celebration.
+6. Test priority saving, reload, and second-device Microsoft List sync; treat failures as unresolved.
+7. Verify all controls before production use.
 
-CHECK: deploy entire ZIP to GitHub Pages, refresh Ctrl+Shift+R, verify badge size and card at 80/100/125/150% browser zoom; scroll to check sticky header. Test multi-user functions with disposable tools only.
-
-Verification: file references and JS syntax and ZIP integrity checked. Live browser visual parity and Microsoft List sync NOT VERIFIED. Keep existing production backup.
+This build is an incremental recovery package, not a certified all-issues-resolved release.
