@@ -1,11 +1,11 @@
-B7 FI COMMAND CENTER V11.17.69 – LAYOUT REBUILD TEST
+B7 FI COMMAND CENTER V11.17.70 — RESPONSIVE RECOVERY TEST
 
-This is an incremental update to the existing Command Center, not a fully verified production release.
+BASED ON: V11.17.69 (all existing application JavaScript and local data interfaces retained).
 
-Changes: unique build version in header and application; final-loaded layout stylesheet; three side-by-side status panels with wrapping messages; rounded section styling; no extra column outlines for matched card classes; improved volunteer row sizing; full-viewport mystery celebration overlay.
+CHANGED: Adds a final-loaded CSS recovery layer for three readable horizontal status panels, separate rounded tool-card bubbles, neutral idle badge treatment, status-accent borders, responsive 3-column sizing, and narrow-screen stacking.
 
-IMPORTANT: Priority save persistence, Microsoft List throttling and cross-user consistency, editor simplification, email and screenshot output, and shipping/cycle redesign are NOT verified as fixed in this build.
+NOT VERIFIED: Priority persistence, weekend volunteers, screenshot/email output, SharePoint/Microsoft List multi-user synchronization, and full visual parity across monitors. These require live browser and authenticated testing. This is a test build, NOT a validated production fix.
 
-DEPLOYMENT: Back up existing files and data. Extract the ZIP. Upload ALL extracted files and directories to the GitHub Pages repository root, preserving paths. Commit and wait for Pages deployment. Open the hosted page and verify the blue header reads V11.17.69 (NOT V11.17.66). Hard-refresh (Ctrl+Shift+R). If it still reads an older version, the new build is not being served. Do not test functionality against an old deployed version.
+INSTALL: Back up your data and original files first. Extract the ZIP into a NEW folder. Run START-COMMAND-CENTER.bat for local testing or deploy the extracted contents to a separate GitHub Pages test branch. Do not overwrite the production deployment.
 
-TEST: 1. Verify build header. 2. Check three status panels for message clipping. 3. Test Universal Tool Card at 100% browser zoom on laptop and external monitor. 4. Test full-screen mystery reveal. 5. Test weekend volunteer entries with multiple rows and reload. Do not use destructive admin controls with production data. Record browser resolution and screenshots for regressions.
+TEST: At 100% browser zoom, compare Operations/Shipping/Cycle Time on laptop and external monitor. Check status text, rounded cards, vertical clipping, and page overflow. Then test priorities save/reload, two successive volunteers, screenshot/email, and SharePoint reconnect with two clients. Report failed cases with screenshots.
