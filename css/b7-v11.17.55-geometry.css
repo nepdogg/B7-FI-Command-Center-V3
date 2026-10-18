@@ -1,0 +1,29 @@
+/* V11.17.55: single last-authority normal-page geometry contract. */
+@media screen {
+html body:not(.presentation-mode):not(.screenshot-mode){overflow-x:hidden!important;overflow-y:auto!important;height:auto!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{display:flex!important;flex-direction:column!important;min-height:100vh!important;height:auto!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell{position:sticky!important;top:0!important;z-index:20000!important;transform:none!important;overflow:visible!important;isolation:isolate;background:#041d2b!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .body-shell{height:auto!important;min-height:0!important;overflow:visible!important;flex:1 0 auto!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #app{height:auto!important;max-height:none!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-footer{position:relative!important;bottom:auto!important;flex:0 0 auto!important}
+/* Keep three columns at readable sizes; use page scrolling at high zoom. */
+html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-tool-card{height:auto!important;max-height:none!important;overflow:visible!important;width:100%!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-card-grid{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) minmax(0,1.2fr)!important;align-items:stretch!important;gap:4px!important;height:auto!important;max-height:none!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-column{min-width:0!important;min-height:0!important;height:auto!important;max-height:none!important;overflow:visible!important;box-sizing:border-box!important}
+/* No individual rectangular section frames. Dividers remain. */
+html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-status-column>.c11-status-card,
+html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-progress-column>.c11-progress-row{border:0!important;border-bottom:1px solid rgba(24,171,207,.55)!important;border-radius:0!important;outline:0!important;box-shadow:none!important;margin:0!important;min-height:0!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-status-column>.c11-status-card:last-child,
+html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-progress-column>.c11-progress-row:last-child{border-bottom:0!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-status-column{display:grid!important;grid-template-rows:repeat(6,minmax(90px,1fr))!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-progress-column{display:grid!important;grid-template-rows:repeat(9,minmax(72px,1fr))!important}
+/* Uniform badge grid: all badges in a row stretch to the tallest content. */
+html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-badges{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:none!important;grid-auto-rows:minmax(54px,auto)!important;gap:4px!important;height:auto!important;max-height:none!important;overflow:visible!important;align-content:start!important;align-items:stretch!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-badges>.c11-badge{display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;grid-row:auto!important;grid-column:auto!important;height:auto!important;min-height:54px!important;max-height:none!important;overflow:visible!important;white-space:normal!important;padding:6px 4px!important;box-sizing:border-box!important;line-height:1.2!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-badges>.c11-wafer-badge{grid-column:1/-1!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-badges>.equipment-badge{grid-column:1/-1!important;min-height:54px!important;height:auto!important;max-height:none!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-badges :is(span,strong,small,.badge-face-label,.badge-face-state){overflow:visible!important;white-space:normal!important;text-overflow:clip!important;overflow-wrap:anywhere!important;line-height:1.18!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-identity-column{height:auto!important;max-height:none!important;overflow:visible!important}
+/* At higher browser zoom, stack full-width columns instead of compressing or cutting content. */
+@media(max-width:1050px){html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-card-grid{grid-template-columns:minmax(0,1fr)!important}html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-status-column{grid-template-rows:none!important;grid-auto-rows:minmax(100px,auto)!important}html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-progress-column{grid-template-rows:none!important;grid-auto-rows:minmax(82px,auto)!important}}
+}

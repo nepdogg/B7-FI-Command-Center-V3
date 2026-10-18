@@ -1,0 +1,633 @@
+/* V11.17.15 — single scoped layout repair layer. Existing app functionality untouched. */
+:root{--b7-repair-gap:5px;--b7-repair-control-h:42px}
+html,body{max-width:100%;overflow-x:hidden}
+body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar{
+ display:flex!important;align-items:center!important;gap:6px!important;
+ width:100%!important;min-width:0!important;max-width:100%!important;
+ height:54px!important;min-height:54px!important;max-height:54px!important;
+ overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:thin!important;
+ padding:3px 5px!important;box-sizing:border-box!important
+}
+body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #subnav,
+body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #pageActions{
+ display:flex!important;flex-flow:row nowrap!important;align-items:center!important;
+ gap:5px!important;width:max-content!important;min-width:max-content!important;
+ max-width:none!important;height:46px!important;min-height:46px!important;
+ flex:0 0 auto!important;overflow:visible!important;margin:0!important;
+ padding:0!important;border:0!important;box-shadow:none!important
+}
+body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #pageActions{margin-left:auto!important}
+body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar button,
+body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar select,
+body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .tool-type-menu-button{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ flex:0 0 auto!important;width:auto!important;min-width:max-content!important;
+ max-width:none!important;min-height:var(--b7-repair-control-h)!important;
+ height:var(--b7-repair-control-h)!important;max-height:var(--b7-repair-control-h)!important;
+ padding:0 clamp(9px,.8vw,17px)!important;box-sizing:border-box!important;
+ font-size:clamp(10px,.73vw,13px)!important;line-height:1.2!important;
+ white-space:nowrap!important;overflow:visible!important;text-overflow:clip!important;
+ letter-spacing:0!important;margin:0!important
+}
+body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .nav69-live-controls,
+body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .nav69-live-actions,
+body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .nav69-control-group,
+body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .tool-type-menu{
+ display:flex!important;flex:0 0 auto!important;align-items:center!important;gap:5px!important;
+ width:max-content!important;min-width:max-content!important;max-width:none!important;
+ border:0!important;padding:0!important;margin:0!important
+}
+body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .nav69-mini{min-width:39px!important;padding:0 8px!important}
+body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .compact-carousel-pause{min-width:75px!important;flex-direction:column!important}
+/* Never force a 940px card on a smaller viewport. Use a stacked layout instead. */
+body:not(.presentation-mode):not(.screenshot-mode) #app .c11-card-grid{
+ display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1.26fr) minmax(0,1.12fr)!important;
+ min-width:0!important;max-width:100%!important;gap:5px!important
+}
+body:not(.presentation-mode):not(.screenshot-mode) #app .c11-card-grid>.c11-column{min-width:0!important}
+/* Keep geometry consistent regardless of badge content or image proportions. */
+body #app .c11-identity-column{display:grid!important;grid-template-rows:minmax(190px,1.4fr) auto 24px 24px minmax(0,2.9fr) 27px!important;min-width:0!important;min-height:0!important}
+body #app .c11-identity-column .c11-photo{height:100%!important;min-height:0!important;overflow:hidden!important}
+body #app .c11-identity-column .c11-photo img{width:100%!important;height:100%!important;object-fit:contain!important}
+body #app .c11-badges{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:repeat(12,minmax(0,1fr))!important;grid-auto-flow:row!important;gap:3px!important;min-width:0!important;min-height:0!important}
+body #app .c11-badges>.c11-badge{min-width:0!important;min-height:0!important;margin:0!important;box-sizing:border-box!important}
+body #app .c11-badges>.c11-wafer-badge,body #app .c11-badges>.equipment-badge{grid-column:1/-1!important;grid-row:auto!important;width:100%!important;max-width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;margin:0!important}
+body #app .c11-badges>.equipment-badge{display:grid!important;grid-template-columns:minmax(0,39%) minmax(0,61%)!important;align-items:center!important;gap:3px!important;overflow:hidden!important}
+body #app .c11-badges>.equipment-badge small{font-size:clamp(8px,.65vw,11px)!important;overflow-wrap:anywhere!important;line-height:1.1!important}
+body #app .c11-progress-column .c11-progress-track{height:16px!important;min-height:16px!important;max-height:16px!important;border-radius:10px!important}
+/* Compact Tools Center: three cards on wide monitors, two on laptops, one on narrow screens. */
+body[data-center="operations"][data-sub="tools"] #app .v1014-tools-page{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important}
+@media(max-width:1450px){body[data-center="operations"][data-sub="tools"] #app .v1014-tools-page{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:950px){
+ body[data-center="operations"][data-sub="tools"] #app .v1014-tools-page{grid-template-columns:minmax(0,1fr)!important}
+ body:not(.presentation-mode):not(.screenshot-mode) #app .c11-tool-card{overflow:visible!important}
+ body:not(.presentation-mode):not(.screenshot-mode) #app .c11-card-grid{grid-template-columns:minmax(0,1fr)!important;min-width:0!important}
+ body:not(.presentation-mode):not(.screenshot-mode) #app .c11-identity-column{grid-template-rows:240px auto 24px 24px auto 27px!important}
+ body:not(.presentation-mode):not(.screenshot-mode) #app .c11-badges{grid-template-rows:repeat(12,minmax(28px,auto))!important}
+}
+/* Keep popup menus above sticky navigation and do not hide their options. */
+body #stickyShell .tool-type-menu{position:relative!important}
+body #stickyShell .tool-type-dropdown{z-index:100000!important}
+
+/* V11.17.16: equipment badges also carry .c11-badge, so an older
+   .c11-badge:not(.c11-wafer-badge) selector was overriding the full-row rule.
+   Override that exact conflict in both Live Operations and Presentation Mode. */
+html body #app .c11-badges > .c11-badge.equipment-badge:not(.c11-wafer-badge){
+  grid-column:1 / -1!important;
+  grid-row:auto / span 1!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  min-height:0!important;
+  height:100%!important;
+  margin:0!important;
+  padding:1px 7px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,40%) minmax(0,60%)!important;
+  grid-template-rows:minmax(0,1fr)!important;
+  align-items:center!important;
+  justify-items:stretch!important;
+  gap:5px!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+  white-space:normal!important;
+}
+html body #app .c11-badges > .c11-badge.equipment-badge:not(.c11-wafer-badge) strong{
+  min-width:0!important;text-align:center!important;line-height:1.1!important;
+}
+html body #app .c11-badges > .c11-badge.equipment-badge:not(.c11-wafer-badge) small{
+  min-width:0!important;text-align:center!important;overflow-wrap:normal!important;
+  word-break:normal!important;line-height:1.1!important;
+}
+html body #app .c11-badges > .c11-badge.equipment-badge:not(.c11-wafer-badge) em{display:none!important}
+
+
+/* V11.17.17: definitive geometry + navigation owner.  No data logic changed. */
+/* Content-sized controls: never use inherited equal fraction widths. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar{
+ display:flex!important; flex-flow:row nowrap!important; align-items:center!important;
+ justify-content:flex-start!important; gap:8px!important;
+ width:100%!important; min-width:0!important; overflow-x:auto!important;
+ overflow-y:hidden!important; padding:4px 8px!important; height:58px!important;
+ min-height:58px!important;max-height:58px!important;scrollbar-width:thin!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #subnav,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #pageActions{
+ display:flex!important; flex:0 0 max-content!important; flex-flow:row nowrap!important;
+ align-items:center!important;justify-content:flex-start!important;
+ width:max-content!important;min-width:max-content!important;max-width:none!important;
+ grid-template-columns:none!important;grid-template-rows:none!important;
+ height:46px!important;min-height:46px!important;max-height:46px!important;
+ overflow:visible!important;border:0!important;border-left:0!important;
+ margin:0!important;padding:0!important;gap:6px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #pageActions{margin-left:auto!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #subnav > *,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #pageActions > *,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .nav69-live-controls,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .nav69-live-actions,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .nav69-control-group{
+ flex:0 0 auto!important;width:max-content!important;min-width:max-content!important;
+ max-width:none!important;display:flex!important;align-items:center!important;
+ gap:5px!important;grid-template-columns:none!important;grid-template-rows:none!important;
+ margin:0!important;padding:0!important;border:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar button,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar select,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .tool-type-menu-button{
+ flex:0 0 auto!important;width:max-content!important;min-width:max-content!important;
+ max-width:none!important;box-sizing:border-box!important;
+ height:44px!important;min-height:44px!important;max-height:44px!important;
+ padding:0 14px!important;line-height:1.2!important;
+ font-size:clamp(11px,.75vw,14px)!important;white-space:nowrap!important;
+ text-overflow:clip!important;overflow:visible!important;letter-spacing:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .nav69-mini{padding:0 10px!important;min-width:42px!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar .compact-carousel-pause{min-width:80px!important;flex-direction:column!important}
+/* The live tool card is fixed-height at a given viewport: tool data cannot resize its sections. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-card-grid{
+ display:grid!important;grid-template-columns:minmax(0,29%) minmax(0,38%) minmax(0,33%)!important;
+ grid-template-rows:minmax(0,1fr)!important;align-items:stretch!important;
+ height:870px!important;min-height:870px!important;max-height:870px!important;
+ width:100%!important;gap:5px!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-identity-column{
+ display:grid!important;grid-template-rows:250px 128px 24px 24px minmax(0,1fr) 32px!important;
+ height:100%!important;min-height:0!important;max-height:100%!important;
+ gap:4px!important;overflow:hidden!important;align-self:stretch!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-photo{
+ height:250px!important;min-height:250px!important;max-height:250px!important;
+ overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-photo img{
+ display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-identity-stack{
+ min-height:0!important;max-height:128px!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-status-column{
+ display:grid!important;grid-template-rows:repeat(6,minmax(0,1fr))!important;
+ height:100%!important;min-height:0!important;max-height:100%!important;gap:5px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-status-card{
+ min-height:0!important;max-height:100%!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-progress-column{
+ display:grid!important;grid-template-rows:repeat(9,minmax(0,1fr))!important;
+ height:100%!important;min-height:0!important;max-height:100%!important;gap:5px!important;
+}
+html body #app .c11-progress-column .c11-progress-track{
+ height:20px!important;min-height:20px!important;max-height:20px!important;
+ border-radius:10px!important;flex-shrink:0!important;
+}
+/* 27 standard badges in 3 columns, then three separate full-width tracking badges. */
+html body #app .c11-identity-column .c11-badges{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ grid-template-rows:repeat(12,minmax(0,1fr))!important;grid-auto-flow:row!important;
+ gap:3px!important;min-height:0!important;height:100%!important;overflow:hidden!important;
+}
+html body #app .c11-identity-column .c11-badges > .equipment-badge.c11-wafer-badge{
+ grid-column:1/-1!important;grid-row:auto!important;display:grid!important;
+ grid-template-columns:minmax(0,40%) minmax(0,60%)!important;
+ align-items:center!important;width:100%!important;max-width:100%!important;
+ min-height:0!important;height:100%!important;gap:3px!important;
+ padding:1px 6px!important;overflow:hidden!important;white-space:normal!important;
+}
+html body #app .c11-identity-column .c11-badges > .equipment-badge.c11-wafer-badge strong,
+html body #app .c11-identity-column .c11-badges > .equipment-badge.c11-wafer-badge small{
+ font-size:clamp(8px,.65vw,11px)!important;line-height:1.05!important;
+ text-align:center!important;min-width:0!important;overflow-wrap:anywhere!important;
+}
+html body #app .c11-identity-column .c11-badges > .equipment-badge.c11-wafer-badge em{display:none!important}
+/* On small monitors keep every field usable instead of squeezing three columns into unreadable slivers. */
+@media(max-width:1050px){
+ html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-card-grid{
+  grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto auto auto!important;
+  height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;
+ }
+ html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-identity-column{
+  height:870px!important;min-height:870px!important;max-height:870px!important;
+ }
+ html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-status-column{height:660px!important;min-height:660px!important}
+ html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-progress-column{height:750px!important;min-height:750px!important}
+}
+
+
+/* V11.17.18: Main-navigation-style page tabs. One owner at end of cascade.
+   Five page tabs are equal-width and never overlap. Action buttons are
+   intrinsic width and remain visually separate from page tabs. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar {
+  display:grid!important; grid-template-columns:minmax(0,1fr) max-content!important;
+  grid-template-rows:48px!important; align-items:center!important;
+  gap:8px!important; width:100%!important; min-width:0!important;
+  height:52px!important; min-height:52px!important; max-height:52px!important;
+  padding:2px 4px!important; margin:0!important; box-sizing:border-box!important;
+  overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #subnav {
+  display:grid!important; grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  grid-template-rows:44px!important; flex:none!important;
+  gap:6px!important; width:100%!important; min-width:0!important;
+  max-width:100%!important; height:44px!important; min-height:44px!important;
+  max-height:44px!important; margin:0!important; padding:0!important;
+  overflow:visible!important; border:0!important; box-shadow:none!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #subnav > button {
+  display:flex!important; justify-content:center!important; align-items:center!important;
+  flex:none!important; width:100%!important; min-width:0!important; max-width:100%!important;
+  height:44px!important; min-height:44px!important; max-height:44px!important;
+  margin:0!important; padding:0 8px!important; box-sizing:border-box!important;
+  border:1px solid #0d92c0!important; border-radius:8px!important;
+  font-size:clamp(8px,.73vw,12px)!important; line-height:1.15!important;
+  font-weight:900!important; white-space:nowrap!important;
+  overflow:hidden!important; text-overflow:clip!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #pageActions {
+  display:flex!important; flex:none!important; flex-flow:row nowrap!important;
+  align-items:center!important; justify-content:flex-end!important;
+  gap:6px!important; width:max-content!important; min-width:max-content!important;
+  max-width:none!important; height:44px!important; min-height:44px!important;
+  max-height:44px!important; margin:0!important; padding:0!important;
+  border:0!important; box-shadow:none!important; overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #pageActions > button,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #pageActions .nav69-live-actions > button,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #pageActions .nav69-control-group > button,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #pageActions .tool-type-menu-button {
+  display:flex!important; align-items:center!important; justify-content:center!important;
+  flex:none!important; width:max-content!important; min-width:max-content!important;
+  max-width:none!important; height:44px!important; min-height:44px!important;
+  max-height:44px!important; padding:0 12px!important; margin:0!important;
+  box-sizing:border-box!important; border:1px solid #0d92c0!important;
+  border-radius:8px!important; font-size:clamp(10px,.73vw,12px)!important;
+  font-weight:900!important; white-space:nowrap!important; overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #pageActions .nav69-live-controls,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #pageActions .nav69-control-group,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #pageActions .nav69-live-actions {
+  display:flex!important; flex:none!important; flex-flow:row nowrap!important;
+  align-items:center!important; gap:5px!important; width:max-content!important;
+  min-width:max-content!important; max-width:none!important;
+  height:44px!important; margin:0!important; padding:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #pageActions .nav69-mini {
+  min-width:40px!important; padding:0 8px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #pageActions .compact-carousel-pause {
+  min-width:76px!important; flex-direction:column!important;
+}
+/* Keep the exact same one-row arrangement on laptops; if it cannot fit,
+   scroll the whole pagebar rather than shrink buttons into one another. */
+@media(max-width:1450px) {
+ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar {
+   display:flex!important; flex-flow:row nowrap!important;
+   overflow-x:auto!important; overflow-y:hidden!important; scrollbar-width:thin!important;
+ }
+ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #subnav {
+   flex:0 0 710px!important; width:710px!important; min-width:710px!important;
+   max-width:710px!important;
+ }
+ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .pagebar #pageActions {
+   flex:0 0 auto!important; margin-left:auto!important;
+ }
+}
+
+
+/* V11.17.20 HEADER ONLY — keep navigation and tool cards unchanged.
+   Two visible user slots to the LEFT and two to the RIGHT of a larger KLA core. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header {
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(440px,39%) minmax(0,1fr)!important;
+  gap:3px!important;
+  column-gap:3px!important;
+  width:100%!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center {
+  min-width:0!important;
+  padding:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center .kla-presence-box {
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(165px,1.35fr) minmax(0,1fr)!important;
+  gap:4px!important;
+  padding:2px!important;
+  height:100%!important;
+  min-width:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center .kla-user-side {
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:repeat(2,minmax(0,1fr))!important;
+  gap:4px!important;
+  height:100%!important;
+  min-height:0!important;
+  min-width:0!important;
+  overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center .kla-user-side>.kla-presence-badge {
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  height:100%!important;
+  min-height:0!important;
+  width:100%!important;
+  padding:2px 5px!important;
+  box-sizing:border-box!important;
+  font-size:clamp(8px,.62vw,11px)!important;
+  white-space:nowrap!important;
+  text-overflow:ellipsis!important;
+  overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center .kla-connection-core {
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:2px!important;
+  min-width:0!important;
+  height:100%!important;
+  padding:3px 5px!important;
+  box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center .kla-connection-core img {
+  display:block!important;
+  width:auto!important;
+  height:auto!important;
+  max-height:45px!important;
+  max-width:min(92%,210px)!important;
+  object-fit:contain!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center .kla-connection-copy {
+  flex:0 0 auto!important;
+  min-width:0!important;
+  max-width:100%!important;
+}
+@media(max-width:1050px) {
+  html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header {
+    grid-template-columns:minmax(0,1fr) minmax(300px,42%) minmax(0,1fr)!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center .kla-presence-box {
+    grid-template-columns:minmax(0,1fr) minmax(120px,1.35fr) minmax(0,1fr)!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center .kla-connection-core img {
+    max-height:38px!important;
+  }
+}
+
+/* V11.17.21: minimize header gaps and prevent title truncation. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header{
+ grid-template-columns:minmax(0,1.05fr) minmax(0,1.1fr) minmax(0,1.05fr)!important;
+ gap:1px!important;column-gap:1px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header > *{
+ min-width:0!important;margin-inline:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header > :first-child,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header > :last-child{
+ font-size:clamp(11px,1.45vw,28px)!important;
+ white-space:nowrap!important;letter-spacing:0!important;
+ padding-inline:clamp(4px,.65vw,12px)!important;
+ overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header-center .kla-presence-box{
+ grid-template-columns:minmax(0,1fr) minmax(0,1.45fr) minmax(0,1fr)!important;
+}
+/* Live Operations badges match the three-column Tools page badges. */
+html body #app .c11-identity-column .c11-badges>.equipment-badge,
+html body.presentation-mode #app .c11-identity-column .c11-badges>.equipment-badge{
+ grid-column:1 / -1!important; width:100%!important;min-width:0!important;
+ display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1.7fr)!important;
+ align-items:center!important;gap:5px!important;
+}
+html body #app .c11-identity-column .c11-badges>.equipment-badge strong,
+html body #app .c11-identity-column .c11-badges>.equipment-badge small{
+ min-width:0!important;max-width:100%!important;overflow:hidden!important;
+ text-overflow:ellipsis!important;white-space:nowrap!important;
+}
+
+/* V11.17.22 — Header text must remain visible without changing other navigation. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header{
+ display:grid!important;grid-template-columns:minmax(0,1.1fr) minmax(0,1.08fr) minmax(0,1.1fr)!important;
+ gap:0!important;column-gap:0!important;width:100%!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header > *{
+ margin:0!important;min-width:0!important;box-sizing:border-box!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header > :first-child,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .prototype-header > :last-child{
+ font-size:clamp(10px,1.27vw,26px)!important;letter-spacing:-.025em!important;
+ padding-inline:clamp(3px,.5vw,10px)!important;
+ white-space:nowrap!important;text-overflow:clip!important;
+}
+/* Badge row geometry is identical in all 3-column tool cards. */
+html body #app .c11-badges{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:3px!important;min-width:0!important;}
+html body #app .c11-badges > .equipment-badge,
+html body #app .c11-badges > .c11-wafer-badge{
+ grid-column:1/-1!important;grid-row:auto!important;display:grid!important;
+ grid-template-columns:minmax(0,36%) minmax(0,64%)!important;
+ width:100%!important;max-width:100%!important;min-width:0!important;
+ padding:1px 5px!important;box-sizing:border-box!important;overflow:hidden!important;
+}
+html body #app .c11-badges > .equipment-badge strong,
+html body #app .c11-badges > .equipment-badge small{
+ min-width:0!important;max-width:100%!important;overflow:hidden!important;
+ white-space:nowrap!important;text-overflow:ellipsis!important;
+ font-size:clamp(7px,.64vw,11px)!important;line-height:1.1!important;
+}
+html body #app .c11-badges > .equipment-badge em{display:none!important;}
+html body #app .c11-badges > .c11-badge:not(.c11-wafer-badge){min-width:0!important;max-width:100%!important;}
+/* Full badge editing panel: do not crop modal buttons on narrow screens. */
+html body .badge-quick-edit{min-width:0!important;max-width:100%!important;}
+html body .badge-quick-edit select{max-width:100%!important;width:100%!important;}
+
+/* V11.17.23: preserve all 27 standard badges (including POD) plus three
+   full-width tracking rows. Grid cells must not clip labels or disappear. */
+html body #app .c11-identity-column .c11-badges {
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-template-rows:repeat(12,minmax(0,1fr))!important;
+  grid-auto-rows:minmax(0,1fr)!important;
+  grid-auto-flow:row!important;
+  gap:3px!important;
+  padding:0!important;
+  min-width:0!important;
+  box-sizing:border-box!important;
+}
+html body #app .c11-identity-column .c11-badges>.c11-badge:not(.c11-wafer-badge):not(.equipment-badge) {
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  line-height:1.1!important;
+  padding:1px 3px!important;
+  min-width:0!important;
+  min-height:0!important;
+  overflow:hidden!important;
+  box-sizing:border-box!important;
+}
+html body #app .c11-identity-column .c11-badges>.c11-wafer-badge,
+html body #app .c11-identity-column .c11-badges>.equipment-badge {
+  grid-column:1/-1!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  box-sizing:border-box!important;
+}
+html body #app .c11-identity-column .c11-badges>.c11-wafer-badge {
+  display:grid!important;
+  grid-template-columns:minmax(0,42%) minmax(0,58%)!important;
+  align-items:center!important;
+  gap:4px!important;
+  padding:1px 6px!important;
+}
+html body #app .c11-identity-column .c11-badges>.c11-wafer-badge span,
+html body #app .c11-identity-column .c11-badges>.c11-wafer-badge small {
+  min-width:0!important;
+  text-align:center!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  line-height:1.1!important;
+}
+
+/* V11.17.24: consistent two-line badge state in all card views. */
+.fleet-badges .v10-badge:not(.v10-wafer-badge),
+.c11-badge:not(.c11-wafer-badge){display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;gap:2px!important;min-width:0!important;min-height:36px!important;height:auto!important;padding:3px 5px!important;white-space:normal!important;overflow:hidden!important;box-sizing:border-box!important;text-align:center!important;}
+.fleet-badges .badge-face-label,.c11-badge .badge-face-label{display:block;font-size:clamp(8px,.65vw,12px);font-weight:900;line-height:1.12;max-width:100%;overflow-wrap:anywhere;}
+.fleet-badges .badge-face-state,.c11-badge .badge-face-state{display:block;font-size:clamp(7px,.54vw,10px);font-weight:700;line-height:1.1;color:inherit;opacity:.95;max-width:100%;overflow-wrap:anywhere;}
+#modal:not(.hidden){z-index:2147483647!important;pointer-events:auto!important;}
+#modal:not(.hidden) .modal-card{pointer-events:auto!important;}
+
+/* V11.17.25 — single, content-safe two-line badge geometry.
+   The previous 12 equal fractional rows were shorter than their two-line contents.
+   The live card therefore reserves 12 fixed rows, while presentation retains
+   its one-screen geometry and uses compact readable text. */
+html body #app .c11-identity-column .c11-badges {
+  display:grid!important; grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-template-rows:repeat(12,minmax(0,1fr))!important;
+  grid-auto-flow:row!important; gap:4px!important; min-width:0!important;
+  min-height:0!important; overflow:hidden!important; box-sizing:border-box!important;
+}
+html body #app .c11-identity-column .c11-badges > .c11-badge:not(.c11-wafer-badge):not(.equipment-badge){
+  display:flex!important; flex-direction:column!important; align-items:center!important;
+  justify-content:center!important; gap:2px!important; padding:2px 4px!important;
+  height:100%!important; min-height:0!important; max-height:100%!important;
+  overflow:hidden!important; box-sizing:border-box!important; white-space:normal!important;
+}
+html body #app .c11-identity-column .c11-badges .badge-face-label,
+html body #app .c11-identity-column .c11-badges .badge-face-state{
+  display:block!important; flex:0 1 auto!important; width:100%!important;
+  text-align:center!important; overflow-wrap:normal!important; word-break:normal!important;
+  white-space:normal!important; min-width:0!important; max-width:100%!important;
+  overflow:hidden!important; text-overflow:clip!important;
+}
+html body #app .c11-identity-column .c11-badges .badge-face-label{
+  font-size:clamp(8px,.64vw,11px)!important; line-height:1.12!important; font-weight:900!important;
+}
+html body #app .c11-identity-column .c11-badges .badge-face-state{
+  font-size:clamp(7px,.57vw,10px)!important; line-height:1.12!important; font-weight:700!important;
+}
+html body #app .c11-identity-column .c11-badges > .c11-wafer-badge,
+html body #app .c11-identity-column .c11-badges > .equipment-badge {
+  grid-column:1/-1!important; grid-row:auto!important; width:100%!important;
+  height:100%!important; min-height:0!important; max-height:100%!important;
+  padding:2px 7px!important; margin:0!important; box-sizing:border-box!important;
+  display:grid!important; grid-template-columns:minmax(0,36%) minmax(0,64%)!important;
+  align-items:center!important; gap:4px!important; overflow:hidden!important;
+}
+html body #app .c11-identity-column .c11-badges > .equipment-badge strong,
+html body #app .c11-identity-column .c11-badges > .equipment-badge small {
+  font-size:clamp(8px,.63vw,11px)!important; line-height:1.13!important;
+  white-space:normal!important; overflow-wrap:normal!important; word-break:normal!important;
+  text-align:center!important; overflow:hidden!important;
+}
+/* Fixed live card geometry, with sufficient physical space for 12 two-line rows.
+   Keep the photo, identity, status, and progress sections identical between tools. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-card-grid{
+  height:1080px!important; min-height:1080px!important; max-height:1080px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-identity-column{
+  grid-template-rows:250px 128px 24px 24px minmax(0,1fr) 32px!important;
+}
+/* Presentation card is intentionally still a one-screen card.
+   Only the badge internals change; no resizing of the card sections. */
+html body.presentation-mode #app .c11-identity-column .c11-badges{gap:2px!important;}
+html body.presentation-mode #app .c11-identity-column .c11-badges > .c11-badge:not(.c11-wafer-badge):not(.equipment-badge){gap:0!important;padding:1px 2px!important;}
+html body.presentation-mode #app .c11-identity-column .c11-badges .badge-face-label{font-size:clamp(7px,.57vw,10px)!important;line-height:1.05!important;}
+html body.presentation-mode #app .c11-identity-column .c11-badges .badge-face-state{font-size:clamp(6px,.48vw,9px)!important;line-height:1.05!important;}
+/* At laptop widths, stack the full card without clipping its badges. */
+@media(max-width:1050px){
+ html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-identity-column{
+   height:1080px!important;min-height:1080px!important;max-height:1080px!important;
+ }
+}
+/* Tools Center uses the same badge content/spacing, but can grow vertically. */
+html body[data-center="operations"][data-sub="tools"] #app .fleet-badges{
+  grid-auto-rows:minmax(46px,auto)!important;gap:4px!important;overflow:visible!important;
+}
+html body[data-center="operations"][data-sub="tools"] #app .fleet-badges .v10-badge:not(.v10-wafer-badge):not(.equipment-badge){
+  min-height:46px!important;height:auto!important;overflow:visible!important;
+  padding:4px 3px!important;gap:2px!important;
+}
+html body[data-center="operations"][data-sub="tools"] #app .fleet-badges .badge-face-label{font-size:clamp(9px,.69vw,12px)!important;line-height:1.1!important;}
+html body[data-center="operations"][data-sub="tools"] #app .fleet-badges .badge-face-state{font-size:clamp(8px,.6vw,11px)!important;line-height:1.1!important;}
+
+/* V11.17.26 — fixed-size, two-line badge rows; no content-driven shrinking.
+   Applies after earlier badge geometry rules to resolve competing overrides. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-card-grid {
+ height:1160px!important;min-height:1160px!important;max-height:1160px!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-identity-column {
+ grid-template-rows:250px 128px 24px 24px minmax(0,1fr) 32px!important;
+}
+html body #app .c11-identity-column .c11-badges {
+ grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ grid-template-rows:repeat(12,minmax(48px,1fr))!important;
+ grid-auto-rows:minmax(48px,1fr)!important;
+ gap:4px!important;align-content:stretch!important;
+}
+html body #app .c11-identity-column .c11-badges > .c11-badge:not(.c11-wafer-badge):not(.equipment-badge) {
+ min-height:48px!important;height:100%!important;max-height:none!important;
+ padding:5px 5px!important;gap:3px!important;
+ overflow:visible!important;line-height:normal!important;
+}
+html body #app .c11-identity-column .c11-badges .badge-face-label {
+ font-size:clamp(9px,.68vw,12px)!important;line-height:1.15!important;
+ overflow:visible!important;white-space:normal!important;
+}
+html body #app .c11-identity-column .c11-badges .badge-face-state {
+ font-size:clamp(8px,.59vw,11px)!important;line-height:1.17!important;
+ overflow:visible!important;white-space:normal!important;
+}
+html body #app .c11-identity-column .c11-badges > .c11-wafer-badge,
+html body #app .c11-identity-column .c11-badges > .equipment-badge {
+ min-height:48px!important;max-height:none!important;overflow:hidden!important;
+}
+/* Keep presentation as a single screen, but allocate equal rows within its available height. */
+html body.presentation-mode #app .c11-identity-column .c11-badges {
+ grid-template-rows:repeat(12,minmax(0,1fr))!important;
+ grid-auto-rows:minmax(0,1fr)!important;gap:2px!important;
+}
+html body.presentation-mode #app .c11-identity-column .c11-badges > .c11-badge {
+ min-height:0!important;max-height:100%!important;overflow:hidden!important;
+}
+html body.presentation-mode #app .c11-identity-column .c11-badges .badge-face-label {
+ font-size:clamp(7px,.57vw,10px)!important;line-height:1.06!important;
+}
+html body.presentation-mode #app .c11-identity-column .c11-badges .badge-face-state {
+ font-size:clamp(6px,.48vw,9px)!important;line-height:1.06!important;
+}
+/* Compact Tools page: all 27 standard badges get equal, readable two-line rows. */
+html body[data-center="operations"][data-sub="tools"] #app .fleet-badges {
+ grid-auto-rows:minmax(48px,auto)!important;gap:4px!important;
+}
+html body[data-center="operations"][data-sub="tools"] #app .fleet-badges .v10-badge:not(.v10-wafer-badge):not(.equipment-badge) {
+ min-height:48px!important;padding:5px 4px!important;overflow:visible!important;
+}
+@media(max-width:1050px) {
+ html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-identity-column {
+  height:1160px!important;min-height:1160px!important;max-height:1160px!important;
+ }
+}

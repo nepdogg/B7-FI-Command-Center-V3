@@ -1,0 +1,20 @@
+/* V11.17.66 – Option A neutral visual pilot, safe visual overrides only. */
+:root{--b7-neutral-edge:#a9bbca;--b7-normal:#4ade80;--b7-attention:#facc15;--b7-behind:#fb923c;--b7-critical:#fb5b68}
+/* Keep normal status panels neutral with a small healthy indicator. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .status-stack{gap:7px!important;grid-template-rows:minmax(74px,9dvh)!important;height:clamp(74px,9dvh,92px)!important;min-height:0!important;max-height:92px!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .status-stack>.status-bar{height:100%!important;min-height:0!important;max-height:none!important;padding:6px 10px!important;background:#162638!important;border:1px solid var(--b7-neutral-edge)!important;border-radius:12px!important;box-shadow:none!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .status-stack>.status-bar:not(.critical):not(.warning):not(.attention) .status-left:before{content:'';display:inline-block;flex:none;width:10px;height:10px;border-radius:50%;background:var(--b7-normal);box-shadow:0 0 5px #4ade8055}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .status-stack>.status-bar.critical{border:2px solid var(--b7-critical)!important;box-shadow:0 0 10px #fb5b6860!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .status-stack>.status-bar.warning,html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .status-stack>.status-bar.attention{border:2px solid var(--b7-attention)!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .status-bar .status-message{font-size:clamp(12px,1vw,18px)!important;line-height:1.25!important;overflow-wrap:anywhere!important}
+/* Maintain rounded elements and distinguish focus without flooding the whole card with color. */
+.c11-tool-statusbar,[class*="c11-"][class*="section"],[class*="c11-"][class*="panel"],.tool-badge,.badge,[class*="badge-item"]{border-radius:10px!important}
+/* The shell should not impose desktop-sized minimum widths on narrower viewports. */
+.app-frame,.body-shell,.body-workspace,#app{max-width:100%!important;min-width:0!important;box-sizing:border-box!important}
+#stickyShell .main-nav,#stickyShell .pagebar{max-width:100%!important;min-width:0!important}
+/* Shorter monitor: reclaim height from chrome while keeping usable type. */
+@media(max-height:850px){html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .status-stack{height:74px!important;grid-template-rows:74px!important}html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .status-stack>.status-bar{height:74px!important}html body:not(.presentation-mode):not(.screenshot-mode) .prototype-header{min-height:42px!important}}
+@media(max-width:1100px){html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .status-stack{gap:4px!important}html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .status-stack>.status-bar{padding:5px 6px!important}html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .status-bar .status-label strong{font-size:12px!important}html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .status-bar .status-message{font-size:12px!important}}
+/* A failed connection must never show a healthy-green state. */
+#headerModeCenter.shared-error .kla-user-side,#headerModeCenter.shared-disconnected .kla-user-side{border-color:var(--b7-critical)!important}
+#headerModeCenter.shared-paused .kla-user-side{border-color:var(--b7-attention)!important}

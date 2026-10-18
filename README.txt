@@ -1,20 +1,13 @@
-B7 FI COMMAND CENTER V13.2 — FUNCTIONAL RECOVERY TEST
+B7 FI COMMAND CENTER — LEGACY FEATURE RESTORATION BASELINE (TEST ONLY)
 
-This is an isolated local rebuild, NOT a production replacement.
+This is a preserved V11.17.70 codebase, NOT a fully repaired V13 and NOT a production-ready build.
 
-Changes from V13.1:
-- Added tool-edit controls for all operational badge states and system wafer kit status.
-- Saved badge states now take precedence over inherited/default status strings on Universal Tool Cards.
-- Local save now verifies that the entire saved JSON matches the in-memory data, not just that a tools array exists.
-- Improved responsive layout at intermediate viewport widths and browser zoom levels; avoids clipping badge contents.
-- Retains V13.1 equal-width tool columns, dynamic status bars, and single page navigation row.
+WHY THIS PACKAGE: V13 removed many pre-V13 workflows. This package retains the older app.js, multiuser-test.js, Microsoft authentication library reference, operational pages, Brain logic and related CSS. The original README is retained below as README-ORIGINAL.txt.
 
-Existing features: local tool editing, priority saving, weekend volunteer entries, shipping handoffs, quarter summary, actions, meetings, search, JSON export/import, print, and local diagnostics.
+MULTIUSER: Code is present, but Microsoft List connectivity, authentication, list permissions, conflict handling, and concurrent edits have NOT been verified. Microsoft authentication requires tenant configuration and network access. Do not treat a sign-in badge as proof of connectivity.
 
-KNOWN NOT IMPLEMENTED OR UNVERIFIED:
-- Microsoft List multi-user synchronization is NOT connected. Do not use for live multi-user production.
-- Full legacy business rules, 28-badge parity, archive automation, all computer/component provenance workflows, and interactive mystery box reveal are NOT restored.
-- Real browser zoom regression testing and enterprise login/sync verification have not been completed.
-- All data is isolated in the V13 browser localStorage key. Export a JSON backup before importing or modifying test records.
+SAFETY: Back up the current site and Microsoft List before any deployment. Use a separate test URL/folder. Do not reset lists, run shared scenarios, or write real production data during testing.
 
-TEST: Extract ZIP; open index.html; edit a tool, change a badge, save; reopen tool and verify badge; reload and verify again. Test priority, volunteer, and shipping edits. Test at 100%, 125%, and 80% browser zoom. Report functional failures separately from unimplemented features.
+REQUIRED BEFORE PRODUCTION: Authenticated multiuser read/write testing on two machines; tool edit save/refresh; priority save/refresh; volunteer row retention; screenshot/report; status, shipping, cycle, quarter, and archive workflows; viewport zoom checks.
+
+This package does NOT claim to fix the previously reported bugs. It is a recoverable, full-feature source baseline for properly rebuilding V13 without deleting features.

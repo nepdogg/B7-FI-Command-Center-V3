@@ -1,0 +1,15 @@
+/* V11.17.41: restore normal document flow. The sticky shell already occupies layout space. */
+html,body{min-height:100%;}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell{position:sticky!important;top:0!important;margin:0!important;transform:none!important;}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.body-shell,
+html body:not(.presentation-mode):not(.screenshot-mode) .body-shell{margin-top:0!important;padding-top:8px!important;top:auto!important;transform:none!important;min-height:0!important;}
+html body:not(.presentation-mode):not(.screenshot-mode) #app{margin-top:0!important;top:auto!important;transform:none!important;}
+/* Avoid fixed canvas scaling when the viewport changes. */
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{width:100%!important;max-width:100%!important;min-width:0!important;transform:none!important;zoom:1!important;}
+/* Let the content define the card's natural height. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-card-grid{height:auto!important;min-height:0!important;max-height:none!important;align-items:stretch!important;}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-identity-column{height:auto!important;min-height:0!important;max-height:none!important;}
+html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-badges .badge-face-label,
+html body:not(.presentation-mode):not(.screenshot-mode) #app .fleet-badges .badge-face-label{font-size:clamp(9px,.72vw,12px)!important;}
+/* At narrow viewports, avoid columns crushing each other. */
+@media(max-width:1050px){html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-card-grid{grid-template-columns:minmax(0,1fr)!important;gap:8px!important;}}

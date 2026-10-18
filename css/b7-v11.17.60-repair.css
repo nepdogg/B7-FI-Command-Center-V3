@@ -1,0 +1,8 @@
+/* V11.17.60: bounded layout corrections; do not modify tool data or shared list. */
+#stickyShell,.sticky-shell{position:sticky!important;top:0!important;z-index:900!important}
+.body-shell,.body-workspace{min-height:0;overflow:visible!important}
+/* Retain readable text at browser zoom rather than clipping it. */
+.badge-grid,.badges-grid,[class*="badge-grid"]{grid-auto-rows:minmax(0,auto)!important}
+.badge-grid > *, .badges-grid > *{min-height:0!important;overflow:visible!important}
+/* Columns are equal-width whenever the universal card uses a three-column grid. */
+.universal-tool-card .tool-card-columns,.universal-tool-card .utc-columns,.universal-tool-card .card-columns{grid-template-columns:repeat(3,minmax(0,1fr))!important;align-items:stretch!important}
