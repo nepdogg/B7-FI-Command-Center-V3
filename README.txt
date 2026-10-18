@@ -1,19 +1,20 @@
-B7 FI COMMAND CENTER V13.1 — EQUAL COLUMNS + DYNAMIC TOOL STATUS BARS
+B7 FI COMMAND CENTER V13.2 — FUNCTIONAL RECOVERY TEST
 
-CHANGES
-- Universal Tool Card uses three exactly equal width CSS grid tracks (1fr / 1fr / 1fr).
-- All three tool banners use the shared status-bar component with live tool-derived messages, severity indicators, seven-second message rotation and click-through to Tool Edit.
-- All Operations page navigation, carousel previous/next/position, screenshot and backup actions appear on ONE navigation row. Removed duplicate second-row actions.
-- Compact badge matrix rows retain 45px height and 3px uniform spacing.
-- Application header updated to V13.1.
+This is an isolated local rebuild, NOT a production replacement.
 
-TESTING
-1. Unzip to a NEW folder. Do not replace production or overwrite Microsoft List data.
-2. Open index.html, inspect Live Operations and verify three equal-width columns and aligned bottoms.
-3. Wait 7 seconds and verify banner messages rotate; click each banner to open tool editing.
-4. Use Previous/Next and page navigation, check there is only one action row.
-5. Test at browser zoom 100%, 125%, 80%; at narrow widths the card stacks rather than clipping.
-6. Check local tool save and reload.
+Changes from V13.1:
+- Added tool-edit controls for all operational badge states and system wafer kit status.
+- Saved badge states now take precedence over inherited/default status strings on Universal Tool Cards.
+- Local save now verifies that the entire saved JSON matches the in-memory data, not just that a tools array exists.
+- Improved responsive layout at intermediate viewport widths and browser zoom levels; avoids clipping badge contents.
+- Retains V13.1 equal-width tool columns, dynamic status bars, and single page navigation row.
 
-LIMITATIONS
-This is still an isolated local-test rebuild. Microsoft List is not connected. Historical V12 features not yet rebuilt remain unavailable. Dynamic banners use only available tool fields; they are not a verified production Brain rules engine. This release is not approved for production deployment.
+Existing features: local tool editing, priority saving, weekend volunteer entries, shipping handoffs, quarter summary, actions, meetings, search, JSON export/import, print, and local diagnostics.
+
+KNOWN NOT IMPLEMENTED OR UNVERIFIED:
+- Microsoft List multi-user synchronization is NOT connected. Do not use for live multi-user production.
+- Full legacy business rules, 28-badge parity, archive automation, all computer/component provenance workflows, and interactive mystery box reveal are NOT restored.
+- Real browser zoom regression testing and enterprise login/sync verification have not been completed.
+- All data is isolated in the V13 browser localStorage key. Export a JSON backup before importing or modifying test records.
+
+TEST: Extract ZIP; open index.html; edit a tool, change a badge, save; reopen tool and verify badge; reload and verify again. Test priority, volunteer, and shipping edits. Test at 100%, 125%, and 80% browser zoom. Report functional failures separately from unimplemented features.

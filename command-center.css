@@ -29,3 +29,19 @@
 @media(max-width:1050px){.toolcard{grid-template-columns:repeat(3,minmax(0,1fr))}.toolcol:first-child{grid-row:auto}.toolcol:last-child{grid-column:auto}.status-banner .status-open{display:none}.subline{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}}
 @media(max-width:760px){.toolcard{grid-template-columns:1fr}.toolcol{height:auto}.subline{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}.subline button{padding:7px 8px}.carousel-nav button{font-size:11px;padding:7px}.carousel-nav strong{font-size:10px}.status-banner .status-open{display:inline}}
 @media print{.status-banner{color:#111!important;background:#fff!important}.status-banner .status-message{white-space:normal}}
+
+/* V13.2 responsive geometry: preserve readable controls at all browser zoom levels. */
+html{font-size:16px}body{min-width:0}
+.toolcard{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
+.toolcol{min-width:0;min-height:0}
+.toolcol .bubble,.toolcol .badge{box-sizing:border-box}
+.toolcol .badgegrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;grid-auto-rows:minmax(45px,auto)}
+.toolcol .badgegrid>.badge{min-height:45px;height:auto;max-height:none;overflow:visible;overflow-wrap:anywhere}
+.toolcol .badgegrid>.badge b{font-size:clamp(10px,.72vw,13px)}
+.toolcol .badgegrid>.badge span{font-size:clamp(9px,.68vw,12px)}
+.status-banner .status-message{white-space:normal;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden}
+.toolphoto{max-height:clamp(170px,24vh,320px)}
+@media(max-width:1250px){.toolcard{grid-template-columns:repeat(3,minmax(0,1fr))}.toolcol .identity{grid-template-columns:1fr 1fr}.toolcol .identity .bubble{display:grid;align-content:center;gap:2px}.toolcol .identity b{text-align:left}.toolcol .badgegrid>.badge b{font-size:10px}.toolcol .badgegrid>.badge span{font-size:9px}}
+@media(max-width:960px){.toolcard{grid-template-columns:1fr 1fr}.toolcard>.toolcol:last-child{grid-column:1/-1}.toolcard>.toolcol:first-child{grid-row:auto}.toolcol .badgegrid>.badge b{font-size:12px}.toolcol .badgegrid>.badge span{font-size:11px}}
+@media(max-width:640px){.toolcard{grid-template-columns:1fr}.toolcard>.toolcol:last-child{grid-column:auto}.subline{grid-template-columns:minmax(0,1fr);overflow-x:auto}.subline .subnav,.subline .carousel-nav,.subline .actions{justify-content:flex-start}.statuses{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.badgegrid>.badge{min-height:45px}}
+@media print{.toolcard{grid-template-columns:repeat(3,minmax(0,1fr))}.status-banner{height:auto;min-height:44px;max-height:none}}
