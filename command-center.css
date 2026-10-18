@@ -45,3 +45,26 @@ html{font-size:16px}body{min-width:0}
 @media(max-width:960px){.toolcard{grid-template-columns:1fr 1fr}.toolcard>.toolcol:last-child{grid-column:1/-1}.toolcard>.toolcol:first-child{grid-row:auto}.toolcol .badgegrid>.badge b{font-size:12px}.toolcol .badgegrid>.badge span{font-size:11px}}
 @media(max-width:640px){.toolcard{grid-template-columns:1fr}.toolcard>.toolcol:last-child{grid-column:auto}.subline{grid-template-columns:minmax(0,1fr);overflow-x:auto}.subline .subnav,.subline .carousel-nav,.subline .actions{justify-content:flex-start}.statuses{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.badgegrid>.badge{min-height:45px}}
 @media print{.toolcard{grid-template-columns:repeat(3,minmax(0,1fr))}.status-banner{height:auto;min-height:44px;max-height:none}}
+
+/* V13.3: bounded application canvas, predictable zoom, consistent card geometry. */
+:root{--font:14px}
+html,body,#root{width:100%;min-width:0}
+.app{width:min(100%,1700px);margin-inline:auto;min-height:100dvh;border-left:1px solid #285775;border-right:1px solid #285775}
+.workspace{flex:1 0 auto;min-width:0}
+.toolcard{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;min-width:0}
+.toolcard>.toolcol{min-width:0;display:flex;flex-direction:column;gap:4px}
+.toolcol .badgegrid{grid-auto-rows:46px;gap:3px}
+.toolcol .badgegrid>.badge{height:46px;min-height:46px;max-height:46px;overflow:hidden;cursor:pointer}
+.toolcol .badgegrid>.badge b{font-size:clamp(10px,0.85rem,13px)}
+.toolcol .badgegrid>.badge span{font-size:clamp(9px,0.73rem,11px)}
+.tool-photo-button{width:100%;display:block;padding:4px;cursor:pointer}
+.tool-photo-button .toolphoto{max-height:260px;object-fit:contain}
+.status-banner{flex-shrink:0}
+.metric .big{font-size:clamp(21px,2rem,36px)}
+.status-banner .status-message{font-size:13px}
+.nav button{font-size:12px}
+.subline{min-width:0}
+@media(min-width:1100px){.toolcard>.toolcol{min-height:clamp(700px,calc(100dvh - 260px),1050px)}.toolcard .metric,.toolcard .progress-item{min-height:0}}
+@media(max-width:1040px){.toolcard{grid-template-columns:repeat(3,minmax(0,1fr))}.toolcard>.toolcol:last-child{grid-column:auto}.toolcol .badgegrid>.badge b{font-size:10px}.toolcol .badgegrid>.badge span{font-size:9px}}
+@media(max-width:850px){.toolcard{grid-template-columns:1fr}.toolcard>.toolcol:last-child{grid-column:auto}.toolcol .badgegrid>.badge b{font-size:13px}.toolcol .badgegrid>.badge span{font-size:11px}.toolcol .badgegrid{grid-auto-rows:48px}.toolcol .badgegrid>.badge{height:48px;min-height:48px;max-height:48px}.subline{display:flex;overflow-x:auto}.subline .subnav,.subline .actions{flex:0 0 auto}.subline .carousel-nav{flex:0 0 auto}}
+@media print{.app{width:100%;border:0}.toolcard>.toolcol{min-height:0}.tool-photo-button{border:0}}

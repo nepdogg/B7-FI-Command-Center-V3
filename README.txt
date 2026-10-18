@@ -1,13 +1,14 @@
-B7 FI COMMAND CENTER — LEGACY FEATURE RESTORATION BASELINE (TEST ONLY)
+B7 FI Command Center V13.3 — LAYOUT / INTERACTION TEST
 
-This is a preserved V11.17.70 codebase, NOT a fully repaired V13 and NOT a production-ready build.
+THIS IS NOT A PRODUCTION-READY COMMAND CENTER. Microsoft List integration, legacy Brain workflows, user authentication, and several pre-V13 features remain missing. Do not deploy over production.
 
-WHY THIS PACKAGE: V13 removed many pre-V13 workflows. This package retains the older app.js, multiuser-test.js, Microsoft authentication library reference, operational pages, Brain logic and related CSS. The original README is retained below as README-ORIGINAL.txt.
+Changes from V13.2:
+- Application canvas capped at 1700 CSS px, centered like Allstar Galaxy when zooming out.
+- Three equal-width tool columns on desktop with height sharing; stacked at narrow CSS viewports.
+- Tool photograph and badge tiles now open tool editor.
+- Uniform 46px operational badge rows.
+- Visible version V13.3.
 
-MULTIUSER: Code is present, but Microsoft List connectivity, authentication, list permissions, conflict handling, and concurrent edits have NOT been verified. Microsoft authentication requires tenant configuration and network access. Do not treat a sign-in badge as proof of connectivity.
+Verification: JavaScript syntax and ZIP integrity checked. This does NOT constitute browser, workflow, or Microsoft List acceptance testing.
 
-SAFETY: Back up the current site and Microsoft List before any deployment. Use a separate test URL/folder. Do not reset lists, run shared scenarios, or write real production data during testing.
-
-REQUIRED BEFORE PRODUCTION: Authenticated multiuser read/write testing on two machines; tool edit save/refresh; priority save/refresh; volunteer row retention; screenshot/report; status, shipping, cycle, quarter, and archive workflows; viewport zoom checks.
-
-This package does NOT claim to fix the previously reported bugs. It is a recoverable, full-feature source baseline for properly rebuilding V13 without deleting features.
+DATA SAFETY: V13 test storage is isolated; do not import production data without a backup.
