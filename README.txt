@@ -1,17 +1,19 @@
-B7 FI COMMAND CENTER V13.0 — CLEAN REBUILD TEST
-===============================================
-This is a NEW implementation with one original CSS file and one original JavaScript file.
-It is not a claim of full feature parity with the previous V12 application.
+B7 FI COMMAND CENTER V13.1 — EQUAL COLUMNS + DYNAMIC TOOL STATUS BARS
 
-START: extract ZIP; run START-COMMAND-CENTER.bat on Windows or serve this directory using `python -m http.server 8000`, then visit http://localhost:8000.
+CHANGES
+- Universal Tool Card uses three exactly equal width CSS grid tracks (1fr / 1fr / 1fr).
+- All three tool banners use the shared status-bar component with live tool-derived messages, severity indicators, seven-second message rotation and click-through to Tool Edit.
+- All Operations page navigation, carousel previous/next/position, screenshot and backup actions appear on ONE navigation row. Removed duplicate second-row actions.
+- Compact badge matrix rows retain 45px height and 3px uniform spacing.
+- Application header updated to V13.1.
 
-SAFETY: V13 uses an isolated browser localStorage key, b7fi-v13-rebuild-local.
-It does not alter the old V12 browser key or Microsoft List. Its initial records are DEMO records. Do not use for live production operations.
+TESTING
+1. Unzip to a NEW folder. Do not replace production or overwrite Microsoft List data.
+2. Open index.html, inspect Live Operations and verify three equal-width columns and aligned bottoms.
+3. Wait 7 seconds and verify banner messages rotate; click each banner to open tool editing.
+4. Use Previous/Next and page navigation, check there is only one action row.
+5. Test at browser zoom 100%, 125%, 80%; at narrow widths the card stacks rather than clipping.
+6. Check local tool save and reload.
 
-TO LOAD EXISTING DATA: open Administration > Data & Backups. Export an existing backup first. Choose a JSON file to import or click Copy Legacy Browser Test Data (only works on the same browser origin). Confirm imported UTIDs before editing. Always export a backup before changes.
-
-FUNCTIONS IMPLEMENTED: tool card and compact uniform badges, tool create/edit/save/readback, local priority updates, weekend volunteer rows, shipping handoff dates, cycle dashboard, latest status, quarter summary, meetings, action items, references, search, archive, local backups/import, presentation navigation, and print stylesheet.
-
-NOT IMPLEMENTED / NOT VERIFIED: Microsoft List sign-in and synchronization; shared multi-user conflict resolution; complete old badge state editing and all historic checklist workflows; all old morning-meeting behavior; original Brain rule engine; full quarter-end automation; mystery-box reveals; automatic emailed reports; screenshot image export (Print / Save as PDF is available instead); old administrative workflows; live production validation. Do not use V13 as a replacement for V12 until these are rebuilt and verified.
-
-IMPORTANT: One CSS and one JS file simplify maintenance but do not by themselves provide feature parity. This test package deliberately avoids pretending unimplemented features are working.
+LIMITATIONS
+This is still an isolated local-test rebuild. Microsoft List is not connected. Historical V12 features not yet rebuilt remain unavailable. Dynamic banners use only available tool fields; they are not a verified production Brain rules engine. This release is not approved for production deployment.
