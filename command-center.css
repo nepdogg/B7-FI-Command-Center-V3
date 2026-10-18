@@ -68,3 +68,15 @@ html,body,#root{width:100%;min-width:0}
 @media(max-width:1040px){.toolcard{grid-template-columns:repeat(3,minmax(0,1fr))}.toolcard>.toolcol:last-child{grid-column:auto}.toolcol .badgegrid>.badge b{font-size:10px}.toolcol .badgegrid>.badge span{font-size:9px}}
 @media(max-width:850px){.toolcard{grid-template-columns:1fr}.toolcard>.toolcol:last-child{grid-column:auto}.toolcol .badgegrid>.badge b{font-size:13px}.toolcol .badgegrid>.badge span{font-size:11px}.toolcol .badgegrid{grid-auto-rows:48px}.toolcol .badgegrid>.badge{height:48px;min-height:48px;max-height:48px}.subline{display:flex;overflow-x:auto}.subline .subnav,.subline .actions{flex:0 0 auto}.subline .carousel-nav{flex:0 0 auto}}
 @media print{.app{width:100%;border:0}.toolcard>.toolcol{min-height:0}.tool-photo-button{border:0}}
+
+/* V13.4: Footer follows actual page content at every browser zoom.
+   Do not force the application or tool columns to fill the viewport. */
+.app{min-height:0;height:auto;}
+.workspace{flex:0 0 auto;min-height:0;}
+.footer{position:static;inset:auto;flex:0 0 auto;margin-top:0;}
+@media (min-width:1100px){
+  .toolcard>.toolcol{min-height:0;}
+}
+/* Presentation Mode keeps its separate full-screen layout. */
+.presentation .workspace{min-height:100vh;}
+.presentation .toolcard{min-height:calc(100vh - 100px);}

@@ -1,14 +1,7 @@
-B7 FI Command Center V13.3 — LAYOUT / INTERACTION TEST
+V13.4 Footer Normal-Flow Repair — TEST ONLY
 
-THIS IS NOT A PRODUCTION-READY COMMAND CENTER. Microsoft List integration, legacy Brain workflows, user authentication, and several pre-V13 features remain missing. Do not deploy over production.
+Changes: removed the application viewport minimum height and workspace flex expansion; footer follows actual content; removed the tool column viewport minimum height on desktop. Presentation Mode retains its separate full-screen behavior. No JavaScript or data logic changed.
 
-Changes from V13.2:
-- Application canvas capped at 1700 CSS px, centered like Allstar Galaxy when zooming out.
-- Three equal-width tool columns on desktop with height sharing; stacked at narrow CSS viewports.
-- Tool photograph and badge tiles now open tool editor.
-- Uniform 46px operational badge rows.
-- Visible version V13.3.
+Testing: check Live Operations at 100%, 75%, 50%, 33%; verify footer immediately follows content, and check a long Center page to ensure footer follows after its content.
 
-Verification: JavaScript syntax and ZIP integrity checked. This does NOT constitute browser, workflow, or Microsoft List acceptance testing.
-
-DATA SAFETY: V13 test storage is isolated; do not import production data without a backup.
+This build does NOT restore Microsoft List multi-user, Brain, or other missing legacy features. Keep production data backed up.
