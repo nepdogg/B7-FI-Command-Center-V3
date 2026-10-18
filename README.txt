@@ -27,3 +27,5 @@ TEST
 6. Verify no shared-data connectivity is claimed in the footer or header.
 
 The goal is to recover pre-V13 functionality while preserving V13.4's design. This build is an incremental step, not the requested finished multi-user production application.
+
+V13.6 focused repair: Clicking non-control areas of the Universal Tool Card opens its editor. Existing nested badge and button actions are preserved. This is a LOCAL TEST build; Microsoft List multi-user integration and legacy workflows remain incomplete. Do not use with production data.
