@@ -80,3 +80,6 @@ html,body,#root{width:100%;min-width:0}
 /* Presentation Mode keeps its separate full-screen layout. */
 .presentation .workspace{min-height:100vh;}
 .presentation .toolcard{min-height:calc(100vh - 100px);}
+
+/* V13.5: Workflow restoration without altering the centered canvas geometry */
+.login-badges{display:flex;gap:4px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:3px}.login-badges button{font-size:10px;padding:3px 6px;border:1px solid #3bc7eb}.login-badges .sync-off{font-size:9px;color:#ff9c8f}.status-record-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.status-record-grid>div{display:flex;flex-direction:column;background:#082a3e;border:1px solid #205a73;border-radius:5px;padding:8px;min-width:0}.status-record-grid small{color:#22c7e9}.status-record-grid strong{overflow-wrap:anywhere}.status-record p{overflow-wrap:anywhere}.status-record{margin-bottom:8px}@media(max-width:850px){.status-record-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
