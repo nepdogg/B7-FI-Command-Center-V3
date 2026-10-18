@@ -1,27 +1,18 @@
-B7 FI COMMAND CENTER V12.0 FOUNDATION TEST — 2026-10-17
+B7 FI COMMAND CENTER — V12.1.0 REPAIR PREVIEW
+==============================================
+STATUS: LIMITED SOURCE-LEVEL REPAIR. NOT A VERIFIED FULL REBUILD.
 
-This is a structural consolidation test, NOT a verified production repair.
+Changes from V12.0 Foundation Test:
+- Corrected the visible header version to V12.1.0 and updated asset cache identifiers.
+- Added scoped repairs to shipping-plan chart sizing and readable shipping/cycle tables.
+- Added scoped layout rules for short administration pages and viewport flexibility.
+- Preserved the existing tool data structures, image assets, Microsoft List code and workflows.
+- Still uses the inherited consolidated CSS and JavaScript, not a clean rewrite.
 
-CHANGES
-- All CSS references from the prior index are concatenated in their original cascade order into ONE command-center.css.
-- All locally loaded JS files are concatenated in their original script order into ONE command-center.js.
-- External MSAL browser library remains a required dependency, loaded before the application bundle.
-- The original assets, launcher and HTML remain in place.
-- Build label updated to 12.0.0.
-- Small targeted screenshot/status improvements.
+Checks performed:
+- ZIP integrity and JavaScript syntax.
+- Automated browser rendering could not be executed in this environment (browser navigation blocked).
+- Microsoft List authentication and shared write/read were NOT tested.
+- Full regression testing and functional issue fixes remain outstanding.
 
-LIMITATIONS
-- CSS consolidation does NOT eliminate conflicting rules: it preserves the prior cascade for compatibility.
-- This is NOT a from-scratch CSS rewrite and does NOT guarantee viewport fit.
-- Microsoft List auth, sync, deletion, throttling, priority saving, volunteer retention, email, and all other workflows are UNVERIFIED.
-- No production Microsoft List connection was available to test.
-- Do NOT overwrite the live deployment or production data with this test build.
-
-TEST
-1. Back up the current ZIP and data. Extract to a new folder.
-2. Run START-COMMAND-CENTER.bat; confirm V12.0.0 in the interface.
-3. Test local read-only navigation and layout at 100% zoom.
-4. Do not test production list writes without a separate authorized test list and a backup.
-5. Report any errors from the browser console.
-
-This build establishes a single-CSS/single-JS baseline for subsequent verified repairs.
+SAFETY: Keep V11/V12 backup. Do not overwrite production or rely on this build for live operational decisions. Test in a separate folder and with nonproduction records. Browser local storage is origin-specific.

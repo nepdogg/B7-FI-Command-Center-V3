@@ -1,6 +1,6 @@
 /* SOURCE: js/app.js */
 (()=>{'use strict';
-const VERSION='12.0.0', BUILD='20261017-V12-FOUNDATION-TEST';
+const VERSION='12.1.0', BUILD='20261017-V12.1-REPAIR-PREVIEW';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const EQUIPMENT_COMPUTERS=[['SS','Subswath Server'],['GPU','GPU Servers'],['DBB','Global Storage Server'],['RTAT','RTAT Server'],['SCC','SCC Computer'],['DAS','DAS Server'],['Host','Host Server'],['Dart','Dart Server']];
