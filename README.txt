@@ -29,3 +29,10 @@ TEST
 The goal is to recover pre-V13 functionality while preserving V13.4's design. This build is an incremental step, not the requested finished multi-user production application.
 
 V13.6 focused repair: Clicking non-control areas of the Universal Tool Card opens its editor. Existing nested badge and button actions are preserved. This is a LOCAL TEST build; Microsoft List multi-user integration and legacy workflows remain incomplete. Do not use with production data.
+
+V13.7 EDITOR AND STATUS RECOVERY (2026-10-19)
+- Retains the V13 centered canvas, footer and three-column design.
+- Tool cards are mouse and keyboard accessible; clicking tool-card labels or blank card area opens the tool editor.
+- The editor now exposes Current System Status, Customer Source and STR required/status/progress, micro progress and FI forecast progress, with local save-and-reload verification.
+- Card interaction and expanded editor fields were syntax-checked, but browser and Microsoft List integration were NOT verified.
+- THIS IS NOT A COMPLETE RESTORATION OF V11 FEATURES. Microsoft authentication, shared list sync, true user-presence badges and the full original Brain remain unavailable. DO NOT use as a production replacement.
