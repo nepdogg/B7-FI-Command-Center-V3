@@ -1,0 +1,25 @@
+/* V11.17.74: Equal-sized operational badge cells, including two date milestones. */
+html body:not(.presentation-mode) .utc-info .utc-indicator-display .utc-indicator-grid {
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ grid-auto-rows: minmax(39px,auto)!important;align-items:stretch!important;
+ gap:3px!important;overflow:visible!important;height:auto!important;min-height:0!important;
+}
+html body:not(.presentation-mode) .utc-info .utc-indicator-display {
+ overflow:visible!important;height:auto!important;min-height:0!important;flex:0 0 auto!important;
+}
+html body:not(.presentation-mode) .utc-info .utc-indicator-grid > * {
+ box-sizing:border-box!important;width:100%!important;min-width:0!important;
+ min-height:39px!important;height:100%!important;max-height:none!important;
+ margin:0!important;grid-column:auto!important;align-self:stretch!important;
+ overflow:hidden!important;display:flex!important;align-items:center!important;justify-content:center!important;
+ padding:3px 4px!important;text-align:center!important;
+}
+html body:not(.presentation-mode) .utc-info .utc-indicator-grid .fi-indicator-message {
+ width:100%;min-width:0;line-height:1.12!important;overflow-wrap:anywhere!important;
+ white-space:normal!important;display:block!important;
+}
+html body .fi-milestone-badge {border:1px solid #40607a;background:#10283b;color:#e6f4ff;cursor:pointer}
+html body .fi-milestone-badge.complete{border-color:#17a97d;background:#0d493e}
+html body .fi-milestone-badge .fi-indicator-message b,html body .fi-milestone-badge .fi-indicator-message small{display:block;font-size:inherit;line-height:1.15}
+html body .fi-milestone-badge .fi-indicator-message small{margin-top:3px;font-size:clamp(8px,.65vw,11px)}
+html body .fi-milestone-badge:focus-visible{outline:2px solid #57d9ff;outline-offset:1px}
