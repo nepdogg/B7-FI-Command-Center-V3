@@ -1,0 +1,76 @@
+/* V11.17.81: single last-loaded badge layout contract, shared by cards and editor. */
+html body #app .c11-badges,
+html body #app .c11-badges.b7-editor-badge-grid,
+html body #app .c11-identity-column .c11-badges {
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-template-rows:none!important;
+  grid-auto-rows:minmax(46px,auto)!important;
+  grid-auto-flow:row!important;
+  gap:3px!important;
+  height:auto!important;
+  max-height:none!important;
+  min-height:0!important;
+  align-content:start!important;
+  overflow:visible!important;
+}
+html body #app .c11-badges > .c11-badge:not(.c11-wafer-badge) {
+  grid-column:span 1!important;
+  grid-row:auto!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  align-items:center!important;
+  box-sizing:border-box!important;
+  height:100%!important;
+  min-height:46px!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:5px 4px!important;
+  white-space:normal!important;
+  overflow:visible!important;
+  overflow-wrap:anywhere!important;
+  text-align:center!important;
+  line-height:1.14!important;
+}
+html body #app .c11-badges > .c11-wafer-badge,
+html body #app .c11-badges > .equipment-badge {
+  grid-column:1/-1!important;
+  grid-row:auto!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+  width:100%!important;
+  min-height:52px!important;
+  height:auto!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:6px 8px!important;
+  overflow:visible!important;
+  white-space:normal!important;
+  text-align:center!important;
+  gap:3px!important;
+}
+html body #app .c11-badges > .equipment-badge strong,
+html body #app .c11-badges > .equipment-badge small,
+html body #app .c11-badges > .equipment-badge em {
+  display:block!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  height:auto!important;
+  font-style:normal!important;
+  line-height:1.15!important;
+  overflow-wrap:anywhere!important;
+  white-space:normal!important;
+}
+html body #app .c11-badges > .equipment-badge strong{font-size:11px!important;font-weight:800!important}
+html body #app .c11-badges > .equipment-badge small{font-size:10px!important}
+html body #app .c11-badges > .equipment-badge em{font-size:9px!important;opacity:.85!important}
+html body #app .c11-identity-column {height:auto!important;max-height:none!important;overflow:visible!important;grid-template-rows:auto auto auto auto auto auto!important}
+html body #app .c11-identity-column .c11-badges {height:auto!important;max-height:none!important;overflow:visible!important}
+html body #app .c11-card-grid,html body #app .c11-tool-card {height:auto!important;max-height:none!important;overflow:visible!important}
+html body #app .b7-editor-badge-overview {height:auto!important;max-height:none!important;overflow:visible!important}
+/* Preserve existing direct-indicator and equipment click handlers; CSS only. */

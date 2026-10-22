@@ -1,3 +1,10 @@
+B7 FI COMMAND CENTER V11.17.81 — BADGE UNIFICATION TEST
+
+Changes: standard badges use a consistent minimum 46px row height, three columns, with overflow allowed; System Wafers, Computer Tracking, and Component Tracking use full-width rows. Computer/Component badges now show their event counts and tracking detail text rather than hiding it. Existing equipment history dialogs and event tracking in app.js are retained. CSS only; no application state, List, archive or priority code changed.
+
+Validation: inspect badge rows and click both equipment tracking badges on Live Operations and Tool Edit at 100%, 50%, 33% zoom. Verify both dialogs, add/save history on TEST data, and ensure cards are not clipped. Browser and live Microsoft List tests have NOT been run.
+
+Previous notes:
 B7 FI COMMAND CENTER — V11.17.80 REGRESSION REPAIR / TEST ONLY
 
 BASE: V11.17.79. All application scripts and Microsoft List logic retained, except quarter-aware scenario generator.
