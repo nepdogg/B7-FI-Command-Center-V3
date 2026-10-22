@@ -128,6 +128,19 @@ async function syncChangedTools(nextState){
   await refreshAllItems();
   if(nextTools.some(t=>!validToolRecord(t)))throw new Error('SYNC BLOCKED: activity/presence or malformed tool record in tool dataset.');
   let changed=nextTools.filter(t=>prev.get(String(t.id))!==stable(t));
+  // Prevent a stale browser snapshot from silently overwriting another user's
+  // changes to the same tool. Ask the user to reload and reapply their edit.
+  const baseline=new Map(previousTools.map(t=>[String(t.id),t]));
+  for(const t of changed){
+    const id=String(t.id), before=baseline.get(id);
+    if(!before)continue; // A new tool has no previously-read server baseline.
+    const remoteRow=items.find(it=>toolIdFromRow(it)===id && isToolRow(it));
+    const remote=remoteRow?parseToolData(remoteRow):null;
+    if(!remote)throw new Error('SYNC CONFLICT: '+id+' was removed or is unreadable in Microsoft List. No overwrite performed.');
+    if(stable(remote)!==stable(before)){
+      throw new Error('SYNC CONFLICT: '+id+' changed on another laptop. Your local edit was retained; refresh shared data and reapply the change before saving.');
+    }
+  }
   for(const t of changed)await upsertTool(t,false);
   await refreshAllItems();
   let verified=decodeSharedTools(), verifiedIds=new Set(verified.map(t=>String(t.id)));
@@ -290,7 +303,11 @@ async function autoSync(){
   if(editingIsActive()){syncState='PAUSED';updateFooter('SCENARIO TEST');return}
   autoSyncBusy=true;syncState='SYNCING';updateFooter('SCENARIO TEST');
   try{
-    await refreshAllItems();renderPresenceBadges();applyLatestSharedActivity();let tools=decodeSharedTools(),sig=toolSignature(tools);lastSyncSuccess=Date.now();
+    await refreshAllItems();renderPresenceBadges();applyLatestSharedActivity();let tools=decodeSharedTools(),sig=toolSignature(tools);
+    // A transient empty/invalid read must not erase a previously populated dashboard.
+    if(!tools.length && (lastSharedState?.tools||[]).length && items.some(isToolRow))
+      throw new Error('SYNC BLOCKED: List has tool rows but returned no valid tool records. Keeping local data.');
+    lastSyncSuccess=Date.now();
     if(sig!==lastAutoSyncSignature){lastSyncChange=Date.now();let out={environment:'SCENARIO TEST',tools};lastSharedState=JSON.parse(JSON.stringify(out));lastAutoSyncSignature=sig;if(window.B7ApplySharedScenario)window.B7ApplySharedScenario(out);status(`AUTO SYNC — ${tools.length} shared tool(s) current.`,'ok')}
     syncFailures=0;syncState='SYNCED';updateFooter('SCENARIO TEST');
   }catch(e){syncFailures++;syncState='ERROR';setFooterStatus('LIST CONNECTED · SYNC RETRYING');updateFooter('SCENARIO TEST');console.warn('B7 auto sync',e);if(syncFailures>=2&&!autoRecoverBusy&&Date.now()>=graphCooldownUntil&&pendingWrites===0){autoRecoverBusy=true;Promise.resolve().then(async()=>{try{await initMsal();if(account){await connect();sharedActive=true;syncFailures=0;syncState='SYNCED';updateFooter('SCENARIO TEST')}}catch(err){console.warn('B7 reconnect:',err);syncState='ERROR';updateFooter('SCENARIO TEST')}finally{autoRecoverBusy=false}})}}finally{autoSyncBusy=false}
