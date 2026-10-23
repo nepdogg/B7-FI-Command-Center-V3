@@ -1,0 +1,7 @@
+/* Targeted repair: stable status bars and tool type jump navigation */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .status-stack{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:100px!important;grid-auto-rows:100px!important;height:100px!important;min-height:100px!important;max-height:100px!important;align-items:stretch!important;gap:8px!important;box-sizing:border-box!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell .status-stack>.status-bar{height:100px!important;min-height:100px!important;max-height:100px!important;min-width:0!important;box-sizing:border-box!important;overflow:hidden!important}
+html body[data-center="operations"][data-sub="tools"] #app .b784-family-jump{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 16px;padding:10px;border:1px solid #357b9b;border-radius:8px;background:#0e263a}
+html body[data-center="operations"][data-sub="tools"] #app .b784-family-jump a{color:#fff;text-decoration:none;font-weight:750;font-size:12px;padding:8px 12px;border:1px solid #2ba4ce;border-radius:6px;background:#174663}
+html body[data-center="operations"][data-sub="tools"] #app .fleet-family{scroll-margin-top:225px}
+html body[data-center="operations"][data-sub="tools"] #app .fleet-card-grid{align-items:start!important}
