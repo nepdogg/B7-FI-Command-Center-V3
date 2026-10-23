@@ -2,9 +2,9 @@
 setlocal EnableExtensions
 cd /d "%~dp0"
 set "B7LOG=%TEMP%\B7-FI-Command-Center-server.log"
-title B7 FI COMMAND CENTER V11.17.62 - STARTUP
+title B7 FI COMMAND CENTER V11.17.82 - STARTUP
  echo ============================================================
- echo B7 FI COMMAND CENTER V11.17.62 - TEST BUILD
+ echo B7 FI COMMAND CENTER V11.17.82 - TEST BUILD
  echo ============================================================
  echo Folder: %CD%
  echo URL: http://localhost:5500/
