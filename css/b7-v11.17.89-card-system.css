@@ -1,0 +1,76 @@
+/* V11.17.89 — one authoritative layout for the active c11 card. */
+/* Do not style the global app columns; only the three sections inside the card. */
+html body #app .c11-card-grid {
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ column-gap:8px!important;align-items:stretch!important;
+ min-width:0!important;min-height:0!important;max-height:none!important;height:auto!important;
+ overflow:visible!important;
+}
+html body #app .c11-card-grid > .c11-column {
+ min-width:0!important;width:auto!important;max-width:none!important;
+ min-height:0!important;height:auto!important;max-height:none!important;
+ padding:0!important;margin:0!important;
+ border:0!important;outline:0!important;box-shadow:none!important;
+ border-radius:0!important;background:transparent!important;
+ overflow:visible!important;
+ display:flex!important;flex-direction:column!important;gap:5px!important;
+}
+html body #app .c11-card-grid .c11-identity-column .c11-badges {
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ grid-template-rows:none!important;grid-auto-rows:minmax(0,max-content)!important;
+ align-content:start!important;align-items:stretch!important;gap:4px!important;
+ height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;
+ margin:0!important;padding:0!important;
+}
+html body #app .c11-card-grid .c11-identity-column .c11-badges > .c11-badge {
+ box-sizing:border-box!important;display:flex!important;flex-direction:column!important;
+ justify-content:center!important;align-items:center!important;align-self:stretch!important;
+ width:100%!important;min-width:0!important;min-height:48px!important;
+ height:100%!important;max-height:none!important;
+ margin:0!important;padding:6px 4px!important;gap:2px!important;
+ overflow:visible!important;white-space:normal!important;
+ font-size:clamp(9px,.78vw,13px)!important;line-height:1.2!important;text-align:center!important;
+}
+html body #app .c11-card-grid .c11-identity-column .c11-badges > .c11-badge :is(span,small,strong,em,b) {
+ display:block!important;min-width:0!important;max-width:100%!important;
+ min-height:0!important;height:auto!important;max-height:none!important;
+ overflow:visible!important;white-space:normal!important;
+ overflow-wrap:anywhere!important;text-overflow:clip!important;
+ font-size:inherit!important;line-height:1.2!important;
+}
+html body #app .c11-card-grid .c11-identity-column .c11-badges > :is(.c11-wafer-badge,.equipment-badge) {
+ grid-column:1/-1!important;height:auto!important;min-height:48px!important;
+}
+html body #app .c11-card-grid .c11-identity-column .c11-badges > .c11-badge:has(+ .c11-wafer-badge) {margin-bottom:0!important}
+/* Date badges and process indicator are separate non-overlapping rows. */
+html body #app .c11-identity-column .c11-fi-dates,
+html body #app .c11-identity-column .c11-date-row {
+ position:relative!important;min-height:38px!important;height:auto!important;
+ max-height:none!important;overflow:visible!important;flex:none!important;
+}
+html body #app .c11-identity-column .c11-reduced {
+ position:relative!important;flex:none!important;min-height:27px!important;
+ height:auto!important;max-height:none!important;margin:0!important;
+}
+/* A column's section boxes are visible, but the column itself has no enclosing outline. */
+html body #app .c11-status-column > *,html body #app .c11-progress-column > * {
+ min-width:0!important;box-sizing:border-box!important;
+}
+/* Tool groups are full width, not side by side. */
+html body #app .v1014-tools-page {
+ display:flex!important;flex-direction:column!important;align-items:stretch!important;
+ width:100%!important;min-width:0!important;
+}
+html body #app .v1014-tools-page > .fleet-family {
+ display:block!important;flex:0 0 auto!important;width:100%!important;min-width:0!important;
+ margin:0 0 18px!important;padding:0 0 16px!important;clear:both!important;
+}
+html body #app .v1014-tools-page .fleet-family .b783-family-status {
+ display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;
+}
+html body #app .v1014-tools-page .fleet-family .fleet-card-grid {
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ gap:12px!important;width:100%!important;align-items:start!important;
+}
+@media(max-width:1100px){html body #app .v1014-tools-page .fleet-family .fleet-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:760px){html body #app .v1014-tools-page .fleet-family .fleet-card-grid{grid-template-columns:minmax(0,1fr)!important}}
