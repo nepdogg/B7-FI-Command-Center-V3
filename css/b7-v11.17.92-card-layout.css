@@ -1,0 +1,78 @@
+
+/* V11.17.92 shared card layout: loaded last, replacing 85/86/89 card overrides */
+html body #app .c11-card-grid {
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ align-items:stretch!important;gap:clamp(6px,.65vw,12px)!important;
+ height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;
+}
+html body #app .c11-card-grid > section.c11-column {
+ display:flex!important;flex-direction:column!important;gap:6px!important;
+ min-width:0!important;width:auto!important;max-width:none!important;
+ height:auto!important;min-height:0!important;max-height:none!important;
+ border:0!important;outline:0!important;box-shadow:none!important;
+ border-radius:0!important;background:transparent!important;
+ padding:0!important;margin:0!important;overflow:visible!important;
+}
+/* Date row and Normal Process are distinct flex children. */
+html body #app .c11-identity-column .b783-date-row {
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:5px!important;position:static!important;flex:none!important;
+ min-height:54px!important;height:auto!important;max-height:none!important;
+ margin:5px 0 0!important;padding:0!important;overflow:visible!important;
+}
+html body #app .c11-identity-column .b783-date-row > .b783-date-badge {
+ display:flex!important;flex-direction:column!important;justify-content:center!important;
+ align-items:center!important;position:static!important;min-width:0!important;
+ min-height:54px!important;height:auto!important;max-height:none!important;
+ padding:6px 4px!important;box-sizing:border-box!important;
+ white-space:normal!important;overflow:visible!important;line-height:1.2!important;
+}
+html body #app .c11-identity-column .c11-reduced {
+ flex:none!important;position:static!important;min-height:30px!important;
+ height:auto!important;max-height:none!important;margin:0!important;
+}
+/* Badge row heights are driven by the tallest badge, not old fixed heights. */
+html body #app .c11-identity-column .c11-badges {
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ grid-template-rows:none!important;grid-auto-rows:minmax(62px,max-content)!important;
+ gap:5px!important;align-items:stretch!important;align-content:start!important;
+ flex:none!important;min-width:0!important;min-height:0!important;
+ height:auto!important;max-height:none!important;overflow:visible!important;
+}
+html body #app .c11-identity-column .c11-badges > * {
+ min-width:0!important;max-width:none!important;box-sizing:border-box!important;
+ margin:0!important;position:static!important;overflow:visible!important;
+}
+html body #app .c11-identity-column .c11-badges > button.c11-badge {
+ display:flex!important;flex-direction:column!important;justify-content:center!important;
+ align-items:center!important;align-self:stretch!important;
+ min-height:62px!important;height:100%!important;max-height:none!important;
+ padding:7px 4px!important;gap:3px!important;
+ white-space:normal!important;text-align:center!important;
+ font-size:clamp(10px,.75vw,13px)!important;line-height:1.25!important;
+}
+html body #app .c11-identity-column .c11-badges > button.c11-badge :is(span,small,strong,b,em,div) {
+ white-space:normal!important;overflow:visible!important;text-overflow:clip!important;
+ max-height:none!important;min-height:0!important;
+ overflow-wrap:anywhere!important;line-height:1.2!important;
+}
+html body #app .c11-identity-column .c11-badges > :is(.c11-wafer-badge,.equipment-badge),
+html body #app .c11-identity-column .c11-badges > :is([class*="tracking"],[class*="wafer"]) {
+ grid-column:1/-1!important;height:auto!important;min-height:62px!important;
+}
+html body #app .c11-identity-column .c11-update {flex:none!important;margin-top:4px!important}
+/* Preserve three columns for full-screen presentation, and allow vertical scroll
+   rather than squeezing text to illegible sizes. */
+html body #app .c11-card-grid .c11-status-column > *,
+html body #app .c11-card-grid .c11-progress-column > * {min-width:0!important;box-sizing:border-box!important}
+html body #app .v1014-tools-page {display:flex!important;flex-direction:column!important;width:100%!important;gap:16px!important}
+html body #app .v1014-tools-page > .fleet-family {display:block!important;width:100%!important;flex:none!important;clear:both!important}
+html body #app .fleet-family .b783-family-status {display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:5px!important}
+html body #app .fleet-family .fleet-card-grid {display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;align-items:start!important;width:100%!important}
+@media(max-width:1100px) {
+ html body #app .fleet-family .fleet-card-grid {grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:760px) {
+ html body #app .fleet-family .fleet-card-grid {grid-template-columns:minmax(0,1fr)!important}
+ html body #app .c11-card-grid {grid-template-columns:minmax(0,1fr)!important}
+}
