@@ -1,2 +1,2 @@
-V11.17.90 SHIPPING VISIBILITY TEST
-Based on V11.17.89. Shipped tools without an actual shipping date now appear in a separate DATE MISSING bar instead of being invisible in the chart. No actual dates are inferred. The existing monthly verified actual bars remain unchanged. This does not fix badge/zoom or synchronization defects. Browser and Microsoft Lists not tested. Preserve previous build and data.
+B7 FI COMMAND CENTER V11.17.91 — CARD STYLESHEET LINK REPAIR TEST
+Based on V11.17.90. Fixes broken stylesheet reference for the existing V11.17.89 card geometry stylesheet, and retains the V11.17.90 shipping chart stylesheet. This is a targeted packaging correction, not a verified solution to all layout defects. Preserve previous build and browser storage; do not reset data. Check that badge heights, left/middle/right card columns, and shipping graph render after deploying this build.
