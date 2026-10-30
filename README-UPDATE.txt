@@ -1,6 +1,13 @@
-B7 FI COMMAND CENTER V11.17.93 — SINGLE CSS CONSOLIDATION TEST
-
-Reference: V13.7 (one command-center.css). Functional base: V11.17.92.
-Changes: Consolidated 34 linked CSS files into one css/command-center.css in original cascade order; removed obsolete CSS files and links; appended one final card layout contract for badge row height, column borders, equal column widths, date badge separation, tool grouping, and responsive breakpoints. Preserved V11 JavaScript/data flows.
-
-CAUTION: This is a consolidation test, not a verified visual restoration of V13.7. Consolidating existing rules preserves many old declarations; visual testing is required. Do not clear browser data or overwrite a working deployment.
+B7 FI Command Center V11.17.94 — Card Layout Repair TEST
+Source: V11.17.93. One CSS file only.
+- Replaced final card geometry rules with an authoritative card contract.
+- Restored document-flow positioning for badge grid and Update Tool Status.
+- Removed badge height MutationObserver script.
+- Equal-height grid badge rows with natural content height.
+- Removed outer borders on three card columns and enforced equal widths.
+- Presentation Mode allows scrolling instead of clipping tall badge grids.
+- Tools Page grouped sections full width, up to three cards per row.
+- Updated version and CSS cache key.
+No Microsoft Lists, meeting, or shipping logic changes.
+TEST BUILD: Browser visual behavior not verified. Back up old version.
+Do not clear browser storage or reset Microsoft Lists.
