@@ -1,5 +1,5 @@
-B7 FI COMMAND CENTER V11.17.87 — CARD/BADGE LAYOUT TEST
-Source: V11.17.86.
-Changes: final-loaded CSS targets the actual c11-column, b783-date-row, and c11-badges markup. Removes three outer column borders while preserving individual section dividers. Makes date badges a separate equal-height row, preventing Normal Process overlap. Ordinary operational badges share row heights and wrap full label/state text. Forces tool families to stack vertically, with status boxes above each family and up to 3 cards per row. Adds responsive 2/1-card arrangements at narrow widths. Version/cache tokens updated.
-No data schema or Microsoft Lists code changed.
-Validation: ZIP integrity and JS syntax only; not tested visually in your work browser. GitHub Pages requires separate deployment of the extracted files; a downloaded ZIP does not update GitHub Pages. Keep prior version as backup.
+B7 FI COMMAND CENTER V11.17.88 — PERSISTENCE REPAIR TEST
+Based on V11.17.87.
+FIXES: startup loads saved production data from the same PROD_KEY used by saveState; Save Meeting persists draft records and allows reopening today's draft; End Meeting completes the saved draft without duplicating it; Save Cycle Targets displays a confirmation after local write verification.
+CAUTION: No existing local storage keys are deleted or migrated. Back up both production and test datasets before deployment. Shared Microsoft List sync is still asynchronous and NOT independently verified; a local save confirmation is NOT a confirmed shared save. Different browser origins (localhost and GitHub Pages) have separate local storage.
+TEST: In the SAME origin, export backup, save cycle targets, reload and verify; save meeting, reload and check history; end meeting and check one completed entry. Test separately on two machines for shared sync.
