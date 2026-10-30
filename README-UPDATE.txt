@@ -1,13 +1,9 @@
-B7 FI Command Center V11.17.94 — Card Layout Repair TEST
-Source: V11.17.93. One CSS file only.
-- Replaced final card geometry rules with an authoritative card contract.
-- Restored document-flow positioning for badge grid and Update Tool Status.
-- Removed badge height MutationObserver script.
-- Equal-height grid badge rows with natural content height.
-- Removed outer borders on three card columns and enforced equal widths.
-- Presentation Mode allows scrolling instead of clipping tall badge grids.
-- Tools Page grouped sections full width, up to three cards per row.
-- Updated version and CSS cache key.
-No Microsoft Lists, meeting, or shipping logic changes.
-TEST BUILD: Browser visual behavior not verified. Back up old version.
-Do not clear browser storage or reset Microsoft Lists.
+B7 FI Command Center V11.17.95 — Layout Stability Test
+Based on V11.17.94. Single CSS file.
+- Targeted the actual c11-tool-card markup for badge grid, update button, column borders and sizing.
+- Kept badge and Update Tool Status in document flow, preventing absolute overlap.
+- Applied full-width grouped Tools Page cards and responsive column counts.
+- Preserved existing JavaScript data and Microsoft Lists behavior.
+- Cache key and version bumped to V11.17.95.
+Verification: JS syntax, referenced files and ZIP integrity only. Browser visual tests and Microsoft Lists tests NOT completed.
+Retain previous version as backup. Do not clear browser storage or reset Lists.
