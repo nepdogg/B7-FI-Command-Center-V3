@@ -31480,3 +31480,33 @@ html body #stickyShell nav#mainNav #subnav button:hover {background:#165276!impo
  html body #stickyShell nav#mainNav #subnav > button,
  html body #stickyShell nav#mainNav #pageActions .nav69-live-actions > button {min-width:0!important}
 }
+
+/* V11.18.01 — scoped responsive geometry and uniform badge contract */
+html,body {max-width:100%;overflow-x:hidden!important}
+body:not(.presentation-mode) .app-frame,body:not(.presentation-mode) #app {box-sizing:border-box!important;max-width:100%!important;min-width:0!important;width:100%!important;overflow-x:clip!important}
+body:not(.presentation-mode) #app .c11-tool-card {width:100%!important;max-width:100%!important;min-width:0!important;overflow:visible!important}
+body:not(.presentation-mode) #app .c11-tool-card .c11-card-grid {display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;width:100%!important;max-width:100%!important;min-width:0!important;height:auto!important;align-items:stretch!important;overflow:visible!important}
+body:not(.presentation-mode) #app .c11-card-grid>.c11-column {width:100%!important;min-width:0!important;max-width:100%!important;box-sizing:border-box!important;overflow-wrap:anywhere!important}
+body:not(.presentation-mode) #app .c11-status-card,body:not(.presentation-mode) #app .c11-progress-row {min-width:0!important;max-width:100%!important;box-sizing:border-box!important}
+#app .c11-tool-card .c11-identity-column>.c11-badges,#app .fleet-card-grid .fleet-badges,#app .b7-editor-badge-grid {display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-rows:56px!important;gap:4px!important;height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;align-items:stretch!important}
+#app .c11-tool-card .c11-badges>.c11-badge,#app .fleet-badges>.c11-badge,#app .b7-editor-badge-grid>.c11-badge {display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;width:100%!important;min-width:0!important;max-width:100%!important;height:56px!important;min-height:56px!important;max-height:56px!important;margin:0!important;padding:3px 4px!important;overflow:hidden!important;white-space:normal!important;overflow-wrap:anywhere!important;text-align:center!important;line-height:1.12!important;font-size:clamp(8px,.68vw,11px)!important}
+#app .c11-badge>* {min-width:0!important;max-width:100%!important;overflow-wrap:anywhere!important;white-space:normal!important;line-height:1.12!important}
+#app .c11-photo.b796-priority-photo {position:relative!important;min-width:0!important;overflow:hidden!important}
+#app .c11-photo .b796-photo-priority,#app .c11-photo .b718-photo-alias {position:absolute!important;top:8px!important;z-index:4!important;box-sizing:border-box!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:1px!important;width:92px!important;min-width:92px!important;max-width:92px!important;height:66px!important;min-height:66px!important;max-height:66px!important;margin:0!important;padding:4px!important;border:2px solid #ff7894!important;border-radius:9px!important;box-shadow:0 2px 10px #0008!important;color:#fff!important;text-align:center!important}
+#app .c11-photo .b796-photo-priority {left:8px!important;right:auto!important;background:#a40032!important}
+#app .c11-photo .b718-photo-alias {right:8px!important;left:auto!important;background:#07577c!important;border-color:#48cbff!important;font-weight:900!important;font-size:clamp(12px,1.15vw,21px)!important;overflow-wrap:anywhere!important}
+#app .c11-photo .b796-photo-priority b {font-size:21px!important;line-height:1!important}
+#app .c11-photo .b796-photo-priority span {font-size:10px!important;line-height:1.1!important}
+#app .v1014-tools-page {width:100%!important;min-width:0!important;max-width:100%!important;display:block!important;overflow:visible!important}
+#app .v1014-tools-page>.fleet-family {display:block!important;clear:both!important;position:relative!important;width:100%!important;max-width:100%!important;margin:18px 0 24px!important;padding-top:8px!important;border-top:3px solid #2bbaf3!important}
+#app .fleet-family .fleet-family-head,#app .fleet-family .b783-family-status {width:100%!important;clear:both!important;box-sizing:border-box!important}
+#app .fleet-family .fleet-card-grid {display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;width:100%!important;max-width:100%!important;align-items:start!important;clear:both!important}
+#app .fleet-card-grid .fleet-identity-card {box-sizing:border-box!important;min-width:0!important;max-width:100%!important;width:100%!important;overflow:hidden!important}
+#app .fleet-photo {position:relative!important;overflow:hidden!important}
+#app .fleet-photo .b718-photo-alias {position:absolute!important;top:8px!important;right:8px!important;width:92px!important;height:66px!important;display:flex!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;border:2px solid #48cbff!important;border-radius:9px!important;background:#07577c!important;color:white!important;font-weight:900!important;font-size:17px!important;z-index:2!important}
+#b7-admin-presentation .b718-setting-checks {display:flex;flex-wrap:wrap;gap:14px;margin:14px 0}
+#b7-admin-presentation .b718-setting-checks label {display:flex;align-items:center;gap:5px}
+@media(max-width:1050px){body:not(.presentation-mode) #app .c11-tool-card .c11-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}body:not(.presentation-mode) #app .c11-card-grid>.c11-progress-column{grid-column:1/-1!important}#app .fleet-family .fleet-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:700px){body:not(.presentation-mode) #app .c11-tool-card .c11-card-grid{grid-template-columns:minmax(0,1fr)!important}body:not(.presentation-mode) #app .c11-card-grid>.c11-progress-column{grid-column:auto!important}#app .fleet-family .fleet-card-grid{grid-template-columns:minmax(0,1fr)!important}}
+/* Keep navigation usable when zoom makes the available CSS viewport narrow. */
+body:not(.presentation-mode) #stickyShell nav#mainNav {max-width:100%!important;overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:thin!important}
