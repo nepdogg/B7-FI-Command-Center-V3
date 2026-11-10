@@ -31552,3 +31552,76 @@ html body #modal:not(.hidden) .modal-card {
  overflow:auto!important;pointer-events:auto!important;
 }
 html body #modal:not(.hidden) #modalBody,html body #modal:not(.hidden) button,html body #modal:not(.hidden) input,html body #modal:not(.hidden) select {pointer-events:auto!important;}
+
+/* V11.18.04 — authoritative equal-height badge contract.
+   Previous minmax(48px,max-content) rules let each row expand independently.
+   Apply to all canonical badges, including equipment/wafer, across card variants. */
+html body #app :is(.c11-identity-column > .c11-badges, .fleet-identity-card .fleet-badges, .b7-editor-badge-grid) {
+  --b7-badge-height: 64px;
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-template-rows:none!important;
+  grid-auto-rows:var(--b7-badge-height)!important;
+  align-items:stretch!important;
+  align-content:start!important;
+  gap:4px!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow:visible!important;
+}
+html body #app :is(.c11-identity-column > .c11-badges, .fleet-identity-card .fleet-badges, .b7-editor-badge-grid) > :is(button,.c11-badge,.equipment-badge) {
+  position:relative!important;
+  inset:auto!important;
+  transform:none!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+  align-self:stretch!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  height:var(--b7-badge-height)!important;
+  min-height:var(--b7-badge-height)!important;
+  max-height:var(--b7-badge-height)!important;
+  margin:0!important;
+  padding:3px 4px!important;
+  overflow:hidden!important;
+  text-align:center!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  font-size:clamp(8px,.75vw,12px)!important;
+  line-height:1.1!important;
+}
+html body #app :is(.c11-identity-column > .c11-badges, .fleet-identity-card .fleet-badges, .b7-editor-badge-grid) > :is(button,.c11-badge,.equipment-badge) :is(span,small,strong,b,em,div) {
+  display:block!important;
+  flex:0 1 auto!important;
+  min-width:0!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  margin:0!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  overflow:hidden!important;
+  line-height:1.1!important;
+}
+/* Keep full-width wafer/tracking badges full-width, but never taller. */
+html body #app :is(.c11-identity-column > .c11-badges, .fleet-identity-card .fleet-badges, .b7-editor-badge-grid) > :is(.c11-wafer-badge,.equipment-badge) {
+  grid-column:1/-1!important;
+}
+
+/* V11.18.05: quarter groups MUST stack, cards alone form the columns.
+   Explicit wrapper prevents legacy parent grid rules placing entire tool families side-by-side. */
+html body #app .b71805-quarter-groups {display:block!important;width:100%!important;max-width:100%!important;min-width:0!important;columns:auto!important;column-count:1!important;}
+html body #app .b71805-quarter-groups>.b71805-family-list {display:flex!important;flex-flow:column nowrap!important;align-items:stretch!important;gap:18px!important;min-width:0!important;width:100%!important;max-width:100%!important;grid-template-columns:none!important;columns:auto!important;column-count:1!important;}
+html body #app .b71805-family-list>.fleet-family {display:block!important;flex:0 0 auto!important;grid-column:1/-1!important;column-span:all!important;float:none!important;clear:both!important;width:100%!important;min-width:0!important;max-width:100%!important;box-sizing:border-box!important;margin:0!important;padding:8px 0 16px!important;border-top:3px solid #27b9ef!important;}
+html body #app .b71805-family-list>.fleet-family>.fleet-family-head,html body #app .b71805-family-list>.fleet-family>.b783-family-status {display:grid!important;width:100%!important;max-width:100%!important;box-sizing:border-box!important;}
+html body #app .b71805-family-list>.fleet-family>.fleet-card-grid {display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;width:100%!important;min-width:0!important;max-width:100%!important;box-sizing:border-box!important;}
+html body #app .b71805-family-list .fleet-card-grid>.fleet-identity-card {width:100%!important;min-width:0!important;max-width:100%!important;box-sizing:border-box!important;}
+@media(max-width:1050px){html body #app .b71805-family-list>.fleet-family>.fleet-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:700px){html body #app .b71805-family-list>.fleet-family>.fleet-card-grid{grid-template-columns:minmax(0,1fr)!important}}
+/* All operational badges fixed at a single height regardless of their label length. */
+html body #app .b71805-family-list .fleet-badges,html body #app .c11-identity-column>.c11-badges,html body #app .b7-editor-badge-grid {grid-auto-rows:64px!important;grid-template-rows:none!important;}
+html body #app .b71805-family-list .fleet-badges>*,html body #app .c11-identity-column>.c11-badges>*,html body #app .b7-editor-badge-grid>* {box-sizing:border-box!important;height:64px!important;min-height:64px!important;max-height:64px!important;overflow:hidden!important;}
