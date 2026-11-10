@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='11.17.96', BUILD='20261109-V11.17.96-NAVIGATION-REDESIGN-TEST';
+const VERSION='11.17.97', BUILD='20261109-V11.17.97-UNIFIED-STICKY-NAV-TEST';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const EQUIPMENT_COMPUTERS=[['SS','Subswath Server'],['GPU','GPU Servers'],['DBB','Global Storage Server'],['RTAT','RTAT Server'],['SCC','SCC Computer'],['DAS','DAS Server'],['Host','Host Server'],['Dart','Dart Server']];
@@ -651,8 +651,8 @@ function toolTypeMenu(){
 }
 function positionToolTypeMenu(menu){let btn=menu?.querySelector('[data-tool-type-toggle]'),drop=menu?.querySelector('.tool-type-dropdown');if(!btn||!drop)return;let r=btn.getBoundingClientRect(),w=Math.max(190,Math.ceil(r.width));drop.style.setProperty('--tool-menu-left',Math.max(6,Math.min(window.innerWidth-w-6,r.left))+'px');drop.style.setProperty('--tool-menu-top',Math.min(window.innerHeight-40,r.bottom+1)+'px');drop.style.setProperty('--tool-menu-width',w+'px');}
 function nav(){
-  let main=`<label class="b796-center-label" for="b796-center-select">☰ &nbsp; CENTER</label><select id="b796-center-select" class="b796-center-select" aria-label="Select Command Center">${MAIN.concat([['admin','ADMINISTRATION CENTER']]).map(x=>`<option value="${x[0]}" ${route.center===x[0]?'selected':''}>${x[1]}</option>`).join('')}</select><span class="b796-page-label">PAGE</span>`;
-  document.querySelector('#mainNav').innerHTML=main;
+  let main=`<label class="b796-center-label" for="b796-center-select">CENTER</label><select id="b796-center-select" class="b796-center-select" aria-label="Select Command Center">${MAIN.concat([['admin','ADMINISTRATION CENTER']]).map(x=>`<option value="${x[0]}" ${route.center===x[0]?'selected':''}>${x[1]}</option>`).join('')}</select>`;
+  document.querySelector('#b797CenterSlot').innerHTML=main;
   let html='';
   if(route.center==='operations'){
     html+=`<button class="${route.sub==='live'?'active':''}" data-sub="live">LIVE OPERATIONS</button>`;
