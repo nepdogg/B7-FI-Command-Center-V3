@@ -31334,3 +31334,49 @@ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell>.b797-unifi
 @media(max-width:1200px){#stickyShell .b797-unified-nav>.b797-center-slot{flex-basis:190px!important;width:190px!important;max-width:190px!important}html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell>.b797-unified-nav>.page-actions{max-width:25%!important}}
 /* No extra navigation row; the footer scrolls with page content. */
 html body:not(.presentation-mode):not(.screenshot-mode) .app-footer {position:relative!important;top:auto!important;bottom:auto!important;}
+
+/* V11.17.98 — unified modern navigation styling; scoped to standard view. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell>.b797-unified-nav {
+  gap:8px!important;padding:7px 10px!important;min-height:54px!important;
+}
+#stickyShell .b797-unified-nav .b796-center-label {display:none!important}
+#stickyShell .b797-unified-nav>.b797-center-slot {
+  flex:0 0 210px!important;width:210px!important;max-width:210px!important;gap:0!important;
+}
+#stickyShell .b797-unified-nav .b796-center-select,
+#stickyShell .b797-unified-nav>.subnav>button,
+#stickyShell .b797-unified-nav>.page-actions button,
+#stickyShell .b797-unified-nav>.page-actions select {
+  box-sizing:border-box!important;height:38px!important;min-height:38px!important;
+  max-height:38px!important;border-radius:11px!important;
+  border:1px solid #205b7e!important;
+  background:#102b42!important;color:#f2f8ff!important;
+  font-size:11px!important;font-weight:800!important;
+  line-height:1.15!important;padding:0 12px!important;
+  white-space:nowrap!important;box-shadow:none!important;
+  transition:background-color .15s ease,border-color .15s ease!important;
+}
+#stickyShell .b797-unified-nav .b796-center-select {
+  width:100%!important;min-width:0!important;max-width:100%!important;
+  padding:0 26px 0 12px!important;border-color:#21b6f2!important;
+  background:#123a56!important;cursor:pointer!important;
+}
+#stickyShell .b797-unified-nav>.subnav>button.active,
+#stickyShell .b797-unified-nav>.subnav>button[aria-current="page"] {
+  background:#087db9!important;border-color:#2cc4ff!important;color:#fff!important;
+}
+#stickyShell .b797-unified-nav>.subnav>button:hover,
+#stickyShell .b797-unified-nav>.page-actions button:hover {
+  background:#174765!important;border-color:#36b9e8!important;
+}
+#stickyShell .b797-unified-nav>.subnav {gap:6px!important;align-self:center!important}
+#stickyShell .b797-unified-nav>.page-actions {gap:6px!important;align-self:center!important}
+#stickyShell .b797-unified-nav>.page-actions button {min-width:38px!important}
+#stickyShell .b797-unified-nav>.page-actions .active {background:#087db9!important}
+@media(max-width:1200px) {
+ #stickyShell .b797-unified-nav>.b797-center-slot {
+  flex-basis:175px!important;width:175px!important;max-width:175px!important;
+ }
+ #stickyShell .b797-unified-nav>.subnav>button,
+ #stickyShell .b797-unified-nav>.page-actions button {padding:0 9px!important;font-size:10px!important}
+}
