@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='11.17.98', BUILD='20261109-V11.17.98-UNIFIED-STICKY-NAV-TEST';
+const VERSION='11.17.99', BUILD='20261109-V11.17.99-UNIFIED-STICKY-NAV-TEST';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const EQUIPMENT_COMPUTERS=[['SS','Subswath Server'],['GPU','GPU Servers'],['DBB','Global Storage Server'],['RTAT','RTAT Server'],['SCC','SCC Computer'],['DAS','DAS Server'],['Host','Host Server'],['Dart','Dart Server']];
