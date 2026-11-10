@@ -31402,3 +31402,81 @@ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell>.b797-unifi
 #stickyShell .b797-unified-nav .nav69-live-actions>button.primary{background:#10314a!important;box-shadow:none!important}
 #stickyShell .b797-unified-nav .tool-type-menu{flex:1 1 0!important;min-width:0!important}
 @media(max-width:900px){html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell>.b797-unified-nav>.b797-center-slot{flex:0 0 160px!important}html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell>.b797-unified-nav>.subnav{flex:0 0 auto!important}html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell>.b797-unified-nav>.page-actions{flex:0 0 auto!important}#stickyShell .b797-unified-nav>.subnav>button{min-width:100px!important}#stickyShell .b797-unified-nav .nav69-live-actions>button{min-width:100px!important}}
+
+/* V11.18.00: real nav component layout; do not shrink the center selector to zero. */
+html body #stickyShell nav#mainNav.b797-unified-nav {
+ display:flex!important;align-items:stretch!important;flex-wrap:nowrap!important;
+ gap:6px!important;padding:7px 10px!important;width:100%!important;
+ box-sizing:border-box!important;min-width:0!important;overflow-x:auto!important;
+ overflow-y:hidden!important;scrollbar-width:thin!important;
+}
+html body #stickyShell nav#mainNav.b797-unified-nav > #b797CenterSlot {
+ display:flex!important;position:relative!important;flex:0 0 205px!important;
+ width:205px!important;min-width:205px!important;max-width:205px!important;
+ height:40px!important;margin:0!important;padding:0!important;overflow:visible!important;
+}
+html body #stickyShell nav#mainNav #b796-center-select {
+ display:block!important;position:relative!important;visibility:visible!important;opacity:1!important;
+ flex:none!important;width:100%!important;min-width:100%!important;max-width:100%!important;
+ height:40px!important;min-height:40px!important;max-height:40px!important;
+ border-radius:11px!important;border:1px solid #28bdf2!important;
+ background:#103a56!important;color:#fff!important;
+ padding:0 28px 0 11px!important;font-size:11px!important;font-weight:800!important;
+ box-sizing:border-box!important;z-index:3!important;cursor:pointer!important;
+}
+html body #stickyShell nav#mainNav > #subnav {
+ display:flex!important;align-items:stretch!important;gap:6px!important;
+ flex:5 0 auto!important;width:auto!important;min-width:max-content!important;max-width:none!important;
+ height:40px!important;overflow:visible!important;margin:0!important;padding:0!important;
+}
+html body #stickyShell nav#mainNav > #pageActions {
+ display:flex!important;align-items:stretch!important;gap:6px!important;
+ flex:4 0 auto!important;width:auto!important;min-width:max-content!important;max-width:none!important;
+ height:40px!important;overflow:visible!important;margin:0!important;padding:0!important;
+ border:0!important;
+}
+html body #stickyShell nav#mainNav #subnav > button,
+html body #stickyShell nav#mainNav #pageActions button,
+html body #stickyShell nav#mainNav #pageActions .tool-type-menu-button {
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ position:relative!important;flex:1 1 auto!important;
+ width:auto!important;min-width:max-content!important;max-width:none!important;
+ height:40px!important;min-height:40px!important;max-height:40px!important;
+ margin:0!important;padding:0 11px!important;box-sizing:border-box!important;
+ border:1px solid #23648b!important;border-radius:11px!important;
+ background:#10314a!important;color:#fff!important;
+ font:800 11px/1.15 Arial,sans-serif!important;text-decoration:none!important;
+ white-space:nowrap!important;box-shadow:none!important;
+}
+html body #stickyShell nav#mainNav #subnav > button.active {
+ background:#087fb9!important;border-color:#35c8ff!important;
+}
+html body #stickyShell nav#mainNav #pageActions .nav69-live-controls,
+html body #stickyShell nav#mainNav #pageActions .nav69-live-actions,
+html body #stickyShell nav#mainNav #pageActions .nav69-control-group {
+ display:flex!important;align-items:stretch!important;gap:6px!important;
+ flex:1 1 auto!important;width:auto!important;min-width:max-content!important;max-width:none!important;
+ height:40px!important;min-height:40px!important;max-height:40px!important;
+ margin:0!important;padding:0!important;border:0!important;background:transparent!important;
+}
+html body #stickyShell nav#mainNav #pageActions .nav69-live-actions {flex:3 1 auto!important}
+html body #stickyShell nav#mainNav #pageActions .nav69-control-group {flex:1 1 auto!important}
+html body #stickyShell nav#mainNav #pageActions .nav69-control-group > button {
+ flex:1 1 auto!important;min-width:35px!important;padding:0 6px!important;
+ border:1px solid #23648b!important;border-radius:11px!important;
+ background:#10314a!important;box-shadow:none!important;
+}
+html body #stickyShell nav#mainNav #pageActions .nav69-pause {
+ min-width:65px!important;display:flex!important;flex-direction:column!important;
+ align-items:center!important;justify-content:center!important;gap:0!important;
+}
+html body #stickyShell nav#mainNav #pageActions .nav69-pause b {font-size:9px!important}
+html body #stickyShell nav#mainNav #pageActions .nav69-pause small {font-size:8px!important}
+html body #stickyShell nav#mainNav #pageActions button:hover,
+html body #stickyShell nav#mainNav #subnav button:hover {background:#165276!important}
+@media(min-width:1650px){
+ html body #stickyShell nav#mainNav > #subnav {flex:5 1 auto!important;min-width:0!important}
+ html body #stickyShell nav#mainNav > #pageActions {flex:4 1 auto!important;min-width:0!important}
+ html body #stickyShell nav#mainNav #subnav > button,
+ html body #stickyShell nav#mainNav #pageActions .nav69-live-actions > button {min-width:0!important}
+}
