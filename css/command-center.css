@@ -31510,3 +31510,30 @@ body:not(.presentation-mode) #app .c11-status-card,body:not(.presentation-mode) 
 @media(max-width:700px){body:not(.presentation-mode) #app .c11-tool-card .c11-card-grid{grid-template-columns:minmax(0,1fr)!important}body:not(.presentation-mode) #app .c11-card-grid>.c11-progress-column{grid-column:auto!important}#app .fleet-family .fleet-card-grid{grid-template-columns:minmax(0,1fr)!important}}
 /* Keep navigation usable when zoom makes the available CSS viewport narrow. */
 body:not(.presentation-mode) #stickyShell nav#mainNav {max-width:100%!important;overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:thin!important}
+
+/* V11.18.02 — Keep navigation dropdown above the sticky status panels.
+   The navigation and status stack are siblings in #stickyShell; a high
+   z-index on the dropdown alone cannot beat a higher sibling layer. */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell{isolation:isolate!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #mainNav{
+ position:relative!important;z-index:500!important;overflow:visible!important;
+ transform:none!important;filter:none!important;contain:none!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #statusStack{
+ position:relative!important;z-index:1!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #pageActions,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #subnav,
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #b797CenterSlot{
+ overflow:visible!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell [data-tool-type-menu]{
+ position:relative!important;z-index:510!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell [data-tool-type-menu].open{
+ z-index:999!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell [data-tool-type-menu].open>.tool-type-dropdown{
+ display:grid!important;visibility:visible!important;pointer-events:auto!important;
+ z-index:2147483640!important;
+}

@@ -1,4 +1,5 @@
-V11.18.01 LAYOUT STABILIZATION TEST
-Changes: responsive 3-column card, uniform 56px badges, alias photo badge, grouped quarter tools, Administration Presentation Settings, automatic rotation.
-Test browser zoom 50/75/100/125/150%, resized windows, Live Operations, Quarter Tools, Presentation Mode, and shared data before production deployment.
-Note: static code and ZIP integrity checked; browser rendering and Microsoft Lists synchronization have not been verified.
+B7 FI COMMAND CENTER V11.18.02 - TOOL TYPE DROPDOWN LAYER FIX (TEST)
+
+Based on V11.18.01. Corrects the navigation/status panel stacking context so the Tool Type menu is displayed above the three status panels and remains clickable. Keeps tool records, application JS, Microsoft Lists integration and all other behavior unchanged.
+
+TEST: Open Operations Center > Quarter Tools > Tool Type, click a tool type; repeat after zooming and resizing. Browser visual testing not performed.
