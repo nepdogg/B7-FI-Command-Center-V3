@@ -31537,3 +31537,18 @@ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell [data-tool-
  display:grid!important;visibility:visible!important;pointer-events:auto!important;
  z-index:2147483640!important;
 }
+
+/* V11.18.03: modal always sits above the sticky shell and navigation. */
+html body #modal:not(.hidden) {
+ position:fixed!important;inset:0!important;z-index:2147483640!important;
+ isolation:isolate!important;transform:none!important;filter:none!important;
+ contain:none!important;overflow:auto!important;
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ padding:12px!important;box-sizing:border-box!important;pointer-events:auto!important;
+}
+html body #modal:not(.hidden) .modal-card {
+ position:relative!important;z-index:1!important;
+ max-height:calc(100dvh - 24px)!important;max-width:calc(100vw - 24px)!important;
+ overflow:auto!important;pointer-events:auto!important;
+}
+html body #modal:not(.hidden) #modalBody,html body #modal:not(.hidden) button,html body #modal:not(.hidden) input,html body #modal:not(.hidden) select {pointer-events:auto!important;}

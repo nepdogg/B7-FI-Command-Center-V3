@@ -69,4 +69,7 @@
 <script src="js/v11.17.2-global-layout.js?build=111802"></script>
 
 <script src="js/b7-build-diagnostics-v11.17.51.js?build=111802"></script>
+<script>/* V11.18.03: detach modal from transformed or sticky ancestors. */
+(function(){function relocate(){var modal=document.getElementById('modal');if(modal&&modal.parentElement!==document.body){document.body.appendChild(modal);}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',relocate);else relocate();})();
+</script>
 </body></html>
