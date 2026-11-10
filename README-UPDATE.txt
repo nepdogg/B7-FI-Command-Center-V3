@@ -1,9 +1,13 @@
-B7 FI Command Center V11.17.95 — Layout Stability Test
-Based on V11.17.94. Single CSS file.
-- Targeted the actual c11-tool-card markup for badge grid, update button, column borders and sizing.
-- Kept badge and Update Tool Status in document flow, preventing absolute overlap.
-- Applied full-width grouped Tools Page cards and responsive column counts.
-- Preserved existing JavaScript data and Microsoft Lists behavior.
-- Cache key and version bumped to V11.17.95.
-Verification: JS syntax, referenced files and ZIP integrity only. Browser visual tests and Microsoft Lists tests NOT completed.
-Retain previous version as backup. Do not clear browser storage or reset Lists.
+B7 FI COMMAND CENTER V11.17.96 — SIMPLIFIED NAVIGATION TEST
+
+Changes:
+- Replaced the crowded ten-button Centers navigation with a working Center dropdown (includes Administration).
+- Kept contextual page tabs and existing action buttons, with horizontal overflow rather than forced shrinking.
+- Removed the redundant full-width Tool Status strip from the Live Operations universal card.
+- Moved the editable Priority badge into the tool photo area.
+- Kept the three independent global alert/status panels and the ship countdown inside the middle column.
+- Retained the existing Microsoft Lists, meeting, shipping, tool edit and operational logic.
+
+Not yet completed: moving status panels into the card itself; consolidating repeated alert messages; matching every visual detail of the illustrative mockup.
+
+TEST BUILD: ZIP integrity and JS syntax checked; actual browser layout and shared-list sync have not been verified. Keep V11.17.95 backup. Do not reset data.

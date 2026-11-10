@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='11.17.95', BUILD='20261022-V11.17.95-TARGETED-REPAIR-TEST';
+const VERSION='11.17.96', BUILD='20261109-V11.17.96-NAVIGATION-REDESIGN-TEST';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const EQUIPMENT_COMPUTERS=[['SS','Subswath Server'],['GPU','GPU Servers'],['DBB','Global Storage Server'],['RTAT','RTAT Server'],['SCC','SCC Computer'],['DAS','DAS Server'],['Host','Host Server'],['Dart','Dart Server']];
@@ -651,7 +651,7 @@ function toolTypeMenu(){
 }
 function positionToolTypeMenu(menu){let btn=menu?.querySelector('[data-tool-type-toggle]'),drop=menu?.querySelector('.tool-type-dropdown');if(!btn||!drop)return;let r=btn.getBoundingClientRect(),w=Math.max(190,Math.ceil(r.width));drop.style.setProperty('--tool-menu-left',Math.max(6,Math.min(window.innerWidth-w-6,r.left))+'px');drop.style.setProperty('--tool-menu-top',Math.min(window.innerHeight-40,r.bottom+1)+'px');drop.style.setProperty('--tool-menu-width',w+'px');}
 function nav(){
-  let main=MAIN.map(x=>`<button class="${route.center===x[0]?'active':''}" data-center="${x[0]}">${x[1]}</button>`).join('');
+  let main=`<label class="b796-center-label" for="b796-center-select">☰ &nbsp; CENTER</label><select id="b796-center-select" class="b796-center-select" aria-label="Select Command Center">${MAIN.concat([['admin','ADMINISTRATION CENTER']]).map(x=>`<option value="${x[0]}" ${route.center===x[0]?'selected':''}>${x[1]}</option>`).join('')}</select><span class="b796-page-label">PAGE</span>`;
   document.querySelector('#mainNav').innerHTML=main;
   let html='';
   if(route.center==='operations'){
@@ -673,6 +673,7 @@ function nav(){
     tabs.style.setProperty('--b7-other-tab-count',String(Math.max(1,tabs.children.length)));
   }
 }
+document.addEventListener('change',e=>{if(e.target?.id==='b796-center-select')go(e.target.value);});
 function openIssueCount(){let manual=state.actions.filter(a=>a.status!=='Complete').length,escalated=state.tools.reduce((n,t)=>n+t.ncs.filter(x=>String(x.state||x.status||'').toLowerCase()==='escalated').length,0),e=commandCenterEngine(),auto=e.critical.length+e.attention.length;return manual+escalated+auto}
 function quarterCloseBrain(){let cfg=state.config?.brain||{},q=state.quarter,qt=quarterTimeProgress(q),a=activeTools(q),left=a.filter(t=>fiSummaryStatus(t)!=='Shipped'),limit=Math.max(1,Number(cfg.listUtidsAt)||5),ids=left.length&&left.length<=limit?left.map(t=>t.id):[],carry=carryoverTools(),msg='',level='normal',label='READY';if(carry.length&&cfg.carryoverEscalation!==false){let ids2=carry.slice(0,limit).map(t=>t.id);level='critical';label='CARRYOVER';msg=`${q} ACTIVE · ${carry.length} PRIOR-QUARTER CARRYOVER TOOL${carry.length===1?'':'S'} · SHIP ASAP${ids2.length?' · '+ids2.join(' · '):''}`;return{level,label,msg,tools:carry}}if(qt.finalDay){level=left.length?'critical':'complete';label='FINAL DAY';msg=left.length?`LAST DAY OF ${q} · ${left.length} TOOL${left.length===1?'':'S'} STILL NEED${left.length===1?'S':''} TO SHIP${ids.length?' · '+ids.join(' · '):''}`:`LAST DAY OF ${q} · ALL ${a.length} TOOLS SHIPPED`;return{level,label,msg,tools:left}}if(!qt.notStarted&&!qt.ended&&qt.remaining<=Number(cfg.awarenessDays||15)){level=qt.remaining<=Number(cfg.criticalDays||2)?'critical':qt.remaining<=Number(cfg.urgentDays||5)?'critical':qt.remaining<=Number(cfg.attentionDays||10)?'attention':'normal';label=qt.remaining<=Number(cfg.urgentDays||5)?'QUARTER CLOSE URGENT':'QUARTER CLOSE';msg=`${q} QUARTER CLOSE · ${qt.remaining} DAY${qt.remaining===1?'':'S'} LEFT · ${left.length} TOOL${left.length===1?'':'S'} STILL NEED TO SHIP${ids.length?' · '+ids.join(' · '):''}`;return{level,label,msg,tools:left}}return{level,label,msg:'',tools:[]}}
 function statusMessagePool(){
@@ -1788,13 +1789,9 @@ function v11ToolCard(){
   let currentStatus=performance(t)[0]==='BEHIND'?'BEHIND SCHEDULE':performance(t)[0]==='AHEAD'?'AHEAD OF SCHEDULE':'ON SCHEDULE';
   if(t.fiStatusOverride)currentStatus=t.fiStatusOverride;
   return `<section class="c11-tool-card" data-universal-tool-card="${esc(t.id)}">
-    <div class="c11-intelligence c11-intelligence-${esc(intel.tone)}">
-      <div class="c11-priority-identity"><button type="button" class="c11-priority" data-direct-priority="${esc(t.id)}" title="Update priority"><b>#${esc(p.rank||t.priority||'—')}</b><span><strong>PRIORITY</strong><small>${esc(p.source==='commandCenter'?'COMMAND CENTER':'LEADS')}</small></span></button><button type="button" class="c11-priority-tool" data-open-tool="${esc(t.id)}" title="Open Tool Control Center"><strong>${esc(t.id||'NO UTID')}</strong><small>${esc((t.codename||'TOOL')+' · '+(t.model||'NO MODEL'))}</small></button></div>
-      <button type="button" class="c11-tool-statusbar ${esc(intel.tone)}" data-open-tool="${esc(t.id)}" title="Open Tool Control Center"><div class="c11-message"><strong>${esc(intel.message)}</strong></div><span class="c11-view-details">VIEW DETAILS ›</span></button>
-    </div>
     <div class="c11-card-grid">
       <section class="c11-column c11-identity-column">
-        <div class="c11-photo"><img src="${esc(img)}" alt="${esc(t.codename||'Tool')}"></div>
+        <div class="c11-photo b796-priority-photo"><img src="${esc(img)}" alt="${esc(t.codename||'Tool')}"><button type="button" class="b796-photo-priority" data-direct-priority="${esc(t.id)}" title="Update priority"><b>#${esc(p.rank||t.priority||'—')}</b><span>PRIORITY</span></button></div>
         <div class="c11-identity-stack">
           ${c11IdentityButton(t,'utid','UTID',t.id,!t.id)}
           ${c11IdentityButton(t,'toolType','TOOL TYPE',t.codename,!t.codename)}
