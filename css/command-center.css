@@ -31684,3 +31684,18 @@ html body #app .c11-badges>* :is(span,small,b,strong),html body #app .fleet-badg
 html body #app .c11-progress-row.b7-section-tone-neutral .c11-progress-track {background:#485564!important;border-color:#687989!important;}
 html body #app .c11-progress-row.b7-section-tone-neutral .c11-progress-track>i {width:0!important;}
 html body #modal:not(.hidden) {position:fixed!important;z-index:2147483647!important;inset:0!important;}
+
+/* V11.18.08: physical in-flow spacer matches actual fixed shell height.
+   Do not add padding to body-shell as that can be overridden by other layout rules. */
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame > #b71808StickySpacer {
+ display:block!important;position:relative!important;width:100%!important;
+ margin:0!important;padding:0!important;visibility:hidden!important;
+ pointer-events:none!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame > .body-shell {
+ padding-top:8px!important;scroll-margin-top:var(--sticky-shell-height,0px)!important;
+}
+html body:is(.presentation-mode,.screenshot-mode) .app-frame > #b71808StickySpacer {
+ height:0!important;min-height:0!important;flex:0 0 0px!important;display:none!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #app > *:first-child {scroll-margin-top:calc(var(--sticky-shell-height,0px) + 8px)!important;}
