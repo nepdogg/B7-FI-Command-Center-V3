@@ -1,73 +1,41 @@
-/* V12 VISUAL LAYER — isolated, scoped layout authority. No changes to business data. */
-:root{--v12-badge-height:64px;--v12-gap:7px;--v12-card-min:0px}
-html,body{max-width:100%;overflow-x:clip}
-#app,#app main,#app .body-shell{min-width:0;max-width:100%}
-/* Keep top region fixed and reserve its actual height, updated by existing JS. */
-body:not(.presentation-mode):not(.screenshot-mode) #stickyShell{position:fixed!important;inset:0 0 auto 0!important;width:100%!important;z-index:9000!important;transform:none!important;overflow:visible!important}
-body:not(.presentation-mode):not(.screenshot-mode) .body-shell{padding-top:calc(var(--sticky-shell-height, 230px) + 8px)!important}
-/* Tool family sections, not the sections themselves, are the grid items. */
-#app .fleet-family{display:block!important;position:relative!important;width:100%!important;max-width:100%!important;min-width:0!important;grid-column:1/-1!important;break-inside:avoid}
-#app .fleet-card-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;width:100%!important;max-width:100%!important;min-width:0!important}
-#app .fleet-identity-card{min-width:0!important;width:100%!important;max-width:100%!important}
-@media(max-width:1150px){#app .fleet-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
-@media(max-width:700px){#app .fleet-card-grid{grid-template-columns:minmax(0,1fr)!important}}
-/* Equal-width and equal-height columns; internal content must never scale independently to viewport height. */
-#app .c11-card-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;align-items:stretch!important;gap:10px!important;height:auto!important;min-height:0!important;max-height:none!important}
-#app .c11-card-grid>.c11-column{min-width:0!important;width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;align-self:stretch!important;box-sizing:border-box!important}
-#app .c11-tool-card{height:auto!important;min-height:0!important;max-height:none!important}
-#app .c11-status-card,#app .c11-progress-row{min-height:0!important;max-height:none!important;flex:0 0 auto!important}
-#app .c11-status-column,#app .c11-progress-column{justify-content:flex-start!important}
-@media(max-width:1000px){#app .c11-card-grid{grid-template-columns:minmax(0,1fr)!important}}
-/* A single badge grid sizing contract: no overlapping grid rows or stretched buttons. */
-#app .c11-badges{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-rows:var(--v12-badge-height)!important;gap:var(--v12-gap)!important;align-content:start!important;align-items:stretch!important;height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important}
-#app .c11-badges>.c11-badge,#app .c11-badges>button{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;height:var(--v12-badge-height)!important;min-height:var(--v12-badge-height)!important;max-height:var(--v12-badge-height)!important;margin:0!important;padding:3px 5px!important;overflow:hidden!important;min-width:0!important;line-height:1.08!important}
-#app .c11-badges>button :is(span,small,b,strong){max-width:100%!important;overflow-wrap:anywhere!important;white-space:normal!important;line-height:1.08!important;text-align:center!important}
-#app .c11-identity-column{overflow:visible!important}
-/* Three matching photo badges, priority / type / alias. */
-#app .c11-photo{position:relative!important;overflow:hidden!important}
-#app .v12-photo-badge-stack{position:absolute;z-index:4;top:8px;left:8px;display:flex;flex-direction:column;gap:5px;width:clamp(76px,28%,110px);pointer-events:none}
-#app .v12-photo-badge-stack>*{position:static!important;inset:auto!important;display:flex!important;flex-direction:column;justify-content:center;align-items:center;box-sizing:border-box;width:100%!important;height:44px!important;min-height:44px!important;max-height:44px!important;padding:3px!important;border-radius:7px!important;border:1px solid #5cb6e3!important;box-shadow:0 2px 6px #0008!important;color:white!important;font-size:clamp(10px,1vw,14px)!important;font-weight:800!important;text-align:center!important;overflow:hidden!important;overflow-wrap:anywhere!important;line-height:1.1!important;pointer-events:auto}
-#app .v12-photo-badge-stack .b796-photo-priority{background:#9c163d!important;border-color:#ff6687!important}
-#app .v12-photo-badge-stack .v12-photo-tool-type{background:#174f72!important}
-#app .v12-photo-badge-stack .b718-photo-alias{background:#086c9d!important}
-#app .v12-photo-badge-stack .b796-photo-priority span{font-size:9px!important}
-/* Dropdowns and dialogs should not be trapped behind sticky shell. */
-body #modal:not(.hidden),body .modal-overlay:not(.hidden){z-index:20000!important;position:fixed!important}
-
-/* V12.0.1 regression repair: win against legacy ID-scoped !important rules. */
-html body #app .c11-tool-card .c11-photo.b796-priority-photo > .v12-photo-badge-stack{position:absolute!important;top:8px!important;left:8px!important;right:auto!important;bottom:auto!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;gap:5px!important;width:94px!important;z-index:12!important;pointer-events:none!important}
-html body #app .c11-tool-card .c11-photo.b796-priority-photo > .v12-photo-badge-stack > .b796-photo-priority,
-html body #app .c11-tool-card .c11-photo.b796-priority-photo > .v12-photo-badge-stack > .v12-photo-tool-type,
-html body #app .c11-tool-card .c11-photo.b796-priority-photo > .v12-photo-badge-stack > .b718-photo-alias{position:relative!important;top:auto!important;bottom:auto!important;left:auto!important;right:auto!important;inset:auto!important;transform:none!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;width:94px!important;min-width:94px!important;max-width:94px!important;height:48px!important;min-height:48px!important;max-height:48px!important;margin:0!important;padding:3px 4px!important;box-sizing:border-box!important;border-radius:7px!important;font-size:12px!important;line-height:1.05!important;text-align:center!important;overflow:hidden!important;white-space:normal!important;overflow-wrap:anywhere!important;pointer-events:auto!important}
-html body #app .c11-tool-card .c11-photo.b796-priority-photo > .v12-photo-badge-stack > .b796-photo-priority{background:#a40032!important;border:1px solid #ff6687!important}
-html body #app .c11-tool-card .c11-photo.b796-priority-photo > .v12-photo-badge-stack > .v12-photo-tool-type{background:#174f72!important;border:1px solid #5cb6e3!important}
-html body #app .c11-tool-card .c11-photo.b796-priority-photo > .v12-photo-badge-stack > .b718-photo-alias{background:#07577c!important;border:1px solid #48cbff!important}
-html body #app .c11-tool-card .c11-identity-column{display:flex!important;flex-direction:column!important;gap:5px!important;justify-content:flex-start!important;overflow:visible!important}
-html body #app .c11-tool-card .c11-identity-column > .c11-badges{position:relative!important;inset:auto!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-rows:64px!important;gap:5px!important;align-content:start!important;align-items:stretch!important;flex:0 0 auto!important;height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;order:0!important}
-html body #app .c11-tool-card .c11-identity-column > .c11-badges > .c11-badge{position:relative!important;inset:auto!important;transform:none!important;box-sizing:border-box!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;height:64px!important;min-height:64px!important;max-height:64px!important;width:100%!important;min-width:0!important;margin:0!important;padding:5px!important;overflow:hidden!important;white-space:normal!important;line-height:1.12!important}
-html body #app .c11-tool-card .c11-identity-column > .c11-badges > .c11-badge *{white-space:normal!important;overflow-wrap:anywhere!important;line-height:1.12!important;max-width:100%!important}
-html body #app .c11-tool-card .c11-identity-column > .c11-update{position:relative!important;inset:auto!important;transform:none!important;order:99!important;flex:0 0 auto!important;margin:6px 0 0!important;z-index:1!important}
-html body #app .c11-tool-card .c11-card-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;align-items:stretch!important;height:auto!important;min-height:0!important}
-html body #app .c11-tool-card .c11-card-grid > .c11-column{min-width:0!important;width:100%!important;max-width:100%!important;align-self:stretch!important}
-@media(max-width:850px){html body #app .c11-tool-card .c11-card-grid{grid-template-columns:1fr!important}}
-
-/* V12.0.2 authoritative geometry: grid children fill their tracks at ALL browser zoom levels. */
-html body:not(.presentation-mode):not(.screenshot-mode) #app section.c11-tool-card{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important;contain:none!important}
-html body:not(.presentation-mode):not(.screenshot-mode) #app section.c11-tool-card > div.c11-card-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-flow:row!important;gap:8px!important;width:100%!important;max-width:100%!important;min-width:0!important;justify-content:stretch!important;align-items:stretch!important;justify-items:stretch!important;overflow:visible!important}
-html body:not(.presentation-mode):not(.screenshot-mode) #app section.c11-tool-card > div.c11-card-grid > section.c11-column{grid-column:auto!important;grid-row:1!important;position:relative!important;left:auto!important;right:auto!important;top:auto!important;transform:none!important;float:none!important;display:flex!important;flex-direction:column!important;align-self:stretch!important;justify-self:stretch!important;flex:1 1 auto!important;width:100%!important;min-width:0!important;max-width:none!important;min-height:0!important;height:auto!important;box-sizing:border-box!important;gap:7px!important;padding:0!important;overflow:visible!important}
-html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-card-grid > .c11-identity-column{grid-column:1!important}
-html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-card-grid > .c11-status-column{grid-column:2!important}
-html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-card-grid > .c11-progress-column{grid-column:3!important}
-html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-identity-column > .c11-photo,html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-identity-column > .c11-identity-stack,html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-identity-column > .c11-badges,html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-identity-column > .c11-update{width:100%!important;max-width:100%!important;min-width:0!important;box-sizing:border-box!important}
-/* Every section uses the same corner tokens, including the actual colored surfaces. */
-:root{--v12-radius-panel:12px;--v12-radius-section:9px;--v12-radius-badge:7px}
-html body #app .c11-photo,html body #app .c11-status-card,html body #app .c11-progress-row,html body #app .c11-overall-progress,html body #app .fleet-family,html body #app .fleet-identity-card,html body #app .b7-status-panel,html body #app .v9-panel{border-radius:var(--v12-radius-panel)!important;background-clip:padding-box!important;overflow:hidden!important}
-html body #app .c11-id-badge,html body #app .c11-badge,html body #app .c11-date-badge,html body #app .c11-reduced,html body #app .c11-carry,html body #app .c11-update,html body #app .c11-identity-stack > *,html body #app .c11-badges > *{border-radius:var(--v12-radius-badge)!important;box-sizing:border-box!important}
-html body #app .c11-status-column > .c11-status-card,html body #app .c11-progress-column > .c11-progress-row{position:relative!important;inset:auto!important;transform:none!important;flex:1 0 auto!important;margin:0!important;min-width:0!important;width:100%!important;max-width:100%!important;box-sizing:border-box!important}
-/* Ensure badges never overlap adjacent rows; the edit button belongs after the badge grid. */
-html body #app .c11-identity-column > .c11-badges{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-flow:row!important;grid-auto-rows:64px!important;gap:6px!important;position:static!important;transform:none!important;flex:none!important;order:0!important;overflow:visible!important}
-html body #app .c11-identity-column > .c11-badges > *{position:relative!important;top:auto!important;left:auto!important;right:auto!important;bottom:auto!important;transform:none!important;min-width:0!important;max-width:100%!important;width:100%!important;height:64px!important;min-height:64px!important;max-height:64px!important;margin:0!important;padding:5px!important;overflow:hidden!important;box-sizing:border-box!important;white-space:normal!important}
-html body #app .c11-identity-column > .c11-update{position:static!important;transform:none!important;flex:none!important;order:99!important;margin:5px 0!important;min-height:34px!important;height:auto!important}
-html body #app .c11-identity-column > .c11-badges > * :is(span,small,b,strong){white-space:normal!important;overflow-wrap:anywhere!important;line-height:1.12!important}
-/* Keep the tool card in three equal columns even at extreme browser zoom. On truly narrow viewports, stack. */
-@media(max-width:800px){html body:not(.presentation-mode):not(.screenshot-mode) #app section.c11-tool-card > div.c11-card-grid{grid-template-columns:minmax(0,1fr)!important}html body:not(.presentation-mode):not(.screenshot-mode) #app section.c11-tool-card > div.c11-card-grid > section.c11-column{grid-column:1!important;grid-row:auto!important}}
+/* V12.0.3: Single authoritative Universal Tool Card layout. Legacy app logic untouched. */
+:root{--v12-gap:9px;--v12-panel-radius:12px;--v12-badge-radius:7px}
+html,body,.app-frame,.body-shell,#app{max-width:100%;min-width:0;box-sizing:border-box}
+body:not(.presentation-mode):not(.screenshot-mode) #stickyShell{position:fixed!important;top:0!important;left:0!important;right:0!important;width:100%!important;z-index:9000!important}
+/* Existing spacer is controlled by the measured sticky header; never add a second offset. */
+body:not(.presentation-mode):not(.screenshot-mode) .body-shell{padding-top:0!important;margin-top:0!important}
+#app .c11-tool-card{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important;height:auto!important;overflow:visible!important}
+#app .c11-tool-card > .c11-card-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:var(--v12-gap)!important;align-items:stretch!important;justify-content:stretch!important;width:100%!important;max-width:100%!important;min-width:0!important;height:auto!important;overflow:visible!important}
+#app .c11-tool-card .c11-card-grid > .c11-column{display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;gap:var(--v12-gap)!important;position:relative!important;inset:auto!important;transform:none!important;float:none!important;grid-row:1!important;min-width:0!important;width:100%!important;max-width:none!important;height:auto!important;min-height:0!important;padding:0!important;margin:0!important;overflow:visible!important;background:transparent!important}
+#app .c11-tool-card .c11-card-grid > .c11-identity-column{grid-column:1!important}
+#app .c11-tool-card .c11-card-grid > .c11-status-column{grid-column:2!important}
+#app .c11-tool-card .c11-card-grid > .c11-progress-column{grid-column:3!important}
+/* No vertical stretching: cards use content-sized sections, eliminating giant empty panels at reduced zoom. */
+#app .c11-tool-card .c11-status-column > .c11-status-card,
+#app .c11-tool-card .c11-progress-column > .c11-progress-row{position:relative!important;inset:auto!important;transform:none!important;display:flex!important;flex-direction:column!important;justify-content:center!important;flex:0 0 auto!important;min-height:110px!important;height:auto!important;max-height:none!important;width:100%!important;min-width:0!important;box-sizing:border-box!important;padding:16px!important;margin:0!important;border-radius:var(--v12-panel-radius)!important;overflow:hidden!important;background-clip:padding-box!important}
+#app .c11-tool-card .c11-progress-column > .c11-progress-row{min-height:102px!important;padding:12px!important}
+#app .c11-tool-card .c11-status-card .c11-hero{font-size:clamp(20px,2.1vw,38px)!important;line-height:1.12!important;white-space:normal!important;overflow-wrap:anywhere!important}
+#app .c11-tool-card .c11-status-card .label,#app .c11-tool-card .c11-status-card .sub{white-space:normal!important;overflow-wrap:anywhere!important}
+/* Left column: every direct child in normal flow, with no absolute positioning or inherited forced flex height. */
+#app .c11-tool-card .c11-identity-column > *{position:relative!important;inset:auto!important;transform:none!important;flex:0 0 auto!important;min-width:0!important;width:100%!important;max-width:100%!important;box-sizing:border-box!important;margin:0!important}
+#app .c11-tool-card .c11-identity-column > .c11-photo{height:225px!important;min-height:225px!important;max-height:225px!important;border-radius:var(--v12-panel-radius)!important;overflow:hidden!important}
+#app .c11-tool-card .c11-photo > img{height:100%!important;max-height:100%!important;max-width:calc(100% - 112px)!important;width:auto!important;object-fit:contain!important;margin:auto!important}
+#app .c11-tool-card .c11-photo > .v12-photo-badge-stack{position:absolute!important;inset:8px auto auto 8px!important;display:flex!important;flex-direction:column!important;gap:6px!important;width:96px!important;height:auto!important;z-index:4!important;pointer-events:none!important}
+#app .c11-tool-card .v12-photo-badge-stack > *{position:relative!important;inset:auto!important;transform:none!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;width:96px!important;min-width:96px!important;max-width:96px!important;height:48px!important;min-height:48px!important;max-height:48px!important;padding:4px!important;margin:0!important;border-radius:var(--v12-badge-radius)!important;white-space:normal!important;overflow-wrap:anywhere!important;text-align:center!important;line-height:1.1!important;font-size:12px!important;pointer-events:auto!important}
+#app .c11-tool-card .v12-photo-badge-stack > .b796-photo-priority{background:#a40032!important;border:1px solid #f36b88!important}
+#app .c11-tool-card .v12-photo-badge-stack > .v12-photo-tool-type{background:#174f72!important;border:1px solid #5cb6e3!important}
+#app .c11-tool-card .v12-photo-badge-stack > .b718-photo-alias{background:#07577c!important;border:1px solid #48cbff!important}
+#app .c11-tool-card .c11-identity-column > .c11-identity-stack{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:5px!important;height:auto!important;min-height:0!important;overflow:visible!important}
+#app .c11-tool-card .c11-identity-stack > *{position:relative!important;inset:auto!important;transform:none!important;min-width:0!important;width:100%!important;height:42px!important;min-height:42px!important;max-height:42px!important;box-sizing:border-box!important;border-radius:var(--v12-badge-radius)!important;overflow:hidden!important}
+#app .c11-tool-card .c11-identity-column > .c11-badges{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-flow:row!important;grid-auto-rows:64px!important;gap:6px!important;align-content:start!important;align-items:stretch!important;height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;order:0!important}
+#app .c11-tool-card .c11-identity-column > .c11-badges > *{position:relative!important;inset:auto!important;transform:none!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;min-width:0!important;max-width:100%!important;width:100%!important;height:64px!important;min-height:64px!important;max-height:64px!important;box-sizing:border-box!important;padding:5px!important;margin:0!important;overflow:hidden!important;border-radius:var(--v12-badge-radius)!important;white-space:normal!important;text-align:center!important;line-height:1.15!important}
+#app .c11-tool-card .c11-badges > * *{max-width:100%!important;white-space:normal!important;overflow-wrap:anywhere!important;line-height:1.15!important}
+#app .c11-tool-card .c11-identity-column > .c11-update{position:relative!important;inset:auto!important;transform:none!important;order:99!important;height:38px!important;min-height:38px!important;max-height:38px!important;border-radius:var(--v12-badge-radius)!important;z-index:1!important}
+#app .c11-tool-card .c11-identity-column > .c11-reduced,#app .c11-tool-card .c11-identity-column > .c11-carry,#app .c11-tool-card .c11-identity-column > .c11-date-row{height:auto!important;min-height:28px!important;max-height:none!important;border-radius:var(--v12-badge-radius)!important;overflow:visible!important}
+/* Consistent modern section surfaces across other pages, too. */
+#app :is(.fleet-identity-card,.fleet-family,.v9-panel,.b7-status-panel,.c11-id-badge,.c11-date-badge,.c11-badge,.c11-progress-row,.c11-status-card){border-radius:var(--v12-panel-radius)!important;background-clip:padding-box!important}
+#app .fleet-card-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;min-width:0!important;width:100%!important}
+#app .fleet-family{grid-column:1/-1!important;min-width:0!important;width:100%!important}
+#modal:not(.hidden),body .modal-overlay:not(.hidden){z-index:20000!important}
+@media(max-width:1050px){#app .fleet-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:780px){#app .c11-tool-card > .c11-card-grid{grid-template-columns:minmax(0,1fr)!important}#app .c11-tool-card .c11-card-grid > .c11-column{grid-column:1!important;grid-row:auto!important}#app .fleet-card-grid{grid-template-columns:minmax(0,1fr)!important}}
