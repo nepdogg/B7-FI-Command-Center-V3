@@ -20,3 +20,5 @@ INSTALLATION
 3. Launch using START-COMMAND-CENTER.bat.
 4. Hard refresh (Ctrl+Shift+R) to avoid cached CSS.
 5. Test locally before publishing to GitHub Pages.
+
+V12.0.8 TEST: Badge grid now wrapped in dedicated in-flow region, 64px rows and 8px gaps. Update button follows region. This is not a verified production release.

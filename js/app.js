@@ -1815,7 +1815,7 @@ function v11ToolCard(){
         ${fiDateBadgeRow(t)}
         <button type="button" class="c11-reduced ${t.reducedProcess?'active':''}" data-direct-indicator="reduced" data-indicator-tool="${esc(t.id)}">${t.reducedProcess?'REDUCED PROCESS':'NORMAL PROCESS'}</button>
         ${carry?`<div class="c11-carry">⚠ QUARTER CARRYOVER — SHIP ASAP ⚠</div>`:`<div class="c11-carry c11-carry-placeholder" aria-hidden="true"></div>`}
-        <div class="c11-badges">${badgeHtml}</div>
+        <div class="c11-badge-region"><div class="c11-badges">${badgeHtml}</div></div>
         <button class="c11-update" data-tool="${esc(t.id)}">UPDATE TOOL STATUS →</button>
       </section>
       <section class="c11-column c11-status-column">
