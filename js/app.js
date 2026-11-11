@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='11.18.00', BUILD='20261109-V11.18.01-UNIFIED-STICKY-NAV-TEST';
+const VERSION='11.18.06', BUILD='20261110-V11.18.06-RESPONSIVE-NAV-TEST';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const EQUIPMENT_COMPUTERS=[['SS','Subswath Server'],['GPU','GPU Servers'],['DBB','Global Storage Server'],['RTAT','RTAT Server'],['SCC','SCC Computer'],['DAS','DAS Server'],['Host','Host Server'],['Dart','Dart Server']];
@@ -1719,13 +1719,21 @@ function modernFleetIntelligence(){
 }
 function modernActiveFleetStrip(){let a=carouselTools();return `<div class="modern-active-fleet"><div class="fleet-strip-head"><b>ACTIVE FLEET</b><span>${a.length} TOOLS</span><button data-live="prev">‹</button><button data-live="play">${livePlaying?'Ⅱ':'▶'}</button><button data-live="next">›</button></div><div class="fleet-strip-items">${a.map((t,i)=>`<button class="fleet-chip ${i===liveIndex?'selected':''}" data-live-index="${i}"><b>#${esc(t.priority||i+1)}</b><span>${esc(t.codename||'TOOL')}<small>${esc(t.model||t.id)}</small></span><em class="${shipCountdown(t).tone}">${esc(shipCountdown(t).big)}</em></button>`).join('')}</div></div>`}
 function v10WorkflowProgress(required,status,kind='generic'){
-  let req=String(required||'TBD').toUpperCase(),st=String(status||'Not Started').toLowerCase();
-  if(['NO','NOT REQUIRED','N/A'].includes(req))return 100;
-  if(st.includes('complete')||st.includes('approved')||st.includes('returned to fi'))return 100;
-  if(st.includes('testing')||st.includes('active')||st.includes('started')||st.includes('in progress'))return 60;
-  if(st.includes('received')||st.includes('submitted')||st.includes('handoff')||st.includes('requirements'))return 35;
-  return 0;
+ const req=String(required||'TBD').trim().toUpperCase(), st=String(status||'Not Started').trim().toLowerCase();
+ if(req!=='YES'||st==='not started'||st==='not required'||!st)return 0;
+ if(/complete|approved|returned to fi/.test(st))return 100;
+ if(/testing|active|in progress|started/.test(st))return 60;
+ if(/received|submitted|handoff|requirements/.test(st))return 35;
+ return 0;
 }
+function v111807WorkflowDisplay(required,status){
+ const req=String(required||'TBD').trim().toUpperCase();
+ if(['NO','NOT REQUIRED','N/A'].includes(req))return {pct:0,tone:'neutral',label:'NOT REQUIRED',sub:'NOT REQUIRED'};
+ if(req!=='YES')return {pct:0,tone:'neutral',label:'TBD',sub:'REQUIREMENT NOT DETERMINED'};
+ const pct=v10WorkflowProgress(required,status);
+ return {pct,tone:pct===100?'green':pct>0?'yellow':'cyan',label:pct+'%',sub:'YES · '+String(status||'NOT STARTED').toUpperCase()};
+}
+
 function v10ForecastProgress(t){
   let fi=fiProgress(t), start=t.fiHandoffDate?dateOnly(t.fiHandoffDate):null, end=calculatedForecastDate(t)||t.nextForecastDate||'';
   if(!start||!end)return fi;
@@ -1774,13 +1782,13 @@ function v10ToolIntelligence(t,count,p){
 }
 function v10IdentityButton(t,key,label,value,missing=false){return `<button type="button" class="v10-id-badge ${missing?'missing':''}" data-direct-identity="${esc(key)}" data-identity-tool="${esc(t.id)}" title="${esc(label)} — click to update"><small>${esc(label)}</small><strong>${esc(String(value||'—').toUpperCase())}</strong></button>`}
 function v10ProgressRow(label,pct,tone,sub,tool,key='',display=''){
-  let p=Math.max(0,Math.min(100,Number(pct)||0)),attrs=key==='shippingWorkflow'?` data-handoffs="${esc(tool.id)}" role="button" tabindex="0"`:key?` data-quick-field="${esc(key)}" data-quick-tool="${esc(tool.id)}" role="button" tabindex="0"`:'';
+  let p=Math.max(0,Math.min(100,Number(pct)||0)),attrs=key==='forecastChecklist'?` data-forecast-checklist="${esc(tool.id)}" role="button" tabindex="0"`:key==='shippingWorkflow'?` data-handoffs="${esc(tool.id)}" role="button" tabindex="0"`:key?` data-quick-field="${esc(key)}" data-quick-tool="${esc(tool.id)}" role="button" tabindex="0"`:'';
   return `<div class="v10-progress-row ${key?'clickable':''}"${attrs}><div class="v10-progress-head"><b>${esc(label)}</b><strong>${esc(display||Math.round(Number(pct)||0)+'%')}</strong></div><div class="v10-progress-track"><i class="${esc(tone||'cyan')}" style="width:${p}%"></i></div><small>${esc(sub||'')}</small></div>`
 }
 
 function c11IdentityButton(t,key,label,value,missing=false){return `<button type="button" class="c11-id-badge ${missing?'missing':''}" data-direct-identity="${esc(key)}" data-identity-tool="${esc(t.id)}" title="${esc(label)} — click to update"><small>${esc(label)}</small><strong>${esc(String(value||'—').toUpperCase())}</strong></button>`}
 function c11ProgressRow(label,pct,tone,sub,tool,key='',display=''){
-  let p=Math.max(0,Math.min(100,Number(pct)||0)),attrs=key==='shippingWorkflow'?` data-handoffs="${esc(tool.id)}" role="button" tabindex="0"`:key?` data-quick-field="${esc(key)}" data-quick-tool="${esc(tool.id)}" role="button" tabindex="0"`:'';
+  let p=Math.max(0,Math.min(100,Number(pct)||0)),attrs=key==='forecastChecklist'?` data-forecast-checklist="${esc(tool.id)}" role="button" tabindex="0"`:key==='shippingWorkflow'?` data-handoffs="${esc(tool.id)}" role="button" tabindex="0"`:key?` data-quick-field="${esc(key)}" data-quick-tool="${esc(tool.id)}" role="button" tabindex="0"`:'';
   return `<div class="c11-progress-row b7-section-tone-${esc(tone||'cyan')} ${key?'clickable':''}"${attrs}><div class="c11-progress-head"><b>${esc(label)}</b><strong>${esc(display||Math.round(Number(pct)||0)+'%')}</strong></div><div class="c11-progress-track"><i class="${esc(tone||'cyan')}" style="width:${p}%"></i></div><small>${esc(sub||'')}</small></div>`
 }
 function c11OverallProgressCard(alias,t,fi,lead,packing){
@@ -1790,7 +1798,7 @@ function c11OverallProgressCard(alias,t,fi,lead,packing){
 function v11ToolCard(){
   let a=carouselTools();if(!a.length)return `<section class="c11-tool-card"><div class="v9-empty">NO ACTIVE TOOLS</div></section>`;
   liveIndex=((liveIndex%a.length)+a.length)%a.length;
-  let t=a[liveIndex],count=shipCountdown(t),fi=fiProgress(t),mi=microProgress(t),cyc=actualCycleDays(t),target=cycleAverageDays(t)||25,cp=Math.round(cyc/target*100),tasks=nextSystemTasksRows(t),img=individualToolPhoto(t)||familyImage(t),carry=isCarryoverTool(t),p=priorityBadgeInfo(t),badges=evaluateTool(t).badgeList||[],intel=v10ToolIntelligence(t,count,p),forecast=v10ForecastProgress(t),lead=leadProgress(t),source=v10WorkflowProgress(t.sourceRequired,t.sourceStatus,'source'),str=v10WorkflowProgress(t.strRequired,t.strStatus,'str'),packing=shippingProgress(t);
+  let t=a[liveIndex],count=shipCountdown(t),fi=fiProgress(t),mi=microProgress(t),cyc=actualCycleDays(t),target=cycleAverageDays(t)||25,cp=Math.round(cyc/target*100),tasks=nextSystemTasksRows(t),img=individualToolPhoto(t)||familyImage(t),carry=isCarryoverTool(t),p=priorityBadgeInfo(t),badges=evaluateTool(t).badgeList||[],intel=v10ToolIntelligence(t,count,p),forecast=v10ForecastProgress(t),lead=leadProgress(t),source=v111807WorkflowDisplay(t.sourceRequired,t.sourceStatus),str=v111807WorkflowDisplay(t.strRequired,t.strStatus),packing=shippingProgress(t);
   let alias=String(t.alias||t.id||t.codename||'TOOL').trim().toUpperCase();
   const badgeHtml=canonicalToolBadges(t);
   let statusLabel=t.toolStatus==='FI'?'FI TESTING':String(t.toolStatus||fiSummaryStatus(t)).toUpperCase();
@@ -1827,11 +1835,11 @@ function v11ToolCard(){
       <section class="c11-column c11-progress-column">
         ${c11ProgressRow(`${alias} FI PROGRESS`,fi,'cyan',checklistLabel(t,t.currentChecklist),t,'currentChecklist')}
         ${c11ProgressRow(`${alias} MICRO SCHEDULE`,mi,performance(t)[0]==='BEHIND'?'red':'green',checklistLabel(t,t.microSchedule),t,'microSchedule')}
-        ${c11ProgressRow(`${alias} FI FORECAST PROGRESS`,forecast,forecast>=90?'yellow':'purple',`FORECAST · ${fmtDate(calculatedForecastDate(t)||t.nextForecastDate||'')}`,t,'forecastDate')}
+        ${c11ProgressRow(`${alias} FI FORECAST PROGRESS`,forecast,forecast>=90?'yellow':'purple',`FORECAST · ${fmtDate(calculatedForecastDate(t)||t.nextForecastDate||'')}`,t,'forecastChecklist')}
         ${c11ProgressRow(`${alias} CYCLE TIME`,cp,cp>100?'red':cp>=85?'yellow':'green',`TARGET ${target} DAYS`,t,'targetCycle',`${cyc} / ${target} DAYS · ${cp}%`)}
         ${c11ProgressRow(`${alias} LEAD / ADMIN PROGRESS`,lead,lead>=85?'green':'cyan',`${Math.max(0,100-lead)}% REMAINING`,t,'currentLeadTask')}
-        ${c11ProgressRow(`${alias} CUSTOMER SOURCE PROGRESS`,source,source>=100?'green':source>0?'yellow':'cyan',`${String(t.sourceRequired||'TBD').toUpperCase()} · ${String(t.sourceStatus||'NOT STARTED').toUpperCase()}`,t,'sourceWorkflow')}
-        ${c11ProgressRow(`${alias} STR PROGRESS`,str,str>=100?'green':str>0?'yellow':'cyan',`${String(t.strRequired||'TBD').toUpperCase()} · ${String(t.strStatus||'NOT STARTED').toUpperCase()}`,t,'strWorkflow')}
+        ${c11ProgressRow(`${alias} CUSTOMER SOURCE PROGRESS`,source.pct,source.tone,source.sub,t,'sourceWorkflow',source.label)}
+        ${c11ProgressRow(`${alias} STR PROGRESS`,str.pct,str.tone,str.sub,t,'strWorkflow',str.label)}
         ${c11ProgressRow(`${alias} PACKING / SHIPPING PROGRESS`,packing,packing>=100?'green':packing>0?'yellow':'cyan',t.toolStatus==='Shipped'?'SHIPPED · PACKING / SHIPPING COMPLETE':shippingStep(t),t,'shippingWorkflow')}
         ${c11OverallProgressCard(alias,t,fi,lead,packing)}
       </section>

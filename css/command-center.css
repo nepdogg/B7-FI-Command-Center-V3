@@ -31625,3 +31625,62 @@ html body #app .b71805-family-list .fleet-card-grid>.fleet-identity-card {width:
 /* All operational badges fixed at a single height regardless of their label length. */
 html body #app .b71805-family-list .fleet-badges,html body #app .c11-identity-column>.c11-badges,html body #app .b7-editor-badge-grid {grid-auto-rows:64px!important;grid-template-rows:none!important;}
 html body #app .b71805-family-list .fleet-badges>*,html body #app .c11-identity-column>.c11-badges>*,html body #app .b7-editor-badge-grid>* {box-sizing:border-box!important;height:64px!important;min-height:64px!important;max-height:64px!important;overflow:hidden!important;}
+
+
+/* V11.18.06 — laptop-width navigation: do not allow offscreen actions.
+   At compact widths use a real page selector rather than clipping tabs. */
+#stickyShell nav#mainNav.b797-unified-nav { overflow:visible!important; min-width:0!important; }
+#stickyShell nav#mainNav .b71806-page-picker { display:none; box-sizing:border-box; min-width:0; }
+@media (max-width:1350px) {
+ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell nav#mainNav.b797-unified-nav {
+  display:flex!important; flex-wrap:nowrap!important; align-items:center!important;
+  width:100%!important; gap:5px!important; padding:5px 6px!important;
+  overflow:visible!important;
+ }
+ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell nav#mainNav > #b797CenterSlot {
+  flex:0 0 clamp(118px,14vw,170px)!important;width:clamp(118px,14vw,170px)!important;
+  min-width:0!important;max-width:170px!important;
+ }
+ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell nav#mainNav > #subnav {display:none!important;}
+ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell nav#mainNav .b71806-page-picker {
+  display:block!important;flex:1 1 175px!important;width:auto!important;min-width:105px!important;
+  max-width:260px!important;height:40px!important;border-radius:10px!important;
+  border:1px solid #27b8e9!important;background:#103a56!important;color:#fff!important;
+  font:700 11px Arial,sans-serif!important;padding:0 8px!important;
+ }
+ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell nav#mainNav > #pageActions {
+  flex:2 1 390px!important;min-width:0!important;width:auto!important;max-width:none!important;
+  gap:3px!important;overflow-x:auto!important;overflow-y:hidden!important;
+  scrollbar-width:thin!important;
+ }
+ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell nav#mainNav #pageActions .nav69-live-controls,
+ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell nav#mainNav #pageActions .nav69-live-actions,
+ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell nav#mainNav #pageActions .nav69-control-group {
+  min-width:0!important;gap:3px!important;
+ }
+ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell nav#mainNav #pageActions button {
+  min-width:0!important;padding:0 5px!important;font-size:clamp(8px,.85vw,10px)!important;
+ }
+ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell nav#mainNav #pageActions .nav69-pause {min-width:53px!important;}
+}
+@media(max-width:850px){
+ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell nav#mainNav > #b797CenterSlot {flex-basis:112px!important;}
+ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell nav#mainNav .b71806-page-picker {flex-basis:105px!important;}
+ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell nav#mainNav > #pageActions {flex-basis:250px!important;}
+}
+
+/* V11.18.07 targeted regression rules */
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell {position:fixed!important;top:0!important;left:0!important;right:0!important;width:100%!important;z-index:2147483000!important;transform:none!important;overflow:visible!important;contain:none!important;isolation:auto!important;}
+html body:not(.presentation-mode):not(.screenshot-mode) .body-shell {padding-top:var(--sticky-shell-height,230px)!important;}
+html body #app .b71805-quarter-groups .b71805-family-list,html body #app .b71805-quarter-groups .fleet-family {display:block!important;width:100%!important;max-width:100%!important;}
+html body #app .b71805-quarter-groups .fleet-card-grid {display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;width:100%!important;}
+@media(max-width:1050px){html body #app .b71805-quarter-groups .fleet-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:700px){html body #app .b71805-quarter-groups .fleet-card-grid{grid-template-columns:minmax(0,1fr)!important}}
+html body #app .c11-tool-card .c11-card-grid {align-items:stretch!important;}
+html body #app .c11-tool-card .c11-card-grid>.c11-column {height:100%!important;align-self:stretch!important;}
+html body #app .c11-badges,html body #app .fleet-badges {grid-auto-rows:64px!important;align-items:stretch!important;}
+html body #app .c11-badges>*,html body #app .fleet-badges>* {height:64px!important;min-height:64px!important;max-height:64px!important;box-sizing:border-box!important;min-width:0!important;}
+html body #app .c11-badges>* :is(span,small,b,strong),html body #app .fleet-badges>* :is(span,small,b,strong) {overflow-wrap:anywhere!important;white-space:normal!important;line-height:1.1!important;}
+html body #app .c11-progress-row.b7-section-tone-neutral .c11-progress-track {background:#485564!important;border-color:#687989!important;}
+html body #app .c11-progress-row.b7-section-tone-neutral .c11-progress-track>i {width:0!important;}
+html body #modal:not(.hidden) {position:fixed!important;z-index:2147483647!important;inset:0!important;}

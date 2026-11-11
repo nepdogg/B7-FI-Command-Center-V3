@@ -1,10 +1,4 @@
-B7 FI COMMAND CENTER V11.18.05 — QUARTER TOOLS GROUPING TEST
-
-Based on V11.18.04.
-- Wraps all tool-type sections in a dedicated vertical list.
-- Each type occupies full page width; only tool cards within that type use three columns.
-- Keeps responsive 2/1-column fallbacks and fixed 64px operational badge heights.
-- Preserves prior modal, navigation, alias, and presentation changes.
-
-TEST BEFORE PRODUCTION: verify grouping, badge text, tool clicks, popup stacking, browser zoom, and Microsoft Lists synchronization.
-Browser appearance and live sync have not been verified in this build.
+B7 FI Command Center V11.18.07 — REGRESSION TEST
+Baseline V11.18.06. Not production verified.
+Changes: sticky header shell and body offset; responsive navigation retained; Customer Source/STR NO => NOT REQUIRED (gray), TBD => TBD, YES + Not Started => 0%; FI Forecast progress click routes to existing checklist picker; tool type groups full width; card column stretching; 64px badges; modal stacking.
+Test at 100% laptop zoom, 50/75/125/150%, sticky scrolling, popup z-order, quarter grouping, badge clipping, PA543/RG85 workflows, forecast picker and Microsoft Lists sync.
