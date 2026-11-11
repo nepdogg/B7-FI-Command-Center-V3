@@ -1,6 +1,7 @@
-B7 FI COMMAND CENTER V12.0.1 — PHOTO BADGE / BADGE GRID REGRESSION REPAIR TEST
+B7 FI Command Center V12.0.2 - Layout regression repair TEST
 
-Restores Priority, Tool Type and Alias as three equal-sized vertical badges on left of tool photo.
-Forces uniform 64px operational badge rows and moves Update Tool Status below badges.
-Preserves V11.18.10 JavaScript application and existing Microsoft Lists integration.
-IMPORTANT: Browser and multi-user end-to-end testing remain incomplete. Keep V11.18.10 as rollback.
+Preserves V12.0.1 application JavaScript and data integration.
+Fixes: explicit equal-width three-column grid tracks, grid item placement and width, consistent rounded surfaces, fixed badge grid rows and edit-button positioning.
+
+Validation: JavaScript syntax and archive integrity. Browser zoom and Microsoft Lists synchronization must be tested before production deployment.
+Keep V11.18.10 backup.
