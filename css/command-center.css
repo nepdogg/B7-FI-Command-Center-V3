@@ -31699,3 +31699,11 @@ html body:is(.presentation-mode,.screenshot-mode) .app-frame > #b71808StickySpac
  height:0!important;min-height:0!important;flex:0 0 0px!important;display:none!important;
 }
 html body:not(.presentation-mode):not(.screenshot-mode) #app > *:first-child {scroll-margin-top:calc(var(--sticky-shell-height,0px) + 8px)!important;}
+
+/* V11.18.10: make forecast checklist and date persistently visible ON the bar. */
+.c11-forecast-target-row .c11-progress-track{position:relative;min-height:28px;display:flex;align-items:center;overflow:hidden}
+.c11-forecast-target-row .c11-progress-track>i{position:absolute;left:0;top:0;bottom:0;opacity:.45}
+.c11-forecast-target-row .c11-forecast-track-label{position:relative;z-index:1;width:100%;text-align:center;font-size:clamp(10px,.8vw,15px);font-weight:800;color:#fff;text-shadow:0 1px 2px #00121f;overflow-wrap:anywhere;white-space:normal;line-height:1.15;padding:2px 6px}
+.c11-forecast-target-row .c11-progress-head{gap:8px;flex-wrap:wrap}
+.c11-forecast-target-row .c11-progress-head strong{white-space:normal;text-align:right}
+.c11-forecast-target-row .c11-forecast-target-caption{white-space:normal;overflow-wrap:anywhere}
