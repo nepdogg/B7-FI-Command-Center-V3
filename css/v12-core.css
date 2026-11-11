@@ -72,3 +72,52 @@ html body #app .c11-tool-card .c11-badge-region>.c11-badges>.c11-wafer-badge,htm
 html body #app .c11-tool-card .c11-badge-region>.c11-badges>.c11-badge :is(.badge-face-label,.badge-face-state,span,small,strong,em){position:static!important;display:block!important;max-width:100%!important;margin:0!important;line-height:1.16!important;white-space:normal!important;overflow-wrap:anywhere!important}
 html body #app .c11-tool-card .c11-identity-column>.c11-update{position:relative!important;display:flex!important;flex:0 0 44px!important;order:1!important;inset:auto!important;transform:none!important;box-sizing:border-box!important;clear:both!important;width:100%!important;height:44px!important;min-height:44px!important;max-height:44px!important;margin:0!important;padding:6px!important;z-index:auto!important;border-radius:9px!important}
 html body #app .c11-tool-card .c11-status-column>.c11-status-card,html body #app .c11-tool-card .c11-progress-column>.c11-progress-row{border-radius:12px!important;margin:0!important;overflow:hidden!important}
+
+/* V12.0.9: one compact badge rhythm and equal-height tool card columns. */
+:root{--v12-badge-height:48px;--v12-badge-gap:4px;--v12-space:8px}
+html body #app .c11-tool-card>.c11-card-grid{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ grid-template-rows:minmax(0,1fr)!important;align-items:stretch!important;
+ gap:8px!important;height:auto!important;width:100%!important;
+}
+html body #app .c11-tool-card>.c11-card-grid>.c11-column{
+ display:flex!important;flex-direction:column!important;align-self:stretch!important;
+ height:100%!important;min-height:0!important;width:100%!important;
+ min-width:0!important;max-width:none!important;gap:8px!important;
+}
+html body #app .c11-tool-card .c11-badge-region>.c11-badges{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ grid-auto-rows:48px!important;grid-template-rows:none!important;
+ gap:4px!important;row-gap:4px!important;column-gap:4px!important;
+ align-content:start!important;align-items:stretch!important;
+ height:auto!important;min-height:0!important;margin:0!important;padding:0!important;
+}
+html body #app .c11-tool-card .c11-badge-region>.c11-badges>.c11-badge{
+ box-sizing:border-box!important;height:48px!important;min-height:48px!important;
+ max-height:48px!important;margin:0!important;padding:3px 4px!important;
+ display:flex!important;flex-direction:column!important;align-items:center!important;
+ justify-content:center!important;line-height:1.12!important;
+ font-size:clamp(10px,.72vw,12px)!important;overflow:hidden!important;
+ border-radius:7px!important;
+}
+html body #app .c11-tool-card .c11-badge-region>.c11-badges>.c11-badge :is(span,small,b,strong,em){
+ line-height:1.12!important;margin:0!important;padding:0!important;
+}
+html body #app .c11-tool-card .c11-identity-column>.c11-badge-region{flex:0 0 auto!important;margin:0!important;padding:0!important}
+html body #app .c11-tool-card .c11-identity-column>.c11-update{
+ position:relative!important;order:1!important;flex:0 0 40px!important;
+ height:40px!important;min-height:40px!important;max-height:40px!important;
+ margin:0!important;inset:auto!important;transform:none!important;
+}
+html body #app .c11-tool-card .c11-status-column>.c11-status-card,
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row{
+ flex:1 1 0!important;min-height:100px!important;max-height:none!important;
+ display:flex!important;flex-direction:column!important;justify-content:center!important;
+ border-radius:12px!important;overflow:hidden!important;
+}
+html body #app .c11-tool-card .c11-status-column>.c11-status-card{min-height:125px!important}
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row{min-height:95px!important}
+@media(max-width:760px){
+ html body #app .c11-tool-card>.c11-card-grid{grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto!important}
+ html body #app .c11-tool-card>.c11-card-grid>.c11-column{grid-column:1!important;grid-row:auto!important;height:auto!important}
+}

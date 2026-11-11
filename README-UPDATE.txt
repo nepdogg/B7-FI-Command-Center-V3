@@ -22,3 +22,10 @@ INSTALLATION
 5. Test locally before publishing to GitHub Pages.
 
 V12.0.8 TEST: Badge grid now wrapped in dedicated in-flow region, 64px rows and 8px gaps. Update button follows region. This is not a verified production release.
+
+
+V12.0.9 - Compact Badges / Equal Column Heights (TEST)
+- Badge cells: 48px height, 4px horizontal and vertical gaps; full-width cells keep same height.
+- Equal 1/3 column widths; middle and right panels stretch to full left-column height.
+- No application JavaScript or Microsoft Lists business logic changed.
+- Visual and live sync validation is still required before production deployment.
