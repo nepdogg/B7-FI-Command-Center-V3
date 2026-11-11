@@ -1,4 +1,4 @@
-B7 FI COMMAND CENTER V12.0.10 — PHOTO & PROGRESS TEST BUILD
+B7 FI COMMAND CENTER V12.0.11 — PHOTO & PROGRESS TEST BUILD
 
 Based on V12.0.9; application logic and Microsoft Lists integration retained.
 
@@ -12,8 +12,10 @@ CHANGES
 TEST
 1. Extract into a new folder, keep prior build as backup.
 2. Run START-COMMAND-CENTER.bat or deploy all files to GitHub Pages.
-3. Hard refresh the site (Ctrl+Shift+R) and verify V12.0.10 in header.
+3. Hard refresh the site (Ctrl+Shift+R) and verify V12.0.11 in header.
 4. Test photo for several tool types, priority click, and progress bars.
 5. Test Live Operations, All Tools, presentation mode, browser zoom, and Microsoft Lists sync.
 
 LIMITATION: Source and ZIP syntax checked; full browser and live Lists tests not completed.
+
+V12.0.11 TEST: 32px progress tracks, image contain fitting, presentation column equalization and enclosing frame border. Actual full-screen behavior and Microsoft Lists sync require validation.

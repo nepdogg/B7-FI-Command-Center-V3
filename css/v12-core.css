@@ -172,3 +172,21 @@ html body #app .c11-tool-card .c11-forecast-track-label{
  position:absolute!important;inset:0!important;display:flex!important;
  align-items:center!important;justify-content:center!important;z-index:2!important;
 }
+
+/* V12.0.11 — Photo, progress and presentation geometry. */
+html body #app .c11-tool-card .c11-photo>.v1210-photo-image{overflow:hidden!important;min-width:0!important;min-height:0!important}
+html body #app .c11-tool-card .c11-photo>.v1210-photo-image>img{width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;object-position:center!important;position:static!important;transform:none!important}
+html body #app .c11-tool-card .c11-progress-track{height:32px!important;min-height:32px!important;max-height:32px!important;box-sizing:border-box!important;border-radius:999px!important;overflow:hidden!important}
+html body #app .c11-tool-card .c11-progress-track>i{height:100%!important;min-height:100%!important;max-height:100%!important;box-sizing:border-box!important}
+html body #app .c11-tool-card .c11-progress-row{min-height:0!important}
+/* Presentation tool cards: the card fills the region above navigation; all columns stretch equally. */
+html body.presentation-mode #app{box-sizing:border-box!important;min-height:0!important}
+html body.presentation-mode #app .c11-tool-card{box-sizing:border-box!important;min-height:0!important;width:100%!important}
+html body.presentation-mode #app .c11-tool-card>.c11-card-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;align-items:stretch!important;min-height:0!important;height:100%!important}
+html body.presentation-mode #app .c11-tool-card>.c11-card-grid>.c11-column{min-width:0!important;height:100%!important;min-height:0!important;align-self:stretch!important}
+html body.presentation-mode #app .c11-tool-card .c11-status-column>.c11-status-card,html body.presentation-mode #app .c11-tool-card .c11-progress-column>.c11-progress-row{flex:1 1 0!important;min-height:0!important;max-height:none!important}
+html body.presentation-mode #app .c11-tool-card .c11-identity-column>.c11-photo.b796-priority-photo{height:190px!important;min-height:190px!important;max-height:190px!important}
+/* Outer frame is a border, not an overlay; pointer interaction stays intact. */
+html body.presentation-mode .app-frame{box-sizing:border-box!important;border:3px solid #19b9ed!important;border-radius:14px!important;overflow:hidden!important}
+html body.presentation-mode .app-frame>.body-shell{box-sizing:border-box!important;min-height:0!important}
+html body.presentation-mode #app .quarter-summary-master-viewport,html body.presentation-mode #app .quarter-summary-presentation{box-sizing:border-box!important;border-radius:10px!important}
