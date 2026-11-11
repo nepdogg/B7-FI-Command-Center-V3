@@ -1,0 +1,35 @@
+/* V12 VISUAL LAYER — isolated, scoped layout authority. No changes to business data. */
+:root{--v12-badge-height:64px;--v12-gap:7px;--v12-card-min:0px}
+html,body{max-width:100%;overflow-x:clip}
+#app,#app main,#app .body-shell{min-width:0;max-width:100%}
+/* Keep top region fixed and reserve its actual height, updated by existing JS. */
+body:not(.presentation-mode):not(.screenshot-mode) #stickyShell{position:fixed!important;inset:0 0 auto 0!important;width:100%!important;z-index:9000!important;transform:none!important;overflow:visible!important}
+body:not(.presentation-mode):not(.screenshot-mode) .body-shell{padding-top:calc(var(--sticky-shell-height, 230px) + 8px)!important}
+/* Tool family sections, not the sections themselves, are the grid items. */
+#app .fleet-family{display:block!important;position:relative!important;width:100%!important;max-width:100%!important;min-width:0!important;grid-column:1/-1!important;break-inside:avoid}
+#app .fleet-card-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;width:100%!important;max-width:100%!important;min-width:0!important}
+#app .fleet-identity-card{min-width:0!important;width:100%!important;max-width:100%!important}
+@media(max-width:1150px){#app .fleet-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:700px){#app .fleet-card-grid{grid-template-columns:minmax(0,1fr)!important}}
+/* Equal-width and equal-height columns; internal content must never scale independently to viewport height. */
+#app .c11-card-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;align-items:stretch!important;gap:10px!important;height:auto!important;min-height:0!important;max-height:none!important}
+#app .c11-card-grid>.c11-column{min-width:0!important;width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;align-self:stretch!important;box-sizing:border-box!important}
+#app .c11-tool-card{height:auto!important;min-height:0!important;max-height:none!important}
+#app .c11-status-card,#app .c11-progress-row{min-height:0!important;max-height:none!important;flex:0 0 auto!important}
+#app .c11-status-column,#app .c11-progress-column{justify-content:flex-start!important}
+@media(max-width:1000px){#app .c11-card-grid{grid-template-columns:minmax(0,1fr)!important}}
+/* A single badge grid sizing contract: no overlapping grid rows or stretched buttons. */
+#app .c11-badges{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-rows:var(--v12-badge-height)!important;gap:var(--v12-gap)!important;align-content:start!important;align-items:stretch!important;height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important}
+#app .c11-badges>.c11-badge,#app .c11-badges>button{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;height:var(--v12-badge-height)!important;min-height:var(--v12-badge-height)!important;max-height:var(--v12-badge-height)!important;margin:0!important;padding:3px 5px!important;overflow:hidden!important;min-width:0!important;line-height:1.08!important}
+#app .c11-badges>button :is(span,small,b,strong){max-width:100%!important;overflow-wrap:anywhere!important;white-space:normal!important;line-height:1.08!important;text-align:center!important}
+#app .c11-identity-column{overflow:visible!important}
+/* Three matching photo badges, priority / type / alias. */
+#app .c11-photo{position:relative!important;overflow:hidden!important}
+#app .v12-photo-badge-stack{position:absolute;z-index:4;top:8px;left:8px;display:flex;flex-direction:column;gap:5px;width:clamp(76px,28%,110px);pointer-events:none}
+#app .v12-photo-badge-stack>*{position:static!important;inset:auto!important;display:flex!important;flex-direction:column;justify-content:center;align-items:center;box-sizing:border-box;width:100%!important;height:44px!important;min-height:44px!important;max-height:44px!important;padding:3px!important;border-radius:7px!important;border:1px solid #5cb6e3!important;box-shadow:0 2px 6px #0008!important;color:white!important;font-size:clamp(10px,1vw,14px)!important;font-weight:800!important;text-align:center!important;overflow:hidden!important;overflow-wrap:anywhere!important;line-height:1.1!important;pointer-events:auto}
+#app .v12-photo-badge-stack .b796-photo-priority{background:#9c163d!important;border-color:#ff6687!important}
+#app .v12-photo-badge-stack .v12-photo-tool-type{background:#174f72!important}
+#app .v12-photo-badge-stack .b718-photo-alias{background:#086c9d!important}
+#app .v12-photo-badge-stack .b796-photo-priority span{font-size:9px!important}
+/* Dropdowns and dialogs should not be trapped behind sticky shell. */
+body #modal:not(.hidden),body .modal-overlay:not(.hidden){z-index:20000!important;position:fixed!important}
