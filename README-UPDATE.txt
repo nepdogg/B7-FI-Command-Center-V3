@@ -1,31 +1,19 @@
-B7 FI COMMAND CENTER V12.0.7 — LEGACY CSS CONFLICT REMOVAL (TEST)
+B7 FI COMMAND CENTER V12.0.10 — PHOTO & PROGRESS TEST BUILD
 
-Based on V12.0.6. The application JavaScript and Microsoft Lists integration scripts are unchanged.
+Based on V12.0.9; application logic and Microsoft Lists integration retained.
 
-CHANGE SUMMARY
-- Removed 632 legacy CSS rules that targeted c11 Tool Card elements, including nested media rules.
-- Removed three superseded V12 override stylesheets; one V12 core layout stylesheet remains.
-- Defined one equal-column card grid, fixed 64px operational badges, normal-flow update button, 3 photo badges and rounded card sections.
-- Restored card visual colors and progress-bar styling within the new stylesheet.
+CHANGES
+- Photo section now has a dedicated left badge column and separate right image panel.
+- Tool image uses object-fit: contain; whole photo visible, no badge overlay.
+- Photo badges retain priority / tool type / alias data and priority click action.
+- Universal Tool Card progress tracks and their colored fills are 24px high.
+- Existing compact operational badges, rounded panels, and equal-column rules retained.
 
-VERIFICATION
-- JavaScript syntax check and ZIP integrity check passed.
-- Chromium DOM fixture tests using actual application CSS passed at widths 800, 1200, 1600 and 2400 CSS pixels: equal columns, badge heights, no update-button overlap, rounded status sections.
-- Full app navigation and Microsoft Lists real-time synchronization have NOT been verified.
-- Because CSS is cleaned, review all pages and presentation mode before production deployment.
+TEST
+1. Extract into a new folder, keep prior build as backup.
+2. Run START-COMMAND-CENTER.bat or deploy all files to GitHub Pages.
+3. Hard refresh the site (Ctrl+Shift+R) and verify V12.0.10 in header.
+4. Test photo for several tool types, priority click, and progress bars.
+5. Test Live Operations, All Tools, presentation mode, browser zoom, and Microsoft Lists sync.
 
-INSTALLATION
-1. Keep a backup of your previous release and Microsoft Lists data.
-2. Extract this complete ZIP to a fresh folder.
-3. Launch using START-COMMAND-CENTER.bat.
-4. Hard refresh (Ctrl+Shift+R) to avoid cached CSS.
-5. Test locally before publishing to GitHub Pages.
-
-V12.0.8 TEST: Badge grid now wrapped in dedicated in-flow region, 64px rows and 8px gaps. Update button follows region. This is not a verified production release.
-
-
-V12.0.9 - Compact Badges / Equal Column Heights (TEST)
-- Badge cells: 48px height, 4px horizontal and vertical gaps; full-width cells keep same height.
-- Equal 1/3 column widths; middle and right panels stretch to full left-column height.
-- No application JavaScript or Microsoft Lists business logic changed.
-- Visual and live sync validation is still required before production deployment.
+LIMITATION: Source and ZIP syntax checked; full browser and live Lists tests not completed.
