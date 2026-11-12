@@ -1,12 +1,12 @@
-B7 FI COMMAND CENTER V12.0.20 - TEST BUILD
+B7 FI COMMAND CENTER V12.0.21 — TEST BUILD
 
-Changes: All Tools parent layout forced to a single full-width flow, each Universal Tool Card spans full width; Hybrid compact cards use 20% badge rail and 80% photo, with the priority badge color representing FI condition; signal tower and duplicate photo name removed; Hybrid navigation reserved and quarterly numbers enlarged.
+Changes:
+- All Tools: restore document-flow height to every full-width Universal Tool Card so the following tool-family divider is not overlapped.
+- All Tools: equal three-column card width with natural card height; no fixed 720px column cap.
+- All Tools: operational badges and FI date badges share 60px height in a three-column operational grid.
+- Exit Hybrid Presentation returns to standard Live Operations rather than leaving Hybrid content in normal navigation.
+- Existing Tool Type menu selection-close handler retained.
 
-Testing: Open All Tools, confirm MACAN tool card fills page. Open Hybrid Presentation, check controls at bottom and F5 persistence of test tools. Keep production data backed up.
+TEST: Use the 9-tool dataset, inspect all tool types and scroll through dividers, confirm badge heights, then enter/exit Hybrid.
 
-V12.0.20 test changes:
-- All Tools page: correct renderer-specific utc-card full-width three-column layout.
-- Operational badges: 60px row heights matching FI milestone date badges on All Tools page.
-- Tool Type menu: capture selection, close menu, scroll to selected section.
-- Hybrid and all three presentation modes retained unchanged.
-- Not verified against Microsoft Lists; retain production backup.
+CAUTION: Browser visual testing and Microsoft Lists synchronization have not been verified. Keep a backup of production data.
