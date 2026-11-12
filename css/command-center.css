@@ -31130,3 +31130,25 @@ body.presentation-mode .b1217-signal{height:100%!important;min-height:0!importan
 body.presentation-mode .b1217-lights{height:96%!important;width:100%!important;max-width:none!important;min-height:0!important;box-sizing:border-box!important;padding:5px!important;display:grid!important;grid-template-rows:repeat(3,minmax(0,1fr))!important;gap:5px!important;align-items:stretch!important}
 body.presentation-mode .b1217-lights i{height:100%!important;width:100%!important;min-height:0!important;aspect-ratio:auto!important;border-radius:10px!important}
 body.presentation-mode .b1217-hybrid-nav button,body.presentation-mode .b1217-hybrid-nav span{font-size:clamp(10px,1vw,18px)!important;min-width:0!important}
+
+/* V12.0.19: ALL TOOLS STRUCTURE - fix parent two-column grid, not just children. */
+html body #app section.v1014-tools-page.b71805-quarter-groups {display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-auto-flow:row!important;gap:12px!important;width:100%!important;max-width:100%!important;min-width:0!important;align-items:start!important;}
+html body #app section.v1014-tools-page.b71805-quarter-groups > .v10-fleet-kpis,
+html body #app section.v1014-tools-page.b71805-quarter-groups > .b71805-family-list,
+html body #app section.v1014-tools-page.b71805-quarter-groups > .b71805-family-jump,
+html body #app section.v1014-tools-page.b71805-quarter-groups > * {grid-column:1/-1!important;min-width:0!important;width:100%!important;max-width:100%!important;box-sizing:border-box!important;}
+html body #app section.v1014-tools-page .b71805-family-list {display:block!important;columns:1!important;column-count:1!important;grid-template-columns:minmax(0,1fr)!important;}
+html body #app section.v1014-tools-page .fleet-family {display:block!important;width:100%!important;min-width:0!important;max-width:100%!important;clear:both!important;}
+html body #app section.v1014-tools-page .fleet-family > .fleet-card-grid {display:grid!important;grid-template-columns:minmax(0,1fr)!important;min-width:0!important;width:100%!important;max-width:100%!important;}
+html body #app section.v1014-tools-page .fleet-family > .fleet-card-grid > .c11-tool-card {display:block!important;width:100%!important;min-width:0!important;max-width:100%!important;}
+html body #app section.v1014-tools-page .fleet-family > .fleet-card-grid > .c11-tool-card .c11-card-grid {display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;min-width:0!important;width:100%!important;}
+/* Hybrid: one color-changing priority badge, 20% badge rail and 80% image region. */
+body.presentation-mode .b1217-compact-card {grid-template-columns:minmax(0,20fr) minmax(0,80fr)!important;gap:.45vw!important;}
+body.presentation-mode .b1217-photo {width:100%!important;height:100%!important;min-height:0!important;overflow:hidden!important;}
+body.presentation-mode .b1217-photo img {width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;display:block!important;}
+body.presentation-mode .b1217-photo strong,body.presentation-mode .b1217-signal {display:none!important;}
+/* Ensure controls have a dedicated visible row; remove the redundant title above hybrid. */
+body.presentation-mode .b1217-hybrid {grid-template-rows:minmax(0,34fr) minmax(0,10fr) minmax(0,48fr) minmax(48px,8fr)!important;min-height:0!important;}
+body.presentation-mode .b1217-hybrid-nav {display:flex!important;visibility:visible!important;opacity:1!important;position:relative!important;z-index:100!important;min-height:48px!important;overflow:visible!important;}
+body.presentation-mode .b1217-metric>strong {font-size:clamp(64px,11vh,180px)!important;}
+body.presentation-mode #screenshotReportTitle,body.presentation-mode .screenshot-report-title {display:none!important;}

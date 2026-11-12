@@ -1,9 +1,5 @@
-B7 FI Command Center V12.0.18 — Hybrid layout test
+B7 FI COMMAND CENTER V12.0.19 - TEST BUILD
 
-- Full-height signal towers with light-only visual status.
-- Quarter progress labels integrated into bars.
-- Removed hybrid-only header and carousel title.
-- Hybrid presentation reserves a visible bottom control row.
-- Existing tool and quarter presentation modes retained.
+Changes: All Tools parent layout forced to a single full-width flow, each Universal Tool Card spans full width; Hybrid compact cards use 20% badge rail and 80% photo, with the priority badge color representing FI condition; signal tower and duplicate photo name removed; Hybrid navigation reserved and quarterly numbers enlarged.
 
-This is a test build; visual/browser behavior and Microsoft Lists sync have not been verified.
+Testing: Open All Tools, confirm MACAN tool card fills page. Open Hybrid Presentation, check controls at bottom and F5 persistence of test tools. Keep production data backed up.
