@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='12.0.21', BUILD='20261111-V12.0.21-TOOLS-CARD-CONTAINMENT';
+const VERSION='12.0.22', BUILD='20261111-V12.0.22-EDITOR-BADGES-REPAIR';
 const ACTIVE_DATASET_KEY='b7fi-command-center-active-dataset-v1216';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
@@ -784,9 +784,12 @@ function enhanceSectionWorkspaces(){
     const editor=document.querySelector('#app .tool-editor'); if(editor&&!editor.dataset.sectionNavReady){
       const sections=[...editor.querySelectorAll(':scope > .subsection')];
       if(sections.length){
-        const classify=h=>{h=(h||'').toUpperCase();if(h.includes('TOOL INFORMATION')||h.includes('PHOTO')||h.includes('NEXT SYSTEM'))return'tool-info';if(h.includes('WAFER'))return'wafers';if(h.includes('FI TEST')||h.includes('KEY PROCESS')||h.includes('CHECKLIST'))return'fi';if(h.includes('LEAD')||h.includes('ADMIN'))return'lead';if(h.includes('CYCLE'))return'cycle';if(h.includes('SHIPPING')||h.includes('PACKING'))return'shipping';if(h.includes('CUSTOMER SOURCE'))return'source';if(h.includes('STR'))return'str';return'other'};
+        const classify=h=>{h=(h||'').toUpperCase();if(h.includes('KEY PROCESS')||h.includes('INDICATOR'))return'badges';if(h.includes('TOOL INFORMATION')||h.includes('PHOTO')||h.includes('NEXT SYSTEM'))return'tool-info';if(h.includes('WAFER'))return'wafers';if(h.includes('FI TEST')||h.includes('KEY PROCESS')||h.includes('CHECKLIST'))return'fi';if(h.includes('LEAD')||h.includes('ADMIN'))return'lead';if(h.includes('CYCLE'))return'cycle';if(h.includes('SHIPPING')||h.includes('PACKING'))return'shipping';if(h.includes('CUSTOMER SOURCE'))return'source';if(h.includes('STR'))return'str';return'other'};
         sections.forEach(x=>x.dataset.editorSection=classify(x.querySelector('h3')?.textContent));
-        const defs=[['tool-info','TOOL INFO'],['fi','FI PROGRESS'],['lead','LEAD / ADMIN'],['cycle','CYCLE TIME'],['shipping','SHIPPING'],['source','CUSTOMER SOURCE'],['str','STR'],['wafers','SYSTEM WAFERS'],['other','OTHER']].filter(([k])=>sections.some(x=>x.dataset.editorSection===k));
+        const badgeSection=sections.find(x=>x.dataset.editorSection==='badges');
+        if(badgeSection&&!badgeSection.querySelector('.v1222-badge-preview')){const preview=document.createElement('div');preview.className='v1222-badge-preview';preview.innerHTML=`<h4>LIVE TOOL BADGES · ${esc((draft||{}).id||'NEW TOOL')}</h4><div class="c11-badges v1222-badge-grid">${canonicalToolBadges(draft||{})}</div><p class="helper">Edit the badge states using the original controls below. Changes are saved with SAVE UPDATES.</p>`;badgeSection.querySelector('h3')?.after(preview);}
+
+        const defs=[['tool-info','TOOL INFO'],['fi','FI PROGRESS'],['lead','LEAD / ADMIN'],['cycle','CYCLE TIME'],['shipping','SHIPPING'],['source','CUSTOMER SOURCE'],['str','STR'],['wafers','SYSTEM WAFERS'],['badges','TOOL BADGES'],['other','OTHER']].filter(([k])=>sections.some(x=>x.dataset.editorSection===k));
         if(!defs.some(x=>x[0]===toolEditorSectionKey))toolEditorSectionKey=defs[0]?.[0]||'tool-info';
         const head=editor.querySelector(':scope > .panel-head'); const shell=document.createElement('div');shell.className='section-workspace tool-section-workspace';
         const nav=document.createElement('aside');nav.className='section-workspace-nav';nav.innerHTML=defs.map(([k,l])=>`<button type="button" data-editor-section-button="${k}" class="${k===toolEditorSectionKey?'active':''}">${l}</button>`).join('');
@@ -811,8 +814,8 @@ function enhanceDailyWorkspace(){
  if(!(route.center==='operations'&&route.sub==='daily'&&mode==='edit'))return;
  const list=document.querySelector('#app .daily-list');if(!list||list.dataset.workspaceReady)return;
  const cards=[...list.querySelectorAll(':scope > [data-daily]')];if(!cards.length)return;
- const classify=h=>{h=(h||'').toUpperCase();if(h.includes('WAFER'))return'wafers';if(h.includes('FI TEST')||h.includes('KEY PROCESS')||h.includes('CHECKLIST'))return'fi';if(h.includes('LEAD')||h.includes('ADMIN'))return'lead';if(h.includes('CYCLE'))return'cycle';if(h.includes('SHIPPING')||h.includes('PACKING'))return'shipping';if(h.includes('CUSTOMER SOURCE'))return'source';if(h.includes('STR'))return'str';if(h.includes('TOOL INFORMATION')||h.includes('PHOTO')||h.includes('NEXT SYSTEM'))return'tool-info';return'other'};
- const defs=[['tool-info','TOOL INFO'],['fi','FI PROGRESS'],['lead','LEAD / ADMIN'],['cycle','CYCLE TIME'],['shipping','SHIPPING'],['source','CUSTOMER SOURCE'],['str','STR'],['wafers','SYSTEM WAFERS'],['other','OTHER']];
+ const classify=h=>{h=(h||'').toUpperCase();if(h.includes('KEY PROCESS')||h.includes('INDICATOR'))return'badges';if(h.includes('WAFER'))return'wafers';if(h.includes('FI TEST')||h.includes('KEY PROCESS')||h.includes('CHECKLIST'))return'fi';if(h.includes('LEAD')||h.includes('ADMIN'))return'lead';if(h.includes('CYCLE'))return'cycle';if(h.includes('SHIPPING')||h.includes('PACKING'))return'shipping';if(h.includes('CUSTOMER SOURCE'))return'source';if(h.includes('STR'))return'str';if(h.includes('TOOL INFORMATION')||h.includes('PHOTO')||h.includes('NEXT SYSTEM'))return'tool-info';return'other'};
+ const defs=[['tool-info','TOOL INFO'],['fi','FI PROGRESS'],['lead','LEAD / ADMIN'],['cycle','CYCLE TIME'],['shipping','SHIPPING'],['source','CUSTOMER SOURCE'],['str','STR'],['wafers','SYSTEM WAFERS'],['badges','TOOL BADGES'],['other','OTHER']];
  const holder=document.createElement('div');holder.className='daily-workspace section-workspace';
  const sidebar=document.createElement('aside');sidebar.className='section-workspace-nav daily-workspace-sidebar';
  const picker=document.createElement('select');picker.className='daily-workspace-picker';picker.setAttribute('aria-label','Select tool UTID');
@@ -2043,7 +2046,7 @@ function renderToolEditorPage(){
   bindInputs();
   bindCoreInteractions();
   enhanceSectionWorkspaces();
-  enhanceVisualToolEditor();
+  // The shared left-side workspace owns the editor; do not add a competing full-width visual editor.
   // openTool() renders this page directly rather than through render(). Re-fit immediately
   // so Presentation Mode drops the wallboard transform and enables normal editor scrolling.
   if(document.body.classList.contains('presentation-mode'))requestAnimationFrame(()=>requestAnimationFrame(fitPresentation));

@@ -31193,3 +31193,17 @@ html body:not(.presentation-mode)[data-center="operations"][data-sub="tools"] #a
 html body:not(.presentation-mode)[data-center="operations"][data-sub="tools"] #app .fleet-card-grid .utc-progress-list {height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;}
 /* Keep tool type dividers in document flow and below sticky navigation. */
 html body:not(.presentation-mode)[data-center="operations"][data-sub="tools"] #app section.fleet-family {scroll-margin-top:175px!important;margin-bottom:24px!important;}
+
+/* V12.0.22 — one editor layout, badge controls to right of left navigation. */
+html body:not(.presentation-mode) #app .tool-editor>.section-workspace{display:grid!important;grid-template-columns:190px minmax(0,1fr)!important;gap:12px!important;align-items:start!important;}
+html body:not(.presentation-mode) #app .tool-editor .section-workspace-body{min-width:0!important;max-width:100%!important;overflow:visible!important;}
+html body:not(.presentation-mode) #app .tool-editor .section-workspace-body>.subsection[hidden]{display:none!important;}
+html body:not(.presentation-mode) #app .tool-editor .v1222-badge-preview{width:100%!important;box-sizing:border-box!important;margin:0 0 16px!important;padding:10px!important;background:#071e2c!important;border:1px solid #197fa7!important;border-radius:8px!important;}
+html body:not(.presentation-mode) #app .tool-editor .v1222-badge-preview h4{font-size:17px!important;color:white!important;margin:0 0 12px!important;}
+html body:not(.presentation-mode) #app .tool-editor .v1222-badge-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-rows:60px!important;gap:6px!important;height:auto!important;overflow:visible!important;}
+html body:not(.presentation-mode) #app .tool-editor .v1222-badge-grid>*{height:60px!important;min-height:60px!important;max-height:60px!important;box-sizing:border-box!important;overflow:hidden!important;display:flex!important;align-items:center!important;justify-content:center!important;}
+/* All Tools badge geometry — match the 60px FI milestone reference without shrinking the text. */
+html body:not(.presentation-mode)[data-center="operations"][data-sub="tools"] #app .utc-indicator-grid{grid-auto-rows:60px!important;grid-template-rows:none!important;height:auto!important;max-height:none!important;overflow:visible!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="tools"] #app .utc-indicator-grid>.fi-indicator-lamp{height:60px!important;min-height:60px!important;max-height:60px!important;box-sizing:border-box!important;padding:5px!important;}
+html body:not(.presentation-mode)[data-center="operations"][data-sub="tools"] #app .b783-date-row>.b783-date-badge{height:60px!important;min-height:60px!important;max-height:60px!important;box-sizing:border-box!important;}
+@media(max-width:900px){html body:not(.presentation-mode) #app .tool-editor>.section-workspace{grid-template-columns:145px minmax(0,1fr)!important;}}
