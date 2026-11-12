@@ -1,5 +1,6 @@
 (()=>{'use strict';
-const VERSION='12.0.15', BUILD='20261111-V12.0.15-FORECAST-TOOLS-TEST';
+const VERSION='12.0.16', BUILD='20261111-V12.0.16-DATA-RESTORE-TOOLS-LAYOUT';
+const ACTIVE_DATASET_KEY='b7fi-command-center-active-dataset-v1216';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const EQUIPMENT_COMPUTERS=[['SS','Subswath Server'],['GPU','GPU Servers'],['DBB','Global Storage Server'],['RTAT','RTAT Server'],['SCC','SCC Computer'],['DAS','DAS Server'],['Host','Host Server'],['Dart','Dart Server']];
@@ -247,13 +248,18 @@ function scenario(){
   return s;
 }
 function load(){
-  // Production saves use PROD_KEY. Always reload that same key before test data.
-  // Never delete or overwrite the other key during startup.
-  for(const key of [PROD_KEY,KEY]){
-    try{const raw=localStorage.getItem(key);if(!raw)continue;const x=JSON.parse(raw);if(x&&typeof x==='object')return normalize(x)}
+  // Explicitly selected operating mode wins; never silently replace test data with production.
+  let selected='';
+  try{selected=localStorage.getItem(ACTIVE_DATASET_KEY)||''}catch(e){}
+  const keys=selected==='test'?[KEY]:selected==='production'?[PROD_KEY]:[KEY,PROD_KEY];
+  for(const key of keys){
+    try{const raw=localStorage.getItem(key);if(!raw)continue;const x=JSON.parse(raw);if(x&&typeof x==='object'&&Array.isArray(x.tools))return normalize(x)}
     catch(e){console.error('B7 data load failed for '+key,e)}
   }
-  const initial=scenario();try{localStorage.setItem(KEY,JSON.stringify(initial))}catch(e){}
+  // A missing selected dataset must never cause an accidental production/test switch.
+  const initial=selected==='production'?blank():scenario();
+  if(selected!=='production')initial.environment='9 TOOL TEST';
+  try{localStorage.setItem(selected==='production'?PROD_KEY:KEY,JSON.stringify(initial));localStorage.setItem(ACTIVE_DATASET_KEY,selected==='production'?'production':'test')}catch(e){console.error('B7 initial save failed',e)}
   return initial;
 }
 function loadSavedRoute(){try{let r=JSON.parse(localStorage.getItem(ROUTE_KEY)||'null');if(r&&typeof r.center==='string'&&typeof r.sub==='string')return r}catch(e){}return{center:'operations',sub:'live'}}
@@ -270,6 +276,7 @@ function saveState(msg='CHANGES SAVED'){
     state.audit=[{at:nowISO(),message:msg},...previousAudit].slice(0,150);
     const serialized=JSON.stringify(state);
     localStorage.setItem(key,serialized);
+    localStorage.setItem(ACTIVE_DATASET_KEY,key===PROD_KEY?'production':'test');
     // Read-back confirms that the browser accepted this specific snapshot.
     const check=localStorage.getItem(key);
     if(check!==serialized)throw new Error('Browser storage read-back did not match');
@@ -1473,7 +1480,7 @@ function toolsDashboard(){
     <div class="fleet-badges">${canonicalToolBadges(t)}</div>
     <button class="v10-update" data-tool="${esc(t.id)}">UPDATE TOOL STATUS →</button></article>`};
   let familyJump=families.length>1?`<nav class="b784-family-jump" aria-label="Jump to tool type">${families.map(f=>`<a href="#tool-family-${esc(f.replace(/[^a-z0-9]/gi,'-').toLowerCase())}">${esc(f.toUpperCase())}</a>`).join('')}</nav>`:'';
-  let groups=families.map(f=>{let tools=visible.filter(t=>String(t.codename||'UNKNOWN').trim()===f),states={waiting:tools.filter(t=>fiSummaryStatus(t)==='Waiting').length,fi:tools.filter(t=>fiSummaryStatus(t)==='In FI').length,packing:tools.filter(t=>fiSummaryStatus(t)==='Packing').length,shipped:tools.filter(t=>fiSummaryStatus(t)==='Shipped').length};return `<section class="fleet-family" id="tool-family-${esc(f.replace(/[^a-z0-9]/gi,'-').toLowerCase())}"><header class="fleet-family-head"><strong>${esc(f.toUpperCase())}</strong></header><div class="b783-family-status" aria-label="${esc(f)} live tool status"><div><b>${tools.length}</b><span>TOTAL</span></div><div><b>${states.waiting}</b><span>WAITING FI</span></div><div><b>${states.fi}</b><span>IN FI</span></div><div><b>${states.packing}</b><span>PACKING</span></div><div><b>${states.shipped}</b><span>SHIPPED</span></div></div><div class="fleet-card-grid">${tools.sort((a,b)=>(rank.get(String(a.id))||999)-(rank.get(String(b.id))||999)||morningCompare(a,b)).map(card).join('')}</div></section>`}).join('');
+  let groups=families.map(f=>{let tools=visible.filter(t=>String(t.codename||'UNKNOWN').trim()===f),states={waiting:tools.filter(t=>fiSummaryStatus(t)==='Waiting').length,fi:tools.filter(t=>fiSummaryStatus(t)==='In FI').length,packing:tools.filter(t=>fiSummaryStatus(t)==='Packing').length,shipped:tools.filter(t=>fiSummaryStatus(t)==='Shipped').length};return `<section class="fleet-family" id="tool-family-${esc(f.replace(/[^a-z0-9]/gi,'-').toLowerCase())}"><header class="fleet-family-head"><strong>${esc(f.toUpperCase())}</strong></header><div class="b783-family-status" aria-label="${esc(f)} live tool status"><div><b>${tools.length}</b><span>TOTAL</span></div><div><b>${states.waiting}</b><span>WAITING FI</span></div><div><b>${states.fi}</b><span>IN FI</span></div><div><b>${states.packing}</b><span>PACKING</span></div><div><b>${states.shipped}</b><span>SHIPPED</span></div></div><div class="fleet-card-grid">${tools.sort((a,b)=>(rank.get(String(a.id))||999)-(rank.get(String(b.id))||999)||morningCompare(a,b)).map(t=>liveToolCard(t)).join('')}</div></section>`}).join('');
   return `${centerPageTitle(`${q==='ALL'?'ALL':q} TOOL CENTER`)}<section class="v1014-tools-page b71805-quarter-groups"><div class="v10-fleet-kpis"><div><b>${counts.all}</b><span>ALL TOOLS</span></div><div><b>${counts.waiting}</b><span>WAITING FI</span></div><div><b>${counts.fi}</b><span>IN FI</span></div><div><b>${counts.packing}</b><span>PACKING</span></div><div><b>${counts.shipped}</b><span>SHIPPED</span></div><div class="${counts.carry?'critical':''}"><b>${counts.carry}</b><span>CARRYOVER</span></div></div>${familyJump}<div class="b71805-family-list">${groups||'<div class="v9-empty">NO TOOLS IN THIS QUARTER</div>'}</div></section>`;
 }
 function statusEmail(kind='Weekday'){let a=kind.toUpperCase()==='CURRENT'?updateCommandCenterTools():dailyOrderedTools();return `<div class="email-status email-match"><div class="email-meta">${kind.toUpperCase()==='CURRENT'?'UPDATE COMMAND CENTER':kind.toUpperCase()+' MORNING STATUS'} · ${fmtDate(today())}</div>${a.map(t=>{let ncs=t.ncs.filter(n=>n.state!=='Closed'),escs=ncs.filter(n=>n.state==='Escalated'),route=routeFor(t),desc=(route.find(x=>x[0]===t.currentChecklist)||[])[1]||'',lampOff=String(t.lampState||'ON').toUpperCase()==='OFF',process=String(t.process||'Full Process').toLowerCase().includes('reduced');let escText=escs.length?` <span class="email-escalated-head">(${escs.map(n=>`Escalated ${displayNcId(n.id)} – Day ${Number(n.days)||0}`).join(' / ')})</span>`:'';return `<div class="email-row clickrow" data-tool="${esc(t.id)}"><div><div class="email-main">${esc(t.id)} (${esc(t.cleanroom)}${t.bay?' / '+esc(t.bay):''}) (${esc(t.model)} - ${esc(t.codename)}) (SW.${esc(t.sw||'—')}) ${esc(checklistLabel(t,t.currentChecklist))} (${esc(t.customer)}, ${esc(fmtDate(t.shipDate))}) <span class="lamp-hours">(Lamp Hours: ${Number(t.lamp)||0}${lampOff?' - OFF':''})</span>${process?' <span class="reduced-process">(Reduced Process)</span>':''}${escText}</div><div class="email-subline email-latest">${esc(t.latestStatus||'No latest status entered.').replace(/\n/g,'<br>')}</div>${ncs.map(n=>`<div class="email-subline email-nc">- ${displayNcId(n.id)}: ${esc(n.description||'No NC description entered.')}</div>${n.poa?`<div class="email-subline email-poa">- POA: ${esc(n.poa)}</div>`:''}`).join('')}</div></div>`}).join('')}</div>`}
