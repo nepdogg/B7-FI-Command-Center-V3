@@ -190,3 +190,21 @@ html body.presentation-mode #app .c11-tool-card .c11-identity-column>.c11-photo.
 html body.presentation-mode .app-frame{box-sizing:border-box!important;border:3px solid #19b9ed!important;border-radius:14px!important;overflow:hidden!important}
 html body.presentation-mode .app-frame>.body-shell{box-sizing:border-box!important;min-height:0!important}
 html body.presentation-mode #app .quarter-summary-master-viewport,html body.presentation-mode #app .quarter-summary-presentation{box-sizing:border-box!important;border-radius:10px!important}
+
+/* V12.0.12 — single authoritative page-level layout layer. */
+html body #app .b71805-quarter-groups{display:block!important;width:100%!important;min-width:0!important;max-width:none!important;box-sizing:border-box!important}
+html body #app .b71805-quarter-groups>.b71805-family-list{display:block!important;width:100%!important;min-width:0!important;max-width:none!important}
+html body #app .b71805-family-list>.fleet-family{display:block!important;float:none!important;clear:both!important;width:100%!important;max-width:none!important;min-width:0!important;margin:14px 0 24px!important;box-sizing:border-box!important}
+html body #app .b71805-family-list>.fleet-family>.fleet-card-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;align-items:start!important;justify-items:stretch!important;width:100%!important;max-width:none!important;min-width:0!important;box-sizing:border-box!important}
+html body #app .b71805-family-list .fleet-card-grid>.fleet-identity-card{display:flex!important;flex-direction:column!important;grid-column:auto!important;grid-row:auto!important;float:none!important;width:100%!important;max-width:none!important;min-width:0!important;height:auto!important;margin:0!important;box-sizing:border-box!important}
+html body #app .b71805-family-list .fleet-card-grid>.fleet-identity-card .fleet-badges{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:4px!important;grid-auto-rows:52px!important;align-items:stretch!important;height:auto!important}
+html body #app .b71805-family-list .fleet-card-grid>.fleet-identity-card .fleet-badges>*{box-sizing:border-box!important;min-height:52px!important;height:52px!important;max-height:52px!important;margin:0!important;overflow:hidden!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;line-height:1.15!important;white-space:normal!important}
+@media(max-width:1350px){html body #app .b71805-family-list>.fleet-family>.fleet-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:850px){html body #app .b71805-family-list>.fleet-family>.fleet-card-grid{grid-template-columns:minmax(0,1fr)!important}}
+/* Uniform operational badge height matches the FI date badges. */
+html body #app .c11-tool-card .c11-badge-region>.c11-badges{grid-auto-rows:52px!important;row-gap:4px!important;column-gap:4px!important}
+html body #app .c11-tool-card .c11-badge-region>.c11-badges>.c11-badge{height:52px!important;min-height:52px!important;max-height:52px!important;line-height:1.15!important;padding:4px!important}
+/* Taller bars and deliberate spacing, without changing percentage logic. */
+html body #app .c11-tool-card .c11-progress-track{height:40px!important;min-height:40px!important;max-height:40px!important;margin:10px 0 12px!important}
+html body #app .c11-tool-card .c11-progress-row{padding:14px 16px!important;gap:5px!important}
+html body #app .c11-tool-card .c11-progress-row .c11-forecast-track-label{display:none!important}

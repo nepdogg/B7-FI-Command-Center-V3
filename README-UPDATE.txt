@@ -1,21 +1,12 @@
-B7 FI COMMAND CENTER V12.0.11 — PHOTO & PROGRESS TEST BUILD
+B7 FI COMMAND CENTER — V12.0.12 TEST
+Baseline: V12.0.11.
 
-Based on V12.0.9; application logic and Microsoft Lists integration retained.
+Changes:
+- All Tools group and card grid receives a dedicated authoritative layout.
+- Three cards per row on wide screens, two on medium, one on narrow/zoomed screens.
+- Uniform 52px operational badges and 4px spacing.
+- Progress tracks are 40px high with additional vertical spacing.
+- Duplicate forecast text overlay inside the bar is hidden.
+- Existing application and Microsoft Lists logic retained.
 
-CHANGES
-- Photo section now has a dedicated left badge column and separate right image panel.
-- Tool image uses object-fit: contain; whole photo visible, no badge overlay.
-- Photo badges retain priority / tool type / alias data and priority click action.
-- Universal Tool Card progress tracks and their colored fills are 24px high.
-- Existing compact operational badges, rounded panels, and equal-column rules retained.
-
-TEST
-1. Extract into a new folder, keep prior build as backup.
-2. Run START-COMMAND-CENTER.bat or deploy all files to GitHub Pages.
-3. Hard refresh the site (Ctrl+Shift+R) and verify V12.0.11 in header.
-4. Test photo for several tool types, priority click, and progress bars.
-5. Test Live Operations, All Tools, presentation mode, browser zoom, and Microsoft Lists sync.
-
-LIMITATION: Source and ZIP syntax checked; full browser and live Lists tests not completed.
-
-V12.0.11 TEST: 32px progress tracks, image contain fitting, presentation column equalization and enclosing frame border. Actual full-screen behavior and Microsoft Lists sync require validation.
+TESTING: Verify All Tools, Live Operations, presentation mode and Microsoft Lists synchronization before production use. Browser rendering and synchronization have not been fully verified.
