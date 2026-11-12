@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='12.0.19', BUILD='20261111-V12.0.19-TOOLS-HYBRID-REPAIR';
+const VERSION='12.0.20', BUILD='20261111-V12.0.20-TOOLS-BADGES-MENU-REPAIR';
 const ACTIVE_DATASET_KEY='b7fi-command-center-active-dataset-v1216';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
@@ -2769,3 +2769,22 @@ function syncLiveCardGeometry(){
 // FI milestone badges open the original Tool Editor; dates persist with the normal tool save workflow.
 document.addEventListener('click',function(e){const b=e.target.closest('[data-fi-milestone]');if(!b)return;e.preventDefault();e.stopPropagation();const id=b.getAttribute('data-fi-milestone-tool');if(id&&typeof openTool==='function')openTool(id);},true);
 document.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-fi-milestone]')){e.preventDefault();e.target.click();}},true);
+
+// V12.0.20: handle tool-type navigation once, before legacy bubbling handlers.
+// This prevents a second toggle handler from reopening the menu after selection.
+document.addEventListener('click',function(e){
+  const item=e.target.closest?.('[data-tool-type-target]');
+  if(!item)return;
+  const menu=item.closest('[data-tool-type-menu]');
+  if(!menu)return;
+  e.preventDefault();e.stopImmediatePropagation();
+  document.querySelectorAll('[data-tool-type-menu].open').forEach(m=>{
+    m.classList.remove('open');m.querySelector('[data-tool-type-toggle]')?.setAttribute('aria-expanded','false');
+  });
+  const target=document.getElementById(item.dataset.toolTypeTarget||'');
+  if(target){
+    const sticky=document.getElementById('stickyShell');
+    const offset=sticky?.getBoundingClientRect().height||0;
+    window.scrollTo({top:Math.max(0,target.getBoundingClientRect().top+window.scrollY-offset-10),behavior:'smooth'});
+  }
+},true);
