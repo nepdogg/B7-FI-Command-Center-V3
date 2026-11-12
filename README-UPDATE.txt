@@ -1,14 +1,9 @@
-B7 FI Command Center V12.0.17 — TEST BUILD
+B7 FI Command Center V12.0.18 — Hybrid layout test
 
-Changes:
-- Persist selected test or production dataset across refresh.
-- Restore the saved 9-tool test without production data taking precedence.
-- All Tools now renders the complete Universal Tool Card rather than an identity-only card.
-- Badge row heights and Quarter Summary bar heights revised.
-- Updated browser version and cache-busting asset URLs.
+- Full-height signal towers with light-only visual status.
+- Quarter progress labels integrated into bars.
+- Removed hybrid-only header and carousel title.
+- Hybrid presentation reserves a visible bottom control row.
+- Existing tool and quarter presentation modes retained.
 
-Safety: Test mode uses the existing separate test storage key. Do not deploy as production until validating Microsoft Lists sign-in and synchronization.
-
-Verification: JS syntax and ZIP integrity checks. Browser testing results will be reported separately.
-
-V12.0.17: New third HYBRID presentation mode with quarter metrics, status counters, compact photo carousel and FI tower; corrected tools-left progress label. Signal tower defaults to UNKNOWN without verified issue data. Existing tool and quarter modes preserved. Browser visual and Microsoft Lists tests not completed.
+This is a test build; visual/browser behavior and Microsoft Lists sync have not been verified.

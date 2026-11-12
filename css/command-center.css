@@ -31110,3 +31110,23 @@ body.presentation-mode .b1217-hybrid{height:100vh;width:100%;box-sizing:border-b
 body:not(.presentation-mode) section.v1014-tools-page.b71805-quarter-groups{width:100%!important;max-width:none!important;display:block!important;min-width:0!important}body:not(.presentation-mode) section.v1014-tools-page .b71805-family-list{width:100%!important;display:block!important;min-width:0!important}body:not(.presentation-mode) section.v1014-tools-page section.fleet-family{width:100%!important;max-width:none!important;display:block!important;min-width:0!important}body:not(.presentation-mode) section.v1014-tools-page .fleet-card-grid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;width:100%!important;min-width:0!important;max-width:none!important}body:not(.presentation-mode) section.v1014-tools-page .fleet-card-grid>*{width:100%!important;max-width:none!important;min-width:0!important}
 /* Badge rows: fixed common height for all operational badge types. */
 .c11-badge.v10-badge{box-sizing:border-box!important;min-height:72px!important;height:72px!important;max-height:72px!important;overflow:hidden!important;white-space:normal!important}.c11-badge.v10-badge>*{max-width:100%}
+
+/* V12.0.18: hybrid-only presentation fit, integrated quarter meters and full-height signal. */
+body.presentation-mode .b1217-hybrid{height:100dvh!important;max-height:100dvh!important;gap:.7vh!important;padding:.7vh .7vw!important;overflow:hidden!important;display:grid!important;grid-template-rows:minmax(0,31fr) minmax(0,9fr) minmax(0,52fr) minmax(42px,8fr)!important;align-content:stretch!important}
+body.presentation-mode .b1217-hybrid-metrics{height:100%!important;min-height:0!important}
+body.presentation-mode .b1217-status-row{height:100%!important;min-height:0!important}
+body.presentation-mode .b1217-carousel{height:100%!important;min-height:0!important;overflow:hidden!important}
+body.presentation-mode .b1217-hybrid-nav{height:100%!important;min-height:42px!important;z-index:4!important;position:relative!important}
+body.presentation-mode .b1217-metric{min-height:0!important;padding:.4vh .8vw!important;justify-content:space-between!important}
+body.presentation-mode .b1217-metric h2{font-size:clamp(16px,1.9vw,39px)!important}
+body.presentation-mode .b1217-metric>strong{font-size:clamp(40px,6.5vh,100px)!important;line-height:1!important}
+body.presentation-mode .b1217-meter{position:relative!important;height:clamp(44px,6vh,74px)!important;min-height:44px!important;flex-shrink:0!important;overflow:hidden!important}
+body.presentation-mode .b1217-meter>i{position:absolute!important;inset:0 auto 0 0!important}
+body.presentation-mode .b1218-meter-label{position:absolute!important;inset:0!important;display:grid!important;grid-template-columns:1fr 1fr!important;align-items:center!important;text-align:center!important;z-index:1!important;font-size:clamp(12px,1.3vw,26px)!important;font-weight:900!important;line-height:1.05!important;color:#fff!important;text-shadow:0 1px 3px #071522,0 0 3px #071522!important}
+body.presentation-mode .b1218-meter-label>span{padding:2px 6px!important;min-width:0!important;overflow-wrap:normal!important}
+body.presentation-mode .b1218-meter-label>span+span{border-left:2px solid #d6e9f0!important}
+body.presentation-mode .b1217-compact-card{grid-template-columns:22% minmax(0,1fr) 17%!important}
+body.presentation-mode .b1217-signal{height:100%!important;min-height:0!important;padding:4px!important;box-sizing:border-box!important}
+body.presentation-mode .b1217-lights{height:96%!important;width:100%!important;max-width:none!important;min-height:0!important;box-sizing:border-box!important;padding:5px!important;display:grid!important;grid-template-rows:repeat(3,minmax(0,1fr))!important;gap:5px!important;align-items:stretch!important}
+body.presentation-mode .b1217-lights i{height:100%!important;width:100%!important;min-height:0!important;aspect-ratio:auto!important;border-radius:10px!important}
+body.presentation-mode .b1217-hybrid-nav button,body.presentation-mode .b1217-hybrid-nav span{font-size:clamp(10px,1vw,18px)!important;min-width:0!important}

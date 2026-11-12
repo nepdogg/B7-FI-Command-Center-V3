@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='12.0.17', BUILD='20261111-V12.0.17-HYBRID-STATUS-LAYOUT';
+const VERSION='12.0.18', BUILD='20261111-V12.0.18-HYBRID-FIT-CONTROLS';
 const ACTIVE_DATASET_KEY='b7fi-command-center-active-dataset-v1216';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
@@ -1921,7 +1921,7 @@ function b1217CompactCard(t){
       <div class="b1217-idbadge">${esc(String(t.alias||'NO ALIAS').toUpperCase())}</div>
     </div>
     <div class="b1217-photo"><img src="${esc(img)}" alt="${esc(t.codename||'Tool')}"><strong>${esc(t.id)}</strong></div>
-    <div class="b1217-signal" title="${esc(signal.text)}"><small>FI</small><div class="b1217-lights"><i class="${signal.tone==='red'?'on red':'red'}"></i><i class="${signal.tone==='yellow'?'on yellow':'yellow'}"></i><i class="${signal.tone==='green'?'on green':'green'}"></i></div><small>${esc(signal.text)}</small></div>
+    <div class="b1217-signal" title="${esc(signal.text)}" aria-label="Signal tower: ${esc(signal.text)}"><div class="b1217-lights"><i class="${signal.tone==='red'?'on red':'red'}"></i><i class="${signal.tone==='yellow'?'on yellow':'yellow'}"></i><i class="${signal.tone==='green'?'on green':'green'}"></i></div></div>
   </article>`;
 }
 function hybridPresentationView(){
@@ -1929,15 +1929,13 @@ function hybridPresentationView(){
   const cards=carouselTools(),n=cards.length,idx=n?((liveIndex%n)+n)%n:0;
   const positions=n?[-1,0,1].map(offset=>({tool:cards[(idx+offset+n)%n],offset})):[];
   return `<section class="b1217-hybrid">
-    <header class="b1217-hybrid-head"><strong>B7 FI COMMAND CENTER · ${esc(q)}</strong><span>HYBRID PRESENTATION MODE</span></header>
     <div class="b1217-hybrid-metrics">
-      <div class="b1217-metric"><h2>${esc(q)} TOOLS LEFT TO SHIP</h2><strong>${left}</strong><div class="b1217-meter"><i style="width:${a.length?Math.round(sh/a.length*100):0}%"></i></div><p>${sh} OF ${a.length} TOOLS SHIPPED <span>${left} TOOLS LEFT TO SHIP</span></p></div>
-      <div class="b1217-metric"><h2>${esc(q)} DAYS REMAINING</h2><strong>${qt.remaining}</strong><div class="b1217-meter"><i style="width:${qt.pct}%"></i></div><p>DAY ${qt.elapsed} OF ${qt.total}<span>${qt.remaining} DAYS LEFT</span></p></div>
+      <div class="b1217-metric"><h2>${esc(q)} TOOLS LEFT TO SHIP</h2><strong>${left}</strong><div class="b1217-meter"><i style="width:${a.length?Math.round(sh/a.length*100):0}%"></i><div class="b1218-meter-label"><span>${sh} OF ${a.length} TOOLS SHIPPED</span><span>${left} TOOLS LEFT TO SHIP</span></div></div></div>
+      <div class="b1217-metric"><h2>${esc(q)} DAYS REMAINING</h2><strong>${qt.remaining}</strong><div class="b1217-meter"><i style="width:${qt.pct}%"></i><div class="b1218-meter-label"><span>DAY ${qt.elapsed} OF ${qt.total}</span><span>${qt.remaining} DAYS LEFT</span></div></div></div>
     </div>
     <div class="b1217-status-row">${[['QUARTER TOOLS',a.length],['WAITING FI',a.filter(t=>fiSummaryStatus(t)==='Waiting').length],['IN FI',a.filter(t=>fiSummaryStatus(t)==='In FI').length],['PACKING',a.filter(t=>fiSummaryStatus(t)==='Packing').length],['SHIPPED',sh]].map(([name,count])=>`<div><small>${name}</small><strong>${count}</strong></div>`).join('')}</div>
-    <div class="b1217-carousel-title"><strong>LIVE TOOL CAROUSEL</strong><span>${n?idx+1:0} OF ${n} TOOLS</span></div>
     <div class="b1217-carousel">${positions.length?positions.map(({tool,offset})=>`<div class="b1217-carousel-slot ${offset===0?'active':'side'}">${b1217CompactCard(tool)}</div>`).join(''):'<p>NO TOOLS AVAILABLE</p>'}</div>
-    <nav class="b1217-hybrid-nav" aria-label="Hybrid presentation controls"><button data-carousel="prev">◀ PREVIOUS</button><button data-carousel="${livePaused?'play':'pause'}">${livePaused?'PLAY':'PAUSE'} ROTATION</button><button data-carousel="next">NEXT ▶</button><button data-presentation-view="live">TOOL CARD</button><button data-presentation-view="summary">QUARTER SUMMARY</button><span>ESC TO EXIT</span></nav>
+    <nav class="b1217-hybrid-nav" aria-label="Hybrid presentation controls"><button data-carousel="prev">◀ PREVIOUS</button><button data-carousel="${livePaused?'play':'pause'}">${livePaused?'PLAY':'PAUSE'} ROTATION</button><button data-carousel="next">NEXT ▶</button><span>${n?idx+1:0} / ${n}</span><button data-presentation-view="live">TOOL CARD</button><button data-presentation-view="summary">QUARTER SUMMARY</button><span>ESC TO EXIT</span></nav>
   </section>`;
 }
 
