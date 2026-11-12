@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='11.18.06', BUILD='20261110-V11.18.06-RESPONSIVE-NAV-TEST';
+const VERSION='12.0.14', BUILD='20261111-V12.0.14-FORECAST-TOOLS-TEST';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
 const EQUIPMENT_COMPUTERS=[['SS','Subswath Server'],['GPU','GPU Servers'],['DBB','Global Storage Server'],['RTAT','RTAT Server'],['SCC','SCC Computer'],['DAS','DAS Server'],['Host','Host Server'],['Dart','Dart Server']];
@@ -1783,7 +1783,7 @@ function c11ForecastRow(t,alias){
   const code=String(target||'NO TARGET SELECTED');
   const dateLabel=eta?'FORECAST DATE: '+fmtDate(eta):'FORECAST DATE: TBD';
   const position=forecastTargetProgress(t);
-  return `<div class="c11-progress-row c11-forecast-target-row b7-section-tone-purple clickable" data-forecast-checklist="${esc(t.id)}" role="button" tabindex="0" title="Select forecast checklist"><div class="c11-progress-head"><b>${esc(alias)} FI FORECAST PROGRESS</b><strong>${esc(dateLabel)}</strong></div><div class="c11-progress-track"><i class="purple" style="width:${position}%"></i></div><div class="v1213-forecast-details"><span>${esc(code)} — ${esc(label)}</span><strong>${esc(dateLabel)}</strong></div></div>`;
+  return `<div class="c11-progress-row c11-forecast-target-row b7-section-tone-purple clickable" data-forecast-checklist="${esc(t.id)}" role="button" tabindex="0" title="Select forecast checklist"><div class="c11-progress-head"><b>${esc(alias)} FI FORECAST PROGRESS</b><strong>${esc(dateLabel)}</strong></div><div class="c11-progress-track"><i class="purple" style="width:${position}%"></i></div><div class="v1213-forecast-details"><span>${esc(code)} — ${esc(label)}</span></div></div>`;
 }
 function c11OverallProgressCard(alias,t,fi,lead,packing){
   const o=overallToolProgress(t,fi,lead,packing),tone=o.complete?'green':o.pct>=85?'yellow':o.pct>=50?'cyan':'red';

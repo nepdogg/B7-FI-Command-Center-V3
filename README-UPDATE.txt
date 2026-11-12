@@ -1,16 +1,9 @@
-B7 FI COMMAND CENTER V12.0.13 — TEST BUILD
-Baseline: V12.0.12. Preserve existing Microsoft Lists and tool data code.
+B7 FI Command Center V12.0.14 TEST
 
 Changes:
-- Horizontal label/value layout for tool identity and FI milestone badges.
-- Operational badge grid uniform 58px height with 4px gaps; 3-line text supported.
-- All Tools grid width rules corrected; 3/2/1 responsive cards per row.
-- Forecast progress removes duplicated in-bar text; checklist/date below bar.
-- Progress track spacing and height improved.
-- Quarter Summary track minimum heights increased.
-- Startup BAT reports actual startup checks, version, server output.
-- Browser title and header updated to V12.0.13.
+- Removed repeated forecast date from beneath the FI Forecast Progress bar. Date remains at top right; selected checklist appears once below the bar.
+- Updated internal JavaScript VERSION and BUILD metadata to V12.0.14, not just the visible header.
+- Added targeted full-width layout correction to All Tools family list and three-card grid.
 
-TEST BEFORE PRODUCTION: browser zoom, all tool types, presentation quarter summary,
-Microsoft sign-in and multi-user Lists synchronization. Browser rendering and
-workplace authentication have NOT been verified by automated tests.
+Not verified: live browser zoom/presentation rendering, Microsoft Lists login/sync.
+Deploy the entire extracted folder, hard-refresh, and test against a copy of production data.

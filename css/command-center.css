@@ -31050,3 +31050,13 @@ html body #app .b71805-quarter-groups .fleet-identity-card .fleet-photo{width:10
 /* Quarter summary: progress labels independent of fill width, larger tracks. */
 #app [class*="quarter"] [class*="progress-track"],#app [class*="quarter"] [class*="progress-bar"]{min-height:48px!important}
 body.presentation-mode #app [class*="quarter"] [class*="progress-track"],body.presentation-mode #app [class*="quarter"] [class*="progress-bar"]{min-height:60px!important}
+
+/* V12.0.14 — restore full-width All Tools family list, overriding legacy three-column parent grid. */
+html body #app section.v1014-tools-page.b71805-quarter-groups > div.b71805-family-list {display:block!important;grid-template-columns:none!important;columns:auto!important;width:100%!important;max-width:none!important;min-width:0!important;}
+html body #app section.v1014-tools-page.b71805-quarter-groups > div.b71805-family-list > section.fleet-family {display:block!important;float:none!important;width:100%!important;max-width:none!important;min-width:0!important;margin:0 0 18px!important;}
+html body #app section.v1014-tools-page.b71805-quarter-groups section.fleet-family > div.fleet-card-grid {display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;width:100%!important;max-width:100%!important;min-width:0!important;}
+@media(max-width:1250px){html body #app section.v1014-tools-page.b71805-quarter-groups section.fleet-family > div.fleet-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:760px){html body #app section.v1014-tools-page.b71805-quarter-groups section.fleet-family > div.fleet-card-grid{grid-template-columns:minmax(0,1fr)!important}}
+/* Forecast target: checklist only below track; date appears only in heading. */
+#app .c11-forecast-target-row .v1213-forecast-details{display:block!important;margin-top:8px!important;}
+#app .c11-forecast-target-row .v1213-forecast-details span{display:block!important;overflow-wrap:anywhere!important;}
