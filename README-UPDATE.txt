@@ -1,3 +1,10 @@
+B7 FI COMMAND CENTER V12.0.45 - BADGE GEOMETRY REPAIR
+
+Changes: One last-loaded CSS geometry contract for UTC, C11, fleet and editor badges; 60px height (FI Handoff reference), 7px row/column gaps, solid black backgrounds, preserved event handlers and status borders.
+
+Validation: Automated browser fixture tests check computed badge dimensions, spacing and black backgrounds. This is not a complete production-data visual signoff.
+
+Original V12.0.44 notes:
 B7 FI COMMAND CENTER V12.0.44 — OPERATIONAL BADGE GRID REPAIR
 Based on uploaded V12.0.43 test ZIP.
 
