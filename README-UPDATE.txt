@@ -1,12 +1,7 @@
-B7 FI COMMAND CENTER V12.0.49 — RAIDERS BADGE REPAIR TEST
+B7 FI Command Center V12.0.50 — Raiders Equal-Height Badges TEST
 
-- Replaces three conflicting recent badge override stylesheet links with one scoped CSS file.
-- Adds a runtime geometry guard to style actual rendered badge buttons after card updates.
-- Operational badges: 36px tall, 7px row/column gaps, black background, silver border.
-- Full-width wafers/computer/component badges retained.
-- Badge region scrolls if the fixed-height card cannot display all badges.
-- Navigation and footer buttons use black/silver colors.
-- Existing application JS/data and click handlers unchanged.
+Changes: operational grid rows, all standard badges, and full-width tracking badges are 44px tall; date badges are 44px; 7px grid spacing maintained. Solid black and silver styling preserved. Existing JS data logic retained.
 
-TEST: Check Live Operations, Tools and Presentation Mode; verify click-to-edit, scroll and sync.
-This is a test build; no populated-browser visual verification has been completed.
+Deployment: replace all existing site files with ZIP contents, commit and publish. Test Live Operations, all badge rows, full-width tracking badges, and click-to-edit.
+
+Verification: static source/ZIP checks only. Populated browser UI not verified.
