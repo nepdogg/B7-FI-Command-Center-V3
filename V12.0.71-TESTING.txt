@@ -1,1 +1,0 @@
-V12.0.71 test build. Based on V12.0.65. Browser zoom compensation only activates when viewport CSS width is >1.35x the display available width. Test 100%, 75%, 50%, 25%, and windowed mode. This is not browser-verified. Do not overwrite your known-good backup.
