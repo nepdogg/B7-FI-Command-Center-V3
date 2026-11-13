@@ -1,0 +1,32 @@
+/* V12.0.65 — Priority heading only. All V12.0.64 badges remain unchanged.
+   Match the working 64px badge geometry without altering priority behavior. */
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading {
+  box-sizing:border-box!important;
+  height:64px!important;
+  min-height:64px!important;
+  max-height:64px!important;
+  flex:0 0 64px!important;
+  align-self:stretch!important;
+  margin:0!important;
+  padding:0!important;
+  display:grid!important;
+  grid-template-columns:43% 57%!important;
+  align-items:stretch!important;
+  overflow:hidden!important;
+  border-radius:6px!important;
+}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading > span,
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading > strong {
+  box-sizing:border-box!important;
+  height:100%!important;
+  min-height:0!important;
+  max-height:100%!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  padding:4px 6px!important;
+  white-space:normal!important;
+  line-height:1.15!important;
+}
+/* The photo image takes the remaining space; no badge or card resizing. */
