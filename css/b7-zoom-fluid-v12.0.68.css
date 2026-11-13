@@ -1,0 +1,17 @@
+/* V12.0.68: remove v12.0.67 zoom + fractional-width behavior.
+   Browser zoom is handled by natural CSS reflow; preserve V12.0.65 badges. */
+html body:not(.presentation-mode):not(.screenshot-mode) > .app-frame {
+  zoom:1!important; transform:none!important;
+  width:100%!important; max-width:100%!important;
+  min-width:0!important; margin:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) > .app-frame > .body-shell,
+html body:not(.presentation-mode):not(.screenshot-mode) #app {
+  width:100%!important; max-width:100%!important; min-width:0!important;
+}
+/* Keep normal three-column live layout at full width; never constrain it to
+   25%, 33%, or 50% of the browser at low zoom. */
+html body:not(.presentation-mode):not(.screenshot-mode) #app .c11-card-grid {
+  width:100%!important; max-width:100%!important;
+}
+/* Do not change any badge selectors, font sizes or height rules. */
