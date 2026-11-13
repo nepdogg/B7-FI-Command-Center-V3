@@ -5,7 +5,3 @@ Only new styling: css/b7-three-special-badges-v12.0.64.css.
 Normal/Reduced Process, Quarter Carryover/Ship ASAP (including placeholder), and Update Tool Status are 64px high. All other badge layouts are unchanged from V12.0.62.
 No application logic or Microsoft List synchronization code was modified.
 Verification: package integrity and static source checks. Browser measurements, if available, should be used before calling this a confirmed fix.
-
-V12.0.69: Responsive shell based on V12.0.65; badge geometry untouched. Natural browser zoom; desktop 3-column layout and narrow-screen reflow. No zoom magnification. Browser appearance requires testing.
-
-V12.0.70 TEST: viewport-height fill for Live Operations, without changing badge heights. Visual verification required.
