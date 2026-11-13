@@ -1,0 +1,44 @@
+/* V12.0.69: responsive outer layout, based on working V12.0.65.
+   No badge or priority rules are changed. No artificial zoom/transform. */
+html,body{width:100%;min-height:100%;margin:0}
+body:not(.presentation-mode):not(.screenshot-mode){overflow-x:auto!important}
+body:not(.presentation-mode):not(.screenshot-mode)>.app-frame{
+  width:100%!important;min-width:0!important;max-width:none!important;
+  min-height:100vh!important;height:auto!important;
+  display:flex!important;flex-direction:column!important;
+  transform:none!important;zoom:1!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode)>.app-frame>.body-shell{
+  width:100%!important;min-width:0!important;max-width:none!important;
+  height:auto!important;min-height:0!important;flex:1 0 auto!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) #app{
+  width:100%!important;min-width:0!important;max-width:none!important;
+  height:auto!important;min-height:0!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.app-footer{
+  position:relative!important;bottom:auto!important;margin-top:auto!important;
+  width:100%!important;flex:0 0 auto!important;
+}
+/* Preserve the working three-column geometry on desktop. */
+@media (min-width:1100px){
+  body:not(.presentation-mode):not(.screenshot-mode) #app .c11-tool-card>.c11-card-grid.b1226-three-column{
+    display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    align-items:stretch!important;width:100%!important;min-width:0!important;
+  }
+}
+/* At narrower effective viewport sizes (including zoom-in), reflow instead
+   of compressing three unreadable columns. */
+@media (max-width:1099px){
+  body:not(.presentation-mode):not(.screenshot-mode) #app .c11-tool-card>.c11-card-grid.b1226-three-column{
+    display:grid!important;grid-template-columns:minmax(0,1fr)!important;
+    height:auto!important;min-height:0!important;
+  }
+  body:not(.presentation-mode):not(.screenshot-mode) #app .c11-tool-card>.c11-card-grid.b1226-three-column>*{
+    min-width:0!important;width:100%!important;
+  }
+}
+/* Avoid forced viewport-height stretching of the tool card; content sets height. */
+body:not(.presentation-mode):not(.screenshot-mode) #app .c11-tool-card{
+  height:auto!important;max-height:none!important;min-height:0!important;
+}
