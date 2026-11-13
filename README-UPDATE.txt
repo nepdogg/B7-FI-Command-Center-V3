@@ -1,10 +1,4 @@
-B7 FI COMMAND CENTER V12.0.42 — TEST BUILD
-
-Based on V12.0.41.
-- Removed machine-photo inner frame/border; signal tower retains its colored frame.
-- Standardized operational badges to 40px high, including full-width system wafers and equipment badges, matching FI handoff date badge approximate height.
-- Preserved three-column Universal Tool Card, existing Raiders styling, six signal towers, data, and sync logic.
-- No JavaScript business logic changed.
-
-TEST: check badges at 100% zoom, long labels, photo section, other cards, and Microsoft Lists sync at work.
-This is a test build; live browser appearance and sync have not been verified.
+B7 FI COMMAND CENTER V12.0.43 — BADGE UNIFICATION TEST
+Baseline: supplied V12.0.42.
+All Universal Tool Card operational badges: fixed 58px height, 6px gaps, solid black background, silver border, white centered wrapping text. Three columns; wafer/computer/component tracking remain full width. Existing state/sync functionality preserved.
+TEST: Hard refresh Ctrl+Shift+R; check all badge rows and click actions at 100% zoom. This package has not been visually browser-tested.
