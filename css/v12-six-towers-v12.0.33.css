@@ -1,0 +1,14 @@
+/* V12.0.33 — six supplied tower artwork states, labels included. */
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower-image {
+  width:100%!important; height:100%!important;
+  object-fit:contain!important; object-position:center!important;
+  opacity:1!important; filter:none!important;
+}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower,
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-tower {
+  border:0!important; box-shadow:none!important; background:transparent!important;
+  padding:0!important;
+}
+html body #app .b1217-compact-card .b1229-tower-image {
+  object-fit:contain!important; opacity:1!important; filter:none!important;
+}

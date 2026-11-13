@@ -1949,7 +1949,7 @@ function b1224Tower(t,compact=false){
   const sig=b1217Signal(t);
   const tone=['red','yellow','green','blue','purple'].includes(sig.tone)?sig.tone:'unknown';
   return `<div class="b1224-tower b1229-tower ${compact?'b1224-tower-compact':''} b1224-tower-${tone}" role="img" aria-label="Tool ${esc(t.id)} status: ${esc(sig.text)}" title="${esc(sig.text)} · ${esc(b1229SignalReason(t))}">
-    <img class="b1229-tower-image" src="assets/signal-towers/tower-${tone}.png" alt="" loading="eager" draggable="false">
+    <img class="b1229-tower-image" src="assets/signal-towers/tower-${tone}.png?v=120034" alt="" loading="eager" draggable="false">
   </div>`;
 }
 function b1217CompactCard(t){
