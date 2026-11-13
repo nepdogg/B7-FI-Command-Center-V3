@@ -1,0 +1,17 @@
+/* V12.0.67: compensate for very wide CSS viewports caused by browser zoom-out.
+   No changes to badge selectors or sizes. Presentation mode excluded.
+   Zoom applies to the full application shell to preserve three-column proportions. */
+@media (min-width: 2500px) and (max-width: 3299px) {
+ html body:not(.presentation-mode):not(.screenshot-mode) > .app-frame { zoom:1.5!important; width:66.666667%!important; min-height:66.666667vh!important; }
+}
+@media (min-width: 3300px) and (max-width: 4599px) {
+ html body:not(.presentation-mode):not(.screenshot-mode) > .app-frame { zoom:2!important; width:50%!important; min-height:50vh!important; }
+}
+@media (min-width: 4600px) and (max-width: 5999px) {
+ html body:not(.presentation-mode):not(.screenshot-mode) > .app-frame { zoom:3!important; width:33.333333%!important; min-height:33.333333vh!important; }
+}
+@media (min-width: 6000px) {
+ html body:not(.presentation-mode):not(.screenshot-mode) > .app-frame { zoom:4!important; width:25%!important; min-height:25vh!important; }
+}
+/* Keep the page background continuous when the content ends above the footer. */
+html, body { background:#020d17!important; }

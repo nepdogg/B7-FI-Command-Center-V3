@@ -7,3 +7,6 @@ Changes: ordinary page outer frame uses responsive viewport height; live card us
 Test: browser zoom 50%, 67%, 75%, 90%, 100%, 110%, 125%; check live operations, other centers, header/footer, presentation mode, and badge heights.
 
 Note: this is a test build. No populated browser visual validation was completed.
+
+
+V12.0.67 TEST: Responsive zoom legibility at effective CSS viewport widths above 2500px. Existing V12.0.65 badge sizing unchanged. Test at 50%, 67%, 75%, 90%, 100%, and 125%. No browser rendering verification performed.
