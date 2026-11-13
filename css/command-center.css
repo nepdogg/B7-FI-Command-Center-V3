@@ -1,3 +1,5 @@
+/* LAYER command-center-consolidated-v12.0.76.css */
+/* SOURCE: css/command-center.css */
 /* B7 V11.17.93 — ONE CSS FILE; V13.7 design reference reviewed. */
 /* ORIGINAL CASCADE 1: css/command-center-unified.css */
 /* ORIGINAL FILE: css/command-center.css */
@@ -31260,3 +31262,1056 @@ body.presentation-mode #app .b1223-photo-row .b1217-photo{padding-right:clamp(32
 body.presentation-mode #app .b1223-photo-row .b1217-idbadge{min-height:0!important}
 body.presentation-mode #app .b1217-carousel-slot.side .b1224-tower-compact{opacity:.75}
 @media(max-width:900px){.b1224-universal-grid,.utc-card.b1224-universal-card{grid-template-columns:minmax(55px,9%) repeat(3,minmax(0,1fr))!important}.b1224-tower{padding:4px 1px}.b1224-tower>strong{font-size:9px}}
+
+
+/* SOURCE: css/v12-core.css */
+/* V12.0.7: one scoped layout authority. V11 application behavior remains intact. */
+:root{--v12-radius:12px;--v12-space:9px;--v12-badge-height:64px}
+html body #app .c11-tool-card{display:block!important;width:100%!important;max-width:none!important;min-width:0!important;height:auto!important;overflow:visible!important}
+html body #app .c11-tool-card>.c11-card-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:1fr!important;grid-auto-rows:auto!important;align-items:stretch!important;justify-content:stretch!important;gap:var(--v12-space)!important;width:100%!important;height:auto!important;min-width:0!important;max-width:none!important;overflow:visible!important}
+html body #app .c11-tool-card>.c11-card-grid>.c11-column{display:flex!important;flex-flow:column nowrap!important;grid-row:1!important;grid-column:auto!important;position:relative!important;inset:auto!important;float:none!important;transform:none!important;align-items:stretch!important;justify-content:flex-start!important;gap:var(--v12-space)!important;box-sizing:border-box!important;min-width:0!important;max-width:none!important;width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;margin:0!important;padding:0!important;overflow:visible!important;background:transparent!important}
+html body #app .c11-tool-card>.c11-card-grid>.c11-identity-column{grid-column:1!important}
+html body #app .c11-tool-card>.c11-card-grid>.c11-status-column{grid-column:2!important}
+html body #app .c11-tool-card>.c11-card-grid>.c11-progress-column{grid-column:3!important}
+html body #app .c11-tool-card .c11-identity-column>.c11-photo{position:relative!important;inset:auto!important;flex:0 0 220px!important;height:220px!important;min-height:220px!important;max-height:220px!important;overflow:hidden!important;border-radius:var(--v12-radius)!important}
+html body #app .c11-tool-card .c11-photo>.v12-photo-badge-stack{position:absolute!important;top:8px!important;left:8px!important;right:auto!important;bottom:auto!important;display:flex!important;flex-flow:column nowrap!important;gap:6px!important;width:94px!important;height:auto!important;z-index:5!important}
+html body #app .c11-tool-card .v12-photo-badge-stack>*{position:relative!important;inset:auto!important;transform:none!important;display:flex!important;flex-flow:column nowrap!important;align-items:center!important;justify-content:center!important;flex:0 0 48px!important;box-sizing:border-box!important;width:94px!important;min-width:94px!important;max-width:94px!important;height:48px!important;min-height:48px!important;max-height:48px!important;margin:0!important;padding:3px!important;overflow:hidden!important;white-space:normal!important;border-radius:8px!important;text-align:center!important;font-size:12px!important;line-height:1.15!important}
+html body #app .c11-tool-card .c11-identity-column>.c11-identity-stack{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:none!important;grid-auto-rows:44px!important;gap:6px!important;position:relative!important;inset:auto!important;flex:0 0 auto!important;width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important}
+html body #app .c11-tool-card .c11-identity-stack>*{position:relative!important;inset:auto!important;transform:none!important;box-sizing:border-box!important;width:100%!important;min-width:0!important;height:44px!important;min-height:44px!important;max-height:44px!important;margin:0!important;overflow:hidden!important;border-radius:8px!important}
+html body #app .c11-tool-card .c11-identity-column>.b783-date-row{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:none!important;grid-auto-rows:58px!important;gap:6px!important;position:relative!important;inset:auto!important;flex:0 0 auto!important;width:100%!important;height:auto!important;min-height:58px!important;max-height:none!important;overflow:visible!important;margin:0!important}
+html body #app .c11-tool-card .b783-date-row>*{position:relative!important;inset:auto!important;transform:none!important;box-sizing:border-box!important;min-width:0!important;width:100%!important;height:58px!important;min-height:58px!important;max-height:58px!important;overflow:hidden!important;border-radius:8px!important}
+html body #app .c11-tool-card .c11-identity-column>.c11-reduced,html body #app .c11-tool-card .c11-identity-column>.c11-carry{position:relative!important;inset:auto!important;transform:none!important;flex:0 0 32px!important;box-sizing:border-box!important;width:100%!important;height:32px!important;min-height:32px!important;max-height:32px!important;margin:0!important;overflow:hidden!important;border-radius:8px!important}
+html body #app .c11-tool-card .c11-identity-column>.c11-badges{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:none!important;grid-auto-rows:var(--v12-badge-height)!important;grid-auto-flow:row!important;gap:6px!important;align-content:start!important;align-items:stretch!important;justify-items:stretch!important;position:relative!important;inset:auto!important;transform:none!important;flex:0 0 auto!important;order:0!important;box-sizing:border-box!important;width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;margin:0!important;padding:0!important;overflow:visible!important}
+html body #app .c11-tool-card .c11-badges>.c11-badge{position:relative!important;inset:auto!important;transform:none!important;float:none!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;min-width:0!important;width:100%!important;height:var(--v12-badge-height)!important;min-height:var(--v12-badge-height)!important;max-height:var(--v12-badge-height)!important;margin:0!important;padding:5px 3px!important;overflow:hidden!important;border-radius:8px!important;white-space:normal!important;overflow-wrap:anywhere!important;font-size:clamp(10px,.75vw,13px)!important;line-height:1.15!important;text-align:center!important}
+html body #app .c11-tool-card .c11-badges>.c11-badge :is(span,small,b,strong,em){position:static!important;inset:auto!important;max-width:100%!important;min-width:0!important;white-space:normal!important;overflow-wrap:anywhere!important;line-height:1.15!important;font-size:inherit!important}
+html body #app .c11-tool-card .c11-identity-column>.c11-update{position:relative!important;inset:auto!important;transform:none!important;float:none!important;display:flex!important;align-items:center!important;justify-content:center!important;flex:0 0 42px!important;order:1!important;box-sizing:border-box!important;width:100%!important;height:42px!important;min-height:42px!important;max-height:42px!important;margin:0!important;padding:5px!important;clear:both!important;overflow:hidden!important;border-radius:8px!important}
+html body #app .c11-tool-card .c11-status-column>.c11-status-card,html body #app .c11-tool-card .c11-progress-column>.c11-progress-row{position:relative!important;inset:auto!important;transform:none!important;float:none!important;display:flex!important;flex-direction:column!important;justify-content:center!important;flex:0 0 auto!important;box-sizing:border-box!important;width:100%!important;min-width:0!important;height:auto!important;min-height:110px!important;max-height:none!important;margin:0!important;padding:14px!important;overflow:hidden!important;border-radius:var(--v12-radius)!important;background-clip:padding-box!important}
+html body #app .c11-tool-card .c11-status-column>.c11-status-card{min-height:135px!important}
+html body #app .c11-tool-card .c11-status-column>.c11-status-card .c11-hero{font-size:clamp(20px,2vw,36px)!important;line-height:1.15!important;white-space:normal!important;overflow-wrap:anywhere!important}
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row{min-height:105px!important}
+html body #app :is(.c11-status-card,.c11-progress-row,.c11-id-badge,.c11-badge,.b783-date-badge,.fleet-identity-card,.v9-panel,.b7-status-panel,.fleet-family,.c11-photo){border-radius:var(--v12-radius)!important;background-clip:padding-box!important}
+html body #app .c11-tool-card :is(.c11-status-card,.c11-progress-row){margin-bottom:0!important}
+@media(max-width:760px){html body #app .c11-tool-card>.c11-card-grid{grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto!important}html body #app .c11-tool-card>.c11-card-grid>.c11-column{grid-column:1!important;grid-row:auto!important;height:auto!important}}
+/* Restored component appearance after removing competing legacy geometry. */
+html body #app .c11-tool-card{color:#e8f5ff;font-family:Arial,sans-serif}
+html body #app .c11-tool-card .c11-photo{background:#132a3a;border:1px solid #375a70}
+html body #app .c11-tool-card .c11-photo>img{display:block;width:100%;height:100%;object-fit:cover}
+html body #app .c11-tool-card .v12-photo-badge-stack>.b796-photo-priority{background:#9c173d!important;border:1px solid #ef6b91!important;color:#fff!important}
+html body #app .c11-tool-card .v12-photo-badge-stack>.v12-photo-tool-type{background:#174f72!important;border:1px solid #59b7e4!important;color:#fff!important}
+html body #app .c11-tool-card .v12-photo-badge-stack>.b718-photo-alias{background:#075d84!important;border:1px solid #42cbff!important;color:#fff!important}
+html body #app .c11-tool-card .c11-id-badge,html body #app .c11-tool-card .b783-date-badge{background:#16384f;border:1px solid #366f8d;color:#e8f5ff;text-align:center}
+html body #app .c11-tool-card .c11-id-badge small{display:block;font-size:10px;color:#b5d9e9}
+html body #app .c11-tool-card .c11-id-badge strong{display:block;font-size:clamp(11px,.9vw,16px)}
+html body #app .c11-tool-card .c11-reduced,html body #app .c11-tool-card .c11-carry{background:#18435b;border:1px solid #377994;color:#e9f7ff;font-weight:700}
+html body #app .c11-tool-card .c11-badge{background:#16425a;border:1px solid #357c9a;color:#fff;font-weight:700;cursor:pointer}
+html body #app .c11-tool-card .c11-badge.done{background:#135b42;border-color:#32b78d}
+html body #app .c11-tool-card .c11-badge.active{background:#705114;border-color:#c89a32}
+html body #app .c11-tool-card .c11-badge.failed,html body #app .c11-tool-card .c11-badge.missing{background:#7b2434;border-color:#dc5a6e}
+html body #app .c11-tool-card .c11-wafer-badge,html body #app .c11-tool-card .equipment-badge{grid-column:1/-1!important}
+html body #app .c11-tool-card .c11-update{background:#0e6b92;border:1px solid #4bc5ed;color:#fff;font-weight:800;cursor:pointer}
+html body #app .c11-tool-card .c11-status-card,html body #app .c11-tool-card .c11-progress-row{background:#132e43;border:1px solid #376782;box-shadow:0 2px 5px #0002;color:#eff9ff}
+html body #app .c11-tool-card .c11-status-card .label{font-size:clamp(11px,.9vw,16px);font-weight:800;color:#c4e5f5}
+html body #app .c11-tool-card .c11-status-card .sub{font-size:clamp(11px,.85vw,15px);color:#c7dce8}
+html body #app .c11-tool-card .c11-progress-head{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:clamp(11px,.85vw,15px)}
+html body #app .c11-tool-card .c11-progress-track{position:relative;display:block;width:100%;height:25px;min-height:25px;border-radius:20px;overflow:hidden;background:#344a5d;border:1px solid #607a8c}
+html body #app .c11-tool-card .c11-progress-track>i{display:block;height:100%;border-radius:20px;background:#16a6c9}
+html body #app .c11-tool-card .c11-progress-track>i.green{background:#2cae78}
+html body #app .c11-tool-card .c11-progress-track>i.red{background:#d34d62}
+html body #app .c11-tool-card .c11-progress-track>i.purple{background:#8e75e5}
+html body #app .c11-tool-card .c11-progress-track>i.yellow{background:#d9a735}
+html body #app .c11-tool-card .c11-forecast-track-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;font-size:clamp(10px,.75vw,14px);font-weight:800;color:white;text-shadow:0 1px 2px #000}
+html body #app .c11-tool-card .c11-progress-row small{font-size:clamp(10px,.8vw,14px);overflow-wrap:anywhere}
+html body #app .c11-tool-card .c11-task{display:flex;gap:8px;padding:5px 0}
+html body #app .c11-tool-card .c11-task i{font-style:normal;color:#7dd2f0}
+html body #app .c11-tool-card .b7-section-tone-green{border-color:#2b9b79}
+html body #app .c11-tool-card .b7-section-tone-red{border-color:#be5064}
+html body #app .c11-tool-card .b7-section-tone-yellow{border-color:#c99c38}
+html body #app .c11-tool-card .b7-section-tone-purple{border-color:#8d79cd}
+/* Page-level modern surfaces: visual-only, no behavior changes. */
+html body #app :is(.v9-panel,.fleet-family,.fleet-identity-card,.b7-status-panel,.v9-metric,.v9-empty,.quarter-summary,.quarter-tool-card){border-radius:12px!important;background-clip:padding-box!important}
+
+/* V12.0.8: BADGE GRID OWNED FLOW — no absolute positioning, no overlapping edit control. */
+html body #app .c11-tool-card .c11-identity-column{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:8px!important;overflow:visible!important}
+html body #app .c11-tool-card .c11-identity-column>.c11-badge-region{position:relative!important;display:block!important;flex:0 0 auto!important;order:0!important;box-sizing:border-box!important;width:100%!important;min-width:0!important;min-height:0!important;height:auto!important;max-height:none!important;margin:0!important;padding:0!important;overflow:visible!important;transform:none!important;contain:none!important}
+html body #app .c11-tool-card .c11-badge-region>.c11-badges{position:relative!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-flow:row!important;grid-auto-rows:64px!important;grid-template-rows:none!important;gap:8px!important;align-content:start!important;align-items:stretch!important;justify-items:stretch!important;box-sizing:border-box!important;width:100%!important;min-width:0!important;height:auto!important;min-height:0!important;max-height:none!important;margin:0!important;padding:0!important;overflow:visible!important;transform:none!important}
+html body #app .c11-tool-card .c11-badge-region>.c11-badges>.c11-badge{position:relative!important;display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;box-sizing:border-box!important;grid-row:auto!important;min-width:0!important;width:100%!important;height:64px!important;min-height:64px!important;max-height:64px!important;margin:0!important;padding:5px 4px!important;overflow:hidden!important;transform:none!important;inset:auto!important;border-radius:9px!important;line-height:1.16!important;white-space:normal!important;text-align:center!important}
+html body #app .c11-tool-card .c11-badge-region>.c11-badges>.c11-wafer-badge,html body #app .c11-tool-card .c11-badge-region>.c11-badges>.equipment-badge{grid-column:1/-1!important}
+html body #app .c11-tool-card .c11-badge-region>.c11-badges>.c11-badge :is(.badge-face-label,.badge-face-state,span,small,strong,em){position:static!important;display:block!important;max-width:100%!important;margin:0!important;line-height:1.16!important;white-space:normal!important;overflow-wrap:anywhere!important}
+html body #app .c11-tool-card .c11-identity-column>.c11-update{position:relative!important;display:flex!important;flex:0 0 44px!important;order:1!important;inset:auto!important;transform:none!important;box-sizing:border-box!important;clear:both!important;width:100%!important;height:44px!important;min-height:44px!important;max-height:44px!important;margin:0!important;padding:6px!important;z-index:auto!important;border-radius:9px!important}
+html body #app .c11-tool-card .c11-status-column>.c11-status-card,html body #app .c11-tool-card .c11-progress-column>.c11-progress-row{border-radius:12px!important;margin:0!important;overflow:hidden!important}
+
+/* V12.0.9: one compact badge rhythm and equal-height tool card columns. */
+:root{--v12-badge-height:48px;--v12-badge-gap:4px;--v12-space:8px}
+html body #app .c11-tool-card>.c11-card-grid{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ grid-template-rows:minmax(0,1fr)!important;align-items:stretch!important;
+ gap:8px!important;height:auto!important;width:100%!important;
+}
+html body #app .c11-tool-card>.c11-card-grid>.c11-column{
+ display:flex!important;flex-direction:column!important;align-self:stretch!important;
+ height:100%!important;min-height:0!important;width:100%!important;
+ min-width:0!important;max-width:none!important;gap:8px!important;
+}
+html body #app .c11-tool-card .c11-badge-region>.c11-badges{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ grid-auto-rows:48px!important;grid-template-rows:none!important;
+ gap:4px!important;row-gap:4px!important;column-gap:4px!important;
+ align-content:start!important;align-items:stretch!important;
+ height:auto!important;min-height:0!important;margin:0!important;padding:0!important;
+}
+html body #app .c11-tool-card .c11-badge-region>.c11-badges>.c11-badge{
+ box-sizing:border-box!important;height:48px!important;min-height:48px!important;
+ max-height:48px!important;margin:0!important;padding:3px 4px!important;
+ display:flex!important;flex-direction:column!important;align-items:center!important;
+ justify-content:center!important;line-height:1.12!important;
+ font-size:clamp(10px,.72vw,12px)!important;overflow:hidden!important;
+ border-radius:7px!important;
+}
+html body #app .c11-tool-card .c11-badge-region>.c11-badges>.c11-badge :is(span,small,b,strong,em){
+ line-height:1.12!important;margin:0!important;padding:0!important;
+}
+html body #app .c11-tool-card .c11-identity-column>.c11-badge-region{flex:0 0 auto!important;margin:0!important;padding:0!important}
+html body #app .c11-tool-card .c11-identity-column>.c11-update{
+ position:relative!important;order:1!important;flex:0 0 40px!important;
+ height:40px!important;min-height:40px!important;max-height:40px!important;
+ margin:0!important;inset:auto!important;transform:none!important;
+}
+html body #app .c11-tool-card .c11-status-column>.c11-status-card,
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row{
+ flex:1 1 0!important;min-height:100px!important;max-height:none!important;
+ display:flex!important;flex-direction:column!important;justify-content:center!important;
+ border-radius:12px!important;overflow:hidden!important;
+}
+html body #app .c11-tool-card .c11-status-column>.c11-status-card{min-height:125px!important}
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row{min-height:95px!important}
+@media(max-width:760px){
+ html body #app .c11-tool-card>.c11-card-grid{grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto!important}
+ html body #app .c11-tool-card>.c11-card-grid>.c11-column{grid-column:1!important;grid-row:auto!important;height:auto!important}
+}
+
+/* V12.0.10: photo is a true two-cell layout, not an overlay. */
+html body #app .c11-tool-card .c11-identity-column>.c11-photo.b796-priority-photo{
+ display:grid!important;grid-template-columns:clamp(72px,19%,104px) minmax(0,1fr)!important;
+ grid-template-rows:minmax(0,1fr)!important;gap:8px!important;align-items:stretch!important;
+ position:relative!important;box-sizing:border-box!important;padding:8px!important;
+ height:220px!important;min-height:220px!important;max-height:220px!important;
+ overflow:hidden!important;border-radius:12px!important;
+}
+html body #app .c11-tool-card .c11-photo>.v1210-photo-image{
+ grid-column:2!important;grid-row:1!important;position:relative!important;
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ min-width:0!important;min-height:0!important;overflow:hidden!important;
+ background:#0b2030!important;border-radius:9px!important;
+}
+html body #app .c11-tool-card .c11-photo>.v1210-photo-image>img{
+ display:block!important;position:static!important;inset:auto!important;
+ width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;
+ object-fit:contain!important;object-position:center!important;transform:none!important;
+ margin:0!important;padding:0!important;
+}
+html body #app .c11-tool-card .c11-photo>.v12-photo-badge-stack{
+ grid-column:1!important;grid-row:1!important;position:relative!important;
+ inset:auto!important;top:auto!important;left:auto!important;right:auto!important;bottom:auto!important;
+ display:flex!important;flex-direction:column!important;align-items:stretch!important;
+ justify-content:flex-start!important;gap:6px!important;
+ box-sizing:border-box!important;width:100%!important;min-width:0!important;max-width:none!important;
+ height:100%!important;margin:0!important;padding:0!important;z-index:1!important;
+}
+html body #app .c11-tool-card .c11-photo>.v12-photo-badge-stack>*{
+ position:relative!important;inset:auto!important;box-sizing:border-box!important;
+ width:100%!important;min-width:0!important;max-width:100%!important;
+ height:48px!important;min-height:48px!important;max-height:48px!important;
+ flex:0 0 48px!important;margin:0!important;padding:3px 2px!important;
+ font-size:clamp(9px,.75vw,12px)!important;overflow-wrap:anywhere!important;
+ border-radius:8px!important;
+}
+/* Increase visible track AND its fill without altering the saved percentage. */
+html body #app .c11-tool-card .c11-progress-track{
+ position:relative!important;box-sizing:border-box!important;
+ height:24px!important;min-height:24px!important;max-height:24px!important;
+ border-radius:999px!important;overflow:hidden!important;
+}
+html body #app .c11-tool-card .c11-progress-track>i{
+ display:block!important;height:100%!important;min-height:100%!important;
+ border-radius:999px!important;
+}
+html body #app .c11-tool-card .c11-forecast-track-label{
+ position:absolute!important;inset:0!important;display:flex!important;
+ align-items:center!important;justify-content:center!important;z-index:2!important;
+}
+
+/* V12.0.11 — Photo, progress and presentation geometry. */
+html body #app .c11-tool-card .c11-photo>.v1210-photo-image{overflow:hidden!important;min-width:0!important;min-height:0!important}
+html body #app .c11-tool-card .c11-photo>.v1210-photo-image>img{width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;object-position:center!important;position:static!important;transform:none!important}
+html body #app .c11-tool-card .c11-progress-track{height:32px!important;min-height:32px!important;max-height:32px!important;box-sizing:border-box!important;border-radius:999px!important;overflow:hidden!important}
+html body #app .c11-tool-card .c11-progress-track>i{height:100%!important;min-height:100%!important;max-height:100%!important;box-sizing:border-box!important}
+html body #app .c11-tool-card .c11-progress-row{min-height:0!important}
+/* Presentation tool cards: the card fills the region above navigation; all columns stretch equally. */
+html body.presentation-mode #app{box-sizing:border-box!important;min-height:0!important}
+html body.presentation-mode #app .c11-tool-card{box-sizing:border-box!important;min-height:0!important;width:100%!important}
+html body.presentation-mode #app .c11-tool-card>.c11-card-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;align-items:stretch!important;min-height:0!important;height:100%!important}
+html body.presentation-mode #app .c11-tool-card>.c11-card-grid>.c11-column{min-width:0!important;height:100%!important;min-height:0!important;align-self:stretch!important}
+html body.presentation-mode #app .c11-tool-card .c11-status-column>.c11-status-card,html body.presentation-mode #app .c11-tool-card .c11-progress-column>.c11-progress-row{flex:1 1 0!important;min-height:0!important;max-height:none!important}
+html body.presentation-mode #app .c11-tool-card .c11-identity-column>.c11-photo.b796-priority-photo{height:190px!important;min-height:190px!important;max-height:190px!important}
+/* Outer frame is a border, not an overlay; pointer interaction stays intact. */
+html body.presentation-mode .app-frame{box-sizing:border-box!important;border:3px solid #19b9ed!important;border-radius:14px!important;overflow:hidden!important}
+html body.presentation-mode .app-frame>.body-shell{box-sizing:border-box!important;min-height:0!important}
+html body.presentation-mode #app .quarter-summary-master-viewport,html body.presentation-mode #app .quarter-summary-presentation{box-sizing:border-box!important;border-radius:10px!important}
+
+/* V12.0.12 — single authoritative page-level layout layer. */
+html body #app .b71805-quarter-groups{display:block!important;width:100%!important;min-width:0!important;max-width:none!important;box-sizing:border-box!important}
+html body #app .b71805-quarter-groups>.b71805-family-list{display:block!important;width:100%!important;min-width:0!important;max-width:none!important}
+html body #app .b71805-family-list>.fleet-family{display:block!important;float:none!important;clear:both!important;width:100%!important;max-width:none!important;min-width:0!important;margin:14px 0 24px!important;box-sizing:border-box!important}
+html body #app .b71805-family-list>.fleet-family>.fleet-card-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;align-items:start!important;justify-items:stretch!important;width:100%!important;max-width:none!important;min-width:0!important;box-sizing:border-box!important}
+html body #app .b71805-family-list .fleet-card-grid>.fleet-identity-card{display:flex!important;flex-direction:column!important;grid-column:auto!important;grid-row:auto!important;float:none!important;width:100%!important;max-width:none!important;min-width:0!important;height:auto!important;margin:0!important;box-sizing:border-box!important}
+html body #app .b71805-family-list .fleet-card-grid>.fleet-identity-card .fleet-badges{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:4px!important;grid-auto-rows:52px!important;align-items:stretch!important;height:auto!important}
+html body #app .b71805-family-list .fleet-card-grid>.fleet-identity-card .fleet-badges>*{box-sizing:border-box!important;min-height:52px!important;height:52px!important;max-height:52px!important;margin:0!important;overflow:hidden!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;line-height:1.15!important;white-space:normal!important}
+@media(max-width:1350px){html body #app .b71805-family-list>.fleet-family>.fleet-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:850px){html body #app .b71805-family-list>.fleet-family>.fleet-card-grid{grid-template-columns:minmax(0,1fr)!important}}
+/* Uniform operational badge height matches the FI date badges. */
+html body #app .c11-tool-card .c11-badge-region>.c11-badges{grid-auto-rows:52px!important;row-gap:4px!important;column-gap:4px!important}
+html body #app .c11-tool-card .c11-badge-region>.c11-badges>.c11-badge{height:52px!important;min-height:52px!important;max-height:52px!important;line-height:1.15!important;padding:4px!important}
+/* Taller bars and deliberate spacing, without changing percentage logic. */
+html body #app .c11-tool-card .c11-progress-track{height:40px!important;min-height:40px!important;max-height:40px!important;margin:10px 0 12px!important}
+html body #app .c11-tool-card .c11-progress-row{padding:14px 16px!important;gap:5px!important}
+html body #app .c11-tool-card .c11-progress-row .c11-forecast-track-label{display:none!important}
+
+
+/* SOURCE: css/v12-charcoal.css */
+/* V12.0.25 — Option A neutral charcoal theme. Status colors remain meaningful. */
+:root{color-scheme:dark;--b7-charcoal:#111418;--b7-panel:#22272e;--b7-surface:#2a3038;--b7-line:#48515d;--b7-ink:#f3f5f7;--b7-muted:#b7c0ca}
+html,body,#app{background:#111418!important;color:#f3f5f7!important}
+html body #app :is(.prototype-header,.prototype-nav,.page-nav,.nav-bar,.panel,.subsection,.v9-panel,.fleet-family,.fleet-identity-card,.b7-status-panel,.c11-tool-card,.c11-status-card,.c11-progress-row,.c11-photo,.c11-id-badge,.b783-date-badge,.quarter-summary,.quarter-tool-card,.modal-card){background-color:#22272e!important;color:#f3f5f7!important;border-color:#48515d!important;box-shadow:none!important}
+html body #app :is(.c11-id-badge,.b783-date-badge,.c11-badge:not(.done):not(.active):not(.failed):not(.missing),.v9-metric,.readonly-value){background:#2a3038!important;border-color:#48515d!important;color:#f3f5f7!important}
+html body #app :is(.btn,button:not(.signal-light):not(.active),select,input,textarea,.field input,.field select){border-color:#515a65;color:#f3f5f7}
+html body #app :is(.btn,button:not(.active)){background-color:#303740}
+html body #app :is(input,textarea,select){background-color:#20252b}
+html body #app :is(.c11-tool-card,.c11-column,.c11-status-column,.c11-progress-column){box-shadow:none}
+html body #app :is(.c11-status-card,.c11-progress-row,.c11-id-badge,.c11-badge){border-width:1px}
+html body #app :is(.c11-badge.done){background:#173c2d!important;border-color:#2f9d6c!important}
+html body #app :is(.c11-badge.active){background:#453716!important;border-color:#bb9230!important}
+html body #app :is(.c11-badge.failed,.c11-badge.missing){background:#49232c!important;border-color:#d45a67!important}
+html body #app :is(.prototype-header-left,.prototype-header-right){background:#191d23!important}
+html body #app #headerModeCenter:not(.shared-error):not(.shared-disconnected):not(.shared-paused){border-color:#2bba76!important;box-shadow:none!important}
+html body #app #headerModeCenter.shared-error,html body #app #headerModeCenter.shared-disconnected{border-color:#ef4657!important}
+html body #app #headerModeCenter.shared-paused{border-color:#e9b43c!important}
+.weekend-leadership,.weekend-leadership-view{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:12px;margin:10px 0;background:#292e35;border:1px solid #515a65;border-radius:10px}
+.weekend-leadership label{display:flex;flex-direction:column;gap:5px;flex:1 1 220px;font-weight:700}.weekend-leadership select{padding:9px;border-radius:7px;background:#171b20;color:#fff}
+.priority-edit [data-pf="assignment"]{min-width:135px}
+/* Neutral navigation with a distinct selected tab */
+html body #app :is(.nav-tab,.subnav-button,.nav-button):not(.active):not(.selected){background:#303740!important;border-color:#525b66!important;color:#e8edf2!important}
+
+
+/* SOURCE: css/v12-photo-tower-v12.0.27.css */
+/* V12.0.27 targeted repair: correct v12-core's 220px grid photo override. */
+html body #app .c11-tool-card>.c11-card-grid.b1226-three-column{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+html body #app .c11-tool-card>.c11-card-grid.b1226-three-column>.c11-column{min-width:0!important;grid-row:1!important}
+html body #app .c11-tool-card .c11-identity-column>.c11-photo.b796-priority-photo.b1226-photo{display:flex!important;flex-flow:column nowrap!important;flex:0 0 auto!important;grid-template-columns:none!important;grid-template-rows:none!important;position:relative!important;width:100%!important;height:clamp(340px,31vw,450px)!important;min-height:340px!important;max-height:450px!important;padding:8px!important;gap:8px!important;overflow:hidden!important;background:#14181e!important;border:1px solid #535d6b!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo>.b1226-photo-top{display:grid!important;grid-template-columns:clamp(58px,19%,88px) minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr)!important;gap:8px!important;flex:1 1 auto!important;min-height:0!important;width:100%!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-main{display:flex!important;flex-direction:column!important;min-width:0!important;min-height:0!important;gap:7px!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading{flex:0 0 40px!important;min-height:40px!important;font-size:clamp(12px,1vw,18px)!important;border-color:#697688!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading span{background:#912333!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .v1210-photo-image{display:flex!important;position:relative!important;inset:auto!important;grid-column:auto!important;grid-row:auto!important;flex:1 1 auto!important;min-height:120px!important;width:100%!important;overflow:hidden!important;background:#0c1015!important;border-radius:7px!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .v1210-photo-image img{display:block!important;width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;object-position:center!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-tower{display:flex!important;min-width:0!important;min-height:0!important;align-items:stretch!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1224-tower{width:100%!important;height:100%!important;display:flex!important;justify-content:space-around!important;padding:7px 3px!important;gap:4px!important;border-color:#687481!important;border-radius:10px!important;background:#0b1016!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1224-tower-lamps{display:flex!important;flex-direction:column!important;justify-content:space-around!important;flex:1 1 auto!important;gap:5px!important;width:100%!important;padding:8px 3px!important;background:#080d13!important;border-radius:20px!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1224-lamp{width:clamp(23px,3vw,42px)!important;height:clamp(23px,3vw,42px)!important;flex:0 0 auto!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1224-tower>strong{font-size:clamp(8px,.7vw,12px)!important;line-height:1.1!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-active-state{flex:0 0 auto!important;min-height:39px!important;display:flex!important;align-items:center!important;justify-content:center!important;font-size:clamp(11px,.85vw,16px)!important;background:color-mix(in srgb,var(--tower-active) 18%,#12161c)!important;color:#fff!important;border:2px solid var(--tower-active)!important;overflow-wrap:anywhere!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-signal-key{flex:0 0 auto!important;width:100%!important;padding:6px!important;background:#10151b!important;border-color:#5d6875!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-signal-key>b{font-size:clamp(10px,.76vw,13px)!important;margin-bottom:5px!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-signal-key>div{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:3px!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-signal-key span{font-size:clamp(7px,.58vw,11px)!important;padding:5px 1px!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-signal-key small{font-size:clamp(6px,.5vw,9px)!important}
+/* Segmented visual treatment: the original width of each fill remains the data source. */
+html body #app .c11-tool-card .c11-progress-track{position:relative!important;overflow:hidden!important;background:#303b47!important;border:1px solid #657080!important;border-radius:8px!important}
+html body #app .c11-tool-card .c11-progress-track>i{display:block!important;height:100%!important;border-radius:4px!important;-webkit-mask-image:repeating-linear-gradient(90deg,#000 0px,#000 15px,transparent 15px,transparent 19px)!important;mask-image:repeating-linear-gradient(90deg,#000 0px,#000 15px,transparent 15px,transparent 19px)!important}
+@media(max-width:1050px){html body #app .c11-tool-card .c11-identity-column>.c11-photo.b796-priority-photo.b1226-photo{height:360px!important;min-height:360px!important}html body #app .c11-tool-card .c11-photo.b1226-photo .b1224-lamp{width:24px!important;height:24px!important}}
+@media(max-width:760px){html body #app .c11-tool-card>.c11-card-grid.b1226-three-column{grid-template-columns:1fr!important}html body #app .c11-tool-card>.c11-card-grid.b1226-three-column>.c11-column{grid-column:1!important;grid-row:auto!important}}
+
+
+/* SOURCE: css/v12-visual-v12.0.28.css */
+/* V12.0.28: coordinated photo/tower composition, scoped to full Universal Tool Card. */
+html body #app .c11-tool-card .c11-identity-column>.c11-photo.b1226-photo{height:clamp(410px,32vw,490px)!important;min-height:410px!important;max-height:none!important;padding:9px!important;gap:8px!important;border:1px solid #6d7885!important;border-radius:13px!important;background:linear-gradient(145deg,#101820,#090d13)!important;box-shadow:inset 0 0 0 1px #303b46!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo:before{content:'TOOL INFORMATION';font-size:clamp(12px,1.05vw,18px);font-weight:800;letter-spacing:.05em;color:#f4f7fc;line-height:1.1;flex:none}
+html body #app .c11-tool-card .c11-photo.b1226-photo>.b1226-photo-top{grid-template-columns:clamp(68px,21%,104px) minmax(0,1fr)!important;gap:9px!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading{flex-basis:45px!important;min-height:45px!important;display:grid!important;grid-template-columns:43% 57%!important;border:2px solid #93b4ff!important;border-radius:11px!important;background:linear-gradient(90deg,#122f77,#1748b0)!important;box-shadow:0 0 8px #2767dd55!important;font-size:clamp(11px,.95vw,17px)!important;line-height:1.1!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading span{background:linear-gradient(#c92539,#821322)!important;white-space:nowrap!important;padding:3px!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading strong{font-size:clamp(12px,1.02vw,19px)!important;color:white!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .v1210-photo-image{border:0!important;background:radial-gradient(ellipse at center,#1b2632 0%,#080d12 75%)!important;min-height:140px!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .v1210-photo-image img{object-fit:contain!important;object-position:center!important;filter:drop-shadow(0 8px 9px #000b)!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-active-state{min-height:56px!important;padding:6px 4px!important;border-radius:10px!important;font-size:clamp(12px,1.06vw,19px)!important;font-weight:900!important;letter-spacing:.02em!important;text-shadow:0 1px 3px #000!important;box-shadow:0 0 12px color-mix(in srgb,var(--tower-active) 40%,transparent),inset 0 0 12px color-mix(in srgb,var(--tower-active) 15%,transparent)!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-signal-key{padding:7px!important;border-radius:10px!important;border:1px solid #778694!important;background:#0b1219!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-signal-key>b{font-size:clamp(10px,.85vw,14px)!important;color:#fff!important;display:block!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-signal-key>div{gap:5px!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-signal-key span{border:1px solid currentColor!important;border-radius:7px!important;padding:7px 2px!important;font-size:clamp(8px,.65vw,12px)!important;font-weight:800!important;line-height:1.1!important;box-shadow:inset 0 0 9px #ffffff16!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-signal-key small{font-size:clamp(7px,.56vw,10px)!important;font-weight:500!important;line-height:1.1!important;margin-top:2px!important}
+/* Industrial cylindrical stack light, with a single illuminated state. */
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1224-tower{border:1px solid #8c98a4!important;border-radius:16px!important;padding:10px 4px 6px!important;background:linear-gradient(90deg,#03060a,#16202a 45%,#05090d)!important;box-shadow:inset 0 0 12px #000,0 0 0 1px #27313a!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1224-tower-lamps{border-radius:17px!important;gap:3px!important;padding:7px 3px!important;background:linear-gradient(90deg,#303941,#080b10 16%,#101821 72%,#414b54)!important;border-top:8px solid #aeb9c4!important;border-bottom:8px solid #aeb9c4!important;box-shadow:0 3px 10px #0009!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1224-lamp{width:100%!important;max-width:65px!important;height:auto!important;min-height:32px!important;flex:1 1 0!important;border-radius:7px!important;opacity:.28!important;filter:saturate(.7)!important;box-shadow:inset 4px 0 8px #0009,inset -4px 0 8px #fff2!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1224-lamp.is-lit{opacity:1!important;filter:saturate(1.3)!important;box-shadow:inset 0 0 12px #fff9,0 0 12px currentColor,0 0 21px currentColor!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1224-tower>strong{font-size:clamp(9px,.7vw,12px)!important;overflow-wrap:anywhere!important;color:white!important}
+/* Consistent segmented bars: original width and value are untouched. */
+html body #app .c11-tool-card .c11-progress-track>i{-webkit-mask-image:repeating-linear-gradient(90deg,#000 0 16px,transparent 16px 19px)!important;mask-image:repeating-linear-gradient(90deg,#000 0 16px,transparent 16px 19px)!important}
+@media(max-width:1000px){html body #app .c11-tool-card .c11-identity-column>.c11-photo.b1226-photo{height:420px!important}}
+
+
+/* SOURCE: css/v12-tower-images-v12.0.29.css */
+/* V12.0.29: image-based realistic five-state signal tower, with data-driven reason. */
+html body #app .c11-tool-card .c11-identity-column>.c11-photo.b1226-photo:before{content:none!important;display:none!important}
+html body #app .c11-tool-card .c11-identity-column>.c11-photo.b1226-photo{height:clamp(390px,31vw,475px)!important;min-height:390px!important;gap:7px!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo>.b1226-photo-top{grid-template-columns:clamp(65px,20%,100px) minmax(0,1fr)!important;gap:8px!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-tower{min-width:0!important;min-height:0!important;align-items:stretch!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower{display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;height:100%!important;width:100%!important;min-height:0!important;overflow:hidden!important;background:linear-gradient(90deg,#03070a,#111c25 50%,#03070a)!important;border:1px solid #8496a7!important;border-radius:13px!important;padding:2px!important;box-shadow:inset 0 0 8px #000!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower-image{width:100%!important;height:100%!important;max-height:100%!important;object-fit:fill!important;display:block!important;filter:drop-shadow(0 0 4px #000)!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower>strong{display:none!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading{font-weight:800!important;letter-spacing:.01em!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-active-state{flex:0 0 auto!important;min-height:44px!important;max-height:75px!important;line-height:1.15!important;text-align:center!important;padding:6px 7px!important;overflow-wrap:anywhere!important;font-size:clamp(11px,.93vw,17px)!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-signal-key{flex:0 0 auto!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-signal-key>div{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:4px!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-signal-key span{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;min-width:0!important;padding:6px 2px!important;font-size:clamp(8px,.65vw,12px)!important;line-height:1.1!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-signal-key small{display:block!important;font-size:clamp(7px,.56vw,10px)!important;line-height:1.1!important;white-space:normal!important;text-align:center!important}
+/* All views reuse the same graphic selector; compact tower dimensions are controlled by the compact card. */
+html body #app .b1217-compact-card .b1229-tower{display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;min-width:0!important}
+html body #app .b1217-compact-card .b1229-tower-image{display:block!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important}
+html body #app .b1217-compact-card .b1229-tower>strong{display:none!important}
+
+
+/* SOURCE: css/v12-simplified-tower-v12.0.30.css */
+/* V12.0.30 — Simplified integrated photo/tower. Remove redundant key and status banner. */
+html body #app .c11-tool-card .c11-identity-column>.c11-photo.b1226-photo {height:clamp(300px,25vw,390px)!important;min-height:300px!important;max-height:390px!important;padding:8px!important;gap:0!important;background:#171c22!important;border:1px solid #55606b!important;box-shadow:none!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo>.b1226-photo-top {display:grid!important;grid-template-columns:clamp(62px,19%,95px) minmax(0,1fr)!important;gap:9px!important;height:100%!important;min-height:0!important;flex:1 1 auto!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-main {display:flex!important;flex-direction:column!important;min-height:0!important;gap:7px!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading {display:grid!important;grid-template-columns:45% 55%!important;min-height:40px!important;flex:0 0 40px!important;background:#2c333c!important;border:1px solid #78828c!important;border-radius:7px!important;box-shadow:none!important;font-size:clamp(10px,.95vw,17px)!important;color:#fff!important;letter-spacing:0!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading span {background:#353d46!important;color:#fff!important;padding:3px!important;white-space:nowrap!important;font-size:inherit!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading strong {font-size:inherit!important;background:#2c333c!important;min-width:0!important;white-space:nowrap!important;text-overflow:ellipsis!important;overflow:hidden!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .v1210-photo-image {flex:1 1 auto!important;min-height:0!important;height:auto!important;display:flex!important;align-items:center!important;justify-content:center!important;background:#0c1218!important;border-radius:7px!important;overflow:hidden!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .v1210-photo-image img {height:100%!important;width:100%!important;max-height:100%!important;object-fit:contain!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-tower {min-height:0!important;height:100%!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower {height:100%!important;min-height:0!important;background:#0c1218!important;border:1px solid #56616c!important;box-shadow:none!important;padding:1px!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower-image {height:100%!important;width:100%!important;object-fit:contain!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-signal-key, html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-active-state {display:none!important}
+@media(max-width:1000px){html body #app .c11-tool-card .c11-identity-column>.c11-photo.b1226-photo{height:320px!important;min-height:320px!important}}
+
+
+/* SOURCE: css/v12-layout-repair-v12.0.31.css */
+/* V12.0.31: scoped three-column Universal Tool Card geometry. Keep the photo/tower inside column one. */
+html body:not(.presentation-mode) #app section.c11-tool-card > div.c11-card-grid.b1226-three-column,
+html body.presentation-mode #app section.c11-tool-card > div.c11-card-grid.b1226-three-column {
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-template-rows:auto!important;
+  grid-auto-flow:row!important;
+  gap:8px!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  align-items:stretch!important;
+}
+html body #app section.c11-tool-card > div.c11-card-grid.b1226-three-column > section.c11-column {
+  display:flex!important;
+  flex-direction:column!important;
+  grid-row:1!important;
+  grid-column:auto!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  align-self:stretch!important;
+  height:auto!important;
+}
+html body #app section.c11-tool-card > div.c11-card-grid.b1226-three-column > section.c11-identity-column{grid-column:1!important}
+html body #app section.c11-tool-card > div.c11-card-grid.b1226-three-column > section.c11-status-column{grid-column:2!important}
+html body #app section.c11-tool-card > div.c11-card-grid.b1226-three-column > section.c11-progress-column{grid-column:3!important}
+html body #app section.c11-tool-card > div.c11-card-grid.b1226-three-column .c11-photo.b1226-photo{width:100%!important;max-width:100%!important;box-sizing:border-box!important;flex-shrink:0!important}
+html body #app section.c11-tool-card .b1226-photo-top,
+html body #app section.c11-tool-card .b1226-photo-main{min-width:0!important;max-width:100%!important}
+html body #app section.c11-tool-card .b1226-photo-heading{overflow:hidden!important;align-items:center!important}
+html body #app section.c11-tool-card .b1226-photo-heading span,
+html body #app section.c11-tool-card .b1226-photo-heading strong{display:flex!important;align-items:center!important;justify-content:center!important;min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important}
+html body #app section.c11-tool-card .b1229-tower-image{object-fit:contain!important}
+/* Only stack the three columns on truly narrow viewports. */
+@media(max-width:760px){
+ html body:not(.presentation-mode) #app section.c11-tool-card > div.c11-card-grid.b1226-three-column{grid-template-columns:minmax(0,1fr)!important}
+ html body:not(.presentation-mode) #app section.c11-tool-card > div.c11-card-grid.b1226-three-column > section.c11-column{grid-column:1!important;grid-row:auto!important}
+}
+
+
+/* SOURCE: css/v12-structural-fix-v12.0.32.css */
+/* V12.0.32: structural DOM correction in app.js restores true three-column siblings. */
+html body #app .c11-tool-card > .c11-card-grid.b1226-three-column{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:auto!important;gap:8px!important;align-items:stretch!important}
+html body #app .c11-tool-card > .c11-card-grid.b1226-three-column > .c11-column{grid-row:1!important;min-width:0!important;max-width:100%!important;align-self:stretch!important}
+html body #app .c11-tool-card > .c11-card-grid.b1226-three-column > .c11-identity-column{grid-column:1!important}
+html body #app .c11-tool-card > .c11-card-grid.b1226-three-column > .c11-status-column{grid-column:2!important}
+html body #app .c11-tool-card > .c11-card-grid.b1226-three-column > .c11-progress-column{grid-column:3!important}
+/* Signal graphic is unframed and fills the exact height of the header plus tool photo. */
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-top{display:grid!important;grid-template-columns:clamp(65px,19%,98px) minmax(0,1fr)!important;align-items:stretch!important;height:100%!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-tower{height:100%!important;min-height:0!important;overflow:visible!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding:0!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower{height:100%!important;width:100%!important;min-height:0!important;overflow:visible!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding:0!important;filter:none!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower-image{height:100%!important;width:100%!important;object-fit:fill!important;filter:none!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-main{height:100%!important;min-height:0!important;display:flex!important;flex-direction:column!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .v1210-photo-image{flex:1 1 0!important;min-height:0!important}
+@media(max-width:760px){html body:not(.presentation-mode) #app .c11-tool-card > .c11-card-grid.b1226-three-column{grid-template-columns:minmax(0,1fr)!important}html body:not(.presentation-mode) #app .c11-tool-card > .c11-card-grid.b1226-three-column > .c11-column{grid-column:1!important;grid-row:auto!important}}
+
+
+/* SOURCE: css/v12-six-towers-v12.0.33.css */
+/* V12.0.33 — six supplied tower artwork states, labels included. */
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower-image {
+  width:100%!important; height:100%!important;
+  object-fit:contain!important; object-position:center!important;
+  opacity:1!important; filter:none!important;
+}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower,
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-tower {
+  border:0!important; box-shadow:none!important; background:transparent!important;
+  padding:0!important;
+}
+html body #app .b1217-compact-card .b1229-tower-image {
+  object-fit:contain!important; opacity:1!important; filter:none!important;
+}
+
+
+/* SOURCE: css/v12-raiders-black-silver-v12.0.34.css */
+/* V12.0.34 — Raiders-inspired black/silver visual theme; operational logic unchanged. */
+html,html body,html body #app{background:#000!important;color:#f7f7f7!important}
+html body #app :is(.prototype-header,.prototype-nav,.page-nav,.nav-bar,.panel,.subsection,.v9-panel,.fleet-family,.fleet-identity-card,.b7-status-panel,.c11-tool-card,.c11-status-card,.c11-progress-row,.c11-photo,.c11-id-badge,.b783-date-badge,.quarter-summary,.quarter-tool-card,.modal-card){background-color:#1c1c1c!important;color:#fff!important;border-color:#737373!important;box-shadow:none!important}
+html body #app :is(.prototype-header-left,.prototype-header-right){background:#050505!important;color:#fff!important;border-color:#888!important}
+html body #app :is(.c11-id-badge,.b783-date-badge,.v9-metric,.readonly-value){background:#2a2a2a!important;color:#fff!important;border-color:#6e6e6e!important}
+html body #app :is(.nav-tab,.subnav-button,.nav-button,.btn,button):not(.active):not(.selected){background-color:#292929!important;border-color:#777!important;color:#f5f5f5!important}
+html body #app :is(.nav-tab,.subnav-button,.nav-button,.btn,button):is(.active,.selected){background-color:#555!important;border-color:#c0c0c0!important;color:#fff!important}
+html body #app :is(input,textarea,select){background:#191919!important;color:#fff!important;border-color:#777!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower-image{opacity:1!important;filter:none!important;object-fit:fill!important;width:100%!important;height:100%!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo :is(.b1229-tower,.b1226-photo-tower){background:transparent!important;border:0!important;box-shadow:none!important;filter:none!important;padding:0!important}
+html body #app .b1217-compact-card .b1229-tower-image{opacity:1!important;filter:none!important}
+/* Preserve the original 3-column card geometry. */
+html body #app .c11-tool-card>.c11-card-grid.b1226-three-column{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+@media(max-width:760px){html body:not(.presentation-mode) #app .c11-tool-card>.c11-card-grid.b1226-three-column{grid-template-columns:minmax(0,1fr)!important}}
+
+
+/* SOURCE: css/v12-six-original-assets-v12.0.35.css */
+
+/* V12.0.35 — original six labeled graphics, no extra frames or dimming */
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower-image,
+html body #app .b1217-compact-card .b1229-tower-image {
+display:block!important;width:100%!important;height:100%!important;
+object-fit:contain!important;object-position:center!important;
+opacity:1!important;filter:none!important;mix-blend-mode:normal!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo :is(.b1229-tower,.b1226-photo-tower) {
+background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;filter:none!important}
+html body #app .c11-tool-card>.c11-card-grid.b1226-three-column {
+display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+@media(max-width:760px){html body:not(.presentation-mode) #app .c11-tool-card>.c11-card-grid.b1226-three-column{grid-template-columns:minmax(0,1fr)!important}}
+
+
+/* SOURCE: css/v12-final-tower-silver-v12.0.36.css */
+/* V12.0.36: full-height six supplied tower assets; Raiders black/silver global theme. */
+html,html body,html body #app{background:#000!important;background-image:none!important;color:#fff!important}
+html body #app .prototype-header,html body #app .prototype-header>section,html body #app .prototype-header-left,html body #app .prototype-header-right,html body #app .prototype-header-center,
+html body #app .main-nav,html body #app .pagebar,html body #app .main-nav>*,html body #app .pagebar>*{background:#080808!important;background-color:#080808!important;background-image:none!important;color:#fff!important;border-color:#858585!important}
+html body #app :is(.c11-tool-card,.c11-column,.c11-status-card,.c11-progress-row,.c11-photo,.c11-id-badge,.c11-identity-stack,.status-bar,.status-stack,.panel,.subsection,.v9-panel,.fleet-family,.fleet-identity-card){background:#1b1b1b!important;background-image:none!important;color:#fff!important;border-color:#666!important}
+html body #app :is(.main-nav,.pagebar,.prototype-header) button,
+html body #app :is(.main-nav,.pagebar) select{background:#282828!important;background-image:none!important;border-color:#777!important;color:#fff!important}
+html body #app :is(.main-nav,.pagebar) button.active,html body #app :is(.main-nav,.pagebar) button.selected{background:#777!important;background-image:none!important;border-color:#ddd!important;color:#fff!important}
+html body #app :is(.c11-id-badge,.c11-photo.b1226-photo .b1226-photo-heading,.c11-photo.b1226-photo .b1226-photo-heading span,.c11-photo.b1226-photo .b1226-photo-heading strong){background:#303030!important;background-image:none!important;color:#fff!important;border-color:#777!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-top{align-items:stretch!important;grid-template-columns:clamp(80px,20%,108px) minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr)!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-tower{display:block!important;position:relative!important;align-self:stretch!important;height:100%!important;min-height:0!important;overflow:hidden!important;background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower{display:block!important;position:absolute!important;inset:0!important;width:100%!important;height:100%!important;min-height:0!important;overflow:hidden!important;max-height:none!important;padding:0!important;margin:0!important;border:0!important;box-shadow:none!important;background:transparent!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower-image{display:block!important;position:absolute!important;inset:0!important;width:100%!important;height:100%!important;min-width:100%!important;min-height:100%!important;max-width:none!important;max-height:none!important;object-fit:fill!important;opacity:1!important;filter:none!important;transform:none!important}
+html body #app .c11-tool-card>.c11-card-grid.b1226-three-column{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+@media(max-width:760px){html body:not(.presentation-mode) #app .c11-tool-card>.c11-card-grid.b1226-three-column{grid-template-columns:minmax(0,1fr)!important}}
+
+
+/* SOURCE: css/v12-reference-black-silver-v12.0.37.css */
+/* V12.0.37: unified reference-style black/silver dashboard. No business logic changes. */
+:root{--accent:#bfc1c5!important;--accent-rgb:190,192,196!important;--bg:#000!important;--panel:#080808!important;--line:#a0a0a0!important}
+html,body,body .app-frame,body .body-shell,body .body-workspace,body #app{background:#000!important;background-image:none!important;color:#fff!important}
+/* Header is outside #app: previous theme rules never reached it. */
+body #stickyShell,body #stickyShell .prototype-header,body #stickyShell .prototype-header-left,body #stickyShell .prototype-header-right,body #stickyShell .prototype-header-center,body #stickyShell .prototype-kla-box{background:#050505!important;background-image:none!important;color:#fff!important}
+body #stickyShell .prototype-header{border-bottom:2px solid #8b8b8b!important;gap:5px!important}
+body #stickyShell .prototype-header-left,body #stickyShell .prototype-header-right{border:1px solid #858585!important;box-shadow:inset 0 1px 0 #d2d2d280,inset 0 -5px 15px #ffffff10!important;text-shadow:0 1px 1px #777!important}
+body #stickyShell .prototype-header-center:not(.shared-disconnected):not(.shared-connecting){border-color:#929292!important}
+/* Navigation: silver borders, graphite buttons, bright selected button. */
+body #stickyShell .main-nav,body #stickyShell .b797-unified-nav,body #stickyShell .subnav,body #stickyShell .page-actions{background:#000!important;background-image:none!important;border-color:#6d6d6d!important}
+body #stickyShell .b797-unified-nav .b796-center-select,
+body #stickyShell .b797-unified-nav>.subnav>button,
+body #stickyShell .b797-unified-nav>.page-actions button,
+body #stickyShell .b797-unified-nav .tool-type-menu-button,
+body #stickyShell .b797-unified-nav select{background:linear-gradient(#262626,#080808)!important;color:#fff!important;border:1px solid #a7a7a7!important;border-radius:7px!important;box-shadow:inset 0 1px 0 #ffffff50!important}
+body #stickyShell .b797-unified-nav>.subnav>button.active,
+body #stickyShell .b797-unified-nav>.subnav>button[aria-current=page],
+body #stickyShell .b797-unified-nav>.page-actions .active{background:linear-gradient(#f5f5f5,#a6a6a6)!important;color:#050505!important;border-color:#f0f0f0!important;text-shadow:none!important}
+/* Status panel outer shells: keep alert LEDs/status semantics. */
+body #stickyShell .status-stack{background:#000!important}
+body #stickyShell .status-stack>*,body #stickyShell .status-stack .status-bar{background:#090909!important;background-image:none!important;color:#fff!important;border-color:#8d8d8d!important}
+/* Three-column universal tool card: black panels, silver hairlines. */
+body #app .c11-tool-card,body #app .c11-tool-card .c11-column,body #app .c11-tool-card .c11-status-card,body #app .c11-tool-card .c11-progress-row{background:#090909!important;background-image:none!important;color:#fff!important;border-color:#929292!important;box-shadow:none!important}
+body #app .c11-tool-card .c11-id-badge,body #app .c11-tool-card .b783-date-badge{background:linear-gradient(#303030,#101010)!important;color:#fff!important;border:1px solid #777!important}
+body #app .c11-tool-card .c11-photo.b1226-photo{background:#050505!important;background-image:none!important;border:1px solid #7d7d7d!important}
+body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading,
+body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading span,
+body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading strong{background:linear-gradient(#464646,#181818)!important;background-image:linear-gradient(#464646,#181818)!important;color:#fff!important;border-color:#8d8d8d!important}
+body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-top{display:grid!important;grid-template-columns:clamp(100px,24%,140px) minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr)!important;gap:7px!important;align-items:stretch!important}
+body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-tower,
+body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;overflow:hidden!important;align-self:stretch!important;height:100%!important}
+body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower-image{width:100%!important;height:100%!important;min-height:0!important;max-width:100%!important;max-height:100%!important;object-fit:fill!important;opacity:1!important;filter:none!important}
+body #app .c11-tool-card .c11-photo.b1226-photo .v1210-photo-image{background:#050505!important}
+body #app .c11-tool-card>.c11-card-grid.b1226-three-column{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+/* Silver segmented progress. Preserve widths/percentages and non-progress alert colors. */
+body #app .c11-tool-card .c11-progress-row :is(.progress-fill,.progress-bar-fill,.b1228-progress-fill,.c11-progress-fill){background-color:#b9b9b9!important;background-image:repeating-linear-gradient(90deg,#e1e1e1 0,#d5d5d5 13px,#222 13px,#222 16px)!important}
+body #app .c11-tool-card .c11-progress-row :is(.progress-track,.progress-bar){border-color:#a5a5a5!important}
+body #app .c11-tool-card .c11-progress-row :is(.progress-label,.progress-value){color:#fff!important}
+body .app-footer{background:#080808!important;border-color:#929292!important;color:#fff!important}
+@media(max-width:760px){body:not(.presentation-mode) #app .c11-tool-card>.c11-card-grid.b1226-three-column{grid-template-columns:minmax(0,1fr)!important}}
+
+
+/* SOURCE: css/v12-raiders-reference-v12.0.38.css */
+/* V12.0.38 — high-specificity final theme, after all legacy styles. */
+:root {--accent:#d4d4d4!important;--bg:#000!important;--panel:#080808!important;--line:#a5a5a5!important}
+html,html body,html body .app-frame,html body .body-shell,html body #app,html body .body-workspace{background:#000!important;background-image:none!important;color:#fff!important}
+html body #stickyShell,html body #stickyShell .prototype-header,html body #stickyShell .prototype-header>section,html body #stickyShell .prototype-header-left,html body #stickyShell .prototype-header-right,html body #stickyShell .prototype-header-center,html body #stickyShell .kla-presence-box,html body #stickyShell .kla-connection-core{background:linear-gradient(180deg,#222 0%,#030303 25%,#050505 78%,#242424 100%)!important;color:#fff!important}
+html body #stickyShell .prototype-header{border:2px solid #b3b3b3!important;box-shadow:inset 0 2px 2px #fff7!important;gap:5px!important}
+html body #stickyShell .prototype-header-left,html body #stickyShell .prototype-header-right{border:0!important;box-shadow:none!important;font-weight:900!important;text-shadow:0 1px 2px #000!important}
+html body #stickyShell .prototype-header-center{border-left:5px ridge #d2d2d2!important;border-right:5px ridge #d2d2d2!important}
+html body #stickyShell .kla-presence-box,html body #stickyShell .kla-user-side{border-color:#777!important;background:#050505!important}
+html body #stickyShell .main-nav,html body #stickyShell .b797-unified-nav,html body #stickyShell .subnav,html body #stickyShell .page-actions{background:#050505!important;background-image:none!important;border-color:#777!important}
+html body #stickyShell .main-nav button,html body #stickyShell .main-nav select,html body #stickyShell .main-nav .b796-center-select,html body #stickyShell .main-nav .tool-type-menu-button,html body #stickyShell .subnav button,html body #stickyShell .page-actions button{background:linear-gradient(#292929 0%,#080808 55%,#000 100%)!important;color:#fff!important;border:1px solid #aeb0b3!important;border-radius:7px!important;box-shadow:inset 0 1px 1px #fff9,0 1px 2px #000!important;text-shadow:0 1px 1px #000!important}
+html body #stickyShell .main-nav button.active,html body #stickyShell .main-nav button.selected,html body #stickyShell .subnav button.active,html body #stickyShell .main-nav button[aria-current="page"]{background:linear-gradient(#fff,#c4c4c4 52%,#888)!important;color:#050505!important;border-color:#fff!important;text-shadow:none!important}
+html body #stickyShell .status-stack{background:#000!important;gap:7px!important}
+html body #stickyShell .status-stack>*,html body #stickyShell .status-stack .status-bar{background:linear-gradient(#1b1b1b,#020202 50%,#050505)!important;background-color:#050505!important;color:#fff!important;border-color:#b3b3b3!important;box-shadow:inset 0 1px 1px #fff4!important}
+/* Preserve signal-color borders where alert priority is indicated. */
+html body #app .c11-tool-card,html body #app .c11-tool-card .c11-column,html body #app .c11-tool-card .c11-status-card,html body #app .c11-tool-card .c11-progress-row,html body #app .c11-tool-card .c11-photo,html body #app .c11-tool-card .c11-identity-stack{background:#060606!important;background-image:none!important;color:#fff!important;border-color:#a1a1a1!important}
+html body #app .c11-tool-card .c11-column{box-shadow:inset 0 1px 1px #fff3!important}
+html body #app .c11-tool-card .c11-id-badge,html body #app .c11-tool-card .b783-date-badge,html body #app .c11-tool-card .c11-identity-stack button{background:linear-gradient(#353535,#111 60%,#080808)!important;background-image:linear-gradient(#353535,#111 60%,#080808)!important;color:#fff!important;border:1px solid #898989!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo{height:clamp(340px,31vw,450px)!important;background:#050505!important;padding:7px!important;border:1px solid #9a9a9a!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-top{display:grid!important;grid-template-columns:clamp(93px,24%,126px) minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr)!important;gap:6px!important;height:100%!important;align-items:stretch!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-tower{display:block!important;position:relative!important;width:100%!important;height:100%!important;min-height:0!important;overflow:hidden!important;background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower{display:block!important;position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-height:none!important;overflow:hidden!important;background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;margin:0!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower-image{display:block!important;position:absolute!important;inset:0!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;max-width:100%!important;max-height:100%!important;object-fit:fill!important;opacity:1!important;filter:none!important;mix-blend-mode:normal!important;transform:none!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-main{height:100%!important;min-height:0!important;display:flex!important;flex-direction:column!important;gap:7px!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading,html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading span,html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading strong{background:linear-gradient(#484848,#121212)!important;color:#fff!important;border-color:#a4a4a4!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .v1210-photo-image{background:#050505!important;border:1px solid #888!important;min-height:0!important;flex:1 1 0!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .v1210-photo-image img{object-fit:contain!important}
+html body #app .c11-tool-card>.c11-card-grid.b1226-three-column{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+html body #app .c11-tool-card .c11-progress-row .c11-progress-head{background:linear-gradient(#393939,#0a0a0a)!important;color:#fff!important;border-radius:5px!important;padding:5px 8px!important}
+html body #app .c11-tool-card .c11-progress-row .c11-progress-track{background:#272727!important;border:1px solid #a3a3a3!important}
+html body #app .c11-tool-card .c11-progress-row .c11-progress-track>i{background:repeating-linear-gradient(90deg,#ededed 0px,#c4c4c4 13px,#161616 13px,#161616 16px)!important;box-shadow:none!important}
+html body .app-footer{background:#050505!important;border-color:#888!important;color:#fff!important}
+@media(max-width:760px){html body:not(.presentation-mode) #app .c11-tool-card>.c11-card-grid.b1226-three-column{grid-template-columns:minmax(0,1fr)!important}}
+
+
+/* SOURCE: css/v12-raiders-final-v12.0.39.css */
+/* B7 FI Command Center V12.0.39 — Raiders black / chrome system-wide visual layer.
+   Loaded last, preserving all app data, calculations, interactions and three-column layout. */
+:root{--accent:#dedede!important;--bg:#000!important;--panel:#050505!important;--line:#a4a4a4!important;--text:#fff!important;color-scheme:dark}
+html,body,.app-frame,.body-shell,.body-workspace,#app{background:#000!important;color:#fff!important}
+body{background-image:none!important}
+/* Global chrome surfaces; exclude progress fill, tower graphics, status indicators. */
+#app :is(.card,.panel,.tile,.section,.section-card,.info-card,.summary-card,.detail-card,.tool-card,.dashboard-card,.status-card,.form-card,.archive-card,.quarter-card,.tool-summary,.tool-detail,.stat-card),
+#app :is(.c11-tool-card,.c11-column,.c11-status-card,.c11-progress-row,.c11-id-badge,.c11-identity-stack,.c11-identity-stack button),
+#app :is(.c11-card-grid,.c11-tool-card .c11-photo),
+#modal .modal-card{background-color:#050505!important;color:#fff!important;border-color:#9d9d9d!important;box-shadow:inset 0 1px 1px #ffffff29!important}
+#app :is(.card,.panel,.tile,.section-card,.info-card,.summary-card,.detail-card,.dashboard-card,.status-card,.quarter-card,.tool-summary,.stat-card) :is(h1,h2,h3,h4,strong,label){color:#fff}
+#app :is(.c11-progress-head,.c11-status-card h3,.c11-status-card h4,.c11-status-title,.panel-title,.section-title,.card-title,.section-header,.tool-section-title),
+#modal :is(.modal-title,.modal-header){background:linear-gradient(180deg,#4c4c4c 0%,#202020 42%,#070707 100%)!important;color:#fff!important;border-color:#999!important}
+/* Header, logo at each end, and silver separators */
+#stickyShell .prototype-header{background:linear-gradient(#242424,#000 32%,#000 70%,#222)!important;border:2px solid #bcbcbc!important;box-shadow:inset 0 2px 2px #ffffff7d,0 1px 4px #000!important}
+#stickyShell .prototype-header>section{background:transparent!important;color:#fff!important}
+#stickyShell .prototype-header-left{display:flex!important;align-items:center!important;gap:12px!important;min-width:0!important;padding-left:12px!important}
+#stickyShell .prototype-header-left .b1239-raiders-logo{height:clamp(34px,4.6vw,68px)!important;width:auto!important;max-width:clamp(34px,4.6vw,68px)!important;object-fit:contain!important;flex:none!important;filter:drop-shadow(0 0 2px #ccc)}
+#stickyShell .prototype-header-left span{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#stickyShell .prototype-header-right{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important;padding-right:clamp(47px,5vw,85px)!important;position:relative!important}
+#stickyShell .prototype-header-right:after{content:"";position:absolute;right:8px;top:6px;bottom:6px;width:clamp(33px,4.3vw,65px);background:url('../assets/raiders-header-logo.webp') center / contain no-repeat;pointer-events:none;filter:drop-shadow(0 0 2px #bbb)}
+#stickyShell .prototype-header-center{border-left:5px ridge #d5d5d5!important;border-right:5px ridge #d5d5d5!important;background:#030303!important}
+#stickyShell .prototype-header-center :is(.kla-presence-box,.kla-connection-core,.kla-user-side){background:#030303!important}
+/* Entire navigation, not just the active tab */
+#stickyShell :is(.main-nav,.b797-unified-nav,.subnav,.page-actions){background:#000!important;background-image:none!important;border-color:#aaa!important}
+#stickyShell :is(.main-nav,.subnav,.page-actions) :is(button,select),
+#app :is(.page-nav,.tab-nav,.section-nav,.toolbar,.page-actions,.action-row) :is(button,select),
+.app-footer button{background:linear-gradient(#393939,#0c0c0c 58%,#010101)!important;color:#fff!important;border:1px solid #bdbdbd!important;box-shadow:inset 0 1px 1px #ffffff65!important;text-shadow:0 1px 1px #000!important}
+#stickyShell :is(.main-nav,.subnav,.page-actions) :is(button.active,button.selected,button[aria-current="page"]){background:linear-gradient(#fff,#ccc 55%,#888)!important;color:#050505!important;text-shadow:none!important}
+#app button:not(.active):not(.selected):not([class*="status"]):not([class*="badge"]):not([class*="priority"]):not([class*="signal"]),
+#modal button:not(.modal-x){border-color:#969696;color:#fff}
+#app :is(input,textarea,select),#modal :is(input,textarea,select){background:#161616!important;color:#fff!important;border-color:#929292!important}
+#app :is(table,th,td),#modal :is(table,th,td){border-color:#767676!important}
+#app th{background:#303030!important;color:#fff!important}
+#app tr:nth-child(even){background-color:#151515!important}
+/* Alert panels retain actual status colors, but have neutral panels. */
+#stickyShell .status-stack{background:#000!important}
+#stickyShell .status-stack>*{background:linear-gradient(#202020,#030303 48%,#000)!important;color:#fff!important;border-color:#aaa;box-shadow:inset 0 1px 1px #ffffff44!important}
+/* Universal tool card: three equal columns; do not collapse into stacked rows on desktop. */
+#app .c11-tool-card>.c11-card-grid.b1226-three-column{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;align-items:stretch!important}
+#app .c11-tool-card>.c11-card-grid.b1226-three-column>*{min-width:0!important}
+#app .c11-tool-card .c11-photo.b1226-photo{background:#030303!important;border:1px solid #b5b5b5!important}
+#app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-tower,
+#app .c11-tool-card .c11-photo.b1226-photo .b1229-tower{background:transparent!important;border:0!important;box-shadow:none!important;overflow:visible!important}
+#app .c11-tool-card .c11-photo.b1226-photo .b1229-tower-image{object-fit:contain!important;opacity:1!important;filter:none!important}
+#app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading,
+#app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading span,
+#app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading strong{background:linear-gradient(#484848,#0d0d0d)!important;color:#fff!important;border-color:#aaa!important}
+/* White/silver chrome bars in generic sections; keep segmented progress where already provided. */
+#app .c11-tool-card .c11-progress-row .c11-progress-track{background:#282828!important;border-color:#a5a5a5!important}
+#app .c11-tool-card .c11-progress-row .c11-progress-track>i{background:repeating-linear-gradient(90deg,#f6f6f6 0,#bcbcbc 13px,#111 13px,#111 16px)!important}
+/* Footer is fully silver-black, including three system cells and every button. */
+html body .app-footer,html body .app-footer .footer-system-row,html body .app-footer .footer-system-cell{background:linear-gradient(#2b2b2b,#030303 50%,#080808)!important;background-color:#050505!important;color:#fff!important;border-color:#bcbcbc!important}
+html body .app-footer{border:2px solid #aaa!important;border-radius:9px!important;box-shadow:inset 0 2px 2px #ffffff6e!important}
+html body .app-footer .footer-system-cell{border-right:1px solid #999!important}
+/* Presentations, administration and archive use same neutral palette. */
+body.presentation-mode,body.presentation-mode #app,body.presentation-mode .body-shell{background:#000!important;color:#fff!important}
+body.presentation-mode :is(.presentation-header,.presentation-footer,.presentation-nav,.presentation-card),
+#app :is(.archive-container,.admin-container,.quarter-summary,.presentation-container){background-color:#050505!important;color:#fff!important;border-color:#aaa!important}
+/* Do not alter actual tower lamps or operational status colors. */
+@media(max-width:760px){#app .c11-tool-card>.c11-card-grid.b1226-three-column{grid-template-columns:minmax(0,1fr)!important}#stickyShell .prototype-header-left .b1239-raiders-logo{height:30px!important}#stickyShell .prototype-header-right:after{width:29px!important}}
+
+
+/* SOURCE: css/v12-raiders-progress-v12.0.40.css */
+/* V12.0.40 — scoped Raiders chrome and category-coded progress bars.
+   Visual-only override: preserve app calculations, sync, navigation and status classification. */
+:root{--v1240-silver:#bfc3c9;--v1240-black:#000}
+html body #stickyShell,html body #stickyShell .sticky-shell,html body #stickyShell .prototype-nav,
+html body #stickyShell .nav-shell,html body #stickyShell .page-navigation,
+html body #stickyShell nav,html body #stickyShell .b797-unified-nav,
+html body .app-footer,html body .app-footer *{border-color:#aeb0b4!important}
+html body #stickyShell nav,html body #stickyShell .prototype-nav,html body #stickyShell .nav-shell,
+html body #stickyShell .page-navigation,html body #stickyShell .b797-unified-nav{
+ background:#030303!important;background-image:none!important;color:#fff!important}
+html body #stickyShell button,html body #stickyShell select,
+html body .app-footer button{
+ background:linear-gradient(180deg,#505050 0%,#161616 34%,#030303 85%,#252525 100%)!important;
+ color:#fff!important;border:1px solid #c4c4c4!important;box-shadow:inset 0 1px 1px #ffffff73!important}
+html body #stickyShell button.active,html body #stickyShell button.selected,
+html body #stickyShell button[aria-current="page"]{
+ background:linear-gradient(#fff,#ddd 48%,#8e8e8e)!important;color:#080808!important}
+html body .app-footer,html body .app-footer .footer-system-row,html body .app-footer .footer-system-cell{
+ background:linear-gradient(#303030,#000 45%,#101010)!important;color:#fff!important}
+/* Maintain all six original framed status-tower PNG assets. */
+html body #app .c11-tool-card .b1229-tower-image,
+html body #app .b1217-compact-card .b1229-tower-image{object-fit:contain!important;opacity:1!important;filter:none!important}
+/* The actual percentage width remains inline, and is never overridden. */
+html body #app .c11-tool-card .c11-progress-row .c11-progress-track{
+ background:#171717!important;border:1px solid #a4a4a4!important;border-radius:7px!important;overflow:hidden!important}
+html body #app .c11-tool-card .c11-progress-row .c11-progress-track>i{
+ display:block!important;height:100%!important;border-radius:3px!important;
+ -webkit-mask-image:repeating-linear-gradient(90deg,#000 0px,#000 15px,transparent 15px,transparent 19px)!important;
+ mask-image:repeating-linear-gradient(90deg,#000 0px,#000 15px,transparent 15px,transparent 19px)!important}
+/* Category first: FI=green, micro=cyan, forecast=purple, cycle=silver. */
+html body #app .c11-tool-card .c11-progress-row:has(.c11-progress-head b) .c11-progress-track>i{background:#b9bec5!important}
+html body #app .c11-tool-card .c11-progress-row:has(.c11-progress-head b) .c11-progress-track>i.green{background:linear-gradient(#7fff6a,#00d700 60%,#00a600)!important}
+html body #app .c11-tool-card .c11-progress-row .c11-progress-track>i.cyan{background:linear-gradient(#8ffaff,#00c7f5 60%,#0089c2)!important}
+html body #app .c11-tool-card .c11-progress-row .c11-progress-track>i.purple{background:linear-gradient(#f2b3ff,#c25af2 60%,#8e3dc9)!important}
+html body #app .c11-tool-card .c11-progress-row .c11-progress-track>i.yellow{background:linear-gradient(#ffe88a,#ffc329 60%,#d38a00)!important}
+html body #app .c11-tool-card .c11-progress-row .c11-progress-track>i.red{background:linear-gradient(#ff9aa3,#fa445c 60%,#b82037)!important}
+/* Label-based category mapping avoids accidentally coloring an unrelated workflow. */
+html body #app .c11-tool-card .c11-progress-row:has(.c11-progress-head b) .c11-progress-track>i{box-shadow:inset 0 1px 2px #fff6}
+html body #app .c11-tool-card .c11-progress-row.c11-forecast-target-row .c11-progress-track>i{background:linear-gradient(#f2b3ff,#c25af2 60%,#8e3dc9)!important}
+html body #app .c11-tool-card .c11-progress-row.c11-overall-progress .c11-progress-track>i,
+html body #app .c11-tool-card .c11-overall-progress .c11-progress-track>i{background:linear-gradient(#f9e4a4,#d7a842 60%,#aa7d20)!important}
+/* Neutral non-progress bars in every tool card. */
+html body #app .c11-tool-card .c11-progress-head{
+ background:linear-gradient(#535353,#1c1c1c 70%,#080808)!important;color:#fff!important;border-color:#aaa!important}
+@media(max-width:760px){html body #app .c11-tool-card>.c11-card-grid.b1226-three-column{grid-template-columns:minmax(0,1fr)!important}}
+
+
+/* SOURCE: css/v12-raiders-reference-v12.0.41.css */
+/* V12.0.41 — consolidated LAST visual layer. No app logic, storage or sync changes. */
+:root{--accent:#c5c5c5!important;--bg:#000!important;--panel:#000!important;--line:#bdbdbd!important;--text:#fff!important}
+html,body,body .app-frame,body .body-shell,body #app,body .body-workspace{background:#000!important;color:#fff!important}
+/* Exact header geometry: dedicated logo slots, no overlay on quarter label. */
+html body #stickyShell .prototype-header{display:grid!important;grid-template-columns:minmax(0,40%) minmax(0,25%) minmax(0,35%)!important;gap:0!important;height:86px!important;padding:0!important;background:linear-gradient(#555 0%,#050505 7%,#000 84%,#4d4d4d 100%)!important;border:2px solid #d5d5d5!important;border-radius:5px!important;box-shadow:inset 0 2px 3px #fff9,0 0 5px #aaa5!important}
+html body #stickyShell .prototype-header>section{height:100%!important;box-sizing:border-box!important;min-width:0!important;background:linear-gradient(#353535 0%,#030303 14%,#000 82%,#222)!important;color:white!important;border:0!important}
+html body #stickyShell .prototype-header-left{display:flex!important;align-items:center!important;gap:14px!important;padding:5px 12px!important;justify-content:flex-start!important}
+html body #stickyShell .prototype-header-left .b1239-raiders-logo{display:block!important;position:static!important;width:60px!important;max-width:60px!important;height:70px!important;object-fit:contain!important;flex:0 0 60px!important}
+html body #stickyShell .prototype-header-left span{display:block!important;min-width:0!important;max-width:100%!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;font-size:clamp(15px,1.38vw,25px)!important;font-weight:950!important}
+html body #stickyShell .prototype-header-center{border-left:7px ridge #d8d8d8!important;border-right:7px ridge #d8d8d8!important;transform:skew(-9deg);padding:3px 8px!important;overflow:hidden!important}
+html body #stickyShell .prototype-header-center>*{transform:skew(9deg);max-width:100%!important}
+html body #stickyShell .prototype-header-right{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;padding:5px 10px 5px 16px!important;font-size:clamp(15px,1.45vw,25px)!important;font-weight:950!important;white-space:nowrap!important;overflow:hidden!important}
+html body #stickyShell .prototype-header-right:after{display:none!important;content:none!important}
+html body #stickyShell .prototype-header-right .b1241-quarter-title{min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;flex:1 1 auto!important;text-align:center!important}
+html body #stickyShell .prototype-header-right .b1241-right-logo{position:static!important;display:block!important;flex:0 0 60px!important;width:60px!important;height:70px!important;object-fit:contain!important;pointer-events:none!important}
+/* Navigation: neutral metallic chrome, with only selected tab bright silver. */
+html body #stickyShell nav.main-nav,html body #stickyShell .b797-unified-nav,html body #stickyShell .subnav,html body #stickyShell .page-actions,html body #stickyShell .b797-center-slot{background:#000!important;background-image:none!important;border-color:#aaa!important;box-shadow:none!important}
+html body #stickyShell .main-nav button,html body #stickyShell .main-nav select,html body #stickyShell .subnav button,html body #stickyShell .page-actions button,html body #stickyShell .main-nav [role=button]{background:linear-gradient(180deg,#555 0%,#171717 25%,#000 72%,#343434 100%)!important;color:#fff!important;border:1px solid #d2d2d2!important;border-radius:8px!important;box-shadow:inset 0 2px 2px #ffffff88,0 1px 2px #555!important;text-shadow:0 1px 1px #000!important}
+html body #stickyShell .main-nav button.active,html body #stickyShell .main-nav button.selected,html body #stickyShell .subnav button.active,html body #stickyShell .main-nav button[aria-current=page]{background:linear-gradient(#fff,#ddd 48%,#969696)!important;color:#080808!important;text-shadow:none!important}
+/* All status panels black; operational indicator colors remain unchanged. */
+html body #stickyShell .status-stack{background:#000!important;background-image:none!important}
+html body #stickyShell .status-stack>.status-bar,html body #stickyShell .status-stack>*{background:linear-gradient(#292929,#040404 25%,#000 85%,#1b1b1b)!important;background-color:#000!important;color:#fff!important;border:2px solid #aeb0b2!important;border-radius:12px!important;box-shadow:inset 0 2px 2px #ffffff5c!important}
+/* Universal three-column card, neutral panels and metallic silver headings. */
+html body #app .c11-tool-card>.c11-card-grid.b1226-three-column{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;align-items:stretch!important}
+html body #app .c11-tool-card .c11-column,html body #app .c11-tool-card .c11-status-card,html body #app .c11-tool-card .c11-progress-row,html body #app .c11-tool-card .c11-photo{background:#000!important;background-color:#000!important;border:1px solid #aeb0b2!important;color:#fff!important;box-shadow:inset 0 1px 2px #ffffff3a!important}
+html body #app .c11-tool-card .c11-progress-head,html body #app .c11-tool-card .c11-status-title,html body #app .c11-tool-card .c11-status-card h3{background:linear-gradient(180deg,#686868,#333 33%,#111 88%,#555)!important;background-color:#333!important;color:#fff!important;border:1px solid #777!important;border-radius:6px!important;box-shadow:inset 0 1px 1px #ffffff55!important}
+html body #app .c11-tool-card .c11-photo .b1229-tower-image{display:block!important;object-fit:contain!important;opacity:1!important;filter:none!important}
+html body #app .c11-tool-card .c11-photo .b1226-photo-heading{background:linear-gradient(#555,#171717,#3c3c3c)!important;border:1px solid #aaa!important}
+html body #app .c11-tool-card .c11-id-badge,html body #app .c11-tool-card .c11-badge{background:linear-gradient(#3c3c3c,#101010 55%,#252525)!important;color:#fff!important;border:1px solid #aaa!important}
+/* Progress fills: retain inline percent widths; six distinct workflow colors. */
+html body #app .c11-tool-card .c11-progress-track{background:#181818!important;border:1px solid #b5b5b5!important;border-radius:7px!important;overflow:hidden!important}
+html body #app .c11-tool-card .c11-progress-track>i{height:100%!important;display:block!important;border-radius:3px!important;background:linear-gradient(#f4f4f4,#b0b0b0 55%,#666)!important;-webkit-mask-image:repeating-linear-gradient(90deg,#000 0 15px,transparent 15px 19px)!important;mask-image:repeating-linear-gradient(90deg,#000 0 15px,transparent 15px 19px)!important;box-shadow:inset 0 2px 2px #fff8!important}
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row:nth-child(1) .c11-progress-track>i{background:linear-gradient(#a8ff8d,#16ec09 53%,#009d00)!important}
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row:nth-child(2) .c11-progress-track>i{background:linear-gradient(#b7ffff,#00d7ff 53%,#008dbd)!important}
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row:nth-child(3) .c11-progress-track>i{background:linear-gradient(#f3c6ff,#c55eff 53%,#8430be)!important}
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row:nth-child(4) .c11-progress-track>i{background:linear-gradient(#fff,#bcbcbc 53%,#777)!important}
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row:nth-child(5) .c11-progress-track>i{background:linear-gradient(#ffe7a0,#ffb800 53%,#9f6600)!important}
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row:nth-child(6) .c11-progress-track>i{background:linear-gradient(#ffb4c0,#ff4e72 53%,#a71637)!important}
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row:nth-child(7) .c11-progress-track>i{background:linear-gradient(#e1c6ff,#875eff 53%,#5030ad)!important}
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row:nth-child(8) .c11-progress-track>i{background:linear-gradient(#b5fffd,#1dc8a7 53%,#007e71)!important}
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row:last-child .c11-progress-track>i{background:linear-gradient(#ffe9a8,#dbb74a 53%,#92721d)!important}
+/* Footer consistent with header; preserve real connectivity state. */
+html body .app-footer,html body .app-footer .footer-system-row,html body .app-footer .footer-system-cell{background:linear-gradient(#444,#070707 22%,#000 72%,#272727)!important;background-color:#000!important;color:#fff!important;border-color:#c5c5c5!important}
+html body .app-footer{border:2px solid #c9c9c9!important;border-radius:12px!important;box-shadow:inset 0 2px 3px #fff8!important}
+html body .app-footer button{background:linear-gradient(#656565,#171717 40%,#000 75%,#444)!important;color:#fff!important;border:1px solid #ddd!important;border-radius:22px!important;box-shadow:inset 0 2px 2px #fff7!important}
+/* Apply the same neutral chrome to other centers, editors, archives, dialogs and presentations. */
+html body #app :is(.panel,.card,.section-card,.info-card,.summary-card,.dashboard-card,.tool-card,.quarter-card,.stat-card,.archive-card),html body #modal .modal-card{background-color:#050505!important;color:#fff!important;border-color:#aaa!important}
+html body #app :is(.panel-title,.section-title,.card-title,.section-header,.tool-section-title),html body #modal :is(.modal-header,.modal-title){background:linear-gradient(#5b5b5b,#161616 75%,#383838)!important;color:#fff!important;border-color:#a6a6a6!important}
+html body #app :is(input,select,textarea),html body #modal :is(input,select,textarea){background:#151515!important;color:#fff!important;border-color:#aaa!important}
+@media(max-width:760px){html body #app .c11-tool-card>.c11-card-grid.b1226-three-column{grid-template-columns:1fr!important}html body #stickyShell .prototype-header-left .b1239-raiders-logo,html body #stickyShell .prototype-header-right .b1241-right-logo{width:34px!important;height:40px!important;flex-basis:34px!important}}
+
+
+/* SOURCE: css/v12-raiders-badges-photo-v12.0.42.css */
+/* V12.0.42: photo frame removal and consistent FI-date-height badge grid.
+   Scoped to Universal Tool Cards; does not alter tool state or persistence. */
+html body #app .c11-tool-card .c11-photo.b1226-photo .v1210-photo-image,
+html body #app .c11-tool-card .c11-photo.b1226-photo .v1210-photo-image>img,
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-main .v1210-photo-image {
+ border:0!important;outline:0!important;box-shadow:none!important;
+ border-radius:0!important;background:#000!important;
+}
+
+
+/* SOURCE: css/b7-badge-source-v12.0.62.css */
+/* V12.0.62: one authoritative, unscaled badge layout. No internal scrollbars. */
+:root{--b762-height:64px;--b762-gap:7px;--b762-border:#aeb4bc}
+html body #app .c11-tool-card,html body #app .c11-card-grid,html body #app .c11-column,html body #app .c11-identity-column{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;transform:none!important;zoom:1!important}
+html body #app .c11-card-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;align-items:stretch!important}
+html body #app .c11-identity-column{display:flex!important;flex-direction:column!important;align-items:stretch!important}
+html body #app .c11-identity-stack,html body #app .b783-date-row{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-auto-rows:var(--b762-height)!important;gap:var(--b762-gap)!important;align-content:start!important;height:auto!important;max-height:none!important;overflow:visible!important;flex:none!important}
+html body #app .c11-badge-region{display:block!important;flex:none!important;height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important}
+html body #app .c11-badges,html body #app .fleet-badges,html body #app .b7-editor-badge-grid,html body #app .v1222-badge-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-flow:row!important;grid-auto-rows:var(--b762-height)!important;gap:var(--b762-gap)!important;align-content:start!important;align-items:stretch!important;height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important}
+html body #app :is(.c11-identity-stack,.b783-date-row,.c11-badges,.fleet-badges,.b7-editor-badge-grid,.v1222-badge-grid)>*{box-sizing:border-box!important;height:var(--b762-height)!important;min-height:var(--b762-height)!important;max-height:var(--b762-height)!important;flex:0 0 var(--b762-height)!important;align-self:stretch!important;margin:0!important;padding:6px 8px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:2px!important;overflow:hidden!important;white-space:normal!important;text-align:center!important;line-height:1.18!important;background:#000!important;background-image:none!important;color:#fff!important;border:1px solid var(--b762-border)!important;border-radius:6px!important;transform:none!important}
+html body #app :is(.c11-badges,.fleet-badges,.b7-editor-badge-grid,.v1222-badge-grid)>:is(.c11-wafer-badge,.v10-wafer-badge,.equipment-badge){grid-column:1/-1!important}
+html body #app :is(.c11-badges,.fleet-badges,.b7-editor-badge-grid,.v1222-badge-grid)>* :is(span,small,strong,em){white-space:normal!important;overflow-wrap:anywhere!important;line-height:1.2!important;margin:0!important;max-width:100%!important}
+html body #app .c11-tool-card .c11-update{flex:none!important}
+
+
+/* SOURCE: css/b7-three-special-badges-v12.0.64.css */
+/* V12.0.64: ONLY the three special full-width elements. Do not change the
+   working V12.0.62 identity, date, operational, or tracking badge rules. */
+html body #app .c11-tool-card .c11-identity-column > :is(.c11-reduced,.c11-carry,.c11-update) {
+  position:relative!important;
+  inset:auto!important;
+  transform:none!important;
+  box-sizing:border-box!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  flex:0 0 64px!important;
+  align-self:stretch!important;
+  width:100%!important;
+  height:64px!important;
+  min-height:64px!important;
+  max-height:64px!important;
+  padding:6px 8px!important;
+  margin:0!important;
+  overflow:hidden!important;
+  line-height:1.2!important;
+  white-space:normal!important;
+  text-align:center!important;
+  border-radius:6px!important;
+}
+/* Keep existing warning/status backgrounds and click handlers. */
+html body #app .c11-tool-card .c11-identity-column > .c11-carry-placeholder {
+  visibility:visible!important;
+}
+
+
+/* SOURCE: css/b7-priority-heading-v12.0.65.css */
+/* V12.0.65 — Priority heading only. All V12.0.64 badges remain unchanged.
+   Match the working 64px badge geometry without altering priority behavior. */
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading {
+  box-sizing:border-box!important;
+  height:64px!important;
+  min-height:64px!important;
+  max-height:64px!important;
+  flex:0 0 64px!important;
+  align-self:stretch!important;
+  margin:0!important;
+  padding:0!important;
+  display:grid!important;
+  grid-template-columns:43% 57%!important;
+  align-items:stretch!important;
+  overflow:hidden!important;
+  border-radius:6px!important;
+}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading > span,
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading > strong {
+  box-sizing:border-box!important;
+  height:100%!important;
+  min-height:0!important;
+  max-height:100%!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  padding:4px 6px!important;
+  white-space:normal!important;
+  line-height:1.15!important;
+}
+/* The photo image takes the remaining space; no badge or card resizing. */
+
+
+/* SOURCE: css/b7-low-zoom-layout-v12.0.71.css */
+/* V12.0.71: maintain the proven V12.0.65 badge rules. 
+   Prevent horizontal overflow from compensation on zoomed-out viewports. */
+html,body{margin:0;min-height:100%;width:100%}
+body{overflow-x:hidden}
+.app-frame{box-sizing:border-box;max-width:none}
+.app-frame .body-shell{min-width:0}
+
+
+/* SOURCE: css/b7-global-raiders-v12.0.72.css */
+/* V12.0.72 — unified Raiders visual system across ALL application routes.
+   Loaded LAST. Does not modify the V12.0.62/64/65 badge geometry. */
+:root{--accent:#c9c9c9;--bg:#000;--panel:#050505;--line:#a6a6a6;--raiders-silver:#c9c9c9;--raiders-black:#050505;--raiders-edge:#aeb1b5;--raiders-gloss:linear-gradient(180deg,#595959 0%,#252525 14%,#050505 49%,#000 79%,#292929 100%)}
+html body,html body .app-frame,html body .body-shell,html body #app,html body .body-workspace{background:#050505!important;color:#fff!important}
+/* Header geometry, metallic dividers, and typography */
+html body #stickyShell .prototype-header{min-height:86px!important;height:auto!important;background:var(--raiders-gloss)!important;border:2px solid #bfc1c4!important;border-radius:9px!important;box-shadow:inset 0 2px 2px #fff8,0 2px 4px #000!important}
+html body #stickyShell .prototype-header-left,html body #stickyShell .prototype-header-right{min-width:0!important;overflow:hidden!important;background:transparent!important}
+html body #stickyShell .prototype-header-left>span,html body #stickyShell .prototype-header-right>span{font-size:clamp(16px,1.65vw,30px)!important;font-weight:900!important;line-height:1.12!important;white-space:nowrap!important;text-overflow:ellipsis!important;overflow:hidden!important}
+html body #stickyShell .prototype-header-center{background:linear-gradient(105deg,#9b9b9b 0%,#f4f4f4 3%,#222 6%,#030303 13%,#000 87%,#aaa 96%,#eee 98%,#555)!important;border-left:5px ridge #c6c6c6!important;border-right:5px ridge #c6c6c6!important}
+html body #stickyShell .prototype-header .b1239-raiders-logo,html body #stickyShell .prototype-header .b1241-right-logo{max-height:76px!important;object-fit:contain!important}
+/* All nav surfaces and their active state */
+html body #stickyShell :is(.main-nav,.b797-unified-nav,.subnav,.page-actions){background:#050505!important;background-image:none!important;border-color:#888!important}
+html body #stickyShell :is(.main-nav,.subnav,.page-actions) :is(button,select,.b796-center-select,.tool-type-menu-button),html body .app-footer button{background:var(--raiders-gloss)!important;color:#fff!important;border:1px solid #b7b9bb!important;border-radius:9px!important;box-shadow:inset 0 2px 2px #ffffff66,0 1px 2px #000!important;text-shadow:0 1px 2px #000!important;font-weight:850!important}
+html body #stickyShell :is(.main-nav,.subnav,.page-actions) :is(button.active,button.selected,button[aria-current="page"],button[aria-pressed="true"]){background:linear-gradient(180deg,#fff 0%,#eee 34%,#bcbcbc 78%,#818181 100%)!important;color:#050505!important;border-color:#fff!important;text-shadow:none!important}
+html body #stickyShell :is(.main-nav,.subnav,.page-actions) :is(button,select){min-height:39px!important}
+/* Global footer, including non-live pages */
+html body .app-footer,html body .app-footer .footer-system-row,html body .app-footer .footer-system-cell{background:var(--raiders-gloss)!important;color:#fff!important;border-color:#aaa!important}
+html body .app-footer{border:2px solid #aaa!important;border-radius:8px!important;box-shadow:inset 0 2px 2px #ffffff55!important}
+/* Universal containers and page sections: no blue background remaining. */
+html body #app :is(section,article,aside,.card,.panel,.box,.tile,.widget,.summary-card,.status-card,.tool-card,.tool-panel,.center-panel,.page-panel,.content-panel,.dashboard-panel,.archive-card,.admin-card,.edit-card,.quarter-card,.quarter-summary,.presentation-card,.c11-column,.c11-status-card,.c11-progress-row,.c11-identity-column){background-color:#050505!important;color:#fff!important;border-color:#a2a2a2!important}
+html body #app :is(.card,.panel,.tile,.widget,.summary-card,.status-card,.tool-panel,.center-panel,.page-panel,.content-panel,.dashboard-panel,.archive-card,.admin-card,.edit-card,.quarter-card){box-shadow:inset 0 1px 1px #ffffff24!important}
+/* Universal headings, tabs, controls, input boxes, and cards */
+html body #app :is(h1,h2,h3,h4,h5,h6,.panel-title,.section-title,.card-title,.widget-title,.table-title,.modal-title,.group-title,.progress-head,.c11-progress-head){color:#fff!important}
+html body #app :is(.panel-title,.section-title,.card-title,.widget-title,.table-title,.modal-title,.group-title,.c11-progress-head){background:var(--raiders-gloss)!important;border-color:#aaa!important;text-shadow:0 1px 2px #000!important}
+html body #app :is(button,.btn,[role="button"],.tab,.nav-button,.action-button),html body .modal :is(button,.btn,[role="button"]){background:var(--raiders-gloss)!important;color:#fff!important;border:1px solid #aaa!important;border-radius:7px!important;box-shadow:inset 0 1px 1px #ffffff55!important}
+html body #app :is(button.active,.btn.active,.tab.active,.selected,[aria-selected="true"]){background:linear-gradient(180deg,#fff,#bdbdbd 80%,#888)!important;color:#080808!important;border-color:#fff!important;text-shadow:none!important}
+html body #app :is(input,textarea,select),html body .modal :is(input,textarea,select){background:#111!important;color:#fff!important;border:1px solid #aaa!important}
+html body #app :is(table,thead,tbody,tr,td,th),html body .modal :is(table,thead,tbody,tr,td,th){border-color:#777!important;color:#fff!important}
+html body #app :is(th,thead){background:#292929!important}
+html body #app :is(.badge,.pill,.chip,.tag,.status-label){border-color:#aaa!important}
+/* Keep signal colors and progress fill colors; replace only chrome/track backgrounds. */
+html body #app :is(.progress-track,.progress-bar-track,.c11-progress-track){background:#242424!important;border-color:#aaa!important}
+/* Tool badges: preserve height, spacing, grid, and line layout exactly. */
+html body #app :is(.c11-badges,.fleet-badges,.b7-editor-badge-grid,.v1222-badge-grid)>*,html body #app :is(.c11-identity-stack,.b783-date-row)>*{background:#050505!important;background-image:none!important;color:#fff!important;border-color:#b6b6b6!important}
+/* Modal and overlays are shared across every page. */
+html body .modal .modal-card,html body :is(.dialog,.popover,.dropdown-menu,.overlay-panel){background:#080808!important;color:#fff!important;border:2px solid #aaa!important;box-shadow:inset 0 2px 2px #ffffff40,0 10px 30px #000a!important}
+/* Strip legacy blue from named application bars without touching semantic progress colors. */
+html body #app :is(.toolbar,.page-toolbar,.filter-bar,.action-bar,.section-header,.card-header,.panel-header,.tab-bar,.tabs,.subnav,.page-nav,.center-header,.badge-header),html body #stickyShell .status-stack{background:#080808!important;background-image:none!important;border-color:#aaa!important;color:#fff!important}
+@media(max-width:950px){html body #stickyShell .prototype-header{min-height:70px!important}html body #stickyShell .prototype-header-left>span,html body #stickyShell .prototype-header-right>span{font-size:clamp(12px,2vw,22px)!important}}
+
+
+/* SOURCE: css/b7-identity-horizontal-v12.0.73.css */
+/* V12.0.73: restore the horizontal label/value identity badge contract.
+   Loaded after the global Raiders stylesheet; no changes to the 3-line tool badge grid. */
+html body #app .c11-tool-card .c11-identity-stack > .c11-id-badge,
+html body #app .c11-tool-card .b783-date-row > .b783-date-badge {
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:nowrap!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  text-align:left!important;
+  gap:8px!important;
+  padding:6px 10px!important;
+  background:#050505!important;
+  background-image:none!important;
+  border:1px solid #aeb4bc!important;
+  box-sizing:border-box!important;
+}
+html body #app .c11-tool-card .c11-identity-stack > .c11-id-badge > small,
+html body #app .c11-tool-card .b783-date-row > .b783-date-badge > span {
+  display:block!important;
+  flex:0 1 auto!important;
+  min-width:0!important;
+  max-width:48%!important;
+  margin:0!important;
+  font-size:12px!important;
+  line-height:1.15!important;
+  font-weight:500!important;
+  color:#e3e3e3!important;
+  text-align:left!important;
+  white-space:normal!important;
+}
+html body #app .c11-tool-card .c11-identity-stack > .c11-id-badge > strong,
+html body #app .c11-tool-card .b783-date-row > .b783-date-badge > strong {
+  display:block!important;
+  flex:0 1 auto!important;
+  min-width:0!important;
+  max-width:64%!important;
+  margin:0!important;
+  font-size:15px!important;
+  line-height:1.15!important;
+  font-weight:800!important;
+  color:#fff!important;
+  text-align:right!important;
+  overflow-wrap:anywhere!important;
+  white-space:normal!important;
+}
+
+
+/* SOURCE: css/b7-raiders-global-repair-v12.0.74.css */
+/* V12.0.74: global Raiders chrome; preserve operational semantic colors and badge geometry. */
+:root{--accent:#c4c4c4!important;--accent-rgb:190,190,190!important}
+html body #stickyShell .main-nav,html body #stickyShell .subnav,html body #stickyShell .page-actions,html body #stickyShell .status-stack{background:#050505!important;background-image:none!important;border-color:#999!important}
+html body #stickyShell .main-nav button,html body #stickyShell .main-nav select,html body #stickyShell .subnav button,html body #stickyShell .page-actions button{background:linear-gradient(180deg,#545454 0%,#171717 18%,#020202 63%,#252525 100%)!important;background-color:#080808!important;color:white!important;border:1px solid #bcbcbc!important;box-shadow:inset 0 2px 2px #ffffff60!important;text-shadow:0 1px 2px black!important}
+html body #stickyShell .main-nav button:is(.active,.selected,[aria-selected="true"],[aria-current="page"]),html body #stickyShell .subnav button:is(.active,.selected,[aria-selected="true"],[aria-current="page"]),html body #stickyShell .page-actions button:is(.active,.selected,[aria-selected="true"]){background:linear-gradient(180deg,#fff,#dadada 60%,#999)!important;color:#050505!important;text-shadow:none!important;border-color:#fff!important}
+html body #stickyShell .status-stack>.status-bar,html body #stickyShell .status-stack>*{background:linear-gradient(180deg,#353535,#070707 28%,#000 80%,#252525)!important;background-color:#050505!important;color:white!important;border-color:var(--status-color,#aaa)!important}
+html body #stickyShell .status-stack .status-message,html body #stickyShell .status-stack .status-left,html body #stickyShell .status-stack .status-right{background:transparent!important}
+html body .app-footer,html body .app-footer .footer-system-row,html body .app-footer .footer-system-cell,html body .app-footer .footer-global-actions{background:linear-gradient(180deg,#484848,#0b0b0b 28%,#000 76%,#222)!important;background-color:#050505!important;color:#fff!important;border-color:#a9a9a9!important}
+html body #app :is(.c11-id-badge,.b783-date-badge,.c11-badge,.c11-badges>*,.c11-identity-stack>*,.b783-date-row>*,.b7-editor-badge-grid>*,.v1222-badge-grid>*){background:#050505!important;background-image:none!important;color:#fff!important;border-color:#aeb0b3!important}
+html body #app :is(.c11-id-badge,.b783-date-badge) {flex-direction:row!important;align-items:center!important;justify-content:space-between!important;text-align:left!important}
+html body #app .c11-id-badge>small,html body #app .b783-date-badge>span{text-align:left!important}
+html body #app .c11-id-badge>strong,html body #app .b783-date-badge>strong{text-align:right!important}
+html body #app :is(.toolbar,.page-toolbar,.filter-bar,.action-bar,.section-header,.card-header,.panel-header,.tab-bar,.tabs,.subnav,.page-nav,.center-header,.badge-header,.quarter-summary,.summary-card,.tool-panel,.archive-card,.admin-card){background-color:#050505!important;background-image:none!important;border-color:#aaa!important}
+html body #stickyShell .prototype-header-left>span{display:block!important;flex:1 1 auto!important;min-width:0!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important;font-size:clamp(10px,1.5vw,28px)!important}
+html body #stickyShell .prototype-header-right .b1241-quarter-title{display:block!important;flex:1 1 auto!important;min-width:0!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important;font-size:clamp(10px,1.5vw,28px)!important}
+html body #stickyShell .prototype-header-left,html body #stickyShell .prototype-header-right{display:flex!important;align-items:center!important;gap:10px!important;min-width:0!important}
+
+
+/* SOURCE: css/b7-raiders-verified-selectors-v12.0.75.css */
+/* V12.0.75 Raiders theme: target actual DOM nodes, not guessed wrappers. */
+:root{--accent:#c0c0c0;--accent-rgb:192,192,192}
+html body{background:#050505!important}
+html body #stickyShell .main-nav,html body #stickyShell .subnav,html body #stickyShell .page-actions,html body #stickyShell .status-stack{background:#050505!important;background-image:none!important;border-color:#999!important}
+html body #stickyShell .main-nav :is(button,select),html body #stickyShell .subnav button,html body #stickyShell .page-actions button,html body .app-footer button{background:linear-gradient(#515151 0%,#121212 30%,#000 70%,#292929 100%)!important;color:#fff!important;border:1px solid #aeb0b3!important;box-shadow:inset 0 2px 2px #ffffff55!important}
+html body #stickyShell .main-nav button:is(.active,.selected,.primary,[aria-current="page"],[aria-selected="true"]),html body #stickyShell .subnav button:is(.active,.selected,.primary,[aria-current="page"],[aria-selected="true"]),html body #stickyShell .page-actions button:is(.active,.selected,.primary,[aria-current="page"],[aria-selected="true"]){background:linear-gradient(#fff,#d5d5d5 70%,#9c9c9c)!important;color:#050505!important;text-shadow:none!important}
+html body #stickyShell .status-stack .status-bar{background:linear-gradient(#3c3c3c,#080808 30%,#000 80%,#252525)!important;color:#fff!important;border-color:var(--status-color,#aeb0b3)!important}
+html body #stickyShell .status-stack .status-bar :is(.status-left,.status-message,.status-right,.status-label){background:transparent!important;background-image:none!important}
+html body .app-footer,html body .app-footer .footer-system-row,html body .app-footer .footer-system-cell{background:linear-gradient(#494949,#090909 28%,#000 75%,#292929)!important;color:white!important;border-color:#aeb0b3!important}
+html body #app :is(.c11-id-badge,.b783-date-badge){display:flex!important;flex-flow:row nowrap!important;justify-content:space-between!important;align-items:center!important;text-align:left!important;gap:8px!important;background:#000!important;color:#fff!important;border:1px solid #b8b8b8!important;padding:5px 9px!important;box-sizing:border-box!important}
+html body #app .c11-id-badge>small,html body #app .b783-date-badge>span{flex:0 1 45%!important;width:auto!important;max-width:45%!important;text-align:left!important;line-height:1.15!important;margin:0!important}
+html body #app .c11-id-badge>strong,html body #app .b783-date-badge>strong{flex:1 1 auto!important;width:auto!important;max-width:60%!important;text-align:right!important;line-height:1.15!important;margin:0!important;overflow-wrap:anywhere!important}
+html body #app :is(.utc-carryover-banner,.c11-badge,.c11-badges>*,.b761-uniform-badge){border-color:#b8b8b8!important}
+html body #app :is(.utc-carryover-banner,.c11-badge,.c11-badges>*,.b761-uniform-badge):not(.critical):not(.warning){background-color:#050505!important;background-image:none!important;color:#fff!important}
+html body #app :is(.summary-card,.tool-panel,.archive-card,.admin-card,.section-header,.card-header,.panel-header,.center-header,.page-toolbar,.toolbar,.filter-bar,.action-bar,.tab-bar,.tabs){background-color:#050505!important;border-color:#aaa!important}
+html body #stickyShell .prototype-header-left>span,html body #stickyShell .prototype-header-right .b1241-quarter-title{white-space:nowrap!important;min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;font-size:clamp(12px,1.45vw,27px)!important}
+
+/* LAYER b7-raiders-authoritative-v12.0.77.css */
+/* V12.0.77: final, loaded-last Raiders visual contract. */
+:root{--accent:#bcbcbc!important;--accent-rgb:188,188,188!important;--page-accent:#c5c5c5!important}
+html,html body,html body .app-frame,html body .body-shell,html body .body-workspace{background:#050505!important;color:#fff!important}
+html body .app-frame{zoom:1!important;width:100%!important;max-width:100%!important;min-height:100vh!important}
+html body #stickyShell,html body #stickyShell .main-nav,html body #stickyShell #subnav,html body #stickyShell #pageActions,html body #stickyShell #statusStack{background:#050505!important;background-image:none!important}
+html body #stickyShell .main-nav{border:0!important;box-shadow:none!important;gap:5px!important;padding:6px 8px!important;min-height:48px!important;height:auto!important}
+html body #stickyShell .main-nav button,html body #stickyShell .main-nav select,html body #stickyShell #subnav button,html body #stickyShell #pageActions button,html body #stickyShell .nav69-mini,html body #stickyShell .nav69-pause{background:linear-gradient(180deg,#555 0%,#191919 20%,#020202 55%,#252525 100%)!important;background-color:#111!important;color:#fff!important;border:1px solid #aaa!important;border-radius:8px!important;box-shadow:inset 0 1px 2px #bbb7,0 1px 2px #000!important}
+html body #stickyShell .main-nav button.active,html body #stickyShell .main-nav button.primary,html body #stickyShell .main-nav button[aria-selected="true"],html body #stickyShell #subnav button.active,html body #stickyShell #subnav button.primary,html body #stickyShell #pageActions button.active{background:linear-gradient(180deg,#fff 0%,#d8d8d8 46%,#929292 100%)!important;background-color:#ddd!important;color:#050505!important;border-color:#fff!important;text-shadow:none!important}
+html body #stickyShell #statusStack,html body #stickyShell .status-stack{gap:6px!important;padding:6px!important}
+html body #stickyShell #statusStack>*,html body #stickyShell .status-stack>*,html body #stickyShell .status-bar,html body #stickyShell .status-panel,html body #stickyShell .fi-indicator{background:linear-gradient(180deg,#282828,#050505 35%,#080808 85%,#222)!important;background-color:#090909!important;color:#fff!important;border-color:#999!important}
+html body .app-footer,html body .app-footer .footer-system-row,html body .app-footer .footer-system-cell,html body .footer-system-row{background:linear-gradient(180deg,#505050,#111 20%,#030303 70%,#303030)!important;background-color:#090909!important;border-color:#aaa!important;color:#fff!important}
+html body .app-footer button,html body .footer-system-row button{background:linear-gradient(#5a5a5a,#161616 35%,#000 75%,#2c2c2c)!important;border:1px solid #aaa!important;color:#fff!important;border-radius:9px!important}
+html body #app .c11-tool-card .c11-card-grid{gap:7px!important;background:#050505!important}
+html body #app .c11-tool-card .c11-column{border:0!important;outline:0!important;box-shadow:none!important;background:#000!important}
+html body #app .c11-tool-card .c11-status-card,html body #app .c11-tool-card .c11-progress-card{border:1px solid #a7a7a7!important;border-radius:9px!important}
+html body #app .c11-identity-stack,html body #app .b783-date-row{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px!important}
+html body #app .c11-identity-stack>.c11-id-badge,html body #app .b783-date-row>.b783-date-badge{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;justify-content:space-between!important;align-items:center!important;gap:8px!important;text-align:left!important;min-width:0!important;min-height:44px!important;height:auto!important;padding:6px 9px!important;background:#050505!important;background-image:none!important;border:1px solid #aaa!important;border-radius:6px!important;color:#fff!important}
+html body #app .c11-identity-stack>.c11-id-badge>small,html body #app .b783-date-row>.b783-date-badge>span{display:block!important;flex:0 1 46%!important;min-width:0!important;width:auto!important;font-size:clamp(9px,.8vw,13px)!important;text-align:left!important;line-height:1.15!important;white-space:normal!important}
+html body #app .c11-identity-stack>.c11-id-badge>strong,html body #app .b783-date-row>.b783-date-badge>strong{display:block!important;flex:1 1 54%!important;min-width:0!important;width:auto!important;max-width:none!important;font-size:clamp(10px,1vw,16px)!important;text-align:right!important;line-height:1.15!important;white-space:normal!important;overflow-wrap:anywhere!important}
+html body #app .c11-carry,html body #app .c11-reduced,html body #app .c11-update,html body #app .c11-badge-region,html body #app .c11-badges{background:#050505!important;background-image:none!important;color:#fff!important}
+html body #app .c11-carry{border:1px solid #aaa!important}
+html body #app .c11-badges>.c11-badge{background:#000!important;border-color:#999!important}
+html body #stickyShell .prototype-header{min-height:90px!important;background:linear-gradient(#333,#000 25%,#000 78%,#343434)!important}
+html body #stickyShell .prototype-header-left>span,html body #stickyShell .prototype-header-right .b1241-quarter-title{font-size:clamp(12px,1.6vw,29px)!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;min-width:0!important}
+@media(max-width:1100px){html body #app .c11-tool-card .c11-card-grid{grid-template-columns:1fr!important}html body #stickyShell .main-nav{overflow-x:auto!important}html body #stickyShell .prototype-header-left>span,html body #stickyShell .prototype-header-right .b1241-quarter-title{font-size:clamp(11px,1.6vw,20px)!important}}
+
+/* LAYER b7-raiders-finish-v12.0.78.css */
+/* V12.0.78: direct DOM targeted Raiders chrome; preserve status-panel geometry. */
+html body .app-frame #stickyShell .main-nav.b797-unified-nav,
+html body .app-frame #stickyShell .main-nav.b797-unified-nav .subnav,
+html body .app-frame #stickyShell .main-nav.b797-unified-nav .page-actions,
+html body .app-frame #stickyShell .main-nav.b797-unified-nav .b797-center-slot{
+ background:#050505!important;background-color:#050505!important;background-image:none!important;
+ border-color:#969696!important;color:#fff!important;
+}
+html body .app-frame #stickyShell .main-nav.b797-unified-nav :is(button,select,.nav-btn,.nav-tab,.nav-button,.nav69-mini,.nav69-pause){
+ background:linear-gradient(180deg,#535353 0%,#171717 24%,#000 70%,#262626 100%)!important;
+ background-color:#111!important;border:1px solid #999!important;color:#fff!important;
+ box-shadow:inset 0 1px 2px #ffffff55!important;text-shadow:0 1px 1px #000!important;
+}
+html body .app-frame #stickyShell .main-nav.b797-unified-nav :is(button.active,button.selected,button.primary,button[aria-selected="true"],button[aria-current="page"],.nav-tab.active,.nav-btn.active){
+ background:linear-gradient(180deg,#fff,#dedede 40%,#8a8a8a)!important;background-color:#ddd!important;
+ border-color:#fff!important;color:#050505!important;text-shadow:none!important;
+}
+html body .app-frame > .app-footer,
+html body .app-frame > .app-footer .footer-system-row,
+html body .app-frame > .app-footer .footer-system-cell,
+html body .app-frame > .app-footer .footer-admin,
+html body .app-frame > .app-footer .footer-activity,
+html body .app-frame > .app-footer .footer-sync{
+ background:linear-gradient(180deg,#484848 0%,#101010 22%,#030303 75%,#292929 100%)!important;
+ background-color:#080808!important;background-image:linear-gradient(180deg,#484848 0%,#101010 22%,#030303 75%,#292929 100%)!important;
+ border-color:#aaa!important;color:#fff!important;
+}
+html body .app-frame > .app-footer{border:2px solid #a5a5a5!important;border-radius:10px!important;overflow:hidden!important;box-shadow:inset 0 1px 3px #fff6!important}
+html body .app-frame > .app-footer :is(button,.footer-global-actions button){background:linear-gradient(180deg,#555,#101010 35%,#000 80%,#333)!important;background-color:#111!important;border:1px solid #aaa!important;color:#fff!important}
+html body .app-frame #stickyShell > .prototype-header{border:2px solid #a5a5a5!important;border-radius:10px!important;box-sizing:border-box!important;box-shadow:inset 0 1px 3px #ffffff55!important;overflow:hidden!important}
+html body .app-frame #stickyShell .prototype-header-center,
+html body .app-frame #stickyShell .prototype-kla-box,
+html body .app-frame #stickyShell .kla-presence-box,
+html body .app-frame #stickyShell .kla-user-side,
+html body .app-frame #stickyShell .kla-connection-core{
+ background-color:#030303!important;background-image:none!important;color:#fff!important;
+}
+html body .app-frame #stickyShell .kla-user-side{border-color:#777!important}
+html body .app-frame #stickyShell .prototype-header-left,
+html body .app-frame #stickyShell .prototype-header-right{min-width:0!important}
+html body .app-frame #stickyShell .prototype-header-left>span{font-size:clamp(12px,1.4vw,28px)!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+html body .app-frame #stickyShell .kla-connection-copy{min-width:0!important;max-width:100%!important;overflow:hidden!important}
+html body .app-frame #stickyShell .kla-connection-copy :is(b,small){font-size:clamp(7px,.52vw,11px)!important;white-space:normal!important;overflow-wrap:anywhere!important}
+html body #app :is(.c11-reduced,.c11-carry,.c11-carry-placeholder,.reduced-process,.reduced-process-badge,.reduced-process-field){background:#050505!important;background-image:none!important;color:#fff!important;border:1px solid #999!important}
+html body #app .c11-tool-card .c11-badge-region>.c11-badges>.c11-badge{background-color:#000!important;background-image:none!important}
+
+/* LAYER b7-raiders-direct-v12.0.79.css */
+/* V12.0.79 direct selectors verified against index.html. */
+:root{--accent:#bdbdbd!important;--blue:#777!important}
+html body .app-frame #stickyShell nav#mainNav.main-nav,html body .app-frame #stickyShell nav#mainNav.main-nav>div,html body .app-frame #stickyShell nav#mainNav.main-nav .subnav,html body .app-frame #stickyShell nav#mainNav.main-nav .page-actions{background:#050505!important;background-color:#050505!important;background-image:none!important;border-color:#999!important}
+html body .app-frame #stickyShell nav#mainNav.main-nav button,html body .app-frame #stickyShell nav#mainNav.main-nav select{background:linear-gradient(#444,#050505 50%,#1d1d1d)!important;background-color:#111!important;color:white!important;border:1px solid #999!important;box-shadow:inset 0 1px 2px #bbb8!important}
+html body .app-frame #stickyShell nav#mainNav.main-nav button:is(.active,.primary,[aria-selected="true"],[aria-current="page"]),html body .app-frame #stickyShell nav#mainNav.main-nav .active button,html body .app-frame #stickyShell nav#mainNav.main-nav button[style*="background"]:is(.active,.primary){background:linear-gradient(#fff,#ccc 65%,#888)!important;color:#000!important;border-color:white!important}
+html body .app-frame>footer.app-footer,html body .app-frame>footer.app-footer .footer-system-row,html body .app-frame>footer.app-footer .footer-system-cell{background:linear-gradient(#444,#050505 35%,#101010 80%,#333)!important;background-color:#080808!important;color:#fff!important;border-color:#aaa!important}
+html body .app-frame>footer.app-footer{border:2px solid #bdbdbd!important;border-radius:9px!important;box-sizing:border-box!important}
+html body .app-frame>footer.app-footer button{background:linear-gradient(#555,#050505 50%,#252525)!important;color:#fff!important;border:1px solid #aaa!important}
+html body .app-frame #stickyShell>header.prototype-header{border:2px solid #bbb!important;border-radius:9px!important;box-sizing:border-box!important;background:linear-gradient(#393939,#000 30%,#000 78%,#333)!important}
+html body .app-frame #stickyShell .prototype-header-center,html body .app-frame #stickyShell .prototype-kla-box,html body .app-frame #stickyShell .kla-user-side,html body .app-frame #stickyShell .kla-connection-core{background:#050505!important;background-color:#050505!important;background-image:none!important}
+html body .app-frame #app button.c11-reduced,html body .app-frame #app .c11-reduced,html body .app-frame #app .utc-reduced,html body .app-frame #app .utc-process-big,html body .app-frame #app .utc-carryover-banner{background:#050505!important;background-color:#050505!important;background-image:none!important;border:1px solid #aaa!important;color:#fff!important}
+html body .app-frame #stickyShell .prototype-header-left{min-width:0!important}html body .app-frame #stickyShell .prototype-header-left span{min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+
+/* V13 CENTRAL DESIGN CONTRACT */
+/* V13.0.0 — centralized Raiders theme. Keep all theme changes in this section. */
+:root{--raider-black:#050505;--raider-charcoal:#181818;--raider-silver:#bfc3c8;--raider-white:#fff;--raider-border:#aab0b8;--raider-radius:10px;--raider-gap:7px;--raider-badge-height:64px}
+html body .prototype-header,html body .app-footer{background:linear-gradient(180deg,#2b2b2b,#030303 46%,#151515)!important;border:2px solid var(--raider-border)!important;color:#fff!important;box-sizing:border-box!important}
+html body .prototype-header{min-height:88px!important;height:auto!important;display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,.9fr) minmax(0,1fr)!important;align-items:center!important;gap:8px!important}
+html body .prototype-header>section{min-width:0!important;background:transparent!important;border-color:#777!important}
+html body .prototype-header-left span,html body .prototype-header-right .b1241-quarter-title{font-size:clamp(12px,1.45vw,28px)!important;line-height:1.1!important;white-space:normal!important;overflow-wrap:normal!important;text-wrap:balance!important;max-width:100%!important}
+html body #headerModeCenter,html body #headerModeCenter *,html body .prototype-kla-box,html body .kla-connection-core,html body .kla-user-side{background-color:#101010!important;background-image:none!important;color:#fff!important}
+html body #mainNav,html body .main-nav,html body .main-nav .subnav,html body .main-nav .page-actions,html body .main-nav .b797-center-slot{background:#080808!important;background-image:none!important;border-color:var(--raider-border)!important;color:#fff!important}
+html body #mainNav button,html body #mainNav select,html body #mainNav [role="button"],html body #mainNav a{background:linear-gradient(180deg,#4a4a4a 0%,#161616 45%,#050505 100%)!important;color:#fff!important;border:1px solid #a9adb3!important;border-radius:8px!important;box-shadow:inset 0 1px 0 #777!important;text-shadow:none!important}
+html body #mainNav :is(button,a,[role="button"]).active,html body #mainNav :is(button,a,[role="button"])[aria-current="page"],html body #mainNav :is(button,a,[role="button"])[aria-selected="true"],html body #mainNav :is(button,a,[role="button"])[data-active="true"]{background:linear-gradient(180deg,#fff,#c4c4c4)!important;color:#000!important;border-color:#fff!important}
+html body #statusStack,html body #statusStack>*,html body .status-stack,html body .status-stack>*,html body .status-stack [class*="status-panel"]{background-color:#080808!important;background-image:none!important;border-color:#aab0b8!important}
+html body .app-footer,html body .app-footer *,html body .footer-system-row,html body .footer-system-cell{background-color:#090909!important;background-image:none!important;color:#fff!important;border-color:#aab0b8!important}
+html body .app-footer button{background:linear-gradient(180deg,#454545,#050505)!important;color:#fff!important;border:1px solid #bfc3c8!important;border-radius:8px!important}
+/* Existing operational indicators retain their red/green/yellow meanings. */
+html body .c11-tool-card [class*="process-badge"],html body .c11-tool-card [class*="normal-process"]{background:#080808!important;color:#fff!important;border-color:#bfc3c8!important}
+/* Preserve proven badge height. Identity field labels/values are horizontal. */
+html body .c11-tool-card .c11-identity-row,html body .c11-tool-card .c11-info-row{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:space-between!important;gap:8px!important}
+/* Responsive header/navigation; do not apply transform/zoom compensation. */
+@media(max-width:1050px){html body .prototype-header{grid-template-columns:1fr 1fr!important}html body .prototype-header-center{grid-column:1/-1!important;grid-row:2!important}html body #mainNav{height:auto!important;min-height:0!important;flex-wrap:wrap!important}}
+@media(max-width:640px){html body .prototype-header{grid-template-columns:1fr!important}html body .prototype-header-center{grid-column:auto!important;grid-row:auto!important}}
+
+/* V13.0.1: stable black/silver shell; only one stylesheet loaded */
+:root{--cc-surface:#070707;--cc-silver:#bfc3c8;--cc-border:#aab0b8;--cc-badge-height:64px;--cc-gap:7px}
+html body .app-frame #stickyShell #mainNav,html body .app-frame #stickyShell #mainNav>div{background:#070707!important;background-image:none!important;border-color:var(--cc-border)!important}
+html body .app-frame #stickyShell #statusStack{background:#070707!important;background-image:none!important}
+html body .app-frame #stickyShell #statusStack>*{background:linear-gradient(180deg,#343434,#070707 34%,#000 80%,#292929)!important;background-color:#070707!important;color:#fff!important;box-sizing:border-box!important}
+html body .app-frame #stickyShell #statusStack>*>*{background-color:transparent!important;background-image:none!important}
+html body .app-frame footer.app-footer,html body .app-frame>footer.app-footer,html body .app-frame>footer.app-footer .footer-system-row,html body .app-frame>footer.app-footer .footer-system-cell{background:linear-gradient(180deg,#333,#060606 30%,#050505 75%,#292929)!important;color:#fff!important;border-color:var(--cc-border)!important}
+html body .app-frame #stickyShell header.prototype-header{border:2px solid var(--cc-border)!important}
+html body .app-frame #stickyShell #mainNav button.active,html body .app-frame #stickyShell #mainNav button[aria-selected="true"]{background:linear-gradient(#fff,#bbb)!important;color:#050505!important}
+html body #app .c11-reduced,html body #app .utc-reduced,html body #app .utc-carryover-banner{background:#070707!important;background-image:none!important;color:#fff!important;border-color:var(--cc-border)!important}
