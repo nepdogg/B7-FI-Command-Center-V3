@@ -6,27 +6,3 @@ html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-main .v1210-ph
  border:0!important;outline:0!important;box-shadow:none!important;
  border-radius:0!important;background:#000!important;
 }
-/* Keep the signal-tower frame: only remove the machine PHOTO frame. */
-html body #app .c11-tool-card .c11-badge-region>.c11-badges{
- display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
- grid-auto-rows:40px!important;grid-auto-flow:row!important;
- grid-template-rows:none!important;gap:4px!important;
- align-items:stretch!important;align-content:start!important;
- height:auto!important;min-height:0!important;overflow:visible!important;
-}
-html body #app .c11-tool-card .c11-badge-region>.c11-badges>.c11-badge,
-html body #app .c11-tool-card .c11-badge-region>.c11-badges>.equipment-badge{
- box-sizing:border-box!important;height:40px!important;min-height:40px!important;
- max-height:40px!important;margin:0!important;padding:2px 4px!important;
- display:flex!important;flex-direction:column!important;justify-content:center!important;
- align-items:center!important;line-height:1.05!important;
- font-size:clamp(9px,.62vw,11px)!important;overflow:hidden!important;
-}
-html body #app .c11-tool-card .c11-badge-region>.c11-badges>.c11-badge :is(span,small,strong,em,b){
- font-size:inherit!important;line-height:1.05!important;margin:0!important;padding:0!important;
- max-width:100%!important;overflow-wrap:anywhere!important;
-}
-html body #app .c11-tool-card .c11-badge-region>.c11-badges>.c11-wafer-badge,
-html body #app .c11-tool-card .c11-badge-region>.c11-badges>.equipment-badge{
- grid-column:1/-1!important;
-}

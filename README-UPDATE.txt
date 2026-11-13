@@ -1,4 +1,21 @@
-B7 FI COMMAND CENTER V12.0.43 — BADGE UNIFICATION TEST
-Baseline: supplied V12.0.42.
-All Universal Tool Card operational badges: fixed 58px height, 6px gaps, solid black background, silver border, white centered wrapping text. Three columns; wafer/computer/component tracking remain full width. Existing state/sync functionality preserved.
-TEST: Hard refresh Ctrl+Shift+R; check all badge rows and click actions at 100% zoom. This package has not been visually browser-tested.
+B7 FI COMMAND CENTER V12.0.44 — OPERATIONAL BADGE GRID REPAIR
+Based on uploaded V12.0.43 test ZIP.
+
+CORRECTIONS
+- Removed V12.0.42 conflicting 40px badge override.
+- Removed V12.0.43 competing stylesheet.
+- Added a single last-loaded V12.0.44 badge contract targeting actual DOM.
+- Fixed FI Handoff and FI Powered Down badges and all operational badges to 60px.
+- Set all three operational columns to 7px equal row/column gaps.
+- Set every operational badge, including tracking badges, to solid #000 black.
+- White centered text, silver borders, consistent wrapping.
+- Full-width System Wafers, Computer Tracking, Component Tracking preserved.
+- Tool data, status towers, three-column layout, and sync code unchanged.
+
+TEST
+1. Extract ZIP and run START-COMMAND-CENTER.bat, or deploy all files to GitHub Pages.
+2. Hard refresh with Ctrl+Shift+R; ensure the new CSS file is deployed.
+3. Compare operational badge height to FI Handoff badge at 100% browser zoom.
+4. Check long text, 3 full-width badges, and badge editing.
+
+This is a source-verified test package; browser visual validation is still needed.
