@@ -1,0 +1,50 @@
+/* V12.0.41 — consolidated LAST visual layer. No app logic, storage or sync changes. */
+:root{--accent:#c5c5c5!important;--bg:#000!important;--panel:#000!important;--line:#bdbdbd!important;--text:#fff!important}
+html,body,body .app-frame,body .body-shell,body #app,body .body-workspace{background:#000!important;color:#fff!important}
+/* Exact header geometry: dedicated logo slots, no overlay on quarter label. */
+html body #stickyShell .prototype-header{display:grid!important;grid-template-columns:minmax(0,40%) minmax(0,25%) minmax(0,35%)!important;gap:0!important;height:86px!important;padding:0!important;background:linear-gradient(#555 0%,#050505 7%,#000 84%,#4d4d4d 100%)!important;border:2px solid #d5d5d5!important;border-radius:5px!important;box-shadow:inset 0 2px 3px #fff9,0 0 5px #aaa5!important}
+html body #stickyShell .prototype-header>section{height:100%!important;box-sizing:border-box!important;min-width:0!important;background:linear-gradient(#353535 0%,#030303 14%,#000 82%,#222)!important;color:white!important;border:0!important}
+html body #stickyShell .prototype-header-left{display:flex!important;align-items:center!important;gap:14px!important;padding:5px 12px!important;justify-content:flex-start!important}
+html body #stickyShell .prototype-header-left .b1239-raiders-logo{display:block!important;position:static!important;width:60px!important;max-width:60px!important;height:70px!important;object-fit:contain!important;flex:0 0 60px!important}
+html body #stickyShell .prototype-header-left span{display:block!important;min-width:0!important;max-width:100%!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;font-size:clamp(15px,1.38vw,25px)!important;font-weight:950!important}
+html body #stickyShell .prototype-header-center{border-left:7px ridge #d8d8d8!important;border-right:7px ridge #d8d8d8!important;transform:skew(-9deg);padding:3px 8px!important;overflow:hidden!important}
+html body #stickyShell .prototype-header-center>*{transform:skew(9deg);max-width:100%!important}
+html body #stickyShell .prototype-header-right{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;padding:5px 10px 5px 16px!important;font-size:clamp(15px,1.45vw,25px)!important;font-weight:950!important;white-space:nowrap!important;overflow:hidden!important}
+html body #stickyShell .prototype-header-right:after{display:none!important;content:none!important}
+html body #stickyShell .prototype-header-right .b1241-quarter-title{min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;flex:1 1 auto!important;text-align:center!important}
+html body #stickyShell .prototype-header-right .b1241-right-logo{position:static!important;display:block!important;flex:0 0 60px!important;width:60px!important;height:70px!important;object-fit:contain!important;pointer-events:none!important}
+/* Navigation: neutral metallic chrome, with only selected tab bright silver. */
+html body #stickyShell nav.main-nav,html body #stickyShell .b797-unified-nav,html body #stickyShell .subnav,html body #stickyShell .page-actions,html body #stickyShell .b797-center-slot{background:#000!important;background-image:none!important;border-color:#aaa!important;box-shadow:none!important}
+html body #stickyShell .main-nav button,html body #stickyShell .main-nav select,html body #stickyShell .subnav button,html body #stickyShell .page-actions button,html body #stickyShell .main-nav [role=button]{background:linear-gradient(180deg,#555 0%,#171717 25%,#000 72%,#343434 100%)!important;color:#fff!important;border:1px solid #d2d2d2!important;border-radius:8px!important;box-shadow:inset 0 2px 2px #ffffff88,0 1px 2px #555!important;text-shadow:0 1px 1px #000!important}
+html body #stickyShell .main-nav button.active,html body #stickyShell .main-nav button.selected,html body #stickyShell .subnav button.active,html body #stickyShell .main-nav button[aria-current=page]{background:linear-gradient(#fff,#ddd 48%,#969696)!important;color:#080808!important;text-shadow:none!important}
+/* All status panels black; operational indicator colors remain unchanged. */
+html body #stickyShell .status-stack{background:#000!important;background-image:none!important}
+html body #stickyShell .status-stack>.status-bar,html body #stickyShell .status-stack>*{background:linear-gradient(#292929,#040404 25%,#000 85%,#1b1b1b)!important;background-color:#000!important;color:#fff!important;border:2px solid #aeb0b2!important;border-radius:12px!important;box-shadow:inset 0 2px 2px #ffffff5c!important}
+/* Universal three-column card, neutral panels and metallic silver headings. */
+html body #app .c11-tool-card>.c11-card-grid.b1226-three-column{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;align-items:stretch!important}
+html body #app .c11-tool-card .c11-column,html body #app .c11-tool-card .c11-status-card,html body #app .c11-tool-card .c11-progress-row,html body #app .c11-tool-card .c11-photo{background:#000!important;background-color:#000!important;border:1px solid #aeb0b2!important;color:#fff!important;box-shadow:inset 0 1px 2px #ffffff3a!important}
+html body #app .c11-tool-card .c11-progress-head,html body #app .c11-tool-card .c11-status-title,html body #app .c11-tool-card .c11-status-card h3{background:linear-gradient(180deg,#686868,#333 33%,#111 88%,#555)!important;background-color:#333!important;color:#fff!important;border:1px solid #777!important;border-radius:6px!important;box-shadow:inset 0 1px 1px #ffffff55!important}
+html body #app .c11-tool-card .c11-photo .b1229-tower-image{display:block!important;object-fit:contain!important;opacity:1!important;filter:none!important}
+html body #app .c11-tool-card .c11-photo .b1226-photo-heading{background:linear-gradient(#555,#171717,#3c3c3c)!important;border:1px solid #aaa!important}
+html body #app .c11-tool-card .c11-id-badge,html body #app .c11-tool-card .c11-badge{background:linear-gradient(#3c3c3c,#101010 55%,#252525)!important;color:#fff!important;border:1px solid #aaa!important}
+/* Progress fills: retain inline percent widths; six distinct workflow colors. */
+html body #app .c11-tool-card .c11-progress-track{background:#181818!important;border:1px solid #b5b5b5!important;border-radius:7px!important;overflow:hidden!important}
+html body #app .c11-tool-card .c11-progress-track>i{height:100%!important;display:block!important;border-radius:3px!important;background:linear-gradient(#f4f4f4,#b0b0b0 55%,#666)!important;-webkit-mask-image:repeating-linear-gradient(90deg,#000 0 15px,transparent 15px 19px)!important;mask-image:repeating-linear-gradient(90deg,#000 0 15px,transparent 15px 19px)!important;box-shadow:inset 0 2px 2px #fff8!important}
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row:nth-child(1) .c11-progress-track>i{background:linear-gradient(#a8ff8d,#16ec09 53%,#009d00)!important}
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row:nth-child(2) .c11-progress-track>i{background:linear-gradient(#b7ffff,#00d7ff 53%,#008dbd)!important}
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row:nth-child(3) .c11-progress-track>i{background:linear-gradient(#f3c6ff,#c55eff 53%,#8430be)!important}
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row:nth-child(4) .c11-progress-track>i{background:linear-gradient(#fff,#bcbcbc 53%,#777)!important}
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row:nth-child(5) .c11-progress-track>i{background:linear-gradient(#ffe7a0,#ffb800 53%,#9f6600)!important}
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row:nth-child(6) .c11-progress-track>i{background:linear-gradient(#ffb4c0,#ff4e72 53%,#a71637)!important}
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row:nth-child(7) .c11-progress-track>i{background:linear-gradient(#e1c6ff,#875eff 53%,#5030ad)!important}
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row:nth-child(8) .c11-progress-track>i{background:linear-gradient(#b5fffd,#1dc8a7 53%,#007e71)!important}
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row:last-child .c11-progress-track>i{background:linear-gradient(#ffe9a8,#dbb74a 53%,#92721d)!important}
+/* Footer consistent with header; preserve real connectivity state. */
+html body .app-footer,html body .app-footer .footer-system-row,html body .app-footer .footer-system-cell{background:linear-gradient(#444,#070707 22%,#000 72%,#272727)!important;background-color:#000!important;color:#fff!important;border-color:#c5c5c5!important}
+html body .app-footer{border:2px solid #c9c9c9!important;border-radius:12px!important;box-shadow:inset 0 2px 3px #fff8!important}
+html body .app-footer button{background:linear-gradient(#656565,#171717 40%,#000 75%,#444)!important;color:#fff!important;border:1px solid #ddd!important;border-radius:22px!important;box-shadow:inset 0 2px 2px #fff7!important}
+/* Apply the same neutral chrome to other centers, editors, archives, dialogs and presentations. */
+html body #app :is(.panel,.card,.section-card,.info-card,.summary-card,.dashboard-card,.tool-card,.quarter-card,.stat-card,.archive-card),html body #modal .modal-card{background-color:#050505!important;color:#fff!important;border-color:#aaa!important}
+html body #app :is(.panel-title,.section-title,.card-title,.section-header,.tool-section-title),html body #modal :is(.modal-header,.modal-title){background:linear-gradient(#5b5b5b,#161616 75%,#383838)!important;color:#fff!important;border-color:#a6a6a6!important}
+html body #app :is(input,select,textarea),html body #modal :is(input,select,textarea){background:#151515!important;color:#fff!important;border-color:#aaa!important}
+@media(max-width:760px){html body #app .c11-tool-card>.c11-card-grid.b1226-three-column{grid-template-columns:1fr!important}html body #stickyShell .prototype-header-left .b1239-raiders-logo,html body #stickyShell .prototype-header-right .b1241-right-logo{width:34px!important;height:40px!important;flex-basis:34px!important}}
