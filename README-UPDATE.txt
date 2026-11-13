@@ -1,4 +1,4 @@
-B7 FI Command Center V12.0.27 - Photo/Tower Layout & Segmented Progress TEST
+B7 FI Command Center V12.0.28 - Photo/Tower Layout & Segmented Progress TEST
 
 Changes:
 - Corrected conflicting V12 core CSS that forced the photo section into a 220px grid, crushing the signal tower and tool photo.
