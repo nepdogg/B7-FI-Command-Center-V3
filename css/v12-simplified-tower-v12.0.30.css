@@ -1,0 +1,14 @@
+/* V12.0.30 — Simplified integrated photo/tower. Remove redundant key and status banner. */
+html body #app .c11-tool-card .c11-identity-column>.c11-photo.b1226-photo {height:clamp(300px,25vw,390px)!important;min-height:300px!important;max-height:390px!important;padding:8px!important;gap:0!important;background:#171c22!important;border:1px solid #55606b!important;box-shadow:none!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo>.b1226-photo-top {display:grid!important;grid-template-columns:clamp(62px,19%,95px) minmax(0,1fr)!important;gap:9px!important;height:100%!important;min-height:0!important;flex:1 1 auto!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-main {display:flex!important;flex-direction:column!important;min-height:0!important;gap:7px!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading {display:grid!important;grid-template-columns:45% 55%!important;min-height:40px!important;flex:0 0 40px!important;background:#2c333c!important;border:1px solid #78828c!important;border-radius:7px!important;box-shadow:none!important;font-size:clamp(10px,.95vw,17px)!important;color:#fff!important;letter-spacing:0!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading span {background:#353d46!important;color:#fff!important;padding:3px!important;white-space:nowrap!important;font-size:inherit!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading strong {font-size:inherit!important;background:#2c333c!important;min-width:0!important;white-space:nowrap!important;text-overflow:ellipsis!important;overflow:hidden!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .v1210-photo-image {flex:1 1 auto!important;min-height:0!important;height:auto!important;display:flex!important;align-items:center!important;justify-content:center!important;background:#0c1218!important;border-radius:7px!important;overflow:hidden!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .v1210-photo-image img {height:100%!important;width:100%!important;max-height:100%!important;object-fit:contain!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-tower {min-height:0!important;height:100%!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower {height:100%!important;min-height:0!important;background:#0c1218!important;border:1px solid #56616c!important;box-shadow:none!important;padding:1px!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower-image {height:100%!important;width:100%!important;object-fit:contain!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-signal-key, html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-active-state {display:none!important}
+@media(max-width:1000px){html body #app .c11-tool-card .c11-identity-column>.c11-photo.b1226-photo{height:320px!important;min-height:320px!important}}

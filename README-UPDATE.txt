@@ -1,11 +1,12 @@
-B7 FI Command Center V12.0.29 — Signal Tower Image Test
+B7 FI Command Center V12.0.30 — Simplified Signal Tower Test
 
-Based on V12.0.28.
-- Added six transparent PNG tower images (five active states plus unknown).
-- All tower displays use the same existing b1217Signal(t) evaluator.
-- Removed duplicate status label beneath the tower and TOOL INFORMATION heading.
-- Reason banner now derives a reason from tool NCs, notes, schedule and workflow.
-- Preserved segmented progress bars and existing data/sync logic.
+Based directly on V12.0.29.
+- Removed the permanent signal key and redundant status-reason banner from the full-size Tool Information photo section.
+- Realistic six-state signal tower remains immediately left of the enlarged machine photo.
+- Neutral gray Priority / Alias header above the machine photo; actual priority and alias remain data-driven.
+- The tower remains data-driven from the existing shared status evaluator.
+- Existing segmented progress bars, operational badges, tools, and Microsoft Lists logic retained.
+- Status reason remains available as a hover title on the signal tower.
 
-TEST: Start locally, inspect Live Operations, Presentation and Hybrid at 100% zoom. Confirm the light and reason agree with recorded data.
-IMPORTANT: Microsoft Lists live sync and all workflows have not been browser-tested. Keep prior release as backup.
+TEST: Launch locally, test at 100% browser zoom, inspect each of six signal states, and verify Live Operations, Presentation, Hybrid, and Microsoft Lists connectivity.
+LIMITATIONS: No live browser or Microsoft Lists end-to-end verification performed. Keep V12.0.29 as backup.
