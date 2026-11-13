@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='12.0.24', BUILD='20261112-V12.0.26-FIVE-LIGHT-SIGNAL-TEST';
+const VERSION='12.0.24', BUILD='20261112-V12.0.27-FIVE-LIGHT-SIGNAL-TEST';
 const ACTIVE_DATASET_KEY='b7fi-command-center-active-dataset-v1216';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
