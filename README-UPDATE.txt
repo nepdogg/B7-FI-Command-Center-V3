@@ -1,14 +1,5 @@
-B7 FI COMMAND CENTER V12.0.35 — ORIGINAL SIX SIGNAL TOWERS
+B7 FI Command Center V12.0.36 TEST — Full-height original tower graphics + black/silver UI
 
-Based on V12.0.34. Installed the six supplied individual PNG files with their embedded status labels:
-unknown: signal-not_in_fi.png
-red: signal-critical.png
-yellow: signal-attention.png
-green: signal-normal.png
-blue: signal-packing.png
-purple: signal-shipped.png
+Based on V12.0.35. Retains all six supplied PNG tower graphics and embedded labels. Corrects vertical sizing and adds explicit black/silver header/nav/section overrides. Preserves existing status selection, three-column card, Microsoft Lists code, and progress data.
 
-The existing automatic status evaluator selects the correct PNG. Corrected three broken stylesheet paths and updated asset cache versions.
-Preserved three-column card, black/silver theme, progress bars, and Microsoft Lists implementation.
-TEST LOCALLY: hard-refresh and verify all six tower states in Live Operations, Presentation and Hybrid.
-No live Microsoft Lists or full browser rendering validation performed.
+Test locally at 100% zoom before deploying. No live sync or browser visual test has been performed.
