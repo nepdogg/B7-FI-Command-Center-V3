@@ -1,5 +1,7 @@
-B7 FI Command Center V12.0.63 TEST
+B7 FI Command Center V12.0.64 — three special badge height repair
 
-Based on V12.0.62. Targeted fix for three remaining unequal-height controls: Reduced/Normal Process, Quarter Carryover/placeholder, Update Tool Status. All now use 64px with no internal scrollbars. Existing behavior and state classes preserved.
-
-Deploy the contents of this ZIP to the GitHub Pages repository root. Validate Live Operations, carryover and non-carryover tools, and Presentation Mode. This is a test build; populated browser verification has not been completed.
+Baseline: V12.0.62 (not V12.0.63).
+Only new styling: css/b7-three-special-badges-v12.0.64.css.
+Normal/Reduced Process, Quarter Carryover/Ship ASAP (including placeholder), and Update Tool Status are 64px high. All other badge layouts are unchanged from V12.0.62.
+No application logic or Microsoft List synchronization code was modified.
+Verification: package integrity and static source checks. Browser measurements, if available, should be used before calling this a confirmed fix.

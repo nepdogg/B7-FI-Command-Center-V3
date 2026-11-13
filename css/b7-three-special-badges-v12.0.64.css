@@ -1,0 +1,29 @@
+/* V12.0.64: ONLY the three special full-width elements. Do not change the
+   working V12.0.62 identity, date, operational, or tracking badge rules. */
+html body #app .c11-tool-card .c11-identity-column > :is(.c11-reduced,.c11-carry,.c11-update) {
+  position:relative!important;
+  inset:auto!important;
+  transform:none!important;
+  box-sizing:border-box!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  flex:0 0 64px!important;
+  align-self:stretch!important;
+  width:100%!important;
+  height:64px!important;
+  min-height:64px!important;
+  max-height:64px!important;
+  padding:6px 8px!important;
+  margin:0!important;
+  overflow:hidden!important;
+  line-height:1.2!important;
+  white-space:normal!important;
+  text-align:center!important;
+  border-radius:6px!important;
+}
+/* Keep existing warning/status backgrounds and click handlers. */
+html body #app .c11-tool-card .c11-identity-column > .c11-carry-placeholder {
+  visibility:visible!important;
+}
