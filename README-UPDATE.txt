@@ -1,7 +1,9 @@
-B7 FI Command Center V12.0.64 — three special badge height repair
+B7 FI COMMAND CENTER V12.0.66 — ZOOM RESPONSIVE TEST
 
-Baseline: V12.0.62 (not V12.0.63).
-Only new styling: css/b7-three-special-badges-v12.0.64.css.
-Normal/Reduced Process, Quarter Carryover/Ship ASAP (including placeholder), and Update Tool Status are 64px high. All other badge layouts are unchanged from V12.0.62.
-No application logic or Microsoft List synchronization code was modified.
-Verification: package integrity and static source checks. Browser measurements, if available, should be used before calling this a confirmed fix.
+Baseline: V12.0.65. Badge files and application JavaScript unchanged.
+
+Changes: ordinary page outer frame uses responsive viewport height; live card uses spare viewport height rather than leaving empty space; footer follows content; presentation mode excluded.
+
+Test: browser zoom 50%, 67%, 75%, 90%, 100%, 110%, 125%; check live operations, other centers, header/footer, presentation mode, and badge heights.
+
+Note: this is a test build. No populated browser visual validation was completed.

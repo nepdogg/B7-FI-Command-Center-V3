@@ -1,0 +1,50 @@
+/* V12.0.66 Browser zoom/viewport layout: scoped to ordinary pages only.
+   Badge stylesheets V12.0.62, .64, .65 remain unmodified. */
+html:not(:has(body.presentation-mode)) { min-height:100%; }
+html body:not(.presentation-mode):not(.screenshot-mode) {
+  width:100%!important; min-width:0!important; min-height:100dvh!important;
+  margin:0!important; overflow-x:hidden!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) > .app-frame {
+  box-sizing:border-box!important; width:100%!important; max-width:none!important;
+  min-width:0!important; min-height:100dvh!important; height:auto!important;
+  margin:0!important; display:flex!important; flex-direction:column!important;
+  transform:none!important; zoom:1!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame > .body-shell {
+  box-sizing:border-box!important; width:100%!important; min-width:0!important;
+  flex:1 0 auto!important; display:flex!important; flex-direction:column!important;
+  height:auto!important; min-height:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .body-shell > main#app {
+  box-sizing:border-box!important; width:100%!important; min-width:0!important;
+  flex:1 0 auto!important; height:auto!important; min-height:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame > .app-footer {
+  position:relative!important; inset:auto!important; flex:0 0 auto!important;
+  margin-top:auto!important; width:100%!important;
+}
+/* At zoomed-out browser sizes the live card should use spare viewport height
+   rather than leaving a huge blank strip above the footer. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-tool-card {
+  min-height:max(0px,calc(100dvh - var(--sticky-shell-height,190px) - 85px))!important;
+  height:auto!important; max-height:none!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-tool-card > .c11-card-grid {
+  min-height:inherit!important; height:auto!important; max-height:none!important;
+  align-items:stretch!important;
+}
+/* Keep the badge grid at its locked size; distribute only additional space
+   into the photograph and the non-badge status/progress panels. */
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-identity-column .c11-photo {
+  flex:1 0 auto!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-status-column,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-progress-column {
+  display:flex!important; flex-direction:column!important; min-height:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-status-column > *,
+html body:not(.presentation-mode):not(.screenshot-mode)[data-center="operations"][data-sub="live"] #app .c11-progress-column > * {
+  flex-grow:1!important;
+}
+/* Never apply zoom corrections to the fixed-size badges or Presentation Mode. */
