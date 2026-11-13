@@ -1,0 +1,45 @@
+/* V12.0.40 — scoped Raiders chrome and category-coded progress bars.
+   Visual-only override: preserve app calculations, sync, navigation and status classification. */
+:root{--v1240-silver:#bfc3c9;--v1240-black:#000}
+html body #stickyShell,html body #stickyShell .sticky-shell,html body #stickyShell .prototype-nav,
+html body #stickyShell .nav-shell,html body #stickyShell .page-navigation,
+html body #stickyShell nav,html body #stickyShell .b797-unified-nav,
+html body .app-footer,html body .app-footer *{border-color:#aeb0b4!important}
+html body #stickyShell nav,html body #stickyShell .prototype-nav,html body #stickyShell .nav-shell,
+html body #stickyShell .page-navigation,html body #stickyShell .b797-unified-nav{
+ background:#030303!important;background-image:none!important;color:#fff!important}
+html body #stickyShell button,html body #stickyShell select,
+html body .app-footer button{
+ background:linear-gradient(180deg,#505050 0%,#161616 34%,#030303 85%,#252525 100%)!important;
+ color:#fff!important;border:1px solid #c4c4c4!important;box-shadow:inset 0 1px 1px #ffffff73!important}
+html body #stickyShell button.active,html body #stickyShell button.selected,
+html body #stickyShell button[aria-current="page"]{
+ background:linear-gradient(#fff,#ddd 48%,#8e8e8e)!important;color:#080808!important}
+html body .app-footer,html body .app-footer .footer-system-row,html body .app-footer .footer-system-cell{
+ background:linear-gradient(#303030,#000 45%,#101010)!important;color:#fff!important}
+/* Maintain all six original framed status-tower PNG assets. */
+html body #app .c11-tool-card .b1229-tower-image,
+html body #app .b1217-compact-card .b1229-tower-image{object-fit:contain!important;opacity:1!important;filter:none!important}
+/* The actual percentage width remains inline, and is never overridden. */
+html body #app .c11-tool-card .c11-progress-row .c11-progress-track{
+ background:#171717!important;border:1px solid #a4a4a4!important;border-radius:7px!important;overflow:hidden!important}
+html body #app .c11-tool-card .c11-progress-row .c11-progress-track>i{
+ display:block!important;height:100%!important;border-radius:3px!important;
+ -webkit-mask-image:repeating-linear-gradient(90deg,#000 0px,#000 15px,transparent 15px,transparent 19px)!important;
+ mask-image:repeating-linear-gradient(90deg,#000 0px,#000 15px,transparent 15px,transparent 19px)!important}
+/* Category first: FI=green, micro=cyan, forecast=purple, cycle=silver. */
+html body #app .c11-tool-card .c11-progress-row:has(.c11-progress-head b) .c11-progress-track>i{background:#b9bec5!important}
+html body #app .c11-tool-card .c11-progress-row:has(.c11-progress-head b) .c11-progress-track>i.green{background:linear-gradient(#7fff6a,#00d700 60%,#00a600)!important}
+html body #app .c11-tool-card .c11-progress-row .c11-progress-track>i.cyan{background:linear-gradient(#8ffaff,#00c7f5 60%,#0089c2)!important}
+html body #app .c11-tool-card .c11-progress-row .c11-progress-track>i.purple{background:linear-gradient(#f2b3ff,#c25af2 60%,#8e3dc9)!important}
+html body #app .c11-tool-card .c11-progress-row .c11-progress-track>i.yellow{background:linear-gradient(#ffe88a,#ffc329 60%,#d38a00)!important}
+html body #app .c11-tool-card .c11-progress-row .c11-progress-track>i.red{background:linear-gradient(#ff9aa3,#fa445c 60%,#b82037)!important}
+/* Label-based category mapping avoids accidentally coloring an unrelated workflow. */
+html body #app .c11-tool-card .c11-progress-row:has(.c11-progress-head b) .c11-progress-track>i{box-shadow:inset 0 1px 2px #fff6}
+html body #app .c11-tool-card .c11-progress-row.c11-forecast-target-row .c11-progress-track>i{background:linear-gradient(#f2b3ff,#c25af2 60%,#8e3dc9)!important}
+html body #app .c11-tool-card .c11-progress-row.c11-overall-progress .c11-progress-track>i,
+html body #app .c11-tool-card .c11-overall-progress .c11-progress-track>i{background:linear-gradient(#f9e4a4,#d7a842 60%,#aa7d20)!important}
+/* Neutral non-progress bars in every tool card. */
+html body #app .c11-tool-card .c11-progress-head{
+ background:linear-gradient(#535353,#1c1c1c 70%,#080808)!important;color:#fff!important;border-color:#aaa!important}
+@media(max-width:760px){html body #app .c11-tool-card>.c11-card-grid.b1226-three-column{grid-template-columns:minmax(0,1fr)!important}}

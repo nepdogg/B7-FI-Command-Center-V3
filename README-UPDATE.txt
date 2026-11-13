@@ -1,13 +1,18 @@
-B7 FI COMMAND CENTER — V12.0.39 — RAIDERS FULL-THEME TEST
+B7 FI COMMAND CENTER — V12.0.40 — RAIDERS PROGRESS TEST
 
-Baseline: V12.0.38.
+Base: V12.0.39 Raiders Full Theme.
+
 Changes:
-- Raiders shield graphic at both ends of main header (user-provided asset).
-- Black/silver/white global styling loaded last on every application page.
-- Silver chrome navigation, status panels, footer, headings and card surfaces.
-- Preserve three-column Universal Tool Card, six original framed tower images, and segmented progress bars.
-- All application JS, local/shared data behavior and navigation retained from V12.0.38.
+- New late-loading v12.0.40 stylesheet with black/chrome navigation and footer overrides.
+- Color-coded segmented progress fills (green, cyan, purple, yellow, red) while retaining original percentage calculations.
+- Preserved the six existing framed signal tower assets and the desktop three-column card.
+- Updated visible version label and refreshed asset cache keys.
 
-TEST: Run START-COMMAND-CENTER.bat, verify Live Operations and all other centers, tool edits, presentation, quarter summaries and Microsoft Lists sign-in/sync on both computers. Hard refresh Ctrl+F5 after publishing.
+Testing:
+1. Back up your current folder and local data before replacing files.
+2. Extract this package into a NEW folder; run START-COMMAND-CENTER.bat for local testing.
+3. Verify all six tower states and all three tool columns.
+4. Check navigation/footer colors, FI/Micro/Forecast/Overall progress at several percentages.
+5. Check presentation mode, tool editing, archive and multi-user connection separately.
 
-This is a styling update; Microsoft Lists synchronization was not changed or independently verified.
+Important: This is a visual-only TEST build; browser/live deployment and multi-user persistence were not end-to-end tested here.
