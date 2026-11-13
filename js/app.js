@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='12.0.24', BUILD='20261112-V12.0.28-FIVE-LIGHT-SIGNAL-TEST';
+const VERSION='12.0.24', BUILD='20261112-V12.0.29-FIVE-LIGHT-SIGNAL-TEST';
 const ACTIVE_DATASET_KEY='b7fi-command-center-active-dataset-v1216';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
@@ -1811,7 +1811,7 @@ function v11ToolCard(){
   return `<section class="c11-tool-card" data-universal-tool-card="${esc(t.id)}">
     <div class="c11-card-grid b1224-universal-grid b1226-three-column">
       <section class="c11-column c11-identity-column">
-        <div class="c11-photo b796-priority-photo b1226-photo"><div class="b1226-photo-top"><div class="b1226-photo-tower">${b1224Tower(t)}</div><div class="b1226-photo-main"><button type="button" class="b1226-photo-heading" data-direct-priority="${esc(t.id)}" title="Update priority"><span>#${esc(p.rank||t.priority||'—')} PRIORITY</span><strong>${esc(String(t.alias||'NO ALIAS').toUpperCase())}</strong></button><div class="v1210-photo-image"><img src="${esc(img)}" alt="${esc(t.codename||'Tool')}"></div><div class="b1226-active-state b1224-tower-${b1217Signal(t).tone}">${esc(b1217Signal(t).text)}</div></div></div><div class="b1226-signal-key" aria-label="Signal tower key"><b>SIGNAL TOWER KEY</b><div><span class="red">CRITICAL<small>Escalate</small></span><span class="yellow">ATTENTION<small>Action needed</small></span><span class="green">NORMAL<small>On track</small></span><span class="blue">PACKING<small>Prep to ship</small></span><span class="purple">SHIPPED<small>Complete</small></span></div></div></div>
+        <div class="c11-photo b796-priority-photo b1226-photo"><div class="b1226-photo-top"><div class="b1226-photo-tower">${b1224Tower(t)}</div><div class="b1226-photo-main"><button type="button" class="b1226-photo-heading" data-direct-priority="${esc(t.id)}" title="Update priority"><span>#${esc(p.rank||t.priority||'—')} PRIORITY</span><strong>${esc(String(t.alias||'NO ALIAS').toUpperCase())}</strong></button><div class="v1210-photo-image"><img src="${esc(img)}" alt="${esc(t.codename||'Tool')}"></div><div class="b1226-active-state b1224-tower-${b1217Signal(t).tone}" title="${esc(b1229SignalReason(t))}">${esc(b1229SignalReason(t))}</div></div></div><div class="b1226-signal-key" aria-label="Signal tower key"><b>SIGNAL TOWER KEY — OPERATIONAL STATUS</b><div><span class="red">CRITICAL<small>Escalate</small></span><span class="yellow">ATTENTION<small>Action Required</small></span><span class="green">NORMAL<small>On track</small></span><span class="blue">PACKING<small>Prep to ship</small></span><span class="purple">SHIPPED<small>Complete</small></span></div></div></div>
         <div class="c11-identity-stack">
           ${c11IdentityButton(t,'utid','UTID',t.id,!t.id)}
           ${c11IdentityButton(t,'toolType','TOOL TYPE',t.codename,!t.codename)}
@@ -1919,12 +1919,37 @@ function b1217Signal(t){
   // Only illuminate green when a real FI phase and schedule assessment exist.
   return {tone:'green',text:'ON SCHEDULE'};
 }
+function b1229SignalReason(t){
+  const sig=b1217Signal(t), phase=String(t.toolStatus||'').toLowerCase();
+  const notes=[t.latestStatus,t.fiStatusOverride,t.currentSystemStatus,t.systemStatus,t.leadNotes].map(x=>String(x||'').trim()).filter(Boolean);
+  const openNcs=(Array.isArray(t.ncs)?t.ncs:[]).filter(n=>!['closed','resolved','complete'].includes(String(n.state||'').toLowerCase()));
+  const urgent=openNcs.find(n=>n.blocking===true||/critical|escalat/i.test(String(n.state||'')+' '+String(n.severity||'')));
+  const ncName=n=>String(n.number||n.ncNumber||n.id||'').trim();
+  const short=x=>String(x||'').replace(/\s+/g,' ').slice(0,125);
+  const relevant=notes.find(x=>/critical|escalat|blocked|system down|behind|delay|packing|shipp/i.test(x));
+  const due=t.shipDate?dateOnly(t.shipDate):null;
+  if(sig.tone==='red'){
+    if(urgent)return short((ncName(urgent)?'NC '+ncName(urgent)+' — ':'')+(urgent.description||urgent.title||'CRITICAL NC / ESCALATION'));
+    if(relevant&&/critical|escalat|blocked|system down/i.test(relevant))return short(relevant);
+    if(due&&dateOnly(today())>due)return 'SHIP DATE OVERDUE — '+(t.shipDate?fmtDate(t.shipDate):'ACTION REQUIRED');
+    return 'CRITICAL ISSUE — REVIEW TOOL ALERTS';
+  }
+  if(sig.tone==='yellow'){
+    if(relevant&&/behind|delay|attention|warning/i.test(relevant))return short(relevant);
+    if(performance(t)[0]==='BEHIND')return 'BEHIND FI / MICRO SCHEDULE — ACTION REQUIRED';
+    if(openNcs.length)return openNcs.length+' OPEN NC'+(openNcs.length===1?'':'S')+' — ACTION REQUIRED';
+    return 'ATTENTION — REVIEW CURRENT TOOL STATUS';
+  }
+  if(sig.tone==='green')return 'FI TESTING — ON SCHEDULE';
+  if(sig.tone==='blue')return 'PACKING IN PROGRESS — PREPARING TO SHIP';
+  if(sig.tone==='purple')return 'SHIPPED'+(t.actualShipDate?' — '+fmtDate(t.actualShipDate):' — SHIPMENT CONFIRMED');
+  return 'WAITING FOR FI — STATUS NOT YET AVAILABLE';
+}
 function b1224Tower(t,compact=false){
   const sig=b1217Signal(t);
-  const lamps=[['red','CRITICAL'],['yellow','ATTENTION'],['green','NORMAL'],['blue','PACKING'],['purple','SHIPPED']];
-  return `<div class="b1224-tower ${compact?'b1224-tower-compact':''} b1224-tower-${sig.tone}" role="img" aria-label="Tool ${esc(t.id)} status: ${esc(sig.text)}" title="${esc(sig.text)} · Automatically calculated from tool updates">
-    <div class="b1224-tower-lamps">${lamps.map(([tone,label])=>`<span class="b1224-lamp b1224-lamp-${tone} ${sig.tone===tone?'is-lit':''}" title="${label}"></span>`).join('')}</div>
-    <strong>${esc(sig.text)}</strong>
+  const tone=['red','yellow','green','blue','purple'].includes(sig.tone)?sig.tone:'unknown';
+  return `<div class="b1224-tower b1229-tower ${compact?'b1224-tower-compact':''} b1224-tower-${tone}" role="img" aria-label="Tool ${esc(t.id)} status: ${esc(sig.text)}" title="${esc(sig.text)} · ${esc(b1229SignalReason(t))}">
+    <img class="b1229-tower-image" src="assets/signal-towers/tower-${tone}.png" alt="" loading="eager" draggable="false">
   </div>`;
 }
 function b1217CompactCard(t){

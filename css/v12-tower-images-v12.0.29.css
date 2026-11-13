@@ -1,0 +1,18 @@
+/* V12.0.29: image-based realistic five-state signal tower, with data-driven reason. */
+html body #app .c11-tool-card .c11-identity-column>.c11-photo.b1226-photo:before{content:none!important;display:none!important}
+html body #app .c11-tool-card .c11-identity-column>.c11-photo.b1226-photo{height:clamp(390px,31vw,475px)!important;min-height:390px!important;gap:7px!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo>.b1226-photo-top{grid-template-columns:clamp(65px,20%,100px) minmax(0,1fr)!important;gap:8px!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-tower{min-width:0!important;min-height:0!important;align-items:stretch!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower{display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;height:100%!important;width:100%!important;min-height:0!important;overflow:hidden!important;background:linear-gradient(90deg,#03070a,#111c25 50%,#03070a)!important;border:1px solid #8496a7!important;border-radius:13px!important;padding:2px!important;box-shadow:inset 0 0 8px #000!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower-image{width:100%!important;height:100%!important;max-height:100%!important;object-fit:fill!important;display:block!important;filter:drop-shadow(0 0 4px #000)!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower>strong{display:none!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading{font-weight:800!important;letter-spacing:.01em!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-active-state{flex:0 0 auto!important;min-height:44px!important;max-height:75px!important;line-height:1.15!important;text-align:center!important;padding:6px 7px!important;overflow-wrap:anywhere!important;font-size:clamp(11px,.93vw,17px)!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-signal-key{flex:0 0 auto!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-signal-key>div{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:4px!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-signal-key span{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;min-width:0!important;padding:6px 2px!important;font-size:clamp(8px,.65vw,12px)!important;line-height:1.1!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-signal-key small{display:block!important;font-size:clamp(7px,.56vw,10px)!important;line-height:1.1!important;white-space:normal!important;text-align:center!important}
+/* All views reuse the same graphic selector; compact tower dimensions are controlled by the compact card. */
+html body #app .b1217-compact-card .b1229-tower{display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;min-width:0!important}
+html body #app .b1217-compact-card .b1229-tower-image{display:block!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important}
+html body #app .b1217-compact-card .b1229-tower>strong{display:none!important}
