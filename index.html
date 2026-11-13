@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
-<title>B7 FI Command Center V12.0.53</title>
+<title>B7 FI Command Center V12.0.54</title>
 <link rel="icon" href="Command-Center.ico?v=7.6.35" sizes="any">
 <link rel="shortcut icon" href="Command-Center.ico?v=7.6.35">
 
@@ -68,12 +68,12 @@
 <link rel="stylesheet" href="css/v12-unified-tool-badges-v12.0.44.css?build=120044">
 
 <link rel="stylesheet" href="css/b7-unified-raiders-v12.0.50.css?build=120050">
-<link rel="stylesheet" href="css/b7-badge-unified-v12.0.53.css?build=120053">
+<link rel="stylesheet" href="css/b7-badge-unified-v12.0.54.css?build=120054">
 </head><body>
 <div class="app-frame">
   <div id="stickyShell" class="sticky-shell">
     <header class="prototype-header">
-      <section class="prototype-header-left"><img class="b1239-raiders-logo" src="assets/raiders-header-logo.webp" alt="Raiders logo"><span>B7 FI COMMAND CENTER — V12.0.53</span></section>
+      <section class="prototype-header-left"><img class="b1239-raiders-logo" src="assets/raiders-header-logo.webp" alt="Raiders logo"><span>B7 FI COMMAND CENTER — V12.0.54</span></section>
       <section class="prototype-header-center" id="headerModeCenter"><div class="prototype-kla-box kla-presence-box"><div class="kla-user-side kla-user-left" id="klaUsersLeft"></div><div class="kla-connection-core" id="klaConnectionCore"><img src="assets/kla-plus-official.png" alt="KLA+"><div class="kla-connection-copy"><b id="headerModeLabel">LOCAL MODE</b><small id="headerConnectionLabel">LOCAL DATA</small></div></div><div class="kla-user-side kla-user-right" id="klaUsersRight"></div></div></section>
       <section class="prototype-header-right" id="pageTitle"><span class="b1241-quarter-title">OPERATIONS CENTER — CY26Q3</span><img class="b1241-right-logo" src="assets/raiders-header-logo.webp" alt="Raiders logo"></section>
     </header>
@@ -94,7 +94,7 @@
 <script src="js/v11.17.2-global-layout.js?build=111808"></script>
 
 <script src="js/b7-build-diagnostics-v11.17.51.js?build=111808"></script>
-<script>/* V12.0.53: detach modal from transformed or sticky ancestors. */
+<script>/* V12.0.54: detach modal from transformed or sticky ancestors. */
 (function(){function relocate(){var modal=document.getElementById('modal');if(modal&&modal.parentElement!==document.body){document.body.appendChild(modal);}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',relocate);else relocate();})();
 </script>
 <script src="js/b7-responsive-navigation-v11.18.06.js?build=111808"></script>
@@ -145,26 +145,26 @@
 </script>
 
 
-<script id="b753-uniform-badges">
+<script id="b754-uniform-badges">
 (function(){
- 'use strict';
- const H=64, GAP=7;
- function set(el,props){for(const [k,v] of Object.entries(props))el.style.setProperty(k,v,'important');}
- function fix(){
-   const app=document.getElementById('app');if(!app)return;
-   app.querySelectorAll('.c11-badge-region > .c11-badges,.fleet-badges,.v1222-badge-grid,.b7-editor-badge-grid').forEach(grid=>{
-     set(grid,{'display':'grid','grid-template-columns':'repeat(3,minmax(0,1fr))','grid-template-rows':'none','grid-auto-rows':H+'px','gap':GAP+'px','align-content':'start','align-items':'stretch','height':'auto','max-height':'none','flex-shrink':'0'});
-     for(const badge of grid.children){
-       if(!badge.matches('button,.c11-badge,.equipment-badge'))continue;
-       set(badge,{'height':H+'px','min-height':H+'px','max-height':H+'px','flex':'0 0 '+H+'px','align-self':'stretch','box-sizing':'border-box','margin':'0','padding':'5px 6px','display':'flex','flex-direction':'column','justify-content':'center','align-items':'center','background':'#000','background-image':'none','border':'1px solid #999','color':'#fff','overflow':'hidden','line-height':'1.12','white-space':'normal'});
-       if(badge.matches('.c11-wafer-badge,.v10-wafer-badge,.equipment-badge'))set(badge,{'grid-column':'1 / -1'});
-     }
+'use strict';
+const H=64,G=7;
+const put=(el,key,val)=>el.style.setProperty(key,val,'important');
+function apply(){
+ const app=document.getElementById('app');if(!app)return;
+ app.querySelectorAll('.c11-badge-region > .c11-badges,.fleet-badges,.v1222-badge-grid,.b7-editor-badge-grid').forEach(grid=>{
+   for(const [k,v] of Object.entries({'display':'grid','grid-template-columns':'repeat(3,minmax(0,1fr))','grid-auto-rows':H+'px','grid-template-rows':'none','gap':G+'px','height':'auto','max-height':'none','align-content':'start','align-items':'stretch','flex-shrink':'0','transform':'none'}))put(grid,k,v);
+   [...grid.children].forEach(b=>{
+     if(!b.matches('.c11-badge,.equipment-badge,button'))return;
+     for(const [k,v] of Object.entries({'box-sizing':'border-box','height':H+'px','min-height':H+'px','max-height':H+'px','flex':'0 0 '+H+'px','align-self':'stretch','margin':'0','padding':'7px 6px','display':'flex','flex-direction':'column','justify-content':'center','align-items':'center','background':'#000000','background-image':'none','border':'1px solid #999999','color':'#ffffff','white-space':'normal','line-height':'1.2','overflow':'hidden','transform':'none'}))put(b,k,v);
+     if(b.matches('.c11-wafer-badge,.v10-wafer-badge,.equipment-badge'))put(b,'grid-column','1 / -1');
    });
-   app.querySelectorAll('.b783-date-row > .b783-date-badge').forEach(b=>set(b,{'height':H+'px','min-height':H+'px','max-height':H+'px','box-sizing':'border-box','flex-shrink':'0'}));
-   app.querySelectorAll('.c11-badge-region').forEach(r=>set(r,{'min-height':'0','overflow-y':'auto','overflow-x':'hidden'}));
- }
- function init(){const app=document.getElementById('app');if(!app)return;let pending=false;new MutationObserver(records=>{if(!records.some(r=>r.type==='childList'))return;if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;fix()})}).observe(app,{childList:true,subtree:true});fix();}
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+ });
+ app.querySelectorAll('.b783-date-row > .b783-date-badge').forEach(b=>{for(const k of ['height','min-height','max-height'])put(b,k,H+'px');put(b,'flex-shrink','0');put(b,'box-sizing','border-box')});
+ app.querySelectorAll('.c11-badge-region').forEach(r=>{put(r,'min-height','0');put(r,'overflow-y','auto');put(r,'overflow-x','hidden');put(r,'flex-shrink','0')});
+}
+function init(){const app=document.getElementById('app');if(!app)return;let scheduled=false;new MutationObserver(rs=>{if(!rs.some(r=>r.type==='childList'))return;if(scheduled)return;scheduled=true;requestAnimationFrame(()=>{scheduled=false;apply()})}).observe(app,{subtree:true,childList:true});apply();window.addEventListener('resize',apply,{passive:true});}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
 </script>
 </body></html>

@@ -1,5 +1,5 @@
-B7 FI COMMAND CENTER V12.0.53 — RAIDERS BADGE HEIGHT TEST
+B7 FI COMMAND CENTER V12.0.54 - BADGE HEIGHT TEST
 
-Updated all operational, full-width tracking, and FI milestone date badges to 64px with 7px gaps. The new stylesheet and DOM sizing logic use the same values. Badge region scrolls instead of compressing grid tracks. All other application files and existing editing handlers are retained.
+All operational badges, full-width tracking badges, and FI milestone date badges target 64px heights and 7px gaps. Raiders black backgrounds and silver borders retained. Existing application behavior unchanged.
 
-TEST: Deploy the full ZIP, confirm V12.0.53 in header, then inspect the Universal Tool Card. Check three-line text, full-width tracking rows, and badge scrolling. This build has not been visually verified with live data.
+This build has not been validated against populated production data in a browser. Verify badge heights, scrolling, and click-to-edit before production use.
