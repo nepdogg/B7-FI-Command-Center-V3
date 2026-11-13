@@ -1,6 +1,12 @@
-B7 FI COMMAND CENTER V12.0.48 — RAIDERS BADGE GEOMETRY TEST
+B7 FI COMMAND CENTER V12.0.49 — RAIDERS BADGE REPAIR TEST
 
-Deploy the entire ZIP contents to the GitHub Pages repository root.
-Badge geometry: FI date and operational badges 36px, grid gap 7px, black backgrounds, silver borders.
-This version corrects the prior compressed grid by targeting the actual .c11-badge elements and explicit row/column gaps.
-Verify in Live Operations with real tool data; multi-user functions were not changed.
+- Replaces three conflicting recent badge override stylesheet links with one scoped CSS file.
+- Adds a runtime geometry guard to style actual rendered badge buttons after card updates.
+- Operational badges: 36px tall, 7px row/column gaps, black background, silver border.
+- Full-width wafers/computer/component badges retained.
+- Badge region scrolls if the fixed-height card cannot display all badges.
+- Navigation and footer buttons use black/silver colors.
+- Existing application JS/data and click handlers unchanged.
+
+TEST: Check Live Operations, Tools and Presentation Mode; verify click-to-edit, scroll and sync.
+This is a test build; no populated-browser visual verification has been completed.

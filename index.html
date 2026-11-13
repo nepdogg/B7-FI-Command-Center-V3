@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
-<title>B7 FI Command Center V12.0.48</title>
+<title>B7 FI Command Center V12.0.49</title>
 <link rel="icon" href="Command-Center.ico?v=7.6.35" sizes="any">
 <link rel="shortcut icon" href="Command-Center.ico?v=7.6.35">
 
@@ -67,14 +67,12 @@
 <link rel="stylesheet" href="css/v12-raiders-badges-photo-v12.0.42.css?build=120042">
 <link rel="stylesheet" href="css/v12-unified-tool-badges-v12.0.44.css?build=120044">
 
-<link rel="stylesheet" href="css/b7-raiders-unified-v12.0.46.css?build=120046">
-<link rel="stylesheet" href="css/b7-final-layout-v12.0.47.css?build=120047">
-<link rel="stylesheet" href="css/b7-authoritative-badges-v12.0.48.css?build=120048">
+<link rel="stylesheet" href="css/b7-unified-raiders-v12.0.49.css?build=120049">
 </head><body>
 <div class="app-frame">
   <div id="stickyShell" class="sticky-shell">
     <header class="prototype-header">
-      <section class="prototype-header-left"><img class="b1239-raiders-logo" src="assets/raiders-header-logo.webp" alt="Raiders logo"><span>B7 FI COMMAND CENTER — V12.0.48</span></section>
+      <section class="prototype-header-left"><img class="b1239-raiders-logo" src="assets/raiders-header-logo.webp" alt="Raiders logo"><span>B7 FI COMMAND CENTER — V12.0.49</span></section>
       <section class="prototype-header-center" id="headerModeCenter"><div class="prototype-kla-box kla-presence-box"><div class="kla-user-side kla-user-left" id="klaUsersLeft"></div><div class="kla-connection-core" id="klaConnectionCore"><img src="assets/kla-plus-official.png" alt="KLA+"><div class="kla-connection-copy"><b id="headerModeLabel">LOCAL MODE</b><small id="headerConnectionLabel">LOCAL DATA</small></div></div><div class="kla-user-side kla-user-right" id="klaUsersRight"></div></div></section>
       <section class="prototype-header-right" id="pageTitle"><span class="b1241-quarter-title">OPERATIONS CENTER — CY26Q3</span><img class="b1241-right-logo" src="assets/raiders-header-logo.webp" alt="Raiders logo"></section>
     </header>
@@ -95,7 +93,7 @@
 <script src="js/v11.17.2-global-layout.js?build=111808"></script>
 
 <script src="js/b7-build-diagnostics-v11.17.51.js?build=111808"></script>
-<script>/* V12.0.48: detach modal from transformed or sticky ancestors. */
+<script>/* V12.0.49: detach modal from transformed or sticky ancestors. */
 (function(){function relocate(){var modal=document.getElementById('modal');if(modal&&modal.parentElement!==document.body){document.body.appendChild(modal);}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',relocate);else relocate();})();
 </script>
 <script src="js/b7-responsive-navigation-v11.18.06.js?build=111808"></script>
@@ -142,6 +140,28 @@
   target.append(title,logo);locked=false;
  }
  new MutationObserver(ensure).observe(target,{childList:true,subtree:false});ensure();
+})();
+</script>
+<script id="b749-live-badge-geometry">
+(function(){
+'use strict';
+const H='36px',G='7px';
+function set(el,props){if(!el)return;for(const [k,v] of Object.entries(props))if(el.style.getPropertyValue(k)!==v||el.style.getPropertyPriority(k)!=='important')el.style.setProperty(k,v,'important');}
+function repair(){
+ const app=document.getElementById('app');if(!app)return;
+ const grids=app.querySelectorAll('.c11-badge-region > .c11-badges, .fleet-badges, .v1222-badge-grid');
+ grids.forEach(grid=>{
+  set(grid,{'display':'grid','grid-template-columns':'repeat(3,minmax(0,1fr))','grid-template-rows':'none','grid-auto-rows':H,'gap':G,'row-gap':G,'column-gap':G,'align-content':'start','align-items':'stretch','height':'auto','max-height':'none','background-color':'#000000'});
+  Array.from(grid.children).forEach(b=>{
+   if(!b.matches('.c11-badge,.equipment-badge'))return;
+   set(b,{'box-sizing':'border-box','height':H,'min-height':H,'max-height':H,'margin':'0px','padding':'3px 5px','background-color':'#000000','background-image':'none','border':'1px solid #999999','border-radius':'5px','display':'flex','flex-direction':'column','align-items':'center','justify-content':'center','gap':'1px','overflow':'hidden','color':'#ffffff','grid-column':b.matches('.c11-wafer-badge,.equipment-badge')?'1 / -1':'auto'});
+  });
+ });
+ app.querySelectorAll('.c11-badge-region').forEach(region=>set(region,{'background-color':'#000000','min-height':'0px','overflow-y':'auto'}));
+ document.querySelectorAll('#stickyShell nav button,#stickyShell nav select,.app-footer button').forEach(b=>set(b,{'background-color':b.classList.contains('active')?'#555555':'#151515','background-image':'none','border-color':'#999999','color':'#ffffff'}));
+}
+function init(){const app=document.getElementById('app');if(!app)return;repair();new MutationObserver(repair).observe(app,{childList:true,subtree:true});}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
 </script>
 </body></html>
