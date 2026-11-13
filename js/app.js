@@ -1462,10 +1462,10 @@ function workflowBadge(name,required,status){let r=String(required||'TBD').toUpp
 function canonicalToolBadges(t){
   const ordinary=INDICATOR_SLOT_KEYS.filter(k=>k!=='systemWafers').map(k=>{
     const x=indicatorState(t,k);
-    return `<button type="button" class="c11-badge v10-badge ${esc(x.tone||'idle')}" data-direct-indicator="${esc(k)}" data-indicator-tool="${esc(t.id)}" title="${esc(x.state||x.label||'')} — click to update">${badgeFace(x,x.label||BADGE_PANEL_LABELS[k]||k)}</button>`;
+    return `<button type="button" class="c11-badge v10-badge ${esc(x.tone||'idle')}" style="height:64px!important;min-height:64px!important;max-height:64px!important;box-sizing:border-box!important;flex-shrink:0!important" data-direct-indicator="${esc(k)}" data-indicator-tool="${esc(t.id)}" title="${esc(x.state||x.label||'')} — click to update">${badgeFace(x,x.label||BADGE_PANEL_LABELS[k]||k)}</button>`;
   }).join('');
   const wafer=indicatorState(t,'systemWafers');
-  const waferHtml=`<button type="button" class="c11-badge v10-badge c11-wafer-badge v10-wafer-badge ${esc(wafer.tone||'idle')}" data-direct-indicator="systemWafers" data-indicator-tool="${esc(t.id)}" title="${esc(wafer.state||'SYSTEM WAFERS')} — click to update"><span>SYSTEM WAFERS</span><small>${esc(waferTally(t))}</small></button>`;
+  const waferHtml=`<button type="button" class="c11-badge v10-badge c11-wafer-badge v10-wafer-badge ${esc(wafer.tone||'idle')}" style="height:64px!important;min-height:64px!important;max-height:64px!important;box-sizing:border-box!important;grid-column:1/-1!important" data-direct-indicator="systemWafers" data-indicator-tool="${esc(t.id)}" title="${esc(wafer.state||'SYSTEM WAFERS')} — click to update"><span>SYSTEM WAFERS</span><small>${esc(waferTally(t))}</small></button>`;
   return ordinary+waferHtml+equipmentBadges(t,'c11');
 }
 function toolCard(t){return liveToolCard(t)}
@@ -1825,7 +1825,7 @@ function v11ToolCard(){
         ${fiDateBadgeRow(t)}
         <button type="button" class="c11-reduced ${t.reducedProcess?'active':''}" data-direct-indicator="reduced" data-indicator-tool="${esc(t.id)}">${t.reducedProcess?'REDUCED PROCESS':'NORMAL PROCESS'}</button>
         ${carry?`<div class="c11-carry">⚠ QUARTER CARRYOVER — SHIP ASAP ⚠</div>`:`<div class="c11-carry c11-carry-placeholder" aria-hidden="true"></div>`}
-        <div class="c11-badge-region"><div class="c11-badges">${badgeHtml}</div></div>
+        <div class="c11-badge-region" style="height:auto!important;max-height:none!important;overflow:visible!important;flex:none!important"><div class="c11-badges" style="display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-rows:64px!important;grid-template-rows:none!important;gap:7px!important;height:auto!important;max-height:none!important;overflow:visible!important">${badgeHtml}</div></div>
         <button class="c11-update" data-tool="${esc(t.id)}">UPDATE TOOL STATUS →</button>
       </section>
       <section class="c11-column c11-status-column">

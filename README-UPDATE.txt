@@ -1,8 +1,9 @@
-B7 FI Command Center V12.0.56 — Raiders Natural Height Test
+V12.0.57 TEST — Uniform badge geometry
 
-Based on V12.0.55. Removed its mutation-based inline badge height patch.
-All operational and full-width badges use a 64px CSS grid row with 7px gaps.
-Tool card grows vertically; no internal badge scrollbars. Three columns align.
-Raiders black and silver navigation/header refinements.
-Browser diagnostic: b756BadgeDiagnostics() in developer console.
-This is a test build; confirm multi-user sync and editor functionality before production.
+Badge rows and badge elements are both 64px. No internal badge scrolling. Three columns grow together; page may become taller. Raiders colors retained.
+
+Deployment: replace the full GitHub Pages site files with this package, preserving your production Microsoft List data.
+
+Diagnostics: open browser console and run b757BadgeDiagnostics() on Live Operations. Each badge should report height 64 at 100% browser zoom.
+
+Browser-based live data validation was not possible in this environment.
