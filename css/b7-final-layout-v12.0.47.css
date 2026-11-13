@@ -1,0 +1,18 @@
+/* V12.0.47: actual live-card selectors, geometry tied to milestone badge. */
+html body #app .c11-tool-card {--badge-unit:36px;--badge-gap:5px}
+html body #app .c11-tool-card .b783-date-row {gap:var(--badge-gap)!important}
+html body #app .c11-tool-card .b783-date-row > .b783-date-badge {height:var(--badge-unit)!important;min-height:var(--badge-unit)!important;max-height:var(--badge-unit)!important;background:#000!important;border:1px solid #96999d!important}
+html body #app .c11-tool-card .c11-badge-region {flex:0 0 auto!important;background:#000!important;overflow:visible!important;padding:0!important;margin:0!important}
+html body #app .c11-tool-card .c11-badge-region > .c11-badges {display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:none!important;grid-auto-rows:var(--badge-unit)!important;gap:var(--badge-gap)!important;align-items:stretch!important;align-content:start!important;height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;background:#000!important}
+html body #app .c11-tool-card .c11-badge-region > .c11-badges > button {box-sizing:border-box!important;grid-row:auto!important;height:var(--badge-unit)!important;min-height:var(--badge-unit)!important;max-height:var(--badge-unit)!important;padding:2px 4px!important;margin:0!important;background:#000!important;background-color:#000!important;background-image:none!important;border:1px solid #92969a!important;border-radius:5px!important;box-shadow:none!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:1px!important;overflow:hidden!important;color:#fff!important;font-size:clamp(8px,.61vw,11px)!important;line-height:1.05!important}
+html body #app .c11-tool-card .c11-badge-region > .c11-badges > button :is(span,small,strong,em,b) {font-size:inherit!important;line-height:1.05!important;margin:0!important;padding:0!important;color:#fff!important;background:transparent!important;max-width:100%!important;white-space:normal!important;overflow-wrap:anywhere!important}
+html body #app .c11-tool-card .c11-badge-region > .c11-badges > :is(.c11-wafer-badge,.equipment-badge) {grid-column:1/-1!important}
+html body #app .c11-tool-card .c11-badge-region > .c11-badges > button:hover {background:#171717!important;border-color:#fff!important}
+/* Same authoritative dimensions in tool lists and editor preview. */
+html body #app :is(.fleet-badges,.v1222-badge-grid) {grid-auto-rows:36px!important;gap:5px!important;background:#000!important}
+html body #app :is(.fleet-badges,.v1222-badge-grid) > button {height:36px!important;min-height:36px!important;max-height:36px!important;background:#000!important;background-image:none!important}
+/* Raiders shell navigation, actual selectors. */
+html body .main-nav,html body .subnav,html body .page-actions {background:#050505!important;background-image:none!important;border-color:#999!important}
+html body .main-nav button,html body .subnav button,html body .page-actions button,html body .main-nav select {background:#141414!important;background-image:none!important;color:#fff!important;border:1px solid #9da1a5!important}
+html body .main-nav :is(button.active,button.selected,button[aria-current="page"],.active>button) {background:#676b70!important;border-color:#eee!important}
+html body .app-footer,html body .footer-system-row {background:#080808!important;background-image:none!important;border-color:#999!important}
