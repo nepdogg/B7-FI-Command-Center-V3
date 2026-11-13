@@ -1,3 +1,9 @@
-V12.0.68 - Browser zoom regression repair.
-Built from V12.0.67. Removed fractional app-frame width and CSS zoom rules introduced in V12.0.67. Full-width natural reflow; preserves V12.0.65 badge geometry.
-Testing: Edge zoom 50%, 67%, 75%, 100%, 125%; compare Live Operations, navigation, footer, presentation mode. Visual browser verification not completed.
+B7 FI Command Center V12.0.64 — three special badge height repair
+
+Baseline: V12.0.62 (not V12.0.63).
+Only new styling: css/b7-three-special-badges-v12.0.64.css.
+Normal/Reduced Process, Quarter Carryover/Ship ASAP (including placeholder), and Update Tool Status are 64px high. All other badge layouts are unchanged from V12.0.62.
+No application logic or Microsoft List synchronization code was modified.
+Verification: package integrity and static source checks. Browser measurements, if available, should be used before calling this a confirmed fix.
+
+V12.0.69: Responsive shell based on V12.0.65; badge geometry untouched. Natural browser zoom; desktop 3-column layout and narrow-screen reflow. No zoom magnification. Browser appearance requires testing.
