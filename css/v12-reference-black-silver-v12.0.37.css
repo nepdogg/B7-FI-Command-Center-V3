@@ -1,0 +1,40 @@
+/* V12.0.37: unified reference-style black/silver dashboard. No business logic changes. */
+:root{--accent:#bfc1c5!important;--accent-rgb:190,192,196!important;--bg:#000!important;--panel:#080808!important;--line:#a0a0a0!important}
+html,body,body .app-frame,body .body-shell,body .body-workspace,body #app{background:#000!important;background-image:none!important;color:#fff!important}
+/* Header is outside #app: previous theme rules never reached it. */
+body #stickyShell,body #stickyShell .prototype-header,body #stickyShell .prototype-header-left,body #stickyShell .prototype-header-right,body #stickyShell .prototype-header-center,body #stickyShell .prototype-kla-box{background:#050505!important;background-image:none!important;color:#fff!important}
+body #stickyShell .prototype-header{border-bottom:2px solid #8b8b8b!important;gap:5px!important}
+body #stickyShell .prototype-header-left,body #stickyShell .prototype-header-right{border:1px solid #858585!important;box-shadow:inset 0 1px 0 #d2d2d280,inset 0 -5px 15px #ffffff10!important;text-shadow:0 1px 1px #777!important}
+body #stickyShell .prototype-header-center:not(.shared-disconnected):not(.shared-connecting){border-color:#929292!important}
+/* Navigation: silver borders, graphite buttons, bright selected button. */
+body #stickyShell .main-nav,body #stickyShell .b797-unified-nav,body #stickyShell .subnav,body #stickyShell .page-actions{background:#000!important;background-image:none!important;border-color:#6d6d6d!important}
+body #stickyShell .b797-unified-nav .b796-center-select,
+body #stickyShell .b797-unified-nav>.subnav>button,
+body #stickyShell .b797-unified-nav>.page-actions button,
+body #stickyShell .b797-unified-nav .tool-type-menu-button,
+body #stickyShell .b797-unified-nav select{background:linear-gradient(#262626,#080808)!important;color:#fff!important;border:1px solid #a7a7a7!important;border-radius:7px!important;box-shadow:inset 0 1px 0 #ffffff50!important}
+body #stickyShell .b797-unified-nav>.subnav>button.active,
+body #stickyShell .b797-unified-nav>.subnav>button[aria-current=page],
+body #stickyShell .b797-unified-nav>.page-actions .active{background:linear-gradient(#f5f5f5,#a6a6a6)!important;color:#050505!important;border-color:#f0f0f0!important;text-shadow:none!important}
+/* Status panel outer shells: keep alert LEDs/status semantics. */
+body #stickyShell .status-stack{background:#000!important}
+body #stickyShell .status-stack>*,body #stickyShell .status-stack .status-bar{background:#090909!important;background-image:none!important;color:#fff!important;border-color:#8d8d8d!important}
+/* Three-column universal tool card: black panels, silver hairlines. */
+body #app .c11-tool-card,body #app .c11-tool-card .c11-column,body #app .c11-tool-card .c11-status-card,body #app .c11-tool-card .c11-progress-row{background:#090909!important;background-image:none!important;color:#fff!important;border-color:#929292!important;box-shadow:none!important}
+body #app .c11-tool-card .c11-id-badge,body #app .c11-tool-card .b783-date-badge{background:linear-gradient(#303030,#101010)!important;color:#fff!important;border:1px solid #777!important}
+body #app .c11-tool-card .c11-photo.b1226-photo{background:#050505!important;background-image:none!important;border:1px solid #7d7d7d!important}
+body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading,
+body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading span,
+body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading strong{background:linear-gradient(#464646,#181818)!important;background-image:linear-gradient(#464646,#181818)!important;color:#fff!important;border-color:#8d8d8d!important}
+body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-top{display:grid!important;grid-template-columns:clamp(100px,24%,140px) minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr)!important;gap:7px!important;align-items:stretch!important}
+body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-tower,
+body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;overflow:hidden!important;align-self:stretch!important;height:100%!important}
+body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower-image{width:100%!important;height:100%!important;min-height:0!important;max-width:100%!important;max-height:100%!important;object-fit:fill!important;opacity:1!important;filter:none!important}
+body #app .c11-tool-card .c11-photo.b1226-photo .v1210-photo-image{background:#050505!important}
+body #app .c11-tool-card>.c11-card-grid.b1226-three-column{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+/* Silver segmented progress. Preserve widths/percentages and non-progress alert colors. */
+body #app .c11-tool-card .c11-progress-row :is(.progress-fill,.progress-bar-fill,.b1228-progress-fill,.c11-progress-fill){background-color:#b9b9b9!important;background-image:repeating-linear-gradient(90deg,#e1e1e1 0,#d5d5d5 13px,#222 13px,#222 16px)!important}
+body #app .c11-tool-card .c11-progress-row :is(.progress-track,.progress-bar){border-color:#a5a5a5!important}
+body #app .c11-tool-card .c11-progress-row :is(.progress-label,.progress-value){color:#fff!important}
+body .app-footer{background:#080808!important;border-color:#929292!important;color:#fff!important}
+@media(max-width:760px){body:not(.presentation-mode) #app .c11-tool-card>.c11-card-grid.b1226-three-column{grid-template-columns:minmax(0,1fr)!important}}
