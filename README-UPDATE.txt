@@ -1,5 +1,5 @@
-B7 FI COMMAND CENTER V12.0.60 — RAIDERS BADGE LAYOUT REBUILD
+B7 FI Command Center V12.0.61 - Raiders Badge Grid Repair
 
-Replaced broken missing v12.0.58 badge stylesheet reference with a present, final v12.0.59 contract. Unified 64px badge geometry and 7px spacing for identity, date, operational and full-width tracking badges. No internal scrollbars. Existing app/data logic retained.
+Rebuilt grid sizing with a single last-loaded stylesheet. All badges target 72px height and 7px gaps, including full-width tracking and date badges. Removed hardcoded inline heights from badge renderer. Removed incorrect flex-basis:64px on grid children. Card columns grow naturally, no internal scrollbars. Existing data and handlers retained.
 
-TESTING: Confirm the version reads V12.0.60. Compare rendered badge heights on Live Operations and Tools pages. This build has not been verified with live Microsoft List data.
+TEST BUILD: Visual validation with populated live Microsoft List data has not been completed.

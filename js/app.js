@@ -1186,7 +1186,7 @@ function waferAdditionalAccounted(t){return waferAdditionalTotal(t)>0&&!!t?.wafe
 function indicatorMessage(t,key){let state=indicatorStateForSlot(t,key).state;return key==='systemWafers'?state+'\n'+waferTally(t):state}
 function indicatorLamp(t,key){let x=indicatorStateForSlot(t,key),editable=true;if(key==='lamp'){editable=true;let req=lampRequestBrainState(t);if(req.active&&x.tone==='complete')x={...x,state:`${x.state} · REQUEST LAMP`,tone:'critical'};}let attrs=key==='lamp'?` data-quick-field="lampHours" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" aria-label="Update lamp status and hours"`:editable?` data-direct-indicator="${esc(key)}" data-indicator-tool="${esc(t.id)}" role="button" tabindex="0" aria-label="Update ${esc(x.label)}"`:` aria-label="${esc(x.label)} automatic status"`;if(key==='systemWafers'){let total=waferAdditionalTotal(t),lower=total===0?'clear':waferAdditionalAccounted(t)?'accounted':'outstanding';return `<div class="fi-indicator-lamp wafer-dual ${x.active?'on':'off'} direct-editable" title="SYSTEM WAFERS — click to update additional wafer counters"${attrs}><span class="wafer-kit-half ${x.tone}"><span class="fi-indicator-message">${esc(x.state)}</span></span><span class="wafer-extra-half ${lower}"><span class="fi-indicator-message">${esc(waferTally(t))}${lower==='accounted'?' ✓':''}</span></span></div>`;}return `<div class="fi-indicator-lamp ${x.active?'on':'off'} ${x.tone} ${editable?'direct-editable':'automatic-badge'}" title="${esc(x.label)}${editable?' — click to open source / badge control':''}"${attrs}><span class="fi-indicator-message">${esc(indicatorMessage(t,key))}</span></div>`}
 function fiMilestoneBadge(t,key,label){let date=key==='fiHandoffDate'?t.fiHandoffDate:t.fiPoweredDownDate;return `<div class="fi-indicator-lamp fi-milestone-badge ${date?'complete':'idle'} direct-editable" data-fi-milestone="${key}" data-fi-milestone-tool="${esc(t.id)}" role="button" tabindex="0" title="Edit ${label} in Tool Editor"><span class="fi-indicator-message"><b>${label}</b><small>${date?esc(date):'NOT RECORDED'}</small></span></div>`}
-function fiDateBadgeRow(t){return `<div class="b783-date-row" aria-label="FI milestone dates">${[['fiHandoffDate','FI HANDOFF DATE'],['fiPoweredDownDate','FI POWERED DOWN DATE']].map(([key,label])=>{const value=key==='fiHandoffDate'?t.fiHandoffDate:(t.fiPoweredDownDate||t.poweredDownDate);return `<button type="button" class="b783-date-badge ${value?'recorded':'pending'}" data-fi-milestone="${key}" data-fi-milestone-tool="${esc(t.id)}" title="Edit ${label} in Tool Editor"><span>${label}</span><strong>${value?esc(fmtDate(value)):'NOT RECORDED'}</strong></button>`}).join('')}</div>`}
+function fiDateBadgeRow(t){return `<div class="b783-date-row" aria-label="FI milestone dates">${[['fiHandoffDate','FI HANDOFF DATE'],['fiPoweredDownDate','FI POWERED DOWN DATE']].map(([key,label])=>{const value=key==='fiHandoffDate'?t.fiHandoffDate:(t.fiPoweredDownDate||t.poweredDownDate);return `<button type="button" class="b783-date-badge b761-uniform-badge ${value?'recorded':'pending'}" data-fi-milestone="${key}" data-fi-milestone-tool="${esc(t.id)}" title="Edit ${label} in Tool Editor"><span>${label}</span><strong>${value?esc(fmtDate(value)):'NOT RECORDED'}</strong></button>`}).join('')}</div>`}
 function indicatorDisplayPanel(t){return `<section class="utc-indicator-display"><div class="utc-indicator-grid">${INDICATOR_SLOT_KEYS.map(k=>indicatorLamp(t,k)).join('')}${equipmentBadges(t,'utc')}</div></section>`}
 function nextSystemTasksAuto(t){
   let ev=evaluateTool(t),rows=[],seen=new Set(),add=(key,tone,text,source='')=>{let norm=String(text||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();if(!norm||seen.has(norm))return;seen.add(norm);rows.push({key,tone,text,source})};
@@ -1462,10 +1462,10 @@ function workflowBadge(name,required,status){let r=String(required||'TBD').toUpp
 function canonicalToolBadges(t){
   const ordinary=INDICATOR_SLOT_KEYS.filter(k=>k!=='systemWafers').map(k=>{
     const x=indicatorState(t,k);
-    return `<button type="button" class="c11-badge v10-badge ${esc(x.tone||'idle')}" style="height:64px!important;min-height:64px!important;max-height:64px!important;box-sizing:border-box!important;flex-shrink:0!important" data-direct-indicator="${esc(k)}" data-indicator-tool="${esc(t.id)}" title="${esc(x.state||x.label||'')} — click to update">${badgeFace(x,x.label||BADGE_PANEL_LABELS[k]||k)}</button>`;
+    return `<button type="button" class="c11-badge v10-badge b761-uniform-badge ${esc(x.tone||'idle')}"  data-direct-indicator="${esc(k)}" data-indicator-tool="${esc(t.id)}" title="${esc(x.state||x.label||'')} — click to update">${badgeFace(x,x.label||BADGE_PANEL_LABELS[k]||k)}</button>`;
   }).join('');
   const wafer=indicatorState(t,'systemWafers');
-  const waferHtml=`<button type="button" class="c11-badge v10-badge c11-wafer-badge v10-wafer-badge ${esc(wafer.tone||'idle')}" style="height:64px!important;min-height:64px!important;max-height:64px!important;box-sizing:border-box!important;grid-column:1/-1!important" data-direct-indicator="systemWafers" data-indicator-tool="${esc(t.id)}" title="${esc(wafer.state||'SYSTEM WAFERS')} — click to update"><span>SYSTEM WAFERS</span><small>${esc(waferTally(t))}</small></button>`;
+  const waferHtml=`<button type="button" class="c11-badge v10-badge b761-uniform-badge c11-wafer-badge v10-wafer-badge ${esc(wafer.tone||'idle')}"  data-direct-indicator="systemWafers" data-indicator-tool="${esc(t.id)}" title="${esc(wafer.state||'SYSTEM WAFERS')} — click to update"><span>SYSTEM WAFERS</span><small>${esc(waferTally(t))}</small></button>`;
   return ordinary+waferHtml+equipmentBadges(t,'c11');
 }
 function toolCard(t){return liveToolCard(t)}
@@ -1818,14 +1818,14 @@ function v11ToolCard(){
           ${c11IdentityButton(t,'model','MODEL',t.model,!t.model)}
           ${c11IdentityButton(t,'customer','CUSTOMER',t.customer||'NO CUSTOMER',!t.customer)}
           ${c11IdentityButton(t,'salesOrder','SALES ORDER',t.salesOrder||'NO SALES ORDER',!t.salesOrder)}
-          <button type="button" class="c11-id-badge ${!t.driver||/^unassigned$/i.test(t.driver)?'missing':''}" data-direct-indicator="driver" data-indicator-tool="${esc(t.id)}"><small>DRIVER</small><strong>${esc(t.driver||'UNASSIGNED')}</strong></button>
-          <div class="c11-id-badge"><small>QUARTER</small><strong>${esc(toolHomeQuarter(t))}</strong></div>
-          <button type="button" class="c11-id-badge ${!t.shipDate?'missing':''}" data-quick-field="shipDate" data-quick-tool="${esc(t.id)}" title="SHIP DATE — click to update"><small>SHIP DATE</small><strong>${esc(t.shipDate?fmtDate(t.shipDate):'NO SHIP DATE')}</strong></button>
+          <button type="button" class="c11-id-badge b761-uniform-badge ${!t.driver||/^unassigned$/i.test(t.driver)?'missing':''}" data-direct-indicator="driver" data-indicator-tool="${esc(t.id)}"><small>DRIVER</small><strong>${esc(t.driver||'UNASSIGNED')}</strong></button>
+          <div class="c11-id-badge b761-uniform-badge"><small>QUARTER</small><strong>${esc(toolHomeQuarter(t))}</strong></div>
+          <button type="button" class="c11-id-badge b761-uniform-badge ${!t.shipDate?'missing':''}" data-quick-field="shipDate" data-quick-tool="${esc(t.id)}" title="SHIP DATE — click to update"><small>SHIP DATE</small><strong>${esc(t.shipDate?fmtDate(t.shipDate):'NO SHIP DATE')}</strong></button>
         </div>
         ${fiDateBadgeRow(t)}
         <button type="button" class="c11-reduced ${t.reducedProcess?'active':''}" data-direct-indicator="reduced" data-indicator-tool="${esc(t.id)}">${t.reducedProcess?'REDUCED PROCESS':'NORMAL PROCESS'}</button>
         ${carry?`<div class="c11-carry">⚠ QUARTER CARRYOVER — SHIP ASAP ⚠</div>`:`<div class="c11-carry c11-carry-placeholder" aria-hidden="true"></div>`}
-        <div class="c11-badge-region" style="height:auto!important;max-height:none!important;overflow:visible!important;flex:none!important"><div class="c11-badges" style="display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-rows:64px!important;grid-template-rows:none!important;gap:7px!important;height:auto!important;max-height:none!important;overflow:visible!important">${badgeHtml}</div></div>
+        <div class="c11-badge-region" style="height:auto!important;max-height:none!important;overflow:visible!important;flex:none!important"><div class="c11-badges b761-badge-grid">${badgeHtml}</div></div>
         <button class="c11-update" data-tool="${esc(t.id)}">UPDATE TOOL STATUS →</button>
       </section>
       <section class="c11-column c11-status-column">
@@ -2693,7 +2693,7 @@ function equipmentBadges(t,mode){return ['computers','components'].map(kind=>{
   const urgent=states.some(x=>/Failed|Missing/i.test(x));
   const pending=states.some(x=>/Borrowed|Swap|Replacement/i.test(x));
   const tone=urgent?'equipment-critical':pending?'equipment-warning':st.rows?'equipment-complete':'equipment-neutral';
-  return `<button type="button" class="equipment-badge ${mode==='c11'?'c11-badge c11-wafer-badge':''} ${tone}" data-equipment-open="${esc(kind)}" data-equipment-tool="${esc(t.id)}" title="${esc(label)} — ${st.rows} recorded events. Click for swap history"><strong>${label}</strong><small>${esc(tally)}</small><em>${st.rows} events · ${st.unique} distinct units · ${st.swaps} swaps</em></button>`;
+  return `<button type="button" class="equipment-badge b761-uniform-badge ${mode==='c11'?'c11-badge c11-wafer-badge':''} ${tone}" data-equipment-open="${esc(kind)}" data-equipment-tool="${esc(t.id)}" title="${esc(label)} — ${st.rows} recorded events. Click for swap history"><strong>${label}</strong><small>${esc(tally)}</small><em>${st.rows} events · ${st.unique} distinct units · ${st.swaps} swaps</em></button>`;
 }).join('')}
 function equipmentModal(id,kind){
  const t=state.tools.find(x=>String(x.id)===String(id));if(!t)return;
