@@ -1,0 +1,14 @@
+/* V12.0.32: structural DOM correction in app.js restores true three-column siblings. */
+html body #app .c11-tool-card > .c11-card-grid.b1226-three-column{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:auto!important;gap:8px!important;align-items:stretch!important}
+html body #app .c11-tool-card > .c11-card-grid.b1226-three-column > .c11-column{grid-row:1!important;min-width:0!important;max-width:100%!important;align-self:stretch!important}
+html body #app .c11-tool-card > .c11-card-grid.b1226-three-column > .c11-identity-column{grid-column:1!important}
+html body #app .c11-tool-card > .c11-card-grid.b1226-three-column > .c11-status-column{grid-column:2!important}
+html body #app .c11-tool-card > .c11-card-grid.b1226-three-column > .c11-progress-column{grid-column:3!important}
+/* Signal graphic is unframed and fills the exact height of the header plus tool photo. */
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-top{display:grid!important;grid-template-columns:clamp(65px,19%,98px) minmax(0,1fr)!important;align-items:stretch!important;height:100%!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-tower{height:100%!important;min-height:0!important;overflow:visible!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding:0!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower{height:100%!important;width:100%!important;min-height:0!important;overflow:visible!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding:0!important;filter:none!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower-image{height:100%!important;width:100%!important;object-fit:fill!important;filter:none!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-main{height:100%!important;min-height:0!important;display:flex!important;flex-direction:column!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo .v1210-photo-image{flex:1 1 0!important;min-height:0!important}
+@media(max-width:760px){html body:not(.presentation-mode) #app .c11-tool-card > .c11-card-grid.b1226-three-column{grid-template-columns:minmax(0,1fr)!important}html body:not(.presentation-mode) #app .c11-tool-card > .c11-card-grid.b1226-three-column > .c11-column{grid-column:1!important;grid-row:auto!important}}

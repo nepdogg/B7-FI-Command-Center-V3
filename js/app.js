@@ -1811,7 +1811,7 @@ function v11ToolCard(){
   return `<section class="c11-tool-card" data-universal-tool-card="${esc(t.id)}">
     <div class="c11-card-grid b1224-universal-grid b1226-three-column">
       <section class="c11-column c11-identity-column">
-        <div class="c11-photo b796-priority-photo b1226-photo"><div class="b1226-photo-top"><div class="b1226-photo-tower">${b1224Tower(t)}</div><div class="b1226-photo-main"><button type="button" class="b1226-photo-heading" data-direct-priority="${esc(t.id)}" title="Update priority"><span>#${esc(p.rank||t.priority||'—')} PRIORITY</span><strong>${esc(String(t.alias||'NO ALIAS').toUpperCase())}</strong></button><div class="v1210-photo-image"><img src="${esc(img)}" alt="${esc(t.codename||'Tool')}"></div></div></div></div></div>
+        <div class="c11-photo b796-priority-photo b1226-photo"><div class="b1226-photo-top"><div class="b1226-photo-tower">${b1224Tower(t)}</div><div class="b1226-photo-main"><button type="button" class="b1226-photo-heading" data-direct-priority="${esc(t.id)}" title="Update priority"><span>#${esc(p.rank||t.priority||'—')} PRIORITY</span><strong>${esc(String(t.alias||'NO ALIAS').toUpperCase())}</strong></button><div class="v1210-photo-image"><img src="${esc(img)}" alt="${esc(t.codename||'Tool')}"></div></div></div></div>
         <div class="c11-identity-stack">
           ${c11IdentityButton(t,'utid','UTID',t.id,!t.id)}
           ${c11IdentityButton(t,'toolType','TOOL TYPE',t.codename,!t.codename)}
