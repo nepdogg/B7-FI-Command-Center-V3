@@ -1,0 +1,46 @@
+/* V12.0.73: restore the horizontal label/value identity badge contract.
+   Loaded after the global Raiders stylesheet; no changes to the 3-line tool badge grid. */
+html body #app .c11-tool-card .c11-identity-stack > .c11-id-badge,
+html body #app .c11-tool-card .b783-date-row > .b783-date-badge {
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:nowrap!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  text-align:left!important;
+  gap:8px!important;
+  padding:6px 10px!important;
+  background:#050505!important;
+  background-image:none!important;
+  border:1px solid #aeb4bc!important;
+  box-sizing:border-box!important;
+}
+html body #app .c11-tool-card .c11-identity-stack > .c11-id-badge > small,
+html body #app .c11-tool-card .b783-date-row > .b783-date-badge > span {
+  display:block!important;
+  flex:0 1 auto!important;
+  min-width:0!important;
+  max-width:48%!important;
+  margin:0!important;
+  font-size:12px!important;
+  line-height:1.15!important;
+  font-weight:500!important;
+  color:#e3e3e3!important;
+  text-align:left!important;
+  white-space:normal!important;
+}
+html body #app .c11-tool-card .c11-identity-stack > .c11-id-badge > strong,
+html body #app .c11-tool-card .b783-date-row > .b783-date-badge > strong {
+  display:block!important;
+  flex:0 1 auto!important;
+  min-width:0!important;
+  max-width:64%!important;
+  margin:0!important;
+  font-size:15px!important;
+  line-height:1.15!important;
+  font-weight:800!important;
+  color:#fff!important;
+  text-align:right!important;
+  overflow-wrap:anywhere!important;
+  white-space:normal!important;
+}
