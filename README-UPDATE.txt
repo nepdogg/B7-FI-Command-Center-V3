@@ -1,5 +1,5 @@
-B7 FI Command Center V12.0.62 - Unified badge layout TEST
+B7 FI Command Center V12.0.63 TEST
 
-Changes: Consolidated recent conflicting badge stylesheet links; one final CSS source and one runtime geometry application. Operational, identity, date, and full-width tracking badges use 64px heights and 7px gaps. No internal badge scrollbars. Three-line labels and existing badge handlers retained.
+Based on V12.0.62. Targeted fix for three remaining unequal-height controls: Reduced/Normal Process, Quarter Carryover/placeholder, Update Tool Status. All now use 64px with no internal scrollbars. Existing behavior and state classes preserved.
 
-Verification: Package integrity and static stylesheet references checked. Actual live populated app rendering has not been verified.
+Deploy the contents of this ZIP to the GitHub Pages repository root. Validate Live Operations, carryover and non-carryover tools, and Presentation Mode. This is a test build; populated browser verification has not been completed.

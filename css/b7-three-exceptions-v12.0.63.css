@@ -1,0 +1,53 @@
+/* V12.0.63 — three remaining badges use exactly the same row geometry as operational badges.
+   These are actual .utc-* classes rendered by js/app.js, not legacy .c11-* classes. */
+:root { --b763-badge-height:64px; --b763-badge-gap:7px; }
+html body #app .utc-card.utc-v6538 .utc-info > .utc-reduced,
+html body #app .utc-card.utc-v6538 .utc-info > .utc-carryover-banner,
+html body #app .utc-card.utc-v6538 .utc-info > .utc-edit-tool-bar-bottom {
+  box-sizing:border-box!important;
+  height:var(--b763-badge-height)!important;
+  min-height:var(--b763-badge-height)!important;
+  max-height:var(--b763-badge-height)!important;
+  flex:0 0 var(--b763-badge-height)!important;
+  align-self:stretch!important;
+  padding:6px 8px!important;
+  margin:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  align-items:center!important;
+  text-align:center!important;
+  gap:2px!important;
+  line-height:1.15!important;
+  border-radius:6px!important;
+  border:1px solid #aeb4bc!important;
+  overflow:hidden!important;
+  transform:none!important;
+}
+/* Preserve existing alert colors and process states; normal badges use Raiders black. */
+html body #app .utc-card.utc-v6538 .utc-info > .utc-reduced.idle,
+html body #app .utc-card.utc-v6538 .utc-info > .utc-carryover-placeholder,
+html body #app .utc-card.utc-v6538 .utc-info > .utc-edit-tool-bar-bottom {
+  background:#000!important;background-image:none!important;color:#fff!important;
+}
+html body #app .utc-card.utc-v6538 .utc-info > .utc-carryover-banner > strong,
+html body #app .utc-card.utc-v6538 .utc-info > .utc-carryover-banner > small {
+  white-space:normal!important;max-width:100%!important;line-height:1.15!important;
+}
+/* The actual live card is .utc-card, not .c11-tool-card. Do not shrink its left column. */
+html body #app .utc-card.utc-v6538 .utc-info {
+  height:auto!important;min-height:0!important;max-height:none!important;
+  overflow:visible!important;flex-shrink:0!important;
+}
+html body #app .utc-card.utc-v6538 .utc-info > .utc-indicator-display {
+  height:auto!important;min-height:0!important;max-height:none!important;
+  flex:0 0 auto!important;overflow:visible!important;
+}
+html body #app .utc-card.utc-v6538 .utc-info > .utc-indicator-display .utc-indicator-grid {
+  height:auto!important;max-height:none!important;overflow:visible!important;
+}
+/* Preserve the same geometry in Presentation Mode. */
+html body.presentation-mode #app .utc-card.utc-v6538 .utc-info > :is(.utc-reduced,.utc-carryover-banner,.utc-edit-tool-bar-bottom) {
+  height:var(--b763-badge-height)!important;min-height:var(--b763-badge-height)!important;
+  max-height:var(--b763-badge-height)!important;flex:0 0 var(--b763-badge-height)!important;
+}
