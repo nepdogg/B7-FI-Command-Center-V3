@@ -1,0 +1,39 @@
+/* V12.0.31: scoped three-column Universal Tool Card geometry. Keep the photo/tower inside column one. */
+html body:not(.presentation-mode) #app section.c11-tool-card > div.c11-card-grid.b1226-three-column,
+html body.presentation-mode #app section.c11-tool-card > div.c11-card-grid.b1226-three-column {
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-template-rows:auto!important;
+  grid-auto-flow:row!important;
+  gap:8px!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  align-items:stretch!important;
+}
+html body #app section.c11-tool-card > div.c11-card-grid.b1226-three-column > section.c11-column {
+  display:flex!important;
+  flex-direction:column!important;
+  grid-row:1!important;
+  grid-column:auto!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  align-self:stretch!important;
+  height:auto!important;
+}
+html body #app section.c11-tool-card > div.c11-card-grid.b1226-three-column > section.c11-identity-column{grid-column:1!important}
+html body #app section.c11-tool-card > div.c11-card-grid.b1226-three-column > section.c11-status-column{grid-column:2!important}
+html body #app section.c11-tool-card > div.c11-card-grid.b1226-three-column > section.c11-progress-column{grid-column:3!important}
+html body #app section.c11-tool-card > div.c11-card-grid.b1226-three-column .c11-photo.b1226-photo{width:100%!important;max-width:100%!important;box-sizing:border-box!important;flex-shrink:0!important}
+html body #app section.c11-tool-card .b1226-photo-top,
+html body #app section.c11-tool-card .b1226-photo-main{min-width:0!important;max-width:100%!important}
+html body #app section.c11-tool-card .b1226-photo-heading{overflow:hidden!important;align-items:center!important}
+html body #app section.c11-tool-card .b1226-photo-heading span,
+html body #app section.c11-tool-card .b1226-photo-heading strong{display:flex!important;align-items:center!important;justify-content:center!important;min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important}
+html body #app section.c11-tool-card .b1229-tower-image{object-fit:contain!important}
+/* Only stack the three columns on truly narrow viewports. */
+@media(max-width:760px){
+ html body:not(.presentation-mode) #app section.c11-tool-card > div.c11-card-grid.b1226-three-column{grid-template-columns:minmax(0,1fr)!important}
+ html body:not(.presentation-mode) #app section.c11-tool-card > div.c11-card-grid.b1226-three-column > section.c11-column{grid-column:1!important;grid-row:auto!important}
+}
