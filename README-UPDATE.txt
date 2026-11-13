@@ -1,5 +1,6 @@
-B7 FI COMMAND CENTER V12.0.47 — Raiders Badge Layout Test
+B7 FI COMMAND CENTER V12.0.48 — RAIDERS BADGE GEOMETRY TEST
 
-Fixes: removes broken V12.0.46 badge CSS reference; applies actual live-card selectors with 36px operational badges matching 36px FI date badges, 5px gaps, black backgrounds and silver borders. Raiders monochrome navigation. Existing JS and application data handling unchanged.
-
-TEST: Hard refresh after deployment; confirm version 12.0.47, badge backgrounds black, equal heights and 5px gaps. This is a test build, not a production-validated release.
+Deploy the entire ZIP contents to the GitHub Pages repository root.
+Badge geometry: FI date and operational badges 36px, grid gap 7px, black backgrounds, silver borders.
+This version corrects the prior compressed grid by targeting the actual .c11-badge elements and explicit row/column gaps.
+Verify in Live Operations with real tool data; multi-user functions were not changed.
