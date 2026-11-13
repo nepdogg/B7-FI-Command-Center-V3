@@ -1,0 +1,12 @@
+
+/* V12.0.35 — original six labeled graphics, no extra frames or dimming */
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower-image,
+html body #app .b1217-compact-card .b1229-tower-image {
+display:block!important;width:100%!important;height:100%!important;
+object-fit:contain!important;object-position:center!important;
+opacity:1!important;filter:none!important;mix-blend-mode:normal!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo :is(.b1229-tower,.b1226-photo-tower) {
+background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;filter:none!important}
+html body #app .c11-tool-card>.c11-card-grid.b1226-three-column {
+display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+@media(max-width:760px){html body:not(.presentation-mode) #app .c11-tool-card>.c11-card-grid.b1226-three-column{grid-template-columns:minmax(0,1fr)!important}}
