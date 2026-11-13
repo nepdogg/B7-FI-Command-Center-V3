@@ -1,0 +1,61 @@
+/* B7 FI Command Center V12.0.39 — Raiders black / chrome system-wide visual layer.
+   Loaded last, preserving all app data, calculations, interactions and three-column layout. */
+:root{--accent:#dedede!important;--bg:#000!important;--panel:#050505!important;--line:#a4a4a4!important;--text:#fff!important;color-scheme:dark}
+html,body,.app-frame,.body-shell,.body-workspace,#app{background:#000!important;color:#fff!important}
+body{background-image:none!important}
+/* Global chrome surfaces; exclude progress fill, tower graphics, status indicators. */
+#app :is(.card,.panel,.tile,.section,.section-card,.info-card,.summary-card,.detail-card,.tool-card,.dashboard-card,.status-card,.form-card,.archive-card,.quarter-card,.tool-summary,.tool-detail,.stat-card),
+#app :is(.c11-tool-card,.c11-column,.c11-status-card,.c11-progress-row,.c11-id-badge,.c11-identity-stack,.c11-identity-stack button),
+#app :is(.c11-card-grid,.c11-tool-card .c11-photo),
+#modal .modal-card{background-color:#050505!important;color:#fff!important;border-color:#9d9d9d!important;box-shadow:inset 0 1px 1px #ffffff29!important}
+#app :is(.card,.panel,.tile,.section-card,.info-card,.summary-card,.detail-card,.dashboard-card,.status-card,.quarter-card,.tool-summary,.stat-card) :is(h1,h2,h3,h4,strong,label){color:#fff}
+#app :is(.c11-progress-head,.c11-status-card h3,.c11-status-card h4,.c11-status-title,.panel-title,.section-title,.card-title,.section-header,.tool-section-title),
+#modal :is(.modal-title,.modal-header){background:linear-gradient(180deg,#4c4c4c 0%,#202020 42%,#070707 100%)!important;color:#fff!important;border-color:#999!important}
+/* Header, logo at each end, and silver separators */
+#stickyShell .prototype-header{background:linear-gradient(#242424,#000 32%,#000 70%,#222)!important;border:2px solid #bcbcbc!important;box-shadow:inset 0 2px 2px #ffffff7d,0 1px 4px #000!important}
+#stickyShell .prototype-header>section{background:transparent!important;color:#fff!important}
+#stickyShell .prototype-header-left{display:flex!important;align-items:center!important;gap:12px!important;min-width:0!important;padding-left:12px!important}
+#stickyShell .prototype-header-left .b1239-raiders-logo{height:clamp(34px,4.6vw,68px)!important;width:auto!important;max-width:clamp(34px,4.6vw,68px)!important;object-fit:contain!important;flex:none!important;filter:drop-shadow(0 0 2px #ccc)}
+#stickyShell .prototype-header-left span{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#stickyShell .prototype-header-right{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important;padding-right:clamp(47px,5vw,85px)!important;position:relative!important}
+#stickyShell .prototype-header-right:after{content:"";position:absolute;right:8px;top:6px;bottom:6px;width:clamp(33px,4.3vw,65px);background:url('../assets/raiders-header-logo.webp') center / contain no-repeat;pointer-events:none;filter:drop-shadow(0 0 2px #bbb)}
+#stickyShell .prototype-header-center{border-left:5px ridge #d5d5d5!important;border-right:5px ridge #d5d5d5!important;background:#030303!important}
+#stickyShell .prototype-header-center :is(.kla-presence-box,.kla-connection-core,.kla-user-side){background:#030303!important}
+/* Entire navigation, not just the active tab */
+#stickyShell :is(.main-nav,.b797-unified-nav,.subnav,.page-actions){background:#000!important;background-image:none!important;border-color:#aaa!important}
+#stickyShell :is(.main-nav,.subnav,.page-actions) :is(button,select),
+#app :is(.page-nav,.tab-nav,.section-nav,.toolbar,.page-actions,.action-row) :is(button,select),
+.app-footer button{background:linear-gradient(#393939,#0c0c0c 58%,#010101)!important;color:#fff!important;border:1px solid #bdbdbd!important;box-shadow:inset 0 1px 1px #ffffff65!important;text-shadow:0 1px 1px #000!important}
+#stickyShell :is(.main-nav,.subnav,.page-actions) :is(button.active,button.selected,button[aria-current="page"]){background:linear-gradient(#fff,#ccc 55%,#888)!important;color:#050505!important;text-shadow:none!important}
+#app button:not(.active):not(.selected):not([class*="status"]):not([class*="badge"]):not([class*="priority"]):not([class*="signal"]),
+#modal button:not(.modal-x){border-color:#969696;color:#fff}
+#app :is(input,textarea,select),#modal :is(input,textarea,select){background:#161616!important;color:#fff!important;border-color:#929292!important}
+#app :is(table,th,td),#modal :is(table,th,td){border-color:#767676!important}
+#app th{background:#303030!important;color:#fff!important}
+#app tr:nth-child(even){background-color:#151515!important}
+/* Alert panels retain actual status colors, but have neutral panels. */
+#stickyShell .status-stack{background:#000!important}
+#stickyShell .status-stack>*{background:linear-gradient(#202020,#030303 48%,#000)!important;color:#fff!important;border-color:#aaa;box-shadow:inset 0 1px 1px #ffffff44!important}
+/* Universal tool card: three equal columns; do not collapse into stacked rows on desktop. */
+#app .c11-tool-card>.c11-card-grid.b1226-three-column{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;align-items:stretch!important}
+#app .c11-tool-card>.c11-card-grid.b1226-three-column>*{min-width:0!important}
+#app .c11-tool-card .c11-photo.b1226-photo{background:#030303!important;border:1px solid #b5b5b5!important}
+#app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-tower,
+#app .c11-tool-card .c11-photo.b1226-photo .b1229-tower{background:transparent!important;border:0!important;box-shadow:none!important;overflow:visible!important}
+#app .c11-tool-card .c11-photo.b1226-photo .b1229-tower-image{object-fit:contain!important;opacity:1!important;filter:none!important}
+#app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading,
+#app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading span,
+#app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-heading strong{background:linear-gradient(#484848,#0d0d0d)!important;color:#fff!important;border-color:#aaa!important}
+/* White/silver chrome bars in generic sections; keep segmented progress where already provided. */
+#app .c11-tool-card .c11-progress-row .c11-progress-track{background:#282828!important;border-color:#a5a5a5!important}
+#app .c11-tool-card .c11-progress-row .c11-progress-track>i{background:repeating-linear-gradient(90deg,#f6f6f6 0,#bcbcbc 13px,#111 13px,#111 16px)!important}
+/* Footer is fully silver-black, including three system cells and every button. */
+html body .app-footer,html body .app-footer .footer-system-row,html body .app-footer .footer-system-cell{background:linear-gradient(#2b2b2b,#030303 50%,#080808)!important;background-color:#050505!important;color:#fff!important;border-color:#bcbcbc!important}
+html body .app-footer{border:2px solid #aaa!important;border-radius:9px!important;box-shadow:inset 0 2px 2px #ffffff6e!important}
+html body .app-footer .footer-system-cell{border-right:1px solid #999!important}
+/* Presentations, administration and archive use same neutral palette. */
+body.presentation-mode,body.presentation-mode #app,body.presentation-mode .body-shell{background:#000!important;color:#fff!important}
+body.presentation-mode :is(.presentation-header,.presentation-footer,.presentation-nav,.presentation-card),
+#app :is(.archive-container,.admin-container,.quarter-summary,.presentation-container){background-color:#050505!important;color:#fff!important;border-color:#aaa!important}
+/* Do not alter actual tower lamps or operational status colors. */
+@media(max-width:760px){#app .c11-tool-card>.c11-card-grid.b1226-three-column{grid-template-columns:minmax(0,1fr)!important}#stickyShell .prototype-header-left .b1239-raiders-logo{height:30px!important}#stickyShell .prototype-header-right:after{width:29px!important}}
