@@ -1,7 +1,5 @@
-B7 FI Command Center V12.0.51 — badge equal-height repair
+B7 FI COMMAND CENTER V12.0.53 — RAIDERS BADGE HEIGHT TEST
 
-All operational, wafer, computer, component, and FI date badges use 44px fixed height and 7px grid gaps. Badge tracks are no longer allowed to shrink to fit the fixed-height panel. The badge panel scrolls when necessary. Existing click-to-edit handlers are unchanged.
+Updated all operational, full-width tracking, and FI milestone date badges to 64px with 7px gaps. The new stylesheet and DOM sizing logic use the same values. Badge region scrolls instead of compressing grid tracks. All other application files and existing editing handlers are retained.
 
-TEST: Check Live Operations and Tools page. Confirm date and operational badges have equal computed heights, black backgrounds, and full-width tracking badges are not compressed.
-
-This is a testing build; do not assume production validation.
+TEST: Deploy the full ZIP, confirm V12.0.53 in header, then inspect the Universal Tool Card. Check three-line text, full-width tracking rows, and badge scrolling. This build has not been visually verified with live data.
