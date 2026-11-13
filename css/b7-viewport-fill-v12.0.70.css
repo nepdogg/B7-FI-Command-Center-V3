@@ -1,0 +1,9 @@
+/* V12.0.70 viewport-height layout only. Keep V12.0.65 badge geometry. */
+html body:not(.presentation-mode) #app .c11-tool-card .c11-card-grid.b1226-three-column{align-items:stretch!important;min-height:var(--b770-card-min-height,0px)!important;height:auto!important}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-status-column,
+html body:not(.presentation-mode) #app .c11-tool-card .c11-progress-column{display:flex!important;flex-direction:column!important;min-height:0!important;height:auto!important}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-status-column>.c11-status-card,
+html body:not(.presentation-mode) #app .c11-tool-card .c11-progress-column>.c11-progress-card{flex:1 1 auto!important;min-height:0!important}
+/* Use leftover vertical room for the image, not the operational badges. */
+html body:not(.presentation-mode) #app .c11-tool-card .c11-identity-column>.c11-photo{flex:1 1 auto!important;min-height:0!important}
+@media(max-width:1099px){html body:not(.presentation-mode) #app .c11-tool-card .c11-card-grid.b1226-three-column{min-height:0!important}}
