@@ -1,14 +1,24 @@
-B7 FI COMMAND CENTER V12.0.22 — TEST BUILD
+B7 FI COMMAND CENTER V12.0.26 — INTEGRATED PHOTO / SIGNAL TOWER TEST
 
-Changes:
-- All Tools: restore document-flow height to every full-width Universal Tool Card so the following tool-family divider is not overlapped.
-- All Tools: equal three-column card width with natural card height; no fixed 720px column cap.
-- All Tools: operational badges and FI date badges share 60px height in a three-column operational grid.
-- Exit Hybrid Presentation returns to standard Live Operations rather than leaving Hybrid content in normal navigation.
-- Existing Tool Type menu selection-close handler retained.
+BASED ON V12.0.25.
 
-TEST: Use the 9-tool dataset, inspect all tool types and scroll through dividers, confirm badge heights, then enter/exit Hybrid.
+IMPLEMENTED THIS BUILD
+- Live Operations Universal Tool Card: three columns instead of four.
+- Five-light automatic signal tower moved into Tool Information photo area.
+- Three stacked photo badges replaced with one horizontal Priority | Alias badge.
+- Larger tool photo area; dynamic status text under photo.
+- Permanent five-color signal key under the photo.
+- Existing dark charcoal styling, priority selectors, weekend personnel inputs and header connection styling retained.
+- Existing compact tower for Hybrid Mode retained.
 
-CAUTION: Browser visual testing and Microsoft Lists synchronization have not been verified. Keep a backup of production data.
+NOT YET IMPLEMENTED / NOT CERTIFIED
+- Full redesign of all other card renderers and Presentation Mode to match the new photo arrangement.
+- All UI examples are conceptual, not exact browser output.
+- Actual Microsoft Lists multi-user sync, priority eligibility, cycle-time persistence, automatic alarm rules and zoom behavior remain unverified.
+- Personnel rosters still provisional.
 
-V12.0.22: Unified individual Tool Update workspace with Update Command Center left-side navigation. Added TOOL BADGES tab with badge preview and original editable fields on the right. Removed competing full-width editor. Enforced 60px operational badge height on All Tools. Browser rendering and Microsoft Lists sync NOT independently verified.
+TEST INSTRUCTIONS
+1. Back up your existing Command Center data and keep V12.0.25.
+2. Start the local app and check Live Operations at 100% zoom.
+3. Confirm all five tower states, badge clickability, image sizing, and card alignment.
+4. Test both laptops and shared List save/reload before considering production.

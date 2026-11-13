@@ -1,0 +1,22 @@
+/* V12.0.25 — Option A neutral charcoal theme. Status colors remain meaningful. */
+:root{color-scheme:dark;--b7-charcoal:#111418;--b7-panel:#22272e;--b7-surface:#2a3038;--b7-line:#48515d;--b7-ink:#f3f5f7;--b7-muted:#b7c0ca}
+html,body,#app{background:#111418!important;color:#f3f5f7!important}
+html body #app :is(.prototype-header,.prototype-nav,.page-nav,.nav-bar,.panel,.subsection,.v9-panel,.fleet-family,.fleet-identity-card,.b7-status-panel,.c11-tool-card,.c11-status-card,.c11-progress-row,.c11-photo,.c11-id-badge,.b783-date-badge,.quarter-summary,.quarter-tool-card,.modal-card){background-color:#22272e!important;color:#f3f5f7!important;border-color:#48515d!important;box-shadow:none!important}
+html body #app :is(.c11-id-badge,.b783-date-badge,.c11-badge:not(.done):not(.active):not(.failed):not(.missing),.v9-metric,.readonly-value){background:#2a3038!important;border-color:#48515d!important;color:#f3f5f7!important}
+html body #app :is(.btn,button:not(.signal-light):not(.active),select,input,textarea,.field input,.field select){border-color:#515a65;color:#f3f5f7}
+html body #app :is(.btn,button:not(.active)){background-color:#303740}
+html body #app :is(input,textarea,select){background-color:#20252b}
+html body #app :is(.c11-tool-card,.c11-column,.c11-status-column,.c11-progress-column){box-shadow:none}
+html body #app :is(.c11-status-card,.c11-progress-row,.c11-id-badge,.c11-badge){border-width:1px}
+html body #app :is(.c11-badge.done){background:#173c2d!important;border-color:#2f9d6c!important}
+html body #app :is(.c11-badge.active){background:#453716!important;border-color:#bb9230!important}
+html body #app :is(.c11-badge.failed,.c11-badge.missing){background:#49232c!important;border-color:#d45a67!important}
+html body #app :is(.prototype-header-left,.prototype-header-right){background:#191d23!important}
+html body #app #headerModeCenter:not(.shared-error):not(.shared-disconnected):not(.shared-paused){border-color:#2bba76!important;box-shadow:none!important}
+html body #app #headerModeCenter.shared-error,html body #app #headerModeCenter.shared-disconnected{border-color:#ef4657!important}
+html body #app #headerModeCenter.shared-paused{border-color:#e9b43c!important}
+.weekend-leadership,.weekend-leadership-view{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:12px;margin:10px 0;background:#292e35;border:1px solid #515a65;border-radius:10px}
+.weekend-leadership label{display:flex;flex-direction:column;gap:5px;flex:1 1 220px;font-weight:700}.weekend-leadership select{padding:9px;border-radius:7px;background:#171b20;color:#fff}
+.priority-edit [data-pf="assignment"]{min-width:135px}
+/* Neutral navigation with a distinct selected tab */
+html body #app :is(.nav-tab,.subnav-button,.nav-button):not(.active):not(.selected){background:#303740!important;border-color:#525b66!important;color:#e8edf2!important}

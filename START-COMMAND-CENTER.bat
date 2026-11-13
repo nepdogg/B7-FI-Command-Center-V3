@@ -1,7 +1,7 @@
 @echo off
 setlocal EnableExtensions
 cd /d "%~dp0"
-set "B7VERSION=V12.0.13"
+set "B7VERSION=V12.0.26"
 set "B7LOG=%TEMP%\B7-FI-Command-Center-server.log"
 title B7 FI COMMAND CENTER %B7VERSION% - STARTUP MONITOR
 color 0B

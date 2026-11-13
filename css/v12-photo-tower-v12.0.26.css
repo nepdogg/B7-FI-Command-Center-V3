@@ -1,0 +1,24 @@
+/* V12.0.26: photo/tower integration for the Live Operations Universal Tool Card. */
+html body #app .c11-card-grid.b1226-three-column{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+html body #app .c11-card-grid.b1226-three-column>.c11-column{grid-column:auto!important;grid-row:auto!important}
+html body #app .c11-tool-card .c11-photo.b1226-photo{display:flex!important;flex-direction:column!important;gap:5px!important;height:clamp(260px,28vw,355px)!important;min-height:260px!important;max-height:none!important;padding:6px!important;background:#151a20!important;overflow:hidden!important}
+html body #app .b1226-photo-top{display:grid;grid-template-columns:clamp(40px,19%,75px) minmax(0,1fr);gap:6px;flex:1;min-height:0}
+html body #app .b1226-photo-tower{min-height:0;display:flex}
+html body #app .b1226-photo-tower .b1224-tower{width:100%;padding:4px 2px;gap:4px;border:1px solid #59616b;background:#11161b;box-shadow:none}
+html body #app .b1226-photo-tower .b1224-tower-lamps{gap:4px;padding:5px 3px}
+html body #app .b1226-photo-tower .b1224-lamp{width:clamp(14px,1.5vw,23px);height:clamp(14px,1.5vw,23px)}
+html body #app .b1226-photo-tower .b1224-tower>strong{font-size:clamp(8px,.7vw,11px)}
+html body #app .b1226-photo-main{display:flex;flex-direction:column;gap:5px;min-width:0;min-height:0}
+html body #app .b1226-photo-heading{display:grid;grid-template-columns:1fr 1fr;align-items:center;min-height:35px;background:#242a31;border:1px solid #616a76;border-radius:7px;color:#fff;cursor:pointer;font-size:clamp(11px,.95vw,17px);padding:0;overflow:hidden}
+html body #app .b1226-photo-heading span{background:#862333;height:100%;display:flex;align-items:center;justify-content:center}
+html body #app .b1226-photo-heading strong{padding:3px;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+html body #app .c11-photo.b1226-photo .v1210-photo-image{position:relative!important;grid-column:auto!important;grid-row:auto!important;flex:1!important;min-height:0!important;background:#101419!important;display:flex!important;align-items:center!important;justify-content:center!important}
+html body #app .c11-photo.b1226-photo .v1210-photo-image img{object-fit:contain!important;width:100%!important;height:100%!important}
+html body #app .b1226-active-state{color:var(--tower-active);border:1px solid var(--tower-active);background:#171b21;border-radius:6px;text-align:center;font-size:clamp(10px,.85vw,15px);font-weight:800;padding:5px 2px;line-height:1.15}
+html body #app .b1226-signal-key{flex:0 0 auto;background:#11161b;border:1px solid #454e58;border-radius:6px;padding:4px;min-width:0}
+html body #app .b1226-signal-key>b{font-size:clamp(9px,.7vw,12px);display:block;margin-bottom:4px;color:#f3f4f6}
+html body #app .b1226-signal-key>div{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px}
+html body #app .b1226-signal-key span{min-width:0;text-align:center;border:1px solid currentColor;border-radius:4px;font-size:clamp(7px,.54vw,10px);font-weight:800;padding:4px 1px;overflow-wrap:anywhere}
+html body #app .b1226-signal-key small{display:block;font-size:clamp(6px,.45vw,9px);font-weight:500;color:#e4e6e9}
+html body #app .b1226-signal-key .red{color:#ff5263}.b1226-signal-key .yellow{color:#ffd13d}.b1226-signal-key .green{color:#1fdf9c}.b1226-signal-key .blue{color:#45b5ff}.b1226-signal-key .purple{color:#b68aff}
+@media(max-width:760px){html body #app .c11-card-grid.b1226-three-column{grid-template-columns:1fr!important}}
