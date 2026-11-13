@@ -1,5 +1,5 @@
-B7 FI Command Center V12.0.58 - Badge Geometry Unification
+B7 FI COMMAND CENTER V12.0.59 — RAIDERS BADGE LAYOUT REBUILD
 
-All identity fields, FI milestone dates, operational badges, and full-width tracking badges now use a single 64px height and 7px gaps. No internal scrollbars. The three columns expand to fit content. Preserves the existing application data and handlers.
+Replaced broken missing v12.0.58 badge stylesheet reference with a present, final v12.0.59 contract. Unified 64px badge geometry and 7px spacing for identity, date, operational and full-width tracking badges. No internal scrollbars. Existing app/data logic retained.
 
-TEST: Open Live Operations and compare identity, date, operational and tracking badge heights. Browser rendering has not been fully validated against live Microsoft List data.
+TESTING: Confirm the version reads V12.0.59. Compare rendered badge heights on Live Operations and Tools pages. This build has not been verified with live Microsoft List data.
