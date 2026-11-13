@@ -1,0 +1,39 @@
+/* V12.0.72 — unified Raiders visual system across ALL application routes.
+   Loaded LAST. Does not modify the V12.0.62/64/65 badge geometry. */
+:root{--accent:#c9c9c9;--bg:#000;--panel:#050505;--line:#a6a6a6;--raiders-silver:#c9c9c9;--raiders-black:#050505;--raiders-edge:#aeb1b5;--raiders-gloss:linear-gradient(180deg,#595959 0%,#252525 14%,#050505 49%,#000 79%,#292929 100%)}
+html body,html body .app-frame,html body .body-shell,html body #app,html body .body-workspace{background:#050505!important;color:#fff!important}
+/* Header geometry, metallic dividers, and typography */
+html body #stickyShell .prototype-header{min-height:86px!important;height:auto!important;background:var(--raiders-gloss)!important;border:2px solid #bfc1c4!important;border-radius:9px!important;box-shadow:inset 0 2px 2px #fff8,0 2px 4px #000!important}
+html body #stickyShell .prototype-header-left,html body #stickyShell .prototype-header-right{min-width:0!important;overflow:hidden!important;background:transparent!important}
+html body #stickyShell .prototype-header-left>span,html body #stickyShell .prototype-header-right>span{font-size:clamp(16px,1.65vw,30px)!important;font-weight:900!important;line-height:1.12!important;white-space:nowrap!important;text-overflow:ellipsis!important;overflow:hidden!important}
+html body #stickyShell .prototype-header-center{background:linear-gradient(105deg,#9b9b9b 0%,#f4f4f4 3%,#222 6%,#030303 13%,#000 87%,#aaa 96%,#eee 98%,#555)!important;border-left:5px ridge #c6c6c6!important;border-right:5px ridge #c6c6c6!important}
+html body #stickyShell .prototype-header .b1239-raiders-logo,html body #stickyShell .prototype-header .b1241-right-logo{max-height:76px!important;object-fit:contain!important}
+/* All nav surfaces and their active state */
+html body #stickyShell :is(.main-nav,.b797-unified-nav,.subnav,.page-actions){background:#050505!important;background-image:none!important;border-color:#888!important}
+html body #stickyShell :is(.main-nav,.subnav,.page-actions) :is(button,select,.b796-center-select,.tool-type-menu-button),html body .app-footer button{background:var(--raiders-gloss)!important;color:#fff!important;border:1px solid #b7b9bb!important;border-radius:9px!important;box-shadow:inset 0 2px 2px #ffffff66,0 1px 2px #000!important;text-shadow:0 1px 2px #000!important;font-weight:850!important}
+html body #stickyShell :is(.main-nav,.subnav,.page-actions) :is(button.active,button.selected,button[aria-current="page"],button[aria-pressed="true"]){background:linear-gradient(180deg,#fff 0%,#eee 34%,#bcbcbc 78%,#818181 100%)!important;color:#050505!important;border-color:#fff!important;text-shadow:none!important}
+html body #stickyShell :is(.main-nav,.subnav,.page-actions) :is(button,select){min-height:39px!important}
+/* Global footer, including non-live pages */
+html body .app-footer,html body .app-footer .footer-system-row,html body .app-footer .footer-system-cell{background:var(--raiders-gloss)!important;color:#fff!important;border-color:#aaa!important}
+html body .app-footer{border:2px solid #aaa!important;border-radius:8px!important;box-shadow:inset 0 2px 2px #ffffff55!important}
+/* Universal containers and page sections: no blue background remaining. */
+html body #app :is(section,article,aside,.card,.panel,.box,.tile,.widget,.summary-card,.status-card,.tool-card,.tool-panel,.center-panel,.page-panel,.content-panel,.dashboard-panel,.archive-card,.admin-card,.edit-card,.quarter-card,.quarter-summary,.presentation-card,.c11-column,.c11-status-card,.c11-progress-row,.c11-identity-column){background-color:#050505!important;color:#fff!important;border-color:#a2a2a2!important}
+html body #app :is(.card,.panel,.tile,.widget,.summary-card,.status-card,.tool-panel,.center-panel,.page-panel,.content-panel,.dashboard-panel,.archive-card,.admin-card,.edit-card,.quarter-card){box-shadow:inset 0 1px 1px #ffffff24!important}
+/* Universal headings, tabs, controls, input boxes, and cards */
+html body #app :is(h1,h2,h3,h4,h5,h6,.panel-title,.section-title,.card-title,.widget-title,.table-title,.modal-title,.group-title,.progress-head,.c11-progress-head){color:#fff!important}
+html body #app :is(.panel-title,.section-title,.card-title,.widget-title,.table-title,.modal-title,.group-title,.c11-progress-head){background:var(--raiders-gloss)!important;border-color:#aaa!important;text-shadow:0 1px 2px #000!important}
+html body #app :is(button,.btn,[role="button"],.tab,.nav-button,.action-button),html body .modal :is(button,.btn,[role="button"]){background:var(--raiders-gloss)!important;color:#fff!important;border:1px solid #aaa!important;border-radius:7px!important;box-shadow:inset 0 1px 1px #ffffff55!important}
+html body #app :is(button.active,.btn.active,.tab.active,.selected,[aria-selected="true"]){background:linear-gradient(180deg,#fff,#bdbdbd 80%,#888)!important;color:#080808!important;border-color:#fff!important;text-shadow:none!important}
+html body #app :is(input,textarea,select),html body .modal :is(input,textarea,select){background:#111!important;color:#fff!important;border:1px solid #aaa!important}
+html body #app :is(table,thead,tbody,tr,td,th),html body .modal :is(table,thead,tbody,tr,td,th){border-color:#777!important;color:#fff!important}
+html body #app :is(th,thead){background:#292929!important}
+html body #app :is(.badge,.pill,.chip,.tag,.status-label){border-color:#aaa!important}
+/* Keep signal colors and progress fill colors; replace only chrome/track backgrounds. */
+html body #app :is(.progress-track,.progress-bar-track,.c11-progress-track){background:#242424!important;border-color:#aaa!important}
+/* Tool badges: preserve height, spacing, grid, and line layout exactly. */
+html body #app :is(.c11-badges,.fleet-badges,.b7-editor-badge-grid,.v1222-badge-grid)>*,html body #app :is(.c11-identity-stack,.b783-date-row)>*{background:#050505!important;background-image:none!important;color:#fff!important;border-color:#b6b6b6!important}
+/* Modal and overlays are shared across every page. */
+html body .modal .modal-card,html body :is(.dialog,.popover,.dropdown-menu,.overlay-panel){background:#080808!important;color:#fff!important;border:2px solid #aaa!important;box-shadow:inset 0 2px 2px #ffffff40,0 10px 30px #000a!important}
+/* Strip legacy blue from named application bars without touching semantic progress colors. */
+html body #app :is(.toolbar,.page-toolbar,.filter-bar,.action-bar,.section-header,.card-header,.panel-header,.tab-bar,.tabs,.subnav,.page-nav,.center-header,.badge-header),html body #stickyShell .status-stack{background:#080808!important;background-image:none!important;border-color:#aaa!important;color:#fff!important}
+@media(max-width:950px){html body #stickyShell .prototype-header{min-height:70px!important}html body #stickyShell .prototype-header-left>span,html body #stickyShell .prototype-header-right>span{font-size:clamp(12px,2vw,22px)!important}}
