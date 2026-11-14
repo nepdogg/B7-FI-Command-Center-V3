@@ -1,0 +1,91 @@
+/* V13.0.15: geometry repair. A short, fixed badge row prevents the inherited flex
+   sizing from consuming half the equipment image. Applies to live and tool presentation. */
+html body #app .c11-tool-card .c11-photo.b1313-unified-photo {
+ display:grid!important;grid-template-columns:minmax(0,1fr)!important;
+ grid-template-rows:42px minmax(0,1fr)!important;grid-auto-rows:minmax(0,1fr)!important;
+ align-content:stretch!important;justify-content:stretch!important;
+ gap:6px!important;padding:6px!important;box-sizing:border-box!important;
+ min-height:0!important;overflow:hidden!important;
+}
+html body #app .c11-tool-card .c11-photo.b1313-unified-photo > .b133-priority-alias {
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ grid-column:1!important;grid-row:1!important;position:relative!important;
+ height:42px!important;min-height:42px!important;max-height:42px!important;
+ width:100%!important;max-width:100%!important;flex:none!important;align-self:start!important;
+ gap:5px!important;margin:0!important;padding:0!important;border:0!important;
+ background:transparent!important;box-shadow:none!important;overflow:hidden!important;
+}
+html body #app .c11-tool-card .c11-photo.b1313-unified-photo > .b133-priority-alias > button {
+ height:42px!important;min-height:42px!important;max-height:42px!important;
+ width:100%!important;min-width:0!important;flex:none!important;
+ padding:2px 5px!important;margin:0!important;line-height:1.1!important;
+ font-size:clamp(12px,1.15vw,19px)!important;
+ display:flex!important;align-items:center!important;justify-content:center!important;
+}
+html body #app .c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top {
+ grid-row:2!important;grid-column:1!important;display:grid!important;
+ grid-template-columns:clamp(80px,23%,150px) minmax(0,1fr)!important;
+ grid-template-rows:minmax(0,1fr)!important;min-height:0!important;min-width:0!important;
+ height:100%!important;max-height:100%!important;flex:none!important;
+ gap:6px!important;margin:0!important;padding:0!important;overflow:hidden!important;
+}
+html body #app .c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top > * {
+ grid-row:1!important;height:100%!important;max-height:100%!important;
+ min-height:0!important;min-width:0!important;overflow:hidden!important;
+}
+html body #app .c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main .v1210-photo-image {
+ height:100%!important;min-height:0!important;max-height:100%!important;display:flex!important;align-items:center!important;justify-content:center!important;
+}
+html body #app .c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main .v1210-photo-image img {
+ display:block!important;object-fit:contain!important;object-position:center!important;
+ max-width:100%!important;max-height:100%!important;width:100%!important;height:100%!important;
+}
+/* Three separately framed header panels, with visible black gutters. */
+html body .app-frame #stickyShell > header.prototype-header {
+ column-gap:12px!important;gap:12px!important;padding:6px 10px!important;
+}
+html body .app-frame #stickyShell > header.prototype-header > section {
+ margin:0!important;border-radius:19px!important;min-width:0!important;
+}
+/* Presentation modes: Raiders neutral chrome; status meaning retains its own colors. */
+html body.presentation-mode #app,
+html body.presentation-mode #app > :is(.presentation-tool-only,.b1217-hybrid,.quarter-summary-presentation) {
+ border-color:#b9b9b9!important;outline-color:#b9b9b9!important;
+ --cc-chrome-border:#b9b9b9;--panel-border:#b9b9b9;
+}
+html body.presentation-mode #app :is(.presentation-inline-nav,.b1217-hybrid-nav,.quarter-summary-switchbar) {
+ border:2px solid #aaa!important;outline:0!important;
+ background:linear-gradient(180deg,#676767,#101010 23%,#020202 72%,#454545)!important;
+ border-radius:8px!important;box-sizing:border-box!important;
+}
+html body.presentation-mode #app :is(.presentation-inline-nav,.b1217-hybrid-nav,.quarter-summary-switchbar) button {
+ background:linear-gradient(180deg,#565656,#101010 25%,#000 75%,#414141)!important;
+ border:1px solid #888!important;color:#fff!important;min-width:0!important;
+}
+html body.presentation-mode #app :is(.presentation-inline-nav,.b1217-hybrid-nav,.quarter-summary-switchbar) button:is(:hover,:focus-visible,.active,[aria-current=page]) {
+ background:linear-gradient(#f7f7f7,#bcbcbc 35%,#888)!important;color:#080808!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=live] #app > .presentation-tool-only .c11-photo.b1313-unified-photo {
+ grid-template-rows:36px minmax(0,1fr)!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=live] #app > .presentation-tool-only .c11-photo.b1313-unified-photo > .b133-priority-alias,
+html body.presentation-mode[data-center=operations][data-sub=live] #app > .presentation-tool-only .c11-photo.b1313-unified-photo > .b133-priority-alias > button {
+ height:36px!important;min-height:36px!important;max-height:36px!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=live] #app > .presentation-tool-only .c11-card-grid,
+html body.presentation-mode[data-center=operations][data-sub=live] #app > .presentation-tool-only .c11-card-grid > * {
+ min-height:0!important;max-height:100%!important;overflow:hidden!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=live] #app > .presentation-tool-only .c11-progress-column {
+ min-height:0!important;max-height:100%!important;overflow:hidden!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=hybrid] #app > .b1217-hybrid {
+ grid-template-rows:minmax(0,26fr) minmax(0,10fr) minmax(0,64fr) 54px!important;
+ min-height:0!important;max-height:100%!important;overflow:hidden!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=hybrid] #app .b1217-hybrid-nav {
+ grid-row:4!important;min-height:54px!important;max-height:54px!important;
+ display:flex!important;visibility:visible!important;
+}
+html body.presentation-mode #app .b1312-mini-card {background:#050505!important;border:2px solid #b0b0b0!important;}
+@media(max-width:1000px){html body .app-frame #stickyShell > header.prototype-header{gap:7px!important;padding:5px!important;}}

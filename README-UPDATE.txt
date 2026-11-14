@@ -1,9 +1,9 @@
-B7 FI Command Center V13.0.14 — TEST BUILD
+B7 FI Command Center V13.0.15 — TEST BUILD
 
-1. Center dropdown: added Priority Center; removed Update Center.
-2. Universal Tool Card photo region: Priority/Alias now share a full-width top row, above both signal tower and tool photo.
-3. Added version-specific CSS with explicit grid placement overriding legacy photo positioning.
-4. Updated HTML title/header and cache-busting references.
+1. Photo section: fixed 42px full-width Priority/Alias row, signal tower and equipment image underneath.
+2. Main header: 12px separation between three independently framed panels.
+3. Presentation modes: black/silver chrome overrides for tool, quarter summary and hybrid navigation.
+4. Presentation tool: reduced photo header height, constrained columns.
+5. Hybrid: fixed bottom navigation row and retained signal-tower mini-card.
 
-Retains existing application data, handlers, status logic and other pages.
-Validation: ZIP and JS syntax checks only; browser appearance and sync not verified.
+ZIP/syntax checks only; browser rendering and Microsoft List synchronization have NOT been verified. Keep a backup of V13.0.14.
