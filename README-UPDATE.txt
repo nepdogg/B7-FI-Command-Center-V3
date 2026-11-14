@@ -1,7 +1,7 @@
-B7 FI Command Center V13.0.25 TEST
+V13.0.26 TEST - Compact multi-user header
 
-Root cause: js/b7-badge-source-v12.0.62.js runs a MutationObserver and rewrites the identity and date badges as centered flex columns after render, defeating previous CSS and markup fixes. This build corrects that runtime logic to preserve two-column label/value layout.
+Rebuilt center header: compact current-user initials, maximized KLA+ logo, +N colleague count, single-line mode and connection status.
+Preserves original header IDs and shared connection status logic.
+Other pages and layouts unchanged.
 
-Also corrects the broken photo-tower stylesheet reference and adjusts image/tower row spacing.
-
-Please verify in browser at your normal zoom and test multiuser behavior.
+Verify on Edge at 100% zoom, both disconnected and connected states.

@@ -211,17 +211,19 @@ function sharedKind(){return localStorage.getItem(SHARED_KIND_KEY)==='PRODUCTION
 function setModeIdentity(mode,connection){let shared=mode==='shared',connected=connection==='connected',connecting=connection==='connecting',syncing=connection==='syncing',error=connection==='error',paused=connection==='paused';let h=document.getElementById('headerModeCenter');if(h){h.classList.toggle('shared-connected',shared&&connected);h.classList.toggle('shared-connecting',shared&&connecting);h.classList.toggle('shared-disconnected',shared&&!connected&&!connecting);h.classList.toggle('shared-syncing',shared&&syncing);h.classList.toggle('shared-error',shared&&error);h.classList.toggle('shared-paused',shared&&paused);h.classList.toggle('local-mode',!shared)}let fl=document.getElementById('headerModeLabel'),fc=document.getElementById('headerConnectionLabel');let kind=sharedKind();if(fl)fl.textContent=shared?(kind==='PRODUCTION'?'MULTI-USER PRODUCTION':'MULTI-USER MODE'):'LOCAL MODE';let txt=shared?(connected?'LIST CONNECTED':connecting?'CONNECTING TO LIST':syncing?'SYNCING LIST':error?'LIST SYNC FAILED':paused?'SYNC PAUSED':'LIST DISCONNECTED'):'LOCAL DATA';if(fc)fc.textContent=txt;let core=document.getElementById('klaConnectionCore');if(core){core.classList.toggle('shared-connected',shared&&connected);core.classList.toggle('shared-connecting',shared&&connecting);core.classList.toggle('shared-disconnected',shared&&!connected&&!connecting);core.classList.toggle('shared-syncing',shared&&syncing);core.classList.toggle('shared-error',shared&&error);core.classList.toggle('shared-paused',shared&&paused);core.classList.toggle('local-mode',!shared)}}
 function displayUserName(n){return String(n||'').trim().replace(/\s+/g,' ')}
 function renderPresenceBadges(){
-  let names=activeUsers().filter(Boolean).slice(0,8);while(names.length<8)names.push('');
-  let badge=(n,i)=>{let full=displayUserName(n),label=full?full.toUpperCase():'—';return `<button type="button" class="kla-presence-badge ${full&&sharedActive?'active':''}" data-presence-slot="${i+1}" title="${full||'Available user slot'}">${label}</button>`};
-  let l=document.querySelector('#klaUsersLeft'),r=document.querySelector('#klaUsersRight');if(l)l.innerHTML=badge(names[0],1)+badge(names[1],2);
-  if(r)r.innerHTML=badge(names[2],3)+badge(names[3],4);
-  // The shared presence system still tracks up to eight users.
-  // Users beyond the four header slots remain available in the user roster.
-  let extra=names.slice(4).filter(Boolean);
-  let box=document.querySelector('#headerModeCenter .kla-presence-box');
-  if(box)box.title=extra.length?`${extra.length} additional active user(s): ${extra.join(', ')}`:'';
-
+  // V13.0.26: one compact user badge + active colleague count; no empty slots.
+  const names=activeUsers().filter(Boolean).slice(0,8);
+  const primary=names[0] || (typeof account!=='undefined' && account ? (account.name||account.username||'') : '');
+  const full=displayUserName(primary);
+  const initials=full ? full.split(/\s+/).map(part=>part[0]).join('').slice(0,2).toUpperCase() : '—';
+  const l=document.querySelector('#klaUsersLeft'),r=document.querySelector('#klaUsersRight');
+  if(l)l.innerHTML=`<button type="button" class="kla-presence-badge compact-primary ${full&&sharedActive?'active':''}" data-presence-slot="1" title="${full.replace(/&/g,'&amp;').replace(/"/g,'&quot;')||'No active user'}">${initials}</button>`;
+  const otherCount=Math.max(0,names.length-(full?1:0));
+  if(r)r.innerHTML=`<button type="button" class="kla-presence-badge compact-count" data-presence-slot="2" title="${otherCount} additional connected user(s)">+${otherCount}</button>`;
+  const box=document.querySelector('#headerModeCenter .kla-presence-box');
+  if(box)box.title=names.length?`Connected users: ${names.join(', ')}`:'No active users';
 }
+
 function activity(msg,type='ok'){
   // Activity is displayed locally, not written as an unbounded Microsoft List row.
   // Legacy A- rows remain untouched for backup/review.

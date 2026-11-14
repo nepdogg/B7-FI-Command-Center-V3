@@ -1,0 +1,40 @@
+/* V13.0.26: approved compact NG | KLA+ | +N header layout. */
+html body .app-frame #stickyShell > header.prototype-header > section.prototype-header-center {padding:8px 12px!important;}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .prototype-kla-box {
+ display:grid!important;grid-template-columns:minmax(40px,auto) minmax(0,1fr) minmax(40px,auto)!important;
+ grid-template-rows:minmax(0,1fr) auto!important;column-gap:10px!important;row-gap:3px!important;
+ align-items:center!important;justify-items:center!important;height:100%!important;width:100%!important;
+}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-user-side {
+ display:flex!important;align-items:center!important;justify-content:center!important;min-width:0!important;
+ grid-row:1!important;align-self:center!important;width:auto!important;height:auto!important;
+}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-user-left {grid-column:1!important;}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-user-right {grid-column:3!important;}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-core {
+ display:contents!important;
+}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-core > img {
+ grid-column:2!important;grid-row:1!important;display:block!important;
+ width:100%!important;max-width:240px!important;height:clamp(48px,5.1vw,78px)!important;
+ max-height:none!important;object-fit:contain!important;object-position:center!important;
+}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-copy {
+ grid-column:1 / -1!important;grid-row:2!important;display:flex!important;flex-flow:row nowrap!important;
+ justify-content:center!important;align-items:center!important;gap:7px!important;
+ font-size:clamp(9px,.75vw,13px)!important;line-height:1.1!important;white-space:nowrap!important;
+ width:100%!important;min-width:0!important;padding:0 0 3px!important;
+}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-copy b,
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-copy small {font-size:inherit!important;line-height:inherit!important;white-space:nowrap!important;}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-status-divider {color:#c8c8c8!important;font-weight:800!important;}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-presence-badge {
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ width:auto!important;min-width:45px!important;max-width:70px!important;height:39px!important;
+ padding:0 10px!important;border:2px solid #d5d5d5!important;border-radius:999px!important;
+ background:#080808!important;color:#fff!important;font-size:17px!important;font-weight:900!important;
+ line-height:1!important;box-shadow:none!important;white-space:nowrap!important;transform:none!important;
+}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-presence-badge.compact-primary.active {border-color:#00ed5c!important;color:#00ff66!important;}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-presence-badge.compact-count {border-color:#d8d8d8!important;color:#fff!important;}
+@media(max-width:1300px){html body .app-frame #stickyShell > header.prototype-header > section.prototype-header-center{padding:5px!important;}html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .prototype-kla-box{column-gap:5px!important;}html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-presence-badge{min-width:36px!important;height:33px!important;padding:0 6px!important;font-size:14px!important;}html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-copy{gap:4px!important;font-size:9px!important;}}
