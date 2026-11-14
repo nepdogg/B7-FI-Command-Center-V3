@@ -1,8 +1,9 @@
-B7 FI Command Center V13.0.10 — Raiders Header Geometry TEST
+B7 FI Command Center V13.0.11 - Presentation Raiders theme and navigation
 
-- Restores full-height three rounded chrome header panels, matching the approved sample.
-- Removes inherited diagonal skew on the KLA center and its contents.
-- Enlarges logos and titles to use the existing 156px header height without a blank lower band.
-- Keeps navigation and V13.0.9 presentation changes intact.
-- No changes to Microsoft List business logic.
-- This ZIP is syntax/archive checked only; browser verification is still required.
+- Shared silver/black presentation outer frame and bottom navigation for tool, quarter summary and hybrid.
+- Hybrid carousel uses purpose-built b139-mini-card with three-card previous/current/next layout.
+- Center selector contains centers only; hover/focus silver.
+- Left/right header sections use the full 146px content height of the 156px header.
+- Preserves existing MS List logic and data.
+
+TEST BUILD: browser rendering and Microsoft List sync not verified.
