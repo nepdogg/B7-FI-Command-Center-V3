@@ -1965,20 +1965,14 @@ function b1224Tower(t,compact=false){
   </div>`;
 }
 function b1217CompactCard(t){
+  // V13.0.9: purpose-built mini card for the hybrid carousel.
   const p=priorityBadgeInfo(t),signal=b1217Signal(t),img=individualToolPhoto(t)||familyImage(t);
-  const pairs=[['UTID',t.id],['TOOL TYPE',t.codename],['MODEL',t.model],['CUSTOMER',t.customer],['SALES ORDER',t.salesOrder],['DRIVER',t.driver||'Unassigned'],['QUARTER',t.quarter],['SHIP DATE',t.shipDate?fmtDate(t.shipDate):'NOT RECORDED']];
-  return `<article class="b1217-compact-card b1223-${signal.tone}" data-photo-open-tool="${esc(t.id)}" title="${esc(t.id)} — ${esc(signal.text)}" aria-label="${esc(t.id)} ${esc(signal.text)}">
-    <div class="b1223-photo-row">
-      <div class="b1217-identity">
-        <div class="b1217-idbadge b1217-priority" title="FI CONDITION: ${esc(signal.text)}"><strong>#${esc(p.rank||t.priority||'—')}</strong><small>PRIORITY</small></div>
-        <div class="b1217-idbadge">${esc(String(t.codename||'UNKNOWN').toUpperCase())}</div>
-        <div class="b1217-idbadge">${esc(String(t.alias||'NO ALIAS').toUpperCase())}</div>
-        <div class="b1217-idbadge b1224-process">${t.reducedProcess?'REDUCED PROCESS':'NORMAL PROCESS'}</div>
-      </div>
-      <div class="b1217-photo"><img src="${esc(img)}" alt="${esc(t.codename||'Tool')}"></div>
-    </div>
-    ${b1224Tower(t,true)}
-    <div class="b1223-info-grid">${pairs.map(([label,value])=>`<div class="b1223-info-badge"><span>${esc(label)}</span><strong>${esc(String(value||'—'))}</strong></div>`).join('')}</div>
+  const fields=[['UTID',t.id],['TYPE',t.codename],['MODEL',t.model],['CUSTOMER',t.customer],['SHIP',t.shipDate?fmtDate(t.shipDate):'NOT RECORDED'],['QUARTER',t.quarter]];
+  return `<article class="b139-mini-card b1223-${signal.tone}" data-photo-open-tool="${esc(t.id)}" title="${esc(t.id)} — ${esc(signal.text)}">
+    <div class="b139-mini-head"><span>#${esc(p.rank||t.priority||'—')} PRIORITY</span><strong>${esc(String(t.alias||'NO ALIAS').toUpperCase())}</strong></div>
+    <div class="b139-mini-photo"><img src="${esc(img)}" alt="${esc(t.codename||'Tool')}"></div>
+    <div class="b139-mini-info">${fields.map(([label,value])=>`<div><span>${esc(label)}</span><strong>${esc(String(value||'—'))}</strong></div>`).join('')}</div>
+    <div class="b139-mini-foot"><span class="b139-mini-dot b139-${signal.tone}"></span><b>${esc(signal.text)}</b></div>
   </article>`;
 }
 function hybridPresentationView(){
