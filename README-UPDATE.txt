@@ -1,10 +1,10 @@
-B7 FI COMMAND CENTER V13.0.6 — LIVE OPERATIONS FINISH (TEST)
+B7 FI Command Center V13.0.7 - Raiders Live Operations layout refinement
 
-Changes from V13.0.5:
-- Footer Administration Center and Presentation Mode buttons: black/silver chrome; remove cyan/blue styling.
-- Normal Process and Quarter Carryover badges: black background and silver borders.
-- Signal tower image: approximately 7.5% taller within existing photo area.
-- Header, navigation, three-column geometry, priority and alias badges are unchanged.
+Changes:
+- Three rounded chrome header sections replace angled/flat section treatment while preserving the approved header height.
+- Navigation vertical padding reduced to 3px; controls remain at least 35px tall.
+- Signal tower image no longer stretched by the old JS 1.075x transform; 7px vertical clearance at each end prevents clipping.
+- Existing navigation theme, priority/alias badges, footer, tool data and multi-user logic retained.
 
-This is a targeted styling build. Microsoft List synchronization and live browser appearance have not been verified.
-Deploy the contents at the repository root. Preserve V13.0.5 as backup.
+TEST BUILD: archive integrity and JavaScript syntax checked. Browser rendering and Microsoft List synchronization not verified.
+Deploy all files through GitHub Desktop; verify at 100% zoom.

@@ -1,0 +1,53 @@
+/* V13.0.7: one focused, last-loaded layout patch; no operational logic changes. */
+:root{--raiders-nav-pad-y:3px;--raiders-tower-inset:7px;}
+/* Keep the approved tall header; give its THREE sections their own rounded chrome frames. */
+html body .app-frame #stickyShell > header.prototype-header{
+ display:grid!important;grid-template-columns:minmax(0,1.32fr) minmax(350px,.87fr) minmax(0,1.32fr)!important;
+ gap:6px!important;padding:5px!important;align-items:stretch!important;
+ border:0!important;border-radius:0!important;background:#050505!important;
+ overflow:hidden!important;
+}
+html body .app-frame #stickyShell > header.prototype-header > section{
+ min-width:0!important;height:100%!important;min-height:0!important;
+ padding:7px 12px!important;margin:0!important;border:2px solid #c9c9c9!important;
+ border-radius:20px!important;overflow:hidden!important;
+ background:linear-gradient(180deg,#a7a7a7 0%,#3d3d3d 3%,#0a0a0a 12%,#000 70%,#191919 90%,#777 98%,#ddd 100%)!important;
+ box-shadow:inset 0 2px 3px #fff9,inset 0 -2px 3px #bbb8,0 0 3px #fff8!important;
+ transform:none!important;clip-path:none!important;
+}
+html body .app-frame #stickyShell > header.prototype-header .prototype-header-center,
+html body .app-frame #stickyShell > header.prototype-header .prototype-kla-box{
+ background:transparent!important;border:0!important;box-shadow:none!important;clip-path:none!important;
+}
+html body .app-frame #stickyShell > header.prototype-header .prototype-kla-box{
+ width:100%!important;min-height:0!important;height:100%!important;max-height:100%!important;
+}
+html body .app-frame #stickyShell > header.prototype-header .b1239-raiders-logo,
+html body .app-frame #stickyShell > header.prototype-header .b1241-right-logo{
+ max-height:calc(100% - 8px)!important;object-fit:contain!important;
+}
+/* Tighten the oversized empty black bands above and below the navigation controls. */
+html body .app-frame #stickyShell nav#mainNav.main-nav.b797-unified-nav{
+ min-height:0!important;height:auto!important;padding:var(--raiders-nav-pad-y) 6px!important;
+ margin:0!important;gap:5px!important;align-items:center!important;
+}
+html body .app-frame #stickyShell nav#mainNav.main-nav.b797-unified-nav > div{
+ min-height:0!important;margin-top:0!important;margin-bottom:0!important;padding-top:0!important;padding-bottom:0!important;
+ align-items:center!important;
+}
+html body .app-frame #stickyShell nav#mainNav.main-nav.b797-unified-nav :is(button,select){
+ min-height:35px!important;margin-top:0!important;margin-bottom:0!important;
+}
+/* The old 1.075x transform cropped the tower. Inset the image within its existing frame. */
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower-image{
+ position:relative!important;inset:auto!important;display:block!important;
+ width:100%!important;height:calc(100% - 2 * var(--raiders-tower-inset))!important;
+ max-width:100%!important;max-height:calc(100% - 2 * var(--raiders-tower-inset))!important;
+ object-fit:contain!important;object-position:center!important;
+ transform:none!important;transform-origin:center!important;margin:auto!important;
+}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-tower,
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1224-tower.b1229-tower{
+ overflow:hidden!important;display:flex!important;align-items:center!important;justify-content:center!important;
+}
+@media(max-width:1100px){html body .app-frame #stickyShell > header.prototype-header{grid-template-columns:minmax(0,1fr) minmax(300px,.95fr) minmax(0,1fr)!important;}}

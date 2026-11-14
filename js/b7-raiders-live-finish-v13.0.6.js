@@ -11,7 +11,7 @@
    set(el,'background','#050505');set(el,'background-image','none');set(el,'background-color','#050505');
    set(el,'border','1px solid #9b9b9b');set(el,'color','#fff');
   });
-  document.querySelectorAll('#app .c11-tool-card .c11-photo.b1226-photo .b1229-tower-image').forEach(el=>set(el,'transform','scaleY(1.075)'));
+  /* V13.0.7: tower geometry now owned by CSS; no forced image scaling. */
  }
  let pending=false;function schedule(){if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;apply();});}
  function start(){apply();new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true});}
