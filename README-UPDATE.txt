@@ -5,3 +5,6 @@ B7 FI COMMAND CENTER V13.0.27 — TEST BUILD
 - Existing signal tower, progress bar rules, app logic and data integrations retained.
 
 Visual behavior requires browser verification.
+
+
+V13.0.28: Increased KLA center header image to 310px max (responsive 260px below 1450px), tightened badge spacing, and shortened Live Operations photo panel to 378px with tower clearance. Browser visual testing required.

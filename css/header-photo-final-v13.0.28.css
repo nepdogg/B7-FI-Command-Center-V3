@@ -1,0 +1,23 @@
+/* V13.0.28 — larger central KLA brand and less unused photo-section space. */
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .prototype-kla-box {
+ grid-template-columns:40px minmax(0,310px) 40px!important;
+ column-gap:5px!important;justify-content:center!important;align-content:center!important;
+}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-core > img {
+ width:100%!important;max-width:310px!important;height:clamp(78px,7vw,105px)!important;
+ max-height:105px!important;object-fit:contain!important;
+}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-presence-badge {
+ min-width:38px!important;width:38px!important;height:38px!important;padding:0 3px!important;
+}
+/* Shorten the actual photo panel, not the surrounding tool card or its badge layout. */
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-column > .c11-photo.b1226-photo.b1313-unified-photo {
+ height:378px!important;min-height:378px!important;max-height:378px!important;
+ grid-template-rows:43px minmax(0,1fr)!important;gap:3px!important;padding:4px!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-top > .b1226-photo-tower {padding-bottom:6px!important;}
+@media(max-width:1450px){
+ html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .prototype-kla-box {grid-template-columns:34px minmax(0,260px) 34px!important;column-gap:4px!important;}
+ html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-core > img {max-width:260px!important;height:85px!important;}
+ html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-presence-badge {min-width:32px!important;width:32px!important;height:34px!important;}
+}
