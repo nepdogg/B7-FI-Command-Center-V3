@@ -11,7 +11,7 @@
   });
   APP.querySelectorAll('.c11-identity-stack,.b783-date-row,.c11-badges,.fleet-badges,.b7-editor-badge-grid,.v1222-badge-grid').forEach(el=>{
    apply(el,{...grid,'grid-template-columns':el.matches('.c11-identity-stack,.b783-date-row')?'repeat(2,minmax(0,1fr))':'repeat(3,minmax(0,1fr))'});
-   [...el.children].forEach(child=>{apply(child,badge);if(child.matches('.c11-wafer-badge,.v10-wafer-badge,.equipment-badge'))set(child,'grid-column','1/-1')});
+   [...el.children].forEach(child=>{if(el.matches('.c11-identity-stack,.b783-date-row')){apply(child,{'height':H,'min-height':H,'max-height':H,'box-sizing':'border-box','flex-shrink':'0',margin:'0',padding:'6px 9px',display:'grid','grid-template-columns':'minmax(0,44%) minmax(0,56%)','align-items':'center','justify-items':'stretch',gap:'5px','align-self':'stretch',overflow:'hidden','white-space':'normal','text-align':'left',background:'#000','background-image':'none',color:'#fff',border:'1px solid #aeb4bc','border-radius':'6px',transform:'none'});}else{apply(child,badge);if(child.matches('.c11-wafer-badge,.v10-wafer-badge,.equipment-badge'))set(child,'grid-column','1/-1')}});
   });
  }
  let queued=false;function schedule(){if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;fix()})}

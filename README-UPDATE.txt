@@ -1,9 +1,7 @@
-B7 FI COMMAND CENTER V13.0.24 — TEST BUILD
+B7 FI Command Center V13.0.25 TEST
 
-Fixes:
-- Restore horizontal field-name left/value right identity and milestone badges with direct render-time geometry.
-- Adjust photo and signal tower independently within the Live Operations image row.
-- Correct missing v13.0.22 photo stylesheet link.
-- Preserve solid metallic-silver progress styling and existing tool logic.
+Root cause: js/b7-badge-source-v12.0.62.js runs a MutationObserver and rewrites the identity and date badges as centered flex columns after render, defeating previous CSS and markup fixes. This build corrects that runtime logic to preserve two-column label/value layout.
 
-Browser layout and Microsoft List synchronization require testing.
+Also corrects the broken photo-tower stylesheet reference and adjusts image/tower row spacing.
+
+Please verify in browser at your normal zoom and test multiuser behavior.
