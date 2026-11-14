@@ -1,13 +1,9 @@
-B7 FI COMMAND CENTER V13.0.27 — TEST BUILD
+B7 FI Command Center V13.0.30 — Raiders Graphics V1 Integrated TEST
 
-- Center header: enlarged KLA+ logo and grouped the user badges closer to it, retaining overall three-panel geometry.
-- Live Operations photo: reduced outer photo-section height 425px to 397px to reduce empty bottom strip.
-- Existing signal tower, progress bar rules, app logic and data integrations retained.
+Base: V13.0.29.
+Integrated all 20 scalable SVG assets under assets/raiders-graphics/.
+Integrated graphics CSS library and applied a visual chrome treatment to header, navigation, Live Operations tool sections, progress headers, identity badges, and footer.
+Preserved existing geometry, signal tower status colors, solid silver progress bars, JavaScript, data, and Microsoft List behavior.
+No change to the backend or user settings.
 
-Visual behavior requires browser verification.
-
-
-V13.0.28: Increased KLA center header image to 310px max (responsive 260px below 1450px), tightened badge spacing, and shortened Live Operations photo panel to 378px with tower clearance. Browser visual testing required.
-
-
-V13.0.29: Increased Live Operations photo panel height from 378 to 404px to avoid bottom clipping. Added independent bottom padding for tower (10px) and equipment image (11px). Corrected missing V13.0.27 CSS reference in index.html. No app data or business logic changes. Browser visual verification pending.
+Test in Edge and check for CSS conflicts, readability, mobile/zoom sizing, and page interactions. This build has not been browser-verified.
