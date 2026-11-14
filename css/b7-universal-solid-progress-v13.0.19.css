@@ -1,0 +1,39 @@
+/* V13.0.19 — UNIVERSAL PROGRESS THEME
+   All completion bars are solid metallic silver. Completion and status are
+   separate concepts; the signal tower keeps its own semantic colors.
+   No changes to bar width, calculations, tool data or signal logic. */
+:root{--b719-progress-metal:linear-gradient(180deg,#f5f5f5 0%,#d5d5d5 22%,#969696 58%,#bdbdbd 100%);--b719-progress-empty:#171717;--b719-progress-rim:#777}
+/* Existing percentage tracks in tools, quarter summary, centers and presentations */
+html body .track:not(.b782-track):not(.na-track),
+html body .c11-progress-track,
+html body [class*="progress-track"]:not(.b782-track):not(.na-track),
+html body progress {background:var(--b719-progress-empty)!important;border-color:var(--b719-progress-rim)!important}
+html body .track .fill,
+html body .c11-progress-track>i,
+html body [class*="progress-track"]>.fill,
+html body [class*="progress-track"]>i:not(.b782-marker):not(.b782-actual),
+html body [class*="progress-bar"]>.fill,
+html body [class*="progress-fill"],
+html body .progress-fill,
+html body progress::-webkit-progress-value{
+ background:var(--b719-progress-metal)!important;
+ background-color:#bdbdbd!important;
+ background-image:var(--b719-progress-metal)!important;
+ -webkit-mask-image:none!important;mask-image:none!important;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.45)!important;
+ border-radius:inherit!important;
+}
+html body progress::-moz-progress-bar{background:var(--b719-progress-metal)!important}
+/* Explicitly undo segmented legacy overlays and masks */
+html body #app .c11-tool-card .c11-progress-track>i,
+html body.presentation-mode #app .c11-tool-card .c11-progress-track>i{
+ -webkit-mask:none!important;mask:none!important;
+ background:var(--b719-progress-metal)!important;
+}
+html body .track .fill::before,html body .track .fill::after,
+html body .c11-progress-track>i::before,html body .c11-progress-track>i::after{
+ background-image:none!important;mask-image:none!important;-webkit-mask-image:none!important;
+}
+/* Progress values remain legible, including in monochrome presentation views */
+html body .progress-head,html body .progress-head b,
+html body .card-progress label,html body .card-progress .labeled-track>span{color:#f3f3f3!important}
