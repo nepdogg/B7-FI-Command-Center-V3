@@ -1,0 +1,42 @@
+/* V13.0.20 — AUTHORITATIVE solid silver completion bars.
+   Preserve inline widths and signal-tower semantic colors. */
+:root{--b720-metal:linear-gradient(180deg,#f7f7f7 0%,#d7d7d7 26%,#929292 68%,#c4c4c4 100%)}
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row:nth-child(n) .c11-progress-track>i,
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row:last-child .c11-progress-track>i,
+html body #app .c11-tool-card .c11-overall-progress .c11-progress-track>i,
+html body #app .c11-tool-card .c11-progress-track>i,
+html body #app .progress-item .track.labeled-track>.fill,
+html body #app .track>.fill,
+html body #app [class*="progress-track"]>.fill,
+html body #app [class*="progress-track"]>i,
+html body.presentation-mode #app .c11-progress-track>i {
+  background:var(--b720-metal)!important;background-image:var(--b720-metal)!important;
+  background-color:#bcbcbc!important;
+  -webkit-mask:none!important;mask:none!important;-webkit-mask-image:none!important;mask-image:none!important;
+  border-image:none!important;filter:none!important;
+}
+html body #app .c11-progress-track>i::before,
+html body #app .c11-progress-track>i::after,
+html body #app .track>.fill::before,
+html body #app .track>.fill::after{background:none!important;background-image:none!important;-webkit-mask:none!important;mask:none!important;content:none!important}
+/* Make live photo and signal tower taller, with the priority/alias header still fixed on top.
+   The original photo was capped at 450px, leaving the main visual cramped. */
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-column>.c11-photo.b1226-photo.b1313-unified-photo{
+ height:clamp(480px,36vw,550px)!important;min-height:480px!important;max-height:none!important;
+ grid-template-rows:clamp(35px,3vw,48px) minmax(0,1fr)!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo>.b1226-photo-top{
+ height:100%!important;min-height:0!important;grid-template-columns:clamp(140px,28%,190px) minmax(0,1fr)!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower,
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main,
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .v1210-photo-image{
+ height:100%!important;min-height:0!important;max-height:100%!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower img.b1229-tower-image{
+ width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;
+ object-fit:fill!important;transform:none!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main .v1210-photo-image>img{
+ width:100%!important;height:100%!important;object-fit:contain!important;
+}
