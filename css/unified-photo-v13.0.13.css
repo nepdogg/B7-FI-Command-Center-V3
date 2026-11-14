@@ -1,0 +1,30 @@
+/* V13.0.13: shared Priority/Alias header spans signal tower AND tool image.
+   Scope only to Universal Tool Card photo area; retain live status logic. */
+html body #app .c11-tool-card .c11-photo.b1226-photo.b1313-unified-photo {
+ display:flex!important; flex-direction:column!important; min-height:0!important;
+ gap:5px!important; overflow:hidden!important; box-sizing:border-box!important;
+}
+html body #app .c11-tool-card .c11-photo.b1226-photo.b1313-unified-photo > .b133-priority-alias {
+ display:grid!important; grid-template-columns:1fr 1fr!important;
+ position:relative!important; flex:0 0 auto!important; width:100%!important;
+ min-height:34px!important; margin:0!important; padding:0!important; gap:4px!important;
+}
+html body #app .c11-tool-card .c11-photo.b1226-photo.b1313-unified-photo > .b133-priority-alias > button {
+ min-width:0!important; width:100%!important; height:100%!important;
+}
+html body #app .c11-tool-card .c11-photo.b1226-photo.b1313-unified-photo > .b1226-photo-top {
+ flex:1 1 0!important; min-height:0!important; height:auto!important;
+ width:100%!important; display:grid!important;
+ grid-template-columns:var(--cc-tower-width,24%) minmax(0,1fr)!important;
+ grid-template-rows:minmax(0,1fr)!important; gap:5px!important;
+}
+html body #app .c11-tool-card .c11-photo.b1226-photo.b1313-unified-photo .b1226-photo-main {
+ min-width:0!important; min-height:0!important; height:100%!important;
+ display:flex!important; align-items:stretch!important;
+}
+html body #app .c11-tool-card .c11-photo.b1226-photo.b1313-unified-photo .v1210-photo-image {
+ flex:1 1 auto!important; min-height:0!important; height:100%!important;
+}
+html body #app .c11-tool-card .c11-photo.b1226-photo.b1313-unified-photo .b1226-photo-tower {
+ min-height:0!important; height:100%!important;
+}

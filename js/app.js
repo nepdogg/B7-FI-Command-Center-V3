@@ -1823,7 +1823,7 @@ function v11ToolCard(){
   return `<section class="c11-tool-card" data-universal-tool-card="${esc(t.id)}">
     <div class="c11-card-grid b1224-universal-grid b1226-three-column">
       <section class="c11-column c11-identity-column">
-        <div class="c11-photo b796-priority-photo b1226-photo"><div class="b1226-photo-top"><div class="b1226-photo-tower">${b1224Tower(t)}</div><div class="b1226-photo-main"><div class="b133-priority-alias"><button type="button" class="b133-priority-badge" data-direct-priority="${esc(t.id)}" title="Update priority">#${esc(p.rank||t.priority||'—')} PRIORITY</button><button type="button" class="b133-alias-badge" data-tool="${esc(t.id)}" title="Open tool to edit alias">${esc(String(t.alias||'NO ALIAS').toUpperCase())}</button></div><div class="v1210-photo-image"><img src="${esc(img)}" alt="${esc(t.codename||'Tool')}"></div></div></div></div>
+        <div class="c11-photo b796-priority-photo b1226-photo b1313-unified-photo"><div class="b133-priority-alias"><button type="button" class="b133-priority-badge" data-direct-priority="${esc(t.id)}" title="Update priority">#${esc(p.rank||t.priority||'—')} PRIORITY</button><button type="button" class="b133-alias-badge" data-tool="${esc(t.id)}" title="Open tool to edit alias">${esc(String(t.alias||'NO ALIAS').toUpperCase())}</button></div><div class="b1226-photo-top"><div class="b1226-photo-tower">${b1224Tower(t)}</div><div class="b1226-photo-main"><div class="v1210-photo-image"><img src="${esc(img)}" alt="${esc(t.codename||'Tool')}"></div></div></div></div>
         <div class="c11-identity-stack">
           ${c11IdentityButton(t,'utid','UTID',t.id,!t.id)}
           ${c11IdentityButton(t,'toolType','TOOL TYPE',t.codename,!t.codename)}
