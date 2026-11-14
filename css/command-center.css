@@ -32372,3 +32372,69 @@ html body .c11-tool-card .b1226-photo-main .b133-priority-alias>button{display:f
 html body .c11-tool-card .b1226-photo-main .b133-priority-badge{color:#fff!important;background:linear-gradient(180deg,#555 0%,#191919 26%,#030303 60%,#141414 100%)!important;text-shadow:0 1px 2px #000!important;border-right:1px solid #aaa!important}
 html body .c11-tool-card .b1226-photo-main .b133-alias-badge{color:#fff!important;background:linear-gradient(180deg,#b7b7b7 0%,#656565 25%,#353535 63%,#606060 100%)!important;text-shadow:0 2px 2px #000,0 0 2px #000!important}
 html body .c11-tool-card .b1226-photo-main .b133-priority-alias>button:focus-visible{outline:2px solid #fff!important;outline-offset:-3px!important}
+
+/* V13.0.4: dedicated priority / alias chrome plates (actual rendered classes) */
+html body #app section.c11-tool-card .b1226-photo-main > .b133-priority-alias,
+html body section.c11-tool-card .b1226-photo-main > .b133-priority-alias {
+ display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+ gap:3px!important;align-items:stretch!important;flex:0 0 auto!important;
+ width:100%!important;height:48px!important;min-height:48px!important;
+ padding:0!important;background:transparent!important;border:0!important;
+ box-shadow:none!important;overflow:visible!important;
+}
+html body #app .b133-priority-alias > .b133-priority-badge,
+html body #app .b133-priority-alias > .b133-alias-badge {
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ width:100%!important;height:48px!important;min-height:48px!important;
+ padding:2px 5px!important;box-sizing:border-box!important;
+ border:1px solid #bdbdbd!important;border-radius:9px!important;
+ font-size:clamp(12px,1.22vw,19px)!important;font-weight:900!important;
+ line-height:1.05!important;color:white!important;text-align:center!important;
+ white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+ text-shadow:0 2px 2px #000!important;
+ box-shadow:inset 0 2px 2px #ffffff70,0 2px 5px #000!important;
+}
+html body #app .b133-priority-alias > .b133-priority-badge {
+ background:linear-gradient(180deg,#535353 0%,#171717 27%,#030303 65%,#171717 100%)!important;
+}
+html body #app .b133-priority-alias > .b133-alias-badge {
+ background:linear-gradient(180deg,#dedede 0%,#939393 20%,#555555 54%,#777777 80%,#444444 100%)!important;
+}
+/* Enlarged chrome header, maintaining three regions and sticky shell */
+html body #stickyShell > header.prototype-header,
+html body .app-frame #stickyShell header.prototype-header {
+ min-height:156px!important;height:156px!important;max-height:none!important;
+ padding:8px 12px!important;box-sizing:border-box!important;
+ align-items:center!important;border:2px solid #c7c7c7!important;
+ background:linear-gradient(180deg,#575757 0%,#0b0b0b 10%,#020202 78%,#282828 97%,#999 100%)!important;
+}
+html body #stickyShell .prototype-header > section {height:100%!important;min-height:0!important;align-content:center!important;justify-content:center!important;}
+html body #stickyShell .prototype-header-left span,
+html body #stickyShell .prototype-header-right .b1241-quarter-title {font-size:clamp(17px,1.65vw,32px)!important;}
+html body #stickyShell .prototype-header .b1239-raiders-logo {max-height:130px!important;height:clamp(65px,8vw,130px)!important;width:auto!important;object-fit:contain!important;}
+html body #stickyShell #headerModeCenter .prototype-kla-box {min-height:116px!important;height:100%!important;align-items:center!important;}
+/* signal tower: use the full available photo height without stretching the image */
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-top {grid-template-columns:clamp(96px,23%,150px) minmax(0,1fr)!important;align-items:stretch!important;}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-tower,
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1224-tower,
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower {height:100%!important;min-height:0!important;max-height:none!important;display:flex!important;align-items:stretch!important;justify-content:center!important;}
+html body #app .c11-tool-card .c11-photo.b1226-photo img.b1229-tower-image {width:100%!important;height:100%!important;max-height:none!important;object-fit:contain!important;object-position:center center!important;}
+/* footer: remove all blue backing, including inner cells and action buttons */
+html body footer.app-footer,
+html body footer.app-footer .footer-system-row,
+html body footer.app-footer .footer-system-cell,
+html body footer.app-footer .footer-admin,
+html body footer.app-footer .footer-activity,
+html body footer.app-footer .footer-sync {
+ background:linear-gradient(180deg,#4d4d4d 0%,#141414 14%,#030303 70%,#303030 100%)!important;
+ background-color:#090909!important;color:#fff!important;
+ border-color:#bfc0c2!important;box-shadow:inset 0 1px 2px #ffffff75!important;
+}
+html body footer.app-footer button,
+html body footer.app-footer .btn,
+html body footer.app-footer a {
+ background:linear-gradient(180deg,#555 0%,#171717 28%,#050505 68%,#303030 100%)!important;
+ color:#fff!important;border:1px solid #aaa!important;border-radius:9px!important;
+ box-shadow:inset 0 1px 2px #fff8!important;
+}
+html body footer.app-footer * {border-color:#aeb0b4!important;}
