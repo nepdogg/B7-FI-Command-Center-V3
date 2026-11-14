@@ -1,6 +1,8 @@
-B7 FI COMMAND CENTER V13.0.9 — PRESENTATION MODES TEST BUILD
+B7 FI Command Center V13.0.10 — Raiders Header Geometry TEST
 
-- Tool Presentation: reserve bottom navigation row; constrain card within viewport.
-- Hybrid: reserve bottom controls, constrain carousel height, introduce compact mini tool cards with left/right field rows.
-- Quarter Summary: no layout changes.
-- Existing application logic and Microsoft List integration retained; browser and multi-user testing still required.
+- Restores full-height three rounded chrome header panels, matching the approved sample.
+- Removes inherited diagonal skew on the KLA center and its contents.
+- Enlarges logos and titles to use the existing 156px header height without a blank lower band.
+- Keeps navigation and V13.0.9 presentation changes intact.
+- No changes to Microsoft List business logic.
+- This ZIP is syntax/archive checked only; browser verification is still required.
