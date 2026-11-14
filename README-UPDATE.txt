@@ -1,14 +1,11 @@
-B7 FI COMMAND CENTER V13.0.4 — TEST BUILD
+B7 FI Command Center V13.0.5 — Raiders Shell Geometry Repair (test build)
 
 Changes:
-- Two independently styled priority and alias badges (black / metallic silver).
-- Header height increased to 156 CSS pixels; Raiders chrome retained.
-- Signal tower image scales to available photo area, preserving proportions.
-- Footer and footer actions use black/silver chrome instead of blue.
-- Existing black/silver navigation retained.
+- Increase header to 156px (approximately twice the original design target).
+- Remove blue footer backgrounds from footer, inner row, and cells; black/silver chrome finish.
+- Enlarge the signal tower to occupy the full equipment-photo section height, with wider tower column.
+- Add a narrowly scoped runtime geometry enforcer to counter legacy runtime inline styling.
+- Preserve the V13.0.4 two-button Priority/Alias design and Raiders navigation.
 
-Testing: Confirm both badges are visibly separate and clickable; check header
-text and user badges at 100% zoom and other zooms; inspect footer and tower;
-check Microsoft List connection and tool editing on both computers.
-
-This package has not been validated in a running browser or against live List data.
+Validation: source and ZIP integrity verified. Live GitHub Pages, browser appearance and Microsoft List integration NOT verified.
+Deploy to a test branch or back up your current working release before updating.

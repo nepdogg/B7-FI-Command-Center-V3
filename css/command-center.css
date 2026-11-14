@@ -32438,3 +32438,52 @@ html body footer.app-footer a {
  box-shadow:inset 0 1px 2px #fff8!important;
 }
 html body footer.app-footer * {border-color:#aeb0b4!important;}
+
+
+/* V13.0.5 — geometry and Raiders footer repair. One centralized stylesheet. */
+:root { --cc-header-height: 156px; --cc-tower-width: clamp(135px, 27%, 170px); --cc-chrome-border: #bcbfc3; }
+html body .app-frame #stickyShell > header.prototype-header {
+  height:var(--cc-header-height)!important; min-height:var(--cc-header-height)!important;
+  max-height:none!important; overflow:visible!important;
+  grid-template-columns:minmax(0,1.15fr) minmax(400px,.92fr) minmax(0,1.15fr)!important;
+  background:linear-gradient(180deg,#707070 0%,#090909 8%,#020202 78%,#454545 97%,#b8b8b8 100%)!important;
+  border:2px solid var(--cc-chrome-border)!important; box-sizing:border-box!important;
+}
+html body .app-frame #stickyShell > header.prototype-header > section {
+  height:100%!important; min-height:0!important; max-height:none!important;
+  align-self:stretch!important; box-sizing:border-box!important;
+}
+html body .app-frame #stickyShell > header.prototype-header .prototype-kla-box {height:100%!important;min-height:0!important;max-height:none!important;}
+html body .app-frame #stickyShell > header.prototype-header .b1239-raiders-logo {height:110px!important;max-height:calc(100% - 12px)!important;width:auto!important;object-fit:contain!important;}
+html body .app-frame > footer.app-footer,
+html body .app-frame > footer.app-footer > .footer-system-row,
+html body .app-frame > footer.app-footer .footer-system-cell,
+html body .app-frame > footer.app-footer .footer-global-actions,
+html body .app-frame > footer.app-footer .footer-activity,
+html body .app-frame > footer.app-footer .footer-sync {
+ background:linear-gradient(180deg,#525252 0%,#181818 13%,#030303 55%,#272727 95%,#6b6b6b 100%)!important;
+ background-color:#080808!important; background-image:linear-gradient(180deg,#525252 0%,#181818 13%,#030303 55%,#272727 95%,#6b6b6b 100%)!important;
+ color:#fff!important; border-color:var(--cc-chrome-border)!important;
+}
+html body .app-frame > footer.app-footer {border:2px solid var(--cc-chrome-border)!important;border-radius:10px!important;}
+html body .app-frame > footer.app-footer button,
+html body .app-frame > footer.app-footer a {
+ background:linear-gradient(180deg,#626262,#181818 25%,#050505 68%,#393939)!important;
+ color:#fff!important;border:1px solid #b9b9b9!important;border-radius:9px!important;
+}
+html body #app .c11-tool-card .c11-photo.b1226-photo > .b1226-photo-top {
+ display:grid!important;grid-template-columns:var(--cc-tower-width) minmax(0,1fr)!important;
+ grid-template-rows:minmax(0,1fr)!important;align-items:stretch!important;
+ height:100%!important;min-height:0!important;
+}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-tower,
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1224-tower.b1229-tower {
+ height:100%!important;min-height:0!important;max-height:none!important;
+ padding:0!important;margin:0!important;align-self:stretch!important;
+ display:flex!important;align-items:stretch!important;justify-content:center!important;
+}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower-image {
+ display:block!important;width:100%!important;height:100%!important;max-height:none!important;
+ object-fit:fill!important;object-position:center!important;
+}
+@media(max-width:1100px) {html body .app-frame #stickyShell > header.prototype-header {grid-template-columns:minmax(0,1fr) minmax(330px,.95fr) minmax(0,1fr)!important;}}
