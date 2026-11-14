@@ -1,7 +1,7 @@
-V13.0.26 TEST - Compact multi-user header
+B7 FI COMMAND CENTER V13.0.27 — TEST BUILD
 
-Rebuilt center header: compact current-user initials, maximized KLA+ logo, +N colleague count, single-line mode and connection status.
-Preserves original header IDs and shared connection status logic.
-Other pages and layouts unchanged.
+- Center header: enlarged KLA+ logo and grouped the user badges closer to it, retaining overall three-panel geometry.
+- Live Operations photo: reduced outer photo-section height 425px to 397px to reduce empty bottom strip.
+- Existing signal tower, progress bar rules, app logic and data integrations retained.
 
-Verify on Edge at 100% zoom, both disconnected and connected states.
+Visual behavior requires browser verification.

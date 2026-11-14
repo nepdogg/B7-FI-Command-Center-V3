@@ -1,0 +1,18 @@
+/* V13.0.27 — compact middle header grouping; preserve three header panels. */
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .prototype-kla-box {
+ grid-template-columns:max-content minmax(0,270px) max-content!important;
+ column-gap:9px!important;justify-content:center!important;align-content:center!important;
+}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-core > img {
+ width:100%!important;max-width:270px!important;height:clamp(58px,6vw,88px)!important;object-fit:contain!important;
+}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-user-side {justify-self:center!important;}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-copy {align-self:start!important;}
+/* Remove unused photo-row height, without shrinking the existing images by an arbitrary percentage. */
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-column > .c11-photo.b1313-unified-photo {
+ height:397px!important;min-height:397px!important;max-height:397px!important;
+}
+@media(max-width:1250px){
+ html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .prototype-kla-box {grid-template-columns:max-content minmax(0,220px) max-content!important;column-gap:5px!important;}
+ html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-core > img {max-width:220px!important;}
+}
