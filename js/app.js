@@ -658,7 +658,7 @@ function toolTypeMenu(){
 }
 function positionToolTypeMenu(menu){let btn=menu?.querySelector('[data-tool-type-toggle]'),drop=menu?.querySelector('.tool-type-dropdown');if(!btn||!drop)return;let r=btn.getBoundingClientRect(),w=Math.max(190,Math.ceil(r.width));drop.style.setProperty('--tool-menu-left',Math.max(6,Math.min(window.innerWidth-w-6,r.left))+'px');drop.style.setProperty('--tool-menu-top',Math.min(window.innerHeight-40,r.bottom+1)+'px');drop.style.setProperty('--tool-menu-width',w+'px');}
 function nav(){
-  let centerChoices=[['operations','OPERATIONS CENTER','⚙'],['status','STATUS CENTER','⌁'],['update','UPDATE CENTER','✎'],['archive','ARCHIVE CENTER','▤'],['admin','ADMINISTRATION CENTER','⚙']];
+  let centerChoices=[['operations','OPERATIONS CENTER','⚙'],['status','STATUS CENTER','⌁'],['update','UPDATE CENTER','✎'],['archive','ARCHIVE CENTER','▤'],['admin','ADMINISTRATION CENTER','⚙'],['shipping','SHIPPING CENTER','▣'],['cycle','CYCLE TIME CENTER','◷'],['meeting','MEETING CENTER','☷']];
   let centerLabel=centerChoices.find(x=>x[0]===route.center)?.[1]||'OPERATIONS CENTER';
   let main=`<div class="b138-center-picker"><button type="button" class="b138-center-trigger" data-b138-toggle aria-haspopup="menu" aria-expanded="false">${esc(centerLabel)} <span aria-hidden="true">⌄</span></button><div class="b138-center-menu" role="menu" aria-label="Command Center centers" hidden>${centerChoices.map(x=>`<button type="button" role="menuitem" class="b138-center-option ${route.center===x[0]?'is-current':''}" data-b138-center="${esc(x[0])}"><span class="b138-center-icon" aria-hidden="true">${x[2]}</span><span>${esc(x[1])}</span></button>`).join('')}</div></div>`;
   document.querySelector('#b797CenterSlot').innerHTML=main;
@@ -1965,12 +1965,12 @@ function b1224Tower(t,compact=false){
   </div>`;
 }
 function b1217CompactCard(t){
-  // V13.0.9: purpose-built mini card for the hybrid carousel.
+  // V13.0.12: true compact Universal Tool mini-card: tower, image, badges and identity fields.
   const p=priorityBadgeInfo(t),signal=b1217Signal(t),img=individualToolPhoto(t)||familyImage(t);
-  const fields=[['UTID',t.id],['TYPE',t.codename],['MODEL',t.model],['CUSTOMER',t.customer],['SHIP',t.shipDate?fmtDate(t.shipDate):'NOT RECORDED'],['QUARTER',t.quarter]];
-  return `<article class="b139-mini-card b1223-${signal.tone}" data-photo-open-tool="${esc(t.id)}" title="${esc(t.id)} — ${esc(signal.text)}">
+  const fields=[['UTID',t.id],['TOOL TYPE',t.codename],['MODEL',t.model],['CUSTOMER',t.customer],['SALES ORDER',t.salesOrder||'—'],['DRIVER',t.driver||'—'],['QUARTER',t.quarter],['SHIP DATE',t.shipDate?fmtDate(t.shipDate):'NOT RECORDED']];
+  return `<article class="b139-mini-card b1312-mini-card b1223-${signal.tone}" data-photo-open-tool="${esc(t.id)}" title="${esc(t.id)} — ${esc(signal.text)}">
     <div class="b139-mini-head"><span>#${esc(p.rank||t.priority||'—')} PRIORITY</span><strong>${esc(String(t.alias||'NO ALIAS').toUpperCase())}</strong></div>
-    <div class="b139-mini-photo"><img src="${esc(img)}" alt="${esc(t.codename||'Tool')}"></div>
+    <div class="b1312-mini-media"><div class="b1312-mini-tower">${b1224Tower(t,true)}</div><div class="b139-mini-photo"><img src="${esc(img)}" alt="${esc(t.codename||'Tool')}"></div></div>
     <div class="b139-mini-info">${fields.map(([label,value])=>`<div><span>${esc(label)}</span><strong>${esc(String(value||'—'))}</strong></div>`).join('')}</div>
     <div class="b139-mini-foot"><span class="b139-mini-dot b139-${signal.tone}"></span><b>${esc(signal.text)}</b></div>
   </article>`;

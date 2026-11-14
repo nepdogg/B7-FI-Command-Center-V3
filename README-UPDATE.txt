@@ -1,9 +1,8 @@
-B7 FI Command Center V13.0.11 - Presentation Raiders theme and navigation
+B7 FI COMMAND CENTER V13.0.12 — PRESENTATION REPAIR TEST
 
-- Shared silver/black presentation outer frame and bottom navigation for tool, quarter summary and hybrid.
-- Hybrid carousel uses purpose-built b139-mini-card with three-card previous/current/next layout.
-- Center selector contains centers only; hover/focus silver.
-- Left/right header sections use the full 146px content height of the 156px header.
-- Preserves existing MS List logic and data.
+- Restore Shipping, Cycle Time and Meeting Centers to center selector.
+- Hybrid carousel now renders a real signal tower alongside photo and eight horizontal tool identity fields.
+- Add centralized Raiders presentation CSS for frames, nav bars, hybrid metrics and tool-card sizing.
+- Preserve all original application data, assets and Microsoft List scripts.
 
-TEST BUILD: browser rendering and Microsoft List sync not verified.
+This build is not browser verified. Test at 100% zoom and in fullscreen.

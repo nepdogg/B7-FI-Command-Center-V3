@@ -1,0 +1,31 @@
+/* V13.0.12 centralized presentation corrections. Scoped: no changes to Live Operations. */
+html body.presentation-mode,html body.presentation-mode .app-frame,html body.presentation-mode #app,html body.presentation-mode .body-shell{background:#000!important;}
+html body.presentation-mode .app-frame,html body.presentation-mode #app,html body.presentation-mode .presentation-tool-only,html body.presentation-mode .b1217-hybrid,html body.presentation-mode .quarter-summary-presentation{border-color:#a8a8a8!important;outline-color:#a8a8a8!important;}
+html body.presentation-mode #app :is(.b1217-metric,.b1217-meter,.b1217-status-row,.b1217-status-row>div,.b1217-carousel,.b1217-carousel-slot,.b139-mini-card,.b139-mini-info>div,.presentation-inline-nav,.quarter-summary-switchbar){border-color:#aaa!important;outline-color:#aaa!important;}
+html body.presentation-mode #app .b1217-hybrid-metrics .b1217-metric{background:#050505!important;border:1px solid #888!important;}
+html body.presentation-mode #app .b1217-hybrid .b1217-status-row>div{background:linear-gradient(#666,#111 25%,#000 70%,#333)!important;border-color:#999!important;}
+html body.presentation-mode #app .b1217-hybrid .b1217-meter{background:#121212!important;border-color:#aaa!important;}
+/* Remove the obsolete empty blue line above Hybrid metrics. */
+html body.presentation-mode #app .b1217-hybrid::before,html body.presentation-mode #app .b1217-hybrid::after{content:none!important;display:none!important;}
+html body.presentation-mode #app .b1217-hybrid{border:0!important;box-shadow:none!important;}
+/* Actual hybrid mini-card layout, with the full signal tower next to the photo. */
+html body.presentation-mode #app .b1312-mini-card{grid-template-rows:34px minmax(0,1fr) auto 28px!important;}
+html body.presentation-mode #app .b1312-mini-media{display:grid!important;grid-template-columns:24% minmax(0,1fr)!important;gap:5px!important;min-height:0!important;overflow:hidden!important;}
+html body.presentation-mode #app .b1312-mini-media .b139-mini-photo{height:100%!important;min-height:0!important;}
+html body.presentation-mode #app .b1312-mini-tower{min-height:0!important;height:100%!important;display:flex!important;align-items:stretch!important;justify-content:center!important;overflow:hidden!important;background:#050505!important;border:1px solid #777!important;border-radius:7px!important;}
+html body.presentation-mode #app .b1312-mini-tower .b1224-tower{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;overflow:hidden!important;}
+html body.presentation-mode #app .b1312-mini-tower img{height:100%!important;width:100%!important;max-height:100%!important;max-width:100%!important;object-fit:contain!important;transform:none!important;}
+html body.presentation-mode #app .b1217-carousel-slot.side .b1312-mini-card{grid-template-rows:30px minmax(0,1fr) 28px!important;}
+/* Tool presentation: preserve the photo and tower, while reducing overflowing internal sections. */
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app>.presentation-tool-only .c11-card-grid{min-height:0!important;overflow:hidden!important;}
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app>.presentation-tool-only .c11-card-grid>*{min-height:0!important;max-height:100%!important;overflow:hidden!important;}
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app>.presentation-tool-only .c11-photo.b796-priority-photo{height:clamp(165px,30vh,310px)!important;max-height:34vh!important;min-height:0!important;}
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app>.presentation-tool-only .b1229-tower-image{object-fit:contain!important;transform:none!important;max-height:100%!important;}
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app>.presentation-tool-only .c11-progress-column{min-height:0!important;overflow:hidden!important;}
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app>.presentation-tool-only .c11-progress-column>*{min-height:0!important;flex-shrink:1!important;}
+/* Identical silver/black nav on all three presentation modes. */
+html body.presentation-mode #app .presentation-inline-nav{border:1px solid #aaa!important;background:linear-gradient(#555,#080808 25%,#000 70%,#555)!important;}
+html body.presentation-mode #app .presentation-inline-nav>.presentation-nav-cell{border:1px solid #777!important;background:linear-gradient(#555,#090909 25%,#000 75%,#333)!important;color:#fff!important;}
+html body.presentation-mode #app .presentation-inline-nav>button:is(:hover,:focus-visible,[aria-current="page"],.active){background:linear-gradient(#eee,#999 30%,#666)!important;color:#000!important;}
+/* Non-status blue outlines are neutralized only within presentation containers. */
+html body.presentation-mode #app :is(.b1217-hybrid,.quarter-summary-presentation,.presentation-tool-only){--panel-border:#aaa;--chrome-border:#aaa;}
