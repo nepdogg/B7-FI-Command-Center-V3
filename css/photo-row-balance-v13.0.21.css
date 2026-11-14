@@ -1,0 +1,23 @@
+/* V13.0.21 — compact visual row: remove excessive blank vertical space.
+   Preserve the entire equipment image and full tower/status plate. */
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-column > .c11-photo.b1226-photo.b1313-unified-photo {
+  height:410px!important;min-height:410px!important;max-height:410px!important;
+  grid-template-rows:43px minmax(0,1fr)!important;gap:5px!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top {
+  min-height:0!important;height:100%!important;grid-template-columns:clamp(125px,27%,175px) minmax(0,1fr)!important;
+  align-items:stretch!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main {
+  display:flex!important;align-items:center!important;justify-content:center!important;min-height:0!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main .v1210-photo-image {
+  display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;
+  width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main .v1210-photo-image > img {
+  display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower img.b1229-tower-image {
+  width:100%!important;height:100%!important;object-fit:fill!important;
+}
