@@ -1,0 +1,44 @@
+/* V13.0.16: narrowly scoped live layout corrections. No presentation-mode changes. */
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame #stickyShell {
+  gap:3px!important; row-gap:3px!important; padding:0!important;
+  background:#030303!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame #stickyShell > header.prototype-header {
+  display:grid!important;
+  grid-template-columns:minmax(0,1.25fr) minmax(330px,.82fr) minmax(0,1.25fr)!important;
+  column-gap:14px!important;gap:14px!important;
+  height:140px!important;min-height:140px!important;max-height:140px!important;
+  padding:3px 7px!important;margin:0!important;
+  background:#030303!important;border:0!important;
+  align-items:stretch!important;overflow:visible!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame #stickyShell > header.prototype-header > section {
+  min-width:0!important;width:auto!important;height:100%!important;min-height:0!important;
+  margin:0!important;transform:none!important;clip-path:none!important;
+  border:3px solid #c5c5c5!important;border-radius:19px!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame #stickyShell > nav#mainNav {
+  margin:0!important;padding-top:3px!important;padding-bottom:3px!important;
+}
+/* Photo grid: keep the tower's complete image and status plate within the photo's second row. */
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top {
+  min-height:0!important;max-height:100%!important;overflow:hidden!important;
+  grid-template-columns:clamp(80px,23%,150px) minmax(0,1fr)!important;
+  align-items:stretch!important;
+}
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top > .b1226-photo-tower {
+  height:100%!important;min-height:0!important;max-height:100%!important;
+  position:relative!important;overflow:hidden!important;
+}
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower .b1229-tower {
+  position:absolute!important;inset:0!important;height:100%!important;max-height:100%!important;
+  min-height:0!important;width:100%!important;overflow:hidden!important;
+}
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower img.b1229-tower-image {
+  position:absolute!important;inset:0!important;
+  width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;
+  max-width:100%!important;max-height:100%!important;
+  object-fit:contain!important;object-position:center center!important;
+  transform:none!important;
+}
+@media(max-width:1100px){body:not(.presentation-mode):not(.screenshot-mode) .app-frame #stickyShell > header.prototype-header {gap:8px!important;grid-template-columns:minmax(0,1fr) minmax(280px,.9fr) minmax(0,1fr)!important;}}

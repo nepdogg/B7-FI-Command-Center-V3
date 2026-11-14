@@ -1,9 +1,10 @@
-B7 FI Command Center V13.0.15 — TEST BUILD
+B7 FI Command Center V13.0.16 — Live Layout Repair Test
 
-1. Photo section: fixed 42px full-width Priority/Alias row, signal tower and equipment image underneath.
-2. Main header: 12px separation between three independently framed panels.
-3. Presentation modes: black/silver chrome overrides for tool, quarter summary and hybrid navigation.
-4. Presentation tool: reduced photo header height, constrained columns.
-5. Hybrid: fixed bottom navigation row and retained signal-tower mini-card.
+Changes:
+- Limit the tower graphic to the equipment photo row, preserving its entire status plate.
+- Separate the three rounded Raiders header panels with visible black gutters.
+- Reduce the unused gap between header and navigation.
+- Remove legacy JavaScript inline tower-size overrides that conflicted with CSS.
 
-ZIP/syntax checks only; browser rendering and Microsoft List synchronization have NOT been verified. Keep a backup of V13.0.14.
+No changes intended to Microsoft List synchronization, tool data, or presentation logic.
+Test in browser at your usual zoom and verify tower/status plate, header spacing, navigation gap, and presentation modes.

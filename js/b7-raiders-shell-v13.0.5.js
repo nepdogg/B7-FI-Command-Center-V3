@@ -8,14 +8,9 @@ function apply(){
  document.querySelectorAll('.app-frame > footer.app-footer, .app-frame > footer.app-footer .footer-system-row, .app-frame > footer.app-footer .footer-system-cell').forEach(el=>{
   set(el,'background',chrome);set(el,'background-color','#080808');set(el,'border-color','#bcbfc3');
  });
- const tower=document.querySelector('#app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-top');
- if(tower){set(tower,'grid-template-columns','clamp(135px, 27%, 170px) minmax(0px, 1fr)');}
- document.querySelectorAll('#app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-tower, #app .c11-tool-card .c11-photo.b1226-photo .b1224-tower.b1229-tower').forEach(el=>{
-  set(el,'height','100%');set(el,'max-height','none');set(el,'padding','0px');
- });
- document.querySelectorAll('#app .c11-tool-card .c11-photo.b1226-photo img.b1229-tower-image').forEach(el=>{
-  set(el,'width','100%');set(el,'height','100%');set(el,'max-height','none');set(el,'object-fit','fill');
- });
+ // Tower dimensions are now controlled by the V13.0.16 photo-grid CSS.
+ // Do not apply old inline height/object-fit overrides: they caused clipping.
+
 }
 let pending=false;
 function schedule(){if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;apply();});}
