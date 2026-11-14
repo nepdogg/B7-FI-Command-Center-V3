@@ -658,7 +658,9 @@ function toolTypeMenu(){
 }
 function positionToolTypeMenu(menu){let btn=menu?.querySelector('[data-tool-type-toggle]'),drop=menu?.querySelector('.tool-type-dropdown');if(!btn||!drop)return;let r=btn.getBoundingClientRect(),w=Math.max(190,Math.ceil(r.width));drop.style.setProperty('--tool-menu-left',Math.max(6,Math.min(window.innerWidth-w-6,r.left))+'px');drop.style.setProperty('--tool-menu-top',Math.min(window.innerHeight-40,r.bottom+1)+'px');drop.style.setProperty('--tool-menu-width',w+'px');}
 function nav(){
-  let main=`<select id="b796-center-select" class="b796-center-select" aria-label="Select Command Center">${MAIN.concat([['admin','ADMINISTRATION CENTER']]).map(x=>`<option value="${x[0]}" ${route.center===x[0]?'selected':''}>${x[1]}</option>`).join('')}</select>`;
+  let centerChoices=[['operations','OPERATIONS CENTER','⚙'],['status','STATUS CENTER','⌁'],['update','UPDATE CENTER','✎'],['archive','ARCHIVE CENTER','▤'],['presentation','PRESENTATION MODE','▣'],['admin','ADMINISTRATION CENTER','⚙'],...MAIN.filter(x=>!['operations','status','archive'].includes(x[0])).map(x=>[x[0],x[1],'•'])];
+  let centerLabel=centerChoices.find(x=>x[0]===route.center)?.[1]||'OPERATIONS CENTER';
+  let main=`<div class="b138-center-picker"><button type="button" class="b138-center-trigger" data-b138-toggle aria-haspopup="menu" aria-expanded="false">${esc(centerLabel)} <span aria-hidden="true">⌄</span></button><div class="b138-center-menu" role="menu" aria-label="Command Center pages" hidden>${centerChoices.map(x=>`<button type="button" role="menuitem" class="b138-center-option ${route.center===x[0]?'is-current':''}" data-b138-center="${esc(x[0])}"><span class="b138-center-icon" aria-hidden="true">${x[2]}</span><span>${esc(x[1])}</span></button>`).join('')}</div></div>`;
   document.querySelector('#b797CenterSlot').innerHTML=main;
   let html='';
   if(route.center==='operations'){
@@ -680,6 +682,16 @@ function nav(){
     tabs.style.setProperty('--b7-other-tab-count',String(Math.max(1,tabs.children.length)));
   }
 }
+/* V13.0.8: custom Raiders center selector; no native OS-white popup. */
+function b138CloseMenu(){const m=document.querySelector('.b138-center-menu'),b=document.querySelector('.b138-center-trigger');if(m)m.hidden=true;if(b)b.setAttribute('aria-expanded','false');}
+document.addEventListener('click',e=>{
+ const toggle=e.target.closest('[data-b138-toggle]');
+ if(toggle){e.preventDefault();e.stopImmediatePropagation();const menu=toggle.parentElement.querySelector('.b138-center-menu');const opening=menu.hidden;b138CloseMenu();menu.hidden=!opening;toggle.setAttribute('aria-expanded',String(opening));if(opening)menu.querySelector('.is-current')?.focus();return;}
+ const choice=e.target.closest('[data-b138-center]');
+ if(choice){e.preventDefault();e.stopImmediatePropagation();const center=choice.dataset.b138Center;b138CloseMenu();if(center==='presentation'){document.getElementById('footerPresentationButton')?.click();return;}if(center==='update'){go('operations','daily');return;}go(center);return;}
+ if(!e.target.closest('.b138-center-picker'))b138CloseMenu();
+},{capture:true});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')b138CloseMenu();if(e.key==='ArrowDown'&&document.activeElement?.matches('.b138-center-trigger')){e.preventDefault();document.activeElement.click();}});
 document.addEventListener('change',e=>{if(e.target?.id==='b796-center-select')go(e.target.value);});
 function openIssueCount(){let manual=state.actions.filter(a=>a.status!=='Complete').length,escalated=state.tools.reduce((n,t)=>n+t.ncs.filter(x=>String(x.state||x.status||'').toLowerCase()==='escalated').length,0),e=commandCenterEngine(),auto=e.critical.length+e.attention.length;return manual+escalated+auto}
 function quarterCloseBrain(){let cfg=state.config?.brain||{},q=state.quarter,qt=quarterTimeProgress(q),a=activeTools(q),left=a.filter(t=>fiSummaryStatus(t)!=='Shipped'),limit=Math.max(1,Number(cfg.listUtidsAt)||5),ids=left.length&&left.length<=limit?left.map(t=>t.id):[],carry=carryoverTools(),msg='',level='normal',label='READY';if(carry.length&&cfg.carryoverEscalation!==false){let ids2=carry.slice(0,limit).map(t=>t.id);level='critical';label='CARRYOVER';msg=`${q} ACTIVE · ${carry.length} PRIOR-QUARTER CARRYOVER TOOL${carry.length===1?'':'S'} · SHIP ASAP${ids2.length?' · '+ids2.join(' · '):''}`;return{level,label,msg,tools:carry}}if(qt.finalDay){level=left.length?'critical':'complete';label='FINAL DAY';msg=left.length?`LAST DAY OF ${q} · ${left.length} TOOL${left.length===1?'':'S'} STILL NEED${left.length===1?'S':''} TO SHIP${ids.length?' · '+ids.join(' · '):''}`:`LAST DAY OF ${q} · ALL ${a.length} TOOLS SHIPPED`;return{level,label,msg,tools:left}}if(!qt.notStarted&&!qt.ended&&qt.remaining<=Number(cfg.awarenessDays||15)){level=qt.remaining<=Number(cfg.criticalDays||2)?'critical':qt.remaining<=Number(cfg.urgentDays||5)?'critical':qt.remaining<=Number(cfg.attentionDays||10)?'attention':'normal';label=qt.remaining<=Number(cfg.urgentDays||5)?'QUARTER CLOSE URGENT':'QUARTER CLOSE';msg=`${q} QUARTER CLOSE · ${qt.remaining} DAY${qt.remaining===1?'':'S'} LEFT · ${left.length} TOOL${left.length===1?'':'S'} STILL NEED TO SHIP${ids.length?' · '+ids.join(' · '):''}`;return{level,label,msg,tools:left}}return{level,label,msg:'',tools:[]}}
