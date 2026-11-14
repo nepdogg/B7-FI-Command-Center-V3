@@ -1,0 +1,12 @@
+/* V13.0.24: canonical Live Operations image alignment and badge layout. */
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-column > .c11-photo.b1313-unified-photo {height:425px!important;min-height:425px!important;max-height:425px!important;grid-template-rows:43px minmax(0,1fr)!important;gap:4px!important;padding:4px!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top {height:100%!important;min-height:0!important;overflow:hidden!important;align-items:stretch!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-top > .b1226-photo-tower {box-sizing:border-box!important;padding:3px 4px 10px!important;align-self:stretch!important;overflow:hidden!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower > .b1229-tower {width:100%!important;height:100%!important;min-height:0!important;overflow:hidden!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower img.b1229-tower-image {width:100%!important;height:100%!important;object-fit:fill!important;object-position:center!important;max-height:100%!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-top > .b1226-photo-main {padding:10px 0 5px!important;box-sizing:border-box!important;align-self:stretch!important;overflow:hidden!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main .v1210-photo-image {height:100%!important;width:100%!important;display:flex!important;align-items:stretch!important;justify-content:center!important;overflow:hidden!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main .v1210-photo-image > img {width:100%!important;height:100%!important;object-fit:contain!important;object-position:center center!important;}
+/* Reinforce inline !important badge geometry against legacy global selectors. */
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-column .c11-identity-stack > .c11-id-badge,
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-column .b783-date-row > .b783-date-badge {display:grid!important;grid-template-columns:minmax(0,44%) minmax(0,56%)!important;align-items:center!important;text-align:left!important;gap:5px!important;}

@@ -1,6 +1,9 @@
-V13.0.23 TEST — Live Operations alignment
-- Signal tower has bottom clearance and uses independent vertical positioning.
-- Equipment photo has top breathing room and is centered in the available row.
-- Identity/date badges restore left-aligned field name and right-aligned value.
-- Preserves V13.0.22 silver progress styling and existing data logic.
-- Browser visual verification required; CSS-only changes.
+B7 FI COMMAND CENTER V13.0.24 — TEST BUILD
+
+Fixes:
+- Restore horizontal field-name left/value right identity and milestone badges with direct render-time geometry.
+- Adjust photo and signal tower independently within the Live Operations image row.
+- Correct missing v13.0.22 photo stylesheet link.
+- Preserve solid metallic-silver progress styling and existing tool logic.
+
+Browser layout and Microsoft List synchronization require testing.
