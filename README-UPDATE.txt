@@ -1,10 +1,5 @@
-B7 FI Command Center V13.0.16 — Live Layout Repair Test
+B7 FI Command Center V13.0.17 — Signal Tower Fit Test
 
-Changes:
-- Limit the tower graphic to the equipment photo row, preserving its entire status plate.
-- Separate the three rounded Raiders header panels with visible black gutters.
-- Reduce the unused gap between header and navigation.
-- Remove legacy JavaScript inline tower-size overrides that conflicted with CSS.
+Change: On normal Live Operations only, vertically inset the signal tower and contain its full source image within the exact same media row as the tool photo, preserving the complete bottom status plate. No changes to data, Microsoft List synchronization, presentation modes, or tool photo.
 
-No changes intended to Microsoft List synchronization, tool data, or presentation logic.
-Test in browser at your usual zoom and verify tower/status plate, header spacing, navigation gap, and presentation modes.
+Test the Live Operations tool photo section at 100% zoom and other common zoom levels. Browser visual verification not performed.

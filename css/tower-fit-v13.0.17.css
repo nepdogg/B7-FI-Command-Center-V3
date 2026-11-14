@@ -1,0 +1,22 @@
+/* V13.0.17: Fit complete signal tower, including its bottom status label, inside the
+   SAME media row as the equipment image. Scope only to regular Live Operations. */
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top > .b1226-photo-tower {
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  min-height:0!important;max-height:100%!important;height:100%!important;
+  overflow:hidden!important;box-sizing:border-box!important;
+  padding:8px 5px 10px!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower > .b1229-tower {
+  position:relative!important;inset:auto!important;
+  width:100%!important;height:100%!important;max-height:100%!important;
+  min-height:0!important;overflow:visible!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  box-sizing:border-box!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower > .b1229-tower > img.b1229-tower-image {
+  position:static!important;inset:auto!important;
+  display:block!important;width:100%!important;height:100%!important;
+  min-width:0!important;min-height:0!important;max-width:100%!important;max-height:100%!important;
+  object-fit:contain!important;object-position:center center!important;
+  transform:none!important;filter:none!important;
+}
