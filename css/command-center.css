@@ -32487,3 +32487,26 @@ html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower-image {
  object-fit:fill!important;object-position:center!important;
 }
 @media(max-width:1100px) {html body .app-frame #stickyShell > header.prototype-header {grid-template-columns:minmax(0,1fr) minmax(330px,.95fr) minmax(0,1fr)!important;}}
+
+/* V13.0.6 final Live Operations finish: keep existing header/nav geometry locked. */
+:root { --cc-live-badge-black:#050505; --cc-live-footer-chrome:linear-gradient(180deg,#4d4d4d 0%,#151515 20%,#020202 72%,#363636 100%); }
+html body .app-frame footer.app-footer #adminButton,
+html body .app-frame footer.app-footer #footerPresentationButton,
+html body .app-frame footer.app-footer .footer-global-actions > button {
+ background:var(--cc-live-footer-chrome)!important;background-color:#080808!important;
+ background-image:var(--cc-live-footer-chrome)!important;
+ border:1px solid #c4c4c4!important;outline:0!important;
+ box-shadow:inset 0 1px 2px #ffffff77,0 1px 3px #000!important;
+ color:#fff!important;text-shadow:0 1px 2px #000!important;
+}
+html body #app section.c11-tool-card .c11-identity-column > button.c11-reduced,
+html body #app section.c11-tool-card .c11-identity-column > .c11-carry,
+html body #app section.c11-tool-card .c11-identity-column > .c11-carry.c11-carry-placeholder {
+ background:#050505!important;background-color:#050505!important;background-image:none!important;
+ color:#fff!important;border:1px solid #9b9b9b!important;
+ box-shadow:inset 0 1px 1px #ffffff1f!important;
+}
+/* Slightly extend the tower within its existing photo cell, without changing column sizes. */
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower-image {
+ transform:scaleY(1.075)!important;transform-origin:center center!important;
+}
