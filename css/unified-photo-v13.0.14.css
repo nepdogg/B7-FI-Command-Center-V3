@@ -1,0 +1,38 @@
+/* V13.0.14: Actual live Universal Tool Card. Priority/Alias is a full-width FIRST ROW,
+   and signal tower + photo share the SECOND ROW. Override legacy photo layout. */
+html body #app section.c11-tool-card .c11-identity-column > .c11-photo.b1313-unified-photo {
+  display:grid!important; grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:clamp(35px,3.0vw,48px) minmax(0,1fr)!important;
+  align-items:stretch!important; justify-content:stretch!important;
+  gap:5px!important; padding:5px!important; overflow:hidden!important;
+  min-height:0!important; box-sizing:border-box!important;
+}
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b133-priority-alias {
+  display:grid!important; grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-row:1!important; grid-column:1!important; position:static!important;
+  width:100%!important; height:100%!important; min-height:0!important;
+  margin:0!important; padding:0!important; gap:4px!important;
+  border:0!important; background:transparent!important; overflow:visible!important;
+}
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b133-priority-alias > button {
+  width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;
+  margin:0!important;display:flex!important;align-items:center!important;justify-content:center!important;
+}
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top {
+  display:grid!important; grid-template-columns:clamp(80px,23%,150px) minmax(0,1fr)!important;
+  grid-template-rows:minmax(0,1fr)!important; grid-row:2!important;grid-column:1!important;
+  position:static!important; width:100%!important;height:100%!important;min-height:0!important;
+  gap:5px!important;margin:0!important;padding:0!important;align-items:stretch!important;
+}
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top > .b1226-photo-tower,
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top > .b1226-photo-main {
+  grid-row:1!important; min-height:0!important;height:100%!important;max-height:100%!important;
+  position:relative!important;margin:0!important;overflow:hidden!important;
+}
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top > .b1226-photo-tower {grid-column:1!important;}
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top > .b1226-photo-main {grid-column:2!important;}
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main .v1210-photo-image,
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main .v1210-photo-image > img {
+  height:100%!important;max-height:100%!important;min-height:0!important;width:100%!important;
+  object-fit:contain!important;
+}

@@ -1,5 +1,9 @@
-B7 FI COMMAND CENTER V13.0.13 — UNIFIED PHOTO HEADER TEST
+B7 FI Command Center V13.0.14 — TEST BUILD
 
-Changes: Priority and Alias badges moved into a shared full-width row above BOTH the signal tower and equipment photo in the Universal Tool Card. Existing tower image/status logic, equipment photo, badge actions, and identity fields are retained. New scoped CSS is in css/unified-photo-v13.0.13.css.
+1. Center dropdown: added Priority Center; removed Update Center.
+2. Universal Tool Card photo region: Priority/Alias now share a full-width top row, above both signal tower and tool photo.
+3. Added version-specific CSS with explicit grid placement overriding legacy photo positioning.
+4. Updated HTML title/header and cache-busting references.
 
-Test Live Operations at normal zoom and browser zoom levels, then full-screen Tool Card Presentation. This build has not been browser-rendered or multi-user tested. Keep V13.0.12 as a backup.
+Retains existing application data, handlers, status logic and other pages.
+Validation: ZIP and JS syntax checks only; browser appearance and sync not verified.
