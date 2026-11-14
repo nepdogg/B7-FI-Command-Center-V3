@@ -8,3 +8,6 @@ Visual behavior requires browser verification.
 
 
 V13.0.28: Increased KLA center header image to 310px max (responsive 260px below 1450px), tightened badge spacing, and shortened Live Operations photo panel to 378px with tower clearance. Browser visual testing required.
+
+
+V13.0.29: Increased Live Operations photo panel height from 378 to 404px to avoid bottom clipping. Added independent bottom padding for tower (10px) and equipment image (11px). Corrected missing V13.0.27 CSS reference in index.html. No app data or business logic changes. Browser visual verification pending.
