@@ -32315,3 +32315,53 @@ html body .app-frame footer.app-footer,html body .app-frame>footer.app-footer,ht
 html body .app-frame #stickyShell header.prototype-header{border:2px solid var(--cc-border)!important}
 html body .app-frame #stickyShell #mainNav button.active,html body .app-frame #stickyShell #mainNav button[aria-selected="true"]{background:linear-gradient(#fff,#bbb)!important;color:#050505!important}
 html body #app .c11-reduced,html body #app .utc-reduced,html body #app .utc-carryover-banner{background:#070707!important;background-image:none!important;color:#fff!important;border-color:var(--cc-border)!important}
+
+/* V13.0.2 — definitive selectors for the live navigation and identity ribbons.
+   Centralized here; no additional stylesheet. */
+html body #stickyShell nav#mainNav,
+html body #stickyShell nav#mainNav > div,
+html body #stickyShell nav#mainNav #subnav,
+html body #stickyShell nav#mainNav #pageActions,
+html body #stickyShell nav#mainNav #b797CenterSlot {
+ background:#060606!important;background-color:#060606!important;background-image:none!important;
+ border-color:#9c9c9c!important;color:#fff!important;
+}
+html body #stickyShell nav#mainNav :is(button,select,.b796-center-select,.tool-type-menu-button){
+ background:linear-gradient(180deg,#555 0%,#171717 28%,#030303 70%,#292929 100%)!important;
+ background-color:#111!important;color:#fff!important;border:1px solid #a9a9a9!important;
+ box-shadow:inset 0 2px 2px #ffffff66,0 1px 2px #000!important;
+ text-shadow:0 1px 1px #000!important;
+}
+html body #stickyShell nav#mainNav :is(button.active,button[aria-selected="true"],button[aria-current="page"]){
+ background:linear-gradient(180deg,#fff 0%,#e3e3e3 40%,#aaa 100%)!important;
+ background-color:#ddd!important;color:#050505!important;border-color:#fff!important;text-shadow:none!important;
+}
+html body .utc-card.utc-v6538 .utc-info .utc-identity-badges .utc-identity-ribbon,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info .utc-identity-badges .utc-identity-ribbon {
+ display:flex!important;flex-direction:row!important;align-items:center!important;
+ justify-content:space-between!important;flex-wrap:nowrap!important;gap:8px!important;
+ padding:3px 10px!important;text-align:left!important;min-width:0!important;
+ background:#080808!important;border:1px solid #aaa!important;
+}
+html body .utc-card.utc-v6538 .utc-info .utc-identity-badges .utc-identity-ribbon > small,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info .utc-identity-badges .utc-identity-ribbon > small {
+ display:block!important;position:static!important;float:none!important;
+ width:auto!important;max-width:48%!important;flex:0 1 auto!important;
+ margin:0!important;padding:0!important;text-align:left!important;
+ font-size:clamp(10px,.85vw,14px)!important;line-height:1.2!important;
+ white-space:nowrap!important;color:#fff!important;
+}
+html body .utc-card.utc-v6538 .utc-info .utc-identity-badges .utc-identity-ribbon > span,
+html body.presentation-mode .utc-card.utc-v6538 .utc-info .utc-identity-badges .utc-identity-ribbon > span {
+ display:block!important;position:static!important;float:none!important;
+ width:auto!important;max-width:65%!important;flex:0 1 auto!important;
+ margin:0!important;padding:0!important;text-align:right!important;
+ font-size:clamp(11px,1vw,17px)!important;line-height:1.2!important;
+ white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;color:#fff!important;
+}
+html body .utc-card.utc-v6538 .utc-info .b783-date-badge {
+ display:flex!important;flex-direction:row!important;justify-content:space-between!important;
+ align-items:center!important;gap:6px!important;text-align:left!important;
+}
+html body .utc-card.utc-v6538 .utc-info .b783-date-badge > span{text-align:left!important;}
+html body .utc-card.utc-v6538 .utc-info .b783-date-badge > strong{text-align:right!important;}

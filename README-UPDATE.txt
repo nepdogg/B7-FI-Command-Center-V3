@@ -1,6 +1,10 @@
-B7 FI Command Center V13.0.1 — single stylesheet integration repair
+B7 FI Command Center V13.0.2 — Navigation and Identity Row Repair
 
-Replaced four competing stylesheet links with ONE css/command-center.css.
-Layer order: legacy core, V12.0.77, V12.0.78, V12.0.79, centralized V13 theme and final shell contract.
-Retains original JS and Microsoft List code.
-This is NOT a completed rewrite or validated multi-user production release. Test separately.
+Changes:
+- Forces the actual generated navigation bar/buttons to Raiders black/silver, including active silver tab.
+- Identity fields display LABEL LEFT / VALUE RIGHT in Live Operations and Presentation Mode.
+- FI milestone date badges also use horizontal label/value arrangement.
+- One consolidated CSS file with new rules at end; a small navigation JS module addresses dynamic inline styling.
+- Existing tool data, Microsoft List integration, and edit handlers remain unchanged.
+
+TEST: Deploy all files, wait for GitHub Pages deployment, hard refresh. Verify nav and tool fields at 100% and presentation zoom. Test Microsoft List sync separately. Browser appearance and sync have not been verified in this build.
