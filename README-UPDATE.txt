@@ -1,27 +1,9 @@
-B7 FI COMMAND CENTER V13.0.34 - VISUAL + NAVIGATION REPAIR TEST
+B7 FI COMMAND CENTER V13.0.36 — SIGNAL LIGHT VISIBILITY REPAIR
 
-Based on V13.0.33.
+Fixed mismatch between application tower classes (b1224-tower-red/yellow/green/blue/purple) and lighting stylesheet selectors.
+Moved LIGHTS settings button to the upper right so it is not hidden behind the bottom footer.
+Select LIGHTS: PULSE, STEADY, or OFF. Setting is saved in browser local storage.
 
-Changes:
-- Larger graphics and text hierarchy for Live Operations middle column.
-- Metallic black/silver progress cards and distinct progress icons.
-- Silver progress fills regardless of tool tone.
-- Dropdown menus use scrollable overlay, consistent silver-hover/black-text styling.
-- Presentation border and bottom-nav visual alignment improvements.
+IMPORTANT: Unzip the entire package to your command center folder, replacing existing files. Restart local server, then force refresh with Ctrl+Shift+R. Verify tab shows V13.0.36 and LIGHTS button appears at top right.
 
-NOT YET VERIFIED OR FIXED:
-- Dropdown click/selection in live browser; Microsoft List data syncing.
-- All Tools three-card layout; cycle-time persistence; shipped tool carousel logic.
-- Pixel-perfect reference reproduction or complete all-page design lock.
-
-TEST at 100 percent zoom, confirm menus and data before production deployment.
-
-
-V13.0.35 - PULSATING SIGNAL TOWERS
-- Replaced all six signal tower images with user-supplied originals.
-- Added colored glow overlays aligned to the active lamp: red, yellow, green, blue, purple. Silver Not in FI remains unlit.
-- Critical flashes twice; other statuses pulse at differing speeds.
-- Added LIGHTS control: Pulsating / Steady / No added light animation. Persists locally in this browser via localStorage; does not alter tool status or Microsoft List.
-- Respects reduced-motion accessibility settings.
-- Existing layouts and Brain functionality otherwise unchanged.
-- Browser visual verification required on the target monitors.
+Not browser-verified. This is a targeted repair; other layout/brain issues remain outside scope.
