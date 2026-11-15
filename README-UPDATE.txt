@@ -11,3 +11,5 @@ Not browser-verified. This is a targeted repair; other layout/brain issues remai
 V13.0.37: Replaced floating LIGHTS control with native navigation-bar button. Replaced pseudo-element lamp effect with real overlay elements, using MutationObserver for dynamically-rendered tool cards. Browser verification still required.
 
 V13.0.38: Advanced LIGHTS dropdown in navigation. Pulse/Steady/Off, brightness 10-100%, pulse duration 0.5-3.0s, glow intensity 0-100%, smooth/double-flash. Saved per browser in localStorage. OFF darkens original image lamp with mask; status badge remains. This is a targeted lighting release; visual Edge verification still required.
+
+V13.0.39: Four independent silver-bordered footer panels and shield-shaped initials/count badges in middle header. Existing IDs and multi-user data flow retained. Not browser-verified.
