@@ -15,3 +15,13 @@ NOT YET VERIFIED OR FIXED:
 - Pixel-perfect reference reproduction or complete all-page design lock.
 
 TEST at 100 percent zoom, confirm menus and data before production deployment.
+
+
+V13.0.35 - PULSATING SIGNAL TOWERS
+- Replaced all six signal tower images with user-supplied originals.
+- Added colored glow overlays aligned to the active lamp: red, yellow, green, blue, purple. Silver Not in FI remains unlit.
+- Critical flashes twice; other statuses pulse at differing speeds.
+- Added LIGHTS control: Pulsating / Steady / No added light animation. Persists locally in this browser via localStorage; does not alter tool status or Microsoft List.
+- Respects reduced-motion accessibility settings.
+- Existing layouts and Brain functionality otherwise unchanged.
+- Browser visual verification required on the target monitors.
