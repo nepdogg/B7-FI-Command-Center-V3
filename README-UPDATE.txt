@@ -1,15 +1,17 @@
-B7 FI COMMAND CENTER V13.0.36 — SIGNAL LIGHT VISIBILITY REPAIR
+B7 FI COMMAND CENTER V13.0.40 — DESIGN STABILIZATION TEST
+Based on V13.0.39. Full app and Microsoft List code retained.
 
-Fixed mismatch between application tower classes (b1224-tower-red/yellow/green/blue/purple) and lighting stylesheet selectors.
-Moved LIGHTS settings button to the upper right so it is not hidden behind the bottom footer.
-Select LIGHTS: PULSE, STEADY, or OFF. Setting is saved in browser local storage.
+IMPLEMENTED:
+- LIGHTS OFF now swaps the existing tower image for the actual unlit Not-in-FI tower asset, without changing status or badge. Pulse/Steady restore the original image.
+- Stronger CSS selectors for mini Raiders shield user badges using the supplied asset.
+- Four-part Raiders footer layout styling and readable text.
+- Broad silver progress fill normalization, dropdown hover contrast, and presentation chrome/nav styling.
 
-IMPORTANT: Unzip the entire package to your command center folder, replacing existing files. Restart local server, then force refresh with Ctrl+Shift+R. Verify tab shows V13.0.36 and LIGHTS button appears at top right.
+NOT COMPLETE / NOT VERIFIED:
+- Complete visual reproduction of the reference design on all pages.
+- All Tools three compact right-column cards.
+- Presentation card scaling/clipping at all resolutions.
+- Native select menus (browser-drawn), multi-user sync and cycle time persistence.
+- All menu event handling and all UI controls on the work environment.
 
-Not browser-verified. This is a targeted repair; other layout/brain issues remain outside scope.
-
-V13.0.37: Replaced floating LIGHTS control with native navigation-bar button. Replaced pseudo-element lamp effect with real overlay elements, using MutationObserver for dynamically-rendered tool cards. Browser verification still required.
-
-V13.0.38: Advanced LIGHTS dropdown in navigation. Pulse/Steady/Off, brightness 10-100%, pulse duration 0.5-3.0s, glow intensity 0-100%, smooth/double-flash. Saved per browser in localStorage. OFF darkens original image lamp with mask; status badge remains. This is a targeted lighting release; visual Edge verification still required.
-
-V13.0.39: Four independent silver-bordered footer panels and shield-shaped initials/count badges in middle header. Existing IDs and multi-user data flow retained. Not browser-verified.
+TEST: Extract entire ZIP; hard-refresh Edge. Verify V13.0.40. Test lighting OFF/PULSE, user shields, footer, dropdowns, and three presentation modes at 100% zoom. Do not treat as design locked or production verified.

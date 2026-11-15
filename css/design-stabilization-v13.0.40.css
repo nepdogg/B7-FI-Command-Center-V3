@@ -1,0 +1,26 @@
+/* V13.0.40 consolidated late-stage overrides: non-invasive, no app state mutations */
+:root{--b7-silver:linear-gradient(180deg,#fff 0%,#d8d8d8 24%,#8e8e8e 60%,#e2e2e2 100%)}
+/* All operational progress indicators: monochrome silver, solid continuous fill */
+html body #app :is([class*="progress-fill"],[class*="meter-fill"],[class*="bar-fill"],.c11-progress-fill,.b1217-meter>i,.quarter-hero-progress-fill,.quarter-progress-fill){background:var(--b7-silver)!important;background-image:var(--b7-silver)!important;filter:none!important;opacity:1!important;box-shadow:inset 0 1px 1px #fff9!important}
+html body #app :is([class*="progress-track"],[class*="meter-track"],.c11-progress-track,.b1217-meter){background:#151515!important;border-color:#aaa!important}
+html body #app :is([class*="progress"],[class*="meter"]) :is(span,strong,b,small){text-shadow:0 1px 2px #000b}
+html body #app :is([class*="progress-fill"],[class*="meter-fill"]) :is(span,strong,b,small){color:#101010!important;text-shadow:0 0 2px #fff!important}
+/* Actual user badges are rendered by multiuser-test.js: ensure the supplied shield is visible */
+html body:not(.presentation-mode) #stickyShell :is(#klaUsersLeft,#klaUsersRight) .kla-presence-badge{appearance:none!important;display:flex!important;align-items:center!important;justify-content:center!important;width:clamp(46px,4.3vw,72px)!important;height:clamp(54px,5.1vw,84px)!important;min-width:46px!important;min-height:54px!important;flex:none!important;border:0!important;border-radius:0!important;background-color:transparent!important;background-image:url('../assets/raiders-mini-user-shield.jpg')!important;background-position:center!important;background-size:100% 100%!important;background-repeat:no-repeat!important;color:#fff!important;font-size:clamp(12px,1.1vw,18px)!important;font-weight:900!important;text-shadow:0 2px 3px #000,0 0 4px #000!important;box-shadow:none!important;filter:drop-shadow(0 1px 3px #ccc9)!important;padding:8px 3px 0!important}
+html body:not(.presentation-mode) #stickyShell .kla-user-side{display:flex!important;align-items:center!important;justify-content:center!important;min-width:52px!important}
+/* Footer uses four separated sections, with balanced activity region */
+html body:not(.presentation-mode) .app-footer .footer-system-row{display:grid!important;grid-template-columns:minmax(150px,1fr) minmax(150px,1fr) minmax(260px,2.5fr) minmax(220px,1.5fr)!important;gap:8px!important;width:100%!important}
+html body:not(.presentation-mode) .app-footer .footer-system-cell{min-height:54px!important;height:auto!important;padding:8px 12px!important;border:2px solid #d4d4d4!important;border-radius:13px!important;background:linear-gradient(180deg,#777 0%,#222 15%,#050505 48%,#141414 83%,#666 100%)!important;box-shadow:inset 0 1px 2px #fff9,0 1px 3px #000!important;color:#fff!important}
+html body:not(.presentation-mode) .app-footer .footer-activity{min-width:0!important}
+html body:not(.presentation-mode) .app-footer :is(#adminButton,#footerPresentationButton):hover{background:var(--b7-silver)!important;color:#080808!important}
+/* Consistent dropdown and button hover across custom menus */
+html body :is(.dropdown-menu,.nav-dropdown,.menu-dropdown,[role="menu"],.b7-lamp-modes) :is(button,[role="menuitem"],a):is(:hover,:focus-visible){background:var(--b7-silver)!important;color:#080808!important;text-shadow:none!important;border-color:#f4f4f4!important}
+html body :is(.dropdown-menu,.nav-dropdown,.menu-dropdown,[role="menu"]){z-index:10020!important;max-height:min(72vh,680px)!important;overflow-y:auto!important}
+/* Presentations: Raiders chrome and responsive bottom control strip */
+html body.presentation-mode #app :is(.presentation-tool-only,.quarter-summary-presentation,.quarter-summary-master,.quarter-summary-master-viewport,.b1217-hybrid,.b1217-carousel){border-color:#c7c7c7!important;outline-color:#c7c7c7!important}
+html body.presentation-mode #app .presentation-inline-nav{width:100%!important;display:flex!important;gap:3px!important;box-sizing:border-box!important;border:2px solid #bcbcbc!important;background:linear-gradient(180deg,#666,#080808 25%,#222)!important}
+html body.presentation-mode #app .presentation-inline-nav>.presentation-nav-cell{flex:1 1 0!important;min-width:0!important;width:auto!important;max-width:none!important;white-space:nowrap!important;text-overflow:ellipsis!important;overflow:hidden!important;color:#fff!important;border:1px solid #aaa!important;background:linear-gradient(180deg,#555,#080808 30%,#333)!important}
+html body.presentation-mode #app .presentation-inline-nav>button.presentation-nav-cell:is(:hover,:focus-visible){background:var(--b7-silver)!important;color:#080808!important}
+/* LIGHTS OFF uses the actual unlit image, not an artificial black patch */
+html[data-b7-lamps="off"] body .b1229-tower>.b7-lamp-darkener,html[data-b7-lamps="off"] body .b1229-tower>.b7-lamp-beam{display:none!important;animation:none!important}
+@media(max-width:1000px){html body:not(.presentation-mode) .app-footer .footer-system-row{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
