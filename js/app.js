@@ -1972,7 +1972,7 @@ function b1217CompactCard(t){
     <div class="b139-mini-head"><span>#${esc(p.rank||t.priority||'—')} PRIORITY</span><strong>${esc(String(t.alias||'NO ALIAS').toUpperCase())}</strong></div>
     <div class="b1312-mini-media"><div class="b1312-mini-tower">${b1224Tower(t,true)}</div><div class="b139-mini-photo"><img src="${esc(img)}" alt="${esc(t.codename||'Tool')}"></div></div>
     <div class="b139-mini-info">${fields.map(([label,value])=>`<div><span>${esc(label)}</span><strong>${esc(String(value||'—'))}</strong></div>`).join('')}</div>
-    <div class="b139-mini-foot"><span class="b139-mini-dot b139-${signal.tone}"></span><b>${esc(signal.text)}</b></div>
+    <div class="b139-mini-foot b1341-signal-status b1341-status-${signal.tone}" aria-label="Signal tower status: ${esc(signal.text)}"><b>${esc(signal.text)}</b></div>
   </article>`;
 }
 function hybridPresentationView(){

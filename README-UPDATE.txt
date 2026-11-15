@@ -1,17 +1,17 @@
-B7 FI COMMAND CENTER V13.0.40 — DESIGN STABILIZATION TEST
-Based on V13.0.39. Full app and Microsoft List code retained.
+B7 FI COMMAND CENTER V13.0.41 — HYBRID CAROUSEL REPAIR TEST
 
-IMPLEMENTED:
-- LIGHTS OFF now swaps the existing tower image for the actual unlit Not-in-FI tower asset, without changing status or badge. Pulse/Steady restore the original image.
-- Stronger CSS selectors for mini Raiders shield user badges using the supplied asset.
-- Four-part Raiders footer layout styling and readable text.
-- Broad silver progress fill normalization, dropdown hover contrast, and presentation chrome/nav styling.
+Based on V13.0.40.
 
-NOT COMPLETE / NOT VERIFIED:
-- Complete visual reproduction of the reference design on all pages.
-- All Tools three compact right-column cards.
-- Presentation card scaling/clipping at all resolutions.
-- Native select menus (browser-drawn), multi-user sync and cycle time persistence.
-- All menu event handling and all UI controls on the work environment.
+CHANGED
+- Hybrid presentation: metallic silver outer frame; suppress redundant top pseudo-strip.
+- Rebalanced center/side card proportions, spacing, and dimming.
+- Tall signal tower fills media column; preserve tool photo and details.
+- Full-width bottom mini-card badge now uses signal tower status text.
+- Hybrid silver meter labels use high contrast black-on-silver / white-on-black.
+- Raiders silver navigation and status-row styling.
 
-TEST: Extract entire ZIP; hard-refresh Edge. Verify V13.0.40. Test lighting OFF/PULSE, user shields, footer, dropdowns, and three presentation modes at 100% zoom. Do not treat as design locked or production verified.
+TEST
+Open Hybrid Presentation at 100% zoom, test next/previous, rotation, shipped cards, and light modes.
+
+NOT VERIFIED
+Browser rendering, Microsoft List sync, other presentation modes, and all previously reported issues are not certified fixed by this targeted build.
