@@ -33649,3 +33649,17 @@ html body .app-frame #stickyShell header.prototype-header #headerModeCenter butt
 html body .app-frame #stickyShell header.prototype-header #headerModeCenter button.kla-presence-badge.v1402-shield.active>img.v1402-shield-art {
  filter:none!important;box-shadow:none!important;border:0!important;background:transparent!important;
 }
+
+/* V14.0.4 — generated chrome panel artwork, real text and live badges remain above artwork */
+html body .app-frame #stickyShell header.prototype-header > section.prototype-header-left,
+html body .app-frame #stickyShell header.prototype-header > section.prototype-header-center,
+html body .app-frame #stickyShell header.prototype-header > section.prototype-header-right {
+ background-size:100% 100%!important; background-repeat:no-repeat!important; background-position:center!important;
+ border:0!important; box-shadow:none!important; isolation:isolate!important; position:relative!important;
+}
+html body .app-frame #stickyShell header.prototype-header > section > * {position:relative;z-index:1;}
+html body .app-frame #stickyShell header.prototype-header {gap:6px!important;background:#050505!important;}
+html body .app-frame #stickyShell header.prototype-header .prototype-header-left span {font-size:clamp(14px,1.45vw,26px)!important;white-space:nowrap!important;}
+html body .app-frame #stickyShell header.prototype-header .prototype-header-right .b1241-quarter-title {font-size:clamp(14px,1.4vw,26px)!important;white-space:nowrap!important;}
+html body .app-frame #stickyShell header.prototype-header .b1239-raiders-logo,
+html body .app-frame #stickyShell header.prototype-header .b1241-right-logo {max-height:85%!important;object-fit:contain!important;}
