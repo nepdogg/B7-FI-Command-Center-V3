@@ -1,12 +1,15 @@
-B7 FI COMMAND CENTER V14.0.4 — GRAPHIC HEADER TEST
+B7 FI COMMAND CENTER V14.0.5 — HEADER REFERENCE MATCH TEST
 
-IMPLEMENTED
-- Created three actual metallic Raiders-style graphic panel backgrounds, cropped for left, center and right header sections.
-- Installed graphics in assets/raiders-graphics and applied them to existing header sections.
-- Live header text, quarter, KLA logo, mini user shields, and Microsoft List connection information remain real HTML above the backgrounds.
-- Updated visible version text to V14.0.4.
-- Reduced extra CSS borders around the three graphic-backed panels.
+CHANGED
+- Removed V14.0.4 swoosh and honeycomb background artwork from the header.
+- Created one restrained glossy black and brushed-silver frame SVG, used by all three header panels.
+- Reduced header text and Raiders logo scale toward the approved V13.0.30 reference.
+- Kept live KLA connection text and mini Raiders shield user badges as HTML overlays.
+- Corrected displayed header version to V14.0.5 and CSS cache key.
 
-SCOPE: Header only. Other outstanding issues unchanged.
-CHECKS: ZIP archive verified, all three image files present, header markup references images.
-NOT VERIFIED: Actual Edge rendering or live multi-user behavior.
+NOT CHANGED
+- Footer, presentation modes, tool cards, and Microsoft List application logic.
+
+CHECKS
+- Archive integrity and static HTML/asset references verified.
+- Browser rendering and live connection tests still required.

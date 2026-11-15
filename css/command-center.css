@@ -33663,3 +33663,21 @@ html body .app-frame #stickyShell header.prototype-header .prototype-header-left
 html body .app-frame #stickyShell header.prototype-header .prototype-header-right .b1241-quarter-title {font-size:clamp(14px,1.4vw,26px)!important;white-space:nowrap!important;}
 html body .app-frame #stickyShell header.prototype-header .b1239-raiders-logo,
 html body .app-frame #stickyShell header.prototype-header .b1241-right-logo {max-height:85%!important;object-fit:contain!important;}
+
+/* V14.0.5: header visual parity with approved V13.0.30 reference. */
+html body .app-frame #stickyShell header.prototype-header {gap:7px!important;min-height:0!important;background:#050505!important;padding:2px 4px!important;}
+html body .app-frame #stickyShell header.prototype-header > section.prototype-header-left,
+html body .app-frame #stickyShell header.prototype-header > section.prototype-header-center,
+html body .app-frame #stickyShell header.prototype-header > section.prototype-header-right {
+ background:#050505 url('../assets/raiders-graphics/header-reference-v1405.svg') center/100% 100% no-repeat!important;
+ border:0!important;outline:0!important;box-shadow:none!important;border-radius:16px!important;
+ padding:5px 10px!important;min-height:0!important;overflow:hidden!important;
+}
+html body .app-frame #stickyShell header.prototype-header .prototype-header-left span,
+html body .app-frame #stickyShell header.prototype-header .prototype-header-right .b1241-quarter-title {font-size:clamp(12px,1.14vw,21px)!important;letter-spacing:0!important;text-shadow:0 1px 2px #000!important;white-space:nowrap!important;}
+html body .app-frame #stickyShell header.prototype-header .b1239-raiders-logo,
+html body .app-frame #stickyShell header.prototype-header .b1241-right-logo {max-height:76%!important;max-width:15%!important;object-fit:contain!important;filter:none!important;}
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-presence-box {background:transparent!important;border:0!important;box-shadow:none!important;grid-template-columns:minmax(40px,1fr) minmax(0,3fr) minmax(40px,1fr)!important;column-gap:3px!important;}
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter button.kla-presence-badge.v1402-shield {width:clamp(38px,3.5vw,58px)!important;height:clamp(43px,4vw,67px)!important;}
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-connection-core img {max-height:51px!important;object-fit:contain!important;}
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-connection-copy {font-size:clamp(9px,.72vw,13px)!important;}
