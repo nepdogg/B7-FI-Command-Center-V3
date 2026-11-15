@@ -1,3 +1,4 @@
+/* Source: css/command-center.css */
 /* LAYER command-center-consolidated-v12.0.76.css */
 /* SOURCE: css/command-center.css */
 /* B7 V11.17.93 — ONE CSS FILE; V13.7 design reference reviewed. */
@@ -32501,3 +32502,1092 @@ html body #app section.c11-tool-card .c11-identity-column > .c11-carry.c11-carry
 html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower-image {
  transform:scaleY(1.075)!important;transform-origin:center center!important;
 }
+
+
+/* Source: css/raiders-layout-v13.0.7.css */
+/* V13.0.7: one focused, last-loaded layout patch; no operational logic changes. */
+:root{--raiders-nav-pad-y:3px;--raiders-tower-inset:7px;}
+/* Keep the approved tall header; give its THREE sections their own rounded chrome frames. */
+html body .app-frame #stickyShell > header.prototype-header{
+ display:grid!important;grid-template-columns:minmax(0,1.32fr) minmax(350px,.87fr) minmax(0,1.32fr)!important;
+ gap:6px!important;padding:5px!important;align-items:stretch!important;
+ border:0!important;border-radius:0!important;background:#050505!important;
+ overflow:hidden!important;
+}
+html body .app-frame #stickyShell > header.prototype-header > section{
+ min-width:0!important;height:100%!important;min-height:0!important;
+ padding:7px 12px!important;margin:0!important;border:2px solid #c9c9c9!important;
+ border-radius:20px!important;overflow:hidden!important;
+ background:linear-gradient(180deg,#a7a7a7 0%,#3d3d3d 3%,#0a0a0a 12%,#000 70%,#191919 90%,#777 98%,#ddd 100%)!important;
+ box-shadow:inset 0 2px 3px #fff9,inset 0 -2px 3px #bbb8,0 0 3px #fff8!important;
+ transform:none!important;clip-path:none!important;
+}
+html body .app-frame #stickyShell > header.prototype-header .prototype-header-center,
+html body .app-frame #stickyShell > header.prototype-header .prototype-kla-box{
+ background:transparent!important;border:0!important;box-shadow:none!important;clip-path:none!important;
+}
+html body .app-frame #stickyShell > header.prototype-header .prototype-kla-box{
+ width:100%!important;min-height:0!important;height:100%!important;max-height:100%!important;
+}
+html body .app-frame #stickyShell > header.prototype-header .b1239-raiders-logo,
+html body .app-frame #stickyShell > header.prototype-header .b1241-right-logo{
+ max-height:calc(100% - 8px)!important;object-fit:contain!important;
+}
+/* Tighten the oversized empty black bands above and below the navigation controls. */
+html body .app-frame #stickyShell nav#mainNav.main-nav.b797-unified-nav{
+ min-height:0!important;height:auto!important;padding:var(--raiders-nav-pad-y) 6px!important;
+ margin:0!important;gap:5px!important;align-items:center!important;
+}
+html body .app-frame #stickyShell nav#mainNav.main-nav.b797-unified-nav > div{
+ min-height:0!important;margin-top:0!important;margin-bottom:0!important;padding-top:0!important;padding-bottom:0!important;
+ align-items:center!important;
+}
+html body .app-frame #stickyShell nav#mainNav.main-nav.b797-unified-nav :is(button,select){
+ min-height:35px!important;margin-top:0!important;margin-bottom:0!important;
+}
+/* The old 1.075x transform cropped the tower. Inset the image within its existing frame. */
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1229-tower-image{
+ position:relative!important;inset:auto!important;display:block!important;
+ width:100%!important;height:calc(100% - 2 * var(--raiders-tower-inset))!important;
+ max-width:100%!important;max-height:calc(100% - 2 * var(--raiders-tower-inset))!important;
+ object-fit:contain!important;object-position:center!important;
+ transform:none!important;transform-origin:center!important;margin:auto!important;
+}
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1226-photo-tower,
+html body #app .c11-tool-card .c11-photo.b1226-photo .b1224-tower.b1229-tower{
+ overflow:hidden!important;display:flex!important;align-items:center!important;justify-content:center!important;
+}
+@media(max-width:1100px){html body .app-frame #stickyShell > header.prototype-header{grid-template-columns:minmax(0,1fr) minmax(300px,.95fr) minmax(0,1fr)!important;}}
+
+
+/* Source: css/raiders-layout-v13.0.8.css */
+/* V13.0.8: targeted header content and custom dropdown; no business logic changes. */
+html body .app-frame #stickyShell > header.prototype-header {height:156px!important;min-height:156px!important;grid-template-columns:minmax(0,1.32fr) minmax(350px,.87fr) minmax(0,1.32fr)!important;align-items:stretch!important;}
+html body .app-frame #stickyShell > header.prototype-header > section {height:100%!important;align-self:stretch!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:10px 15px!important;box-sizing:border-box!important;}
+html body .app-frame #stickyShell > header.prototype-header > .prototype-header-left {justify-content:flex-start!important;gap:14px!important;}
+html body .app-frame #stickyShell > header.prototype-header > .prototype-header-right {justify-content:flex-end!important;gap:14px!important;}
+html body .app-frame #stickyShell > header.prototype-header .b1239-raiders-logo,
+html body .app-frame #stickyShell > header.prototype-header .b1241-right-logo {height:clamp(85px,7vw,119px)!important;max-height:calc(100% - 8px)!important;width:auto!important;max-width:110px!important;flex:0 0 auto!important;object-fit:contain!important;}
+html body .app-frame #stickyShell > header.prototype-header .prototype-header-left > span,
+html body .app-frame #stickyShell > header.prototype-header .b1241-quarter-title {font-size:clamp(20px,1.65vw,32px)!important;line-height:1.12!important;font-weight:950!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important;flex:1 1 auto!important;}
+html body .app-frame #stickyShell > header.prototype-header .b1241-quarter-title{text-align:right!important;}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter {display:flex!important;align-items:center!important;justify-content:center!important;}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .prototype-kla-box {display:grid!important;grid-template-columns:minmax(42px,1fr) minmax(0,2.2fr) minmax(42px,1fr)!important;align-items:center!important;justify-items:center!important;height:100%!important;min-height:0!important;gap:7px!important;}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-user-side {display:flex!important;align-items:center!important;justify-content:center!important;min-width:0!important;height:auto!important;max-height:100%!important;overflow:hidden!important;}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-core {display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;min-width:0!important;height:100%!important;min-height:0!important;max-height:100%!important;padding:2px!important;overflow:hidden!important;}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-core img {width:clamp(105px,9vw,190px)!important;max-width:100%!important;height:auto!important;max-height:65%!important;object-fit:contain!important;}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-copy {font-size:clamp(10px,.78vw,15px)!important;line-height:1.2!important;white-space:normal!important;text-align:center!important;max-width:100%!important;}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-copy :is(b,small) {font-size:inherit!important;line-height:inherit!important;}
+/* Custom dropdown is a real DOM menu, not the native white select options. */
+html body #stickyShell #b797CenterSlot .b138-center-picker {position:relative!important;display:block!important;width:100%!important;height:40px!important;min-width:0!important;z-index:60!important;}
+html body #stickyShell #b797CenterSlot .b138-center-trigger {width:100%!important;height:40px!important;min-height:40px!important;max-height:40px!important;display:flex!important;justify-content:space-between!important;align-items:center!important;gap:5px!important;padding:0 10px!important;border:1px solid #c2c2c2!important;border-radius:9px!important;background:linear-gradient(180deg,#555 0%,#1b1b1b 25%,#000 68%,#292929 100%)!important;color:white!important;font-size:clamp(10px,.68vw,13px)!important;font-weight:900!important;box-shadow:inset 0 2px 2px #fff8,0 2px 3px #000!important;cursor:pointer!important;white-space:nowrap!important;}
+html body #stickyShell #b797CenterSlot .b138-center-menu {position:absolute!important;top:calc(100% + 2px)!important;left:0!important;width:max(100%,220px)!important;min-width:220px!important;max-height:min(68vh,550px)!important;overflow-y:auto!important;padding:3px!important;border:2px solid #c6c6c6!important;border-radius:11px!important;background:#050505!important;box-shadow:0 7px 15px #000e,inset 0 1px 2px #fff8!important;z-index:99999!important;}
+html body #stickyShell #b797CenterSlot .b138-center-menu[hidden] {display:none!important;}
+html body #stickyShell #b797CenterSlot .b138-center-option {display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:8px!important;width:100%!important;height:36px!important;min-height:36px!important;max-height:none!important;margin:0!important;padding:0 9px!important;border:0!important;border-bottom:1px solid #555!important;border-radius:2px!important;background:linear-gradient(180deg,#252525,#060606)!important;color:white!important;font-size:12px!important;font-weight:900!important;text-align:left!important;white-space:nowrap!important;box-shadow:none!important;cursor:pointer!important;}
+html body #stickyShell #b797CenterSlot .b138-center-option:is(:hover,:focus-visible),html body #stickyShell #b797CenterSlot .b138-center-option.is-current {background:linear-gradient(180deg,#fff,#b9b9b9 60%,#777)!important;color:#050505!important;text-shadow:none!important;}
+html body #stickyShell #b797CenterSlot .b138-center-icon {font-size:18px!important;line-height:1!important;width:20px!important;text-align:center!important;flex:0 0 20px!important;}
+/* Dropdown must extend outside the sticky shell, even when the navigation is compact. */
+html body #stickyShell,html body #stickyShell nav#mainNav,html body #stickyShell nav#mainNav #b797CenterSlot {overflow:visible!important;}
+@media(max-width:1150px){html body .app-frame #stickyShell > header.prototype-header {grid-template-columns:minmax(0,1fr) minmax(280px,.85fr) minmax(0,1fr)!important;}html body .app-frame #stickyShell > header.prototype-header .prototype-header-left > span,html body .app-frame #stickyShell > header.prototype-header .b1241-quarter-title{font-size:clamp(14px,1.6vw,22px)!important;}}
+
+
+/* Source: css/presentation-fit-v13.0.9.css */
+/* V13.0.9: presentation-only fit. Keep the approved live operations and quarter summary layouts unchanged. */
+html body.presentation-mode[data-center="operations"][data-sub="live"] .app-frame,
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] .app-frame{height:100dvh!important;max-height:100dvh!important;min-height:0!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] .body-shell,
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] .body-shell{min-height:0!important;max-height:100%!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app.body-workspace{height:100%!important;max-height:100%!important;min-height:0!important;display:grid!important;grid-template-rows:minmax(0,1fr) 52px!important;gap:5px!important;overflow:hidden!important;padding:5px!important;box-sizing:border-box!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app>.presentation-tool-only{grid-row:1!important;min-height:0!important;max-height:100%!important;overflow:hidden!important;display:flex!important;flex-direction:column!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app>.presentation-tool-only>.c11-tool-card{height:100%!important;min-height:0!important;max-height:100%!important;overflow:hidden!important;display:flex!important;flex-direction:column!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app>.presentation-tool-only .c11-card-grid{flex:1 1 0!important;min-height:0!important;max-height:100%!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app>.presentation-tool-nav{grid-row:2!important;position:relative!important;inset:auto!important;height:52px!important;min-height:52px!important;max-height:52px!important;width:100%!important;display:flex!important;overflow:hidden!important;z-index:50!important}
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app .c11-identity-column>.c11-photo.b796-priority-photo{height:clamp(110px,21vh,190px)!important;min-height:0!important;max-height:21vh!important}
+/* Hybrid: four strictly allocated rows, including a non-overlapping bottom control bar. */
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app{height:100%!important;max-height:100%!important;min-height:0!important;overflow:hidden!important;padding:0!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app>.b1217-hybrid{height:100%!important;max-height:100%!important;min-height:0!important;display:grid!important;grid-template-rows:minmax(0,26fr) minmax(0,10fr) minmax(0,64fr) 54px!important;gap:5px!important;padding:6px!important;box-sizing:border-box!important;overflow:hidden!important;background:#050505!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] .b1217-hybrid-metrics,
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] .b1217-status-row{height:100%!important;min-height:0!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] .b1217-carousel{height:100%!important;min-height:0!important;max-height:100%!important;display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1.22fr) minmax(0,1fr)!important;gap:1vw!important;align-items:stretch!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] .b1217-carousel-slot{height:100%!important;min-height:0!important;min-width:0!important;display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] .b1217-carousel-slot.side{transform:scale(.82)!important;opacity:.48!important;filter:brightness(.65)!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] .b1217-carousel-slot.active{transform:none!important;opacity:1!important;filter:none!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] .b1217-hybrid-nav{grid-row:4!important;position:relative!important;inset:auto!important;display:flex!important;height:54px!important;min-height:54px!important;max-height:54px!important;visibility:visible!important;opacity:1!important;z-index:100!important;overflow:hidden!important;background:linear-gradient(#4d4d4d,#070707 32%,#000 75%,#343434)!important;border:1px solid #aaa!important;border-radius:8px!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] .b1217-hybrid-nav>*{flex:1 1 0!important;min-width:0!important;padding:4px!important;font-size:clamp(9px,.8vw,15px)!important;color:white!important;background:transparent!important;border:1px solid #666!important}
+/* Compact carousel card: one consistent mini-card instead of a full universal tool card. */
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] .b139-mini-card{width:min(100%,560px)!important;height:100%!important;min-height:0!important;max-height:100%!important;display:grid!important;grid-template-rows:34px minmax(0,1fr) auto 30px!important;gap:4px!important;padding:6px!important;box-sizing:border-box!important;overflow:hidden!important;background:#050505!important;color:#fff!important;border:2px solid #a8a8a8!important;border-radius:12px!important;box-shadow:inset 0 2px 4px #fff5,0 0 9px #000!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] .b139-mini-head{display:grid!important;grid-template-columns:1fr 1fr!important;gap:3px!important;min-height:0!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] .b139-mini-head>*{display:flex!important;align-items:center!important;justify-content:center!important;border:1px solid #aaa!important;border-radius:6px!important;background:linear-gradient(#555,#080808 40%,#000)!important;color:white!important;font-size:clamp(10px,1vw,17px)!important;white-space:nowrap!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] .b139-mini-head>strong{background:linear-gradient(#ddd,#777 30%,#444)!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] .b139-mini-photo{min-height:0!important;overflow:hidden!important;display:flex!important;align-items:center!important;justify-content:center!important;background:#000!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] .b139-mini-photo img{display:block!important;width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] .b139-mini-info{display:grid!important;grid-template-columns:1fr 1fr!important;gap:3px!important;min-height:0!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] .b139-mini-info>div{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:4px!important;min-width:0!important;padding:3px 5px!important;border:1px solid #777!important;border-radius:4px!important;background:#101010!important;font-size:clamp(9px,.75vw,13px)!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] .b139-mini-info strong{overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;text-align:right!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] .b139-mini-foot{display:flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;background:#151515!important;border:1px solid #777!important;border-radius:5px!important;font-size:clamp(10px,.8vw,14px)!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] .b139-mini-dot{width:10px;height:10px;border-radius:50%;background:#888}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] .b139-red{background:#f43f5e}.b139-green{background:#16d96c}.b139-yellow{background:#ffd347}.b139-blue{background:#1bc4e9}.b139-purple{background:#bb78f9}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] .b1217-carousel-slot.side .b139-mini-info{display:none!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] .b1217-carousel-slot.side .b139-mini-card{grid-template-rows:30px minmax(0,1fr) 30px!important}
+
+
+/* Source: css/raiders-header-final-v13.0.10.css */
+/* V13.0.10: match approved rounded Raiders header; remove legacy diagonal skew and empty lower band. */
+html body .app-frame #stickyShell > header.prototype-header {
+  display:grid!important;grid-template-columns:minmax(0,1.25fr) minmax(330px,.82fr) minmax(0,1.25fr)!important;
+  grid-template-rows:minmax(0,1fr)!important;gap:7px!important;
+  height:156px!important;min-height:156px!important;max-height:156px!important;
+  padding:5px 6px!important;margin:0!important;box-sizing:border-box!important;
+  align-items:stretch!important;justify-items:stretch!important;
+  background:#030303!important;border:0!important;border-radius:0!important;
+  overflow:visible!important;
+}
+html body .app-frame #stickyShell > header.prototype-header > section,
+html body .app-frame #stickyShell > header.prototype-header > section.prototype-header-center {
+  position:relative!important;display:flex!important;align-items:center!important;
+  align-self:stretch!important;justify-self:stretch!important;
+  height:100%!important;min-height:0!important;max-height:100%!important;
+  margin:0!important;padding:10px 14px!important;box-sizing:border-box!important;
+  border:3px solid #c5c5c5!important;border-radius:19px!important;
+  background:linear-gradient(180deg,#a4a4a4 0%,#4b4b4b 2%,#111 9%,#000 22%,#000 77%,#242424 90%,#999 98%,#e4e4e4 100%)!important;
+  box-shadow:inset 0 2px 3px #fff9,inset 0 -2px 4px #fff8,0 0 3px #fff8!important;
+  transform:none!important;clip-path:none!important;overflow:hidden!important;
+}
+html body .app-frame #stickyShell > header.prototype-header > section.prototype-header-left {justify-content:flex-start!important;gap:14px!important;}
+html body .app-frame #stickyShell > header.prototype-header > section.prototype-header-right {justify-content:flex-end!important;gap:14px!important;}
+html body .app-frame #stickyShell > header.prototype-header > section.prototype-header-center {justify-content:center!important;}
+html body .app-frame #stickyShell > header.prototype-header > section.prototype-header-center > *,
+html body .app-frame #stickyShell > header.prototype-header .prototype-kla-box,
+html body .app-frame #stickyShell > header.prototype-header .kla-user-side,
+html body .app-frame #stickyShell > header.prototype-header .kla-connection-core {
+ transform:none!important;clip-path:none!important;border:0!important;box-shadow:none!important;
+}
+html body .app-frame #stickyShell > header.prototype-header .prototype-kla-box {
+ display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,2.4fr) minmax(0,1fr)!important;
+ width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;
+ gap:5px!important;align-items:center!important;justify-items:center!important;
+ background:transparent!important;
+}
+html body .app-frame #stickyShell > header.prototype-header .kla-connection-core {
+ display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
+ height:100%!important;width:100%!important;min-width:0!important;padding:2px!important;
+ background:transparent!important;overflow:visible!important;
+}
+html body .app-frame #stickyShell > header.prototype-header .kla-connection-core img {
+ display:block!important;width:clamp(105px,9vw,185px)!important;max-width:100%!important;
+ height:auto!important;max-height:70%!important;object-fit:contain!important;
+}
+html body .app-frame #stickyShell > header.prototype-header .kla-connection-copy {
+ display:flex!important;flex-wrap:wrap!important;align-items:center!important;justify-content:center!important;
+ gap:2px 6px!important;width:100%!important;min-width:0!important;
+ font-size:clamp(9px,.72vw,14px)!important;line-height:1.15!important;text-align:center!important;
+ white-space:normal!important;overflow:visible!important;
+}
+html body .app-frame #stickyShell > header.prototype-header .kla-user-side {
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ height:auto!important;min-width:0!important;max-width:100%!important;background:transparent!important;
+}
+html body .app-frame #stickyShell > header.prototype-header :is(.b1239-raiders-logo,.b1241-right-logo) {
+ display:block!important;height:clamp(88px,7.5vw,126px)!important;max-height:calc(100% - 6px)!important;
+ width:auto!important;max-width:110px!important;object-fit:contain!important;flex:0 0 auto!important;
+}
+html body .app-frame #stickyShell > header.prototype-header .prototype-header-left > span,
+html body .app-frame #stickyShell > header.prototype-header .b1241-quarter-title {
+ font-size:clamp(17px,1.55vw,31px)!important;line-height:1.15!important;
+ font-weight:950!important;min-width:0!important;white-space:normal!important;
+ overflow-wrap:normal!important;overflow:visible!important;text-overflow:clip!important;
+}
+@media(max-width:1100px){html body .app-frame #stickyShell > header.prototype-header{grid-template-columns:minmax(0,1fr) minmax(260px,.95fr) minmax(0,1fr)!important;}html body .app-frame #stickyShell > header.prototype-header .prototype-header-left > span,html body .app-frame #stickyShell > header.prototype-header .b1241-quarter-title{font-size:clamp(12px,1.4vw,19px)!important;}}
+
+
+/* Source: css/raiders-presentation-v13.0.11.css */
+/* V13.0.11 shared Raiders presentation chrome and center menu */
+html body.presentation-mode,html body.presentation-mode .app-frame,html body.presentation-mode .body-shell,html body.presentation-mode #app {background:#030303!important;}
+html body.presentation-mode .app-frame {border:3px solid #c7c7c7!important;box-shadow:inset 0 0 0 1px #555,0 0 5px #aaa!important;border-radius:13px!important;}
+html body.presentation-mode #app :is(.b1217-hybrid,.quarter-summary-presentation,.presentation-tool-only){border-color:#aaa!important;}
+html body.presentation-mode #app :is(.presentation-inline-nav,.b1217-hybrid-nav){background:linear-gradient(180deg,#777 0%,#252525 10%,#000 35%,#090909 80%,#777 100%)!important;border:1px solid #bbb!important;border-radius:9px!important;box-shadow:inset 0 1px 3px #ddd7!important;}
+html body.presentation-mode #app :is(.presentation-inline-nav,.b1217-hybrid-nav) > :is(button,span){background:linear-gradient(180deg,#656565 0%,#111 22%,#000 70%,#444 100%)!important;color:#fff!important;border:1px solid #9b9b9b!important;border-radius:6px!important;text-shadow:0 1px 2px #000!important;}
+html body.presentation-mode #app :is(.presentation-inline-nav,.b1217-hybrid-nav) > button:is(.active,[aria-current="page"]){background:linear-gradient(180deg,#f5f5f5,#a5a5a5 30%,#777)!important;color:#080808!important;text-shadow:none!important;border-color:#fff!important;}
+html body.presentation-mode #app :is(.presentation-inline-nav,.b1217-hybrid-nav) > button:hover{background:linear-gradient(#eee,#777 40%,#333)!important;color:#fff!important;}
+html body.presentation-mode #app .b1217-hybrid{border:0!important;}
+html body.presentation-mode #app .b1217-hybrid .b1217-status-row>div{background:linear-gradient(#3e3e3e,#090909 40%,#000)!important;border:1px solid #888!important;color:white!important;}
+html body.presentation-mode #app .b1217-hybrid .b1217-metric{background:#070707!important;border:1px solid #aaa!important;}
+html body.presentation-mode #app .b1217-hybrid .b1217-carousel-slot .b139-mini-card{display:grid!important;background:#050505!important;border:2px solid #c0c0c0!important;}
+html body.presentation-mode #app .b1217-hybrid .b1217-carousel-slot .b139-mini-card .b139-mini-info>div{background:#111!important;border-color:#888!important;}
+html body.presentation-mode #app .b1217-hybrid .b1217-carousel-slot .b139-mini-card .b139-mini-head>span{background:linear-gradient(#555,#000 55%)!important;}
+html body.presentation-mode #app .b1217-hybrid .b1217-carousel-slot .b139-mini-card .b139-mini-head>strong{background:linear-gradient(#ddd,#666 40%,#333)!important;}
+/* Center dropdown is never an action menu. Keyboard and pointer hover use the same silver highlight. */
+html body .b138-center-menu .b138-center-option:hover,html body .b138-center-menu .b138-center-option:focus-visible,html body .b138-center-menu .b138-center-option.is-current{background:linear-gradient(180deg,#f7f7f7,#bcbcbc 45%,#777)!important;color:#000!important;outline:1px solid #eee!important;}
+html body .b138-center-menu .b138-center-option:hover *,html body .b138-center-menu .b138-center-option:focus-visible *{color:#000!important;}
+/* Make all header sections fill the approved tall shell, including left and right. */
+html body .app-frame #stickyShell>header.prototype-header{height:156px!important;min-height:156px!important;max-height:156px!important;align-items:stretch!important;}
+html body .app-frame #stickyShell>header.prototype-header>section.prototype-header-left,html body .app-frame #stickyShell>header.prototype-header>section.prototype-header-center,html body .app-frame #stickyShell>header.prototype-header>section.prototype-header-right{height:146px!important;min-height:146px!important;max-height:146px!important;align-self:stretch!important;box-sizing:border-box!important;}
+html body .app-frame #stickyShell>header.prototype-header .prototype-header-left>span,html body .app-frame #stickyShell>header.prototype-header .b1241-quarter-title{font-size:clamp(18px,1.6vw,32px)!important;}
+/* Do not apply old presentation cyan framing to inner viewport. */
+html body.presentation-mode #app .presentation-tool-only{outline-color:#aaa!important;}
+
+
+/* Source: css/raiders-presentation-v13.0.12.css */
+/* V13.0.12 centralized presentation corrections. Scoped: no changes to Live Operations. */
+html body.presentation-mode,html body.presentation-mode .app-frame,html body.presentation-mode #app,html body.presentation-mode .body-shell{background:#000!important;}
+html body.presentation-mode .app-frame,html body.presentation-mode #app,html body.presentation-mode .presentation-tool-only,html body.presentation-mode .b1217-hybrid,html body.presentation-mode .quarter-summary-presentation{border-color:#a8a8a8!important;outline-color:#a8a8a8!important;}
+html body.presentation-mode #app :is(.b1217-metric,.b1217-meter,.b1217-status-row,.b1217-status-row>div,.b1217-carousel,.b1217-carousel-slot,.b139-mini-card,.b139-mini-info>div,.presentation-inline-nav,.quarter-summary-switchbar){border-color:#aaa!important;outline-color:#aaa!important;}
+html body.presentation-mode #app .b1217-hybrid-metrics .b1217-metric{background:#050505!important;border:1px solid #888!important;}
+html body.presentation-mode #app .b1217-hybrid .b1217-status-row>div{background:linear-gradient(#666,#111 25%,#000 70%,#333)!important;border-color:#999!important;}
+html body.presentation-mode #app .b1217-hybrid .b1217-meter{background:#121212!important;border-color:#aaa!important;}
+/* Remove the obsolete empty blue line above Hybrid metrics. */
+html body.presentation-mode #app .b1217-hybrid::before,html body.presentation-mode #app .b1217-hybrid::after{content:none!important;display:none!important;}
+html body.presentation-mode #app .b1217-hybrid{border:0!important;box-shadow:none!important;}
+/* Actual hybrid mini-card layout, with the full signal tower next to the photo. */
+html body.presentation-mode #app .b1312-mini-card{grid-template-rows:34px minmax(0,1fr) auto 28px!important;}
+html body.presentation-mode #app .b1312-mini-media{display:grid!important;grid-template-columns:24% minmax(0,1fr)!important;gap:5px!important;min-height:0!important;overflow:hidden!important;}
+html body.presentation-mode #app .b1312-mini-media .b139-mini-photo{height:100%!important;min-height:0!important;}
+html body.presentation-mode #app .b1312-mini-tower{min-height:0!important;height:100%!important;display:flex!important;align-items:stretch!important;justify-content:center!important;overflow:hidden!important;background:#050505!important;border:1px solid #777!important;border-radius:7px!important;}
+html body.presentation-mode #app .b1312-mini-tower .b1224-tower{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;overflow:hidden!important;}
+html body.presentation-mode #app .b1312-mini-tower img{height:100%!important;width:100%!important;max-height:100%!important;max-width:100%!important;object-fit:contain!important;transform:none!important;}
+html body.presentation-mode #app .b1217-carousel-slot.side .b1312-mini-card{grid-template-rows:30px minmax(0,1fr) 28px!important;}
+/* Tool presentation: preserve the photo and tower, while reducing overflowing internal sections. */
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app>.presentation-tool-only .c11-card-grid{min-height:0!important;overflow:hidden!important;}
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app>.presentation-tool-only .c11-card-grid>*{min-height:0!important;max-height:100%!important;overflow:hidden!important;}
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app>.presentation-tool-only .c11-photo.b796-priority-photo{height:clamp(165px,30vh,310px)!important;max-height:34vh!important;min-height:0!important;}
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app>.presentation-tool-only .b1229-tower-image{object-fit:contain!important;transform:none!important;max-height:100%!important;}
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app>.presentation-tool-only .c11-progress-column{min-height:0!important;overflow:hidden!important;}
+html body.presentation-mode[data-center="operations"][data-sub="live"] #app>.presentation-tool-only .c11-progress-column>*{min-height:0!important;flex-shrink:1!important;}
+/* Identical silver/black nav on all three presentation modes. */
+html body.presentation-mode #app .presentation-inline-nav{border:1px solid #aaa!important;background:linear-gradient(#555,#080808 25%,#000 70%,#555)!important;}
+html body.presentation-mode #app .presentation-inline-nav>.presentation-nav-cell{border:1px solid #777!important;background:linear-gradient(#555,#090909 25%,#000 75%,#333)!important;color:#fff!important;}
+html body.presentation-mode #app .presentation-inline-nav>button:is(:hover,:focus-visible,[aria-current="page"],.active){background:linear-gradient(#eee,#999 30%,#666)!important;color:#000!important;}
+/* Non-status blue outlines are neutralized only within presentation containers. */
+html body.presentation-mode #app :is(.b1217-hybrid,.quarter-summary-presentation,.presentation-tool-only){--panel-border:#aaa;--chrome-border:#aaa;}
+
+
+/* Source: css/unified-photo-v13.0.14.css */
+/* V13.0.14: Actual live Universal Tool Card. Priority/Alias is a full-width FIRST ROW,
+   and signal tower + photo share the SECOND ROW. Override legacy photo layout. */
+html body #app section.c11-tool-card .c11-identity-column > .c11-photo.b1313-unified-photo {
+  display:grid!important; grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:clamp(35px,3.0vw,48px) minmax(0,1fr)!important;
+  align-items:stretch!important; justify-content:stretch!important;
+  gap:5px!important; padding:5px!important; overflow:hidden!important;
+  min-height:0!important; box-sizing:border-box!important;
+}
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b133-priority-alias {
+  display:grid!important; grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-row:1!important; grid-column:1!important; position:static!important;
+  width:100%!important; height:100%!important; min-height:0!important;
+  margin:0!important; padding:0!important; gap:4px!important;
+  border:0!important; background:transparent!important; overflow:visible!important;
+}
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b133-priority-alias > button {
+  width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;
+  margin:0!important;display:flex!important;align-items:center!important;justify-content:center!important;
+}
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top {
+  display:grid!important; grid-template-columns:clamp(80px,23%,150px) minmax(0,1fr)!important;
+  grid-template-rows:minmax(0,1fr)!important; grid-row:2!important;grid-column:1!important;
+  position:static!important; width:100%!important;height:100%!important;min-height:0!important;
+  gap:5px!important;margin:0!important;padding:0!important;align-items:stretch!important;
+}
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top > .b1226-photo-tower,
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top > .b1226-photo-main {
+  grid-row:1!important; min-height:0!important;height:100%!important;max-height:100%!important;
+  position:relative!important;margin:0!important;overflow:hidden!important;
+}
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top > .b1226-photo-tower {grid-column:1!important;}
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top > .b1226-photo-main {grid-column:2!important;}
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main .v1210-photo-image,
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main .v1210-photo-image > img {
+  height:100%!important;max-height:100%!important;min-height:0!important;width:100%!important;
+  object-fit:contain!important;
+}
+
+
+/* Source: css/layout-presentation-repair-v13.0.15.css */
+/* V13.0.15: geometry repair. A short, fixed badge row prevents the inherited flex
+   sizing from consuming half the equipment image. Applies to live and tool presentation. */
+html body #app .c11-tool-card .c11-photo.b1313-unified-photo {
+ display:grid!important;grid-template-columns:minmax(0,1fr)!important;
+ grid-template-rows:42px minmax(0,1fr)!important;grid-auto-rows:minmax(0,1fr)!important;
+ align-content:stretch!important;justify-content:stretch!important;
+ gap:6px!important;padding:6px!important;box-sizing:border-box!important;
+ min-height:0!important;overflow:hidden!important;
+}
+html body #app .c11-tool-card .c11-photo.b1313-unified-photo > .b133-priority-alias {
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ grid-column:1!important;grid-row:1!important;position:relative!important;
+ height:42px!important;min-height:42px!important;max-height:42px!important;
+ width:100%!important;max-width:100%!important;flex:none!important;align-self:start!important;
+ gap:5px!important;margin:0!important;padding:0!important;border:0!important;
+ background:transparent!important;box-shadow:none!important;overflow:hidden!important;
+}
+html body #app .c11-tool-card .c11-photo.b1313-unified-photo > .b133-priority-alias > button {
+ height:42px!important;min-height:42px!important;max-height:42px!important;
+ width:100%!important;min-width:0!important;flex:none!important;
+ padding:2px 5px!important;margin:0!important;line-height:1.1!important;
+ font-size:clamp(12px,1.15vw,19px)!important;
+ display:flex!important;align-items:center!important;justify-content:center!important;
+}
+html body #app .c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top {
+ grid-row:2!important;grid-column:1!important;display:grid!important;
+ grid-template-columns:clamp(80px,23%,150px) minmax(0,1fr)!important;
+ grid-template-rows:minmax(0,1fr)!important;min-height:0!important;min-width:0!important;
+ height:100%!important;max-height:100%!important;flex:none!important;
+ gap:6px!important;margin:0!important;padding:0!important;overflow:hidden!important;
+}
+html body #app .c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top > * {
+ grid-row:1!important;height:100%!important;max-height:100%!important;
+ min-height:0!important;min-width:0!important;overflow:hidden!important;
+}
+html body #app .c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main .v1210-photo-image {
+ height:100%!important;min-height:0!important;max-height:100%!important;display:flex!important;align-items:center!important;justify-content:center!important;
+}
+html body #app .c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main .v1210-photo-image img {
+ display:block!important;object-fit:contain!important;object-position:center!important;
+ max-width:100%!important;max-height:100%!important;width:100%!important;height:100%!important;
+}
+/* Three separately framed header panels, with visible black gutters. */
+html body .app-frame #stickyShell > header.prototype-header {
+ column-gap:12px!important;gap:12px!important;padding:6px 10px!important;
+}
+html body .app-frame #stickyShell > header.prototype-header > section {
+ margin:0!important;border-radius:19px!important;min-width:0!important;
+}
+/* Presentation modes: Raiders neutral chrome; status meaning retains its own colors. */
+html body.presentation-mode #app,
+html body.presentation-mode #app > :is(.presentation-tool-only,.b1217-hybrid,.quarter-summary-presentation) {
+ border-color:#b9b9b9!important;outline-color:#b9b9b9!important;
+ --cc-chrome-border:#b9b9b9;--panel-border:#b9b9b9;
+}
+html body.presentation-mode #app :is(.presentation-inline-nav,.b1217-hybrid-nav,.quarter-summary-switchbar) {
+ border:2px solid #aaa!important;outline:0!important;
+ background:linear-gradient(180deg,#676767,#101010 23%,#020202 72%,#454545)!important;
+ border-radius:8px!important;box-sizing:border-box!important;
+}
+html body.presentation-mode #app :is(.presentation-inline-nav,.b1217-hybrid-nav,.quarter-summary-switchbar) button {
+ background:linear-gradient(180deg,#565656,#101010 25%,#000 75%,#414141)!important;
+ border:1px solid #888!important;color:#fff!important;min-width:0!important;
+}
+html body.presentation-mode #app :is(.presentation-inline-nav,.b1217-hybrid-nav,.quarter-summary-switchbar) button:is(:hover,:focus-visible,.active,[aria-current=page]) {
+ background:linear-gradient(#f7f7f7,#bcbcbc 35%,#888)!important;color:#080808!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=live] #app > .presentation-tool-only .c11-photo.b1313-unified-photo {
+ grid-template-rows:36px minmax(0,1fr)!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=live] #app > .presentation-tool-only .c11-photo.b1313-unified-photo > .b133-priority-alias,
+html body.presentation-mode[data-center=operations][data-sub=live] #app > .presentation-tool-only .c11-photo.b1313-unified-photo > .b133-priority-alias > button {
+ height:36px!important;min-height:36px!important;max-height:36px!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=live] #app > .presentation-tool-only .c11-card-grid,
+html body.presentation-mode[data-center=operations][data-sub=live] #app > .presentation-tool-only .c11-card-grid > * {
+ min-height:0!important;max-height:100%!important;overflow:hidden!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=live] #app > .presentation-tool-only .c11-progress-column {
+ min-height:0!important;max-height:100%!important;overflow:hidden!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=hybrid] #app > .b1217-hybrid {
+ grid-template-rows:minmax(0,26fr) minmax(0,10fr) minmax(0,64fr) 54px!important;
+ min-height:0!important;max-height:100%!important;overflow:hidden!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=hybrid] #app .b1217-hybrid-nav {
+ grid-row:4!important;min-height:54px!important;max-height:54px!important;
+ display:flex!important;visibility:visible!important;
+}
+html body.presentation-mode #app .b1312-mini-card {background:#050505!important;border:2px solid #b0b0b0!important;}
+@media(max-width:1000px){html body .app-frame #stickyShell > header.prototype-header{gap:7px!important;padding:5px!important;}}
+
+
+/* Source: css/live-geometry-fix-v13.0.16.css */
+/* V13.0.16: narrowly scoped live layout corrections. No presentation-mode changes. */
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame #stickyShell {
+  gap:3px!important; row-gap:3px!important; padding:0!important;
+  background:#030303!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame #stickyShell > header.prototype-header {
+  display:grid!important;
+  grid-template-columns:minmax(0,1.25fr) minmax(330px,.82fr) minmax(0,1.25fr)!important;
+  column-gap:14px!important;gap:14px!important;
+  height:140px!important;min-height:140px!important;max-height:140px!important;
+  padding:3px 7px!important;margin:0!important;
+  background:#030303!important;border:0!important;
+  align-items:stretch!important;overflow:visible!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame #stickyShell > header.prototype-header > section {
+  min-width:0!important;width:auto!important;height:100%!important;min-height:0!important;
+  margin:0!important;transform:none!important;clip-path:none!important;
+  border:3px solid #c5c5c5!important;border-radius:19px!important;
+}
+body:not(.presentation-mode):not(.screenshot-mode) .app-frame #stickyShell > nav#mainNav {
+  margin:0!important;padding-top:3px!important;padding-bottom:3px!important;
+}
+/* Photo grid: keep the tower's complete image and status plate within the photo's second row. */
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top {
+  min-height:0!important;max-height:100%!important;overflow:hidden!important;
+  grid-template-columns:clamp(80px,23%,150px) minmax(0,1fr)!important;
+  align-items:stretch!important;
+}
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top > .b1226-photo-tower {
+  height:100%!important;min-height:0!important;max-height:100%!important;
+  position:relative!important;overflow:hidden!important;
+}
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower .b1229-tower {
+  position:absolute!important;inset:0!important;height:100%!important;max-height:100%!important;
+  min-height:0!important;width:100%!important;overflow:hidden!important;
+}
+html body #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower img.b1229-tower-image {
+  position:absolute!important;inset:0!important;
+  width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;
+  max-width:100%!important;max-height:100%!important;
+  object-fit:contain!important;object-position:center center!important;
+  transform:none!important;
+}
+@media(max-width:1100px){body:not(.presentation-mode):not(.screenshot-mode) .app-frame #stickyShell > header.prototype-header {gap:8px!important;grid-template-columns:minmax(0,1fr) minmax(280px,.9fr) minmax(0,1fr)!important;}}
+
+
+/* Source: css/tower-fit-v13.0.17.css */
+/* V13.0.17: Fit complete signal tower, including its bottom status label, inside the
+   SAME media row as the equipment image. Scope only to regular Live Operations. */
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top > .b1226-photo-tower {
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  min-height:0!important;max-height:100%!important;height:100%!important;
+  overflow:hidden!important;box-sizing:border-box!important;
+  padding:8px 5px 10px!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower > .b1229-tower {
+  position:relative!important;inset:auto!important;
+  width:100%!important;height:100%!important;max-height:100%!important;
+  min-height:0!important;overflow:visible!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  box-sizing:border-box!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower > .b1229-tower > img.b1229-tower-image {
+  position:static!important;inset:auto!important;
+  display:block!important;width:100%!important;height:100%!important;
+  min-width:0!important;min-height:0!important;max-width:100%!important;max-height:100%!important;
+  object-fit:contain!important;object-position:center center!important;
+  transform:none!important;filter:none!important;
+}
+
+
+/* Source: css/tower-full-height-v13.0.18.css */
+/* V13.0.18: give the tower sufficient WIDTH to reach the full height of the photo row without clipping its bottom status plate. */
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top {
+ grid-template-columns:clamp(125px,28%,190px) minmax(0,1fr)!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top > .b1226-photo-tower {
+ padding:2px!important;display:flex!important;align-items:stretch!important;justify-content:center!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower > .b1229-tower {
+ padding:0!important;height:100%!important;width:100%!important;display:flex!important;align-items:stretch!important;justify-content:center!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower img.b1229-tower-image {
+ width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;
+ object-fit:fill!important;object-position:center!important;display:block!important;
+}
+
+
+/* Source: css/solid-silver-photo-height-v13.0.20.css */
+/* V13.0.20 — AUTHORITATIVE solid silver completion bars.
+   Preserve inline widths and signal-tower semantic colors. */
+:root{--b720-metal:linear-gradient(180deg,#f7f7f7 0%,#d7d7d7 26%,#929292 68%,#c4c4c4 100%)}
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row:nth-child(n) .c11-progress-track>i,
+html body #app .c11-tool-card .c11-progress-column>.c11-progress-row:last-child .c11-progress-track>i,
+html body #app .c11-tool-card .c11-overall-progress .c11-progress-track>i,
+html body #app .c11-tool-card .c11-progress-track>i,
+html body #app .progress-item .track.labeled-track>.fill,
+html body #app .track>.fill,
+html body #app [class*="progress-track"]>.fill,
+html body #app [class*="progress-track"]>i,
+html body.presentation-mode #app .c11-progress-track>i {
+  background:var(--b720-metal)!important;background-image:var(--b720-metal)!important;
+  background-color:#bcbcbc!important;
+  -webkit-mask:none!important;mask:none!important;-webkit-mask-image:none!important;mask-image:none!important;
+  border-image:none!important;filter:none!important;
+}
+html body #app .c11-progress-track>i::before,
+html body #app .c11-progress-track>i::after,
+html body #app .track>.fill::before,
+html body #app .track>.fill::after{background:none!important;background-image:none!important;-webkit-mask:none!important;mask:none!important;content:none!important}
+/* Make live photo and signal tower taller, with the priority/alias header still fixed on top.
+   The original photo was capped at 450px, leaving the main visual cramped. */
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-column>.c11-photo.b1226-photo.b1313-unified-photo{
+ height:clamp(480px,36vw,550px)!important;min-height:480px!important;max-height:none!important;
+ grid-template-rows:clamp(35px,3vw,48px) minmax(0,1fr)!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo>.b1226-photo-top{
+ height:100%!important;min-height:0!important;grid-template-columns:clamp(140px,28%,190px) minmax(0,1fr)!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower,
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main,
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .v1210-photo-image{
+ height:100%!important;min-height:0!important;max-height:100%!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower img.b1229-tower-image{
+ width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;
+ object-fit:fill!important;transform:none!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main .v1210-photo-image>img{
+ width:100%!important;height:100%!important;object-fit:contain!important;
+}
+
+
+/* Source: css/photo-row-balance-v13.0.21.css */
+/* V13.0.21 — compact visual row: remove excessive blank vertical space.
+   Preserve the entire equipment image and full tower/status plate. */
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-column > .c11-photo.b1226-photo.b1313-unified-photo {
+  height:410px!important;min-height:410px!important;max-height:410px!important;
+  grid-template-rows:43px minmax(0,1fr)!important;gap:5px!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top {
+  min-height:0!important;height:100%!important;grid-template-columns:clamp(125px,27%,175px) minmax(0,1fr)!important;
+  align-items:stretch!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main {
+  display:flex!important;align-items:center!important;justify-content:center!important;min-height:0!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main .v1210-photo-image {
+  display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;
+  width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main .v1210-photo-image > img {
+  display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower img.b1229-tower-image {
+  width:100%!important;height:100%!important;object-fit:fill!important;
+}
+
+
+/* Source: css/photo-tower-fit-v13.0.22.css */
+/* V13.0.22 — Live Operations photo/tower: align to top, fit the full tower including status plate. */
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-column > .c11-photo.b1226-photo.b1313-unified-photo {
+ height:425px!important;min-height:425px!important;max-height:425px!important;
+ grid-template-rows:43px minmax(0,1fr)!important;gap:2px!important;padding:4px!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top {
+ height:100%!important;min-height:0!important;grid-template-columns:clamp(125px,27%,175px) minmax(0,1fr)!important;
+ gap:4px!important;align-items:stretch!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower {
+ padding:0!important;margin:0!important;overflow:hidden!important;align-items:flex-start!important;justify-content:center!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower > .b1229-tower {
+ height:100%!important;max-height:100%!important;min-height:0!important;width:100%!important;padding:0!important;
+ display:flex!important;align-items:flex-start!important;justify-content:center!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower img.b1229-tower-image {
+ display:block!important;width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;
+ object-fit:contain!important;object-position:center top!important;transform:none!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main,
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main .v1210-photo-image {
+ align-items:flex-start!important;justify-content:center!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main .v1210-photo-image > img {
+ object-fit:contain!important;object-position:center top!important;
+}
+
+
+/* Source: css/live-photo-field-alignment-v13.0.23.css */
+/* V13.0.23 — live photo and field alignment. Scoped to normal tool cards. */
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top {align-items:stretch!important;overflow:hidden!important;}
+/* Independent positioning: tower moves up with bottom clearance; photo starts below badges. */
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-top > .b1226-photo-tower {padding:0 3px 10px!important;box-sizing:border-box!important;align-self:stretch!important;overflow:hidden!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower > .b1229-tower {position:relative!important;inset:auto!important;height:100%!important;width:100%!important;overflow:hidden!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower img.b1229-tower-image {position:static!important;inset:auto!important;display:block!important;height:100%!important;min-height:0!important;width:100%!important;min-width:0!important;max-height:100%!important;object-fit:fill!important;object-position:center!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-top > .b1226-photo-main {padding:9px 0 8px!important;box-sizing:border-box!important;align-self:stretch!important;display:flex!important;align-items:stretch!important;justify-content:stretch!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main .v1210-photo-image {width:100%!important;height:100%!important;max-height:100%!important;display:flex!important;align-items:stretch!important;justify-content:center!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main .v1210-photo-image > img {width:100%!important;height:100%!important;max-height:100%!important;object-fit:contain!important;object-position:center center!important;}
+/* Restore horizontal label/value geometry, overriding older generic >* centered-column rule. */
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-column .c11-identity-stack > .c11-id-badge,
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-column .b783-date-row > .b783-date-badge {
+ display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:center!important;justify-content:space-between!important;text-align:left!important;
+ box-sizing:border-box!important;min-width:0!important;height:64px!important;min-height:64px!important;max-height:64px!important;gap:8px!important;padding:6px 10px!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-column .c11-identity-stack > .c11-id-badge > small,
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-column .b783-date-row > .b783-date-badge > span {
+ display:block!important;flex:0 1 46%!important;width:auto!important;min-width:0!important;text-align:left!important;white-space:normal!important;line-height:1.15!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-column .c11-identity-stack > .c11-id-badge > strong,
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-column .b783-date-row > .b783-date-badge > strong {
+ display:block!important;flex:1 1 54%!important;width:auto!important;min-width:0!important;text-align:right!important;white-space:normal!important;overflow-wrap:anywhere!important;line-height:1.15!important;
+}
+
+
+/* Source: css/live-photo-field-layout-v13.0.24.css */
+/* V13.0.24: canonical Live Operations image alignment and badge layout. */
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-column > .c11-photo.b1313-unified-photo {height:425px!important;min-height:425px!important;max-height:425px!important;grid-template-rows:43px minmax(0,1fr)!important;gap:4px!important;padding:4px!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top {height:100%!important;min-height:0!important;overflow:hidden!important;align-items:stretch!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-top > .b1226-photo-tower {box-sizing:border-box!important;padding:3px 4px 10px!important;align-self:stretch!important;overflow:hidden!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower > .b1229-tower {width:100%!important;height:100%!important;min-height:0!important;overflow:hidden!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower img.b1229-tower-image {width:100%!important;height:100%!important;object-fit:fill!important;object-position:center!important;max-height:100%!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-top > .b1226-photo-main {padding:10px 0 5px!important;box-sizing:border-box!important;align-self:stretch!important;overflow:hidden!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main .v1210-photo-image {height:100%!important;width:100%!important;display:flex!important;align-items:stretch!important;justify-content:center!important;overflow:hidden!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main .v1210-photo-image > img {width:100%!important;height:100%!important;object-fit:contain!important;object-position:center center!important;}
+/* Reinforce inline !important badge geometry against legacy global selectors. */
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-column .c11-identity-stack > .c11-id-badge,
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-column .b783-date-row > .b783-date-badge {display:grid!important;grid-template-columns:minmax(0,44%) minmax(0,56%)!important;align-items:center!important;text-align:left!important;gap:5px!important;}
+
+
+/* Source: css/live-identity-photo-final-v13.0.25.css */
+/* V13.0.25: fix source of identity badge regression and balance photo/tower. */
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-stack > .c11-id-badge,
+html body:not(.presentation-mode) #app section.c11-tool-card .b783-date-row > .b783-date-badge {display:grid!important;grid-template-columns:minmax(0,44%) minmax(0,56%)!important;align-items:center!important;justify-items:stretch!important;gap:5px!important;text-align:left!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-stack > .c11-id-badge > small,
+html body:not(.presentation-mode) #app section.c11-tool-card .b783-date-row > .b783-date-badge > span {grid-column:1!important;justify-self:start!important;text-align:left!important;margin:0!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-stack > .c11-id-badge > strong,
+html body:not(.presentation-mode) #app section.c11-tool-card .b783-date-row > .b783-date-badge > strong {grid-column:2!important;justify-self:end!important;text-align:right!important;margin:0!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-column > .c11-photo.b1313-unified-photo {height:425px!important;min-height:425px!important;max-height:425px!important;grid-template-rows:43px minmax(0,1fr)!important;gap:4px!important;padding:4px!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top {height:auto!important;min-height:0!important;overflow:hidden!important;align-items:stretch!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-top > .b1226-photo-tower {padding:3px 4px 11px!important;box-sizing:border-box!important;align-self:stretch!important;overflow:hidden!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower > .b1229-tower {height:100%!important;width:100%!important;min-height:0!important;overflow:hidden!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower img.b1229-tower-image {height:100%!important;width:100%!important;max-height:100%!important;object-fit:fill!important;transform:none!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-top > .b1226-photo-main {padding:8px 0 6px!important;box-sizing:border-box!important;align-self:stretch!important;overflow:hidden!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main .v1210-photo-image {height:100%!important;width:100%!important;overflow:hidden!important;display:flex!important;align-items:stretch!important;justify-content:center!important;}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main .v1210-photo-image > img {height:100%!important;width:100%!important;object-fit:contain!important;object-position:center center!important;}
+
+
+/* Source: css/compact-header-v13.0.26.css */
+/* V13.0.26: approved compact NG | KLA+ | +N header layout. */
+html body .app-frame #stickyShell > header.prototype-header > section.prototype-header-center {padding:8px 12px!important;}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .prototype-kla-box {
+ display:grid!important;grid-template-columns:minmax(40px,auto) minmax(0,1fr) minmax(40px,auto)!important;
+ grid-template-rows:minmax(0,1fr) auto!important;column-gap:10px!important;row-gap:3px!important;
+ align-items:center!important;justify-items:center!important;height:100%!important;width:100%!important;
+}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-user-side {
+ display:flex!important;align-items:center!important;justify-content:center!important;min-width:0!important;
+ grid-row:1!important;align-self:center!important;width:auto!important;height:auto!important;
+}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-user-left {grid-column:1!important;}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-user-right {grid-column:3!important;}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-core {
+ display:contents!important;
+}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-core > img {
+ grid-column:2!important;grid-row:1!important;display:block!important;
+ width:100%!important;max-width:240px!important;height:clamp(48px,5.1vw,78px)!important;
+ max-height:none!important;object-fit:contain!important;object-position:center!important;
+}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-copy {
+ grid-column:1 / -1!important;grid-row:2!important;display:flex!important;flex-flow:row nowrap!important;
+ justify-content:center!important;align-items:center!important;gap:7px!important;
+ font-size:clamp(9px,.75vw,13px)!important;line-height:1.1!important;white-space:nowrap!important;
+ width:100%!important;min-width:0!important;padding:0 0 3px!important;
+}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-copy b,
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-copy small {font-size:inherit!important;line-height:inherit!important;white-space:nowrap!important;}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-status-divider {color:#c8c8c8!important;font-weight:800!important;}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-presence-badge {
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ width:auto!important;min-width:45px!important;max-width:70px!important;height:39px!important;
+ padding:0 10px!important;border:2px solid #d5d5d5!important;border-radius:999px!important;
+ background:#080808!important;color:#fff!important;font-size:17px!important;font-weight:900!important;
+ line-height:1!important;box-shadow:none!important;white-space:nowrap!important;transform:none!important;
+}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-presence-badge.compact-primary.active {border-color:#00ed5c!important;color:#00ff66!important;}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-presence-badge.compact-count {border-color:#d8d8d8!important;color:#fff!important;}
+@media(max-width:1300px){html body .app-frame #stickyShell > header.prototype-header > section.prototype-header-center{padding:5px!important;}html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .prototype-kla-box{column-gap:5px!important;}html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-presence-badge{min-width:36px!important;height:33px!important;padding:0 6px!important;font-size:14px!important;}html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-copy{gap:4px!important;font-size:9px!important;}}
+
+
+/* Source: css/header-photo-spacing-v13.0.27.css */
+/* V13.0.27 — compact middle header grouping; preserve three header panels. */
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .prototype-kla-box {
+ grid-template-columns:max-content minmax(0,270px) max-content!important;
+ column-gap:9px!important;justify-content:center!important;align-content:center!important;
+}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-core > img {
+ width:100%!important;max-width:270px!important;height:clamp(58px,6vw,88px)!important;object-fit:contain!important;
+}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-user-side {justify-self:center!important;}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-copy {align-self:start!important;}
+/* Remove unused photo-row height, without shrinking the existing images by an arbitrary percentage. */
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-column > .c11-photo.b1313-unified-photo {
+ height:397px!important;min-height:397px!important;max-height:397px!important;
+}
+@media(max-width:1250px){
+ html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .prototype-kla-box {grid-template-columns:max-content minmax(0,220px) max-content!important;column-gap:5px!important;}
+ html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-core > img {max-width:220px!important;}
+}
+
+
+/* Source: css/header-photo-final-v13.0.28.css */
+/* V13.0.28 — larger central KLA brand and less unused photo-section space. */
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .prototype-kla-box {
+ grid-template-columns:40px minmax(0,310px) 40px!important;
+ column-gap:5px!important;justify-content:center!important;align-content:center!important;
+}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-core > img {
+ width:100%!important;max-width:310px!important;height:clamp(78px,7vw,105px)!important;
+ max-height:105px!important;object-fit:contain!important;
+}
+html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-presence-badge {
+ min-width:38px!important;width:38px!important;height:38px!important;padding:0 3px!important;
+}
+/* Shorten the actual photo panel, not the surrounding tool card or its badge layout. */
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-column > .c11-photo.b1226-photo.b1313-unified-photo {
+ height:378px!important;min-height:378px!important;max-height:378px!important;
+ grid-template-rows:43px minmax(0,1fr)!important;gap:3px!important;padding:4px!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-top > .b1226-photo-tower {padding-bottom:6px!important;}
+@media(max-width:1450px){
+ html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .prototype-kla-box {grid-template-columns:34px minmax(0,260px) 34px!important;column-gap:4px!important;}
+ html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-connection-core > img {max-width:260px!important;height:85px!important;}
+ html body .app-frame #stickyShell > header.prototype-header #headerModeCenter .kla-presence-badge {min-width:32px!important;width:32px!important;height:34px!important;}
+}
+
+
+/* Source: css/photo-bottom-clearance-v13.0.29.css */
+/* V13.0.29 — restore image bottom clearance after V13.0.28 over-shortened the panel. */
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-identity-column > .c11-photo.b1226-photo.b1313-unified-photo {
+ height:404px!important;min-height:404px!important;max-height:404px!important;
+ grid-template-rows:43px minmax(0,1fr)!important;gap:3px!important;padding:4px!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo > .b1226-photo-top {
+ min-height:0!important;max-height:100%!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-top > .b1226-photo-tower {
+ padding:3px 4px 10px!important;box-sizing:border-box!important;min-height:0!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-top > .b1226-photo-main {
+ padding:8px 0 11px!important;box-sizing:border-box!important;min-height:0!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower img.b1229-tower-image,
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-main .v1210-photo-image > img {
+ max-height:100%!important;object-fit:contain!important;
+}
+
+
+/* Source: css/raiders-graphics-library-v1.css */
+/* B7 FI Command Center — Raiders Chrome Graphics v1
+   Use these assets as skins; preserve all text, data, events, status logic and existing layout.
+   SVG files are scalable. Prefer border-image or background with careful 9-slice handling
+   for variable-size components. Never stretch a full SVG across a differently sized panel
+   if it distorts the corner radius. The CSS-only classes below scale cleanly. */
+:root {--raiders-black:#050505;--raiders-silver:#c5c5c5;--raiders-text:#fff;}
+.raiders-chrome-panel {background:linear-gradient(180deg,#3c3c3c 0%,#101010 13%,#020202 36%,#030303 84%,#252525 94%,#6c6c6c 100%);border:2px solid #aaa;border-radius:16px;box-shadow:inset 0 2px 2px #f4f4f4,inset 0 -3px 4px #777,0 0 3px #bbb;color:white;}
+.raiders-section {background:linear-gradient(180deg,#202020 0%,#050505 20%,#000 100%);border:1px solid #969696;border-radius:11px;color:#fff;}
+.raiders-section-title {background:linear-gradient(180deg,#666 0%,#2c2c2c 15%,#090909 48%,#020202 85%,#222 100%);border:1px solid #929292;border-radius:6px;box-shadow:inset 0 1px 1px #aaa;color:#fff;}
+.raiders-button {background:linear-gradient(180deg,#696969 0%,#272727 15%,#020202 65%,#252525 100%);border:1px solid #aaa;border-radius:9px;box-shadow:inset 0 1px 1px #eee;color:#fff;}
+.raiders-button-active {background:linear-gradient(180deg,#fff 0%,#ddd 25%,#9b9b9b 75%,#eee 100%);border:1px solid #bdbdbd;color:#080808;}
+.raiders-field-badge {display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:8px;background:#030303;border:1px solid #a2a2a2;border-radius:6px;padding:7px 10px;color:white;}
+.raiders-field-badge .field-name {text-align:left;font-size:11px;white-space:nowrap;}
+.raiders-field-badge .field-value {text-align:right;font-weight:800;min-width:0;overflow-wrap:anywhere;}
+.raiders-progress-track {background:#141414;border:1px solid #999;border-radius:6px;overflow:hidden;}
+.raiders-progress-fill {height:100%;background:linear-gradient(180deg,#f8f8f8 0%,#e2e2e2 20%,#9a9a9a 70%,#c8c8c8 100%);border-radius:5px;}
+/* Signal tower remains the sole multi-color tool-status graphic. */
+
+
+/* Source: css/raiders-graphics-integration-v13.0.30.css */
+/* V13.0.30 — Graphics Package V1 integration. Visual-only skin; retain dimensions, data and click behavior. */
+:root{--rc-chrome:#c5c5c5;--rc-black:#050505;--rc-silver-fill:linear-gradient(180deg,#f9f9f9 0%,#dedede 24%,#939393 72%,#d0d0d0 100%)}
+/* The original graphics assets are packaged under assets/raiders-graphics. Apply chrome via scalable CSS to prevent SVG corner stretching. */
+html body .app-frame #stickyShell > header.prototype-header > section {
+ background:linear-gradient(180deg,#242424 0%,#050505 18%,#000 73%,#1b1b1b 91%,#555 100%)!important;
+ border:2px solid #bcbcbc!important;
+ box-shadow:inset 0 2px 2px rgba(255,255,255,.9),inset 0 -3px 5px rgba(255,255,255,.32),0 0 4px rgba(240,240,240,.55)!important;
+}
+html body .app-frame #stickyShell nav#mainNav button,
+html body .app-frame #stickyShell nav#mainNav select,
+html body .app-frame #stickyShell nav#mainNav .nav-button {
+ border-color:#a5a5a5!important;
+ box-shadow:inset 0 1px 1px rgba(255,255,255,.65),inset 0 -1px 2px rgba(255,255,255,.2)!important;
+}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-status-card,
+html body:not(.presentation-mode) #app .c11-tool-card .c11-progress-card,
+html body:not(.presentation-mode) #app .c11-tool-card .c11-status-column > section,
+html body:not(.presentation-mode) #app .c11-tool-card .c11-progress-column > section {
+ border-color:#999!important;
+ box-shadow:inset 0 1px 1px rgba(255,255,255,.14)!important;
+}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-progress-head,
+html body:not(.presentation-mode) #app .c11-tool-card .c11-status-title {
+ background:linear-gradient(180deg,#676767 0%,#292929 19%,#050505 68%,#202020 100%)!important;
+ border-color:#929292!important;
+ box-shadow:inset 0 1px 1px rgba(255,255,255,.52)!important;
+}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-id-badge,
+html body:not(.presentation-mode) #app .c11-tool-card .b1223-info-badge {
+ background:#030303!important;border-color:#a0a0a0!important;
+ box-shadow:inset 0 1px 1px rgba(255,255,255,.12)!important;
+}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-progress-track {
+ background:#151515!important;border-color:#969696!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-progress-fill,
+html body:not(.presentation-mode) #app .c11-tool-card .b1228-progress-fill {
+ background:var(--rc-silver-fill)!important;background-image:var(--rc-silver-fill)!important;
+ box-shadow:inset 0 1px 1px rgba(255,255,255,.5)!important;
+}
+html body .app-footer,html body .footer-system-row {
+ border-color:#b0b0b0!important;
+ box-shadow:inset 0 2px 2px rgba(255,255,255,.28),inset 0 -2px 3px rgba(255,255,255,.18)!important;
+}
+/* Preserve the final V13.0.29 photo geometry, signal tower, horizontal field layout and three-column sizing. */
+
+
+/* Source: css/graphic-operations-v13.0.32.css */
+/* V13.0.32: graphic operations skin. No application data or event handlers modified. */
+:root{--b732-silver:linear-gradient(180deg,#fff 0%,#d8d8d8 30%,#989898 70%,#e0e0e0 100%)}
+/* Constrain to regular Live Operations universal tool cards. Preserve native layout, heights, click regions and progress widths. */
+html body:not(.presentation-mode) #app .c11-tool-card .c11-status-column .c11-status-card{
+ position:relative!important;padding-left:clamp(55px,5.5vw,88px)!important;
+ background-color:#070707!important;background-image:linear-gradient(155deg,#222 0%,#080808 24%,#050505 77%,#202020 100%)!important;
+ border:2px solid #b9b9b9!important;border-radius:12px!important;
+ box-shadow:inset 0 2px 2px #ffffff40,inset 0 -2px 3px #ffffff20,0 0 2px #ffffff40!important;
+}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-status-column .c11-status-card::before{
+ content:"";position:absolute;left:clamp(9px,1.3vw,19px);top:50%;transform:translateY(-50%);
+ width:clamp(33px,3.7vw,55px);height:clamp(33px,3.7vw,55px);
+ background-position:center;background-repeat:no-repeat;background-size:contain;pointer-events:none;
+ filter:drop-shadow(0 2px 2px #000) drop-shadow(0 0 2px #aaa8);
+}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-status-column .c11-status-card:nth-child(1)::before{background-image:url('../assets/raiders-graphics/icon-calendar.svg')}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-status-column .c11-status-card:nth-child(2)::before{background-image:url('../assets/raiders-graphics/icon-clipboard.svg')}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-status-column .c11-status-card:nth-child(3)::before{background-image:url('../assets/raiders-graphics/icon-microscope.svg')}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-status-column .c11-status-card:nth-child(4)::before{background-image:url('../assets/raiders-graphics/icon-checklist.svg')}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-status-column .c11-status-card:nth-child(5)::before{background-image:url('../assets/raiders-graphics/icon-notes.svg')}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-status-column .c11-status-card:nth-child(6)::before{background-image:url('../assets/raiders-graphics/icon-notes.svg')}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-status-column .c11-status-card .label{color:#ddd!important;letter-spacing:.025em!important;font-weight:800!important}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-status-column .c11-status-card .c11-hero{color:#fff!important;text-shadow:0 2px 3px #000,0 0 3px #aaa!important;font-weight:900!important}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-status-column .c11-status-card .sub{color:#e4e4e4!important}
+/* Each progress panel receives its own monochrome icon, without changing the progress percentage or bar fill. */
+html body:not(.presentation-mode) #app .c11-tool-card .c11-progress-column .c11-progress-row{position:relative!important;border:2px solid #aaa!important;border-radius:10px!important;background:linear-gradient(150deg,#242424,#060606 24%,#090909 80%,#252525)!important;box-shadow:inset 0 1px 2px #ffffff33!important}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-progress-column .c11-progress-row .c11-progress-head{position:relative!important;padding-left:clamp(28px,3.3vw,48px)!important;min-height:27px!important;display:flex!important;align-items:center!important}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-progress-column .c11-progress-row .c11-progress-head::before{content:"";position:absolute;left:7px;top:50%;transform:translateY(-50%);width:clamp(18px,2.1vw,29px);height:clamp(18px,2.1vw,29px);background:url('../assets/raiders-graphics/icon-chart.svg') center/contain no-repeat;pointer-events:none}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-progress-column .c11-progress-row:nth-child(1) .c11-progress-head::before{background-image:url('../assets/raiders-graphics/icon-gear.svg')}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-progress-column .c11-progress-row:nth-child(2) .c11-progress-head::before{background-image:url('../assets/raiders-graphics/icon-calendar.svg')}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-progress-column .c11-progress-row:nth-child(3) .c11-progress-head::before{background-image:url('../assets/raiders-graphics/icon-chart.svg')}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-progress-column .c11-progress-row:nth-child(4) .c11-progress-head::before{background-image:url('../assets/raiders-graphics/icon-clock.svg')}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-progress-column .c11-progress-row:nth-child(5) .c11-progress-head::before{background-image:url('../assets/raiders-graphics/icon-people.svg')}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-progress-column .c11-progress-row:nth-child(6) .c11-progress-head::before{background-image:url('../assets/raiders-graphics/icon-box.svg')}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-progress-column .c11-progress-row:nth-child(7) .c11-progress-head::before{background-image:url('../assets/raiders-graphics/icon-ship.svg')}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-progress-column .c11-progress-row .c11-progress-head b{color:#f5f5f5!important;text-shadow:0 1px 2px #000!important}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-progress-column .c11-progress-row .c11-progress-head strong{color:#fff!important;text-shadow:0 1px 2px #000!important}
+html body #app .c11-progress-track>i,html body #app .c11-progress-fill{background:var(--b732-silver)!important;background-image:var(--b732-silver)!important}
+/* Silver navigation and consistent hover state. */
+html body .app-frame #stickyShell nav#mainNav :is(button,.nav-button):hover{background:var(--b732-silver)!important;color:#080808!important;text-shadow:none!important}
+/* Compact viewports: avoid graphics crowding text. */
+@media(max-width:1100px){html body:not(.presentation-mode) #app .c11-tool-card .c11-status-column .c11-status-card{padding-left:45px!important}html body:not(.presentation-mode) #app .c11-tool-card .c11-status-column .c11-status-card::before{width:27px;height:27px;left:8px}}
+
+
+/* Source: css/complete-graphics-v13.0.33.css */
+/* V13.0.33 visual unification: presentation + operations + supporting centers.
+   Decorative styles only: do not alter tool data, progress width, status, or event handlers. */
+:root{--b733-metal:linear-gradient(180deg,#fff 0%,#d8d8d8 28%,#999 68%,#dedede 100%);--b733-panel:linear-gradient(155deg,#292929 0%,#080808 24%,#050505 78%,#242424 100%)}
+html body #app :is(.panel,.c11-status-card,.c11-progress-row){border-color:#aaa!important}
+html body #app :is(.panel,.c11-status-card,.c11-progress-row) h2{color:#f5f5f5;text-shadow:0 1px 2px #000}
+/* Status-card icons also appear in tool-card presentation, matching Live Operations. */
+html body.presentation-mode #app .c11-tool-card .c11-status-column .c11-status-card{position:relative!important;padding-left:clamp(42px,4.5vw,75px)!important;background-image:var(--b733-panel)!important;border:1.5px solid #bcbcbc!important;border-radius:9px!important}
+html body.presentation-mode #app .c11-tool-card .c11-status-column .c11-status-card::before{content:"";position:absolute;top:50%;left:8px;transform:translateY(-50%);width:clamp(26px,3.2vw,46px);height:clamp(26px,3.2vw,46px);background:center/contain no-repeat url('../assets/raiders-graphics/icon-clipboard.svg');pointer-events:none}
+html body.presentation-mode #app .c11-tool-card .c11-status-column .c11-status-card:nth-child(1)::before{background-image:url('../assets/raiders-graphics/icon-calendar.svg')}
+html body.presentation-mode #app .c11-tool-card .c11-status-column .c11-status-card:nth-child(3)::before{background-image:url('../assets/raiders-graphics/icon-microscope.svg')}
+html body.presentation-mode #app .c11-tool-card .c11-status-column .c11-status-card:nth-child(4)::before{background-image:url('../assets/raiders-graphics/icon-checklist.svg')}
+html body.presentation-mode #app .c11-tool-card .c11-status-column .c11-status-card:nth-child(n+5)::before{background-image:url('../assets/raiders-graphics/icon-notes.svg')}
+html body.presentation-mode #app .c11-tool-card .c11-progress-column .c11-progress-row{background-image:var(--b733-panel)!important;border-color:#aaa!important;position:relative!important}
+html body.presentation-mode #app .c11-tool-card .c11-progress-column .c11-progress-row .c11-progress-head{padding-left:clamp(23px,2.5vw,36px)!important;position:relative!important}
+html body.presentation-mode #app .c11-tool-card .c11-progress-column .c11-progress-row .c11-progress-head::before{content:"";position:absolute;left:5px;top:50%;transform:translateY(-50%);width:clamp(15px,1.8vw,24px);height:clamp(15px,1.8vw,24px);background:url('../assets/raiders-graphics/icon-chart.svg') center/contain no-repeat;pointer-events:none}
+html body.presentation-mode #app .c11-tool-card .c11-progress-column .c11-progress-row:nth-child(1) .c11-progress-head::before{background-image:url('../assets/raiders-graphics/icon-gear.svg')}
+html body.presentation-mode #app .c11-tool-card .c11-progress-column .c11-progress-row:nth-child(2) .c11-progress-head::before{background-image:url('../assets/raiders-graphics/icon-calendar.svg')}
+html body.presentation-mode #app .c11-tool-card .c11-progress-column .c11-progress-row:nth-child(4) .c11-progress-head::before{background-image:url('../assets/raiders-graphics/icon-clock.svg')}
+html body.presentation-mode #app .c11-tool-card .c11-progress-column .c11-progress-row:nth-child(7) .c11-progress-head::before{background-image:url('../assets/raiders-graphics/icon-ship.svg')}
+/* Metallic progress fills and legible text on both filled and unfilled portions. */
+html body #app :is(.c11-progress-fill,.c11-progress-track>i,.qs-progress-fill,.quarter-progress-fill){background:var(--b733-metal)!important;background-image:var(--b733-metal)!important}
+html body #app :is(.quarter-summary-master,.quarter-summary-presentation,.quarter-summary-view) :is(.progress-label,.progress-text,.qs-progress-label){color:#fff!important;text-shadow:0 1px 2px #000,0 0 3px #000!important;position:relative;z-index:2}
+/* Consistent Raiders chrome, including the three presentation variants. */
+html body.presentation-mode #app :is(.presentation-tool-only,.quarter-summary-presentation,.quarter-summary-master,.b1217-hybrid,.b1217-carousel){border-color:#bdbdbd!important;outline-color:#bdbdbd!important}
+html body.presentation-mode #app .presentation-inline-nav{border:2px solid #bcbcbc!important;background:linear-gradient(#666,#111 25%,#000 75%,#444)!important}
+html body.presentation-mode #app .presentation-inline-nav>.presentation-nav-cell{flex:1 1 0!important;min-width:0!important;max-width:none!important}
+html body.presentation-mode #app .presentation-inline-nav>.presentation-nav-cell:is(:hover,:focus-visible,.active){background:var(--b733-metal)!important;color:#050505!important}
+/* All custom navigation dropdown entries share silver-hover/black-letter treatment. */
+html body :is(.nav-dropdown,.tool-type-menu,.tool-select-menu,.custom-dropdown,[role="menu"]) :is(button,[role="menuitem"]):is(:hover,:focus-visible){background:var(--b733-metal)!important;color:#050505!important;text-shadow:none!important}
+/* Readable focus state for keyboard navigation. */
+html body :is(button,a,select,input):focus-visible{outline:2px solid #e5e5e5!important;outline-offset:1px!important}
+/* Keep the mini-card status field visually separated from data rows. */
+html body.presentation-mode #app .b1312-mini-card :is(.b1312-mini-status,.b1312-mini-bottom){border-color:#bcbcbc!important;background:linear-gradient(180deg,#343434,#080808)!important;color:#fff!important}
+@media(max-width:1200px){html body.presentation-mode #app .c11-tool-card .c11-status-column .c11-status-card{padding-left:35px!important}html body.presentation-mode #app .c11-tool-card .c11-status-column .c11-status-card::before{width:23px;height:23px;left:5px}}
+
+
+/* Source: css/signal-lamps-v13.0.35.css */
+/* V13.0.35: status lamp animation overlays; original tower images preserved. */
+.b1229-tower {position:relative!important;isolation:isolate;}
+.b1229-tower::after {content:"";pointer-events:none;position:absolute;z-index:3;left:50%;top:var(--lamp-y,20%);width:72%;height:23%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(ellipse at center,rgba(255,255,255,.82) 0%,var(--lamp-core) 13%,var(--lamp-halo) 37%,transparent 72%);mix-blend-mode:screen;opacity:0;filter:blur(3px);}
+.b1224-tower-red{--lamp-y:20%;--lamp-core:rgba(255,30,30,.84);--lamp-halo:rgba(255,0,0,.55);}
+.b1224-tower-yellow{--lamp-y:31.5%;--lamp-core:rgba(255,225,20,.88);--lamp-halo:rgba(255,175,0,.55);}
+.b1224-tower-green{--lamp-y:43%;--lamp-core:rgba(65,255,90,.86);--lamp-halo:rgba(0,255,40,.52);}
+.b1224-tower-blue{--lamp-y:54.5%;--lamp-core:rgba(80,205,255,.85);--lamp-halo:rgba(0,105,255,.55);}
+.b1224-tower-purple{--lamp-y:66%;--lamp-core:rgba(255,100,255,.85);--lamp-halo:rgba(170,0,255,.52);}
+html[data-b7-lamps="pulse"] .b1229-tower:not(.b1224-tower-unknown)::after {animation:b7-lamp-pulse 2.4s ease-in-out infinite;}
+html[data-b7-lamps="pulse"] .b1224-tower-red::after {animation:b7-critical-double 1.8s linear infinite;}
+html[data-b7-lamps="pulse"] .b1224-tower-yellow::after {animation-duration:2.2s;}
+html[data-b7-lamps="pulse"] .b1224-tower-green::after {animation-duration:3.4s;}
+html[data-b7-lamps="pulse"] .b1224-tower-blue::after {animation-duration:2.1s;}
+html[data-b7-lamps="pulse"] .b1224-tower-purple::after {animation-duration:3s;}
+html[data-b7-lamps="steady"] .b1229-tower:not(.b1224-tower-unknown)::after {opacity:.35;}
+html[data-b7-lamps="off"] .b1229-tower::after {display:none;}
+@keyframes b7-lamp-pulse {0%,100%{opacity:.08;filter:blur(4px)}50%{opacity:.85;filter:blur(2px)}}
+@keyframes b7-critical-double {0%,11%,28%,41%,100%{opacity:.08}5%,34%{opacity:1}}
+@media(prefers-reduced-motion:reduce){html[data-b7-lamps="pulse"] .b1229-tower::after{animation:none!important;opacity:.25!important}}
+#b7-lamp-control {position:fixed;right:10px;bottom:9px;z-index:99998;border:1px solid #c6c6c6;border-radius:8px;background:linear-gradient(#353535,#050505);color:white;font:700 11px Arial,sans-serif;padding:6px 9px;box-shadow:0 0 6px #aaa;cursor:pointer;}
+#b7-lamp-control:hover,#b7-lamp-control:focus-visible{background:linear-gradient(#f7f7f7,#a6a6a6);color:#000;}
+#b7-lamp-menu {position:fixed;right:10px;bottom:46px;z-index:99999;padding:12px;border:2px solid #bcbcbc;border-radius:12px;background:#080808;color:#fff;box-shadow:0 0 15px #aaa;font:13px Arial,sans-serif;display:none;min-width:210px;}
+#b7-lamp-menu.open{display:block}
+#b7-lamp-menu button{display:block;width:100%;margin-top:7px;border:1px solid #999;border-radius:6px;background:#171717;color:#fff;padding:9px;cursor:pointer;text-align:left}
+#b7-lamp-menu button:hover,#b7-lamp-menu button[aria-pressed="true"]{background:#ddd;color:#000}
+
+/* V13.0.36: keep LIGHTS button above the fixed footer and expose it consistently. */
+#b7-lamp-control{bottom:auto!important;top:194px!important;right:14px!important;z-index:2147483000!important;font-size:13px!important;padding:9px 13px!important}
+#b7-lamp-menu{bottom:auto!important;top:234px!important;right:14px!important;z-index:2147483001!important}
+/* Give the light overlay an explicit positioned layer on top of the source graphic. */
+.b1229-tower::after{z-index:5!important;}
+
+
+/* Source: css/signal-lamps-v13.0.38.css */
+/* V13.0.38 — controllable lamp overlay. Original image stays unchanged. */
+html body .b1229-tower{position:relative!important;isolation:isolate!important;--b7-lamp-y:17%;--b7-lamp-color:255,0,0;}
+html body .b1229-tower.b1224-tower-red{--b7-lamp-y:17%;--b7-lamp-color:255,20,20;}
+html body .b1229-tower.b1224-tower-yellow{--b7-lamp-y:29%;--b7-lamp-color:255,210,0;}
+html body .b1229-tower.b1224-tower-green{--b7-lamp-y:40%;--b7-lamp-color:0,255,55;}
+html body .b1229-tower.b1224-tower-blue{--b7-lamp-y:52%;--b7-lamp-color:0,150,255;}
+html body .b1229-tower.b1224-tower-purple{--b7-lamp-y:63%;--b7-lamp-color:210,0,255;}
+html body .b1229-tower>.b7-lamp-beam{position:absolute!important;pointer-events:none!important;z-index:101!important;display:block!important;left:50%!important;top:var(--b7-lamp-y)!important;width:90%!important;height:19%!important;transform:translate(-50%,-50%)!important;border-radius:50%!important;background:radial-gradient(ellipse at center,rgba(255,255,255,.99) 0%,rgba(var(--b7-lamp-color),.96) 18%,rgba(var(--b7-lamp-color),.58) 43%,rgba(var(--b7-lamp-color),0) 78%)!important;mix-blend-mode:screen!important;filter:blur(calc(2px + var(--b7-light-glow,.8)*5px)) brightness(calc(1 + var(--b7-light-brightness,.9)*1.8))!important;opacity:0!important;}
+html[data-b7-lamps=pulse][data-b7-pattern=smooth] body .b1229-tower:not(.b1224-tower-unknown)>.b7-lamp-beam{animation:b7-light-smooth var(--b7-light-duration,1.5s) ease-in-out infinite!important;}
+html[data-b7-lamps=pulse][data-b7-pattern=double] body .b1229-tower:not(.b1224-tower-unknown)>.b7-lamp-beam{animation:b7-light-double var(--b7-light-duration,1.5s) linear infinite!important;}
+html[data-b7-lamps=steady] body .b1229-tower:not(.b1224-tower-unknown)>.b7-lamp-beam{animation:none!important;opacity:calc(.25 + var(--b7-light-brightness,.9)*.7)!important;}
+html[data-b7-lamps=off] body .b1229-tower>.b7-lamp-beam{animation:none!important;opacity:0!important;display:none!important;}
+@keyframes b7-light-smooth{0%,100%{opacity:.08}50%{opacity:var(--b7-light-brightness,.9)}}
+@keyframes b7-light-double{0%,15%,30%,46%,100%{opacity:.06}8%,38%{opacity:var(--b7-light-brightness,.9)}}
+/* Darken the baked-in bright lamp when OFF, without hiding tower or badge. */
+html body .b1229-tower>.b7-lamp-darkener{position:absolute!important;z-index:100!important;pointer-events:none!important;left:50%!important;top:var(--b7-lamp-y)!important;width:63%!important;height:10%!important;transform:translate(-50%,-50%)!important;border-radius:35%!important;background:radial-gradient(ellipse,rgba(0,0,0,.94) 5%,rgba(0,0,0,.84) 45%,transparent 77%)!important;display:none!important;}
+html[data-b7-lamps=off] body .b1229-tower:not(.b1224-tower-unknown)>.b7-lamp-darkener{display:block!important;}
+/* Controls match the Raiders navigation; dropdown anchored to the button by JS. */
+#b7-lamp-control{position:static!important;inset:auto!important;float:none!important;flex:0 0 auto!important;align-self:stretch!important;white-space:nowrap!important;border:1px solid #b7b7b7!important;border-radius:8px!important;background:linear-gradient(#393939,#080808)!important;color:white!important;padding:4px 11px!important;font:bold 11px Arial,sans-serif!important;box-shadow:inset 0 1px 2px #ddd,0 0 3px #aaa!important;cursor:pointer!important;}
+#b7-lamp-control:hover,#b7-lamp-control:focus-visible{background:linear-gradient(#fff,#b8b8b8)!important;color:#000!important;}
+#b7-lamp-menu{position:fixed!important;z-index:2147483001!important;display:none!important;width:285px!important;max-width:calc(100vw - 16px)!important;box-sizing:border-box!important;padding:12px!important;border:2px solid silver!important;border-radius:12px!important;background:linear-gradient(#252525,#050505)!important;color:#fff!important;box-shadow:0 8px 30px #000!important;font:12px Arial,sans-serif!important;}
+#b7-lamp-menu.open{display:block!important;}
+#b7-lamp-menu .b7-lamp-title{font-weight:bold!important;text-align:center!important;font-size:13px!important;margin-bottom:12px!important;}
+#b7-lamp-menu .b7-lamp-modes{display:flex!important;gap:5px!important;margin:7px 0 12px!important;}
+#b7-lamp-menu button{flex:1!important;min-width:0!important;padding:8px 5px!important;background:linear-gradient(#333,#050505)!important;color:#fff!important;border:1px solid silver!important;border-radius:6px!important;cursor:pointer!important;font:bold 10px Arial,sans-serif!important;}
+#b7-lamp-menu button:hover,#b7-lamp-menu button[aria-pressed=true]{background:linear-gradient(#fff,#aaa)!important;color:#000!important;}
+#b7-lamp-menu .b7-lamp-label{display:flex!important;justify-content:space-between!important;font-weight:bold!important;margin:9px 0 4px!important;}
+#b7-lamp-menu input[type=range]{width:100%!important;accent-color:#ddd!important;cursor:pointer!important;}
+#b7-lamp-menu .b7-lamp-hint{font-size:10px!important;line-height:1.5!important;color:#c5c5c5!important;margin-top:8px!important;}
+@media(prefers-reduced-motion:reduce){html[data-b7-lamps=pulse] body .b1229-tower>.b7-lamp-beam{animation:none!important;opacity:.6!important;}}
+
+
+/* Source: css/raiders-header-footer-v13.0.39.css */
+/* V13.0.39 — shared Raiders header presence shields and four-panel footer. */
+html body:not(.presentation-mode) #stickyShell .kla-presence-badge{position:relative!important;display:flex!important;align-items:center!important;justify-content:center!important;width:54px!important;height:58px!important;min-width:54px!important;border:0!important;border-radius:0!important;background:transparent url('../assets/raiders-mini-user-shield.jpg') center/contain no-repeat!important;color:#fff!important;text-shadow:0 2px 3px #000,0 0 5px #000!important;font-weight:1000!important;font-size:14px!important;padding:7px 3px 0!important;box-shadow:none!important;overflow:visible!important;filter:drop-shadow(0 0 3px #bbb)!important}
+html body:not(.presentation-mode) #stickyShell .kla-presence-badge.compact-count{font-size:13px!important}
+html body:not(.presentation-mode) .app-footer{height:auto!important;min-height:52px!important;max-height:none!important;padding:3px 4px!important;background:#020202!important;border:0!important;box-shadow:none!important;display:block!important}
+html body:not(.presentation-mode) .app-footer .footer-system-row{display:grid!important;grid-template-columns:minmax(155px,1fr) minmax(155px,1fr) minmax(250px,3fr) minmax(225px,1.35fr)!important;gap:6px!important;align-items:stretch!important;min-height:44px!important;background:transparent!important;border:0!important;color:#fff!important;padding:0!important}
+html body:not(.presentation-mode) .app-footer .footer-system-row>.footer-system-cell{display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;min-width:0!important;height:44px!important;padding:4px 10px!important;border:2px solid #bcbcbc!important;border-radius:13px!important;background:linear-gradient(180deg,#3b3b3b 0%,#0c0c0c 22%,#000 62%,#181818 100%)!important;box-shadow:inset 0 2px 3px #eee8,inset 0 -2px 3px #6668,0 0 4px #bbb8!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;font-size:clamp(9px,.85vw,14px)!important}
+html body:not(.presentation-mode) .app-footer .footer-system-row>.footer-system-cell .footer-icon{font-size:23px!important;line-height:1!important;color:#fff!important;flex-shrink:0!important}
+html body:not(.presentation-mode) .app-footer .footer-global-actions{display:flex!important;width:100%!important;height:100%!important;align-items:center!important;justify-content:center!important}
+html body:not(.presentation-mode) .app-footer :is(#adminButton,#footerPresentationButton){background:transparent!important;color:#fff!important;border:0!important;box-shadow:none!important;font-weight:900!important;font-size:inherit!important;white-space:nowrap!important;width:100%!important;height:100%!important;padding:0!important}
+html body:not(.presentation-mode) .app-footer :is(#adminButton,#footerPresentationButton):hover{color:#050505!important;background:linear-gradient(#fff,#bcbcbc)!important;border-radius:8px!important}
+html body:not(.presentation-mode) .app-footer .footer-activity{justify-content:flex-start!important}
+html body:not(.presentation-mode) .app-footer .footer-data{min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;text-align:left!important;white-space:nowrap!important}
+html body:not(.presentation-mode) .app-footer .footer-sync{gap:5px!important}
+html body:not(.presentation-mode) .app-footer #footerLastSync{display:none!important}
+html body:not(.presentation-mode) .app-footer .footer-connection{font-weight:900!important;color:#ff6868!important;white-space:nowrap!important}
+html body:not(.presentation-mode) .app-footer .footer-connection.connected{color:#3cff83!important}
+@media(max-width:950px){html body:not(.presentation-mode) .app-footer .footer-system-row{grid-template-columns:1fr 1fr!important}html body:not(.presentation-mode) .app-footer .footer-system-row>.footer-system-cell{height:39px!important}}
+
+
+/* Source: css/design-stabilization-v13.0.40.css */
+/* V13.0.40 consolidated late-stage overrides: non-invasive, no app state mutations */
+:root{--b7-silver:linear-gradient(180deg,#fff 0%,#d8d8d8 24%,#8e8e8e 60%,#e2e2e2 100%)}
+/* All operational progress indicators: monochrome silver, solid continuous fill */
+html body #app :is([class*="progress-fill"],[class*="meter-fill"],[class*="bar-fill"],.c11-progress-fill,.b1217-meter>i,.quarter-hero-progress-fill,.quarter-progress-fill){background:var(--b7-silver)!important;background-image:var(--b7-silver)!important;filter:none!important;opacity:1!important;box-shadow:inset 0 1px 1px #fff9!important}
+html body #app :is([class*="progress-track"],[class*="meter-track"],.c11-progress-track,.b1217-meter){background:#151515!important;border-color:#aaa!important}
+html body #app :is([class*="progress"],[class*="meter"]) :is(span,strong,b,small){text-shadow:0 1px 2px #000b}
+html body #app :is([class*="progress-fill"],[class*="meter-fill"]) :is(span,strong,b,small){color:#101010!important;text-shadow:0 0 2px #fff!important}
+/* Actual user badges are rendered by multiuser-test.js: ensure the supplied shield is visible */
+html body:not(.presentation-mode) #stickyShell :is(#klaUsersLeft,#klaUsersRight) .kla-presence-badge{appearance:none!important;display:flex!important;align-items:center!important;justify-content:center!important;width:clamp(46px,4.3vw,72px)!important;height:clamp(54px,5.1vw,84px)!important;min-width:46px!important;min-height:54px!important;flex:none!important;border:0!important;border-radius:0!important;background-color:transparent!important;background-image:url('../assets/raiders-mini-user-shield.jpg')!important;background-position:center!important;background-size:100% 100%!important;background-repeat:no-repeat!important;color:#fff!important;font-size:clamp(12px,1.1vw,18px)!important;font-weight:900!important;text-shadow:0 2px 3px #000,0 0 4px #000!important;box-shadow:none!important;filter:drop-shadow(0 1px 3px #ccc9)!important;padding:8px 3px 0!important}
+html body:not(.presentation-mode) #stickyShell .kla-user-side{display:flex!important;align-items:center!important;justify-content:center!important;min-width:52px!important}
+/* Footer uses four separated sections, with balanced activity region */
+html body:not(.presentation-mode) .app-footer .footer-system-row{display:grid!important;grid-template-columns:minmax(150px,1fr) minmax(150px,1fr) minmax(260px,2.5fr) minmax(220px,1.5fr)!important;gap:8px!important;width:100%!important}
+html body:not(.presentation-mode) .app-footer .footer-system-cell{min-height:54px!important;height:auto!important;padding:8px 12px!important;border:2px solid #d4d4d4!important;border-radius:13px!important;background:linear-gradient(180deg,#777 0%,#222 15%,#050505 48%,#141414 83%,#666 100%)!important;box-shadow:inset 0 1px 2px #fff9,0 1px 3px #000!important;color:#fff!important}
+html body:not(.presentation-mode) .app-footer .footer-activity{min-width:0!important}
+html body:not(.presentation-mode) .app-footer :is(#adminButton,#footerPresentationButton):hover{background:var(--b7-silver)!important;color:#080808!important}
+/* Consistent dropdown and button hover across custom menus */
+html body :is(.dropdown-menu,.nav-dropdown,.menu-dropdown,[role="menu"],.b7-lamp-modes) :is(button,[role="menuitem"],a):is(:hover,:focus-visible){background:var(--b7-silver)!important;color:#080808!important;text-shadow:none!important;border-color:#f4f4f4!important}
+html body :is(.dropdown-menu,.nav-dropdown,.menu-dropdown,[role="menu"]){z-index:10020!important;max-height:min(72vh,680px)!important;overflow-y:auto!important}
+/* Presentations: Raiders chrome and responsive bottom control strip */
+html body.presentation-mode #app :is(.presentation-tool-only,.quarter-summary-presentation,.quarter-summary-master,.quarter-summary-master-viewport,.b1217-hybrid,.b1217-carousel){border-color:#c7c7c7!important;outline-color:#c7c7c7!important}
+html body.presentation-mode #app .presentation-inline-nav{width:100%!important;display:flex!important;gap:3px!important;box-sizing:border-box!important;border:2px solid #bcbcbc!important;background:linear-gradient(180deg,#666,#080808 25%,#222)!important}
+html body.presentation-mode #app .presentation-inline-nav>.presentation-nav-cell{flex:1 1 0!important;min-width:0!important;width:auto!important;max-width:none!important;white-space:nowrap!important;text-overflow:ellipsis!important;overflow:hidden!important;color:#fff!important;border:1px solid #aaa!important;background:linear-gradient(180deg,#555,#080808 30%,#333)!important}
+html body.presentation-mode #app .presentation-inline-nav>button.presentation-nav-cell:is(:hover,:focus-visible){background:var(--b7-silver)!important;color:#080808!important}
+/* LIGHTS OFF uses the actual unlit image, not an artificial black patch */
+html[data-b7-lamps="off"] body .b1229-tower>.b7-lamp-darkener,html[data-b7-lamps="off"] body .b1229-tower>.b7-lamp-beam{display:none!important;animation:none!important}
+@media(max-width:1000px){html body:not(.presentation-mode) .app-footer .footer-system-row{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+
+
+/* Source: css/hybrid-carousel-v13.0.41.css */
+/* V13.0.41 HYBRID PRESENTATION — scoped visual geometry repair */
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"]{background:#030303!important;border-color:#bcbcbc!important;outline-color:#bcbcbc!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app{background:#030303!important;border:0!important;outline:0!important;box-shadow:none!important;padding:0!important;margin:0!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app::before,html body.presentation-mode[data-center="operations"][data-sub="hybrid"] .b1217-hybrid::before{display:none!important;content:none!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app>.b1217-hybrid{border:3px solid #bcbcbc!important;outline:1px solid #eee!important;outline-offset:-6px!important;border-radius:9px!important;box-shadow:inset 0 0 0 2px #333!important;background:#030303!important;grid-template-rows:minmax(0,25fr) minmax(0,9fr) minmax(0,66fr) 50px!important;gap:4px!important;padding:8px!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1217-hybrid-metrics .b1217-metric{border:1px solid #999!important;background:#000!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1217-metric h2{color:#fff!important;text-shadow:0 2px 3px #000!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1217-metric>strong{color:#e8e8e8!important;text-shadow:0 2px 8px #555!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1217-meter{position:relative!important;background:#080808!important;border:1px solid #999!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1217-meter>i{background:linear-gradient(180deg,#fff 0%,#c6c6c6 42%,#888 100%)!important;border-radius:7px!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1218-meter-label{position:absolute!important;inset:0!important;display:grid!important;grid-template-columns:1fr 1fr!important;align-items:stretch!important;z-index:2!important;pointer-events:none!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1218-meter-label>span{display:flex!important;align-items:center!important;justify-content:center!important;padding:0 5px!important;min-width:0!important;white-space:nowrap!important;font-weight:900!important;font-size:clamp(10px,1.12vw,20px)!important;letter-spacing:.015em!important;text-shadow:none!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1218-meter-label>span:first-child{color:#080808!important;background:linear-gradient(180deg,#f9f9f9,#a6a6a6)!important;border-radius:6px!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1218-meter-label>span:last-child{color:#fff!important;background:#0c0c0c!important;border-left:2px solid #ccc!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1217-status-row>div{background:linear-gradient(#666,#181818 45%,#030303 75%,#333)!important;border:1px solid #aaa!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1217-status-row small{color:#f0f0f0!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1217-carousel{grid-template-columns:minmax(0,1fr) minmax(0,1.48fr) minmax(0,1fr)!important;gap:0!important;align-items:center!important;justify-items:stretch!important;overflow:hidden!important;background:#030303!important;border:0!important;min-height:0!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1217-carousel-slot{width:100%!important;height:100%!important;overflow:visible!important;align-items:center!important;justify-content:center!important;transition:transform .28s ease,opacity .28s ease!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1217-carousel-slot.active{transform:scale(1)!important;z-index:3!important;opacity:1!important;filter:none!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1217-carousel-slot.side{transform:scale(.86)!important;opacity:.56!important;filter:brightness(.72) grayscale(.22)!important;z-index:1!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1217-carousel-slot.side:first-child{transform-origin:right center!important;margin-right:-7%!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1217-carousel-slot.side:last-child{transform-origin:left center!important;margin-left:-7%!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b139-mini-card{width:100%!important;max-width:640px!important;height:100%!important;min-height:0!important;display:grid!important;grid-template-rows:34px minmax(0,1fr) auto 38px!important;gap:4px!important;padding:5px!important;background:linear-gradient(130deg,#1c1c1c,#000 20%,#000 80%,#292929)!important;border:2px solid #c4c4c4!important;box-shadow:inset 0 1px 3px #fff8,0 0 14px #7775!important;border-radius:11px!important;overflow:hidden!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1217-carousel-slot.side .b139-mini-card{grid-template-rows:32px minmax(0,1fr) 38px!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b139-mini-head>strong{color:#0a0a0a!important;text-shadow:none!important;background:linear-gradient(#fff,#a9a9a9 70%,#666)!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1312-mini-media{grid-template-columns:23% minmax(0,1fr)!important;gap:5px!important;height:100%!important;min-height:0!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1312-mini-tower{height:100%!important;min-height:0!important;background:#000!important;border:1px solid #999!important;align-items:stretch!important;padding:2px!important;box-sizing:border-box!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1312-mini-tower .b1224-tower{width:100%!important;height:100%!important;max-height:none!important;min-height:0!important;display:flex!important;align-items:stretch!important;justify-content:center!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1312-mini-tower .b1229-tower-image{display:block!important;height:100%!important;width:100%!important;max-height:none!important;max-width:100%!important;object-fit:fill!important;transform:none!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b139-mini-photo{height:100%!important;background:#000!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b139-mini-info{grid-template-columns:1fr 1fr!important;gap:2px!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b139-mini-info>div{color:#fff!important;background:#090909!important;border-color:#888!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b139-mini-info>div span{color:#eee!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b139-mini-info>div strong{color:#fff!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b139-mini-foot.b1341-signal-status{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-height:36px!important;border:1px solid #c5c5c5!important;border-radius:5px!important;background:linear-gradient(#555,#0b0b0b 45%,#050505 80%,#333)!important;color:#fff!important;text-shadow:0 1px 2px #000!important;font-size:clamp(11px,1vw,17px)!important;letter-spacing:.06em!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1341-signal-status b{color:#fff!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1341-status-red{border-bottom:3px solid #df344e!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1341-status-yellow{border-bottom:3px solid #f4d24d!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1341-status-green{border-bottom:3px solid #19c77e!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1341-status-blue{border-bottom:3px solid #519de6!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1341-status-purple{border-bottom:3px solid #a685f0!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1217-hybrid-nav{height:50px!important;min-height:50px!important;border:1px solid #bbb!important;background:linear-gradient(#555,#050505 45%,#333)!important;gap:2px!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1217-hybrid-nav>*{color:#fff!important;background:linear-gradient(#4a4a4a,#050505 55%,#292929)!important;border:1px solid #aaa!important;text-shadow:0 1px 2px #000!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1217-hybrid-nav [aria-current="page"]{background:linear-gradient(#fff,#a5a5a5 80%,#777)!important;color:#080808!important;text-shadow:none!important}
+html body.presentation-mode[data-center="operations"][data-sub="hybrid"] #app .b1217-hybrid-nav button:hover{background:linear-gradient(#fff,#aaa)!important;color:#080808!important;text-shadow:none!important}
+
+
+
+/* V14.0.0 — authoritative Raiders component rules; deliberately last in cascade */
+:root { --v14-black:#050505; --v14-silver:#c8c8c8; --v14-metal:linear-gradient(180deg,#fff 0%,#d5d5d5 34%,#9c9c9c 78%,#ececec 100%); }
+/* Ensure text within silver-filled progress bars stays visible regardless of percent filled. */
+.b1217-meter > i { background:var(--v14-metal)!important; }
+.b1217-meter { background:#080808!important; border-color:#a9a9a9!important; }
+.b1217-meter .b1218-meter-label > span:first-child { color:#080808!important; text-shadow:none!important; }
+.b1217-meter .b1218-meter-label > span:last-child { color:#fff!important; text-shadow:0 1px 2px #000!important; }
+/* Consistent presentation shell and full-width controls */
+body.presentation-mode[data-sub="hybrid"] #app > .b1217-hybrid { border:3px solid #c5c5c5!important; outline:0!important; background:#030303!important; box-shadow:inset 0 0 0 1px #777,0 0 0 1px #aaa!important; grid-template-rows:minmax(0,25fr) minmax(0,9fr) minmax(0,66fr) 50px!important; }
+body.presentation-mode[data-sub="hybrid"] #app > .b1217-hybrid::before, body.presentation-mode[data-sub="hybrid"] #app::before { display:none!important; content:none!important; }
+body.presentation-mode[data-sub="hybrid"] .b1217-carousel { grid-template-columns:minmax(0,1fr) minmax(0,1.6fr) minmax(0,1fr)!important; gap:0!important; }
+body.presentation-mode[data-sub="hybrid"] .b1217-carousel-slot.side { transform:scale(.84)!important; opacity:.46!important; filter:brightness(.65) grayscale(.25)!important; }
+body.presentation-mode[data-sub="hybrid"] .b1217-carousel-slot.active { transform:scale(1)!important; opacity:1!important; filter:none!important; z-index:4!important; }
+body.presentation-mode[data-sub="hybrid"] .b139-mini-card { background:linear-gradient(125deg,#333,#050505 15%,#000 83%,#292929)!important; border:2px solid #c8c8c8!important; }
+body.presentation-mode[data-sub="hybrid"] .b1312-mini-media { grid-template-columns:27% minmax(0,1fr)!important; min-height:0!important; }
+body.presentation-mode[data-sub="hybrid"] .b1312-mini-tower,body.presentation-mode[data-sub="hybrid"] .b1312-mini-tower .b1224-tower { height:100%!important; max-height:none!important; min-height:0!important; }
+body.presentation-mode[data-sub="hybrid"] .b1312-mini-tower img { height:100%!important; width:100%!important; max-height:none!important; object-fit:contain!important; }
+body.presentation-mode[data-sub="hybrid"] .b139-mini-foot.b1341-signal-status { width:100%!important; background:linear-gradient(#595959,#080808 45%,#252525)!important; border:1px solid #ddd!important; color:white!important; text-align:center!important; }
+body.presentation-mode[data-sub="hybrid"] .b1217-hybrid-nav { width:100%!important; border-color:#bdbdbd!important; }
+body.presentation-mode[data-sub="hybrid"] .b1217-hybrid-nav button:hover { background:var(--v14-metal)!important; color:#050505!important; }

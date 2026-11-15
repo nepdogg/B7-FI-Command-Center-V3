@@ -1,17 +1,17 @@
-B7 FI COMMAND CENTER V13.0.41 — HYBRID CAROUSEL REPAIR TEST
+B7 FI COMMAND CENTER V14.0.0 — FOUNDATION REBUILD (TEST)
 
-Based on V13.0.40.
+BASE: V13.0.41.
 
-CHANGED
-- Hybrid presentation: metallic silver outer frame; suppress redundant top pseudo-strip.
-- Rebalanced center/side card proportions, spacing, and dimming.
-- Tall signal tower fills media column; preserve tool photo and details.
-- Full-width bottom mini-card badge now uses signal tower status text.
-- Hybrid silver meter labels use high contrast black-on-silver / white-on-black.
-- Raiders silver navigation and status-row styling.
+ACTUALLY CHANGED
+- Consolidated the 31 existing CSS sources (of 34 referenced; 3 source files were missing) in their original cascade order into ONE css/command-center.css file. Removed obsolete individual CSS files from this build.
+- Added a single final Raiders component styling section for Hybrid presentation, tower sizing, silver progress labels, and navigation.
+- Preserved the existing application JS modules, images, Microsoft List integration, and application data schema; these have NOT been rewritten.
+
+LIMITATIONS
+- This is a first architecture consolidation, NOT a verified complete V14 rewrite.
+- The browser-based Microsoft List multi-user workflow cannot be verified without live credentials.
+- The header shield, footer, and all presentation interactions still require full visual/functional testing.
+- No claims are made that all previously reported defects are resolved.
 
 TEST
-Open Hybrid Presentation at 100% zoom, test next/previous, rotation, shipped cards, and light modes.
-
-NOT VERIFIED
-Browser rendering, Microsoft List sync, other presentation modes, and all previously reported issues are not certified fixed by this targeted build.
+Open index.html from your normal deployment, hard-refresh, and compare Hybrid, Tool Card, Quarter Summary, footer, and header at 100% zoom.
