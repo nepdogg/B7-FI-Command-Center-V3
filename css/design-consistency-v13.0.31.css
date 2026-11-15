@@ -1,0 +1,29 @@
+/* V13.0.31 — scoped Raiders design consistency. Design tokens only; no operational calculations changed. */
+:root{--b7-locked-silver:#bcbcbc;--b7-locked-ink:#050505;--b7-locked-track:#141414;--b7-locked-fill:linear-gradient(180deg,#f8f8f8 0%,#d9d9d9 28%,#a5a5a5 74%,#cfcfcf 100%)}
+/* Remove obsolete cyan/blue frames without changing panel dimensions. */
+html body.presentation-mode #app :is(.presentation-tool-only,.quarter-summary-presentation,.quarter-summary-master,.quarter-summary-master-viewport,.b1217-hybrid,.b1217-carousel){border-color:#bcbcbc!important;outline-color:#bcbcbc!important;box-shadow:none!important}
+html body.presentation-mode #app .b1217-hybrid::before,html body.presentation-mode #app .b1217-hybrid::after{display:none!important;content:none!important}
+/* Silver fills remain percent-driven. Do not replace widths or data labels. */
+html body #app :is(.c11-progress-fill,.b1228-progress-fill,.b1217-meter>i,.quarter-hero-progress-fill,.quarter-progress-fill){background:var(--b7-locked-fill)!important;background-image:var(--b7-locked-fill)!important;box-shadow:inset 0 1px 1px #fff8!important}
+html body #app :is(.c11-progress-track,.b1217-meter){background:#141414!important;border-color:#aaa!important}
+/* Silver-filled labels must be readable; empty track labels stay white. */
+html body #app :is(.quarter-hero-metric,.b1217-metric) :is(.progress-fill,.meter-fill)>span{color:#080808!important;text-shadow:none!important}
+html body #app .b1217-meter .b1218-meter-label{position:relative!important;z-index:2!important;display:flex!important;justify-content:space-between!important;align-items:center!important;width:100%!important;height:100%!important;padding:0 10px!important;box-sizing:border-box!important;pointer-events:none!important}
+html body #app .b1217-meter .b1218-meter-label span{color:#fff!important;text-shadow:0 1px 2px #000,0 0 3px #000!important;font-weight:800!important}
+/* Hybrid remains three cards, with featured center card and compact full-height tower. */
+html body.presentation-mode #app .b1217-carousel-slot.active .b1312-mini-card{border:2px solid #d6d6d6!important;box-shadow:0 0 9px #cfcfcf77,inset 0 1px 2px #ffffff44!important}
+html body.presentation-mode #app .b1217-carousel-slot.side{opacity:.57!important}
+html body.presentation-mode #app .b1312-mini-tower{border-color:#aaa!important;background:#050505!important}
+html body.presentation-mode #app .b1312-mini-media{min-height:0!important}
+/* All presentation navigation bars share a single compact silver-button geometry. */
+html body.presentation-mode #app .presentation-inline-nav{display:flex!important;align-items:stretch!important;gap:2px!important;width:100%!important;max-width:100%!important;box-sizing:border-box!important;padding:2px!important;border:1px solid #bcbcbc!important;background:linear-gradient(#555,#080808 28%,#000 75%,#333)!important;overflow:hidden!important}
+html body.presentation-mode #app .presentation-inline-nav>.presentation-nav-cell{flex:1 1 0!important;min-width:0!important;width:auto!important;max-width:none!important;white-space:nowrap!important;text-overflow:ellipsis!important;overflow:hidden!important;border:1px solid #aaa!important;background:linear-gradient(#555,#0a0a0a 28%,#050505 78%,#444)!important;color:#fff!important;font-weight:800!important;text-align:center!important}
+html body.presentation-mode #app .presentation-inline-nav>button.presentation-nav-cell:is(:hover,:focus-visible,[aria-current="page"],.active){background:linear-gradient(#fff,#d9d9d9 38%,#999)!important;color:#080808!important;text-shadow:none!important}
+/* Consistent dropdown chrome and high contrast hover; retain existing open/close JS. */
+html body #stickyShell .tool-type-dropdown{background:#080808!important;border:1px solid #bcbcbc!important;box-shadow:0 7px 20px #000b!important}
+html body #stickyShell .tool-type-dropdown>button{background:linear-gradient(#4b4b4b,#0b0b0b 36%,#050505 80%,#353535)!important;border:1px solid #999!important;border-radius:8px!important;color:#fff!important;text-shadow:none!important;min-height:37px!important}
+html body #stickyShell .tool-type-dropdown>button:is(:hover,:focus-visible){background:linear-gradient(#fff,#ddd 35%,#a6a6a6)!important;color:#080808!important;box-shadow:inset 0 1px 2px #fff!important}
+/* Do not allow bright legacy blue framing on the fleet list; keep three compact columns where screen permits. */
+html body #app .fleet-card-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+@media(max-width:1050px){html body #app .fleet-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:680px){html body #app .fleet-card-grid{grid-template-columns:minmax(0,1fr)!important}}

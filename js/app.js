@@ -577,7 +577,7 @@ function carouselTools(){
   }
   // Carousel visibility is broader than workload eligibility. Every non-archived tool stays visible
   // across quarter changes. Order: active FI/WIP by priority, then not-yet-FI, then shipped.
-  let a=nonArchivedTools().filter(t=>t.toolStatus!=='Shipped'),ranks=(state.config?.priorityBadgeSource||'lead')==='commandCenter'?commandCenterPriorityRanks():leadPriorityRanks();
+  let a=nonArchivedTools(),ranks=(state.config?.priorityBadgeSource||'lead')==='commandCenter'?commandCenterPriorityRanks():leadPriorityRanks();
   let group=t=>t.toolStatus==='Shipped'?2:((['FI','Engineering','Powered Down','Packing'].includes(t.toolStatus))?0:1);
   return [...a].sort((x,y)=>{
     let gx=group(x),gy=group(y);if(gx!==gy)return gx-gy;

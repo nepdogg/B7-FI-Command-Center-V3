@@ -1,0 +1,34 @@
+/* V13.0.33 visual unification: presentation + operations + supporting centers.
+   Decorative styles only: do not alter tool data, progress width, status, or event handlers. */
+:root{--b733-metal:linear-gradient(180deg,#fff 0%,#d8d8d8 28%,#999 68%,#dedede 100%);--b733-panel:linear-gradient(155deg,#292929 0%,#080808 24%,#050505 78%,#242424 100%)}
+html body #app :is(.panel,.c11-status-card,.c11-progress-row){border-color:#aaa!important}
+html body #app :is(.panel,.c11-status-card,.c11-progress-row) h2{color:#f5f5f5;text-shadow:0 1px 2px #000}
+/* Status-card icons also appear in tool-card presentation, matching Live Operations. */
+html body.presentation-mode #app .c11-tool-card .c11-status-column .c11-status-card{position:relative!important;padding-left:clamp(42px,4.5vw,75px)!important;background-image:var(--b733-panel)!important;border:1.5px solid #bcbcbc!important;border-radius:9px!important}
+html body.presentation-mode #app .c11-tool-card .c11-status-column .c11-status-card::before{content:"";position:absolute;top:50%;left:8px;transform:translateY(-50%);width:clamp(26px,3.2vw,46px);height:clamp(26px,3.2vw,46px);background:center/contain no-repeat url('../assets/raiders-graphics/icon-clipboard.svg');pointer-events:none}
+html body.presentation-mode #app .c11-tool-card .c11-status-column .c11-status-card:nth-child(1)::before{background-image:url('../assets/raiders-graphics/icon-calendar.svg')}
+html body.presentation-mode #app .c11-tool-card .c11-status-column .c11-status-card:nth-child(3)::before{background-image:url('../assets/raiders-graphics/icon-microscope.svg')}
+html body.presentation-mode #app .c11-tool-card .c11-status-column .c11-status-card:nth-child(4)::before{background-image:url('../assets/raiders-graphics/icon-checklist.svg')}
+html body.presentation-mode #app .c11-tool-card .c11-status-column .c11-status-card:nth-child(n+5)::before{background-image:url('../assets/raiders-graphics/icon-notes.svg')}
+html body.presentation-mode #app .c11-tool-card .c11-progress-column .c11-progress-row{background-image:var(--b733-panel)!important;border-color:#aaa!important;position:relative!important}
+html body.presentation-mode #app .c11-tool-card .c11-progress-column .c11-progress-row .c11-progress-head{padding-left:clamp(23px,2.5vw,36px)!important;position:relative!important}
+html body.presentation-mode #app .c11-tool-card .c11-progress-column .c11-progress-row .c11-progress-head::before{content:"";position:absolute;left:5px;top:50%;transform:translateY(-50%);width:clamp(15px,1.8vw,24px);height:clamp(15px,1.8vw,24px);background:url('../assets/raiders-graphics/icon-chart.svg') center/contain no-repeat;pointer-events:none}
+html body.presentation-mode #app .c11-tool-card .c11-progress-column .c11-progress-row:nth-child(1) .c11-progress-head::before{background-image:url('../assets/raiders-graphics/icon-gear.svg')}
+html body.presentation-mode #app .c11-tool-card .c11-progress-column .c11-progress-row:nth-child(2) .c11-progress-head::before{background-image:url('../assets/raiders-graphics/icon-calendar.svg')}
+html body.presentation-mode #app .c11-tool-card .c11-progress-column .c11-progress-row:nth-child(4) .c11-progress-head::before{background-image:url('../assets/raiders-graphics/icon-clock.svg')}
+html body.presentation-mode #app .c11-tool-card .c11-progress-column .c11-progress-row:nth-child(7) .c11-progress-head::before{background-image:url('../assets/raiders-graphics/icon-ship.svg')}
+/* Metallic progress fills and legible text on both filled and unfilled portions. */
+html body #app :is(.c11-progress-fill,.c11-progress-track>i,.qs-progress-fill,.quarter-progress-fill){background:var(--b733-metal)!important;background-image:var(--b733-metal)!important}
+html body #app :is(.quarter-summary-master,.quarter-summary-presentation,.quarter-summary-view) :is(.progress-label,.progress-text,.qs-progress-label){color:#fff!important;text-shadow:0 1px 2px #000,0 0 3px #000!important;position:relative;z-index:2}
+/* Consistent Raiders chrome, including the three presentation variants. */
+html body.presentation-mode #app :is(.presentation-tool-only,.quarter-summary-presentation,.quarter-summary-master,.b1217-hybrid,.b1217-carousel){border-color:#bdbdbd!important;outline-color:#bdbdbd!important}
+html body.presentation-mode #app .presentation-inline-nav{border:2px solid #bcbcbc!important;background:linear-gradient(#666,#111 25%,#000 75%,#444)!important}
+html body.presentation-mode #app .presentation-inline-nav>.presentation-nav-cell{flex:1 1 0!important;min-width:0!important;max-width:none!important}
+html body.presentation-mode #app .presentation-inline-nav>.presentation-nav-cell:is(:hover,:focus-visible,.active){background:var(--b733-metal)!important;color:#050505!important}
+/* All custom navigation dropdown entries share silver-hover/black-letter treatment. */
+html body :is(.nav-dropdown,.tool-type-menu,.tool-select-menu,.custom-dropdown,[role="menu"]) :is(button,[role="menuitem"]):is(:hover,:focus-visible){background:var(--b733-metal)!important;color:#050505!important;text-shadow:none!important}
+/* Readable focus state for keyboard navigation. */
+html body :is(button,a,select,input):focus-visible{outline:2px solid #e5e5e5!important;outline-offset:1px!important}
+/* Keep the mini-card status field visually separated from data rows. */
+html body.presentation-mode #app .b1312-mini-card :is(.b1312-mini-status,.b1312-mini-bottom){border-color:#bcbcbc!important;background:linear-gradient(180deg,#343434,#080808)!important;color:#fff!important}
+@media(max-width:1200px){html body.presentation-mode #app .c11-tool-card .c11-status-column .c11-status-card{padding-left:35px!important}html body.presentation-mode #app .c11-tool-card .c11-status-column .c11-status-card::before{width:23px;height:23px;left:5px}}
