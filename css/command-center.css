@@ -33632,3 +33632,20 @@ html body:not(.presentation-mode) .app-frame #stickyShell header.prototype-heade
 html body:not(.presentation-mode) .app-frame #stickyShell header.prototype-header #headerModeCenter button.kla-presence-badge.v1402-shield>span.v1402-shield-text {position:absolute!important;display:flex!important;align-items:center!important;justify-content:center!important;inset:14% 10% 19%!important;z-index:1!important;font-size:clamp(13px,1.35vw,21px)!important;font-weight:900!important;color:#fff!important;text-shadow:0 2px 3px #000,0 0 4px #000!important;background:transparent!important;line-height:1!important;pointer-events:none!important}
 html body:not(.presentation-mode) .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-connection-copy {color:#fff!important;text-shadow:0 1px 2px #000!important;white-space:nowrap!important}
 @media(max-width:1000px){html body:not(.presentation-mode) .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-presence-box {grid-template-columns:54px minmax(0,1fr) 54px!important;column-gap:3px!important}}
+
+/* V14.0.3: eliminate individual square user frames, retain only floating shields */
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-user-side,
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter #klaUsersLeft,
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter #klaUsersRight {
+ background:transparent!important;background-color:transparent!important;background-image:none!important;
+ border:0!important;outline:0!important;box-shadow:none!important;filter:none!important;
+ padding:0!important;margin:0!important;border-radius:0!important;
+}
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter button.kla-presence-badge.v1402-shield {
+ background:transparent!important;background-image:none!important;border:0!important;outline:0!important;
+ box-shadow:none!important;filter:none!important;border-radius:0!important;
+}
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter button.kla-presence-badge.v1402-shield>img.v1402-shield-art,
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter button.kla-presence-badge.v1402-shield.active>img.v1402-shield-art {
+ filter:none!important;box-shadow:none!important;border:0!important;background:transparent!important;
+}

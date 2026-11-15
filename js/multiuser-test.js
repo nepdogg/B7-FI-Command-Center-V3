@@ -217,9 +217,9 @@ function renderPresenceBadges(){
   const full=displayUserName(primary);
   const initials=full ? full.split(/\s+/).map(part=>part[0]).join('').slice(0,2).toUpperCase() : '—';
   const l=document.querySelector('#klaUsersLeft'),r=document.querySelector('#klaUsersRight');
-  if(l)l.innerHTML=`<button type="button" class="kla-presence-badge compact-primary v1402-shield ${full&&sharedActive?'active':''}" data-presence-slot="1" title="${full.replace(/&/g,'&amp;').replace(/"/g,'&quot;')||'No active user'}"><img class="v1402-shield-art" src="assets/raiders-mini-user-shield.jpg" alt=""><span class="v1402-shield-text">${initials}</span></button>`;
+  if(l)l.innerHTML=`<button type="button" class="kla-presence-badge compact-primary v1402-shield ${full&&sharedActive?'active':''}" data-presence-slot="1" title="${full.replace(/&/g,'&amp;').replace(/"/g,'&quot;')||'No active user'}"><img class="v1402-shield-art" src="assets/raiders-mini-user-shield-transparent.png" alt=""><span class="v1402-shield-text">${initials}</span></button>`;
   const otherCount=Math.max(0,names.length-(full?1:0));
-  if(r)r.innerHTML=`<button type="button" class="kla-presence-badge compact-count v1402-shield" data-presence-slot="2" title="${otherCount} additional connected user(s)"><img class="v1402-shield-art" src="assets/raiders-mini-user-shield.jpg" alt=""><span class="v1402-shield-text">+${otherCount}</span></button>`;
+  if(r)r.innerHTML=`<button type="button" class="kla-presence-badge compact-count v1402-shield" data-presence-slot="2" title="${otherCount} additional connected user(s)"><img class="v1402-shield-art" src="assets/raiders-mini-user-shield-transparent.png" alt=""><span class="v1402-shield-text">+${otherCount}</span></button>`;
   const box=document.querySelector('#headerModeCenter .kla-presence-box');
   if(box)box.title=names.length?`Connected users: ${names.join(', ')}`:'No active users';
 }
