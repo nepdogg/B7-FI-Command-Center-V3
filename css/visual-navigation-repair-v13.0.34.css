@@ -1,0 +1,35 @@
+/* V13.0.34 - stronger graphic hierarchy and menu repair. No backend/data changes. */
+:root{--b734-metal:linear-gradient(180deg,#fff 0%,#dedede 23%,#939393 70%,#ededed 100%);--b734-black:linear-gradient(160deg,#292929,#030303 25%,#050505 75%,#252525)}
+/* Ensure all menus are above the dashboard; scrolling never expands the page. */
+html body #mainNav,html body #stickyShell{overflow:visible!important}
+html body .tool-type-menu{position:relative!important;z-index:20000!important}
+html body .tool-type-menu:has(.tool-type-dropdown[style*="display: block"]){z-index:22000!important}
+html body .tool-type-dropdown{z-index:25000!important;max-height:min(68vh,570px)!important;overflow-y:auto!important;overscroll-behavior:contain!important;background:#090909!important;border:2px solid #c7c7c7!important;box-shadow:0 12px 25px #000!important;padding:5px!important}
+html body .tool-type-dropdown button,html body .tool-type-dropdown [role=menuitem]{background:linear-gradient(180deg,#444,#080808 55%,#282828)!important;color:white!important;border:1px solid #bcbcbc!important;border-radius:8px!important;min-height:37px!important;white-space:normal!important;text-align:center!important;cursor:pointer!important}
+html body .tool-type-dropdown button:hover,html body .tool-type-dropdown button:focus-visible,html body .tool-type-dropdown [role=menuitem]:hover,html body .tool-type-dropdown [role=menuitem]:focus-visible{background:var(--b734-metal)!important;color:#080808!important;text-shadow:none!important;outline:2px solid white!important}
+/* Dynamic center-column graphic layouts - icon and text share fixed panel height. */
+html body:not(.presentation-mode) #app .c11-tool-card .c11-status-column .c11-status-card{display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:flex-start!important;gap:clamp(3px,.55vh,10px)!important;padding-left:clamp(56px,6vw,105px)!important;padding-right:12px!important;background:var(--b734-black)!important;border:2px solid #bcbcbc!important;border-radius:12px!important;box-shadow:inset 0 1px 3px #eee6,0 0 4px #fff3!important;position:relative!important;min-height:0!important}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-status-column .c11-status-card::before{content:'';position:absolute;left:clamp(9px,1.1vw,20px);top:50%;transform:translateY(-50%);width:clamp(34px,4.2vw,66px);height:clamp(34px,4.2vw,66px);background:url('../assets/raiders-graphics/icon-clipboard.svg') center/contain no-repeat;pointer-events:none}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-status-column .c11-status-card:nth-child(1)::before{background-image:url('../assets/raiders-graphics/icon-calendar.svg')}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-status-column .c11-status-card:nth-child(3)::before{background-image:url('../assets/raiders-graphics/icon-microscope.svg')}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-status-column .c11-status-card:nth-child(4)::before{background-image:url('../assets/raiders-graphics/icon-checklist.svg')}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-status-column .c11-status-card:nth-child(n+5)::before{background-image:url('../assets/raiders-graphics/icon-notes.svg')}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-status-column .c11-status-card .c11-hero{font-size:clamp(19px,2.2vw,38px)!important;line-height:1.08!important;letter-spacing:-.025em!important;text-shadow:0 2px 3px #000,0 0 3px #eee6!important}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-status-column .c11-status-card .label{font-size:clamp(11px,.95vw,17px)!important;font-weight:800!important;line-height:1.12!important}
+html body:not(.presentation-mode) #app .c11-tool-card .c11-status-column .c11-status-card small{font-size:clamp(10px,.8vw,14px)!important;line-height:1.22!important}
+/* More recognizable progress symbols; do not change the underlying percentages. */
+html body #app .c11-tool-card .c11-progress-column .c11-progress-row{background:var(--b734-black)!important;border:2px solid #a9a9a9!important;border-radius:10px!important;position:relative!important;min-height:0!important}
+html body #app .c11-tool-card .c11-progress-column .c11-progress-row .c11-progress-head{position:relative!important;padding-left:clamp(24px,2.9vw,46px)!important;min-height:clamp(20px,2.5vh,32px)!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:5px!important}
+html body #app .c11-tool-card .c11-progress-column .c11-progress-row .c11-progress-head::before{content:'';position:absolute;left:4px;top:50%;transform:translateY(-50%);width:clamp(17px,2.1vw,31px);height:clamp(17px,2.1vw,31px);background:url('../assets/raiders-graphics/icon-chart.svg') center/contain no-repeat;pointer-events:none}
+html body #app .c11-tool-card .c11-progress-column .c11-progress-row:nth-child(1) .c11-progress-head::before{background-image:url('../assets/raiders-graphics/icon-gear.svg')}
+html body #app .c11-tool-card .c11-progress-column .c11-progress-row:nth-child(2) .c11-progress-head::before{background-image:url('../assets/raiders-graphics/icon-calendar.svg')}
+html body #app .c11-tool-card .c11-progress-column .c11-progress-row:nth-child(4) .c11-progress-head::before{background-image:url('../assets/raiders-graphics/icon-clock.svg')}
+html body #app .c11-tool-card .c11-progress-column .c11-progress-row:nth-child(7) .c11-progress-head::before{background-image:url('../assets/raiders-graphics/icon-ship.svg')}
+html body #app .c11-tool-card .c11-progress-column .c11-progress-track>i{background:var(--b734-metal)!important;background-image:var(--b734-metal)!important;box-shadow:inset 0 1px 2px #fff!important}
+/* Readable progress labels, silver outlines, and no leftover blue presentation frames. */
+html body #app .c11-tool-card .c11-progress-column .c11-progress-head strong{color:#fff!important;text-shadow:0 1px 2px #000!important}
+html body.presentation-mode #app :is(.presentation-tool-only,.quarter-summary-presentation,.quarter-summary-master,.b1217-hybrid,.b1217-carousel,.presentation-inline-nav){border-color:#c8c8c8!important;outline-color:#c8c8c8!important}
+html body.presentation-mode #app .presentation-inline-nav{display:flex!important;width:100%!important;gap:2px!important;background:#050505!important}
+html body.presentation-mode #app .presentation-inline-nav>.presentation-nav-cell{flex:1 1 0!important;min-width:0!important}
+/* Restrict animated status color to signal tower, not progress metrics. */
+html body #app .c11-tool-card .c11-progress-column .c11-progress-track>i[class]{background:var(--b734-metal)!important}
