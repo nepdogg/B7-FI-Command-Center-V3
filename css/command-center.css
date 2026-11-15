@@ -33591,3 +33591,35 @@ body.presentation-mode[data-sub="hybrid"] .b1312-mini-tower img { height:100%!im
 body.presentation-mode[data-sub="hybrid"] .b139-mini-foot.b1341-signal-status { width:100%!important; background:linear-gradient(#595959,#080808 45%,#252525)!important; border:1px solid #ddd!important; color:white!important; text-align:center!important; }
 body.presentation-mode[data-sub="hybrid"] .b1217-hybrid-nav { width:100%!important; border-color:#bdbdbd!important; }
 body.presentation-mode[data-sub="hybrid"] .b1217-hybrid-nav button:hover { background:var(--v14-metal)!important; color:#050505!important; }
+
+
+/* V14.0.1: visible component repair, consolidated authoritative overrides */
+:root{--v1401-silver:linear-gradient(180deg,#f7f7f7 0%,#b9b9b9 38%,#777 52%,#d9d9d9 100%)}
+/* User identity: real shield graphic on both actual presence buttons. */
+#headerModeCenter .kla-presence-badge{background:#050505 url('../assets/raiders-mini-user-shield.jpg') center/contain no-repeat!important;border:0!important;box-shadow:none!important;border-radius:0!important;color:#fff!important;text-shadow:0 2px 3px #000,0 0 4px #000!important;min-width:54px!important;min-height:64px!important;width:54px!important;height:64px!important;padding:20px 5px 8px!important;font-weight:900!important;font-size:13px!important;line-height:1!important;flex-shrink:0!important}
+#headerModeCenter .kla-user-side{min-width:58px!important;display:flex!important;align-items:center!important;justify-content:center!important}
+/* Four separate footer modules with shared proportions and reliable text contrast. */
+.app-footer .footer-system-row{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:8px!important;align-items:stretch!important;width:100%!important;padding:7px!important;background:#050505!important}
+.app-footer .footer-system-cell{min-width:0!important;min-height:54px!important;border:2px solid #c5c5c5!important;border-radius:10px!important;background:linear-gradient(180deg,#535353 0%,#101010 32%,#050505 70%,#303030 100%)!important;box-shadow:inset 0 1px #f0f0f0,0 2px 5px #000!important;color:#fff!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;padding:6px 10px!important;overflow:hidden!important}
+.app-footer .footer-system-cell :is(button,span){color:#fff!important;text-shadow:0 1px 2px #000!important}
+.app-footer .footer-system-cell button{background:transparent!important;border:0!important;font-weight:800!important;white-space:normal!important}
+.app-footer .footer-icon{font-size:24px!important;color:#eee!important;flex-shrink:0!important}
+/* Hybrid: eliminate the extra status strip and allocate the recovered height to cards. */
+body.presentation-mode[data-sub="hybrid"] #app>.b1217-hybrid{display:grid!important;grid-template-rows:minmax(94px,22fr) minmax(0,78fr) 52px!important;gap:6px!important;padding:8px!important;border:3px solid #c5c5c5!important;outline:none!important;border-radius:10px!important;background:linear-gradient(130deg,#222,#000 18%,#000 82%,#222)!important;box-shadow:inset 0 0 0 1px #888!important}
+body.presentation-mode[data-sub="hybrid"] #app .b1217-status-row{display:none!important}
+body.presentation-mode[data-sub="hybrid"] #app .b1217-carousel{display:grid!important;grid-template-columns:minmax(0,.82fr) minmax(0,1.5fr) minmax(0,.82fr)!important;align-items:center!important;gap:0!important;overflow:hidden!important;min-height:0!important}
+body.presentation-mode[data-sub="hybrid"] #app .b1217-carousel-slot{min-height:0!important;height:100%!important;display:flex!important;align-items:center!important;justify-content:center!important}
+body.presentation-mode[data-sub="hybrid"] #app .b1217-carousel-slot.active{transform:scale(1)!important;opacity:1!important;filter:none!important;z-index:3!important}
+body.presentation-mode[data-sub="hybrid"] #app .b1217-carousel-slot.side{transform:scale(.84)!important;opacity:.48!important;filter:grayscale(.55) brightness(.65)!important;z-index:1!important}
+body.presentation-mode[data-sub="hybrid"] #app .b139-mini-card{width:100%!important;height:100%!important;min-height:0!important;display:grid!important;grid-template-rows:40px minmax(0,1fr) 42px!important;gap:4px!important;padding:6px!important;border:2px solid #d5d5d5!important;border-radius:10px!important;background:linear-gradient(115deg,#444,#050505 14%,#050505 85%,#333)!important;box-shadow:inset 0 1px #fff,0 0 16px #000!important;overflow:hidden!important}
+body.presentation-mode[data-sub="hybrid"] #app .b1312-mini-media{display:grid!important;grid-template-columns:31% minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr)!important;min-height:0!important;gap:5px!important}
+body.presentation-mode[data-sub="hybrid"] #app .b1312-mini-tower{height:100%!important;min-height:0!important;display:flex!important;align-items:stretch!important;justify-content:center!important;background:#030303!important;border:1px solid #999!important}
+body.presentation-mode[data-sub="hybrid"] #app .b1312-mini-tower .b1224-tower,body.presentation-mode[data-sub="hybrid"] #app .b1312-mini-tower img{height:100%!important;max-height:100%!important;width:100%!important;object-fit:contain!important}
+body.presentation-mode[data-sub="hybrid"] #app .b139-mini-foot.b1341-signal-status{width:100%!important;min-height:38px!important;display:flex!important;align-items:center!important;justify-content:center!important;border:2px solid #d0d0d0!important;border-radius:5px!important;background:linear-gradient(#535353,#060606 50%,#383838)!important;color:#fff!important;font-weight:900!important;letter-spacing:.08em!important}
+/* Progress meter captions: opaque silver label plate, never text laid directly on a moving fill. */
+body.presentation-mode #app .b1218-meter-label{position:relative!important;z-index:4!important;color:#050505!important;text-shadow:none!important;font-weight:900!important}
+body.presentation-mode #app .b1218-meter-label span{background:rgba(231,231,231,.94)!important;color:#050505!important;text-shadow:none!important;padding:2px 5px!important;border-radius:3px!important}
+body.presentation-mode #app .b1217-meter>i{background:var(--v1401-silver)!important}
+body.presentation-mode[data-sub="hybrid"] #app .b1217-hybrid-nav{width:100%!important;border:2px solid #bbb!important;background:#080808!important;min-height:50px!important}
+body.presentation-mode[data-sub="hybrid"] #app .b1217-hybrid-nav>*{border-color:#aaa!important;background:linear-gradient(#555,#060606 55%,#343434)!important;color:#fff!important;text-shadow:0 1px 2px #000!important}
+body.presentation-mode[data-sub="hybrid"] #app .b1217-hybrid-nav [aria-current="page"]{background:var(--v1401-silver)!important;color:#050505!important;text-shadow:none!important}
