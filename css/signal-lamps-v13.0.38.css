@@ -1,0 +1,30 @@
+/* V13.0.38 — controllable lamp overlay. Original image stays unchanged. */
+html body .b1229-tower{position:relative!important;isolation:isolate!important;--b7-lamp-y:17%;--b7-lamp-color:255,0,0;}
+html body .b1229-tower.b1224-tower-red{--b7-lamp-y:17%;--b7-lamp-color:255,20,20;}
+html body .b1229-tower.b1224-tower-yellow{--b7-lamp-y:29%;--b7-lamp-color:255,210,0;}
+html body .b1229-tower.b1224-tower-green{--b7-lamp-y:40%;--b7-lamp-color:0,255,55;}
+html body .b1229-tower.b1224-tower-blue{--b7-lamp-y:52%;--b7-lamp-color:0,150,255;}
+html body .b1229-tower.b1224-tower-purple{--b7-lamp-y:63%;--b7-lamp-color:210,0,255;}
+html body .b1229-tower>.b7-lamp-beam{position:absolute!important;pointer-events:none!important;z-index:101!important;display:block!important;left:50%!important;top:var(--b7-lamp-y)!important;width:90%!important;height:19%!important;transform:translate(-50%,-50%)!important;border-radius:50%!important;background:radial-gradient(ellipse at center,rgba(255,255,255,.99) 0%,rgba(var(--b7-lamp-color),.96) 18%,rgba(var(--b7-lamp-color),.58) 43%,rgba(var(--b7-lamp-color),0) 78%)!important;mix-blend-mode:screen!important;filter:blur(calc(2px + var(--b7-light-glow,.8)*5px)) brightness(calc(1 + var(--b7-light-brightness,.9)*1.8))!important;opacity:0!important;}
+html[data-b7-lamps=pulse][data-b7-pattern=smooth] body .b1229-tower:not(.b1224-tower-unknown)>.b7-lamp-beam{animation:b7-light-smooth var(--b7-light-duration,1.5s) ease-in-out infinite!important;}
+html[data-b7-lamps=pulse][data-b7-pattern=double] body .b1229-tower:not(.b1224-tower-unknown)>.b7-lamp-beam{animation:b7-light-double var(--b7-light-duration,1.5s) linear infinite!important;}
+html[data-b7-lamps=steady] body .b1229-tower:not(.b1224-tower-unknown)>.b7-lamp-beam{animation:none!important;opacity:calc(.25 + var(--b7-light-brightness,.9)*.7)!important;}
+html[data-b7-lamps=off] body .b1229-tower>.b7-lamp-beam{animation:none!important;opacity:0!important;display:none!important;}
+@keyframes b7-light-smooth{0%,100%{opacity:.08}50%{opacity:var(--b7-light-brightness,.9)}}
+@keyframes b7-light-double{0%,15%,30%,46%,100%{opacity:.06}8%,38%{opacity:var(--b7-light-brightness,.9)}}
+/* Darken the baked-in bright lamp when OFF, without hiding tower or badge. */
+html body .b1229-tower>.b7-lamp-darkener{position:absolute!important;z-index:100!important;pointer-events:none!important;left:50%!important;top:var(--b7-lamp-y)!important;width:63%!important;height:10%!important;transform:translate(-50%,-50%)!important;border-radius:35%!important;background:radial-gradient(ellipse,rgba(0,0,0,.94) 5%,rgba(0,0,0,.84) 45%,transparent 77%)!important;display:none!important;}
+html[data-b7-lamps=off] body .b1229-tower:not(.b1224-tower-unknown)>.b7-lamp-darkener{display:block!important;}
+/* Controls match the Raiders navigation; dropdown anchored to the button by JS. */
+#b7-lamp-control{position:static!important;inset:auto!important;float:none!important;flex:0 0 auto!important;align-self:stretch!important;white-space:nowrap!important;border:1px solid #b7b7b7!important;border-radius:8px!important;background:linear-gradient(#393939,#080808)!important;color:white!important;padding:4px 11px!important;font:bold 11px Arial,sans-serif!important;box-shadow:inset 0 1px 2px #ddd,0 0 3px #aaa!important;cursor:pointer!important;}
+#b7-lamp-control:hover,#b7-lamp-control:focus-visible{background:linear-gradient(#fff,#b8b8b8)!important;color:#000!important;}
+#b7-lamp-menu{position:fixed!important;z-index:2147483001!important;display:none!important;width:285px!important;max-width:calc(100vw - 16px)!important;box-sizing:border-box!important;padding:12px!important;border:2px solid silver!important;border-radius:12px!important;background:linear-gradient(#252525,#050505)!important;color:#fff!important;box-shadow:0 8px 30px #000!important;font:12px Arial,sans-serif!important;}
+#b7-lamp-menu.open{display:block!important;}
+#b7-lamp-menu .b7-lamp-title{font-weight:bold!important;text-align:center!important;font-size:13px!important;margin-bottom:12px!important;}
+#b7-lamp-menu .b7-lamp-modes{display:flex!important;gap:5px!important;margin:7px 0 12px!important;}
+#b7-lamp-menu button{flex:1!important;min-width:0!important;padding:8px 5px!important;background:linear-gradient(#333,#050505)!important;color:#fff!important;border:1px solid silver!important;border-radius:6px!important;cursor:pointer!important;font:bold 10px Arial,sans-serif!important;}
+#b7-lamp-menu button:hover,#b7-lamp-menu button[aria-pressed=true]{background:linear-gradient(#fff,#aaa)!important;color:#000!important;}
+#b7-lamp-menu .b7-lamp-label{display:flex!important;justify-content:space-between!important;font-weight:bold!important;margin:9px 0 4px!important;}
+#b7-lamp-menu input[type=range]{width:100%!important;accent-color:#ddd!important;cursor:pointer!important;}
+#b7-lamp-menu .b7-lamp-hint{font-size:10px!important;line-height:1.5!important;color:#c5c5c5!important;margin-top:8px!important;}
+@media(prefers-reduced-motion:reduce){html[data-b7-lamps=pulse] body .b1229-tower>.b7-lamp-beam{animation:none!important;opacity:.6!important;}}
