@@ -1,15 +1,15 @@
-B7 FI COMMAND CENTER V14.0.1 — COMPONENT REPAIR TEST
+B7 FI COMMAND CENTER V14.0.2 — HEADER CENTER SHIELDS TEST
 
-CHANGED IN THIS BUILD
-- Actual mini Raiders shield image applied to existing dynamic user presence badges.
-- Footer now uses four equal glossy black/silver modules.
-- Hybrid mode removes the extra status row and gives that space to the carousel.
-- Hybrid carousel rebalances center and dimmed side cards, taller tower and full-width status badge.
-- Hybrid silver meter captions receive opaque high-contrast text backgrounds.
-- Version updated to 14.0.1.
+TARGETED REPAIR
+- Replaced generic circular user badges with actual shield image elements and overlaid user initials / additional-user count.
+- Preserved dynamic user presence rendering and connection labels.
+- Added initial shield elements before shared-user script initializes.
+- Adjusted KLA+ center layout and updated stylesheet cache version.
 
-NOT VERIFIED
-- Browser rendering at 100% zoom; live Microsoft List sync and navigation interactions.
-- Remaining design/function issues outside these focused component repairs.
+SCOPE
+- Header middle section only. Other reported issues remain open.
+- Existing Microsoft List application code is preserved.
 
-This is a test build. Preserve a backup of the last working version.
+CHECKS
+- ZIP integrity and source assertions passed.
+- Browser rendering and Microsoft List connection require testing in Edge.
