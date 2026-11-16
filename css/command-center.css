@@ -33828,3 +33828,30 @@ html body .app-frame #stickyShell header.prototype-header #headerModeCenter butt
  height:min(66px,100%)!important; max-height:100%!important; width:auto!important;
  aspect-ratio:0.86!important; max-width:100%!important;
 }
+
+/* V14.0.9 — remove all residual rectangles behind user shields. */
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-user-side,
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-user-side::before,
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-user-side::after,
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-presence-badge.v1402-shield,
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-presence-badge.v1402-shield::before,
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-presence-badge.v1402-shield::after {
+ background:transparent!important;background-image:none!important;
+ border:0!important;border-radius:0!important;box-shadow:none!important;
+ outline:0!important;filter:none!important;
+}
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-user-side::before,
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-user-side::after,
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-presence-badge.v1402-shield::before,
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-presence-badge.v1402-shield::after {content:none!important;display:none!important;}
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-user-side {
+ overflow:visible!important;isolation:auto!important;
+}
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-presence-badge.v1402-shield {
+ overflow:visible!important;isolation:isolate!important;
+}
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-presence-badge.v1402-shield > img.v1402-shield-art {
+ display:block!important;opacity:1!important;background:transparent!important;
+ border:0!important;box-shadow:none!important;filter:none!important;
+ object-fit:contain!important;
+}
