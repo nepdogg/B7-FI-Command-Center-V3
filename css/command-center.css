@@ -34116,3 +34116,60 @@ html body:not(.presentation-mode):not(.screenshot-mode) .app-frame > footer.app-
  html body:not(.presentation-mode):not(.screenshot-mode) .app-frame > footer.app-footer > .footer-system-row > .footer-sync {grid-column:2!important;grid-row:2!important;}
  html body:not(.presentation-mode):not(.screenshot-mode) .app-frame > footer.app-footer > .footer-system-row > .footer-system-cell {height:46px!important;}
 }
+
+/* V14.0.13 — coordinated artwork system for live cards, badges, status and presentation.
+   These rules deliberately do not change element display, flex or grid geometry. */
+:root {--v1413-control-art:url('../assets/raiders-graphics/control-panel-v1413.svg');--v1413-badge-art:url('../assets/raiders-graphics/badge-panel-v1413.svg');--v1413-heading-art:url('../assets/raiders-graphics/section-heading-v1413.svg')}
+/* One panel artwork shared by the live card, presentations, status columns, and summaries */
+html body .app-frame :is(.utc-status-section,.utc-progress-quick,.c11-status-card,.c11-progress-row,.status-bar,.live-fi-panel,.quarter-live-panel,.v10-status-card,.c11-progress-head,.presentation-quarter-panel,.snapshot-panel,.tool-section) {
+ background-color:#030303!important;
+ background-image:var(--v1413-control-art)!important;
+ background-size:100% 100%!important;
+ background-position:center!important;
+ background-repeat:no-repeat!important;
+ border-color:#8d8d8d!important;
+ box-shadow:none!important;
+ color:#f8f8f8!important;
+}
+/* Tool identity, all 30 badge variants and their states use the same silver-etched plate.
+   Preserve actual state text and click handlers. */
+html body .app-frame :is(.c11-id-badge,.c11-badge,.v10-badge,.b783-date-badge,.fi-indicator-lamp,.utc-identity-badges > *, .utc-condition-chip,.c11-reduced,.utc-reduced,.c11-carry,.utc-task-row,.key-test-badge,.equipment-badge,.b761-uniform-badge) {
+ background-color:#050505!important;
+ background-image:var(--v1413-badge-art)!important;
+ background-size:100% 100%!important;
+ background-position:center!important;
+ background-repeat:no-repeat!important;
+ border-color:#858585!important;
+ box-shadow:none!important;
+ color:#f7f7f7!important;
+}
+/* Graphic header treatment on section labels */
+html body .app-frame :is(.utc-kicker,.c11-progress-head,.progress-head,.panel-head,.c11-photo .b133-priority-alias,.utc-identity-badges .label) {
+ color:#fff!important;text-shadow:0 1px 2px #000!important;
+}
+/* Silver fills only: text inside a filled region uses dark ink, while text on black remains white. */
+html body .app-frame :is(.track,.c11-progress-track,.v10-progress-track,.hero-progress,.family-progress,.quarter-time-progress) {
+ background-color:#060606!important;border-color:#a9a9a9!important;
+}
+html body .app-frame :is(.track,.c11-progress-track,.v10-progress-track,.hero-progress,.family-progress,.quarter-time-progress) > .fill,
+html body .app-frame :is(.track,.c11-progress-track,.v10-progress-track,.hero-progress,.family-progress,.quarter-time-progress) > [class*="fill"] {
+ background:linear-gradient(180deg,#fff 0%,#dedede 24%,#a0a0a0 65%,#ededed 100%)!important;
+ border-color:#c9c9c9!important;
+ box-shadow:inset 0 1px 2px #fff9!important;
+}
+html body .app-frame :is(.track,.c11-progress-track,.v10-progress-track,.hero-progress,.family-progress,.quarter-time-progress) > span {
+ color:#fff!important;text-shadow:0 1px 3px #000,0 -1px 2px #000!important;
+ position:relative;z-index:1;
+}
+/* Readable tool headings and status graphics. Icons are real SVG assets. */
+html body .app-frame .utc-countdown .utc-kicker::before,
+html body .app-frame .c11-status-card.ship > .label::before {content:'';display:inline-block;width:1.25em;height:1.25em;margin-right:.45em;vertical-align:middle;background:url('../assets/raiders-graphics/icon-calendar-v1413.svg') center/contain no-repeat}
+html body .app-frame .utc-fi-status .utc-kicker::before {content:'';display:inline-block;width:1.25em;height:1.25em;margin-right:.45em;vertical-align:middle;background:url('../assets/raiders-graphics/icon-clipboard-v1413.svg') center/contain no-repeat}
+html body .app-frame .utc-system-status .utc-kicker::before {content:'';display:inline-block;width:1.25em;height:1.25em;margin-right:.45em;vertical-align:middle;background:url('../assets/raiders-graphics/icon-microscope-v1413.svg') center/contain no-repeat}
+html body .app-frame .utc-lead-notes .utc-kicker::before {content:'';display:inline-block;width:1.25em;height:1.25em;margin-right:.45em;vertical-align:middle;background:url('../assets/raiders-graphics/icon-notes-v1413.svg') center/contain no-repeat}
+html body .app-frame .utc-progress-quick:nth-child(1) .progress-head::before {content:'';display:inline-block;width:1.25em;height:1.25em;margin-right:.45em;vertical-align:middle;background:url('../assets/raiders-graphics/icon-gear-v1413.svg') center/contain no-repeat}
+html body .app-frame .utc-progress-quick:nth-child(2) .progress-head::before {content:'';display:inline-block;width:1.25em;height:1.25em;margin-right:.45em;vertical-align:middle;background:url('../assets/raiders-graphics/icon-calendar-v1413.svg') center/contain no-repeat}
+html body .app-frame .utc-progress-quick:nth-child(3) .progress-head::before {content:'';display:inline-block;width:1.25em;height:1.25em;margin-right:.45em;vertical-align:middle;background:url('../assets/raiders-graphics/icon-chart-v1413.svg') center/contain no-repeat}
+html body .app-frame .utc-progress-quick:nth-child(4) .progress-head::before {content:'';display:inline-block;width:1.25em;height:1.25em;margin-right:.45em;vertical-align:middle;background:url('../assets/raiders-graphics/icon-clock-v1413.svg') center/contain no-repeat}
+html body .app-frame .utc-progress-quick:nth-child(6) .progress-head::before {content:'';display:inline-block;width:1.25em;height:1.25em;margin-right:.45em;vertical-align:middle;background:url('../assets/raiders-graphics/icon-shipping-v1413.svg') center/contain no-repeat}
+/* Keep the signal tower color and its badge untouched; status alerts remain meaningful. */
