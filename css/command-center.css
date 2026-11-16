@@ -33855,3 +33855,36 @@ html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla
  border:0!important;box-shadow:none!important;filter:none!important;
  object-fit:contain!important;
 }
+
+/* V14.0.10 — remove the visible rectangular cut line across the shield row.
+   Paint ONE continuous black canvas behind the shields, logo and status line.
+   Override the inherited gradient/panel rules rather than hiding the shields. */
+html body .app-frame #stickyShell header.prototype-header > section.prototype-header-center {
+  background-color:#000!important; background-image:url("../assets/raiders-graphics/header-reference-v1405.svg")!important;
+}
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .prototype-kla-box.kla-presence-box {
+  background:#000!important; background-image:none!important;
+  box-shadow:none!important; border:0!important; border-radius:0!important;
+  clip-path:none!important; mask-image:none!important; isolation:isolate!important;
+}
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-presence-box::before,
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-presence-box::after {
+  content:none!important; display:none!important;
+}
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-user-side,
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-connection-core,
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-connection-copy {
+  background:#000!important; background-image:none!important; box-shadow:none!important;
+  border:0!important; outline:0!important; filter:none!important;
+}
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-user-side {
+  align-self:stretch!important; overflow:visible!important;
+}
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-connection-copy {
+  z-index:3!important; bottom:0!important;
+}
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter button.v1402-shield,
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter button.v1402-shield > img {
+  background:transparent!important; background-image:none!important; border:0!important;
+  box-shadow:none!important; filter:none!important;
+}
