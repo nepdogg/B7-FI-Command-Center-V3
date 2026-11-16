@@ -33681,3 +33681,47 @@ html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla
 html body .app-frame #stickyShell header.prototype-header #headerModeCenter button.kla-presence-badge.v1402-shield {width:clamp(38px,3.5vw,58px)!important;height:clamp(43px,4vw,67px)!important;}
 html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-connection-core img {max-height:51px!important;object-fit:contain!important;}
 html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-connection-copy {font-size:clamp(9px,.72vw,13px)!important;}
+
+/* V14.0.6 — header spacing, scalable wordmarks, and safe internal clearances */
+html body .app-frame #stickyShell header.prototype-header > section.prototype-header-left,
+html body .app-frame #stickyShell header.prototype-header > section.prototype-header-right {
+ display:flex!important;align-items:center!important;gap:clamp(6px,.65vw,13px)!important;
+ padding:10px clamp(14px,1.2vw,25px)!important;box-sizing:border-box!important;min-width:0!important;
+}
+html body .app-frame #stickyShell header.prototype-header > section.prototype-header-left > span,
+html body .app-frame #stickyShell header.prototype-header > section.prototype-header-right > .b1241-quarter-title {
+ display:block!important;flex:1 1 auto!important;min-width:0!important;max-width:100%!important;
+ white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important;line-height:1.12!important;
+ font-size:var(--v1406-header-font,22px)!important;letter-spacing:0!important;
+}
+html body .app-frame #stickyShell header.prototype-header .b1239-raiders-logo,
+html body .app-frame #stickyShell header.prototype-header .b1241-right-logo {
+ flex:0 0 auto!important;width:auto!important;height:72%!important;max-height:96px!important;max-width:16%!important;
+ object-fit:contain!important;
+}
+html body .app-frame #stickyShell header.prototype-header > section.prototype-header-center {
+ padding:11px 12px 8px!important;box-sizing:border-box!important;
+}
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-presence-box {
+ grid-template-columns:minmax(57px,1fr) minmax(0,2.8fr) minmax(57px,1fr)!important;
+ column-gap:clamp(5px,.65vw,12px)!important;align-items:center!important;
+ height:100%!important;box-sizing:border-box!important;
+}
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-user-side {
+ align-self:center!important;min-height:0!important;max-height:100%!important;
+}
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter button.kla-presence-badge.v1402-shield {
+ width:clamp(43px,4.4vw,73px)!important;height:clamp(51px,5.05vw,84px)!important;
+ max-height:calc(100% - 12px)!important;box-sizing:border-box!important;
+}
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-connection-core {
+ min-width:0!important;width:100%!important;max-width:100%!important;align-self:center!important;
+ display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
+}
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-connection-core > img {
+ display:block!important;width:100%!important;max-width:190px!important;max-height:76px!important;
+ height:auto!important;object-fit:contain!important;
+}
+html body .app-frame #stickyShell header.prototype-header #headerModeCenter .kla-connection-copy {
+ max-width:100%!important;overflow:hidden!important;text-overflow:ellipsis!important;
+}

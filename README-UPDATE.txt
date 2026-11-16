@@ -1,15 +1,7 @@
-B7 FI COMMAND CENTER V14.0.5 — HEADER REFERENCE MATCH TEST
+B7 FI Command Center V14.0.6 — HEADER SPACING AND RESPONSIVE TEXT
 
-CHANGED
-- Removed V14.0.4 swoosh and honeycomb background artwork from the header.
-- Created one restrained glossy black and brushed-silver frame SVG, used by all three header panels.
-- Reduced header text and Raiders logo scale toward the approved V13.0.30 reference.
-- Kept live KLA connection text and mini Raiders shield user badges as HTML overlays.
-- Corrected displayed header version to V14.0.5 and CSS cache key.
+Changes: increased clearance around both mini user shields; enlarged KLA logo; adjusted middle panel layout; added text-fitting JavaScript for left and right titles that measures actual available width and selects the largest fitting font. Preserved original graphics, dynamic user presence, Microsoft List code and other views.
 
-NOT CHANGED
-- Footer, presentation modes, tool cards, and Microsoft List application logic.
+Validation: ZIP integrity, file references, and JavaScript syntax (when available). Browser visual verification and live Microsoft List tests are still required.
 
-CHECKS
-- Archive integrity and static HTML/asset references verified.
-- Browser rendering and live connection tests still required.
+Scope: targeted header repair only. Other previously reported issues remain open.
