@@ -34052,3 +34052,67 @@ html body:not(.presentation-mode):not(.screenshot-mode) .app-frame > footer.app-
    height:46px!important;
  }
 }
+
+/* V14.0.12 — actual SVG panel artwork, corrected four-cell footer geometry */
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame > footer.app-footer > .footer-system-row {
+ display:grid!important;
+ grid-template-columns:minmax(0,15fr) minmax(0,15fr) minmax(0,50fr) minmax(0,20fr)!important;
+ grid-template-rows:52px!important;
+ grid-auto-flow:row!important;
+ gap:5px!important;
+ width:100%!important;
+ height:52px!important;
+ align-items:stretch!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame > footer.app-footer > .footer-system-row > .footer-admin {
+ grid-column:1!important;grid-row:1!important;order:1!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame > footer.app-footer > .footer-system-row > .footer-presentation {
+ grid-column:2!important;grid-row:1!important;order:2!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame > footer.app-footer > .footer-system-row > .footer-activity {
+ grid-column:3!important;grid-row:1!important;order:3!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame > footer.app-footer > .footer-system-row > .footer-sync {
+ grid-column:4!important;grid-row:1!important;order:4!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame > footer.app-footer > .footer-system-row > .footer-system-cell {
+ background-color:#000!important;
+ background-image:url("../assets/footer-metal-panel.svg")!important;
+ background-repeat:no-repeat!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ border:0!important;
+ border-radius:13px!important;
+ box-shadow:none!important;
+ padding:5px 10px!important;
+ height:52px!important;
+ justify-content:center!important;
+ align-items:center!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame > footer.app-footer #adminButton,
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame > footer.app-footer #footerPresentationButton {
+ background:transparent!important;background-image:none!important;border:0!important;box-shadow:none!important;
+ font-size:clamp(10px,.82vw,16px)!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame > footer.app-footer .footer-presentation #footerPresentationButton > span:not(.footer-icon) {
+ font-size:inherit!important;font-weight:900!important;white-space:nowrap!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame > footer.app-footer .footer-activity {
+ justify-content:flex-start!important;
+ padding-left:clamp(12px,2vw,32px)!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame > footer.app-footer .footer-sync #footerConnectionVisual {
+ font-size:clamp(10px,.8vw,15px)!important;
+}
+@media(max-width:850px) {
+ html body:not(.presentation-mode):not(.screenshot-mode) .app-frame > footer.app-footer > .footer-system-row {
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  grid-template-rows:46px 46px!important;height:97px!important;
+ }
+ html body:not(.presentation-mode):not(.screenshot-mode) .app-frame > footer.app-footer > .footer-system-row > .footer-admin {grid-column:1!important;grid-row:1!important;}
+ html body:not(.presentation-mode):not(.screenshot-mode) .app-frame > footer.app-footer > .footer-system-row > .footer-presentation {grid-column:2!important;grid-row:1!important;}
+ html body:not(.presentation-mode):not(.screenshot-mode) .app-frame > footer.app-footer > .footer-system-row > .footer-activity {grid-column:1!important;grid-row:2!important;}
+ html body:not(.presentation-mode):not(.screenshot-mode) .app-frame > footer.app-footer > .footer-system-row > .footer-sync {grid-column:2!important;grid-row:2!important;}
+ html body:not(.presentation-mode):not(.screenshot-mode) .app-frame > footer.app-footer > .footer-system-row > .footer-system-cell {height:46px!important;}
+}

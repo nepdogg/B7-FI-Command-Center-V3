@@ -5,9 +5,7 @@ const set=(el,key,val)=>{if(el && el.style.getPropertyValue(key)!==val)el.style.
 function apply(){
  const header=document.querySelector('#stickyShell > header.prototype-header');
  if(header){set(header,'height','156px');set(header,'min-height','156px');set(header,'max-height','none');}
- document.querySelectorAll('.app-frame > footer.app-footer, .app-frame > footer.app-footer .footer-system-row, .app-frame > footer.app-footer .footer-system-cell').forEach(el=>{
-  set(el,'background',chrome);set(el,'background-color','#080808');set(el,'border-color','#bcbfc3');
- });
+ // Footer now controlled by V14.0.12 graphic panels.
  // Tower dimensions are now controlled by the V13.0.16 photo-grid CSS.
  // Do not apply old inline height/object-fit overrides: they caused clipping.
 
