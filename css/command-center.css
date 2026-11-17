@@ -34188,3 +34188,33 @@ body[data-center="intelligence"] #app{max-width:1800px;margin:0 auto;padding:18p
 .b1224-tower-off{--tower-active:#80858c}
 html body #app .b1224-tower-off .b7-lamp-beam{display:none!important}
 html body #app .b1224-tower-off .b7-lamp-darkener{display:none!important}
+
+
+/* V14.0.16 — targeted live tower-fit and uniform silver progress repair.
+   Last-in-cascade overrides; preserve status colors on Signal Towers and alerts. */
+:root{--b71416-silver:linear-gradient(180deg,#fdfdfd 0%,#dedede 24%,#9b9b9b 67%,#e5e5e5 100%)}
+/* Progress tracks have direct <i class="green/red/cyan/..."> children, not .fill. */
+html body #app :is(.c11-progress-track,.v10-progress-track,.track,.hero-progress,.family-progress,.quarter-time-progress,.b1217-meter) > :is(i,div,span)[class],
+html body #app :is(.c11-progress-track,.v10-progress-track,.track,.hero-progress,.family-progress,.quarter-time-progress,.b1217-meter) > i,
+html body #app :is([class*="progress-track"],[class*="meter-track"]) > :is(i,[class*="fill"]),
+html body #app :is([class*="progress-fill"],[class*="meter-fill"],[class*="bar-fill"],.c11-progress-fill,.b1228-progress-fill,.quarter-progress-fill,.qs-progress-fill) {
+ background:var(--b71416-silver)!important;background-image:var(--b71416-silver)!important;
+ background-color:#c8c8c8!important;border-color:#c9c9c9!important;
+ filter:none!important;opacity:1!important;box-shadow:inset 0 1px 2px #ffffff88!important;
+}
+/* Do not stretch a tall tower image into a short box: always show complete base and label. */
+html body #app .b1224-tower.b1229-tower {box-sizing:border-box!important;min-height:0!important;min-width:0!important;max-width:100%!important;display:flex!important;align-items:center!important;justify-content:center!important;}
+html body #app .b1224-tower.b1229-tower > img.b1229-tower-image {
+ display:block!important;position:static!important;inset:auto!important;transform:none!important;
+ width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;
+ max-width:100%!important;max-height:100%!important;object-fit:contain!important;object-position:center center!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-top > .b1226-photo-tower {
+ padding:3px 4px 4px!important;min-height:0!important;overflow:hidden!important;display:flex!important;align-items:stretch!important;justify-content:center!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower > .b1229-tower {
+ width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;overflow:hidden!important;
+}
+html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower img.b1229-tower-image {
+ width:100%!important;height:100%!important;max-height:100%!important;object-fit:contain!important;object-position:center!important;
+}
