@@ -1916,20 +1916,23 @@ function modernReferenceView(){let count=state.references.length;return `${cente
 // V12.0.17: Compact photo identity and signal tower for the third presentation mode.
 // One shared signal evaluator for every tool-card presentation. No manual signal state is stored.
 function b1217Signal(t){
+  // Signal tower lifecycle: shipped > packing > powered down for prepack > FI assessment > not in FI.
   const phase=String(t.toolStatus||'').toLowerCase();
-  if(phase==='shipped'||phase==='archived'&&fiSummaryStatus(t)==='Shipped')return {tone:'purple',text:'SHIPPED'};
-  if(!['fi','powered down','packing'].includes(phase))return {tone:'unknown',text:'WAITING FI / UNKNOWN'};
+  if(phase==='shipped'||(phase==='archived'&&fiSummaryStatus(t)==='Shipped'))return {tone:'purple',text:'SHIPPED'};
+  if(phase==='packing')return {tone:'blue',text:'PACKING'};
+  const down=phase==='powered down'||t.conditionFlags?.poweredDown===true||
+    String(t.indicatorStates?.poweredDown||'').trim().toLowerCase()==='system powered down'||
+    fi200Started(t);
+  if(down)return {tone:'off',text:'POWERED OFF (PREPACK)'};
+  if(phase!=='fi')return {tone:'unknown',text:'NOT IN FI'};
   const ncs=Array.isArray(t.ncs)?t.ncs.filter(n=>!['closed','resolved','complete'].includes(String(n.state||'').toLowerCase())):[];
   const criticalNc=ncs.some(n=>n.blocking===true||/escalat|critical/i.test(String(n.state||'')+' '+String(n.severity||'')));
   const alerts=[t.latestStatus,t.fiStatusOverride,t.currentSystemStatus,t.leadNotes,t.systemStatus].map(x=>String(x||'')).join(' ');
   const due=t.shipDate?dateOnly(t.shipDate):null;
-  const overdue=due&&dateOnly(today())>due;
-  if(criticalNc||/critical|escalat|system down|blocked/i.test(alerts)||overdue)return {tone:'red',text:'CRITICAL'};
-  const behind=performance(t)[0]==='BEHIND'||/behind|at risk|delay|attention|warning/i.test(alerts);
-  if(behind||ncs.length)return {tone:'yellow',text:'ATTENTION'};
-  if(phase==='packing')return {tone:'blue',text:'PACKING'};
-  // Only illuminate green when a real FI phase and schedule assessment exist.
-  return {tone:'green',text:'ON SCHEDULE'};
+  if(criticalNc||/critical|escalat|system down|blocked/i.test(alerts)||(due&&dateOnly(today())>due))return {tone:'red',text:'CRITICAL'};
+  if(performance(t)[0]==='BEHIND'||/behind|at risk|delay|attention|warning/i.test(alerts)||ncs.length)return {tone:'yellow',text:'ATTENTION'};
+  if(performance(t)[0]==='AHEAD')return {tone:'cyan',text:'AHEAD OF SCHEDULE'};
+  return {tone:'green',text:'NORMAL'};
 }
 function b1229SignalReason(t){
   const sig=b1217Signal(t), phase=String(t.toolStatus||'').toLowerCase();
@@ -1953,15 +1956,17 @@ function b1229SignalReason(t){
     return 'ATTENTION — REVIEW CURRENT TOOL STATUS';
   }
   if(sig.tone==='green')return 'FI TESTING — ON SCHEDULE';
+  if(sig.tone==='cyan')return 'FI TESTING — AHEAD OF MICRO SCHEDULE';
+  if(sig.tone==='off')return 'POWERED DOWN FOR PREPACK — POWERED DOWN BADGE ACTIVE';
   if(sig.tone==='blue')return 'PACKING IN PROGRESS — PREPARING TO SHIP';
   if(sig.tone==='purple')return 'SHIPPED'+(t.actualShipDate?' — '+fmtDate(t.actualShipDate):' — SHIPMENT CONFIRMED');
   return 'WAITING FOR FI — STATUS NOT YET AVAILABLE';
 }
 function b1224Tower(t,compact=false){
   const sig=b1217Signal(t);
-  const tone=['red','yellow','green','blue','purple'].includes(sig.tone)?sig.tone:'unknown';
+  const tone=['red','yellow','green','cyan','blue','purple','off'].includes(sig.tone)?sig.tone:'unknown';
   return `<div class="b1224-tower b1229-tower ${compact?'b1224-tower-compact':''} b1224-tower-${tone}" role="img" aria-label="Tool ${esc(t.id)} status: ${esc(sig.text)}" title="${esc(sig.text)} · ${esc(b1229SignalReason(t))}">
-    <img class="b1229-tower-image" src="assets/signal-towers/${({unknown:"signal-not_in_fi.png",red:"signal-critical.png",yellow:"signal-attention.png",green:"signal-normal.png",blue:"signal-packing.png",purple:"signal-shipped.png"})[tone]}?v=120040" alt="" loading="eager" draggable="false">
+    <img class="b1229-tower-image" src="assets/signal-towers/${({unknown:"kla-not_in_fi.png",red:"kla-critical.png",yellow:"kla-attention.png",green:"kla-normal.png",cyan:"kla-ahead.png",blue:"kla-packing.png",purple:"kla-shipped.png",off:"kla-powered_off.png"})[tone]}?v=141500" alt="" loading="eager" draggable="false">
   </div>`;
 }
 function b1217CompactCard(t){

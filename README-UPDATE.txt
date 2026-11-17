@@ -1,3 +1,30 @@
+B7 FI COMMAND CENTER — V14.0.15 SIGNAL TOWER INTEGRATION (TEST)
+
+BASELINE: V14.0.14 Intelligence Center Preview. Existing Intelligence Center retained.
+
+CHANGES:
+- Eight individually cropped KLA-blue-branded realistic signal tower graphics from the approved visual concept.
+- Seven physical lenses; operational states: Critical, Attention, Normal, Ahead of Schedule, Packing, Shipped, Not in FI, Powered Off (Prepack).
+- Powered Off (Prepack) derives automatically from the System Powered Down badge, FI 200 start, or Powered Down tool phase.
+- Status precedence: Shipped > Packing > Powered Off > FI alert/ahead/normal > Not in FI.
+- Ahead of Schedule follows the existing FI-vs-micro progress comparison (more than 5 points ahead); this is not yet a shipping forecast.
+- No manual signal tower status entry required.
+- Preserved existing Intelligence Center and Microsoft Lists integration code.
+
+TEST:
+1. Open app; inspect tower graphics on Universal Tool Cards and presentation cards.
+2. Change System Power badge to System Powered Down and save: tower should turn OFF.
+3. Verify FI 200 start also turns tower OFF.
+4. Verify Packing shows blue and Shipped shows purple even if Powered Down badge remains set.
+5. Verify non-FI tool shows white and FI tool >5 points ahead of micro progress shows cyan.
+6. Verify on second laptop after normal synchronization; do not assume cross-client verification from this package alone.
+
+LIMITATIONS:
+- Cropped tower artwork is derived from a composite illustration, not individually rendered transparent originals; panels include dark backgrounds.
+- This build has not been visually browser-tested or multi-user-tested. Other previously reported header, footer, navigation, and progress-bar issues remain unverified/unresolved.
+- 'LIGHTS OFF' in the global lighting controls is distinct from the operational POWERED OFF (PREPACK) status.
+
+PREVIOUS RELEASE NOTES:
 B7 FI COMMAND CENTER V14.0.14 — INTELLIGENCE CENTER PREVIEW
 
 BASELINE: V14.0.13 Section Graphics Test. Existing pages, assets, badges, tool editing, signal towers and Microsoft Lists integration retained without intentional behavioral changes.
