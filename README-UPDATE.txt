@@ -1,17 +1,27 @@
-FI COMMAND CENTER V14.0.13 — SHARED GRAPHICS SYSTEM TEST
+B7 FI COMMAND CENTER V14.0.14 — INTELLIGENCE CENTER PREVIEW
 
-Based on V14.0.12. Header and footer artwork retained.
+BASELINE: V14.0.13 Section Graphics Test. Existing pages, assets, badges, tool editing, signal towers and Microsoft Lists integration retained without intentional behavioral changes.
 
-IMPLEMENTED
-- Created three reusable SVG panel artworks (control panel, badge, section heading).
-- Created ten line-art SVG section icons (calendar, clipboard, microscope, gear, chart, clock, shipping, identity, alert, notes).
-- Applied common artwork to Universal Tool Card middle and right panels, status bars, presentation cards and quarter panels.
-- Applied matching badge artwork to tool identity and indicator badge types, preserving their live text and click handlers.
-- Standardized progress fills to silver and added contrasting white text with dark shadow.
-- Added icons to key Universal Tool Card section headings.
-- Preserved signal tower images and colors and existing data logic.
+NEW IN THIS BUILD
+- INTELLIGENCE CENTER added to the existing Center selector.
+- Toggle: COMMAND CENTER · FULL AUTO / FI LEADS / MANAGERS.
+- Auto mode reads active tool records and surfaces date-proximity alerts and same-type candidate counts. These are NOT verified lateness forecasts.
+- Manual Tool Swap Analyzer: choose an at-risk UTID; find all active same-tool-type candidates, regardless of model; select candidates to see side-by-side data, pros/cons, and before/after preview for model, customer and sales order.
+- Manual FI Forecasting: display existing checklist forecasts and micro target dates, with explicit limitations about missing reliable power-down and earliest-ship estimates.
+- What-If: propose an earlier shipping date without changing records.
+- Forecast History: design placeholder, not a fake audit log.
+- Raiders black/silver style scoped to the new page.
 
-LIMITATIONS / NOT VERIFIED
-- This is a broad graphics pass, not a pixel-perfect recreation of the reference. Several legacy renderers may require further structural work.
-- ZIP integrity and asset references checked; actual Edge rendering and Microsoft List integration not tested.
-- Existing application logic has not been rewritten.
+IMPORTANT LIMITATIONS
+- This is a READ-ONLY first-stage Brain Center. No automated tool swap execution, approvals, or multi-record Microsoft Lists writes have been implemented.
+- No new independently validated ship readiness or power-down forecast engine. Existing checklist forecast is not equated with ship readiness.
+- The auto overview flags approaching/past ship dates, not confirmed schedule failures; swap candidates are same-type matches, not proven feasible swaps.
+- This release does NOT claim to fix all pre-existing defects. Existing functionality was preserved, but browser, multi-user, cross-laptop and live-data regression tests have not been run.
+
+TEST
+1. Back up existing production and shared data.
+2. Start Command Center as usual; select INTELLIGENCE CENTER from Center dropdown.
+3. Switch modes; select an existing UTID in TOOL SWAP.
+4. Verify same-type candidate filtering, compare fields, no unintended writes.
+5. Test the existing Priority, Operations, Shipping and Tool Edit pages for regressions.
+6. Verify Microsoft Lists synchronization on two machines before considering production use.
