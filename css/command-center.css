@@ -34218,3 +34218,181 @@ html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-un
 html body:not(.presentation-mode) #app section.c11-tool-card .c11-photo.b1313-unified-photo .b1226-photo-tower img.b1229-tower-image {
  width:100%!important;height:100%!important;max-height:100%!important;object-fit:contain!important;object-position:center!important;
 }
+
+
+/* V14.0.17 repair stylesheet, loaded after main CSS. */
+:root{--silver1417:linear-gradient(180deg,#fff 0%,#e8e8e8 24%,#999 68%,#e8e8e8 100%)}
+html body #app .live-progress .fill,html body #app .live-progress .fill.green,html body #app .live-progress .fill.red,html body #app .live-progress .fill.cyan,html body #app .live-progress .fill.amber,html body #app .live-progress .fill.purple,html body #app .c11-progress-track>i,html body #app .c11-progress-track>.fill,html body #app .utc-progress .track>.fill,html body #app .sketch-progress .track>.fill,html body #app .progress-item .track>.fill,html body #app .progress-item .track>i,html body #app .c11-progress-fill,html body #app .b1228-progress-fill,html body #app .raiders-progress-fill{background:var(--silver1417)!important;background-image:var(--silver1417)!important;background-color:#c8c8c8!important;filter:none!important}
+html body #app .b1226-photo-tower{min-height:0!important;box-sizing:border-box!important;overflow:visible!important;display:flex!important;align-items:center!important;justify-content:center!important}
+html body #app .b1226-photo-tower .b1224-tower.b1229-tower,html body #app .b1312-mini-tower .b1224-tower.b1229-tower{width:100%!important;height:100%!important;max-height:100%!important;min-height:0!important;overflow:visible!important;display:flex!important;align-items:center!important;justify-content:center!important}
+html body #app .b1224-tower.b1229-tower>img.b1229-tower-image{position:static!important;display:block!important;width:auto!important;height:auto!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;object-position:center!important;transform:none!important;flex-shrink:1!important}
+
+
+/* V14.0.18: stable Brain and independent status panel geometry. */
+html body #app .connected-brain{display:flex!important;flex-direction:column!important;gap:6px!important;height:210px!important;min-height:210px!important;max-height:210px!important;width:100%!important;box-sizing:border-box!important;padding:12px!important;border:1px solid #aeb4bd!important;border-radius:12px!important;background:#080a0d!important;color:#fff!important;text-align:left!important;cursor:pointer!important;overflow:hidden!important;white-space:normal!important;font:inherit!important}
+html body #app .connected-brain:hover,html body #app .connected-brain:focus-visible{outline:2px solid #bfc9db!important;outline-offset:2px}
+html body #app .connected-brain.critical{border-color:#f15d64!important}html body #app .connected-brain.attention{border-color:#e8bb50!important}
+html body #app .connected-brain .c11-progress-head{display:flex!important;justify-content:space-between!important;gap:8px!important;color:#fff!important;font-size:14px!important}
+html body #app .connected-brain .c11-progress-track{display:block!important;min-height:14px!important;height:14px!important;flex-shrink:0!important;width:100%!important;background:#252a32!important;border-radius:8px!important;overflow:hidden!important}
+html body #app .connected-brain .c11-progress-track i{display:block!important;height:100%!important;background:linear-gradient(#fff,#999,#eee)!important}
+html body #app .connected-brain .brain-progress-label,html body #app .connected-brain small{font-size:11px!important;color:#c7d0dc!important}
+html body #app .connected-brain .brain-forecast{font-size:13px!important;font-weight:700!important}
+html body #app .connected-brain .brain-card-message{font-size:13px!important;line-height:1.35!important;min-height:36px!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important}
+html body #app .connected-brain .brain-card-next{font-size:12px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+html body #app .connected-brain small{margin-top:auto!important}
+html body #statusStack{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+html body #statusStack>.status-bar{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;grid-template-rows:32px 42px!important;gap:3px 8px!important;height:94px!important;min-height:94px!important;max-height:94px!important;margin:0!important;padding:7px 10px!important;box-sizing:border-box!important;text-align:left!important;color:#fff!important;background:#101216!important;border-radius:10px!important;overflow:hidden!important;cursor:pointer;font:inherit}
+html body #statusStack .status-left{min-width:0!important;display:flex!important;gap:7px!important;align-items:center!important}
+html body #statusStack .status-label strong{font-size:12px!important;white-space:normal!important}
+html body #statusStack .status-label small{display:block!important;font-size:10px!important;color:#e2e5ea!important}
+html body #statusStack .status-message{grid-column:1 / -1!important;grid-row:2!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important;white-space:normal!important;font-size:14px!important;line-height:20px!important;min-width:0!important}
+html body #statusStack .status-right{font-size:10px!important;white-space:nowrap!important;align-self:start!important}
+html body #statusStack .critical{border-color:#f15d64!important}html body #statusStack .attention{border-color:#e8bb50!important}
+/* Uniform badge cells, including wafer and equipment content. */
+html body #app .c11-badges{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-auto-rows:76px!important;gap:8px!important;align-items:stretch!important}
+html body #app .c11-badges>.b761-uniform-badge{height:76px!important;min-height:76px!important;max-height:76px!important;width:100%!important;min-width:0!important;margin:0!important;box-sizing:border-box!important;padding:6px!important;background-color:#050505!important;background-image:none!important;display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;gap:3px!important;overflow:hidden!important}
+html body #app .c11-badges>.b761-uniform-badge :is(span,strong,small,em){max-width:100%!important;white-space:normal!important;overflow-wrap:anywhere!important;line-height:1.15!important;margin:0!important}
+
+
+/* V14.0.19 final geometry contract. Last stylesheet owns repaired components. */
+:root{--cc-silver:linear-gradient(180deg,#fff 0%,#c9c9c9 28%,#888 68%,#eee 100%);--cc-presentation-height:calc(100dvh - 72px)}
+html,body{min-width:0!important;max-width:100%!important}
+html body .app-frame{min-width:0!important;width:100%!important;max-width:100%!important;box-sizing:border-box!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell#stickyShell{position:fixed!important;inset:0 0 auto 0!important;width:100%!important;z-index:1000!important;transform:none!important}
+html body #stickyShell#stickyShell header.prototype-header{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(280px,.9fr) minmax(0,1fr)!important;gap:8px!important;height:96px!important;min-height:96px!important;max-height:96px!important;padding:6px 8px!important;box-sizing:border-box!important;overflow:visible!important}
+html body #stickyShell#stickyShell header.prototype-header>section{height:100%!important;min-width:0!important;min-height:0!important;box-sizing:border-box!important;overflow:hidden!important;align-items:center!important;border-radius:12px!important;padding:6px 8px!important}
+html body #stickyShell#stickyShell :is(.prototype-header-left,.prototype-header-right){display:flex!important;gap:8px!important;justify-content:space-between!important}
+html body #stickyShell#stickyShell :is(.prototype-header-left>span,.b1241-quarter-title){flex:1!important;min-width:0!important;font-size:var(--v1408-title-size,20px)!important;line-height:1.15!important;white-space:normal!important;overflow-wrap:normal!important;text-align:center!important}
+html body #stickyShell#stickyShell :is(.b1239-raiders-logo,.b1241-right-logo){width:62px!important;height:70px!important;min-width:0!important;object-fit:contain!important;flex:0 0 62px!important}
+html body #stickyShell#stickyShell #headerModeCenter .kla-presence-box{display:grid!important;grid-template-columns:80px minmax(0,1fr) 80px!important;grid-template-rows:minmax(0,1fr)!important;height:100%!important;gap:4px!important;padding:0!important;border:0!important;min-width:0!important}
+html body #stickyShell#stickyShell #klaConnectionCore{grid-column:2!important;grid-row:1!important;width:100%!important;min-width:0!important;height:100%!important;display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;gap:3px!important;border:1px solid #aaa!important;border-radius:8px!important;padding:3px!important;box-sizing:border-box!important;background:#050505!important}
+html body #stickyShell#stickyShell #klaConnectionCore>img{max-width:100%!important;width:110px!important;height:40px!important;object-fit:contain!important}
+html body #stickyShell#stickyShell .kla-connection-copy{position:static!important;display:flex!important;flex-wrap:wrap!important;justify-content:center!important;gap:3px!important;font-size:11px!important;line-height:1.15!important;min-height:0!important;width:100%!important;white-space:normal!important;text-align:center!important}
+html body #stickyShell#stickyShell .kla-connection-copy>*{font-size:inherit!important;line-height:inherit!important}
+html body #stickyShell#stickyShell #klaUsersLeft{grid-column:1!important;grid-row:1!important}
+html body #stickyShell#stickyShell #klaUsersRight{grid-column:3!important;grid-row:1!important}
+html body #stickyShell#stickyShell .kla-user-side{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:2px!important;align-content:center!important;width:80px!important;height:100%!important;min-width:0!important;position:static!important}
+html body #stickyShell#stickyShell .kla-presence-badge{position:relative!important;display:block!important;width:36px!important;height:36px!important;min-height:0!important;padding:0!important;margin:0!important;opacity:1!important;filter:none!important;border:0!important;background:transparent!important}
+html body #stickyShell#stickyShell .v1402-shield-art{width:100%!important;height:100%!important;object-fit:contain!important}
+html body #stickyShell#stickyShell .v1402-shield-text{position:absolute!important;inset:0!important;display:flex!important;align-items:center!important;justify-content:center!important;color:#fff!important;font-size:11px!important;line-height:1!important;text-shadow:0 1px 3px #000!important}
+html body #stickyShell#stickyShell #klaConnectionCore:is(.local-mode,.shared-connected,.shared-syncing,.shared-paused,.shared-connecting){border-color:#aaa!important;box-shadow:none!important}
+html body #stickyShell#stickyShell #klaConnectionCore:is(.shared-error,.shared-disconnected){border-color:#f06469!important;box-shadow:0 0 5px #f0646966!important}
+html body #stickyShell#stickyShell .main-nav{display:flex!important;flex-wrap:wrap!important;gap:6px!important;min-width:0!important;min-height:44px!important;height:auto!important;padding:5px 8px!important;box-sizing:border-box!important}
+html body #stickyShell#stickyShell #subnav{display:flex!important;gap:4px!important;flex:1 1 400px!important;overflow-x:auto!important;min-width:0!important}
+html body #stickyShell#stickyShell #pageActions{display:flex!important;gap:4px!important;flex-wrap:wrap!important;justify-content:flex-end!important;min-width:0!important}
+html body #stickyShell#stickyShell :is(.subnav,.page-actions) button{min-height:32px!important;height:auto!important;padding:6px 9px!important;font-size:12px!important;white-space:nowrap!important;box-sizing:border-box!important}
+html body #stickyShell#stickyShell #statusStack{padding:5px 8px 8px!important;box-sizing:border-box!important}
+html body #stickyShell#stickyShell #statusStack>.status-bar{height:90px!important;min-height:90px!important;max-height:90px!important;grid-template-rows:30px 40px!important}
+html body .app-frame>footer.app-footer{position:static!important;inset:auto!important;height:auto!important;min-height:0!important;margin-top:auto!important;padding:6px!important;box-sizing:border-box!important;width:100%!important}
+html body .app-frame>footer.app-footer>.footer-system-row{display:grid!important;grid-template-columns:minmax(150px,1fr) minmax(150px,1fr) minmax(0,2fr) minmax(0,1.5fr)!important;gap:6px!important;width:100%!important;padding:0!important;box-sizing:border-box!important}
+html body .app-frame>footer.app-footer>.footer-system-row>.footer-system-cell{height:64px!important;min-height:64px!important;max-height:64px!important;padding:6px 8px!important;box-sizing:border-box!important;overflow:hidden!important;white-space:normal!important;font-size:12px!important;line-height:1.25!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:5px!important}
+html body .app-frame>footer.app-footer .footer-sync{flex-direction:column!important}
+html body .app-frame>footer.app-footer :is(.footer-data,.footer-sync-details,.footer-connection){display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important;white-space:normal!important;text-align:center!important;font-size:11px!important;line-height:1.2!important}
+html body .app-frame>footer.app-footer :is(#adminButton,#footerPresentationButton){font-size:12px!important;line-height:1.2!important;white-space:normal!important;height:100%!important;box-sizing:border-box!important}
+html body :is(#stickyShell button,footer.app-footer button):is(:hover,:focus-visible){outline:2px solid #ddd!important;outline-offset:-3px!important;filter:brightness(1.15)!important;transform:none!important}
+/* Equal-width columns; intrinsic normal-page height keeps content accessible. */
+html body:not(.presentation-mode) #app#app section.c11-tool-card .c11-card-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;align-items:stretch!important;gap:10px!important;height:auto!important;min-height:0!important;max-height:none!important}
+html body:not(.presentation-mode) #app#app section.c11-tool-card .c11-column{width:auto!important;min-width:0!important;height:auto!important;min-height:0!important;max-height:none!important;display:flex!important;flex-direction:column!important;gap:8px!important;overflow:visible!important}
+html body:not(.presentation-mode) #app#app section.c11-tool-card .c11-photo.b1313-unified-photo{height:280px!important;min-height:280px!important;max-height:280px!important;display:grid!important;grid-template-rows:38px minmax(0,1fr)!important}
+html body #app#app .b1226-photo-top{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,2fr)!important;min-height:0!important;gap:6px!important}
+html body #app#app .b1226-photo-tower{overflow:visible!important;min-height:0!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:4px!important;box-sizing:border-box!important}
+html body #app#app .b1226-photo-tower .b1229-tower{height:100%!important;width:100%!important;display:flex!important;align-items:center!important;justify-content:center!important;overflow:visible!important;min-height:0!important}
+html body #app#app .b1226-photo-tower .b1229-tower-image{position:static!important;width:auto!important;height:auto!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;transform:none!important}
+html body #app#app .b1226-photo-main,html body #app#app .v1210-photo-image{min-width:0!important;min-height:0!important;height:100%!important;overflow:hidden!important}
+html body #app#app .v1210-photo-image>img{width:100%!important;height:100%!important;object-fit:contain!important}
+html body #app#app :is(.c11-progress-row,.c11-status-card){min-width:0!important;box-sizing:border-box!important;overflow-wrap:anywhere!important;background-color:#080a0d!important;border-radius:12px!important}
+html body:not(.presentation-mode) #app#app .c11-status-column>.c11-status-card{flex:1 1 auto!important;height:auto!important;min-height:120px!important;max-height:none!important;overflow:visible!important;padding:12px!important}
+html body:not(.presentation-mode) #app#app .c11-progress-column>.c11-progress-row:not(.connected-brain){flex:1 1 auto!important;height:auto!important;min-height:104px!important;max-height:none!important;padding:12px!important;overflow:visible!important}
+html body #app#app :is(.c11-hero,.c11-lines,.c11-task,.c11-progress-row small){white-space:normal!important;max-height:none!important;overflow-wrap:anywhere!important;text-overflow:clip!important}
+html body #app#app :is(.c11-progress-track,.live-progress .track,.utc-progress .track){overflow:hidden!important;border-radius:8px!important;min-height:18px!important;position:relative!important;box-sizing:border-box!important}
+html body #app#app :is(.c11-progress-track>i,.c11-progress-track>.fill,.live-progress .fill,.utc-progress .fill,.hero-progress .fill,.family-progress .fill){background:var(--cc-silver)!important;filter:none!important;max-width:100%!important;min-width:0!important}
+html body #app#app .c11-progress-head{display:flex!important;justify-content:space-between!important;align-items:center!important;gap:6px!important;min-height:28px!important;white-space:normal!important;font-size:13px!important}
+html body #app#app .c11-progress-head strong{flex-shrink:0!important;font-size:inherit!important}
+html body #app#app .c11-badges{grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-auto-rows:76px!important;gap:8px!important}
+html body #app#app .b783-date-row{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;min-height:48px!important;height:auto!important}
+html body #app#app .b783-date-row>.b783-date-badge{height:100%!important;min-height:48px!important;box-sizing:border-box!important;min-width:0!important;white-space:normal!important;font-size:12px!important}
+/* Consistent summary geometry and full-size shipped overlay. */
+html body #app#app .quarter-summary-master{width:100%!important;max-width:100%!important;box-sizing:border-box!important;transform:none!important}
+html body #app#app .quarter-live-panel{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;padding:8px!important}
+html body #app#app .quarter-live-panel>.summary-grid{display:grid!important;grid-template-columns:repeat(8,minmax(0,1fr))!important;align-items:stretch!important;gap:6px!important;height:auto!important;min-height:0!important;overflow:visible!important}
+html body #app#app .quarter-live-panel .summary-box{height:88px!important;min-height:88px!important;max-height:88px!important;box-sizing:border-box!important;padding:6px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:4px!important;overflow:visible!important}
+html body #app#app .quarter-live-panel .summary-box span{font-size:12px!important;line-height:1.2!important;text-align:center!important;white-space:normal!important;min-height:29px!important}
+html body #app#app .quarter-live-panel .summary-box b{font-size:26px!important;line-height:1.1!important}
+html body #app#app .family-tool-icon{position:relative!important;overflow:visible!important}
+html body #app#app .family-tool-x{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;display:flex!important;align-items:center!important;justify-content:center!important;font-size:clamp(30px,4vw,70px)!important;line-height:1!important;color:#ff303b!important;pointer-events:none!important;text-shadow:0 1px 3px #000!important}
+html body #modal:has(.mystery-celebration){inset:0!important;padding:0!important;display:flex!important;align-items:stretch!important}
+html body #modal:has(.mystery-celebration) .modal-card{width:100vw!important;height:100dvh!important;max-width:none!important;max-height:none!important;box-sizing:border-box!important;border-radius:0!important;overflow:auto!important}
+html body #modal .mystery-celebration>img{max-width:100%!important;max-height:65dvh!important;object-fit:contain!important}
+/* Viewport-sized presentation; no transform or browser-zoom compensation. */
+html body.presentation-mode .app-frame{height:100dvh!important;min-height:0!important;display:flex!important;flex-direction:column!important;padding:0!important;transform:none!important;overflow:hidden!important}
+html body.presentation-mode :is(#stickyShell,#b71808StickySpacer,footer.app-footer){display:none!important;height:0!important;min-height:0!important;flex:0 0 0!important}
+html body.presentation-mode .body-shell{display:flex!important;flex:1 1 0!important;min-height:0!important;width:100%!important;padding:0!important;margin:0!important;overflow:hidden!important}
+html body.presentation-mode #app#app{display:flex!important;flex:1 1 0!important;flex-direction:column!important;gap:6px!important;width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;padding:6px!important;box-sizing:border-box!important;overflow:hidden!important}
+html body.presentation-mode #app#app>#screenshotReportTitle{display:none!important}
+html body.presentation-mode #app#app>.presentation-tool-only{flex:1 1 0!important;height:auto!important;min-height:0!important;max-height:none!important;padding:0!important;overflow:hidden!important}
+html body.presentation-mode #app#app .presentation-tool-only>.c11-tool-card{height:100%!important;min-height:0!important;max-height:100%!important;padding:0!important;overflow:hidden!important}
+html body.presentation-mode #app#app .c11-card-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important;height:100%!important;min-height:0!important;max-height:100%!important;overflow:hidden!important;box-sizing:border-box!important}
+html body.presentation-mode #app#app .c11-column{width:auto!important;min-width:0!important;height:100%!important;min-height:0!important;max-height:100%!important;padding:5px!important;display:flex!important;flex-direction:column!important;gap:4px!important;overflow:hidden!important;box-sizing:border-box!important}
+html body.presentation-mode #app#app .c11-identity-column>.c11-photo.b1313-unified-photo{flex:0 0 17%!important;display:grid!important;grid-template-rows:24px minmax(0,1fr)!important;height:17%!important;min-height:0!important;max-height:none!important;gap:2px!important;padding:2px!important}
+html body.presentation-mode #app#app .b133-priority-alias{height:24px!important;min-height:0!important;display:flex!important;gap:4px!important}
+html body.presentation-mode #app#app .b133-priority-alias>button{font-size:11px!important;height:24px!important;min-height:0!important;padding:3px!important;line-height:1.1!important}
+html body.presentation-mode #app#app .c11-identity-stack{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:4px!important;flex:0 0 auto!important}
+html body.presentation-mode #app#app .c11-identity-stack>.c11-id-badge{height:36px!important;min-height:36px!important;max-height:36px!important;padding:4px!important;box-sizing:border-box!important}
+html body.presentation-mode #app#app .c11-identity-stack>.c11-id-badge :is(small,strong){font-size:11px!important;line-height:1.1!important;white-space:normal!important;overflow-wrap:anywhere!important}
+html body.presentation-mode #app#app .b783-date-row{min-height:32px!important;height:32px!important;flex:0 0 32px!important;gap:4px!important}
+html body.presentation-mode #app#app .b783-date-row>.b783-date-badge{min-height:32px!important;height:32px!important;padding:3px!important;font-size:10px!important}
+html body.presentation-mode #app#app .b783-date-row>.b783-date-badge>*{font-size:10px!important;line-height:1.1!important}
+html body.presentation-mode #app#app :is(.c11-reduced,.c11-carry,.c11-update){height:24px!important;min-height:24px!important;max-height:24px!important;flex:0 0 24px!important;padding:3px!important;font-size:11px!important;line-height:1.1!important}
+html body.presentation-mode #app#app .c11-carry-placeholder{display:none!important}
+html body.presentation-mode #app#app .c11-identity-column>.c11-badge-region{flex:1 1 0!important;height:0!important;min-height:0!important;max-height:none!important;overflow:hidden!important}
+html body.presentation-mode #app#app .c11-badge-region>.c11-badges{height:100%!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:repeat(10,minmax(0,1fr))!important;grid-auto-rows:minmax(0,1fr)!important;gap:4px!important;min-height:0!important}
+html body.presentation-mode #app#app .c11-badges>.b761-uniform-badge{height:100%!important;min-height:0!important;max-height:100%!important;padding:3px!important;gap:2px!important;font-size:11px!important;overflow:hidden!important}
+html body.presentation-mode #app#app .c11-badges>.b761-uniform-badge :is(span,strong,small,em){font-size:10px!important;line-height:1.1!important}
+html body.presentation-mode #app#app .c11-status-column>.c11-status-card{flex:1 1 0!important;height:0!important;min-height:0!important;max-height:none!important;padding:8px!important;overflow:auto!important}
+html body.presentation-mode #app#app .c11-status-card .c11-hero{font-size:clamp(18px,1.7vw,30px)!important;line-height:1.1!important;margin:4px 0!important}
+html body.presentation-mode #app#app .c11-status-card :is(.sub,.c11-lines,.c11-task){font-size:12px!important;line-height:1.25!important}
+html body.presentation-mode #app#app .c11-status-card>.label{font-size:11px!important;line-height:1.2!important}
+html body.presentation-mode #app#app .c11-progress-column>.c11-progress-row:not(.connected-brain){flex:1 1 0!important;height:0!important;min-height:0!important;max-height:none!important;display:flex!important;flex-direction:column!important;justify-content:center!important;gap:3px!important;padding:5px!important;overflow:hidden!important}
+html body.presentation-mode #app#app .c11-progress-head{font-size:11px!important;min-height:14px!important;line-height:1.1!important}
+html body.presentation-mode #app#app .c11-progress-row:not(.connected-brain) small{font-size:11px!important;line-height:1.15!important}
+html body.presentation-mode #app#app .c11-progress-row .c11-progress-track{min-height:14px!important;height:14px!important;flex-shrink:0!important}
+html body.presentation-mode #app#app .connected-brain{flex:0 0 180px!important;height:180px!important;min-height:180px!important;max-height:180px!important;gap:4px!important;padding:8px!important}
+html body.presentation-mode #app#app .connected-brain :is(.brain-forecast,.brain-card-message){font-size:12px!important}
+html body.presentation-mode #app#app .presentation-inline-nav{position:static!important;inset:auto!important;flex:0 0 48px!important;height:48px!important;min-height:48px!important;max-height:48px!important;width:100%!important;margin:0!important;box-sizing:border-box!important;display:flex!important;gap:3px!important;padding:3px!important}
+html body.presentation-mode #app#app .presentation-inline-nav>.presentation-nav-cell{font-size:11px!important;white-space:normal!important;line-height:1.15!important;padding:3px!important;min-width:0!important;flex:1 1 0!important;height:100%!important}
+html body.presentation-mode #app#app>.quarter-summary-master{display:grid!important;grid-template-rows:minmax(100px,22fr) auto minmax(0,50fr) 48px!important;gap:6px!important;height:100%!important;min-height:0!important;overflow:hidden!important}
+html body.presentation-mode #app#app .quarter-summary-hero{height:100%!important;min-height:0!important;max-height:none!important}
+html body.presentation-mode #app#app .quarter-hero-metric>strong{font-size:clamp(38px,8vh,100px)!important;line-height:1!important}
+html body.presentation-mode #app#app .quarter-summary-family-wrap{min-height:0!important;height:100%!important;overflow:hidden!important}
+html body.presentation-mode #app#app .family-panel-v526{height:100%!important;min-height:0!important;display:flex!important;flex-direction:column!important;box-sizing:border-box!important;overflow:hidden!important}
+html body.presentation-mode #app#app .family-rows-scroll{flex:1 1 0!important;min-height:0!important;height:auto!important;overflow:auto!important}
+html body.presentation-mode #app#app .family-matrix{min-height:45px!important;height:calc(100% / var(--family-count,6))!important;box-sizing:border-box!important}
+html body.presentation-mode #app#app .quarter-live-panel .summary-box{height:64px!important;min-height:64px!important;max-height:64px!important}
+html body.presentation-mode #app#app .quarter-live-panel .summary-box span{font-size:10px!important;min-height:24px!important}
+html body.presentation-mode #app#app .quarter-live-panel .summary-box b{font-size:22px!important}
+html body.presentation-mode #app#app .quarter-mystery-strip{display:none!important}
+html body.presentation-mode #app#app .quarter-summary-switchbar{grid-row:4!important}
+@media(max-width:1100px){html body #stickyShell#stickyShell header.prototype-header{grid-template-columns:minmax(0,1fr) minmax(250px,1fr) minmax(0,1fr)!important}html body #stickyShell#stickyShell :is(.b1239-raiders-logo,.b1241-right-logo){width:40px!important;flex-basis:40px!important}html body .app-frame>footer.app-footer>.footer-system-row{grid-template-columns:repeat(2,minmax(0,1fr))!important}html body #app#app .quarter-live-panel>.summary-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
+@media(max-height:800px){html body.presentation-mode #app#app .connected-brain{flex-basis:155px!important;height:155px!important;min-height:155px!important;max-height:155px!important;gap:3px!important}html body.presentation-mode #app#app .connected-brain .brain-card-next{display:none!important}html body.presentation-mode #app#app .c11-identity-stack>.c11-id-badge{height:30px!important;min-height:30px!important;max-height:30px!important}}
+@media(max-width:800px){html body:not(.presentation-mode) #app#app section.c11-tool-card .c11-card-grid{grid-template-columns:minmax(0,1fr)!important}html body #stickyShell#stickyShell header.prototype-header{grid-template-columns:1fr minmax(240px,1fr)!important}html body #stickyShell#stickyShell .prototype-header-right{display:none!important}html body #statusStack .status-label strong{font-size:10px!important}html body #statusStack .status-message{font-size:12px!important}}
+html body #app#app .c11-badges>.b761-uniform-badge{grid-column:auto!important;grid-row:auto!important;align-self:stretch!important}
+html body:not(.presentation-mode) #app#app .c11-identity-stack{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-auto-rows:64px!important;gap:8px!important;min-height:0!important;height:auto!important}
+html body:not(.presentation-mode) #app#app .c11-identity-stack>.c11-id-badge{height:64px!important;min-height:64px!important;max-height:64px!important;box-sizing:border-box!important;background:#050505!important;padding:6px!important;font-size:13px!important}
+html body:not(.presentation-mode) #app#app .c11-status-column>.c11-status-card{padding-left:60px!important}
+html body.presentation-mode #app#app .c11-badges>.b761-uniform-badge{background-color:#050505!important;background-image:none!important}
+html body.screenshot-mode .app-frame>:is(#stickyShell,#b71808StickySpacer,footer.app-footer){display:none!important;height:0!important;min-height:0!important}
+html body.screenshot-mode .body-shell,html body.screenshot-mode #app#app{padding-top:0!important;margin-top:0!important;height:auto!important;max-height:none!important;overflow:visible!important}
+/* One measured spacer owns the normal-page header offset. */
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{height:auto!important;min-height:100dvh!important;padding-top:0!important;display:flex!important;flex-direction:column!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .body-shell{position:relative!important;top:auto!important;margin:0!important;padding:8px 8px 0!important;min-height:0!important;height:auto!important;max-height:none!important;overflow:visible!important}
+html body:not(.presentation-mode):not(.screenshot-mode) #app#app{height:auto!important;min-height:0!important;max-height:none!important;margin-top:0!important;overflow:visible!important;box-sizing:border-box!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>footer.app-footer{display:block!important;grid-template-rows:none!important}
+html body #stickyShell#stickyShell .kla-presence-badge{min-width:36px!important;max-width:36px!important;max-height:36px!important}
+html body #stickyShell#stickyShell #ccHeaderClock{font-size:10px!important;line-height:1.1!important;display:block!important;color:#ddd!important;white-space:nowrap!important}
+/* A full tool editor remains scrollable when entered from Presentation Mode. */
+html.presentation-tool-edit body.presentation-mode .app-frame,html body.presentation-editor-mode .app-frame{height:auto!important;min-height:100dvh!important;overflow:visible!important}
+html.presentation-tool-edit body.presentation-mode .body-shell,html body.presentation-editor-mode .body-shell{height:auto!important;min-height:0!important;overflow:visible!important;flex:1 1 auto!important}
+html.presentation-tool-edit body.presentation-mode #app#app,html body.presentation-editor-mode #app#app{height:auto!important;max-height:none!important;min-height:0!important;overflow:visible!important;flex:1 1 auto!important}
+
+
+.b788-save-confirm{margin-top:8px;padding:10px 12px;border:1px solid #27bfa5;border-radius:6px;color:#d5fff2;font-weight:700}

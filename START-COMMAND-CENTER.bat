@@ -1,7 +1,7 @@
 @echo off
 setlocal EnableExtensions
 cd /d "%~dp0"
-set "B7VERSION=V12.0.26"
+set "B7VERSION=V14.0.19"
 set "B7LOG=%TEMP%\B7-FI-Command-Center-server.log"
 title B7 FI COMMAND CENTER %B7VERSION% - STARTUP MONITOR
 color 0B
@@ -22,7 +22,7 @@ if not errorlevel 1 set "PYRUN=py"
 if not defined PYRUN (where python >nul 2>nul & if not errorlevel 1 set "PYRUN=python")
 if not defined PYRUN (echo [ERROR] Python is not available on PATH.& goto :failed)
 echo [INFO] Starting local HTTP server using %PYRUN% ...
-start "" "http://localhost:5500/"
+start "" powershell -NoProfile -WindowStyle Hidden -Command "for ($attempt=0; $attempt -lt 40; $attempt++) { try { $response=Invoke-WebRequest -UseBasicParsing -Uri 'http://localhost:5500/' -TimeoutSec 1; if ($response.StatusCode -eq 200) { Start-Process 'http://localhost:5500/'; exit } } catch {}; Start-Sleep -Milliseconds 250 }"
 echo [INFO] Browser launch requested. Microsoft sign-in and Lists status are verified in the browser.
 echo [INFO] This window remains open while the server is running.
 echo ------------------------------------------------------------
