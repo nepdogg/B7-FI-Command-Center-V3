@@ -34396,3 +34396,18 @@ html.presentation-tool-edit body.presentation-mode #app#app,html body.presentati
 
 
 .b788-save-confirm{margin-top:8px;padding:10px 12px;border:1px solid #27bfa5;border-radius:6px;color:#d5fff2;font-weight:700}
+/* V14.0.20 targeted regression recovery — preserve existing behavior */
+html body #stickyShell#stickyShell header.prototype-header{height:120px!important;min-height:120px!important;max-height:120px!important;grid-template-columns:minmax(0,1fr) minmax(320px,.92fr) minmax(0,1fr)!important}
+html body #stickyShell#stickyShell header.prototype-header>section{height:100%!important;min-height:0!important}
+html body #stickyShell#stickyShell .prototype-header-center{display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;overflow:hidden!important}
+html body #stickyShell#stickyShell .prototype-header-center>.prototype-kla-box{min-width:0!important;flex:1 1 auto!important}
+html body #stickyShell#stickyShell .v1420-mini-shield{display:block!important;position:relative!important;width:34px!important;height:45px!important;min-width:34px!important;flex:0 0 34px!important;object-fit:contain!important}
+html body #stickyShell#stickyShell :is(.b1239-raiders-logo,.b1241-right-logo){width:68px!important;height:82px!important;flex-basis:68px!important}
+html body:not(.presentation-mode) #app#app .c11-badges{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-auto-rows:minmax(58px,auto)!important;gap:8px!important;align-items:stretch!important}
+html body:not(.presentation-mode) #app#app .c11-badges>.b761-uniform-badge{grid-column:auto!important;grid-row:auto!important;box-sizing:border-box!important;width:100%!important;height:100%!important;min-height:58px!important;max-height:none!important;margin:0!important;padding:6px 7px!important;background:#050505!important;background-image:none!important;display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;text-align:center!important;overflow-wrap:anywhere!important;white-space:normal!important;line-height:1.2!important}
+html body:not(.presentation-mode) #app#app .c11-badges>.b761-uniform-badge :is(span,strong,small,em){white-space:normal!important;overflow-wrap:anywhere!important;max-width:100%!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame{min-height:100dvh!important;display:flex!important;flex-direction:column!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>.body-shell{flex:1 0 auto!important}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>footer.app-footer{position:relative!important;bottom:auto!important;flex:0 0 auto!important;margin-top:auto!important;width:100%!important;box-sizing:border-box!important}
+@media(max-width:1100px){html body #stickyShell#stickyShell header.prototype-header{grid-template-columns:minmax(0,1fr) minmax(270px,1fr) minmax(0,1fr)!important}html body #stickyShell#stickyShell .v1420-mini-shield{width:26px!important;min-width:26px!important;flex-basis:26px!important}}
+@media(max-width:800px){html body #stickyShell#stickyShell header.prototype-header{grid-template-columns:1fr minmax(240px,1fr)!important}html body #stickyShell#stickyShell .prototype-header-right{display:none!important}}
