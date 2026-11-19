@@ -1,35 +1,29 @@
 @echo off
 setlocal EnableExtensions
 cd /d "%~dp0"
-set "B7VERSION=V14.0.19"
-set "B7LOG=%TEMP%\B7-FI-Command-Center-server.log"
-title B7 FI COMMAND CENTER %B7VERSION% - STARTUP MONITOR
+title FI COMMAND CENTER V14.0.21 - SERVER
 color 0B
-echo ============================================================
-echo B7 FI COMMAND CENTER %B7VERSION% - STARTUP MONITOR
-echo ============================================================
-echo [INFO] Folder: %CD%
-echo [INFO] URL: http://localhost:5500/
-echo [INFO] Server log: %B7LOG%
-if not exist "index.html" (echo [ERROR] index.html is missing.& goto :failed)
-echo [OK] Application entry file found.
-powershell -NoProfile -Command "try { $c=New-Object System.Net.Sockets.TcpClient('127.0.0.1',5500); $c.Close(); exit 0 } catch { exit 1 }" >nul 2>nul
-if not errorlevel 1 (echo [ERROR] Port 5500 is already in use. Close the previous server.& goto :failed)
-echo [OK] Port 5500 available.
-set "PYRUN="
-where py >nul 2>nul
-if not errorlevel 1 set "PYRUN=py"
-if not defined PYRUN (where python >nul 2>nul & if not errorlevel 1 set "PYRUN=python")
-if not defined PYRUN (echo [ERROR] Python is not available on PATH.& goto :failed)
-echo [INFO] Starting local HTTP server using %PYRUN% ...
-start "" powershell -NoProfile -WindowStyle Hidden -Command "for ($attempt=0; $attempt -lt 40; $attempt++) { try { $response=Invoke-WebRequest -UseBasicParsing -Uri 'http://localhost:5500/' -TimeoutSec 1; if ($response.StatusCode -eq 200) { Start-Process 'http://localhost:5500/'; exit } } catch {}; Start-Sleep -Milliseconds 250 }"
-echo [INFO] Browser launch requested. Microsoft sign-in and Lists status are verified in the browser.
-echo [INFO] This window remains open while the server is running.
-echo ------------------------------------------------------------
-%PYRUN% -u -m http.server 5500 --bind localhost 2>&1
-set "B7EXIT=%errorlevel%"
-echo [ERROR] Server exited with code %B7EXIT%.
-:failed
-echo Press any key to close this window.
-pause >nul
-exit /b 1
+echo FI COMMAND CENTER V14.0.21
+echo URL: http://localhost:5500/
+if not exist "command-center-server.py" goto :missing
+py -3 --version >nul 2>nul
+if not errorlevel 1 goto :usepy
+python --version >nul 2>nul
+if not errorlevel 1 goto :usepython
+echo [ERROR] A working Python installation was not found.
+echo Install Python 3 or contact your IT support, then run this file again.
+goto :finish
+:usepy
+py -3 -u "command-center-server.py"
+goto :finish
+:usepython
+python -u "command-center-server.py"
+goto :finish
+:missing
+echo [ERROR] command-center-server.py is missing.
+echo Extract the complete ZIP to a normal folder before starting.
+:finish
+echo.
+echo If the browser did not open, read the status messages above.
+pause
+endlocal
