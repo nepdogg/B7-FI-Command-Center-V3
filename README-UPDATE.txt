@@ -1,43 +1,36 @@
-FI COMMAND CENTER V14.0.21 — REGRESSION AND STARTUP REPAIRS
-Based directly on your uploaded V14.0.20 Regression Repair.
+FI COMMAND CENTER V14.0.22 — LAYOUT RESTORATION TEST
+Based on V14.0.21 functionality and the earlier V14.0.17 styling baseline.
 
-CHANGES IN THIS VERSION
-- Preserves V14.0.20's larger 120px header. Corrects the bundled script that still forced it to 96px after rendering.
-- Preserves two static mini Raider shields in the center header, including Local Mode. Uses the transparent mini-shield asset. Connected-user badges remain separate.
-- Makes the tool-badge rows uniformly 84px with equal 8px gaps and black backgrounds. V14.0.20's auto-sized rows could differ in height. Wafer and equipment badges keep their normal grid cells.
-- Restores the System Wafers kit-status text alongside the additional FI wafer counts. The underlying kit data is unchanged.
-- Retains the nonsticky footer and consistent-height cells, with the footer after page content.
-- Removes an obsolete malformed UTC CSS fragment found during structural checking.
-- Corrects the runtime version constant, title, header, footer and startup labels to V14.0.21.
-- Replaces the PowerShell-based startup/browser sequence with a standard-library Python launcher. Tests an actual Python interpreter, checks required files, starts the server, then requests the browser.
-- Reports a conflicting older server instead of silently opening it; reuses an already running V14.0.21 server. Displays the URL if browser launch is blocked.
-- Adds no-cache headers and a read-only local version endpoint.
-- Complete ZIP includes the unchanged assets and icon from your supplied V14.0.17 package. Your V14.0.20 ZIP contained no assets. The small update ZIP requires your existing assets folder.
+WHY V14.0.21 LOOKED WRONG
+The new normal-page layout stretched the status and progress panels to fill the much taller two-column badge area. Generic progress-panel rules also affected the Brain heading. The image selected for the static mini Raider logos was actually an empty shield outline. These were layout regressions introduced in the updates, not a reason to change your tool data or browser zoom.
 
-PRESERVED FROM V14.0.20
-Command Center Brain section, click-through tool intelligence, separated status-message sources, forecasts with pending states, silver progress fills, automatic Powered Down tower state, shared-data comparison/merge safeguards, shared settings/volunteers, and prior presentation repairs. Existing browser data keys remain unchanged. One application CSS, one application JS, one README.
+CHANGES FOR YOUR SCREENSHOTS
+- Removes the broad V14.0.19 normal-page geometry overrides and the V14.0.20/21 badge-size overrides. Uses the earlier styling as the base.
+- Restores the earlier 156px header size in both CSS and the runtime header enforcer.
+- Uses the actual Raider logo for both static mini logos, rather than the blank outline asset. Connected-user initial badges remain separate.
+- Lays out the KLA logo, connection labels and date/time in normal document flow inside the center panel; removes competing absolute positioning and extra pseudo-elements there.
+- Restores three tool-badge columns and one 64px height for ordinary, wafer and equipment badge cells. Identity and FI date cells also use 64px. Black backgrounds and equal 6px gaps.
+- Stops middle and right cards from expanding to hundreds of pixels merely to fill the left column. Cards size from their content with deliberate minimum heights.
+- Reserves icon space in status headings. Icons no longer sit on top of the tool name or large status text.
+- Reduces progress-track margins and restores compact progress panels.
+- Gives the Command Center Brain its own heading and track classes. The legacy overall-progress panel styles cannot clip the Brain header. Its full section remains clickable.
+- Restores a compact, consistent 52px footer row after the content. It remains nonsticky. Text can wrap; disconnected text is no longer falsely green.
+- Removes duplicate decorative status dots and keeps critical counts highlighted during message rotation.
+- Updates all runtime and visible version labels to V14.0.22.
 
-VALIDATION
-Passed JavaScript syntax and Python compilation checks.
-Passed focused logic tests for canonical comparisons, disjoint field merges, same-field conflict rejection, shared weekend metadata, weighted progress, blocker/pending forecasts, card/detail consistency, text escaping, and all eight tower states.
-Passed launcher checks for required files, browser success/fallback, same-version reuse and older-version collision handling.
-Passed actual local HTTP requests for the version endpoint, index, no-cache headers, JavaScript MIME/version and shield asset.
-Passed CSS structural checks, local asset references and ZIP integrity.
+PRESERVED
+Tool data format, browser storage keys, shared saves, priorities, volunteers, Brain calculations and click-through, forecast logic, all eight Signal Tower states, silver fills, System Wafers kit-status/counts, and the V14.0.21 Python startup launcher. No new shared fields or data migrations were introduced by this layout repair. One application CSS, one application JS, one README.
 
-LIMITS / OUTSTANDING VERIFICATION
-The browser engine is blocked in this environment, so rendered fit, zoom, hover and presentation have not been visually verified. Windows browser launch and your KLA Microsoft List connection cannot be verified on this Linux host. Live two-laptop synchronization remains a field test.
-The newer badge-completion rules and options-tracker/rack-label discussion from the other chat are not fully available here. This release does not add an options tracker or invent new completion rules from partial notes.
+VERIFICATION
+JavaScript syntax and Python compilation passed. Focused execution checks passed for shared comparisons/merges, conflict rejection, weekend metadata, weighted progress, blocker forecasts, Brain card/detail output and all eight tower states. Source-contract checks confirm the restored header height, real logo references, original-size badge grid, removal of the stretching layer, independent Brain classes, and matching version labels. Local HTML/CSS image references and CSS structure passed. The two shield artwork files were inspected directly, identifying the empty-outline mistake.
+Rendered browser verification is NOT complete. Local Chromium is blocked and the remote preview cannot access the local server. No KLA Microsoft List connection was made. Do not treat this as a claim that all screen sizes or live work-laptop behavior have passed.
 
-INSTALL COMPLETE PACKAGE
-1. Extract the complete ZIP into a NEW normal folder. Do not run from inside the ZIP. No manual asset copying is needed.
-2. Close the previous Command Center server window.
-3. Run START-COMMAND-CENTER.bat. Keep its status window open while using the application.
-4. If browser launch is blocked, open http://localhost:5500/ manually.
-5. Confirm V14.0.21 and press Ctrl+F5 once.
-6. Opening index.html directly remains available for a local visual check, but Microsoft sign-in requires the localhost server.
+INSTALL — GITHUB PAGES
+Your screenshots show GitHub Pages. Replace index.html, css/command-center.css and js/command-center.js from the SAME V14.0.22 package in your repository. Keep the assets directory. Do not mix files from different versions. Once Pages updates, use Ctrl+F5 and confirm V14.0.22.
 
-INSTALL SMALL UPDATE
-Make a copy of your complete existing V14.0.17–V14.0.20 folder. Extract the small update into that copy and replace matching files. The copied folder must retain its assets directory and icon. Then follow steps 2–5 above.
+INSTALL — LOCAL WINDOWS
+Extract the full ZIP into a NEW folder, close the previous server, and run START-COMMAND-CENTER.bat. The full ZIP includes assets. For the small update, extract over a COPY of your existing complete folder and replace matching files; retain its assets and icon. If browser launch is blocked, manually open http://localhost:5500/ . Direct index.html is a local visual check only; Microsoft sign-in requires localhost.
 
-FIRST FIELD CHECK
-Confirm the 120px header, two center shields, equal badge heights/gaps, wafer kit text, footer position, and the Brain/tower controls. Check both presentation modes. Then test a harmless save on each work laptop and confirm the other laptop receives the verified changes. Merely opening this build does not import test tools into your List.
+COMPARE FIRST
+Check the top and bottom of Live Operations: header center text and two real logos, three-column equal-height badges, status-heading icon spacing, compact right-side progress panels, complete Brain heading, and footer row. Then check presentation separately. Use the test data already present; this package does not automatically publish test tools to your List.
+The newer options-tracker and badge-completion requirements from the other chat remain outside this targeted visual repair because their full specification was not supplied here.
