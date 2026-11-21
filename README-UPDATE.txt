@@ -1,36 +1,31 @@
-FI COMMAND CENTER V14.0.22 — LAYOUT RESTORATION TEST
-Based on V14.0.21 functionality and the earlier V14.0.17 styling baseline.
+FI COMMAND CENTER V14.0.23 — SECTION FORMATTING / SIGNAL TOWER
+Formatting update based on V14.0.22. No tool-data migration.
 
-WHY V14.0.21 LOOKED WRONG
-The new normal-page layout stretched the status and progress panels to fill the much taller two-column badge area. Generic progress-panel rules also affected the Brain heading. The image selected for the static mini Raider logos was actually an empty shield outline. These were layout regressions introduced in the updates, not a reason to change your tool data or browser zoom.
+CHANGES
+- Restores TWO operational badge columns.
+- Every badge uses label LEFT and value RIGHT, with one 64px height and equal 6px gaps. Black backgrounds remain.
+- System Wafers and computer/component badges use the same cell size. Their detail lines stay within the value side.
+- Middle and right sections distribute through the common card height so the three column bottoms align. Removes the early-ending sections/large empty column areas shown in the V14.0.22 screenshots.
+- Separates the Priority/Alias row from the photo/tower row. The photo area can no longer consume the height allocated to the heading.
+- Explicitly bounds tower, wrapper and image heights to the photo row. The full tower PNG uses object-fit:contain, including the bottom state label and icon.
+- Tool photo also uses contain fitting. The photograph and tower share the same media-row height.
+- Retains the dedicated Command Center Brain section and click-through.
+- Header/footer styling is retained from V14.0.22; this release does not introduce another header/footer redesign.
+- Runtime version and startup labels updated to V14.0.23.
 
-CHANGES FOR YOUR SCREENSHOTS
-- Removes the broad V14.0.19 normal-page geometry overrides and the V14.0.20/21 badge-size overrides. Uses the earlier styling as the base.
-- Restores the earlier 156px header size in both CSS and the runtime header enforcer.
-- Uses the actual Raider logo for both static mini logos, rather than the blank outline asset. Connected-user initial badges remain separate.
-- Lays out the KLA logo, connection labels and date/time in normal document flow inside the center panel; removes competing absolute positioning and extra pseudo-elements there.
-- Restores three tool-badge columns and one 64px height for ordinary, wafer and equipment badge cells. Identity and FI date cells also use 64px. Black backgrounds and equal 6px gaps.
-- Stops middle and right cards from expanding to hundreds of pixels merely to fill the left column. Cards size from their content with deliberate minimum heights.
-- Reserves icon space in status headings. Icons no longer sit on top of the tool name or large status text.
-- Reduces progress-track margins and restores compact progress panels.
-- Gives the Command Center Brain its own heading and track classes. The legacy overall-progress panel styles cannot clip the Brain header. Its full section remains clickable.
-- Restores a compact, consistent 52px footer row after the content. It remains nonsticky. Text can wrap; disconnected text is no longer falsely green.
-- Removes duplicate decorative status dots and keeps critical counts highlighted during message rotation.
-- Updates all runtime and visible version labels to V14.0.22.
+VALIDATION
+JavaScript functions are identical to V14.0.22 apart from version strings. JavaScript syntax and Python compilation passed. Focused regression checks for shared-field merges/conflicts, weekend metadata, Brain progress/forecasts and eight tower states passed. CSS structural checks and all local HTML/CSS asset references passed. Separate-row and contain-fit rules were checked, including fit calculations for all eight PNG tower assets. ZIP integrity checked.
+These are source/logic checks. Rendered browser verification is still unavailable in this environment, and no KLA List connection was made. Full visible tower labels, text fit, shared work-laptop behavior and presentation must still be checked on your actual screens. This is not a claim that an exact match to an unavailable last-good ZIP has been visually proven.
 
-PRESERVED
-Tool data format, browser storage keys, shared saves, priorities, volunteers, Brain calculations and click-through, forecast logic, all eight Signal Tower states, silver fills, System Wafers kit-status/counts, and the V14.0.21 Python startup launcher. No new shared fields or data migrations were introduced by this layout repair. One application CSS, one application JS, one README.
+FULL PACKAGE
+This ZIP includes assets and the icon. Keep your current folder as a backup, then extract the full ZIP into a new normal folder. Close the old server and run START-COMMAND-CENTER.bat. If the browser does not open, visit http://localhost:5500/ manually. Confirm V14.0.23 and refresh with Ctrl+F5.
 
-VERIFICATION
-JavaScript syntax and Python compilation passed. Focused execution checks passed for shared comparisons/merges, conflict rejection, weekend metadata, weighted progress, blocker forecasts, Brain card/detail output and all eight tower states. Source-contract checks confirm the restored header height, real logo references, original-size badge grid, removal of the stretching layer, independent Brain classes, and matching version labels. Local HTML/CSS image references and CSS structure passed. The two shield artwork files were inspected directly, identifying the empty-outline mistake.
-Rendered browser verification is NOT complete. Local Chromium is blocked and the remote preview cannot access the local server. No KLA Microsoft List connection was made. Do not treat this as a claim that all screen sizes or live work-laptop behavior have passed.
+GITHUB PAGES
+Your screenshots show GitHub Pages. Update index.html, css/command-center.css and js/command-center.js together from this package. Keep the assets folder. After Pages finishes updating, press Ctrl+F5 and verify the tab/header both show V14.0.23. Do not mix HTML/CSS/JS from different versions.
 
-INSTALL — GITHUB PAGES
-Your screenshots show GitHub Pages. Replace index.html, css/command-center.css and js/command-center.js from the SAME V14.0.22 package in your repository. Keep the assets directory. Do not mix files from different versions. Once Pages updates, use Ctrl+F5 and confirm V14.0.22.
-
-INSTALL — LOCAL WINDOWS
-Extract the full ZIP into a NEW folder, close the previous server, and run START-COMMAND-CENTER.bat. The full ZIP includes assets. For the small update, extract over a COPY of your existing complete folder and replace matching files; retain its assets and icon. If browser launch is blocked, manually open http://localhost:5500/ . Direct index.html is a local visual check only; Microsoft sign-in requires localhost.
-
-COMPARE FIRST
-Check the top and bottom of Live Operations: header center text and two real logos, three-column equal-height badges, status-heading icon spacing, compact right-side progress panels, complete Brain heading, and footer row. Then check presentation separately. Use the test data already present; this package does not automatically publish test tools to your List.
-The newer options-tracker and badge-completion requirements from the other chat remain outside this targeted visual repair because their full specification was not supplied here.
+CHECK FIRST
+1. On Live Operations, confirm two badge columns and left/right text alignment.
+2. Check the Signal Tower's entire bottom label for Packing, Shipped and Powered Off states.
+3. Scroll to the bottom: confirm all three column edges align and Brain is visible.
+4. Check Tool Card/Quarter Summary presentation separately.
+This formatting release does not add the incompletely specified options tracker or new badge-completion workflows from the other chat.
