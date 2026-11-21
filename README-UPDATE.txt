@@ -1,18 +1,14 @@
-FI COMMAND CENTER V14.0.24 — HEADER AND SIGNAL TOWER REPAIR
+FI COMMAND CENTER V14.0.25 — CENTER HEADER / USER SHIELDS
 
-Changes from V14.0.23:
-- Enlarged center KLA logo; connection labels share one readable line.
-- Removed the standalone divider and inner red rectangle. Disconnection marks the center panel.
-- Restored two user shields: own initials and additional active-user count. Signed-out users show a dash.
-- Replaced conflicting tower lighting overlays with a single scalable canvas containing the complete original tower artwork and the correctly positioned active light.
-- All seven lights, status label and border scale together; powered-down artwork has no active light.
-- Existing badge layout, operational sections, Brain panel, data and sync logic retained.
+Changes from V14.0.24:
+- Restored the existing EMPTY mini Raiders shield artwork.
+- Each user badge is a separate circle positioned INSIDE its shield.
+- Left shield shows signed-in initials; right shield shows additional active users.
+- Explicitly positioned the KLA logo, date/time and connection text in centered rows, removing inherited grid placements.
+- Signal tower, tool badges, Brain and operational sections retained from V14.0.24.
 
 INSTALL
-Keep your current folder as a backup. Extract this full ZIP into a new normal folder. Close the old command-center server and run START-COMMAND-CENTER.bat. Confirm V14.0.24.
+Extract the complete ZIP into a new folder. Close the old server before running START-COMMAND-CENTER.bat.
+For GitHub Pages replace index.html, css/command-center.css and js/command-center.js together. Keep assets. After deployment press Ctrl+F5 and confirm V14.0.25.
 
-GITHUB PAGES
-Update index.html, css/command-center.css and js/command-center.js together. Keep the existing assets folder (the full package also includes it). Wait for Pages to finish, then press Ctrl+F5. Confirm V14.0.24 in the header.
-
-CHECKS
-JavaScript syntax and regression checks passed, including all eight tower states and user badge states. Browser rendering could not be verified in this environment.
+JavaScript syntax and regression checks passed. Browser appearance has not been verified in this environment.
