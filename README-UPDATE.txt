@@ -1,12 +1,15 @@
-FI COMMAND CENTER V14.0.26
+FI COMMAND CENTER V14.0.27 — REALISTIC SIGNAL TOWER
 
-Changes from V14.0.25:
-- Rebuilt the signal tower as a scalable vector UI component. The outer frame is inset on every side so no state uses the cropped bitmap edge.
-- Seven lamp segments with exactly one active lamp. Powered-down state has no active lamp. Inactive lamps are dark gray.
-- Center header shield/logo group constrained to 390px and centered, moving the shields inward beside the KLA logo. Round user badges remain inside the empty shields.
-- Left/right header panels and operational sections retained.
+- New photorealistic chrome housing and detailed LED lenses.
+- One master image shared by all states; only the selected lamp region is illuminated. Powered down has no illuminated lamp.
+- Taller 480px photo/tower section and reduced tower padding fill more space.
+- Larger KLA mark on tower base; larger status text below tower.
+- Center header KLA logo enlarged to 230x72px.
+- Existing shields, user badges, operational sections and data logic retained.
 
-INSTALL: extract into a new folder. Close old server before START-COMMAND-CENTER.bat.
-GITHUB PAGES: replace index.html, css/command-center.css and js/command-center.js together. Keep assets. After deployment press Ctrl+F5 and confirm V14.0.26.
+INSTALL: extract full ZIP into new folder; close old server before START-COMMAND-CENTER.bat.
+GITHUB PAGES: update index.html, css/command-center.css, js/command-center.js AND assets/signal-towers/realistic-master-v27.png. Refresh with Ctrl+F5 after deployment and confirm V14.0.27.
 
-Code checks passed including all eight tower states and the single-active-light invariant. Live browser appearance remains unverified.
+Code checks passed for all eight states, single-light behavior and version consistency. Generated artwork was inspected; live browser rendering remains unverified.
+
+Artwork: built-in image generation, edited from original critical tower. Prompt: realistic chrome seven-segment tower, detailed LED lenses, all lights unlit smoke gray, no text or border, pure black background, entire tower visible. Runtime adds the selected lamp color, KLA mark and readable status.
