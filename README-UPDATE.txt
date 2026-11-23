@@ -1,16 +1,16 @@
-FI COMMAND CENTER V14.0.31 — SIGNAL LIGHTING CONTROL REPAIR
+FI COMMAND CENTER V14.0.32 — VERSION B SIGNAL TOWER
 
-- Brightness now controls active-lamp intensity in Steady and Pulse modes.
-- Glow intensity now controls halo strength and blur on the current realistic tower.
-- Pulse duration and Smooth/Double Flash use the current active lamp.
-- OFF hides the active illumination while preserving tool status; powered down always has no active lamp.
-- APPLY previews adjustments without saving.
-- SAVE applies and persists settings on this browser.
-- CLOSE, Escape, or clicking outside discards unsaved adjustments and restores saved settings.
-- Settings panel scrolls when necessary to keep actions reachable.
-- Separate TOOL STATUS title from V14.0.30 retained. Header center and other sections retained.
+- Replaced tower with selected Version B: brushed stainless steel, honeycomb LED lenses, chrome rings and wide screw-mounted KLA+ base.
+- Removed top TOOL STATUS badge.
+- New broad silver status badge matches Version B concept, with active-color text.
+- Wider tower column to accommodate the broad base.
+- One active light at a time; powered down has none.
+- Apply / Save / Close lighting controls, brightness, glow, pulse duration and pattern retained.
+- Header center retained.
 
-GITHUB PAGES: update index.html, css/command-center.css and js/command-center.js together. Keep assets, including realistic-master-v27.png. Refresh Ctrl+F5 after deployment and confirm V14.0.31.
-LOCAL: extract full ZIP into a new folder. Close the old server before START-COMMAND-CENTER.bat.
+IMPORTANT: This version includes a NEW required image.
+GITHUB PAGES: replace index.html, css/command-center.css, js/command-center.js AND add assets/signal-towers/version-b-master-v32.png. Keep all other assets. Refresh Ctrl+F5 after deployment and confirm V14.0.32.
+LOCAL: extract full ZIP into a new folder; close old server before START-COMMAND-CENTER.bat.
 
-CHECKS: JavaScript syntax; all eight tower states; single-light behavior; Apply without storage; Save persistence; Close restoration; failed-save handling; brightness/glow endpoints. All passed. Live browser rendering remains unverified.
+Code checks passed for eight tower states, single active light, removal of top badge, and lighting preview/save/close. Live browser rendering remains unverified.
+Artwork: built-in image generation derived from selected concept B. Prompt preserved B brushed metal, honeycomb lenses and broad KLA base, with seven unlit neutral lenses so the application can illuminate only the selected state.
