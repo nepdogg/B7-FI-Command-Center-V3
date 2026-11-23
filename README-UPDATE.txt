@@ -1,14 +1,16 @@
-FI COMMAND CENTER V14.0.29 — SIGNAL TOWER CAPS AND SILVER STATUS BADGE
+FI COMMAND CENTER V14.0.31 — SIGNAL LIGHTING CONTROL REPAIR
 
-- Taller realistic chrome top and bottom sections, retaining the same overall tower height.
-- TOOL STATUS title centered on the top chrome section.
-- KLA mark centered within taller chrome base.
-- Bottom status badge uses Alias-style silver gradient, silver outline and rounded corners.
-- Status text retains active lamp color, with a thin dark edge for readability.
-- One active lamp remains enforced; powered down has none.
-- Header center and other operational sections retained.
+- Brightness now controls active-lamp intensity in Steady and Pulse modes.
+- Glow intensity now controls halo strength and blur on the current realistic tower.
+- Pulse duration and Smooth/Double Flash use the current active lamp.
+- OFF hides the active illumination while preserving tool status; powered down always has no active lamp.
+- APPLY previews adjustments without saving.
+- SAVE applies and persists settings on this browser.
+- CLOSE, Escape, or clicking outside discards unsaved adjustments and restores saved settings.
+- Settings panel scrolls when necessary to keep actions reachable.
+- Separate TOOL STATUS title from V14.0.30 retained. Header center and other sections retained.
 
-Update index.html, css/command-center.css and js/command-center.js together. Keep assets, including assets/signal-towers/realistic-master-v27.png. Refresh Ctrl+F5 after deployment and confirm V14.0.29.
-Local: extract full ZIP to new folder; close old server before START-COMMAND-CENTER.bat.
+GITHUB PAGES: update index.html, css/command-center.css and js/command-center.js together. Keep assets, including realistic-master-v27.png. Refresh Ctrl+F5 after deployment and confirm V14.0.31.
+LOCAL: extract full ZIP into a new folder. Close the old server before START-COMMAND-CENTER.bat.
 
-JavaScript syntax and regression checks passed, including all eight states. Live browser appearance remains unverified.
+CHECKS: JavaScript syntax; all eight tower states; single-light behavior; Apply without storage; Save persistence; Close restoration; failed-save handling; brightness/glow endpoints. All passed. Live browser rendering remains unverified.
