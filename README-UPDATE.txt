@@ -1,12 +1,12 @@
-FI COMMAND CENTER V14.0.37 — HEADER CONNECTION LINE
+FI COMMAND CENTER V14.0.38 — LARGER CENTER LOGO AND SYNC TEXT
 
-- Mode and connection text moved to one centered line across the full bottom of the center panel.
-- Status colors: connected green, disconnected/error red, local neutral; connecting amber.
-- Removed red border/glow around center panel; neutral metallic frame retained.
-- Corrected footer matching so DISCONNECTED is not classified as CONNECTED. Footer error color matches header.
-- Existing KLA logo, shields, tower and lighting controls retained.
+- Taller header KLA logo, tightly framed to reduce unused image margins.
+- Larger sync-status text sized to fit the full center-panel width on one line.
+- Dedicated 26px status line and safety margin to prevent clipping.
+- Existing centered shields, connection colors, neutral frame and tower retained.
 
-GITHUB PAGES: update index.html, css/command-center.css and js/command-center.js together. Keep assets. Refresh Ctrl+F5 and confirm V14.0.37.
+NEW HEADER ASSET REQUIRED: assets/kla-header-tall-v38.svg.
+GITHUB PAGES: update index.html, css/command-center.css and js/command-center.js together and include that new SVG asset. Keep remaining assets. Refresh Ctrl+F5 and confirm V14.0.38.
 LOCAL: extract full ZIP to new folder; close old server before START-COMMAND-CENTER.bat.
 
-Code checks passed. Live browser rendering remains unverified.
+Code checks passed. Browser rendering remains unverified.
