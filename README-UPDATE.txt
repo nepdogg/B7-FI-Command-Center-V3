@@ -1,14 +1,14 @@
-FI COMMAND CENTER V14.0.28 — SIGNAL TOWER DETAIL REFINEMENT
+FI COMMAND CENTER V14.0.29 — SIGNAL TOWER CAPS AND SILVER STATUS BADGE
 
-- Removed the outer colored tower frame.
-- Widened realistic tower body by 18% inside the existing tower area.
-- Centered KLA mark vertically on chrome base.
-- Replaced the bottom status section with a black metallic badge, silver outline and rounded corners matching the Priority badge style.
-- Status text matches active light color. Removed the extra symbol line.
-- Existing single-active-light behavior retained, with no lights when powered down.
-- Header center layout retained from V14.0.27.
+- Taller realistic chrome top and bottom sections, retaining the same overall tower height.
+- TOOL STATUS title centered on the top chrome section.
+- KLA mark centered within taller chrome base.
+- Bottom status badge uses Alias-style silver gradient, silver outline and rounded corners.
+- Status text retains active lamp color, with a thin dark edge for readability.
+- One active lamp remains enforced; powered down has none.
+- Header center and other operational sections retained.
 
-GITHUB PAGES: update index.html, css/command-center.css, js/command-center.js together and include assets/signal-towers/realistic-master-v27.png if not already installed. Refresh Ctrl+F5 and confirm V14.0.28.
-LOCAL: extract full ZIP into new folder; close old server before running START-COMMAND-CENTER.bat.
+Update index.html, css/command-center.css and js/command-center.js together. Keep assets, including assets/signal-towers/realistic-master-v27.png. Refresh Ctrl+F5 after deployment and confirm V14.0.29.
+Local: extract full ZIP to new folder; close old server before START-COMMAND-CENTER.bat.
 
-Code checks passed for all eight tower states, one active lamp and the revised badge/frame geometry. Browser rendering remains unverified.
+JavaScript syntax and regression checks passed, including all eight states. Live browser appearance remains unverified.
