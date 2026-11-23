@@ -1,12 +1,14 @@
-FI COMMAND CENTER V14.0.33 — OFFICIAL LOGO AND BRIGHTER LAMPS
+FI COMMAND CENTER V14.0.34 — PLAIN BASE / SATURATED BRIGHT LIGHTS
 
-- Official KLA+ image centered on an inset black plate on the Version B tower base, covering the generated plain lettering.
-- Increased active lens output and brightness gain.
-- Brightness slider now extends to 200% for additional intensity.
-- Apply, Save, Close and glow/pulse controls retained.
-- One active lamp at a time, zero when powered down. No top title badge.
+- Removed tower base logo and black inset plate; base is plain brushed metal.
+- New unbranded Version B artwork.
+- Brightness boosts neutral LED luminance before applying the selected signal color. Removed the final brightness filter that caused washed-out colors.
+- Brightness remains adjustable from 10% to 200%, with separate glow intensity.
+- Silver status badge, one active light, powered-down all-off behavior and Apply/Save/Close retained.
+- Header center retained, including its KLA logo.
 
-GITHUB PAGES: replace index.html, css/command-center.css, js/command-center.js together. Keep assets including version-b-master-v32.png and kla-plus-official.png. Refresh Ctrl+F5 and confirm V14.0.33. Open LIGHTS, adjust Brightness, Apply to preview, Save to retain.
-LOCAL: extract full ZIP into a new folder; close old server before START-COMMAND-CENTER.bat.
+IMPORTANT NEW IMAGE REQUIRED:
+Update index.html, css/command-center.css, js/command-center.js and assets/signal-towers/version-b-unbranded-v34.png. Keep other assets. After GitHub Pages deployment refresh Ctrl+F5 and confirm V14.0.34.
+Local: extract full ZIP to new folder; close old server before START-COMMAND-CENTER.bat.
 
-Code checks passed for all eight states, single active lamp, lighting actions and 200% range. Live browser appearance remains unverified.
+Code checks passed for eight states, single-light behavior, lighting controls, gain changes and color ratios. Generated artwork inspected. Live browser rendering remains unverified.
