@@ -1,16 +1,12 @@
-FI COMMAND CENTER V14.0.32 — VERSION B SIGNAL TOWER
+FI COMMAND CENTER V14.0.33 — OFFICIAL LOGO AND BRIGHTER LAMPS
 
-- Replaced tower with selected Version B: brushed stainless steel, honeycomb LED lenses, chrome rings and wide screw-mounted KLA+ base.
-- Removed top TOOL STATUS badge.
-- New broad silver status badge matches Version B concept, with active-color text.
-- Wider tower column to accommodate the broad base.
-- One active light at a time; powered down has none.
-- Apply / Save / Close lighting controls, brightness, glow, pulse duration and pattern retained.
-- Header center retained.
+- Official KLA+ image centered on an inset black plate on the Version B tower base, covering the generated plain lettering.
+- Increased active lens output and brightness gain.
+- Brightness slider now extends to 200% for additional intensity.
+- Apply, Save, Close and glow/pulse controls retained.
+- One active lamp at a time, zero when powered down. No top title badge.
 
-IMPORTANT: This version includes a NEW required image.
-GITHUB PAGES: replace index.html, css/command-center.css, js/command-center.js AND add assets/signal-towers/version-b-master-v32.png. Keep all other assets. Refresh Ctrl+F5 after deployment and confirm V14.0.32.
+GITHUB PAGES: replace index.html, css/command-center.css, js/command-center.js together. Keep assets including version-b-master-v32.png and kla-plus-official.png. Refresh Ctrl+F5 and confirm V14.0.33. Open LIGHTS, adjust Brightness, Apply to preview, Save to retain.
 LOCAL: extract full ZIP into a new folder; close old server before START-COMMAND-CENTER.bat.
 
-Code checks passed for eight tower states, single active light, removal of top badge, and lighting preview/save/close. Live browser rendering remains unverified.
-Artwork: built-in image generation derived from selected concept B. Prompt preserved B brushed metal, honeycomb lenses and broad KLA base, with seven unlit neutral lenses so the application can illuminate only the selected state.
+Code checks passed for all eight states, single active lamp, lighting actions and 200% range. Live browser appearance remains unverified.
