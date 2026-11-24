@@ -1,14 +1,10 @@
-FI COMMAND CENTER V14.0.43 — FIXED TOOL CARD SECTION GEOMETRY
+FI COMMAND CENTER V14.0.44 — RESTORED LATEST DAILY SYSTEM STATUS
 
-- Three equal-height Live Operations columns, fixed at 1900 CSS pixels to retain the complete tool/badge record without global shrinking.
-- Every identity, photo, status, task, note, Brain and progress section has a reserved grid slot.
-- Content changes no longer set section heights.
-- Long notes, tasks and findings scroll inside their reserved section.
-- Empty system-status schedule slot retained so state changes do not shift the layout.
-- Two-column identity, three-column operational badges and full-width tracking badges retained.
-- Existing header, footer, tower, controls and data behavior retained.
+Middle column order: Ship Countdown, Next System Tasks, Latest System Status, Lead Notes, Command Center Brain.
+Latest System Status uses the existing daily-update fields: current checklist, customer, lamp hours/state, latest status/task text, open NC descriptions and POA. Click opens the existing latestStatus editor. NC editing remains in the full tool editor.
+The daily status section has a fixed 360px slot with internal scrolling. Three-column height remains fixed at 1900px. Other middle slots redistributed; right Tool System Status retained as the tool phase/condition overview.
 
-GITHUB PAGES: replace index.html, css/command-center.css and js/command-center.js together. Keep assets. Refresh Ctrl+F5 and confirm V14.0.43.
+GITHUB PAGES: replace index.html, css/command-center.css and js/command-center.js together. Keep assets. Refresh Ctrl+F5 and confirm V14.0.44.
 LOCAL: extract full ZIP to new folder; close old server before START-COMMAND-CENTER.bat.
 
-JavaScript syntax and regression checks passed. Browser rendering remains unverified.
+Regression tests passed including checklist, customer, lamp zero/off states, multiline daily text, open NCs, POA and closed-NC exclusion. Browser rendering remains unverified.
