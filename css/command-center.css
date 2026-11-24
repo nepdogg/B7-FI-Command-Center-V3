@@ -34336,7 +34336,7 @@ html body.presentation-mode #app#app .connected-brain{flex:0 0 190px!important;h
 html body.presentation-mode #app#app .connected-brain>.cc-brain-head{font-size:12px!important}
 @media(max-width:1050px){html body #stickyShell#stickyShell header.prototype-header{grid-template-columns:minmax(0,1fr) minmax(300px,1fr) minmax(0,1fr)!important}html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>footer.app-footer>.footer-system-row{grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:52px 52px!important}html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>footer.app-footer>.footer-system-row>.footer-system-cell{grid-column:auto!important;grid-row:auto!important}}
 @media(max-width:760px){html body #stickyShell#stickyShell header.prototype-header{grid-template-columns:minmax(0,1fr) minmax(250px,1fr)!important}html body #stickyShell#stickyShell .prototype-header-right{display:none!important}html body:not(.presentation-mode) #app#app .c11-card-grid{grid-template-columns:minmax(0,1fr)!important}html body:not(.presentation-mode) #app#app .c11-card-grid>.c11-column{grid-column:1!important;grid-row:auto!important}}
-/* V14.0.49 — targeted restoration: two-column badges, aligned sections, full tower. */
+/* V14.0.50 — targeted restoration: two-column badges, aligned sections, full tower. */
 /* The identity header and image area have separate rows. The image cannot borrow the title-row height. */
 html body:not(.presentation-mode) #app#app section.c11-tool-card .c11-identity-column>.c11-photo.b1313-unified-photo{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:40px minmax(0,1fr)!important;height:425px!important;min-height:425px!important;max-height:425px!important;gap:6px!important;padding:6px!important;box-sizing:border-box!important;overflow:hidden!important;position:relative!important}
 html body:not(.presentation-mode) #app#app section.c11-tool-card .c11-photo.b1313-unified-photo>.b133-priority-alias{grid-column:1!important;grid-row:1!important;position:static!important;inset:auto!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px!important;height:40px!important;min-height:0!important;max-height:40px!important;padding:0!important;margin:0!important;transform:none!important}
@@ -34366,7 +34366,7 @@ html body:not(.presentation-mode) #app#app section.c11-tool-card .c11-progress-c
 html body:not(.presentation-mode) #app#app section.c11-tool-card .c11-progress-column>.connected-brain{grid-row:9!important;align-self:stretch!important;height:210px!important;min-height:210px!important;max-height:210px!important;box-sizing:border-box!important}
 @media(max-width:760px){html body:not(.presentation-mode) #app#app section.c11-tool-card .c11-card-grid>.c11-status-column,html body:not(.presentation-mode) #app#app section.c11-tool-card .c11-card-grid>.c11-progress-column{display:flex!important;flex-direction:column!important}html body:not(.presentation-mode) #app#app section.c11-tool-card .c11-status-column>.c11-status-card{min-height:142px!important}html body:not(.presentation-mode) #app#app section.c11-tool-card .c11-progress-column>.c11-progress-row{min-height:118px!important}}
 
-/* V14.0.49: one complete tower canvas; retire both legacy lighting overlays. */
+/* V14.0.50: one complete tower canvas; retire both legacy lighting overlays. */
 html body #app#app .b1229-tower:has(>.cc-tower-art)::before,
 html body #app#app .b1229-tower:has(>.cc-tower-art)::after,
 html body #app#app .b1229-tower:has(>.cc-tower-art)>.b7-lamp-beam,
@@ -34393,7 +34393,7 @@ html body #stickyShell#stickyShell #headerModeCenter .kla-user-side{display:flex
 html body #stickyShell#stickyShell #headerModeCenter button.kla-presence-badge.v1402-shield{display:block!important;position:relative!important;width:64px!important;min-width:64px!important;max-width:64px!important;height:90px!important;min-height:90px!important;max-height:90px!important;overflow:visible!important;background:transparent!important;border:0!important;padding:0!important;margin:0!important;transform:none!important}
 html body #stickyShell#stickyShell #headerModeCenter button.kla-presence-badge.v1402-shield>img.v1402-shield-art{position:absolute!important;inset:0 0 auto!important;width:64px!important;height:72px!important;object-fit:contain!important;opacity:1!important;filter:none!important}
 html body #stickyShell#stickyShell #headerModeCenter button.kla-presence-badge.v1402-shield>span.v1402-shield-text{position:absolute!important;inset:auto 8px 0!important;display:flex!important;width:auto!important;height:24px!important;align-items:center!important;justify-content:center!important;border:1px solid #bbb!important;border-radius:12px!important;background:#080808!important;color:#fff!important;font-size:14px!important;line-height:1!important;font-weight:800!important}
-/* V14.0.49: empty shield frame and independent circular user badge inside. */
+/* V14.0.50: empty shield frame and independent circular user badge inside. */
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter .kla-presence-box{max-width:none!important;grid-template-columns:76px minmax(0,1fr) 76px!important;gap:10px!important}
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter #klaConnectionCore{grid-column:2!important;grid-row:1!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:64px 18px 30px!important;grid-auto-flow:row!important;justify-items:center!important;align-content:center!important;gap:2px!important;width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important}
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter #klaConnectionCore>img{grid-column:1!important;grid-row:1!important;order:0!important;position:static!important;inset:auto!important;align-self:center!important;justify-self:center!important;width:200px!important;height:64px!important;min-height:64px!important;max-height:64px!important;object-fit:contain!important;transform:none!important}
@@ -34403,7 +34403,7 @@ html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter .kla-user-
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter button.kla-presence-badge.v1402-shield{position:relative!important;width:76px!important;min-width:76px!important;max-width:76px!important;height:90px!important;min-height:90px!important;max-height:90px!important;padding:0!important;overflow:visible!important;isolation:isolate!important}
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter button.kla-presence-badge.v1402-shield>img.v1402-shield-art{position:absolute!important;inset:0!important;display:block!important;width:76px!important;height:90px!important;min-width:0!important;max-width:100%!important;object-fit:contain!important;object-position:center!important;background:transparent!important;z-index:0!important;transform:none!important}
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter button.kla-presence-badge.v1402-shield>span.v1402-shield-text{position:absolute!important;inset:auto!important;left:50%!important;top:47%!important;transform:translate(-50%,-50%)!important;display:flex!important;align-items:center!important;justify-content:center!important;width:38px!important;min-width:38px!important;max-width:38px!important;height:38px!important;min-height:38px!important;max-height:38px!important;box-sizing:border-box!important;padding:0!important;margin:0!important;border:2px solid #ccc!important;border-radius:50%!important;background:radial-gradient(circle at 35% 25%,#444,#080808 75%)!important;color:#fff!important;font-size:14px!important;line-height:1!important;font-weight:800!important;z-index:1!important}
-/* V14.0.49: center the shield/logo group without altering either title panel. */
+/* V14.0.50: center the shield/logo group without altering either title panel. */
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter .prototype-kla-box.kla-presence-box{max-width:390px!important;margin:0 auto!important;grid-template-columns:64px minmax(0,1fr) 64px!important;gap:8px!important}
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter .kla-user-side{width:64px!important}
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter button.kla-presence-badge.v1402-shield{width:64px!important;min-width:64px!important;max-width:64px!important;height:82px!important;min-height:82px!important;max-height:82px!important}
@@ -34416,7 +34416,7 @@ html[data-b7-lamps=pulse][data-b7-pattern=double] body #app#app .cc26-lamp.is-li
 @keyframes cc26-active-pulse{0%,100%{filter:brightness(.75)}50%{filter:brightness(calc(1 + var(--b7-light-brightness,.9)*.4))}}
 @keyframes cc26-active-double{0%,40%,100%{filter:brightness(.75)}12%,28%{filter:brightness(calc(1 + var(--b7-light-brightness,.9)*.4))}}
 @media(prefers-reduced-motion:reduce){html[data-b7-lamps=pulse] body #app#app .cc26-lamp.is-lit{animation:none}}
-/* V14.0.49: realistic chrome/LED master, larger tower/photo row and readable labels. */
+/* V14.0.50: realistic chrome/LED master, larger tower/photo row and readable labels. */
 html body:not(.presentation-mode) #app#app section.c11-tool-card .c11-identity-column>.c11-photo.b1313-unified-photo{height:480px!important;min-height:480px!important;max-height:480px!important}
 html body #app#app section.c11-tool-card .b1226-photo-top>.b1226-photo-tower{padding:0!important}
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter #klaConnectionCore>img{width:230px!important;height:72px!important;min-height:72px!important;max-height:72px!important}
@@ -34424,7 +34424,7 @@ html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter #klaConnec
 html[data-b7-lamps=pulse] body #app#app .cc27-lit{animation:cc26-active-pulse var(--b7-light-duration,1.5s) ease-in-out infinite}
 html[data-b7-lamps=pulse][data-b7-pattern=double] body #app#app .cc27-lit{animation-name:cc26-active-double}
 @media(prefers-reduced-motion:reduce){html[data-b7-lamps=pulse] body #app#app .cc27-lit{animation:none}}
-/* V14.0.49: current realistic lamp honors brightness AND halo in all modes. */
+/* V14.0.50: current realistic lamp honors brightness AND halo in all modes. */
 html body #app#app .cc27-lit{opacity:var(--b7-light-brightness,.9);filter:none!important;animation:none!important}
 html body #app#app .cc27-lit>.cc31-lamp-halo{opacity:calc(var(--b7-light-glow,.8)*.7)!important;filter:blur(calc(var(--b7-light-glow,.8)*9px))!important}
 html[data-b7-lamps=off] body #app#app .cc27-lit{display:none!important}
@@ -34437,14 +34437,14 @@ html body #b7-lamp-menu .cc31-light-actions{display:grid;grid-template-columns:r
 html body #b7-lamp-menu .cc31-light-actions>button{min-height:34px;border:1px solid #bbb;border-radius:6px;background:linear-gradient(#555,#070707);color:#fff;font-weight:bold;cursor:pointer}
 html body #b7-lamp-menu #cc31-light-feedback{min-height:28px;margin-top:7px;font-size:11px;line-height:1.3;color:#fff}
 @media(prefers-reduced-motion:reduce){html[data-b7-lamps=pulse] body #app#app .cc27-lit{animation:none!important;opacity:var(--b7-light-brightness,.9)!important}}
-/* V14.0.49: wider Version B body and broad silver badge, no top title. */
+/* V14.0.50: wider Version B body and broad silver badge, no top title. */
 html body #app#app section.c11-tool-card .c11-photo.b1313-unified-photo>.b1226-photo-top{grid-template-columns:minmax(100px,28%) minmax(0,1fr)!important}
 html body #app#app .cc32-version-b .cc31-lamp-halo{filter:blur(calc(var(--b7-light-glow,.8)*28px))!important}
-/* V14.0.49: higher lamp output and an extended 200% brightness range. */
+/* V14.0.50: higher lamp output and an extended 200% brightness range. */
 html body #app#app .cc27-lit{filter:brightness(calc(.3 + var(--b7-light-brightness,.9)*1.7))!important}
-/* V14.0.49: boost LED luminance before applying color, keeping the hue at 200%. */
+/* V14.0.50: boost LED luminance before applying color, keeping the hue at 200%. */
 html body #app#app .cc27-lit{filter:none!important}
-/* V14.0.49: narrower center, more space for both main header titles. */
+/* V14.0.50: narrower center, more space for both main header titles. */
 html body #stickyShell#stickyShell header.prototype-header{grid-template-columns:minmax(0,1fr) clamp(310px,22vw,410px) minmax(0,1fr)!important}
 html body #stickyShell#stickyShell header.prototype-header>:is(.prototype-header-left,.prototype-header-right){padding:8px 12px!important;gap:10px!important}
 html body #stickyShell#stickyShell header.prototype-header>:is(.prototype-header-left,.prototype-header-right)>span{font-size:clamp(18px,1.65vw,34px)!important;font-weight:900!important;line-height:1.1!important;white-space:nowrap!important;letter-spacing:0!important;min-width:0!important}
@@ -34454,7 +34454,7 @@ html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter button.kla
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter button.kla-presence-badge.v1402-shield>img.v1402-shield-art{width:52px!important;height:70px!important}
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter button.kla-presence-badge.v1402-shield>span.v1402-shield-text{width:30px!important;min-width:30px!important;max-width:30px!important;height:30px!important;min-height:30px!important;max-height:30px!important;font-size:12px!important}
 @media(max-width:1050px){html body #stickyShell#stickyShell header.prototype-header{grid-template-columns:minmax(0,1fr) minmax(260px,.85fr) minmax(0,1fr)!important}html body #stickyShell#stickyShell header.prototype-header>:is(.prototype-header-left,.prototype-header-right)>span{font-size:clamp(12px,1.55vw,18px)!important;white-space:normal!important}}
-/* V14.0.49: vertically centered shields, larger KLA, no date/time row. */
+/* V14.0.50: vertically centered shields, larger KLA, no date/time row. */
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter .prototype-kla-box.kla-presence-box{max-width:none!important;align-items:center!important;grid-template-rows:minmax(0,1fr)!important}
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter #klaConnectionCore{grid-template-rows:minmax(0,1fr) 28px!important;gap:0!important;align-content:stretch!important}
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter #klaConnectionCore>img{grid-column:1!important;grid-row:1!important;width:100%!important;max-width:100%!important;height:96px!important;min-height:0!important;max-height:96px!important;align-self:center!important;justify-self:center!important;object-fit:contain!important}
@@ -34462,7 +34462,7 @@ html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter #klaConnec
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter #klaConnectionCore>#ccHeaderClock{display:none!important}
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter :is(#klaUsersLeft,#klaUsersRight).kla-user-side{position:relative!important;inset:auto!important;align-self:center!important;display:flex!important;align-items:center!important;justify-content:center!important;height:70px!important;min-height:70px!important;max-height:70px!important;margin:0!important;padding:0!important;transform:none!important}
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter .kla-user-side>button.kla-presence-badge.v1402-shield{position:relative!important;inset:auto!important;align-self:center!important;flex:0 0 52px!important;margin:0!important;transform:none!important}
-/* V14.0.49: one full-width connection line; neutral center frame in every state. */
+/* V14.0.50: one full-width connection line; neutral center frame in every state. */
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter.prototype-header-center{position:relative!important;border-color:#aaa!important;outline:none!important;box-shadow:none!important}
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter #klaConnectionCore.kla-connection-core{display:flex!important;align-items:center!important;justify-content:center!important;height:100%!important;padding:0 0 24px!important;box-sizing:border-box!important;border:0!important;outline:0!important;box-shadow:none!important}
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter>.kla-connection-copy{position:absolute!important;inset:auto 10px 8px!important;display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:center!important;justify-content:center!important;gap:4px!important;width:auto!important;height:20px!important;min-height:20px!important;max-height:20px!important;padding:0!important;margin:0!important;box-sizing:border-box!important;background:transparent!important;border:0!important;overflow:hidden!important;white-space:nowrap!important;transform:none!important;color:#ddd!important}
@@ -34471,25 +34471,25 @@ html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter:is(.shared
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter.shared-connecting>.kla-connection-copy{color:#ffd36a!important}
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter:is(.shared-disconnected,.shared-error)>.kla-connection-copy{color:#ff969b!important}
 html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>footer.app-footer .footer-sync #footerConnectionVisual.connection-error{color:#ff969b!important}
-/* V14.0.49: taller tightly framed logo and a measured, larger one-line sync label. */
+/* V14.0.50: taller tightly framed logo and a measured, larger one-line sync label. */
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter #klaConnectionCore.kla-connection-core{padding-bottom:28px!important}
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter #klaConnectionCore>img{width:100%!important;height:104px!important;max-height:104px!important;min-height:0!important;object-fit:fill!important;flex:0 1 auto!important}
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter>.kla-connection-copy{bottom:6px!important;height:26px!important;min-height:26px!important;max-height:26px!important;font-family:Arial,Helvetica,sans-serif!important}
 html body #stickyShell#stickyShell #headerModeCenter#headerModeCenter>.kla-connection-copy :is(b,small,span){font-size:var(--v1408-status-size,14px)!important;font-family:inherit!important;line-height:1.1!important}
-/* V14.0.49: Administration | Last Activity | Presentation. */
+/* V14.0.50: Administration | Last Activity | Presentation. */
 html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>footer.app-footer>.footer-system-row{grid-template-columns:minmax(180px,1.2fr) minmax(0,3.5fr) minmax(180px,1.2fr)!important;grid-template-rows:52px!important}
 html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>footer.app-footer>.footer-system-row>.footer-admin{grid-column:1!important;grid-row:1!important}
 html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>footer.app-footer>.footer-system-row>.footer-activity{grid-column:2!important;grid-row:1!important;min-width:0!important}
 html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>footer.app-footer>.footer-system-row>.footer-presentation{grid-column:3!important;grid-row:1!important}
 @media(max-width:700px){html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>footer.app-footer>.footer-system-row{grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:52px 52px!important}html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>footer.app-footer>.footer-system-row>.footer-activity{grid-column:1 / -1!important;grid-row:1!important}html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>footer.app-footer>.footer-system-row>.footer-admin{grid-column:1!important;grid-row:2!important}html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>footer.app-footer>.footer-system-row>.footer-presentation{grid-column:2!important;grid-row:2!important}}
-/* V14.0.49: restore full-width tracking/wafer badges and silver update action. */
+/* V14.0.50: restore full-width tracking/wafer badges and silver update action. */
 html body #app#app section.c11-tool-card .c11-badge-region>.c11-badges>button.b761-uniform-badge:is(.c11-wafer-badge,.equipment-badge),
 html body:not(.presentation-mode) #app#app section.c11-tool-card .c11-badge-region>.c11-badges>button.b761-uniform-badge:is(.c11-wafer-badge,.equipment-badge){grid-column:1 / -1!important;grid-row:auto!important;width:100%!important;grid-template-columns:minmax(0,32%) minmax(0,68%)!important}
 html body #app#app section.c11-tool-card .c11-badge-region>.c11-badges>button.b761-uniform-badge:is(.c11-wafer-badge,.equipment-badge)>:is(small,em){font-size:11px!important;line-height:1.15!important;white-space:normal!important;overflow-wrap:anywhere!important}
 html body #app#app section.c11-tool-card button.c11-update,
 html body #app#app button.v10-update,
 html body #app#app button.utc-edit-tool-bar{background:linear-gradient(180deg,#fff 0%,#d0d0d0 26%,#888 68%,#eee 100%)!important;background-color:#bdbdbd!important;border:1px solid #ddd!important;border-radius:8px!important;box-shadow:inset 0 1px 3px #fff,inset 0 -2px 4px #555!important;color:#fff!important;text-shadow:0 2px 2px #000,0 0 2px #000!important;font-weight:900!important;text-align:center!important;cursor:pointer!important}
-/* V14.0.49: approved consolidated header. */
+/* V14.0.50: approved consolidated header. */
 html body #stickyShell#stickyShell header.prototype-header>:is(.prototype-header-left,.prototype-header-right){position:relative!important;padding:8px 12px 64px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important}
 html body #stickyShell#stickyShell header.prototype-header>:is(.prototype-header-left,.prototype-header-right)>span{font-size:clamp(17px,1.6vw,32px)!important;line-height:1.1!important;white-space:nowrap!important;overflow:hidden!important}
 html body #stickyShell#stickyShell header.prototype-header>:is(.prototype-header-left,.prototype-header-right)>img{height:66px!important;max-height:66px!important;width:66px!important;object-fit:contain!important;flex:0 0 66px!important}
@@ -34523,7 +34523,7 @@ html body #app#app section.c11-tool-card.cc41-live-card .cc41-brain-open{display
 html body #app#app section.c11-tool-card.cc41-live-card .c11-badges>button:is(.c11-wafer-badge,.equipment-badge){grid-column:1 / -1!important}
 @media(max-width:1050px){html body #stickyShell#stickyShell .cc41-alert-heading,html body #stickyShell#stickyShell .cc41-alert-message{font-size:10px!important}html body #stickyShell#stickyShell .cc41-critical-count{font-size:9px!important}}
 @media(max-width:760px){html body:not(.presentation-mode) #app#app section.c11-tool-card.cc41-live-card .c11-card-grid{grid-template-columns:minmax(0,1fr)!important}}
-/* V14.0.49: separate title and alert sections in each outer header column. */
+/* V14.0.50: separate title and alert sections in each outer header column. */
 html body #stickyShell#stickyShell header.prototype-header>:is(.prototype-header-left,.prototype-header-right){display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr) 54px!important;gap:6px!important;padding:0!important;border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;overflow:visible!important}
 html body #stickyShell#stickyShell header.prototype-header>:is(.prototype-header-left,.prototype-header-right)::before,html body #stickyShell#stickyShell header.prototype-header>:is(.prototype-header-left,.prototype-header-right)::after{content:none!important;display:none!important}
 html body #stickyShell#stickyShell .cc42-header-title{grid-column:1!important;grid-row:1!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;box-sizing:border-box!important;padding:6px 12px!important;border:2px solid #bcbcbc!important;border-radius:15px!important;background:linear-gradient(#484848,#090909 35%,#000 78%,#303030)!important;box-shadow:inset 0 0 0 2px #111,inset 0 0 0 4px #888!important;overflow:hidden!important}
@@ -34537,7 +34537,7 @@ html body:not(.presentation-mode) #app#app section.c11-tool-card.cc41-live-card 
 html body:not(.presentation-mode) #app#app section.c11-tool-card.cc41-live-card .c11-badge-region>.c11-badges>button.b761-uniform-badge:not(.c11-wafer-badge):not(.equipment-badge){display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:3px!important;grid-column:auto!important;height:64px!important;min-height:64px!important;max-height:64px!important;padding:5px!important;text-align:center!important}
 html body:not(.presentation-mode) #app#app section.c11-tool-card.cc41-live-card .c11-badges>button:not(.c11-wafer-badge):not(.equipment-badge)>:is(.badge-face-label,.badge-face-state){display:block!important;grid-column:auto!important;grid-row:auto!important;width:100%!important;text-align:center!important;align-self:center!important;font-size:10.5px!important;line-height:1.15!important;white-space:normal!important;overflow-wrap:anywhere!important}
 html body:not(.presentation-mode) #app#app section.c11-tool-card.cc41-live-card .c11-badge-region>.c11-badges>button.b761-uniform-badge:is(.c11-wafer-badge,.equipment-badge){grid-column:1 / -1!important;display:grid!important;grid-template-columns:minmax(0,32%) minmax(0,68%)!important;grid-template-rows:repeat(2,minmax(0,1fr))!important;height:64px!important}
-/* V14.0.49: stable tool-card geometry; only values and messages change per tool. */
+/* V14.0.50: stable tool-card geometry; only values and messages change per tool. */
 html body:not(.presentation-mode) #app#app section.c11-tool-card.cc41-live-card{--cc43-card-height:1900px}
 html body:not(.presentation-mode) #app#app section.c11-tool-card.cc41-live-card .c11-card-grid{height:var(--cc43-card-height)!important;min-height:var(--cc43-card-height)!important;max-height:var(--cc43-card-height)!important;align-items:stretch!important}
 html body:not(.presentation-mode) #app#app section.c11-tool-card.cc41-live-card .c11-card-grid>.c11-column{height:100%!important;min-height:0!important;max-height:100%!important;overflow:hidden!important;box-sizing:border-box!important}
@@ -34557,13 +34557,13 @@ html body:not(.presentation-mode) #app#app section.c11-tool-card.cc41-live-card 
 html body:not(.presentation-mode) #app#app section.c11-tool-card.cc41-live-card .cc41-tool-system>p{min-height:0!important;overflow:auto!important}
 html body:not(.presentation-mode) #app#app section.c11-tool-card.cc41-live-card .c11-progress-row>:is(.sub,.v1213-forecast-details){min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;white-space:normal!important}
 @media(max-width:760px){html body:not(.presentation-mode) #app#app section.c11-tool-card.cc41-live-card .c11-card-grid{height:auto!important;max-height:none!important;grid-auto-rows:var(--cc43-card-height)!important;min-height:0!important}html body:not(.presentation-mode) #app#app section.c11-tool-card.cc41-live-card .c11-card-grid>.c11-column{height:var(--cc43-card-height)!important}}
-/* V14.0.49: restore the daily status email record in its own fixed middle slot. */
+/* V14.0.50: restore the daily status email record in its own fixed middle slot. */
 html body:not(.presentation-mode) #app#app section.c11-tool-card.cc41-live-card .c11-card-grid>.c11-status-column{grid-template-rows:220px 360px 360px 240px minmax(0,1fr)!important}
 html body #app#app section.c11-tool-card.cc41-live-card .cc44-daily-status>.cc44-daily-content{display:flex!important;flex-direction:column!important;gap:10px!important;flex:1 1 auto!important;min-height:0!important;overflow:auto!important;font-size:13px!important;line-height:1.4!important;white-space:normal!important}
 html body #app#app .cc44-daily-content>div{display:flex;flex-direction:column;gap:3px}
 html body #app#app .cc44-daily-content b{font-size:11px;color:#ccc}
 html body #app#app .cc44-daily-content p{margin:0 0 6px;white-space:normal;overflow-wrap:anywhere}
-/* V14.0.49: shared daily email row, formatted identically in the tool card. */
+/* V14.0.50: shared daily email row, formatted identically in the tool card. */
 html body #app#app section.c11-tool-card.cc41-live-card .cc44-daily-status>.cc44-daily-content.email-status{display:block!important;flex:1 1 auto!important;height:auto!important;min-height:0!important;overflow:auto!important;padding:0!important;margin:0!important}
 html body #app#app .cc44-daily-content>.email-row{display:block!important;padding:8px!important;border:0!important;background:transparent!important}
 html body #app#app .cc44-daily-content .email-main{font-family:Arial,Helvetica,sans-serif!important;font-size:14px!important;line-height:1.4!important;font-weight:900!important;color:#fff!important;white-space:normal!important;overflow-wrap:anywhere!important}
@@ -34571,7 +34571,7 @@ html body #app#app .cc44-daily-content .email-subline{font-size:13px!important;l
 html body #app#app .cc44-daily-content .lamp-hours{color:#ffc400!important;font-weight:900!important}
 html body #app#app .cc44-daily-content .email-nc{color:#ff9aae!important}
 html body #app#app .cc44-daily-content .email-poa{color:#ffd57b!important}
-/* V14.0.49: viewport-fitted Raiders Tool Card presentation, independent of live-page heights. */
+/* V14.0.50: viewport-fitted Raiders Tool Card presentation, independent of live-page heights. */
 html body.presentation-mode[data-center=operations][data-sub=live]{background:#000!important;--accent:#bcbcbc;--accent-rgb:188,188,188}
 html body.presentation-mode[data-center=operations][data-sub=live] .app-frame{padding:4px!important;border:1px solid #aaa!important;box-shadow:none!important;background:#000!important;overflow:hidden!important}
 html body.presentation-mode[data-center=operations][data-sub=live] :is(.body-shell,#app){height:100%!important;min-height:0!important;max-height:100%!important;padding:0!important;overflow:hidden!important;box-sizing:border-box!important;background:#000!important}
@@ -34615,7 +34615,7 @@ html body.presentation-mode[data-center=operations][data-sub=live] #app#app sect
 html body.presentation-mode[data-center=operations][data-sub=live] #app#app section.c11-tool-card.cc41-live-card .connected-brain :is(.brain-forecast,.brain-card-message,.cc41-brain-blocker,.brain-card-next,.cc41-brain-overall,.cc41-brain-open){font-size:clamp(8px,1vh,12px)!important;line-height:1.1!important;min-height:0!important;max-height:100%!important;overflow:auto!important;margin:0!important;padding:0!important}
 html body.presentation-mode[data-center=operations][data-sub=live] #app#app section.c11-tool-card.cc41-live-card .cc41-brain-overall>strong{font-size:22px!important}
 html body.presentation-mode[data-center=operations][data-sub=live] #app#app section.c11-tool-card.cc41-live-card .connected-brain>.cc-brain-track{height:14px!important;min-height:14px!important}
-/* V14.0.49: full mini-card Hybrid carousel, Raiders theme, no empty report strip. */
+/* V14.0.50: full mini-card Hybrid carousel, Raiders theme, no empty report strip. */
 html body.presentation-mode[data-center=operations][data-sub=hybrid]{background:#000!important;--accent:#bbb;--accent-rgb:187,187,187}
 html body.presentation-mode[data-center=operations][data-sub=hybrid] .app-frame{height:100dvh!important;min-height:0!important;max-height:100dvh!important;padding:4px!important;background:#000!important;border:1px solid #aaa!important;box-shadow:none!important;overflow:hidden!important;box-sizing:border-box!important}
 html body.presentation-mode[data-center=operations][data-sub=hybrid] :is(.body-shell,#app){height:100%!important;min-height:0!important;max-height:100%!important;margin:0!important;padding:0!important;overflow:hidden!important;box-sizing:border-box!important;background:#000!important}
@@ -34647,7 +34647,7 @@ html body.presentation-mode[data-center=operations][data-sub=hybrid] #app .b139-
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app :is(.cc47-mini-process,.cc47-mini-carry){display:flex!important;align-items:center!important;justify-content:center!important;min-height:0!important;overflow:hidden!important;border:1px solid #888!important;border-radius:5px!important;background:#050505!important;color:#fff!important;font-size:clamp(8px,1.1vh,13px)!important}
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app .b1217-hybrid-nav{grid-row:3!important;position:static!important;inset:auto!important;display:grid!important;grid-template-columns:repeat(8,minmax(0,1fr))!important;height:48px!important;min-height:48px!important;max-height:48px!important;width:100%!important;margin:0!important;border:1px solid #aaa!important;background:#050505!important;box-sizing:border-box!important}
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app .b1217-hybrid-nav>*{font-size:clamp(8px,1.3vh,16px)!important;min-width:0!important;white-space:normal!important}
-/* V14.0.49: actual Quarter Summary hero/counters above a seven-card coverflow. */
+/* V14.0.50: actual Quarter Summary hero/counters above a seven-card coverflow. */
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app>.b1217-hybrid{position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;min-height:100dvh!important;max-height:100dvh!important;grid-template-rows:50% minmax(0,1fr) 48px!important;z-index:20!important;zoom:1!important}
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app .cc48-quarter-top{grid-row:1!important;display:grid!important;grid-template-rows:minmax(0,1fr) 48px!important;gap:5px!important;min-height:0!important;overflow:hidden!important}
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app .cc48-quarter-top>.quarter-summary-hero{position:static!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;height:100%!important;min-height:0!important;max-height:100%!important;margin:0!important;padding:0!important;border:0!important}
@@ -34669,7 +34669,7 @@ html body.presentation-mode[data-center=operations][data-sub=hybrid] #app .cc48-
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app .cc48-carousel-dots{position:absolute!important;inset:auto 55px 0!important;display:flex!important;justify-content:center!important;align-items:center!important;gap:6px!important;height:25px!important;overflow:auto!important;z-index:25!important}
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app .cc48-carousel-dots>button{width:8px!important;min-width:8px!important;height:8px!important;min-height:8px!important;padding:0!important;border:0!important;border-radius:50%!important;background:#555!important;cursor:pointer!important}
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app .cc48-carousel-dots>button.active{background:#fff!important;box-shadow:0 0 5px #fff!important}
-/* V14.0.49: Raiders Quarter Summary presentation and black progress labels. */
+/* V14.0.50: Raiders Quarter Summary presentation and black progress labels. */
 html body.presentation-mode[data-center=operations][data-sub=summary]{--accent:#bcbcbc;--accent-rgb:188,188,188;background:#000!important}
 html body.presentation-mode[data-center=operations][data-sub=summary] .app-frame{background:#000!important;border:1px solid #aaa!important;box-shadow:none!important}
 html body.presentation-mode[data-center=operations][data-sub=summary] #app>.screenshot-report-title{display:none!important}
@@ -34684,3 +34684,22 @@ html body.presentation-mode[data-center=operations][data-sub=summary] #app#app .
 html body.presentation-mode[data-center=operations][data-sub=summary] #app#app :is(.bar-value,.bar-value>span,.family-progress .track>span),html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc48-quarter-top :is(.bar-value,.bar-value>span){color:#000!important;text-shadow:none!important;font-weight:900!important;-webkit-text-stroke:0!important}
 html body.presentation-mode[data-center=operations][data-sub=summary] #app#app .bar-value>i,html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc48-quarter-top .bar-value>i{background:#333!important;box-shadow:none!important}
 html body.presentation-mode[data-center=operations][data-sub=summary] #app#app .presentation-inline-nav{background:#000!important;border-color:#aaa!important;box-shadow:none!important}
+/* V14.0.50: common summary header proportions and explicit active/side transforms. */
+html body.presentation-mode[data-center=operations]:is([data-sub=summary],[data-sub=hybrid]){--cc50-hero-height:clamp(180px,30vh,340px)}
+html body.presentation-mode[data-center=operations][data-sub=summary] #app#app .quarter-summary-presentation.quarter-summary-master{grid-template-rows:var(--cc50-hero-height) 48px minmax(0,1fr) 48px!important;gap:5px!important}
+html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app>.b1217-hybrid{grid-template-rows:calc(var(--cc50-hero-height) + 53px) minmax(0,1fr) 48px!important}
+html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc48-quarter-top{grid-template-rows:var(--cc50-hero-height) 48px!important;gap:5px!important}
+html body.presentation-mode[data-center=operations]:is([data-sub=summary],[data-sub=hybrid]) #app#app .quarter-summary-hero{height:var(--cc50-hero-height)!important;min-height:var(--cc50-hero-height)!important;max-height:var(--cc50-hero-height)!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;margin:0!important;padding:0!important}
+html body.presentation-mode[data-center=operations]:is([data-sub=summary],[data-sub=hybrid]) #app#app .quarter-summary-hero>.quarter-hero-metric{display:grid!important;grid-template-rows:38px minmax(0,1fr) 64px!important;align-items:center!important;gap:4px!important;padding:8px!important;border:1px solid #888!important;background:#050505!important;min-height:0!important;overflow:hidden!important;box-sizing:border-box!important}
+html body.presentation-mode[data-center=operations]:is([data-sub=summary],[data-sub=hybrid]) #app#app .quarter-hero-metric>small{font-size:clamp(17px,2.7vh,32px)!important;line-height:1.1!important;text-align:center!important;color:#fff!important;white-space:nowrap!important}
+html body.presentation-mode[data-center=operations]:is([data-sub=summary],[data-sub=hybrid]) #app#app .quarter-hero-metric>strong{font-size:clamp(50px,12vh,142px)!important;line-height:1!important;color:#fff!important;margin:0!important;text-align:center!important}
+html body.presentation-mode[data-center=operations]:is([data-sub=summary],[data-sub=hybrid]) #app#app .quarter-summary-hero :is(.hero-progress,.hero-progress>.track){height:64px!important;min-height:64px!important;max-height:64px!important;width:100%!important;margin:0!important;padding:0!important;box-sizing:border-box!important}
+html body.presentation-mode[data-center=operations]:is([data-sub=summary],[data-sub=hybrid]) #app#app .quarter-summary-hero .bar-value{display:grid!important;grid-template-columns:1fr 2px 1fr!important;inset:0!important;align-items:center!important;justify-content:normal!important;gap:8px!important;font-size:clamp(12px,1.8vh,22px)!important;line-height:1.1!important;padding:4px 8px!important;color:#000!important;text-shadow:none!important}
+html body.presentation-mode[data-center=operations]:is([data-sub=summary],[data-sub=hybrid]) #app#app .summary-grid{display:grid!important;grid-template-columns:repeat(8,minmax(0,1fr))!important;grid-template-rows:48px!important;height:48px!important;min-height:0!important;max-height:48px!important;gap:4px!important;margin:0!important;padding:0!important}
+html body.presentation-mode[data-center=operations]:is([data-sub=summary],[data-sub=hybrid]) #app#app .summary-grid>.summary-box{height:48px!important;min-height:0!important;max-height:48px!important;box-sizing:border-box!important;padding:2px!important}
+/* Override both old .active and .side rules, which previously defeated the centering transform. */
+html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .b1217-carousel{position:relative!important;display:block!important;grid-row:2!important;height:100%!important;min-height:0!important;max-height:100%!important;perspective:1400px!important;overflow:hidden!important}
+html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .b1217-carousel-slot:is(.active,.side){position:absolute!important;inset:auto!important;left:50%!important;top:calc(50% - 12px)!important;right:auto!important;bottom:auto!important;width:clamp(230px,25vw,460px)!important;height:calc(100% - 36px)!important;min-height:0!important;max-height:none!important;transform:translate(-50%,-50%) translateX(var(--cc50-shift,0px)) scale(var(--cc48-scale,1)) rotateY(var(--cc50-angle,0deg))!important;transform-origin:center!important;margin:0!important;overflow:hidden!important}
+html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .b1217-carousel-slot.active{opacity:1!important;filter:none!important}
+html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .b1217-carousel-slot.side{opacity:.6!important;filter:brightness(.75)!important}
+html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .b1217-carousel-slot>article.b139-mini-card.b1312-mini-card{transform:none!important;height:100%!important;min-height:0!important;max-height:100%!important}
