@@ -1,9 +1,9 @@
 @echo off
 setlocal EnableExtensions
 cd /d "%~dp0"
-title FI COMMAND CENTER V14.0.50 - SERVER
+title FI COMMAND CENTER V14.0.51 - SERVER
 color 0B
-echo FI COMMAND CENTER V14.0.50
+echo FI COMMAND CENTER V14.0.51
 echo URL: http://localhost:5500/
 if not exist "command-center-server.py" goto :missing
 py -3 --version >nul 2>nul
