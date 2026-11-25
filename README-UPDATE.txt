@@ -1,12 +1,17 @@
-FI COMMAND CENTER V14.0.51 — WIDER HYBRID CAROUSEL / UNIFORM BADGES
+FI COMMAND CENTER V14.0.52
+LIVE OPERATIONS REDESIGN
 
-- Wider coverflow spacing uses viewport width to bring outer cards close to stage edges.
-- Removed both on-stage arrow buttons; bottom Previous/Next controls retained.
-- Identity/date/process/carryover rows share one badge-height setting.
-- Explicit badge-grid sizing applies to selected and neighboring cards, preventing compressed neighbor labels.
-- Summary top, dots, tower and normal layouts retained.
+Live Operations gives the seven-light signal tower its own full-height panel
+alongside Tool Overview, Operations Summary and Tool System Status / Progress.
+The silver-on-black interface uses the selected tool's photos and live data.
+The three information columns share a height on wide screens. Scroll within
+a column to reach additional badges or progress details. On narrow screens
+the summary and progress columns stack below the tower and overview.
 
-GITHUB PAGES: replace index.html, css/command-center.css and js/command-center.js together. Keep assets. Refresh Ctrl+F5 and confirm V14.0.51. Exit/re-enter Hybrid Mode.
-LOCAL: extract full ZIP to new folder; close old server before START-COMMAND-CENTER.bat.
+LOCAL
+Extract the ZIP to a new folder. Close the previous server and run
+START-COMMAND-CENTER.bat from the new folder.
 
-Syntax and regression tests passed. Browser rendering remains unverified.
+GITHUB PAGES
+Replace index.html, css/command-center.css and js/command-center.js together.
+Keep existing assets and reload the page. Confirm V14.0.52 in the header.
