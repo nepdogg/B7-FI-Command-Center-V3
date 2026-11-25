@@ -1,6 +1,6 @@
 /* Bundled source: js/app.js */
 (()=>{'use strict';
-const VERSION='14.0.55', BUILD='20261117-V14.0.55-CONSOLIDATED-REPAIRS';
+const VERSION='14.0.56', BUILD='20261117-V14.0.56-CONSOLIDATED-REPAIRS';
 const ACTIVE_DATASET_KEY='b7fi-command-center-active-dataset-v1216';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
@@ -697,38 +697,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')b138CloseMenu();if(e
 document.addEventListener('change',e=>{if(e.target?.id==='b796-center-select')go(e.target.value);});
 function openIssueCount(){let manual=state.actions.filter(a=>a.status!=='Complete').length,escalated=state.tools.reduce((n,t)=>n+t.ncs.filter(x=>String(x.state||x.status||'').toLowerCase()==='escalated').length,0),e=commandCenterEngine(),auto=e.critical.length+e.attention.length;return manual+escalated+auto}
 function quarterCloseBrain(){let cfg=state.config?.brain||{},q=state.quarter,qt=quarterTimeProgress(q),a=activeTools(q),left=a.filter(t=>fiSummaryStatus(t)!=='Shipped'),limit=Math.max(1,Number(cfg.listUtidsAt)||5),ids=left.length&&left.length<=limit?left.map(t=>t.id):[],carry=carryoverTools(),msg='',level='normal',label='READY';if(carry.length&&cfg.carryoverEscalation!==false){let ids2=carry.slice(0,limit).map(t=>t.id);level='critical';label='CARRYOVER';msg=`${q} ACTIVE · ${carry.length} PRIOR-QUARTER CARRYOVER TOOL${carry.length===1?'':'S'} · SHIP ASAP${ids2.length?' · '+ids2.join(' · '):''}`;return{level,label,msg,tools:carry}}if(qt.finalDay){level=left.length?'critical':'complete';label='FINAL DAY';msg=left.length?`LAST DAY OF ${q} · ${left.length} TOOL${left.length===1?'':'S'} STILL NEED${left.length===1?'S':''} TO SHIP${ids.length?' · '+ids.join(' · '):''}`:`LAST DAY OF ${q} · ALL ${a.length} TOOLS SHIPPED`;return{level,label,msg,tools:left}}if(!qt.notStarted&&!qt.ended&&qt.remaining<=Number(cfg.awarenessDays||15)){level=qt.remaining<=Number(cfg.criticalDays||2)?'critical':qt.remaining<=Number(cfg.urgentDays||5)?'critical':qt.remaining<=Number(cfg.attentionDays||10)?'attention':'normal';label=qt.remaining<=Number(cfg.urgentDays||5)?'QUARTER CLOSE URGENT':'QUARTER CLOSE';msg=`${q} QUARTER CLOSE · ${qt.remaining} DAY${qt.remaining===1?'':'S'} LEFT · ${left.length} TOOL${left.length===1?'':'S'} STILL NEED TO SHIP${ids.length?' · '+ids.join(' · '):''}`;return{level,label,msg,tools:left}}return{level,label,msg:'',tools:[]}}
-function statusMessagePool(){
-  let e=commandCenterEngine(),qb=quarterCloseBrain(),fleet=operationalFleetTools(),carry=carryoverTools(),q=state.quarter,qt=quarterTimeProgress(q),qa=activeTools(q),shipped=qa.filter(t=>fiSummaryStatus(t)==='Shipped').length;
-  let counts={waiting:fleet.filter(t=>fiSummaryStatus(t)==='Waiting').length,infi:fleet.filter(t=>fiSummaryStatus(t)==='In FI').length,packing:fleet.filter(t=>fiSummaryStatus(t)==='Packing').length,shipped:fleet.filter(t=>fiSummaryStatus(t)==='Shipped').length};
-  let out=[],add=(message,level='normal',label='INFORMATION',tool='')=>{message=String(message||'').trim();if(!message||out.some(x=>x.message===message))return;out.push({message,level,label,tool})};
-  if(qb.msg)add(qb.msg,qb.level,qb.label,qb.tools?.[0]?.id||'');
-  if(qt.finalDay)add(`LAST DAY OF ${q} · QUARTER ENDS TODAY`,qa.length-shipped?'critical':'complete','FINAL DAY');
-  if(!qt.notStarted&&!qt.ended&&!qt.finalDay&&qt.remaining<=Number(state.config?.brain?.awarenessDays||15))add(`${q} QUARTER CLOSE · ${qt.remaining} DAYS REMAINING`,qt.remaining<=5?'critical':qt.remaining<=10?'attention':'normal','QUARTER CLOSE');
-  if(qt.ended)add(`${q} QUARTER ENDED · ${shipped} OF ${qa.length} SHIPPED AT QUARTER CLOSE`,shipped===qa.length?'complete':'critical','QUARTER ENDED');
-  if(carry.length)add(`${carry.length} PRIOR-QUARTER CARRYOVER TOOL${carry.length===1?'':'S'} · ${carry.slice(0,5).map(t=>t.id).join(' · ')} · SHIP ASAP`,'critical','CARRYOVER',carry[0]?.id||'');
-  add(`${counts.waiting} WAITING FI · ${counts.infi} IN FI · ${counts.packing} PACKING · ${counts.shipped} SHIPPED`,'normal','FLEET STATUS');
-  add(`${fleet.length} OPERATIONAL TOOL${fleet.length===1?'':'S'} · ${carry.length} CARRYOVER`,'normal','OPERATIONS');
-  add(`${shipped} OF ${qa.length} ${q} TOOLS SHIPPED${qa.length-shipped?` · ${qa.length-shipped} REMAINING`:''}`,qa.length-shipped&&qt.remaining<=5?'attention':'normal','SHIPPING');
-  e.critical.slice(0,3).forEach(x=>add(`TOOL ${x.tool.id} · ${(x.reasons||[]).join(' · ')}`,'critical','CRITICAL',x.tool.id));
-  e.attention.slice(0,3).forEach(x=>add(`TOOL ${x.tool.id} · ${(x.reasons||[]).join(' · ')}`,'attention','ATTENTION',x.tool.id));
-  if(window.B7ActivityState?.message)add(window.B7ActivityState.message,window.B7ActivityState.type==='err'?'critical':'normal',window.B7ActivityState.state||'ACTIVITY');
-  if(!out.length)add('COMMAND CENTER READY · NO ACTIVE ALERTS','normal','READY');
-  return out;
-}
-function cc41HeaderAlert(pool,name,attribute){
- const items=pool.length?pool:[{message:name==='LEADS ALERT'?'No open lead messages':'No active operational findings',level:'normal'}];
- const item=items[statusRotationIndex%items.length],critical=items.filter(x=>x.level==='critical').length;
- return `<button type="button" class="cc41-header-alert ${critical?'has-critical':''}" ${attribute(item)} title="${esc(item.message)}"><span class="cc41-alert-heading"><i class="cc41-alert-dot ${critical?'critical':esc(item.level||'normal')}"></i><b>${name}</b>${critical?`<strong class="cc41-critical-count">${critical} CRITICAL</strong>`:''}</span><span class="cc41-alert-message">${esc(item.message)}</span></button>`;
-}
-function statusBars(){
- const root=document.querySelector('#statusStack');if(root){root.innerHTML='';root.hidden=true;}
- const leads=state.actions.filter(a=>a.status!=='Complete').map(a=>({message:a.text||'Lead action requires review',level:String(a.severity||'normal').toLowerCase(),tool:a.tool||''}));
- const activity=window.B7ActivityState||{};
- const brain=statusMessagePool().filter(x=>x.label!=='ACTIVITY'&&x.message!==activity.message);
- operationalFleetTools().forEach(t=>{const a=connectedBrainAnalysis(t);if(a.messages.length)brain.push({message:t.id+' · '+a.messages[0],level:a.level,tool:t.id})});
- for(const [selector,id,html] of [['.prototype-header-left','cc41HeaderLeads',cc41HeaderAlert(leads,'LEADS ALERT',()=> 'data-open-issues')],['.prototype-header-right','cc41HeaderBrain',cc41HeaderAlert(brain,'COMMAND CENTER BRAIN',x=>`data-brain-entry="${esc(x.tool||'')}"`)]]){const panel=document.querySelector('#stickyShell '+selector);if(!panel)continue;let host=document.getElementById(id);if(!host){host=document.createElement('div');host.id=id;host.className='cc41-header-alert-slot';panel.appendChild(host);}host.innerHTML=html;}
-}
-
 function actionsFor(){let a=[];const shot=['SCREENSHOT','shot'];if(mode==='edit'){let saveLabel=(route.center==='operations'&&route.sub==='daily')?'SAVE UPDATES':'SAVE CHANGES';a.push(['CANCEL','cancel'],[saveLabel,'save','save']);if(route.center==='operations'&&route.sub==='tool'&&selected)a.push(['ARCHIVE TOOL','archiveTool','danger'],['DELETE TOOL','deleteTool','danger']);a.push(shot);return a}if(mode==='create'){a.push(['CANCEL','cancel'],[route.center==='operations'?'SAVE TOOL':'CREATE','save','save'],shot);return a}if(mode==='morningMeeting'){a.push(['CANCEL','cancel'],['SAVE MEETING','save','save'],['COMPLETE MEETING','completeMorning','primary'],shot);return a}if(mode==='meeting'){a.push(['CANCEL','cancel'],['SAVE MEETING','save','save'],['END MEETING','endMeeting','primary'],shot);return a}
  if(route.center==='operations'){if(['live','summary'].includes(route.sub))a.push(['PRESENTATION MODE','presentation','primary']);if(route.sub==='live')a.push(['VERIFY TOOLS','verifyTools','primary']);if(route.sub==='live'||route.sub==='tools')a.push(['UPDATE COMMAND CENTER','updateAll','primary']);if(route.sub==='tools')a.push(['ADD TOOL','addTool','primary']);if(route.sub==='archive')a.push(['ADD TOOL TO ARCHIVE','archiveAdd','primary']);a.push(shot)}
  else if(route.center==='shipping'){a.push(['EDIT SHIPPING','edit','primary'],shot)}
@@ -774,7 +742,7 @@ function renderActions(){
   host.innerHTML=normal;
 }
 function syncStickyShellHeight(){if(document.body.classList.contains('screenshot-mode')||document.body.classList.contains('presentation-mode')){document.documentElement.style.setProperty('--sticky-shell-height','0px');return}let sh=document.querySelector('#stickyShell');if(sh)document.documentElement.style.setProperty('--sticky-shell-height',Math.ceil(sh.getBoundingClientRect().height)+'px')}
-function shell(){normalizeConsolidatedRoute();setTheme();document.body.dataset.build=BUILD;nav();statusBars();renderActions()}
+function shell(){normalizeConsolidatedRoute();setTheme();document.body.dataset.build=BUILD;nav();renderActions()}
 function fitSingleLineText(el,minPx=7,maxPx=27){
   if(!el)return;
   el.style.fontSize=maxPx+'px';
@@ -797,7 +765,7 @@ function balancePageNavigation(){
 }
 function fitHeaderGeometry(){
   if(document.body.classList.contains('presentation-mode')||document.body.classList.contains('screenshot-mode'))return;
-  /* V14.0.55: b7-header-fit measures the title span with logo width excluded. */
+  /* V14.0.56: b7-header-fit measures the title span with logo width excluded. */
 }
 let toolEditorSectionKey='tool-info',adminSectionKey='system';
 function enhanceSectionWorkspaces(){
@@ -1989,8 +1957,8 @@ function b1224Tower(t,compact=false){
  const rgb=color.slice(1).match(/../g).map(n=>parseInt(n,16)/255);
  const matrix=rgb.map(n=>`${n*.2126} ${n*.7152} ${n*.0722} 0 0`).join(' ')+' 0 0 0 1 0';
  const label=tone==='off'?'POWERED OFF':sig.text;
- const light=band?`<g class="cc27-lit is-lit" data-lamp="${tone}"><image href="assets/signal-towers/version-b-unbranded-v34.png?v=140055" width="1024" height="1536" clip-path="url(#${key}-lamp)" filter="url(#${key}-color)"/><rect class="cc31-lamp-halo" x="290" y="${band[0]}" width="445" height="${band[1]}" rx="18" fill="${color}" style="mix-blend-mode:screen"/></g>`:'';
- return `<div class="b1224-tower b1229-tower ${compact?'b1224-tower-compact':''} b1224-tower-${tone}" role="img" aria-label="Tool ${esc(t.id)} status: ${esc(sig.text)}" title="${esc(sig.text)} · ${esc(b1229SignalReason(t))}"><svg class="cc-tower-art cc32-version-b" viewBox="150 0 724 1696" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><defs>${band?`<clipPath id="${key}-lamp"><rect x="290" y="${band[0]}" width="445" height="${band[1]}" rx="18"/></clipPath>`:''}<filter id="${key}-color" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR class="cc34-lamp-gain" type="gamma" amplitude="1.6" exponent=".65" offset="0"/><feFuncG class="cc34-lamp-gain" type="gamma" amplitude="1.6" exponent=".65" offset="0"/><feFuncB class="cc34-lamp-gain" type="gamma" amplitude="1.6" exponent=".65" offset="0"/></feComponentTransfer><feColorMatrix type="matrix" values="${matrix}"/></filter><linearGradient id="${key}-silver" x2="0" y2="1"><stop stop-color="#fafafa"/><stop offset=".07" stop-color="#d1d1d1"/><stop offset=".48" stop-color="#b7b7b7"/><stop offset=".88" stop-color="#8e8e8e"/><stop offset="1" stop-color="#ddd"/></linearGradient></defs><image href="assets/signal-towers/version-b-unbranded-v34.png?v=140055" width="1024" height="1536"/>${light}<rect class="cc32-status-badge" x="175" y="1560" width="674" height="120" rx="30" fill="url(#${key}-silver)" stroke="#ddd" stroke-width="4"/><rect x="181" y="1566" width="662" height="108" rx="25" fill="none" stroke="#777" stroke-width="2"/><text class="cc32-status-label" x="512" y="1624" dominant-baseline="middle" text-anchor="middle" fill="${color}" stroke="#191919" stroke-width="1" paint-order="stroke fill" font-family="Arial,sans-serif" font-weight="900" font-size="${label.length>11?65:label.length>8?73:88}">${esc(label)}</text></svg></div>`;
+ const light=band?`<g class="cc27-lit is-lit" data-lamp="${tone}"><image href="assets/signal-towers/version-b-unbranded-v34.png?v=140056" width="1024" height="1536" clip-path="url(#${key}-lamp)" filter="url(#${key}-color)"/><rect class="cc31-lamp-halo" x="290" y="${band[0]}" width="445" height="${band[1]}" rx="18" fill="${color}" style="mix-blend-mode:screen"/></g>`:'';
+ return `<div class="b1224-tower b1229-tower ${compact?'b1224-tower-compact':''} b1224-tower-${tone}" role="img" aria-label="Tool ${esc(t.id)} status: ${esc(sig.text)}" title="${esc(sig.text)} · ${esc(b1229SignalReason(t))}"><svg class="cc-tower-art cc32-version-b" viewBox="150 0 724 1696" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><defs>${band?`<clipPath id="${key}-lamp"><rect x="290" y="${band[0]}" width="445" height="${band[1]}" rx="18"/></clipPath>`:''}<filter id="${key}-color" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR class="cc34-lamp-gain" type="gamma" amplitude="1.6" exponent=".65" offset="0"/><feFuncG class="cc34-lamp-gain" type="gamma" amplitude="1.6" exponent=".65" offset="0"/><feFuncB class="cc34-lamp-gain" type="gamma" amplitude="1.6" exponent=".65" offset="0"/></feComponentTransfer><feColorMatrix type="matrix" values="${matrix}"/></filter><linearGradient id="${key}-silver" x2="0" y2="1"><stop stop-color="#fafafa"/><stop offset=".07" stop-color="#d1d1d1"/><stop offset=".48" stop-color="#b7b7b7"/><stop offset=".88" stop-color="#8e8e8e"/><stop offset="1" stop-color="#ddd"/></linearGradient></defs><image href="assets/signal-towers/version-b-unbranded-v34.png?v=140056" width="1024" height="1536"/>${light}<rect class="cc32-status-badge" x="175" y="1560" width="674" height="120" rx="30" fill="url(#${key}-silver)" stroke="#ddd" stroke-width="4"/><rect x="181" y="1566" width="662" height="108" rx="25" fill="none" stroke="#777" stroke-width="2"/><text class="cc32-status-label" x="512" y="1624" dominant-baseline="middle" text-anchor="middle" fill="${color}" stroke="#191919" stroke-width="1" paint-order="stroke fill" font-family="Arial,sans-serif" font-weight="900" font-size="${label.length>11?65:label.length>8?73:88}">${esc(label)}</text></svg></div>`;
 }
 
 function b1217CompactCard(t){
@@ -2038,7 +2006,7 @@ function brainFindings(){return brainFleet().sort((a,b)=>deriveToolState(b).scor
 function brainPanel(title,inner){return `<section class="panel brain-panel"><h2>${title}</h2>${inner}</section>`}
 function brainCenterView(){
  let fleet=brainFleet(),tool=nonArchivedTools().find(t=>t.id===brainUtid),cands=tool?brainCandidates(tool):[],candidate=cands.find(t=>t.id===brainCandidate),risk=brainFindings(),urgent=risk.filter(t=>(engineDaysToShip(t)??999)<=3),unverified=fleet.filter(t=>!t.shipDate||!t.fiHandoffDate).length;
- let header=`<div class="brain-heading"><div><h1>◈ COMMAND CENTER BRAIN</h1><p>INTELLIGENCE CENTER · OPERATIONAL FORECASTING & DECISION SUPPORT</p></div><span class="brain-readonly">V14.0.55 · LIVE ANALYSIS · NO AUTOMATIC RECORD CHANGES</span></div><div class="brain-mode"><b>INTELLIGENCE CONTROL</b><button type="button" data-brain-mode="auto" class="${brainMode==='auto'?'active':''}">COMMAND CENTER · FULL AUTO</button><button type="button" data-brain-mode="manual" class="${brainMode==='manual'?'active':''}">FI LEADS / MANAGERS</button></div>`;
+ let header=`<div class="brain-heading"><div><h1>◈ COMMAND CENTER BRAIN</h1><p>INTELLIGENCE CENTER · OPERATIONAL FORECASTING & DECISION SUPPORT</p></div><span class="brain-readonly">V14.0.56 · LIVE ANALYSIS · NO AUTOMATIC RECORD CHANGES</span></div><div class="brain-mode"><b>INTELLIGENCE CONTROL</b><button type="button" data-brain-mode="auto" class="${brainMode==='auto'?'active':''}">COMMAND CENTER · FULL AUTO</button><button type="button" data-brain-mode="manual" class="${brainMode==='manual'?'active':''}">FI LEADS / MANAGERS</button></div>`;
  if(route.sub==='home'){
  let findings=risk.slice(0,12).map(t=>{let c=brainCandidates(t),analysis=connectedBrainAnalysis(t);return `<div class="brain-result"><div><b>${brainToolLabel(t)}</b><small>${analysis.progress.pct}% OVERALL · ${esc(analysis.messages[0])} · FI COMPLETION ${analysis.forecast?esc(fmtDate(analysis.forecast)):'PENDING'}</small></div><button type="button" class="btn" data-brain-investigate="${esc(t.id)}">INVESTIGATE</button></div>`}).join('');
  return header+`<div class="brain-kpis"><div><small>ACTIVE TOOLS</small><strong>${fleet.length}</strong></div><div><small>SHIP DATE NEAR / PASSED</small><strong>${urgent.length}</strong></div><div><small>MISSING CORE DATA</small><strong>${unverified}</strong></div><div><small>TOOLS WITH SAME-TYPE OPTIONS</small><strong>${fleet.filter(t=>brainCandidates(t).length).length}</strong></div></div>`+brainPanel('AUTOMATIC MONITORING · LIVE TOOL RECORDS',`<p class="helper">These are review indicators based on existing dates and tool types—not validated shipping-delay predictions. Same-type matches are potential candidates, not approved swaps.</p>${findings||'<p>No active tools.</p>'}`)+brainPanel('INTELLIGENCE CAPABILITIES',`<div class="brain-tiles"><button data-brain-open="swap">⇄ TOOL SWAP ANALYZER</button><button data-brain-open="forecast">◷ FI MILESTONE FORECASTING</button><button data-brain-open="scenario">◇ WHAT-IF SIMULATIONS</button><button data-brain-open="history">▤ FORECAST HISTORY</button></div>`);
@@ -2716,7 +2684,7 @@ window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.return
 }
 if(window.ResizeObserver){const v115Shell=document.getElementById('stickyShell');if(v115Shell)new ResizeObserver(enforceV115ShellGeometry).observe(v115Shell)}
 window.addEventListener('resize',enforceV115ShellGeometry);
-window.addEventListener('resize',()=>{syncStickyShellHeight();fitQuarterSummaryMasters();syncLiveCardGeometry();if(presentationActive)fitPresentation();});setInterval(()=>{if(presentationActive&&!livePaused&&mode==='view'&&route.center==='operations'&&route.sub==='hybrid'&&carouselTools().length>1){liveIndex=(liveIndex+1)%carouselTools().length;render()}},8000);setInterval(()=>{if(!presentationActive&&!livePaused&&mode==='view'&&route.center==='operations'&&route.sub==='live'&&carouselTools().length>1){liveIndex=(liveIndex+1)%carouselTools().length;render()}},8000);setInterval(()=>{if(!snapshotPaused&&mode==='view'&&route.center==='operations'&&route.sub==='live'){snapshotIndex=(snapshotIndex+1)%6;render()}},12000);setInterval(()=>{if(mode!=='view'||document.body.classList.contains('screenshot-mode'))return;statusRotationIndex++;statusBars();rotateBrainMessages();},8000);render();
+window.addEventListener('resize',()=>{syncStickyShellHeight();fitQuarterSummaryMasters();syncLiveCardGeometry();if(presentationActive)fitPresentation();});setInterval(()=>{if(presentationActive&&!livePaused&&mode==='view'&&route.center==='operations'&&route.sub==='hybrid'&&carouselTools().length>1){liveIndex=(liveIndex+1)%carouselTools().length;render()}},8000);setInterval(()=>{if(!presentationActive&&!livePaused&&mode==='view'&&route.center==='operations'&&route.sub==='live'&&carouselTools().length>1){liveIndex=(liveIndex+1)%carouselTools().length;render()}},8000);setInterval(()=>{if(!snapshotPaused&&mode==='view'&&route.center==='operations'&&route.sub==='live'){snapshotIndex=(snapshotIndex+1)%6;render()}},12000);setInterval(()=>{if(mode!=='view'||document.body.classList.contains('screenshot-mode'))return;statusRotationIndex++;rotateBrainMessages();},8000);render();
 
 window.B7NormalizeToolForSync=normalizeTool;window.B7HasUnsavedChanges=()=>dirty||mode==='edit'||mode==='create'||mode==='morningMeeting'||mode==='meeting';
 window.B7ApplySharedScenario=function(shared){if(!shared||!Array.isArray(shared.tools))return;const keepId=carouselTools()[liveIndex]?.id;state=normalize({...state,...shared,config:{...state.config,...(shared.config||{})}});restoreSharedLeadPriorities();const nextIndex=carouselTools().findIndex(t=>t.id===keepId);if(nextIndex>=0)liveIndex=nextIndex;state.environment='SCENARIO TEST';try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}render()};
@@ -2911,7 +2879,7 @@ function inject(){
  const b=document.createElement('button');b.id='mu-launch';b.textContent='MULTI-USER DIAGNOSTICS';b.className='btn';b.hidden=true;document.body.appendChild(b);
  // V6.6.46: keep the internal diagnostics launcher hidden. The single visible Administration Center button opens it through data-shared-action=diagnostics.
  b.hidden=true;
- const p=document.createElement('section');p.id='mu-panel';p.innerHTML=`<div class="mu-head"><div><h2>B7 FI COMMAND CENTER — MULTI-USER CONNECTION TEST</h2><div class="mu-note">V14.0.55 · ONE TOOL = ONE ROW + SHARED SETTINGS · Microsoft Entra delegated authentication · Microsoft Graph · Microsoft List</div></div><button class="mu-close" id="mu-close">×</button></div><div id="mu-status" class="mu-status">Ready. Start the Command Center at http://localhost:5500, then sign in.</div><div class="mu-meta"><div><b>USER</b><br><span id="mu-user">Not signed in</span></div><div><b>SITE</b><br>${esc(CFG.siteHost+CFG.sitePath)}</div><div><b>LIST</b><br>${esc(CFG.listName)}<br><small id="mu-list-id">ID: not resolved</small></div><div><b>MODE</b><br>Shared List Test</div></div><div class="mu-checks" id="mu-checks"></div><div class="mu-actions"><button class="mu-btn" id="mu-signin">1 · SIGN IN WITH KLA</button><button class="mu-btn" id="mu-connect" disabled>2 · CONNECT + READ</button><button class="mu-btn" id="mu-refresh" disabled>3 · REFRESH / FIND EXTERNAL ROW</button><button class="mu-btn" id="mu-create" disabled>4 · CREATE TEMP TEST ROW</button><button class="mu-btn" id="mu-delete" disabled>5 · DELETE TEMP TEST ROW</button><button class="mu-btn" id="mu-listid">SET LIST ID</button><button class="mu-btn" id="mu-copyid" disabled>COPY LIST ID</button><button class="mu-btn" id="mu-signout" disabled>SIGN OUT</button></div><p class="mu-note"><b>Purpose:</b> This build preserves the current Command Center production data model while the shared-list connection is being validated. The panel below tests real multi-user read/write against the shared Microsoft List. Edit a test-row value and save it, then refresh from a second computer/user to verify shared updates. Saves use a change check to avoid silently overwriting a row changed by another user.</p><div id="mu-grid"></div>`;document.body.appendChild(p);
+ const p=document.createElement('section');p.id='mu-panel';p.innerHTML=`<div class="mu-head"><div><h2>B7 FI COMMAND CENTER — MULTI-USER CONNECTION TEST</h2><div class="mu-note">V14.0.56 · ONE TOOL = ONE ROW + SHARED SETTINGS · Microsoft Entra delegated authentication · Microsoft Graph · Microsoft List</div></div><button class="mu-close" id="mu-close">×</button></div><div id="mu-status" class="mu-status">Ready. Start the Command Center at http://localhost:5500, then sign in.</div><div class="mu-meta"><div><b>USER</b><br><span id="mu-user">Not signed in</span></div><div><b>SITE</b><br>${esc(CFG.siteHost+CFG.sitePath)}</div><div><b>LIST</b><br>${esc(CFG.listName)}<br><small id="mu-list-id">ID: not resolved</small></div><div><b>MODE</b><br>Shared List Test</div></div><div class="mu-checks" id="mu-checks"></div><div class="mu-actions"><button class="mu-btn" id="mu-signin">1 · SIGN IN WITH KLA</button><button class="mu-btn" id="mu-connect" disabled>2 · CONNECT + READ</button><button class="mu-btn" id="mu-refresh" disabled>3 · REFRESH / FIND EXTERNAL ROW</button><button class="mu-btn" id="mu-create" disabled>4 · CREATE TEMP TEST ROW</button><button class="mu-btn" id="mu-delete" disabled>5 · DELETE TEMP TEST ROW</button><button class="mu-btn" id="mu-listid">SET LIST ID</button><button class="mu-btn" id="mu-copyid" disabled>COPY LIST ID</button><button class="mu-btn" id="mu-signout" disabled>SIGN OUT</button></div><p class="mu-note"><b>Purpose:</b> This build preserves the current Command Center production data model while the shared-list connection is being validated. The panel below tests real multi-user read/write against the shared Microsoft List. Edit a test-row value and save it, then refresh from a second computer/user to verify shared updates. Saves use a change check to avoid silently overwriting a row changed by another user.</p><div id="mu-grid"></div>`;document.body.appendChild(p);
  b.onclick=()=>p.classList.add('open');p.querySelector('#mu-close').onclick=()=>p.classList.remove('open');
  p.querySelector('#mu-listid').onclick=()=>{let v=prompt('Paste the B7 FI Command Center Microsoft List ID from a connected laptop:',localStorage.getItem(LIST_ID_KEY)||'');if(v&&v.trim()){localStorage.setItem(LIST_ID_KEY,v.trim());list=null;status('List ID saved. Click 2 · CONNECT + READ.','ok')}};p.querySelector('#mu-copyid').onclick=()=>{let v=list?.id||localStorage.getItem(LIST_ID_KEY)||'';if(v)prompt('Copy this List ID to the other laptop:',v)};p.querySelector('#mu-signin').onclick=signIn;p.querySelector('#mu-connect').onclick=connect;p.querySelector('#mu-refresh').onclick=loadItems;p.querySelector('#mu-create').onclick=createTempRow;p.querySelector('#mu-delete').onclick=deleteTempRow;p.querySelector('#mu-signout').onclick=signOut;renderChecks();
 }
@@ -3007,7 +2975,7 @@ async function loadSharedScenario(localState){requireToolDataColumn();await refr
   for(const it of items){let t=parseToolData(it);if(t&&!titleOf(it).startsWith(TOOL_PREFIX)){let b={};setField(b,'Title',TOOL_PREFIX+String(t.id));if(Object.keys(b).length)await patchRow(it.id,b)}}
   // Never seed a populated shared list with local/browser test tools automatically.
   if(!sharedTools.length && items.length===0)console.warn('Shared list empty: explicit import is required to publish local tools.');await refreshAllItems();sharedTools=decodeSharedTools();let out=JSON.parse(JSON.stringify(localState));Object.assign(out,sharedSnapshot(sharedTools));lastSharedState=JSON.parse(JSON.stringify(out));return out}
-// V14.0.55: canonical comparison and guarded three-way saves.
+// V14.0.56: canonical comparison and guarded three-way saves.
 function canonicalValue(value){if(value===undefined)return 'null';if(Array.isArray(value))return '['+value.map(canonicalValue).join(',')+']';if(value&&typeof value==='object')return '{'+Object.keys(value).filter(k=>!['_sharedRowId','_sharedRevision','createdAt'].includes(k)).sort().map(k=>JSON.stringify(k)+':'+canonicalValue(value[k])).join(',')+'}';return JSON.stringify(value)}
 function mergeSharedChanges(base,local,remote,path='record'){
  if(canonicalValue(local)===canonicalValue(base))return remote;
@@ -3239,7 +3207,7 @@ document.addEventListener('DOMContentLoaded',async()=>{inject();bindHeaderLogin(
     const sh=document.querySelector('#stickyShell');const card=document.querySelector('.c11-card-grid');const badge=document.querySelector('.c11-badge');
     const styles=[...document.styleSheets].filter(s=>s.href).map(s=>{try{return new URL(s.href).pathname.split('/').pop()}catch{return s.href}});
     const rect=el=>el?Math.round(el.getBoundingClientRect().top)+' / '+Math.round(el.getBoundingClientRect().height):'not visible';
-    panel.innerHTML='<b>B7 LAYOUT DIAGNOSTICS · V14.0.55</b><hr style="border-color:#395566">'+
+    panel.innerHTML='<b>B7 LAYOUT DIAGNOSTICS · V14.0.56</b><hr style="border-color:#395566">'+
       'Viewport: '+innerWidth+' × '+innerHeight+'<br>Device pixel ratio: '+devicePixelRatio+'<br>'+ 
       'Header top / height: '+rect(sh)+'<br>Header position: '+(sh?getComputedStyle(sh).position:'none')+'<br>'+ 
       'Tool card top / height: '+rect(card)+'<br>Badge height: '+(badge?Math.round(badge.getBoundingClientRect().height)+'px':'not visible')+'<br>'+ 
@@ -3320,7 +3288,7 @@ document.addEventListener('DOMContentLoaded',async()=>{inject();bindHeaderLogin(
 
 ;
 /* Bundled source: js/b7-badge-source-v12.0.62.js */
-/* V14.0.55: CSS owns badge/card geometry. This diagnostic never writes styles. */
+/* V14.0.56: CSS owns badge/card geometry. This diagnostic never writes styles. */
 (()=>{window.b762BadgeDiagnostics=()=>[...document.querySelectorAll('#app .c11-tool-card .c11-identity-stack>*,#app .c11-tool-card .b783-date-row>*,#app .c11-tool-card .c11-badges>*')].map(el=>({name:el.textContent.trim().replace(/\s+/g,' ').slice(0,40),height:+el.getBoundingClientRect().height.toFixed(2),cssHeight:getComputedStyle(el).height}));})();
 ;
 /* Bundled source: js/b7-raiders-navigation-v13.0.2.js */
@@ -3355,26 +3323,6 @@ document.addEventListener('DOMContentLoaded',async()=>{inject();bindHeaderLogin(
 })();
 
 ;
-/* Bundled source: js/b7-raiders-shell-v13.0.5.js */
-/* V13.0.5 — small, idempotent shell geometry enforcer for legacy runtime overrides. */
-(()=>{'use strict';
-const chrome='linear-gradient(180deg, rgb(82,82,82) 0%, rgb(24,24,24) 13%, rgb(3,3,3) 55%, rgb(39,39,39) 95%, rgb(107,107,107) 100%)';
-const set=(el,key,val)=>{if(el && el.style.getPropertyValue(key)!==val)el.style.setProperty(key,val,'important');};
-function apply(){
- const header=document.querySelector('#stickyShell > header.prototype-header');
- if(header){set(header,'height','156px');set(header,'min-height','156px');set(header,'max-height','156px');}
- // Footer now controlled by V14.0.12 graphic panels.
- // Tower dimensions are now controlled by the V13.0.16 photo-grid CSS.
- // Do not apply old inline height/object-fit overrides: they caused clipping.
-
-}
-let pending=false;
-function schedule(){if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;apply();});}
-function start(){apply();new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true});}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
-})();
-
-;
 /* Bundled source: js/b7-raiders-live-finish-v13.0.6.js */
 (()=>{'use strict';
  const chrome='linear-gradient(180deg, rgb(77,77,77) 0%, rgb(21,21,21) 20%, rgb(2,2,2) 72%, rgb(54,54,54) 100%)';
@@ -3394,7 +3342,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 
 ;
 /* Bundled source: js/signal-lamps-v13.0.38.js */
-/* V14.0.55 — explicit lighting preview, save and close. */
+/* V14.0.56 — explicit lighting preview, save and close. */
 (()=>{'use strict';
 const KEY='b7.signalLighting.v1338';
 const defaults={mode:'pulse',brightness:45,duration:1.5,glow:80,pattern:'smooth'};
@@ -3421,10 +3369,10 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 ;
 /* Bundled source: js/raiders-header-footer-v13.0.39.js */
-(()=>{'use strict';function refresh(){const el=document.getElementById('footerConnectionVisual');if(!el)return;const core=document.getElementById('klaConnectionCore'),label=document.getElementById('headerConnectionLabel')?.textContent||'LOCAL DATA';const local=core?.classList.contains('local-mode')||label==='LOCAL DATA';el.textContent=local?'LOCAL MODE · V14.0.55':label+' · V14.0.55';el.classList.toggle('connected',!local&&/^(LIST CONNECTED|SYNCING LIST|SYNC PAUSED)$/.test(label));el.classList.toggle('connection-error',/FAILED|DISCONNECTED/.test(label))}function init(){refresh();const obs=new MutationObserver(refresh);for(const id of ['headerConnectionLabel','sharedStatus']){const el=document.getElementById(id);if(el)obs.observe(el,{childList:true,subtree:true,characterData:true})}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init()})();
+(()=>{'use strict';function refresh(){const el=document.getElementById('footerConnectionVisual');if(!el)return;const core=document.getElementById('klaConnectionCore'),label=document.getElementById('headerConnectionLabel')?.textContent||'LOCAL DATA';const local=core?.classList.contains('local-mode')||label==='LOCAL DATA';el.textContent=local?'LOCAL MODE · V14.0.56':label+' · V14.0.56';el.classList.toggle('connected',!local&&/^(LIST CONNECTED|SYNCING LIST|SYNC PAUSED)$/.test(label));el.classList.toggle('connection-error',/FAILED|DISCONNECTED/.test(label))}function init(){refresh();const obs=new MutationObserver(refresh);for(const id of ['headerConnectionLabel','sharedStatus']){const el=document.getElementById(id);if(el)obs.observe(el,{childList:true,subtree:true,characterData:true})}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init()})();
 ;
 /* Bundled source: js/design-stabilization-v13.0.40.js */
-/* V14.0.55: decorative lighting never substitutes a different operational tower asset. */
+/* V14.0.56: decorative lighting never substitutes a different operational tower asset. */
 (()=>{function sync(){const hint=document.querySelector('#b7-lamp-menu .b7-lamp-hint');if(hint&&hint.textContent!=='Apply previews your adjustments. Save keeps them on this browser. Close discards unsaved adjustments.')hint.textContent='Apply previews your adjustments. Save keeps them on this browser. Close discards unsaved adjustments.'}function init(){sync();new MutationObserver(sync).observe(document.body,{childList:true,subtree:true})}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init()})();
 ;
 /* Bundled source: js/b7-header-fit-v14.0.8.js */
@@ -3478,6 +3426,6 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 
 ;
-/* Bundled source: js/shell-clock-v14.0.55.js */
-/* V14.0.55: header date/time removed by request. */
+/* Bundled source: js/shell-clock-v14.0.56.js */
+/* V14.0.56: header date/time removed by request. */
 
