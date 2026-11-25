@@ -1,16 +1,18 @@
-FI COMMAND CENTER V14.0.58
-LIVE OPERATIONS TOOL INFORMATION
+FI COMMAND CENTER V14.0.59
+LIVE OPERATIONS COLUMN ARRANGEMENT
 
-The Tool Information panel combines the tool photo, details and badges.
-Priority and Alias have equal dimensions and tool photos fit without cropping.
-All badges, lead notes and additional progress cards display directly.
-The desktop columns share a fixed height and the signal tower fills its panel.
-Long content can scroll inside its column. Narrow screens stack the panels.
+1. Signal Tower
+2. Tool Information, Ship Countdown and Next Action
+3. Current State and all progress cards, including Overall Progress
+4. Tool Badges, Latest System Status, Lead Notes / Reminders and Command Center Brain
+
+The desktop columns share a shorter fixed height. Long content can scroll
+inside its column. Narrow screens stack the lower panels.
 
 LOCAL
-Extract the ZIP to a new folder. Close the previous server and run
+Extract to a new folder. Close the previous server and run
 START-COMMAND-CENTER.bat from the new folder.
 
 GITHUB PAGES
 Replace index.html, css/command-center.css and js/command-center.js together.
-Keep existing assets and confirm V14.0.58 after reloading.
+Keep existing assets and confirm V14.0.59 after reloading.
