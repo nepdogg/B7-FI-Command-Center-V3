@@ -1,6 +1,6 @@
 /* Bundled source: js/app.js */
 (()=>{'use strict';
-const VERSION='14.0.54', BUILD='20261117-V14.0.54-CONSOLIDATED-REPAIRS';
+const VERSION='14.0.55', BUILD='20261117-V14.0.55-CONSOLIDATED-REPAIRS';
 const ACTIVE_DATASET_KEY='b7fi-command-center-active-dataset-v1216';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
@@ -797,7 +797,7 @@ function balancePageNavigation(){
 }
 function fitHeaderGeometry(){
   if(document.body.classList.contains('presentation-mode')||document.body.classList.contains('screenshot-mode'))return;
-  /* V14.0.54: b7-header-fit measures the title span with logo width excluded. */
+  /* V14.0.55: b7-header-fit measures the title span with logo width excluded. */
 }
 let toolEditorSectionKey='tool-info',adminSectionKey='system';
 function enhanceSectionWorkspaces(){
@@ -1808,14 +1808,14 @@ function v10ProgressRow(label,pct,tone,sub,tool,key='',display=''){
 function c11IdentityButton(t,key,label,value,missing=false){return `<button type="button" class="c11-id-badge ${missing?'missing':''}" data-direct-identity="${esc(key)}" data-identity-tool="${esc(t.id)}" title="${esc(label)} — click to update" style="display:grid!important;grid-template-columns:minmax(0,44%) minmax(0,56%)!important;align-items:center!important;justify-items:stretch!important;gap:5px!important;text-align:left!important;flex-direction:row!important;"><small style="display:block!important;grid-column:1!important;justify-self:start!important;text-align:left!important;width:auto!important;max-width:100%!important;margin:0!important;">${esc(label)}</small><strong style="display:block!important;grid-column:2!important;justify-self:end!important;text-align:right!important;width:auto!important;max-width:100%!important;margin:0!important;overflow-wrap:anywhere!important;">${esc(String(value||'—').toUpperCase())}</strong></button>`}
 function c11ProgressRow(label,pct,tone,sub,tool,key='',display='',styled=false){
   let p=Math.max(0,Math.min(100,Number(pct)||0)),attrs=key==='forecastChecklist'?` data-forecast-checklist="${esc(tool.id)}" role="button" tabindex="0"`:key==='shippingWorkflow'?` data-handoffs="${esc(tool.id)}" role="button" tabindex="0"`:key?` data-quick-field="${esc(key)}" data-quick-tool="${esc(tool.id)}" role="button" tabindex="0"`:'';
-  return `<div class="c11-progress-row b7-section-tone-${esc(tone||'cyan')} ${key?'clickable':''}"${attrs}><div class="c11-progress-head"><b>${esc(label)}</b><strong>${esc(display||Math.round(Number(pct)||0)+'%')}</strong></div>${styled?'<div class="cc54-meter-well">':''}<div class="c11-progress-track"><i class="${esc(tone||'cyan')}" style="width:${p}%"></i></div>${styled?'</div>':''}<small>${esc(sub||'')}</small></div>`
+  return `<div class="c11-progress-row b7-section-tone-${esc(tone||'cyan')} ${key?'clickable':''}"${attrs}><div class="c11-progress-head"><b>${esc(label)}</b><strong>${esc(display||Math.round(Number(pct)||0)+'%')}</strong></div>${styled?'<div class="cc54-meter-well">':''}<div class="c11-progress-track"><i class="${esc(tone||'cyan')}" style="width:${p}%"></i></div><small>${esc(sub||'')}</small>${styled?'</div>':''}</div>`
 }
 function c11ForecastRow(t,alias,compact=false){
   const target=forecastTargetCode(t),eta=calculatedForecastDate(t,target),label=checklistLabel(t,target);
   const code=String(target||'NO TARGET SELECTED');
   const dateLabel=eta?'FORECAST DATE: '+fmtDate(eta):'FORECAST DATE: TBD';
   const position=forecastTargetProgress(t);
-  return `<div class="c11-progress-row c11-forecast-target-row b7-section-tone-purple clickable" data-forecast-checklist="${esc(t.id)}" role="button" tabindex="0" title="Select forecast checklist"><div class="c11-progress-head"><b>${compact?'FORECAST (SHIP READINESS)':esc(alias)+' FI FORECAST PROGRESS'}</b><strong>${compact?position+'%':esc(dateLabel)}</strong></div>${compact?'<div class="cc54-meter-well">':''}<div class="c11-progress-track"><i class="purple" style="width:${position}%"></i></div>${compact?'</div>':''}<div class="v1213-forecast-details"><span>${esc(code)} — ${esc(label)}</span>${compact?`<span>${esc(dateLabel)}</span>`:''}</div></div>`;
+  return `<div class="c11-progress-row c11-forecast-target-row b7-section-tone-purple clickable" data-forecast-checklist="${esc(t.id)}" role="button" tabindex="0" title="Select forecast checklist"><div class="c11-progress-head"><b>${compact?'FORECAST (SHIP READINESS)':esc(alias)+' FI FORECAST PROGRESS'}</b><strong>${compact?position+'%':esc(dateLabel)}</strong></div>${compact?'<div class="cc54-meter-well">':''}<div class="c11-progress-track"><i class="purple" style="width:${position}%"></i></div><div class="v1213-forecast-details"><span>${esc(code)} — ${esc(label)}</span>${compact?`<span>${esc(dateLabel)}</span>`:''}</div>${compact?'</div>':''}</div>`;
 }
 function c11OverallProgressCard(alias,t,fi,lead,packing){return connectedBrainCard(t)}
 function cc44DailySystemStatus(t){return `<div class="cc44-daily-content email-status email-match">${cc45DailyEmailRow(t,false)}</div>`;}
@@ -1832,10 +1832,12 @@ function v11ToolCard(towerLayout=false){
   if(t.toolStatus!=='FI')currentStatus=String(t.toolStatus||'NOT IN FI').toUpperCase();if(t.fiStatusOverride&&t.toolStatus==='FI')currentStatus=t.fiStatusOverride;
   return `<section class="c11-tool-card cc41-live-card ${towerLayout?'cc53-live':''}" data-universal-tool-card="${esc(t.id)}">
     <div class="c11-card-grid b1224-universal-grid ${towerLayout?'cc53-grid':'b1226-three-column'}">
-      ${towerLayout?`<section class="cc53-tower"><h2>SIGNAL TOWER</h2><div>${b1224Tower(t)}</div></section>`:''}
+      ${towerLayout?`<section class="cc53-tower"><h2>SIGNAL TOWER</h2><div class="cc55-tower-well">${b1224Tower(t)}</div></section>`:''}
       <section class="c11-column c11-identity-column">
         ${towerLayout?'<h2 class="cc53-heading">TOOL OVERVIEW</h2>':''}
+        ${towerLayout?'<div class="cc55-card"><h3 class="cc55-title">TOOL PHOTO</h3><div class="cc55-well">':''}
         <div class="c11-photo b796-priority-photo b1226-photo b1313-unified-photo"><div class="b133-priority-alias"><button type="button" class="b133-priority-badge" data-direct-priority="${esc(t.id)}" title="Update priority">#${esc(p.rank||t.priority||'—')} PRIORITY</button><button type="button" class="b133-alias-badge" data-tool="${esc(t.id)}" title="Open tool to edit alias">${esc(String(t.alias||'NO ALIAS').toUpperCase())}</button></div><div class="b1226-photo-top">${towerLayout?'':`<div class="b1226-photo-tower">${b1224Tower(t)}</div>`}<div class="b1226-photo-main"><div class="v1210-photo-image"><img src="${esc(img)}" alt="${esc(t.codename||'Tool')}"></div></div></div></div>
+        ${towerLayout?'</div></div><div class="cc55-card"><h3 class="cc55-title">TOOL DETAILS</h3><div class="cc55-well cc55-tool-details">':''}
         <div class="c11-identity-stack">
           ${c11IdentityButton(t,'utid','UTID',t.id,!t.id)}
           ${c11IdentityButton(t,'toolType','TOOL TYPE',t.codename,!t.codename)}
@@ -1849,31 +1851,31 @@ function v11ToolCard(towerLayout=false){
         ${fiDateBadgeRow(t)}
         <button type="button" class="c11-reduced ${t.reducedProcess?'active':''}" data-direct-indicator="reduced" data-indicator-tool="${esc(t.id)}">${t.reducedProcess?'REDUCED PROCESS':'NORMAL PROCESS'}</button>
         ${carry?`<div class="c11-carry">⚠ QUARTER CARRYOVER — SHIP ASAP ⚠</div>`:`<div class="c11-carry c11-carry-placeholder" aria-hidden="true"></div>`}
-        ${towerLayout?'<details class="cc53-details"><summary>TOOL BADGES</summary>':''}<div class="c11-badge-region"><div class="c11-badges b761-badge-grid">${badgeHtml}</div></div>
-        ${towerLayout?'</details>':''}<button class="c11-update" data-tool="${esc(t.id)}">UPDATE TOOL STATUS →</button>
+        ${towerLayout?'</div></div><details class="cc53-details cc55-card"><summary><span>TOOL BADGES</span></summary><div class="cc55-well">':''}<div class="c11-badge-region"><div class="c11-badges b761-badge-grid">${badgeHtml}</div></div>
+        ${towerLayout?'</div></details>':''}<button class="c11-update" data-tool="${esc(t.id)}">UPDATE TOOL STATUS →</button>
       </section>
       <section class="c11-column c11-status-column">
         ${towerLayout?'<h2 class="cc53-heading">OPERATIONS SUMMARY</h2>':''}
         <div class="c11-status-card ship ${esc(intel.tone)} clickable" data-quick-field="shipDate" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">${towerLayout?'SHIP COUNTDOWN':esc(alias)+' TOOL SHIP COUNTDOWN'}</span>${towerLayout?'<div class="cc54-well cc54-countdown">':''}<strong class="c11-hero">${esc(count.big||'NO SHIP DATE')}</strong><span class="sub">${esc(count.small||'SET MANUFACTURING SHIP DATE')}</span>${towerLayout?'</div>':''}</div>
         <div class="c11-status-card c11-bottom-card b7-section-tone-cyan"><span class="label">${towerLayout?'NEXT ACTION':esc(alias)+' NEXT SYSTEM TASKS'}</span>${towerLayout?'<div class="cc54-well cc54-action"><span class="cc54-icon" aria-hidden="true">→</span>':''}<div class="c11-tasks">${tasks.length?tasks.slice(0,5).map((x,i)=>`<div class="c11-task"><i>${i+1}</i><span>${esc(x.text)}</span></div>`).join(''):'<div class="c11-task"><i>✓</i><span>NO OPEN SYSTEM TASKS</span></div>'}</div>${towerLayout?'</div>':''}</div>
         <div class="c11-status-card cc44-daily-status clickable" data-quick-field="latestStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" aria-label="Update latest daily system status for ${esc(t.id)}"><span class="label">${towerLayout?'LATEST SYSTEM STATUS':esc(alias)+' LATEST SYSTEM STATUS'}</span>${towerLayout?'<div class="cc54-well cc54-status"><span class="cc54-icon" aria-hidden="true">✓</span>':''}${cc44DailySystemStatus(t)}${towerLayout?'</div>':''}</div>
-        ${towerLayout?'<details class="cc53-details"><summary>LEAD NOTES / REMINDERS</summary>':''}<div class="c11-status-card c11-bottom-card b7-section-tone-cyan clickable" data-quick-field="leadNotes" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">${esc(alias)} LEAD NOTES / REMINDERS</span><div class="c11-lines">${esc(t.notes||'No lead notes entered.')}</div></div>
+        ${towerLayout?'<details class="cc53-details cc55-card"><summary><span>LEAD NOTES / REMINDERS</span></summary>':''}<div class="c11-status-card c11-bottom-card b7-section-tone-cyan clickable" data-quick-field="leadNotes" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">${esc(alias)} LEAD NOTES / REMINDERS</span><div class="c11-lines">${esc(t.notes||'No lead notes entered.')}</div></div>
         ${towerLayout?'</details>':''}
         ${towerLayout?connectedBrainCard(t,true):c11OverallProgressCard(alias,t,fi,lead,packing)}
       </section>
       <section class="c11-column c11-progress-column">
         ${towerLayout?'<h2 class="cc53-heading">TOOL SYSTEM STATUS</h2>':''}
-        <div class="cc41-tool-system clickable" data-quick-field="toolStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" aria-label="Update system status for ${esc(t.id)}"><div class="cc41-system-heading">${towerLayout?'':'⚙ TOOL SYSTEM STATUS'}</div>${towerLayout?'<div class="cc54-well cc54-status"><span class="cc54-icon" aria-hidden="true">✓</span><div>':''}<strong class="cc41-system-phase">${esc(statusLabel)}</strong><span class="cc41-system-schedule">${currentStatus!==statusLabel?esc(currentStatus):''}</span><p>${esc(t.latestStatus||'No live system status entered.')}</p><span class="cc41-system-next">NEXT: ${esc(tasks[0]?.text||nextStepLabel(t)||'Review remaining requirements')}</span>${towerLayout?'</div></div>':''}</div>
+        <div class="cc41-tool-system clickable" data-quick-field="toolStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" aria-label="Update system status for ${esc(t.id)}"><div class="cc41-system-heading">${towerLayout?'CURRENT STATE':'⚙ TOOL SYSTEM STATUS'}</div>${towerLayout?'<div class="cc54-well cc54-status"><span class="cc54-icon" aria-hidden="true">✓</span><div>':''}<strong class="cc41-system-phase">${esc(statusLabel)}</strong><span class="cc41-system-schedule">${currentStatus!==statusLabel?esc(currentStatus):''}</span><p>${esc(t.latestStatus||'No live system status entered.')}</p><span class="cc41-system-next">NEXT: ${esc(tasks[0]?.text||nextStepLabel(t)||'Review remaining requirements')}</span>${towerLayout?'</div></div>':''}</div>
         ${c11ProgressRow((towerLayout?'FI PROGRESS':`${alias} FI PROGRESS`),fi,'cyan',checklistLabel(t,t.currentChecklist),t,'currentChecklist','',towerLayout)}
         ${c11ProgressRow((towerLayout?'MICRO SCHEDULE':`${alias} MICRO SCHEDULE`),mi,performance(t)[0]==='BEHIND'?'red':'green',checklistLabel(t,t.microSchedule),t,'microSchedule','',towerLayout)}
         ${c11ForecastRow(t,alias,towerLayout)}
         ${towerLayout?packingRow:''}
-        ${towerLayout?'<details class="cc53-details"><summary>MORE PROGRESS</summary>':''}
+        ${towerLayout?'<details class="cc53-details cc55-card"><summary><span>MORE PROGRESS</span></summary><div class="cc55-well cc55-more-progress">':''}
         ${c11ProgressRow(`${alias} CYCLE TIME`,cp,cp>100?'red':cp>=85?'yellow':'green',`TARGET ${target} DAYS`,t,'targetCycle',`${cyc} / ${target} DAYS · ${cp}%`,towerLayout)}
         ${c11ProgressRow(`${alias} LEAD / ADMIN PROGRESS`,lead,lead>=85?'green':'cyan',`${Math.max(0,100-lead)}% REMAINING`,t,'currentLeadTask','',towerLayout)}
         ${c11ProgressRow(`${alias} CUSTOMER SOURCE PROGRESS`,source.pct,source.tone,source.sub,t,'sourceWorkflow',source.label,towerLayout)}
         ${c11ProgressRow(`${alias} STR PROGRESS`,str.pct,str.tone,str.sub,t,'strWorkflow',str.label,towerLayout)}
-        ${towerLayout?'</details>':''}
+        ${towerLayout?'</div></details>':''}
         ${towerLayout?'':packingRow}
       </section>
     </div>
@@ -1987,8 +1989,8 @@ function b1224Tower(t,compact=false){
  const rgb=color.slice(1).match(/../g).map(n=>parseInt(n,16)/255);
  const matrix=rgb.map(n=>`${n*.2126} ${n*.7152} ${n*.0722} 0 0`).join(' ')+' 0 0 0 1 0';
  const label=tone==='off'?'POWERED OFF':sig.text;
- const light=band?`<g class="cc27-lit is-lit" data-lamp="${tone}"><image href="assets/signal-towers/version-b-unbranded-v34.png?v=140054" width="1024" height="1536" clip-path="url(#${key}-lamp)" filter="url(#${key}-color)"/><rect class="cc31-lamp-halo" x="290" y="${band[0]}" width="445" height="${band[1]}" rx="18" fill="${color}" style="mix-blend-mode:screen"/></g>`:'';
- return `<div class="b1224-tower b1229-tower ${compact?'b1224-tower-compact':''} b1224-tower-${tone}" role="img" aria-label="Tool ${esc(t.id)} status: ${esc(sig.text)}" title="${esc(sig.text)} · ${esc(b1229SignalReason(t))}"><svg class="cc-tower-art cc32-version-b" viewBox="150 0 724 1696" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><defs>${band?`<clipPath id="${key}-lamp"><rect x="290" y="${band[0]}" width="445" height="${band[1]}" rx="18"/></clipPath>`:''}<filter id="${key}-color" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR class="cc34-lamp-gain" type="gamma" amplitude="1.6" exponent=".65" offset="0"/><feFuncG class="cc34-lamp-gain" type="gamma" amplitude="1.6" exponent=".65" offset="0"/><feFuncB class="cc34-lamp-gain" type="gamma" amplitude="1.6" exponent=".65" offset="0"/></feComponentTransfer><feColorMatrix type="matrix" values="${matrix}"/></filter><linearGradient id="${key}-silver" x2="0" y2="1"><stop stop-color="#fafafa"/><stop offset=".07" stop-color="#d1d1d1"/><stop offset=".48" stop-color="#b7b7b7"/><stop offset=".88" stop-color="#8e8e8e"/><stop offset="1" stop-color="#ddd"/></linearGradient></defs><image href="assets/signal-towers/version-b-unbranded-v34.png?v=140054" width="1024" height="1536"/>${light}<rect class="cc32-status-badge" x="175" y="1560" width="674" height="120" rx="30" fill="url(#${key}-silver)" stroke="#ddd" stroke-width="4"/><rect x="181" y="1566" width="662" height="108" rx="25" fill="none" stroke="#777" stroke-width="2"/><text class="cc32-status-label" x="512" y="1624" dominant-baseline="middle" text-anchor="middle" fill="${color}" stroke="#191919" stroke-width="1" paint-order="stroke fill" font-family="Arial,sans-serif" font-weight="900" font-size="${label.length>11?65:label.length>8?73:88}">${esc(label)}</text></svg></div>`;
+ const light=band?`<g class="cc27-lit is-lit" data-lamp="${tone}"><image href="assets/signal-towers/version-b-unbranded-v34.png?v=140055" width="1024" height="1536" clip-path="url(#${key}-lamp)" filter="url(#${key}-color)"/><rect class="cc31-lamp-halo" x="290" y="${band[0]}" width="445" height="${band[1]}" rx="18" fill="${color}" style="mix-blend-mode:screen"/></g>`:'';
+ return `<div class="b1224-tower b1229-tower ${compact?'b1224-tower-compact':''} b1224-tower-${tone}" role="img" aria-label="Tool ${esc(t.id)} status: ${esc(sig.text)}" title="${esc(sig.text)} · ${esc(b1229SignalReason(t))}"><svg class="cc-tower-art cc32-version-b" viewBox="150 0 724 1696" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><defs>${band?`<clipPath id="${key}-lamp"><rect x="290" y="${band[0]}" width="445" height="${band[1]}" rx="18"/></clipPath>`:''}<filter id="${key}-color" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR class="cc34-lamp-gain" type="gamma" amplitude="1.6" exponent=".65" offset="0"/><feFuncG class="cc34-lamp-gain" type="gamma" amplitude="1.6" exponent=".65" offset="0"/><feFuncB class="cc34-lamp-gain" type="gamma" amplitude="1.6" exponent=".65" offset="0"/></feComponentTransfer><feColorMatrix type="matrix" values="${matrix}"/></filter><linearGradient id="${key}-silver" x2="0" y2="1"><stop stop-color="#fafafa"/><stop offset=".07" stop-color="#d1d1d1"/><stop offset=".48" stop-color="#b7b7b7"/><stop offset=".88" stop-color="#8e8e8e"/><stop offset="1" stop-color="#ddd"/></linearGradient></defs><image href="assets/signal-towers/version-b-unbranded-v34.png?v=140055" width="1024" height="1536"/>${light}<rect class="cc32-status-badge" x="175" y="1560" width="674" height="120" rx="30" fill="url(#${key}-silver)" stroke="#ddd" stroke-width="4"/><rect x="181" y="1566" width="662" height="108" rx="25" fill="none" stroke="#777" stroke-width="2"/><text class="cc32-status-label" x="512" y="1624" dominant-baseline="middle" text-anchor="middle" fill="${color}" stroke="#191919" stroke-width="1" paint-order="stroke fill" font-family="Arial,sans-serif" font-weight="900" font-size="${label.length>11?65:label.length>8?73:88}">${esc(label)}</text></svg></div>`;
 }
 
 function b1217CompactCard(t){
@@ -2036,7 +2038,7 @@ function brainFindings(){return brainFleet().sort((a,b)=>deriveToolState(b).scor
 function brainPanel(title,inner){return `<section class="panel brain-panel"><h2>${title}</h2>${inner}</section>`}
 function brainCenterView(){
  let fleet=brainFleet(),tool=nonArchivedTools().find(t=>t.id===brainUtid),cands=tool?brainCandidates(tool):[],candidate=cands.find(t=>t.id===brainCandidate),risk=brainFindings(),urgent=risk.filter(t=>(engineDaysToShip(t)??999)<=3),unverified=fleet.filter(t=>!t.shipDate||!t.fiHandoffDate).length;
- let header=`<div class="brain-heading"><div><h1>◈ COMMAND CENTER BRAIN</h1><p>INTELLIGENCE CENTER · OPERATIONAL FORECASTING & DECISION SUPPORT</p></div><span class="brain-readonly">V14.0.54 · LIVE ANALYSIS · NO AUTOMATIC RECORD CHANGES</span></div><div class="brain-mode"><b>INTELLIGENCE CONTROL</b><button type="button" data-brain-mode="auto" class="${brainMode==='auto'?'active':''}">COMMAND CENTER · FULL AUTO</button><button type="button" data-brain-mode="manual" class="${brainMode==='manual'?'active':''}">FI LEADS / MANAGERS</button></div>`;
+ let header=`<div class="brain-heading"><div><h1>◈ COMMAND CENTER BRAIN</h1><p>INTELLIGENCE CENTER · OPERATIONAL FORECASTING & DECISION SUPPORT</p></div><span class="brain-readonly">V14.0.55 · LIVE ANALYSIS · NO AUTOMATIC RECORD CHANGES</span></div><div class="brain-mode"><b>INTELLIGENCE CONTROL</b><button type="button" data-brain-mode="auto" class="${brainMode==='auto'?'active':''}">COMMAND CENTER · FULL AUTO</button><button type="button" data-brain-mode="manual" class="${brainMode==='manual'?'active':''}">FI LEADS / MANAGERS</button></div>`;
  if(route.sub==='home'){
  let findings=risk.slice(0,12).map(t=>{let c=brainCandidates(t),analysis=connectedBrainAnalysis(t);return `<div class="brain-result"><div><b>${brainToolLabel(t)}</b><small>${analysis.progress.pct}% OVERALL · ${esc(analysis.messages[0])} · FI COMPLETION ${analysis.forecast?esc(fmtDate(analysis.forecast)):'PENDING'}</small></div><button type="button" class="btn" data-brain-investigate="${esc(t.id)}">INVESTIGATE</button></div>`}).join('');
  return header+`<div class="brain-kpis"><div><small>ACTIVE TOOLS</small><strong>${fleet.length}</strong></div><div><small>SHIP DATE NEAR / PASSED</small><strong>${urgent.length}</strong></div><div><small>MISSING CORE DATA</small><strong>${unverified}</strong></div><div><small>TOOLS WITH SAME-TYPE OPTIONS</small><strong>${fleet.filter(t=>brainCandidates(t).length).length}</strong></div></div>`+brainPanel('AUTOMATIC MONITORING · LIVE TOOL RECORDS',`<p class="helper">These are review indicators based on existing dates and tool types—not validated shipping-delay predictions. Same-type matches are potential candidates, not approved swaps.</p>${findings||'<p>No active tools.</p>'}`)+brainPanel('INTELLIGENCE CAPABILITIES',`<div class="brain-tiles"><button data-brain-open="swap">⇄ TOOL SWAP ANALYZER</button><button data-brain-open="forecast">◷ FI MILESTONE FORECASTING</button><button data-brain-open="scenario">◇ WHAT-IF SIMULATIONS</button><button data-brain-open="history">▤ FORECAST HISTORY</button></div>`);
@@ -2909,7 +2911,7 @@ function inject(){
  const b=document.createElement('button');b.id='mu-launch';b.textContent='MULTI-USER DIAGNOSTICS';b.className='btn';b.hidden=true;document.body.appendChild(b);
  // V6.6.46: keep the internal diagnostics launcher hidden. The single visible Administration Center button opens it through data-shared-action=diagnostics.
  b.hidden=true;
- const p=document.createElement('section');p.id='mu-panel';p.innerHTML=`<div class="mu-head"><div><h2>B7 FI COMMAND CENTER — MULTI-USER CONNECTION TEST</h2><div class="mu-note">V14.0.54 · ONE TOOL = ONE ROW + SHARED SETTINGS · Microsoft Entra delegated authentication · Microsoft Graph · Microsoft List</div></div><button class="mu-close" id="mu-close">×</button></div><div id="mu-status" class="mu-status">Ready. Start the Command Center at http://localhost:5500, then sign in.</div><div class="mu-meta"><div><b>USER</b><br><span id="mu-user">Not signed in</span></div><div><b>SITE</b><br>${esc(CFG.siteHost+CFG.sitePath)}</div><div><b>LIST</b><br>${esc(CFG.listName)}<br><small id="mu-list-id">ID: not resolved</small></div><div><b>MODE</b><br>Shared List Test</div></div><div class="mu-checks" id="mu-checks"></div><div class="mu-actions"><button class="mu-btn" id="mu-signin">1 · SIGN IN WITH KLA</button><button class="mu-btn" id="mu-connect" disabled>2 · CONNECT + READ</button><button class="mu-btn" id="mu-refresh" disabled>3 · REFRESH / FIND EXTERNAL ROW</button><button class="mu-btn" id="mu-create" disabled>4 · CREATE TEMP TEST ROW</button><button class="mu-btn" id="mu-delete" disabled>5 · DELETE TEMP TEST ROW</button><button class="mu-btn" id="mu-listid">SET LIST ID</button><button class="mu-btn" id="mu-copyid" disabled>COPY LIST ID</button><button class="mu-btn" id="mu-signout" disabled>SIGN OUT</button></div><p class="mu-note"><b>Purpose:</b> This build preserves the current Command Center production data model while the shared-list connection is being validated. The panel below tests real multi-user read/write against the shared Microsoft List. Edit a test-row value and save it, then refresh from a second computer/user to verify shared updates. Saves use a change check to avoid silently overwriting a row changed by another user.</p><div id="mu-grid"></div>`;document.body.appendChild(p);
+ const p=document.createElement('section');p.id='mu-panel';p.innerHTML=`<div class="mu-head"><div><h2>B7 FI COMMAND CENTER — MULTI-USER CONNECTION TEST</h2><div class="mu-note">V14.0.55 · ONE TOOL = ONE ROW + SHARED SETTINGS · Microsoft Entra delegated authentication · Microsoft Graph · Microsoft List</div></div><button class="mu-close" id="mu-close">×</button></div><div id="mu-status" class="mu-status">Ready. Start the Command Center at http://localhost:5500, then sign in.</div><div class="mu-meta"><div><b>USER</b><br><span id="mu-user">Not signed in</span></div><div><b>SITE</b><br>${esc(CFG.siteHost+CFG.sitePath)}</div><div><b>LIST</b><br>${esc(CFG.listName)}<br><small id="mu-list-id">ID: not resolved</small></div><div><b>MODE</b><br>Shared List Test</div></div><div class="mu-checks" id="mu-checks"></div><div class="mu-actions"><button class="mu-btn" id="mu-signin">1 · SIGN IN WITH KLA</button><button class="mu-btn" id="mu-connect" disabled>2 · CONNECT + READ</button><button class="mu-btn" id="mu-refresh" disabled>3 · REFRESH / FIND EXTERNAL ROW</button><button class="mu-btn" id="mu-create" disabled>4 · CREATE TEMP TEST ROW</button><button class="mu-btn" id="mu-delete" disabled>5 · DELETE TEMP TEST ROW</button><button class="mu-btn" id="mu-listid">SET LIST ID</button><button class="mu-btn" id="mu-copyid" disabled>COPY LIST ID</button><button class="mu-btn" id="mu-signout" disabled>SIGN OUT</button></div><p class="mu-note"><b>Purpose:</b> This build preserves the current Command Center production data model while the shared-list connection is being validated. The panel below tests real multi-user read/write against the shared Microsoft List. Edit a test-row value and save it, then refresh from a second computer/user to verify shared updates. Saves use a change check to avoid silently overwriting a row changed by another user.</p><div id="mu-grid"></div>`;document.body.appendChild(p);
  b.onclick=()=>p.classList.add('open');p.querySelector('#mu-close').onclick=()=>p.classList.remove('open');
  p.querySelector('#mu-listid').onclick=()=>{let v=prompt('Paste the B7 FI Command Center Microsoft List ID from a connected laptop:',localStorage.getItem(LIST_ID_KEY)||'');if(v&&v.trim()){localStorage.setItem(LIST_ID_KEY,v.trim());list=null;status('List ID saved. Click 2 · CONNECT + READ.','ok')}};p.querySelector('#mu-copyid').onclick=()=>{let v=list?.id||localStorage.getItem(LIST_ID_KEY)||'';if(v)prompt('Copy this List ID to the other laptop:',v)};p.querySelector('#mu-signin').onclick=signIn;p.querySelector('#mu-connect').onclick=connect;p.querySelector('#mu-refresh').onclick=loadItems;p.querySelector('#mu-create').onclick=createTempRow;p.querySelector('#mu-delete').onclick=deleteTempRow;p.querySelector('#mu-signout').onclick=signOut;renderChecks();
 }
@@ -3005,7 +3007,7 @@ async function loadSharedScenario(localState){requireToolDataColumn();await refr
   for(const it of items){let t=parseToolData(it);if(t&&!titleOf(it).startsWith(TOOL_PREFIX)){let b={};setField(b,'Title',TOOL_PREFIX+String(t.id));if(Object.keys(b).length)await patchRow(it.id,b)}}
   // Never seed a populated shared list with local/browser test tools automatically.
   if(!sharedTools.length && items.length===0)console.warn('Shared list empty: explicit import is required to publish local tools.');await refreshAllItems();sharedTools=decodeSharedTools();let out=JSON.parse(JSON.stringify(localState));Object.assign(out,sharedSnapshot(sharedTools));lastSharedState=JSON.parse(JSON.stringify(out));return out}
-// V14.0.54: canonical comparison and guarded three-way saves.
+// V14.0.55: canonical comparison and guarded three-way saves.
 function canonicalValue(value){if(value===undefined)return 'null';if(Array.isArray(value))return '['+value.map(canonicalValue).join(',')+']';if(value&&typeof value==='object')return '{'+Object.keys(value).filter(k=>!['_sharedRowId','_sharedRevision','createdAt'].includes(k)).sort().map(k=>JSON.stringify(k)+':'+canonicalValue(value[k])).join(',')+'}';return JSON.stringify(value)}
 function mergeSharedChanges(base,local,remote,path='record'){
  if(canonicalValue(local)===canonicalValue(base))return remote;
@@ -3237,7 +3239,7 @@ document.addEventListener('DOMContentLoaded',async()=>{inject();bindHeaderLogin(
     const sh=document.querySelector('#stickyShell');const card=document.querySelector('.c11-card-grid');const badge=document.querySelector('.c11-badge');
     const styles=[...document.styleSheets].filter(s=>s.href).map(s=>{try{return new URL(s.href).pathname.split('/').pop()}catch{return s.href}});
     const rect=el=>el?Math.round(el.getBoundingClientRect().top)+' / '+Math.round(el.getBoundingClientRect().height):'not visible';
-    panel.innerHTML='<b>B7 LAYOUT DIAGNOSTICS · V14.0.54</b><hr style="border-color:#395566">'+
+    panel.innerHTML='<b>B7 LAYOUT DIAGNOSTICS · V14.0.55</b><hr style="border-color:#395566">'+
       'Viewport: '+innerWidth+' × '+innerHeight+'<br>Device pixel ratio: '+devicePixelRatio+'<br>'+ 
       'Header top / height: '+rect(sh)+'<br>Header position: '+(sh?getComputedStyle(sh).position:'none')+'<br>'+ 
       'Tool card top / height: '+rect(card)+'<br>Badge height: '+(badge?Math.round(badge.getBoundingClientRect().height)+'px':'not visible')+'<br>'+ 
@@ -3318,7 +3320,7 @@ document.addEventListener('DOMContentLoaded',async()=>{inject();bindHeaderLogin(
 
 ;
 /* Bundled source: js/b7-badge-source-v12.0.62.js */
-/* V14.0.54: CSS owns badge/card geometry. This diagnostic never writes styles. */
+/* V14.0.55: CSS owns badge/card geometry. This diagnostic never writes styles. */
 (()=>{window.b762BadgeDiagnostics=()=>[...document.querySelectorAll('#app .c11-tool-card .c11-identity-stack>*,#app .c11-tool-card .b783-date-row>*,#app .c11-tool-card .c11-badges>*')].map(el=>({name:el.textContent.trim().replace(/\s+/g,' ').slice(0,40),height:+el.getBoundingClientRect().height.toFixed(2),cssHeight:getComputedStyle(el).height}));})();
 ;
 /* Bundled source: js/b7-raiders-navigation-v13.0.2.js */
@@ -3392,7 +3394,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 
 ;
 /* Bundled source: js/signal-lamps-v13.0.38.js */
-/* V14.0.54 — explicit lighting preview, save and close. */
+/* V14.0.55 — explicit lighting preview, save and close. */
 (()=>{'use strict';
 const KEY='b7.signalLighting.v1338';
 const defaults={mode:'pulse',brightness:45,duration:1.5,glow:80,pattern:'smooth'};
@@ -3419,10 +3421,10 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 ;
 /* Bundled source: js/raiders-header-footer-v13.0.39.js */
-(()=>{'use strict';function refresh(){const el=document.getElementById('footerConnectionVisual');if(!el)return;const core=document.getElementById('klaConnectionCore'),label=document.getElementById('headerConnectionLabel')?.textContent||'LOCAL DATA';const local=core?.classList.contains('local-mode')||label==='LOCAL DATA';el.textContent=local?'LOCAL MODE · V14.0.54':label+' · V14.0.54';el.classList.toggle('connected',!local&&/^(LIST CONNECTED|SYNCING LIST|SYNC PAUSED)$/.test(label));el.classList.toggle('connection-error',/FAILED|DISCONNECTED/.test(label))}function init(){refresh();const obs=new MutationObserver(refresh);for(const id of ['headerConnectionLabel','sharedStatus']){const el=document.getElementById(id);if(el)obs.observe(el,{childList:true,subtree:true,characterData:true})}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init()})();
+(()=>{'use strict';function refresh(){const el=document.getElementById('footerConnectionVisual');if(!el)return;const core=document.getElementById('klaConnectionCore'),label=document.getElementById('headerConnectionLabel')?.textContent||'LOCAL DATA';const local=core?.classList.contains('local-mode')||label==='LOCAL DATA';el.textContent=local?'LOCAL MODE · V14.0.55':label+' · V14.0.55';el.classList.toggle('connected',!local&&/^(LIST CONNECTED|SYNCING LIST|SYNC PAUSED)$/.test(label));el.classList.toggle('connection-error',/FAILED|DISCONNECTED/.test(label))}function init(){refresh();const obs=new MutationObserver(refresh);for(const id of ['headerConnectionLabel','sharedStatus']){const el=document.getElementById(id);if(el)obs.observe(el,{childList:true,subtree:true,characterData:true})}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init()})();
 ;
 /* Bundled source: js/design-stabilization-v13.0.40.js */
-/* V14.0.54: decorative lighting never substitutes a different operational tower asset. */
+/* V14.0.55: decorative lighting never substitutes a different operational tower asset. */
 (()=>{function sync(){const hint=document.querySelector('#b7-lamp-menu .b7-lamp-hint');if(hint&&hint.textContent!=='Apply previews your adjustments. Save keeps them on this browser. Close discards unsaved adjustments.')hint.textContent='Apply previews your adjustments. Save keeps them on this browser. Close discards unsaved adjustments.'}function init(){sync();new MutationObserver(sync).observe(document.body,{childList:true,subtree:true})}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init()})();
 ;
 /* Bundled source: js/b7-header-fit-v14.0.8.js */
@@ -3476,6 +3478,6 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 
 ;
-/* Bundled source: js/shell-clock-v14.0.54.js */
-/* V14.0.54: header date/time removed by request. */
+/* Bundled source: js/shell-clock-v14.0.55.js */
+/* V14.0.55: header date/time removed by request. */
 
