@@ -1,9 +1,8 @@
-FI COMMAND CENTER V14.0.71
+FI COMMAND CENTER V14.0.72
 
-The Tool Information section follows the Hybrid mini-card design.
-Priority and Alias sit above the enlarged tool photo. Paired identity
-and date fields, process, and carryover sit beneath the photo.
-Existing edit controls remain available.
+Tool Badges uses a single outer panel with the grid directly beneath
+its silver title. Individual badge outlines and fixed spacing are retained.
+Live Operations panels use the Ship Countdown silver and black finish.
 
 LOCAL
 Extract to a new folder. Close the previous server and run
@@ -11,4 +10,4 @@ START-COMMAND-CENTER.bat from the new folder.
 
 GITHUB PAGES
 Replace index.html, css/command-center.css and js/command-center.js together.
-Keep existing assets and confirm V14.0.71 after reloading.
+Keep existing assets and confirm V14.0.72 after reloading.
