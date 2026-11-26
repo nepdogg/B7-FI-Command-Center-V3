@@ -35912,7 +35912,7 @@ html body #app#app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live 
 }
 @media(min-width:1100px){
   html body:not(.presentation-mode):not(.screenshot-mode) #app#app .v9-live-main>section.cc58-live.cc74-live>.cc53-grid {
-    --cc58-column-height:var(--cc76-live-height,664px);
+    --cc58-column-height:var(--cc78-live-height,664px);
   }
 }
 
@@ -35927,7 +35927,7 @@ html body #app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live .cc7
   background:var(--cc54-silver)!important; padding:0 3px 3px!important;
 }
 html body #app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live .cc77-signal-inset {
-  display:grid; grid-template-rows:58px minmax(0,1fr); min-height:0;
+  display:grid; grid-template-rows:68px minmax(0,1fr); min-height:0; container-type:inline-size;
   border:1px solid #666; border-radius:6px; background:#080808;
 }
 html body #app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live .cc77-signal-inset>.cc64-tower-badge {
@@ -35964,4 +35964,89 @@ html body #app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live .cc7
 }
 html body #app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live .cc77-daily-status .email-latest {
   color:#b5dcf4!important;
+}
+
+/* Live Operations section updates and full-window dashboard. */
+html body #app#app#app section.cc74-live .cc78-editable-card {
+  display:grid!important;
+  grid-template-rows:27px minmax(0,1fr) 24px!important;
+  gap:2px!important;
+  min-height:0!important;
+}
+html body #app#app#app section.cc74-live .cc78-editable-card>.cc78-section-update {
+  display:flex!important;
+  align-items:center;
+  justify-content:center;
+  position:static!important;
+  width:100%!important;
+  height:24px!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:1px 4px!important;
+  border:1px solid #ccc!important;
+  border-radius:6px!important;
+  background:var(--cc54-silver)!important;
+  color:#080808!important;
+  -webkit-text-fill-color:#080808!important;
+  font:900 clamp(9px,.9cqw,13px)/1 Arial,sans-serif!important;
+  text-shadow:none!important;
+  white-space:nowrap;
+  cursor:pointer;
+}
+.cc74-live .cc78-section-update:hover {filter:brightness(1.16)}
+.cc74-live :is(.cc78-section-update,.cc78-brain-link):focus-visible {
+  outline:2px solid #111!important;
+  outline-offset:-3px;
+}
+html body #app#app section.cc74-live .cc78-brain-link {
+  all:unset;
+  display:flex;
+  align-items:center;
+  width:100%;
+  height:100%;
+  font:inherit;
+  white-space:nowrap;
+  cursor:pointer;
+}
+.cc74-live .cc78-brain-link:hover {text-decoration:underline}
+html body #app#app section.cc74-live .cc75-brain {cursor:default}
+html body #app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live .cc75-signal-column {
+  grid-template-rows:minmax(0,1fr) 106px;
+}
+html body #app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live .cc77-signal-inset>.cc64-tower-badge {
+  min-width:0!important;
+  width:auto!important;
+  font:900 var(--cc78-state-size,clamp(12px,calc(150cqi / var(--cc78-label-length)),54px))/1 Arial,sans-serif!important;
+  letter-spacing:normal!important;
+  white-space:nowrap!important;
+}
+html body #app#app#app section.cc74-live .cc78-editable-card>.c11-lines {
+  min-height:0!important;
+  max-height:none!important;
+  overflow:auto!important;
+  padding:4px 7px!important;
+  scrollbar-width:thin;
+}
+html body #app#app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live .cc78-editable-card .c11-badge-region>.c11-badges {
+  height:100%!important;
+  min-height:0!important;
+  align-content:stretch!important;
+  grid-auto-rows:minmax(0,1fr)!important;
+}
+
+@media(min-width:1100px){
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center=operations][data-sub=live]>.app-frame>.body-shell {
+    padding-bottom:0!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center=operations][data-sub=live] #app#app {
+    padding-bottom:0!important;
+  }
+  html body:not(.presentation-mode):not(.screenshot-mode)[data-center=operations][data-sub=live]>.app-frame>footer.app-footer {
+    margin-block-start:3px!important;
+  }
+}
+html body #app#app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live .cc78-editable-card .c11-badge-region>.c11-badges>button.b761-uniform-badge {
+  height:100%!important;
+  min-height:0!important;
+  max-height:100%!important;
 }
