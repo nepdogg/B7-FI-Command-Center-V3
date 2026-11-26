@@ -1,6 +1,6 @@
 /* Bundled source: js/app.js */
 (()=>{'use strict';
-const VERSION='14.0.73', BUILD='20261117-V14.0.73-CONSOLIDATED-REPAIRS';
+const VERSION='14.0.74', BUILD='20261117-V14.0.74-CONSOLIDATED-REPAIRS';
 const ACTIVE_DATASET_KEY='b7fi-command-center-active-dataset-v1216';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
@@ -765,7 +765,7 @@ function balancePageNavigation(){
 }
 function fitHeaderGeometry(){
   if(document.body.classList.contains('presentation-mode')||document.body.classList.contains('screenshot-mode'))return;
-  /* V14.0.73: b7-header-fit measures the title span with logo width excluded. */
+  /* V14.0.74: b7-header-fit measures the title span with logo width excluded. */
 }
 let toolEditorSectionKey='tool-info',adminSectionKey='system';
 function enhanceSectionWorkspaces(){
@@ -1449,8 +1449,8 @@ function keyTestBadge(name,status){let v=String(status||'').toUpperCase(),tone=(
 function conditionChip(name,on,tone='active'){return `<div class="utc-condition-chip ${on?'on '+tone:'off'}">${esc(name)}</div>`}
 function workflowBadge(name,required,status){let r=String(required||'TBD').toUpperCase(),v=String(status||'NOT STARTED').toUpperCase(),tone='idle',label=v;if(r==='NO'){label='NOT REQUIRED';tone='idle'}else if(r==='TBD'){label='REQUIREMENT TBD';tone='idle'}else if(v.includes('COMPLETE')||v.includes('APPROV')||v.includes('RETURNED TO FI'))tone='done';else{tone='active';label=v||'NOT STARTED'}return `<div class="key-test-badge workflow-badge ${tone}"><b>${esc(name)}</b><span>${esc(label)}</span></div>`}
 /* V11.17.42: one canonical 30-badge renderer for full, compact and presentation cards. */
-function canonicalToolBadges(t){
-  const ordinary=INDICATOR_SLOT_KEYS.filter(k=>k!=='systemWafers').map(k=>{
+function canonicalToolBadges(t,showWorkflowIndicators=true){
+  const ordinary=INDICATOR_SLOT_KEYS.filter(k=>k!=='systemWafers'&&(showWorkflowIndicators||!['source','str'].includes(k))).map(k=>{
     const x=indicatorState(t,k);
     return `<button type="button" class="c11-badge v10-badge b761-uniform-badge ${esc(x.tone||'idle')}"  data-direct-indicator="${esc(k)}" data-indicator-tool="${esc(t.id)}" title="${esc(x.state||x.label||'')} — click to update">${badgeFace(x,x.label||BADGE_PANEL_LABELS[k]||k)}</button>`;
   }).join('');
@@ -1776,7 +1776,7 @@ function v10ProgressRow(label,pct,tone,sub,tool,key='',display=''){
 function c11IdentityButton(t,key,label,value,missing=false){return `<button type="button" class="c11-id-badge ${missing?'missing':''}" data-direct-identity="${esc(key)}" data-identity-tool="${esc(t.id)}" title="${esc(label)} — click to update" style="display:grid!important;grid-template-columns:minmax(0,44%) minmax(0,56%)!important;align-items:center!important;justify-items:stretch!important;gap:5px!important;text-align:left!important;flex-direction:row!important;"><small style="display:block!important;grid-column:1!important;justify-self:start!important;text-align:left!important;width:auto!important;max-width:100%!important;margin:0!important;">${esc(label)}</small><strong style="display:block!important;grid-column:2!important;justify-self:end!important;text-align:right!important;width:auto!important;max-width:100%!important;margin:0!important;overflow-wrap:anywhere!important;">${esc(String(value||'—').toUpperCase())}</strong></button>`}
 function c11ProgressRow(label,pct,tone,sub,tool,key='',display='',styled=false){
   let p=Math.max(0,Math.min(100,Number(pct)||0)),attrs=key==='forecastChecklist'?` data-forecast-checklist="${esc(tool.id)}" role="button" tabindex="0"`:key==='shippingWorkflow'?` data-handoffs="${esc(tool.id)}" role="button" tabindex="0"`:key?` data-quick-field="${esc(key)}" data-quick-tool="${esc(tool.id)}" role="button" tabindex="0"`:'';
-  return `<div class="c11-progress-row b7-section-tone-${esc(tone||'cyan')} ${key?'clickable':''}"${attrs}><div class="c11-progress-head"><b>${esc(label)}</b><strong>${esc(display||Math.round(Number(pct)||0)+'%')}</strong></div>${styled?'<div class="cc54-meter-well">':''}<div class="c11-progress-track"><i class="${esc(tone||'cyan')}" style="width:${p}%"></i></div><small>${esc(sub||'')}</small>${styled?'</div>':''}</div>`
+  return `<div class="c11-progress-row b7-section-tone-${esc(tone||'cyan')} ${key?'clickable':''}"${attrs}${sub?` title="${esc(sub)}"`:''}><div class="c11-progress-head"><b>${esc(label)}</b><strong>${esc(display||Math.round(Number(pct)||0)+'%')}</strong></div>${styled?'<div class="cc54-meter-well">':''}<div class="c11-progress-track"><i class="${esc(tone||'cyan')}" style="width:${p}%"></i></div><small>${esc(sub||'')}</small>${styled?'</div>':''}</div>`
 }
 function c11ForecastRow(t,alias,compact=false){
   const target=forecastTargetCode(t),eta=calculatedForecastDate(t,target),label=checklistLabel(t,target);
@@ -1793,7 +1793,7 @@ function v11ToolCard(towerLayout=false){
   liveIndex=((liveIndex%a.length)+a.length)%a.length;
   let t=a[liveIndex],count=shipCountdown(t),fi=fiProgress(t),mi=microProgress(t),cyc=actualCycleDays(t),target=cycleAverageDays(t)||25,cp=Math.round(cyc/target*100),tasks=nextSystemTasksRows(t),img=individualToolPhoto(t)||familyImage(t),carry=isCarryoverTool(t),p=priorityBadgeInfo(t),badges=evaluateTool(t).badgeList||[],intel=v10ToolIntelligence(t,count,p),forecast=v10ForecastProgress(t),lead=leadProgress(t),source=v111807WorkflowDisplay(t.sourceRequired,t.sourceStatus),str=v111807WorkflowDisplay(t.strRequired,t.strStatus),packing=shippingProgress(t);
   let alias=String(t.alias||t.id||t.codename||'TOOL').trim().toUpperCase();
-  const badgeHtml=canonicalToolBadges(t);
+  const badgeHtml=canonicalToolBadges(t,!towerLayout);
   const packingRow=c11ProgressRow((towerLayout?'PACKING / SHIPPING':`${alias} PACKING / SHIPPING PROGRESS`),packing,packing>=100?'green':packing>0?'yellow':'cyan',t.toolStatus==='Shipped'?'SHIPPED · PACKING / SHIPPING COMPLETE':shippingStep(t),t,'shippingWorkflow','',towerLayout);
   let statusLabel=t.toolStatus==='FI'?'FI TESTING':String(t.toolStatus||fiSummaryStatus(t)).toUpperCase();
   let currentStatus=performance(t)[0]==='BEHIND'?'BEHIND SCHEDULE':performance(t)[0]==='AHEAD'?'AHEAD OF SCHEDULE':'ON SCHEDULE';
@@ -1803,18 +1803,25 @@ function v11ToolCard(towerLayout=false){
   const towerLabel=towerSignal?(towerSignal.tone==='off'?'POWERED OFF':towerSignal.text):'';
   const shipCountdownCard=`<div class="c11-status-card ship ${esc(intel.tone)} clickable" data-quick-field="shipDate" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">${towerLayout?'SHIP COUNTDOWN':esc(alias)+' TOOL SHIP COUNTDOWN'}</span>${towerLayout?'<div class="cc54-well cc54-countdown">':''}<strong class="c11-hero">${esc(count.big||'NO SHIP DATE')}</strong><span class="sub">${esc(count.small||'SET MANUFACTURING SHIP DATE')}</span>${towerLayout?'</div>':''}</div>`;
   const nextActionCard=`<div class="c11-status-card c11-bottom-card b7-section-tone-cyan"><span class="label">${towerLayout?'NEXT ACTION':esc(alias)+' NEXT SYSTEM TASKS'}</span>${towerLayout?'<div class="cc54-well cc54-action"><span class="cc54-icon" aria-hidden="true">→</span>':''}<div class="c11-tasks">${tasks.length?tasks.slice(0,5).map((x,i)=>`<div class="c11-task"><i>${i+1}</i><span>${esc(x.text)}</span></div>`).join(''):'<div class="c11-task"><i>✓</i><span>NO OPEN SYSTEM TASKS</span></div>'}</div>${towerLayout?'</div>':''}</div>`;
-  const badgesPanel=`<div class="c11-badge-region"><div class="c11-badges b761-badge-grid">${badgeHtml}</div></div>`;
+  const workflowBadges=towerLayout?[
+    ['CA SOURCE','sourceWorkflow',source],['STR','strWorkflow',str]
+  ].map(([label,key,workflow])=>{
+    const status=workflow.sub.replace(/^YES · /,'').replace(/^SOURCE COMPLETE$/,'COMPLETE').replace(/^TESTING$/,'IN TESTING');
+    return `<button type="button" class="c11-badge b761-uniform-badge cc74-workflow" data-quick-field="${key}" data-quick-tool="${esc(t.id)}"><span>${label}</span><strong>${esc(status)}</strong></button>`;
+  }).join(''):'';
+  const badgesPanel=`<div class="c11-badge-region"><div class="c11-badges b761-badge-grid">${badgeHtml}${workflowBadges}</div></div>`;
   const updateButton=`<button class="c11-update" data-tool="${esc(t.id)}">UPDATE TOOL STATUS →</button>`;
-  const statusCards=`<div class="c11-status-card cc44-daily-status clickable" data-quick-field="latestStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" aria-label="Update latest daily system status for ${esc(t.id)}"><span class="label">${towerLayout?'LATEST SYSTEM STATUS':esc(alias)+' LATEST SYSTEM STATUS'}</span>${towerLayout?'<div class="cc54-well cc54-status"><span class="cc54-icon" aria-hidden="true">✓</span>':''}${cc44DailySystemStatus(t)}${towerLayout?'</div>':''}</div>
-        <div class="c11-status-card c11-bottom-card b7-section-tone-cyan clickable" data-quick-field="leadNotes" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">${towerLayout?'LEAD NOTES / REMINDERS':esc(alias)+' LEAD NOTES / REMINDERS'}</span><div class="c11-lines">${esc(t.notes||'No lead notes entered.')}</div></div>`;
+  const latestStatusCard=`<div class="c11-status-card cc44-daily-status clickable" data-quick-field="latestStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" aria-label="Update latest daily system status for ${esc(t.id)}"><span class="label">${towerLayout?'LATEST SYSTEM STATUS':esc(alias)+' LATEST SYSTEM STATUS'}</span>${towerLayout?'<div class="cc54-well cc54-status"><span class="cc54-icon" aria-hidden="true">✓</span>':''}${cc44DailySystemStatus(t)}${towerLayout?'</div>':''}</div>
+  `;
+  const leadNotesCard=`<div class="c11-status-card c11-bottom-card b7-section-tone-cyan clickable" data-quick-field="leadNotes" data-quick-tool="${esc(t.id)}" role="button" tabindex="0"><span class="label">${towerLayout?'LEAD NOTES / REMINDERS':esc(alias)+' LEAD NOTES / REMINDERS'}</span><div class="c11-lines">${esc(t.notes||'No lead notes entered.')}</div></div>`;
   const statusColumn=`<section class="c11-column c11-status-column">
         ${towerLayout?`<div class="cc55-card cc59-badges"><h3 class="cc55-title">TOOL BADGES</h3>${badgesPanel}</div>`:shipCountdownCard+nextActionCard}
-        ${towerLayout?'':statusCards}
-        ${towerLayout?connectedBrainCard(t,true):c11OverallProgressCard(alias,t,fi,lead,packing)}
+        ${towerLayout?leadNotesCard:latestStatusCard+leadNotesCard}
+        ${towerLayout?'':c11OverallProgressCard(alias,t,fi,lead,packing)}
       </section>`;
-  return `<section class="c11-tool-card cc41-live-card ${towerLayout?'cc53-live cc58-live':''}" data-universal-tool-card="${esc(t.id)}">
+  return `<section class="c11-tool-card cc41-live-card ${towerLayout?'cc53-live cc58-live cc74-live':''}" data-universal-tool-card="${esc(t.id)}">
     <div class="c11-card-grid b1224-universal-grid ${towerLayout?'cc53-grid':'b1226-three-column'}">
-      ${towerLayout?`<section class="cc53-tower cc55-card" aria-label="Signal tower"><h2 class="cc64-tower-badge${towerLabel.length>9?' cc64-tower-badge-long':''}" style="--cc64-signal-color:${towerSignalColor(towerSignal.tone)}">${esc(towerLabel)}</h2><div class="cc57-tower-media">${b1224Tower(t,false,false)}</div></section>`:''}
+      ${towerLayout?`<section class="cc53-tower cc55-card" aria-label="System Intelligence"><h3 class="cc74-tower-heading">SYSTEM INTELLIGENCE</h3><h2 class="cc64-tower-badge${towerLabel.length>9?' cc64-tower-badge-long':''}" style="--cc64-signal-color:${towerSignalColor(towerSignal.tone)}">${esc(towerLabel)}</h2><div class="cc57-tower-media">${b1224Tower(t,false,false)}</div><button type="button" class="cc74-reason" data-brain-entry="${esc(t.id)}" title="Open Intelligence Center"><b>COMMAND CENTER BRAIN</b><span>${esc(towerSignal.reason)}</span></button></section>`:''}
       <section class="c11-column c11-identity-column">
         ${towerLayout?`<div class="cc55-card cc58-information cc71-mini-look" role="group" aria-label="TOOL INFORMATION"><h3 class="cc55-title">TOOL INFORMATION</h3><div class="cc73-information-body"><div class="cc57-photo">${photoBadges}<img class="cc57-tool-image" src="${esc(img)}" alt="${esc(t.codename||'Tool')}"></div>`:`<div class="c11-photo b796-priority-photo b1226-photo b1313-unified-photo">${photoBadges}<div class="b1226-photo-top"><div class="b1226-photo-tower">${b1224Tower(t)}</div><div class="b1226-photo-main"><div class="v1210-photo-image"><img src="${esc(img)}" alt="${esc(t.codename||'Tool')}"></div></div></div></div>`}
         ${towerLayout?'<div class="cc55-well cc55-tool-details">':''}
@@ -1831,22 +1838,28 @@ function v11ToolCard(towerLayout=false){
         ${fiDateBadgeRow(t)}
         <button type="button" class="c11-reduced ${t.reducedProcess?'active':''}" data-direct-indicator="reduced" data-indicator-tool="${esc(t.id)}">${t.reducedProcess?'REDUCED PROCESS':'NORMAL PROCESS'}</button>
         ${carry?`<div class="c11-carry">⚠ QUARTER CARRYOVER — SHIP ASAP ⚠</div>`:`<div class="c11-carry c11-carry-placeholder" aria-hidden="true"></div>`}
-        ${towerLayout?`</div>${updateButton}</div></div>${statusCards}`:`${badgesPanel}${updateButton}`}
+        ${towerLayout?`</div>${updateButton}</div></div>${latestStatusCard}`:`${badgesPanel}${updateButton}`}
       </section>
       ${towerLayout?'':statusColumn}
       <section class="c11-column c11-progress-column">
-        ${towerLayout?shipCountdownCard:''}
+        ${towerLayout?`${shipCountdownCard}
+        <section class="cc74-progress" aria-label="Progress"><h3>PROGRESS</h3><div class="cc74-metrics">
+          ${c11ProgressRow('FI PROGRESS',fi,'neutral',checklistLabel(t,t.currentChecklist),t,'currentChecklist','',true)}
+          ${c11ProgressRow('MICRO SCHEDULE',mi,'neutral',checklistLabel(t,t.microSchedule),t,'microSchedule','',true)}
+          ${c11ProgressRow('CYCLE TIME',cp,'neutral','',t,'targetCycle',`${cyc} / ${target} DAYS`,true)}
+          ${c11ProgressRow('LEAD / ADMIN',lead,'neutral','',t,'currentLeadTask','',true)}
+          ${packingRow}
+          ${c11ProgressRow('OVERALL PROGRESS',overallToolProgress(t).pct,'neutral','',t,'','',true)}
+        </div></section>`:`
         <div class="cc41-tool-system clickable" data-quick-field="toolStatus" data-quick-tool="${esc(t.id)}" role="button" tabindex="0" aria-label="Update system status for ${esc(t.id)}"><div class="cc41-system-heading">${towerLayout?'CURRENT STATE':'⚙ TOOL SYSTEM STATUS'}</div>${towerLayout?'<div class="cc54-well cc54-status"><span class="cc54-icon" aria-hidden="true">✓</span><div>':''}<strong class="cc41-system-phase">${esc(statusLabel)}</strong><span class="cc41-system-schedule">${currentStatus!==statusLabel?esc(currentStatus):''}</span><p>${esc(t.latestStatus||'No live system status entered.')}</p><span class="cc41-system-next">NEXT: ${esc(tasks[0]?.text||nextStepLabel(t)||'Review remaining requirements')}</span>${towerLayout?'</div></div>':''}</div>
-        ${towerLayout?nextActionCard:''}
         ${c11ProgressRow((towerLayout?'FI PROGRESS':`${alias} FI PROGRESS`),fi,'cyan',checklistLabel(t,t.currentChecklist),t,'currentChecklist','',towerLayout)}
         ${c11ProgressRow((towerLayout?'MICRO SCHEDULE':`${alias} MICRO SCHEDULE`),mi,performance(t)[0]==='BEHIND'?'red':'green',checklistLabel(t,t.microSchedule),t,'microSchedule','',towerLayout)}
         ${c11ForecastRow(t,alias,towerLayout)}
-        ${towerLayout?packingRow:''}
         ${c11ProgressRow(`${alias} CYCLE TIME`,cp,cp>100?'red':cp>=85?'yellow':'green',`TARGET ${target} DAYS`,t,'targetCycle',`${cyc} / ${target} DAYS · ${cp}%`,towerLayout)}
         ${c11ProgressRow(`${alias} LEAD / ADMIN PROGRESS`,lead,lead>=85?'green':'cyan',`${Math.max(0,100-lead)}% REMAINING`,t,'currentLeadTask','',towerLayout)}
         ${c11ProgressRow(`${alias} CUSTOMER SOURCE PROGRESS`,source.pct,source.tone,source.sub,t,'sourceWorkflow',source.label,towerLayout)}
         ${c11ProgressRow(`${alias} STR PROGRESS`,str.pct,str.tone,str.sub,t,'strWorkflow',str.label,towerLayout)}
-        ${towerLayout?liveOverallProgressCard(t):packingRow}
+        ${packingRow}`}
       </section>
       ${towerLayout?statusColumn:''}
     </div>
@@ -1908,49 +1921,32 @@ function modernReferenceView(){let count=state.references.length;return `${cente
 function b1217Signal(t){
   // Signal tower lifecycle: shipped > packing > powered down for prepack > FI assessment > not in FI.
   const phase=String(t.toolStatus||'').toLowerCase();
-  if(phase==='shipped'||(phase==='archived'&&fiSummaryStatus(t)==='Shipped'))return {tone:'purple',text:'SHIPPED'};
-  if(phase==='packing')return {tone:'blue',text:'PACKING'};
+  if(phase==='shipped'||(phase==='archived'&&fiSummaryStatus(t)==='Shipped'))return {tone:'purple',text:'SHIPPED',reason:'Shipment is recorded.'};
+  if(phase==='packing')return {tone:'blue',text:'PACKING',reason:'The tool is in the packing phase.'};
   const down=phase==='powered down'||t.conditionFlags?.poweredDown===true||
     String(t.indicatorStates?.poweredDown||'').trim().toLowerCase()==='system powered down'||
     fi200Started(t);
-  if(down)return {tone:'off',text:'POWERED OFF (PREPACK)'};
-  if(phase!=='fi')return {tone:'unknown',text:'NOT IN FI'};
+  if(down)return {tone:'off',text:'POWERED OFF (PREPACK)',reason:'The tool is powered down for prepack.'};
+  if(phase!=='fi')return {tone:'unknown',text:'NOT IN FI',reason:'The tool is outside FI testing.'};
   const ncs=Array.isArray(t.ncs)?t.ncs.filter(n=>!['closed','resolved','complete','completed'].includes(String(n.state||n.status||'').toLowerCase())):[];
-  const criticalNc=ncs.some(n=>n.blocking===true||/escalat|critical/i.test(String(n.state||'')+' '+String(n.severity||'')));
+  const criticalNc=ncs.find(n=>n.blocking===true||/escalat|critical/i.test(String(n.state||'')+' '+String(n.severity||'')));
   const alerts=[t.latestStatus,t.fiStatusOverride,t.currentSystemStatus,t.leadNotes,t.systemStatus].map(x=>String(x||'')).join(' ');
   const due=t.shipDate?dateOnly(t.shipDate):null;
-  if(criticalNc||/critical|escalat|system(?: line)? down|blocked/i.test(alerts)||(due&&dateOnly(today())>due))return {tone:'red',text:'CRITICAL'};
-  if(performance(t)[0]==='BEHIND'||/behind|at risk|delay|attention|warning/i.test(alerts)||ncs.length)return {tone:'yellow',text:'ATTENTION'};
-  if(performance(t)[0]==='AHEAD')return {tone:'cyan',text:'AHEAD OF SCHEDULE'};
-  return {tone:'green',text:'NORMAL'};
+  if(criticalNc){
+    const id=criticalNc.number||criticalNc.ncNumber||criticalNc.id;
+    return {tone:'red',text:'CRITICAL',reason:(criticalNc.blocking===true?'Blocking NC':'Critical or escalated NC')+(id?' '+id:'')+' is open.'};
+  }
+  if(/critical|escalat|system(?: line)? down|blocked/i.test(alerts))return {tone:'red',text:'CRITICAL',reason:'The recorded status flags a critical issue.'};
+  if(due&&dateOnly(today())>due)return {tone:'red',text:'CRITICAL',reason:'The ship date is overdue.'};
+  const schedule=performance(t)[0];
+  if(schedule==='BEHIND')return {tone:'yellow',text:'ATTENTION',reason:'FI testing is behind schedule.'};
+  if(/behind|at risk|delay|attention|warning/i.test(alerts))return {tone:'yellow',text:'ATTENTION',reason:'The recorded status flags a schedule risk or warning.'};
+  if(ncs.length)return {tone:'yellow',text:'ATTENTION',reason:ncs.length===1?'An NC is open.':ncs.length+' NCs are open.'};
+  if(schedule==='AHEAD')return {tone:'cyan',text:'AHEAD OF SCHEDULE',reason:'FI testing is ahead of schedule.'};
+  return {tone:'green',text:'NORMAL',reason:'FI testing is on schedule.'};
 }
 function b1229SignalReason(t){
-  const sig=b1217Signal(t), phase=String(t.toolStatus||'').toLowerCase();
-  const notes=[t.latestStatus,t.fiStatusOverride,t.currentSystemStatus,t.systemStatus,t.leadNotes].map(x=>String(x||'').trim()).filter(Boolean);
-  const openNcs=(Array.isArray(t.ncs)?t.ncs:[]).filter(n=>!['closed','resolved','complete','completed'].includes(String(n.state||n.status||'').toLowerCase()));
-  const urgent=openNcs.find(n=>n.blocking===true||/critical|escalat/i.test(String(n.state||'')+' '+String(n.severity||'')));
-  const ncName=n=>String(n.number||n.ncNumber||n.id||'').trim();
-  const short=x=>String(x||'').replace(/\s+/g,' ').slice(0,125);
-  const relevant=notes.find(x=>/critical|escalat|blocked|system down|behind|delay|packing|shipp/i.test(x));
-  const due=t.shipDate?dateOnly(t.shipDate):null;
-  if(sig.tone==='red'){
-    if(urgent)return short((ncName(urgent)?'NC '+ncName(urgent)+' — ':'')+(urgent.description||urgent.title||'CRITICAL NC / ESCALATION'));
-    if(relevant&&/critical|escalat|blocked|system down/i.test(relevant))return short(relevant);
-    if(due&&dateOnly(today())>due)return 'SHIP DATE OVERDUE — '+(t.shipDate?fmtDate(t.shipDate):'ACTION REQUIRED');
-    return 'CRITICAL ISSUE — REVIEW TOOL ALERTS';
-  }
-  if(sig.tone==='yellow'){
-    if(relevant&&/behind|delay|attention|warning/i.test(relevant))return short(relevant);
-    if(performance(t)[0]==='BEHIND')return 'BEHIND FI / MICRO SCHEDULE — ACTION REQUIRED';
-    if(openNcs.length)return openNcs.length+' OPEN NC'+(openNcs.length===1?'':'S')+' — ACTION REQUIRED';
-    return 'ATTENTION — REVIEW CURRENT TOOL STATUS';
-  }
-  if(sig.tone==='green')return 'FI TESTING — ON SCHEDULE';
-  if(sig.tone==='cyan')return 'FI TESTING — AHEAD OF MICRO SCHEDULE';
-  if(sig.tone==='off')return 'POWERED DOWN FOR PREPACK — POWERED DOWN BADGE ACTIVE';
-  if(sig.tone==='blue')return 'PACKING IN PROGRESS — PREPARING TO SHIP';
-  if(sig.tone==='purple')return 'SHIPPED'+(t.actualShipDate?' — '+fmtDate(t.actualShipDate):' — SHIPMENT CONFIRMED');
-  return 'NOT IN FI — '+String(t.toolStatus||'WAITING FOR FI').toUpperCase();
+  return b1217Signal(t).reason;
 }
 function towerSignalColor(tone){
  const colors={red:'#ff1616',yellow:'#ffdc28',green:'#24ed68',cyan:'#20e2ef',blue:'#3284ff',purple:'#df38ff',unknown:'#ffffff',off:'#b9b9b9'};
@@ -1963,8 +1959,8 @@ function b1224Tower(t,compact=false,showBadge=true){
  const rgb=color.slice(1).match(/../g).map(n=>parseInt(n,16)/255);
  const matrix=rgb.map(n=>`${n*.2126} ${n*.7152} ${n*.0722} 0 0`).join(' ')+' 0 0 0 1 0';
  const label=tone==='off'?'POWERED OFF':sig.text;
- const light=band?`<g class="cc27-lit is-lit" data-lamp="${tone}"><image href="assets/signal-towers/version-b-unbranded-v34.png?v=140073" width="1024" height="1536" clip-path="url(#${key}-lamp)" filter="url(#${key}-color)"/><rect class="cc31-lamp-halo" x="290" y="${band[0]}" width="445" height="${band[1]}" rx="18" fill="${color}" style="mix-blend-mode:screen"/></g>`:'';
- return `<div class="b1224-tower b1229-tower ${compact?'b1224-tower-compact':''} b1224-tower-${tone}" role="img" aria-label="Tool ${esc(t.id)} status: ${esc(sig.text)}" title="${esc(sig.text)} · ${esc(b1229SignalReason(t))}"><svg class="cc-tower-art cc32-version-b" viewBox="150 0 724 ${showBadge?1696:1536}" preserveAspectRatio="${showBadge?'xMidYMid meet':'none'}" aria-hidden="true" focusable="false"><defs>${band?`<clipPath id="${key}-lamp"><rect x="290" y="${band[0]}" width="445" height="${band[1]}" rx="18"/></clipPath>`:''}<filter id="${key}-color" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR class="cc34-lamp-gain" type="gamma" amplitude="1.6" exponent=".65" offset="0"/><feFuncG class="cc34-lamp-gain" type="gamma" amplitude="1.6" exponent=".65" offset="0"/><feFuncB class="cc34-lamp-gain" type="gamma" amplitude="1.6" exponent=".65" offset="0"/></feComponentTransfer><feColorMatrix type="matrix" values="${matrix}"/></filter><linearGradient id="${key}-silver" x2="0" y2="1"><stop stop-color="#fafafa"/><stop offset=".07" stop-color="#d1d1d1"/><stop offset=".48" stop-color="#b7b7b7"/><stop offset=".88" stop-color="#8e8e8e"/><stop offset="1" stop-color="#ddd"/></linearGradient></defs><image href="assets/signal-towers/version-b-unbranded-v34.png?v=140073" width="1024" height="1536"/>${light}${showBadge?`<rect class="cc32-status-badge" x="175" y="1560" width="674" height="120" rx="30" fill="url(#${key}-silver)" stroke="#ddd" stroke-width="4"/><rect x="181" y="1566" width="662" height="108" rx="25" fill="none" stroke="#777" stroke-width="2"/><text class="cc32-status-label" x="512" y="1624" dominant-baseline="middle" text-anchor="middle" fill="${color}" stroke="#191919" stroke-width="1" paint-order="stroke fill" font-family="Arial,sans-serif" font-weight="900" font-size="${label.length>11?65:label.length>8?73:88}">${esc(label)}</text>`:''}</svg></div>`;
+ const light=band?`<g class="cc27-lit is-lit" data-lamp="${tone}"><image href="assets/signal-towers/version-b-unbranded-v34.png?v=140074" width="1024" height="1536" clip-path="url(#${key}-lamp)" filter="url(#${key}-color)"/><rect class="cc31-lamp-halo" x="290" y="${band[0]}" width="445" height="${band[1]}" rx="18" fill="${color}" style="mix-blend-mode:screen"/></g>`:'';
+ return `<div class="b1224-tower b1229-tower ${compact?'b1224-tower-compact':''} b1224-tower-${tone}" role="img" aria-label="Tool ${esc(t.id)} status: ${esc(sig.text)}" title="${esc(sig.text)} · ${esc(b1229SignalReason(t))}"><svg class="cc-tower-art cc32-version-b" viewBox="150 0 724 ${showBadge?1696:1536}" preserveAspectRatio="${showBadge?'xMidYMid meet':'none'}" aria-hidden="true" focusable="false"><defs>${band?`<clipPath id="${key}-lamp"><rect x="290" y="${band[0]}" width="445" height="${band[1]}" rx="18"/></clipPath>`:''}<filter id="${key}-color" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR class="cc34-lamp-gain" type="gamma" amplitude="1.6" exponent=".65" offset="0"/><feFuncG class="cc34-lamp-gain" type="gamma" amplitude="1.6" exponent=".65" offset="0"/><feFuncB class="cc34-lamp-gain" type="gamma" amplitude="1.6" exponent=".65" offset="0"/></feComponentTransfer><feColorMatrix type="matrix" values="${matrix}"/></filter><linearGradient id="${key}-silver" x2="0" y2="1"><stop stop-color="#fafafa"/><stop offset=".07" stop-color="#d1d1d1"/><stop offset=".48" stop-color="#b7b7b7"/><stop offset=".88" stop-color="#8e8e8e"/><stop offset="1" stop-color="#ddd"/></linearGradient></defs><image href="assets/signal-towers/version-b-unbranded-v34.png?v=140074" width="1024" height="1536"/>${light}${showBadge?`<rect class="cc32-status-badge" x="175" y="1560" width="674" height="120" rx="30" fill="url(#${key}-silver)" stroke="#ddd" stroke-width="4"/><rect x="181" y="1566" width="662" height="108" rx="25" fill="none" stroke="#777" stroke-width="2"/><text class="cc32-status-label" x="512" y="1624" dominant-baseline="middle" text-anchor="middle" fill="${color}" stroke="#191919" stroke-width="1" paint-order="stroke fill" font-family="Arial,sans-serif" font-weight="900" font-size="${label.length>11?65:label.length>8?73:88}">${esc(label)}</text>`:''}</svg></div>`;
 }
 
 function b1217CompactCard(t){
@@ -2015,7 +2011,7 @@ function brainFindings(){return brainFleet().sort((a,b)=>deriveToolState(b).scor
 function brainPanel(title,inner){return `<section class="panel brain-panel"><h2>${title}</h2>${inner}</section>`}
 function brainCenterView(){
  let fleet=brainFleet(),tool=nonArchivedTools().find(t=>t.id===brainUtid),cands=tool?brainCandidates(tool):[],candidate=cands.find(t=>t.id===brainCandidate),risk=brainFindings(),urgent=risk.filter(t=>(engineDaysToShip(t)??999)<=3),unverified=fleet.filter(t=>!t.shipDate||!t.fiHandoffDate).length;
- let header=`<div class="brain-heading"><div><h1>◈ COMMAND CENTER BRAIN</h1><p>INTELLIGENCE CENTER · OPERATIONAL FORECASTING & DECISION SUPPORT</p></div><span class="brain-readonly">V14.0.73 · LIVE ANALYSIS · NO AUTOMATIC RECORD CHANGES</span></div><div class="brain-mode"><b>INTELLIGENCE CONTROL</b><button type="button" data-brain-mode="auto" class="${brainMode==='auto'?'active':''}">COMMAND CENTER · FULL AUTO</button><button type="button" data-brain-mode="manual" class="${brainMode==='manual'?'active':''}">FI LEADS / MANAGERS</button></div>`;
+ let header=`<div class="brain-heading"><div><h1>◈ COMMAND CENTER BRAIN</h1><p>INTELLIGENCE CENTER · OPERATIONAL FORECASTING & DECISION SUPPORT</p></div><span class="brain-readonly">V14.0.74 · LIVE ANALYSIS · NO AUTOMATIC RECORD CHANGES</span></div><div class="brain-mode"><b>INTELLIGENCE CONTROL</b><button type="button" data-brain-mode="auto" class="${brainMode==='auto'?'active':''}">COMMAND CENTER · FULL AUTO</button><button type="button" data-brain-mode="manual" class="${brainMode==='manual'?'active':''}">FI LEADS / MANAGERS</button></div>`;
  if(route.sub==='home'){
  let findings=risk.slice(0,12).map(t=>{let c=brainCandidates(t),analysis=connectedBrainAnalysis(t);return `<div class="brain-result"><div><b>${brainToolLabel(t)}</b><small>${analysis.progress.pct}% OVERALL · ${esc(analysis.messages[0])} · FI COMPLETION ${analysis.forecast?esc(fmtDate(analysis.forecast)):'PENDING'}</small></div><button type="button" class="btn" data-brain-investigate="${esc(t.id)}">INVESTIGATE</button></div>`}).join('');
  return header+`<div class="brain-kpis"><div><small>ACTIVE TOOLS</small><strong>${fleet.length}</strong></div><div><small>SHIP DATE NEAR / PASSED</small><strong>${urgent.length}</strong></div><div><small>MISSING CORE DATA</small><strong>${unverified}</strong></div><div><small>TOOLS WITH SAME-TYPE OPTIONS</small><strong>${fleet.filter(t=>brainCandidates(t).length).length}</strong></div></div>`+brainPanel('AUTOMATIC MONITORING · LIVE TOOL RECORDS',`<p class="helper">These are review indicators based on existing dates and tool types—not validated shipping-delay predictions. Same-type matches are potential candidates, not approved swaps.</p>${findings||'<p>No active tools.</p>'}`)+brainPanel('INTELLIGENCE CAPABILITIES',`<div class="brain-tiles"><button data-brain-open="swap">⇄ TOOL SWAP ANALYZER</button><button data-brain-open="forecast">◷ FI MILESTONE FORECASTING</button><button data-brain-open="scenario">◇ WHAT-IF SIMULATIONS</button><button data-brain-open="history">▤ FORECAST HISTORY</button></div>`);
@@ -2064,7 +2060,7 @@ function connectedBrainAnalysis(t){
 function liveOverallProgressCard(t){const o=overallToolProgress(t);return `<div class="connected-brain cc53-overall"><span class="cc-brain-head"><b>OVERALL PROGRESS</b></span><span class="cc54-well cc54-overall-body"><span class="cc-brain-track" role="progressbar" aria-label="Overall tool progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${o.pct}"><i style="width:${o.pct}%"></i></span><strong>${o.pct}%</strong></span></div>`;}
 function connectedBrainCard(t,compact=false){const a=connectedBrainAnalysis(t),o=a.progress;const overall=`<span class="cc41-brain-overall"><b>OVERALL TOOL PROGRESS</b><strong>${o.pct}%</strong></span><span class="cc-brain-track" role="progressbar" aria-label="Overall tool progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${o.pct}"><i style="width:${o.pct}%"></i></span>`;if(compact)return `<button type="button" class="connected-brain cc54-brain ${esc(a.level)}" data-brain-entry="${esc(t.id)}" aria-label="Open Intelligence Center for ${esc(t.id)}"><span class="cc-brain-head"><b>COMMAND CENTER BRAIN</b></span><span class="cc54-well cc54-brain-body"><span class="cc54-chip" aria-hidden="true">▣</span><span><strong>${esc(a.messages[0])}</strong><span>${a.blockers.length?esc(a.blockers.length+' open blocking issue(s)'):'No open blocking issues'}</span><span>Next action: ${esc(a.next)}</span><span>Forecast FI completion: ${a.forecast?esc(fmtDate(a.forecast)):t.currentChecklist===FI200?'Final checklist reached':'Pending'}</span></span></span></button>`;return `<button type="button" class="connected-brain ${esc(a.level)}" data-brain-entry="${esc(t.id)}" aria-label="Open Intelligence Center for ${esc(t.id)}"><span class="cc-brain-head"><b>COMMAND CENTER BRAIN</b></span>${overall}<span class="brain-forecast">FORECAST FI COMPLETION · ${a.forecast?esc(fmtDate(a.forecast))+' · ESTIMATE':t.currentChecklist===FI200?'FINAL CHECKLIST REACHED':'PENDING'}</span><span class="brain-card-message">${esc(a.messages[0])}</span><span class="cc41-brain-blocker">${a.blockers.length?'BLOCKERS · '+a.blockers.length+' open blocking issue(s)':'BLOCKERS · None recorded'}</span><span class="brain-card-next">NEXT ACTION · ${esc(a.next)}</span><span class="cc41-brain-open">OPEN INTELLIGENCE CENTER →</span></button>`}
 
-function connectedBrainDetail(t){const a=connectedBrainAnalysis(t),o=a.progress;return brainPanel('TOOL INTELLIGENCE · '+esc(t.id),`${connectedBrainCard(t)}<h3>PROGRESS EVIDENCE</h3><p>FI ${o.fi}% × ${o.weights.fi} · Lead / Admin ${o.lead}% × ${o.weights.lead} · Packing / Shipping ${o.packing}% × ${o.weights.packing}. Normalized weighted average: ${o.pct}%.</p><p>Micro Schedule: ${a.micro}%. Schedule and blockers affect messages and forecasts; completed work is preserved.</p><h3>FORECAST BASIS</h3><p>${esc(a.basis)}</p><p>These are configured cycle estimates, not learned historical predictions. Missing requirements and issue durations can move completion. Shipping preparation is separate.</p><h3>FINDINGS</h3><ul>${a.messages.map(m=>`<li>${esc(m)}</li>`).join('')}</ul><p><b>NEXT ACTION:</b> ${esc(a.next)}</p><p><b>OPEN ISSUES:</b> ${a.open.length} · <b>BLOCKERS:</b> ${a.blockers.length}</p>`)}
+function connectedBrainDetail(t){const a=connectedBrainAnalysis(t),o=a.progress;return brainPanel('TOOL INTELLIGENCE · '+esc(t.id),`${connectedBrainCard(t)}<h3>PROGRESS EVIDENCE</h3><p>FI ${o.fi}% × ${o.weights.fi} · Lead / Admin ${o.lead}% × ${o.weights.lead} · Packing / Shipping ${o.packing}% × ${o.weights.packing}. Normalized weighted average: ${o.pct}%.</p><p>Micro Schedule: ${a.micro}%. Schedule and blockers affect messages and forecasts; completed work is preserved.</p><h3>FORECAST BASIS</h3><p>${esc(a.basis)}</p><p>These are configured cycle estimates, not learned historical predictions. Missing requirements and issue durations can move completion. Shipping preparation is separate.</p><h3>FINDINGS</h3><ul>${a.messages.map(m=>`<li>${esc(m)}</li>`).join('')}</ul><p><b>RECOMMENDED NEXT ACTION:</b> ${esc(a.next)}</p><h3>AUTOMATED NEXT ACTIONS</h3><ol>${nextSystemTasksRows(t).slice(0,5).map(task=>`<li>${esc(task.text)}</li>`).join('')||'<li>No open system tasks.</li>'}</ol><button type="button" class="btn" data-forecast-checklist="${esc(t.id)}">EDIT FI FORECAST TARGET</button><p><b>OPEN ISSUES:</b> ${a.open.length} · <b>BLOCKERS:</b> ${a.blockers.length}</p>`)}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-brain-entry]');if(!b)return;e.preventDefault();e.stopImmediatePropagation();if(dirty&&!confirm('Discard unsaved changes?'))return;dirty=false;brainUtid=b.dataset.brainEntry;brainCandidate='';brainMode=brainUtid?'manual':'auto';if(document.body.classList.contains('presentation-mode')){document.body.classList.remove('presentation-mode');presentationActive=false;clearPresentationLayout();if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen().catch(()=>{})}go('intelligence',brainUtid?'forecast':'home')},true);
 const VIEWS={intelligence:()=>brainCenterView(),operations:()=>route.sub==='tools'?toolsDashboard():route.sub==='tool'?updateView():route.sub==='daily'?(mode==='edit'?dailyForm():`${centerPageTitle('UPDATE COMMAND CENTER')}<section class="panel">${statusEmail('Current')}</section>`):route.sub==='archive'?archiveView():route.sub==='hybrid'?hybridPresentationView():route.sub==='summary'?(document.body.classList.contains('presentation-mode')?quarterSummaryView(true):quarterSummaryView(false)):(document.body.classList.contains('presentation-mode')?`<div class="presentation-tool-only">${resilientLiveToolCard(true)}</div>${toolPresentationNav()}`:modernLiveOperations()),shipping:()=>mode==='edit'?shippingEdit():shippingView(false),priority:()=>mode==='edit'?priorityEdit(route.sub):priorityView(route.sub),status:()=>route.sub==='history'?`<section class="panel status-history-frame">${state.meetings.filter(m=>/Morning Meeting/i.test(m.type||'')).map(m=>`<div class="ref-row clickrow" data-search-meeting="${esc(m.id)}"><b>${esc(m.type)} · ${esc(fmtDate(m.date))}</b><span>${(m.toolOrder?.length||m.toolSnapshots?.length||0)} tools · OPEN MEETING</span></div>`).join('')||'<p>No morning meeting history.</p>'}</section>`:`${centerPageTitle((route.sub==='weekend'?'WEEKEND':'WEEKDAY')+' MORNING STATUS')}<div class="status-center-stack"><section class="panel status-workspace">${statusEmail(route.sub==='weekend'?'Weekend':'Weekday')}</section><div class="meeting-workspace-wrap">${mode==='morningMeeting'&&meetingDraft?morningMeetingForm(meetingDraft):morningMeetingReady(route.sub==='weekend'?'Weekend':'Weekday')}</div></div>`,meeting:()=>mode==='meeting'?meetingForm(meetingDraft):route.sub==='history'?meetingHistory():meetingHistory({leads:'Leads Meeting',orb:'ORB Meeting',cell:'Cell Meeting',escalation:'Escalation Meeting'}[route.sub]||''),action:()=>actionView(),reference:()=>modernReferenceView(),cycle:()=>`${centerPageTitle(centerQuarter('cycle')+' FI CYCLE TIME STATUS')}${modernCycleGraphics()}${cycleTimeView()}`,search:()=>searchView(),archive:()=>route.sub==='search'?searchView():archiveView(),admin:()=>route.sub==='audit'?`${centerPageTitle('DATA INTEGRITY · VERIFY TOOLS')}<section class="panel"><h2>VERIFY TOOLS</h2><p class="helper">Checks the current quarter for duplicate UTIDs and phase-appropriate required fields. On/Off badges are valid in either state and are not treated as missing.</p>${integrityHtml()}</section>`:adminView()};
 function beginEdit(){if(route.center==='operations'){let origin=clone(route);if(route.sub==='daily'){returnRoute=origin;dailyContext='weekday';mode='edit';draft=clone(state.tools);dirty=false;return render()}if(route.sub==='priorities'){returnRoute=origin;route={center:'priority',sub:'weekday'};mode='edit';dirty=false;return render()}if(route.sub==='schedule'){returnRoute=origin;route={center:'shipping',sub:'home'};mode='edit';dirty=false;return render()}}if(route.center==='operations'&&route.sub==='daily'){returnRoute=null;dailyContext='weekday';mode='edit';draft=clone(state.tools)}else if(route.center==='shipping'){returnRoute=null;mode='edit'}else if(route.center==='priority'){returnRoute=null;mode='edit'}else if(route.center==='status'){returnRoute=clone(route);dailyContext=route.sub==='weekend'?'weekend':'weekday';route={center:'operations',sub:'daily'};mode='edit';draft=clone(state.tools)}else if(route.center==='action'){mode='edit'}else if(route.center==='reference'){mode='edit'}dirty=false;render()}
@@ -2360,7 +2356,7 @@ async function presentation(){if(route.center!=='operations')return;presentation
 function exitPresentation(){if(route.center==='operations'&&route.sub==='hybrid'){route.sub='live';mode='view'}presentationActive=false;presentationEditorActive=false;clearPresentationLayout();if(presentationRestore){livePaused=!!presentationRestore.livePaused;snapshotPaused=!!presentationRestore.snapshotPaused;presentationRestore=null}document.querySelector('#exitScreenshot').classList.add('hidden');document.querySelector('#screenshotReportTitle')?.remove();if(document.fullscreenElement&&document.exitFullscreen){try{document.exitFullscreen()}catch(e){}}render();requestAnimationFrame(()=>requestAnimationFrame(()=>{syncStickyShellHeight();window.dispatchEvent(new Event('resize'));window.scrollTo(0,0)}))}
 function exitDisplayMode(){if(document.body.classList.contains('presentation-mode'))return exitPresentation();return exitScreenshot()}
 function closeModal(){document.querySelector('#modal').classList.add('hidden');document.querySelector('#modalBody').innerHTML=''}
-function handoffModal(id){let t=state.tools.find(x=>x.id===id);if(!t)return;modal(`<div class="modal-form handoff-modal"><h2>PACKING / SHIPPING MILESTONES — ${esc(t.id)}</h2><p class="helper">Update the live Packing / Shipping milestones. MST Installation appears only for REGERA and CELESTIQ.</p><div class="field"><label>${esc(alias)} CURRENT SYSTEM STATUS</label><select id="handoff-tool-status">${selectOptions(['FI','Powered Down','Packing','Shipped'],t.toolStatus)}</select></div><div class="shipping-milestone-editor modal-milestones">${shippingKeys(t).map(([k,l])=>milestoneEditor(t,k,l)).join('')}</div><label class="modal-notes-label">Shipping Notes<textarea id="handoff-notes">${esc(t.shipping.notes||'')}</textarea></label><div class="modal-actions"><button class="btn" data-modal-cancel>CANCEL</button><button class="btn save" data-save-handoffs="${esc(t.id)}">SAVE MILESTONES</button></div></div>`)}
+function handoffModal(id){let t=state.tools.find(x=>x.id===id);if(!t)return;const alias=t.alias||t.id;modal(`<div class="modal-form handoff-modal"><h2>PACKING / SHIPPING MILESTONES — ${esc(t.id)}</h2><p class="helper">Update the live Packing / Shipping milestones. MST Installation appears only for REGERA and CELESTIQ.</p><div class="field"><label>${esc(alias)} CURRENT SYSTEM STATUS</label><select id="handoff-tool-status">${selectOptions(['FI','Powered Down','Packing','Shipped'],t.toolStatus)}</select></div><div class="shipping-milestone-editor modal-milestones">${shippingKeys(t).map(([k,l])=>milestoneEditor(t,k,l)).join('')}</div><label class="modal-notes-label">Shipping Notes<textarea id="handoff-notes">${esc(t.shipping.notes||'')}</textarea></label><div class="modal-actions"><button class="btn" data-modal-cancel>CANCEL</button><button class="btn save" data-save-handoffs="${esc(t.id)}">SAVE MILESTONES</button></div></div>`)}
 function modal(html){const modalEl=document.querySelector('#modal');if(document.fullscreenElement&&!document.fullscreenElement.contains(modalEl)){document.fullscreenElement.appendChild(modalEl)}document.querySelector('#modalBody').innerHTML=html;let x=document.querySelector('#modalClose');if(x){x.textContent='×';x.title='Close';x.setAttribute('aria-label','Close popup')}document.querySelector('#modal').classList.remove('hidden');requestAnimationFrame(()=>{bindEditableComboControls();x?.focus({preventScroll:true})})}
 
 function applyUniversalComboSelection(select){
@@ -2891,7 +2887,7 @@ function inject(){
  const b=document.createElement('button');b.id='mu-launch';b.textContent='MULTI-USER DIAGNOSTICS';b.className='btn';b.hidden=true;document.body.appendChild(b);
  // V6.6.46: keep the internal diagnostics launcher hidden. The single visible Administration Center button opens it through data-shared-action=diagnostics.
  b.hidden=true;
- const p=document.createElement('section');p.id='mu-panel';p.innerHTML=`<div class="mu-head"><div><h2>B7 FI COMMAND CENTER — MULTI-USER CONNECTION TEST</h2><div class="mu-note">V14.0.73 · ONE TOOL = ONE ROW + SHARED SETTINGS · Microsoft Entra delegated authentication · Microsoft Graph · Microsoft List</div></div><button class="mu-close" id="mu-close">×</button></div><div id="mu-status" class="mu-status">Ready. Start the Command Center at http://localhost:5500, then sign in.</div><div class="mu-meta"><div><b>USER</b><br><span id="mu-user">Not signed in</span></div><div><b>SITE</b><br>${esc(CFG.siteHost+CFG.sitePath)}</div><div><b>LIST</b><br>${esc(CFG.listName)}<br><small id="mu-list-id">ID: not resolved</small></div><div><b>MODE</b><br>Shared List Test</div></div><div class="mu-checks" id="mu-checks"></div><div class="mu-actions"><button class="mu-btn" id="mu-signin">1 · SIGN IN WITH KLA</button><button class="mu-btn" id="mu-connect" disabled>2 · CONNECT + READ</button><button class="mu-btn" id="mu-refresh" disabled>3 · REFRESH / FIND EXTERNAL ROW</button><button class="mu-btn" id="mu-create" disabled>4 · CREATE TEMP TEST ROW</button><button class="mu-btn" id="mu-delete" disabled>5 · DELETE TEMP TEST ROW</button><button class="mu-btn" id="mu-listid">SET LIST ID</button><button class="mu-btn" id="mu-copyid" disabled>COPY LIST ID</button><button class="mu-btn" id="mu-signout" disabled>SIGN OUT</button></div><p class="mu-note"><b>Purpose:</b> This build preserves the current Command Center production data model while the shared-list connection is being validated. The panel below tests real multi-user read/write against the shared Microsoft List. Edit a test-row value and save it, then refresh from a second computer/user to verify shared updates. Saves use a change check to avoid silently overwriting a row changed by another user.</p><div id="mu-grid"></div>`;document.body.appendChild(p);
+ const p=document.createElement('section');p.id='mu-panel';p.innerHTML=`<div class="mu-head"><div><h2>B7 FI COMMAND CENTER — MULTI-USER CONNECTION TEST</h2><div class="mu-note">V14.0.74 · ONE TOOL = ONE ROW + SHARED SETTINGS · Microsoft Entra delegated authentication · Microsoft Graph · Microsoft List</div></div><button class="mu-close" id="mu-close">×</button></div><div id="mu-status" class="mu-status">Ready. Start the Command Center at http://localhost:5500, then sign in.</div><div class="mu-meta"><div><b>USER</b><br><span id="mu-user">Not signed in</span></div><div><b>SITE</b><br>${esc(CFG.siteHost+CFG.sitePath)}</div><div><b>LIST</b><br>${esc(CFG.listName)}<br><small id="mu-list-id">ID: not resolved</small></div><div><b>MODE</b><br>Shared List Test</div></div><div class="mu-checks" id="mu-checks"></div><div class="mu-actions"><button class="mu-btn" id="mu-signin">1 · SIGN IN WITH KLA</button><button class="mu-btn" id="mu-connect" disabled>2 · CONNECT + READ</button><button class="mu-btn" id="mu-refresh" disabled>3 · REFRESH / FIND EXTERNAL ROW</button><button class="mu-btn" id="mu-create" disabled>4 · CREATE TEMP TEST ROW</button><button class="mu-btn" id="mu-delete" disabled>5 · DELETE TEMP TEST ROW</button><button class="mu-btn" id="mu-listid">SET LIST ID</button><button class="mu-btn" id="mu-copyid" disabled>COPY LIST ID</button><button class="mu-btn" id="mu-signout" disabled>SIGN OUT</button></div><p class="mu-note"><b>Purpose:</b> This build preserves the current Command Center production data model while the shared-list connection is being validated. The panel below tests real multi-user read/write against the shared Microsoft List. Edit a test-row value and save it, then refresh from a second computer/user to verify shared updates. Saves use a change check to avoid silently overwriting a row changed by another user.</p><div id="mu-grid"></div>`;document.body.appendChild(p);
  b.onclick=()=>p.classList.add('open');p.querySelector('#mu-close').onclick=()=>p.classList.remove('open');
  p.querySelector('#mu-listid').onclick=()=>{let v=prompt('Paste the B7 FI Command Center Microsoft List ID from a connected laptop:',localStorage.getItem(LIST_ID_KEY)||'');if(v&&v.trim()){localStorage.setItem(LIST_ID_KEY,v.trim());list=null;status('List ID saved. Click 2 · CONNECT + READ.','ok')}};p.querySelector('#mu-copyid').onclick=()=>{let v=list?.id||localStorage.getItem(LIST_ID_KEY)||'';if(v)prompt('Copy this List ID to the other laptop:',v)};p.querySelector('#mu-signin').onclick=signIn;p.querySelector('#mu-connect').onclick=connect;p.querySelector('#mu-refresh').onclick=loadItems;p.querySelector('#mu-create').onclick=createTempRow;p.querySelector('#mu-delete').onclick=deleteTempRow;p.querySelector('#mu-signout').onclick=signOut;renderChecks();
 }
@@ -2987,7 +2983,7 @@ async function loadSharedScenario(localState){requireToolDataColumn();await refr
   for(const it of items){let t=parseToolData(it);if(t&&!titleOf(it).startsWith(TOOL_PREFIX)){let b={};setField(b,'Title',TOOL_PREFIX+String(t.id));if(Object.keys(b).length)await patchRow(it.id,b)}}
   // Never seed a populated shared list with local/browser test tools automatically.
   if(!sharedTools.length && items.length===0)console.warn('Shared list empty: explicit import is required to publish local tools.');await refreshAllItems();sharedTools=decodeSharedTools();let out=JSON.parse(JSON.stringify(localState));Object.assign(out,sharedSnapshot(sharedTools));lastSharedState=JSON.parse(JSON.stringify(out));return out}
-// V14.0.73: canonical comparison and guarded three-way saves.
+// V14.0.74: canonical comparison and guarded three-way saves.
 function canonicalValue(value){if(value===undefined)return 'null';if(Array.isArray(value))return '['+value.map(canonicalValue).join(',')+']';if(value&&typeof value==='object')return '{'+Object.keys(value).filter(k=>!['_sharedRowId','_sharedRevision','createdAt'].includes(k)).sort().map(k=>JSON.stringify(k)+':'+canonicalValue(value[k])).join(',')+'}';return JSON.stringify(value)}
 function mergeSharedChanges(base,local,remote,path='record'){
  if(canonicalValue(local)===canonicalValue(base))return remote;
@@ -3219,7 +3215,7 @@ document.addEventListener('DOMContentLoaded',async()=>{inject();bindHeaderLogin(
     const sh=document.querySelector('#stickyShell');const card=document.querySelector('.c11-card-grid');const badge=document.querySelector('.c11-badge');
     const styles=[...document.styleSheets].filter(s=>s.href).map(s=>{try{return new URL(s.href).pathname.split('/').pop()}catch{return s.href}});
     const rect=el=>el?Math.round(el.getBoundingClientRect().top)+' / '+Math.round(el.getBoundingClientRect().height):'not visible';
-    panel.innerHTML='<b>B7 LAYOUT DIAGNOSTICS · V14.0.73</b><hr style="border-color:#395566">'+
+    panel.innerHTML='<b>B7 LAYOUT DIAGNOSTICS · V14.0.74</b><hr style="border-color:#395566">'+
       'Viewport: '+innerWidth+' × '+innerHeight+'<br>Device pixel ratio: '+devicePixelRatio+'<br>'+ 
       'Header top / height: '+rect(sh)+'<br>Header position: '+(sh?getComputedStyle(sh).position:'none')+'<br>'+ 
       'Tool card top / height: '+rect(card)+'<br>Badge height: '+(badge?Math.round(badge.getBoundingClientRect().height)+'px':'not visible')+'<br>'+ 
@@ -3300,7 +3296,7 @@ document.addEventListener('DOMContentLoaded',async()=>{inject();bindHeaderLogin(
 
 ;
 /* Bundled source: js/b7-badge-source-v12.0.62.js */
-/* V14.0.73: CSS owns badge/card geometry. This diagnostic never writes styles. */
+/* V14.0.74: CSS owns badge/card geometry. This diagnostic never writes styles. */
 (()=>{window.b762BadgeDiagnostics=()=>[...document.querySelectorAll('#app .c11-tool-card .c11-identity-stack>*,#app .c11-tool-card .b783-date-row>*,#app .c11-tool-card .c11-badges>*')].map(el=>({name:el.textContent.trim().replace(/\s+/g,' ').slice(0,40),height:+el.getBoundingClientRect().height.toFixed(2),cssHeight:getComputedStyle(el).height}));})();
 ;
 /* Bundled source: js/b7-raiders-navigation-v13.0.2.js */
@@ -3354,7 +3350,7 @@ document.addEventListener('DOMContentLoaded',async()=>{inject();bindHeaderLogin(
 
 ;
 /* Bundled source: js/signal-lamps-v13.0.38.js */
-/* V14.0.73 — explicit lighting preview, save and close. */
+/* V14.0.74 — explicit lighting preview, save and close. */
 (()=>{'use strict';
 const KEY='b7.signalLighting.v1338';
 const defaults={mode:'pulse',brightness:45,duration:1.5,glow:80,pattern:'smooth'};
@@ -3381,10 +3377,10 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 ;
 /* Bundled source: js/raiders-header-footer-v13.0.39.js */
-(()=>{'use strict';function refresh(){const el=document.getElementById('footerConnectionVisual');if(!el)return;const core=document.getElementById('klaConnectionCore'),label=document.getElementById('headerConnectionLabel')?.textContent||'LOCAL DATA';const local=core?.classList.contains('local-mode')||label==='LOCAL DATA';el.textContent=local?'LOCAL MODE · V14.0.73':label+' · V14.0.73';el.classList.toggle('connected',!local&&/^(LIST CONNECTED|SYNCING LIST|SYNC PAUSED)$/.test(label));el.classList.toggle('connection-error',/FAILED|DISCONNECTED/.test(label))}function init(){refresh();const obs=new MutationObserver(refresh);for(const id of ['headerConnectionLabel','sharedStatus']){const el=document.getElementById(id);if(el)obs.observe(el,{childList:true,subtree:true,characterData:true})}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init()})();
+(()=>{'use strict';function refresh(){const el=document.getElementById('footerConnectionVisual');if(!el)return;const core=document.getElementById('klaConnectionCore'),label=document.getElementById('headerConnectionLabel')?.textContent||'LOCAL DATA';const local=core?.classList.contains('local-mode')||label==='LOCAL DATA';el.textContent=local?'LOCAL MODE · V14.0.74':label+' · V14.0.74';el.classList.toggle('connected',!local&&/^(LIST CONNECTED|SYNCING LIST|SYNC PAUSED)$/.test(label));el.classList.toggle('connection-error',/FAILED|DISCONNECTED/.test(label))}function init(){refresh();const obs=new MutationObserver(refresh);for(const id of ['headerConnectionLabel','sharedStatus']){const el=document.getElementById(id);if(el)obs.observe(el,{childList:true,subtree:true,characterData:true})}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init()})();
 ;
 /* Bundled source: js/design-stabilization-v13.0.40.js */
-/* V14.0.73: decorative lighting never substitutes a different operational tower asset. */
+/* V14.0.74: decorative lighting never substitutes a different operational tower asset. */
 (()=>{function sync(){const hint=document.querySelector('#b7-lamp-menu .b7-lamp-hint');if(hint&&hint.textContent!=='Apply previews your adjustments. Save keeps them on this browser. Close discards unsaved adjustments.')hint.textContent='Apply previews your adjustments. Save keeps them on this browser. Close discards unsaved adjustments.'}function init(){sync();new MutationObserver(sync).observe(document.body,{childList:true,subtree:true})}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init()})();
 ;
 /* Bundled source: js/b7-header-fit-v14.0.8.js */
@@ -3438,6 +3434,6 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 
 ;
-/* Bundled source: js/shell-clock-v14.0.73.js */
-/* V14.0.73: header date/time removed by request. */
+/* Bundled source: js/shell-clock-v14.0.74.js */
+/* V14.0.74: header date/time removed by request. */
 
