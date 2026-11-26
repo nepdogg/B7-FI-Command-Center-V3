@@ -10,7 +10,7 @@ import urllib.error
 import urllib.request
 import webbrowser
 
-VERSION = '14.0.63'
+VERSION = '14.0.64'
 ROOT = Path(__file__).resolve().parent
 URL = 'http://localhost:5500/'
 REQUIRED = ('index.html', 'css/command-center.css', 'js/command-center.js',
