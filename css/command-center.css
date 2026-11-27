@@ -34667,7 +34667,6 @@ html body.presentation-mode[data-center=operations][data-sub=summary] #app#app .
 html body.presentation-mode[data-center=operations][data-sub=summary] #app#app .presentation-inline-nav{background:#000!important;border-color:#aaa!important;box-shadow:none!important}
 /* V14.0.77: common summary header proportions and explicit active/side transforms. */
 html body.presentation-mode[data-center=operations]:is([data-sub=summary],[data-sub=hybrid]){--cc50-hero-height:clamp(180px,30vh,340px)}
-html body.presentation-mode[data-center=operations][data-sub=summary] #app#app .quarter-summary-presentation.quarter-summary-master{grid-template-rows:var(--cc50-hero-height) 48px minmax(0,1fr) 48px!important;gap:5px!important}
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app>.b1217-hybrid{grid-template-rows:calc(var(--cc50-hero-height) + 53px) minmax(0,1fr) 48px!important}
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc48-quarter-top{grid-template-rows:var(--cc50-hero-height) 48px!important;gap:5px!important}
 html body.presentation-mode[data-center=operations]:is([data-sub=summary],[data-sub=hybrid]) #app#app .quarter-summary-hero{height:var(--cc50-hero-height)!important;min-height:var(--cc50-hero-height)!important;max-height:var(--cc50-hero-height)!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;margin:0!important;padding:0!important}
@@ -36606,7 +36605,7 @@ html body.presentation-mode[data-center=operations][data-sub=summary] #app#app {
   box-sizing:border-box!important;
   padding:0!important;
 }
-html body.presentation-mode[data-center=operations][data-sub=summary] #app#app>.cc84-quarter-summary {
+html body.presentation-mode[data-center=operations][data-sub=summary] #app#app>.quarter-summary-master.cc84-quarter-summary {
   display:grid!important;
   grid-template-columns:minmax(0,1fr)!important;
   grid-template-rows:calc(var(--cc81-metrics-height) + 48px) minmax(0,1fr) 48px!important;
@@ -36621,7 +36620,12 @@ html body.presentation-mode[data-center=operations][data-sub=summary] #app#app>.
 }
 html body.presentation-mode[data-center=operations][data-sub=summary] #app#app>.cc84-quarter-summary>.quarter-summary-family-wrap {
   grid-row:2!important;
+  align-self:stretch!important;
+  height:auto!important;
+  min-height:0!important;
 }
 html body.presentation-mode[data-center=operations][data-sub=summary] #app#app>.cc84-quarter-summary>.quarter-summary-switchbar {
   grid-row:3!important;
+  position:relative!important;
+  inset:auto!important;
 }
