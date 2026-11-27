@@ -34963,7 +34963,7 @@ html body #app#app section.c11-tool-card.cc41-live-card.cc53-live .cc53-tower .b
 
 /* Apply the Ship Countdown finish to the entire Live Operations card. */
 html body #app#app section.c11-tool-card.cc41-live-card.cc53-live {
-  --cc54-silver:repeating-linear-gradient(0deg,#fff1 0 1px,transparent 1px 3px),linear-gradient(110deg,#9b9b9b,#e7e7e7 52%,#a5a5a5);
+  --cc54-silver:var(--cc79-silver);
   --cc54-well:linear-gradient(#141414,#080808);
 }
 html body #app#app section.c11-tool-card.cc41-live-card.cc53-live .cc53-grid :is(.cc55-card,.cc41-tool-system) {
@@ -35912,7 +35912,7 @@ html body #app#app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live 
 }
 @media(min-width:1100px){
   html body:not(.presentation-mode):not(.screenshot-mode) #app#app .v9-live-main>section.cc58-live.cc74-live>.cc53-grid {
-    --cc58-column-height:var(--cc78-live-height,664px);
+    --cc58-column-height:var(--cc78-live-height,744px);
   }
 }
 
@@ -35998,40 +35998,12 @@ html body #app#app#app section.cc74-live .cc78-editable-card>.cc78-section-updat
   outline:2px solid #111!important;
   outline-offset:-3px;
 }
-html body #app#app section.cc74-live .cc78-brain-link {
-  all:unset;
-  display:flex;
-  align-items:center;
-  width:100%;
-  height:100%;
-  font:inherit;
-  white-space:nowrap;
-  cursor:pointer;
-}
-.cc74-live .cc78-brain-link:hover {text-decoration:underline}
-html body #app#app section.cc74-live .cc75-brain {cursor:default}
-html body #app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live .cc75-signal-column {
-  grid-template-rows:minmax(0,1fr) 106px;
-}
-html body #app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live .cc77-signal-inset>.cc64-tower-badge {
-  min-width:0!important;
-  width:auto!important;
-  font:900 var(--cc78-state-size,clamp(12px,calc(150cqi / var(--cc78-label-length)),54px))/1 Arial,sans-serif!important;
-  letter-spacing:normal!important;
-  white-space:nowrap!important;
-}
-html body #app#app#app section.cc74-live .cc78-editable-card>.c11-lines {
-  min-height:0!important;
-  max-height:none!important;
-  overflow:auto!important;
-  padding:4px 7px!important;
-  scrollbar-width:thin;
-}
 html body #app#app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live .cc78-editable-card .c11-badge-region>.c11-badges {
   height:100%!important;
   min-height:0!important;
   align-content:stretch!important;
   grid-auto-rows:minmax(0,1fr)!important;
+  gap:2px!important;
 }
 
 @media(min-width:1100px){
@@ -36049,4 +36021,166 @@ html body #app#app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live 
   height:100%!important;
   min-height:0!important;
   max-height:100%!important;
+}
+
+:root {
+  --cc79-silver:repeating-linear-gradient(0deg,#fff1 0 1px,transparent 1px 3px),linear-gradient(110deg,#9b9b9b,#e7e7e7 52%,#a5a5a5);
+  --cc79-dark:linear-gradient(#141414,#080808);
+}
+
+/* Equal columns and a shared fixed lower row. */
+html body #app#app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live>.cc53-grid {
+  --cc79-lower-card-height:clamp(206px,calc(206px / var(--cc66-fit,1)),232px);
+  align-items:stretch!important;
+}
+html body #app#app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live>.cc53-grid>
+:is(.cc75-signal-column,.c11-identity-column,.c11-status-column) {
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:minmax(0,1fr) var(--cc79-lower-card-height)!important;
+  gap:6px!important;
+}
+html body #app#app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live>.cc53-grid>
+:is(.cc75-signal-column,.c11-column) {
+  height:100%!important;
+  min-height:0!important;
+  max-height:100%!important;
+  box-sizing:border-box!important;
+  margin:0!important;
+  padding:0!important;
+  align-self:stretch!important;
+}
+html body #app#app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live .cc78-editable-card {
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:27px minmax(0,1fr) 24px!important;
+  gap:2px!important;
+  box-sizing:border-box!important;
+  padding:0 3px 3px!important;
+  width:100%!important;
+  height:100%!important;
+  margin:0!important;
+  overflow:hidden!important;
+}
+html body #app#app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live .cc78-editable-card>
+:is(.cc54-well,.cc73-information-body,.cc78-section-update) {
+  grid-column:1!important;
+  min-width:0!important;
+  min-height:0!important;
+  max-width:none!important;
+  align-self:stretch!important;
+}
+html body #app#app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live .cc78-editable-card>
+:is(.cc54-well,.cc73-information-body) {
+  grid-row:2!important;
+  width:auto!important;
+  height:auto!important;
+  margin:0!important;
+  color:#fff!important;
+  background:var(--cc79-dark)!important;
+  border:1px solid #666!important;
+  border-radius:6px!important;
+}
+html body #app#app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live .cc78-editable-card>.cc78-section-update {
+  grid-row:3!important;
+  font:900 clamp(9px,.84cqw,13px)/1 Arial,sans-serif!important;
+}
+html body #app#app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live .cc58-information>.cc73-information-body {
+  grid-template-rows:minmax(0,1fr) 193px!important;
+}
+.cc74-live .cc78-editable-card>.cc79-notes,
+.cc74-live .cc75-brain>span {
+  display:block!important;
+  overflow:auto!important;
+  scrollbar-width:thin;
+  white-space:pre-wrap!important;
+  overflow-wrap:anywhere;
+  padding:6px 8px!important;
+  font:400 12px/1.25 Arial,sans-serif;
+}
+html body #app#app#app section.cc74-live .cc75-brain>.cc79-brain-title {
+  margin:0!important;
+  min-width:0;
+  container-type:inline-size;
+}
+html body #app#app#app section.cc74-live .cc79-brain-title>.cc78-brain-link {
+  display:flex!important;
+  align-items:center!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  padding:0 7px!important;
+  background:none!important;
+  border:0!important;
+  box-shadow:none!important;
+  color:#080808!important;
+  -webkit-text-fill-color:#080808!important;
+  font:900 clamp(7px,6cqi,15px)/1 Arial,sans-serif!important;
+  white-space:nowrap;
+  text-shadow:none!important;
+  cursor:pointer;
+}
+.cc74-live .cc78-brain-link:hover {text-decoration:underline}
+
+/* Keep the measurement box independent of the text inside it. */
+html body #app#app#app section.cc74-live .cc77-signal-inset {
+  grid-template-columns:minmax(0,1fr);
+}
+html body #app#app#app section.cc74-live .cc77-signal-inset>.cc64-tower-badge {
+  box-sizing:border-box!important;
+  min-width:0!important;
+  max-width:100%!important;
+  padding:0!important;
+  overflow:hidden!important;
+}
+html body #app#app#app section.cc74-live .cc64-tower-badge>.cc79-tower-text {
+  display:block!important;
+  flex:none!important;
+  width:max-content!important;
+  max-width:none!important;
+  color:var(--cc64-signal-color)!important;
+  -webkit-text-fill-color:var(--cc64-signal-color)!important;
+  font:900 var(--cc79-state-size,min(44px,calc(86cqi / var(--cc78-label-length))))/1 Arial,sans-serif!important;
+  letter-spacing:normal!important;
+  white-space:nowrap!important;
+  text-shadow:none!important;
+}
+
+/* Keep badge text legible in the space above the locked notes card. */
+html body #app#app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live .cc59-badges .c11-badges>button.b761-uniform-badge {
+  gap:0!important;
+  padding:1px 4px!important;
+}
+html body #app#app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live .cc59-badges .c11-badges>button.b761-uniform-badge
+:is(.badge-face-label,.badge-face-state) {
+  font-size:9.25px!important;
+  line-height:1!important;
+}
+
+/* Use the same brushed silver rim and dark inset for the application controls. */
+html body .app-frame #stickyShell#stickyShell header.prototype-header .cc42-header-title,
+html body .app-frame #stickyShell#stickyShell header.prototype-header>#headerModeCenter#headerModeCenter.prototype-header-center,
+html body .app-frame #stickyShell#stickyShell nav#mainNav#mainNav :is(button,select),
+html body:not(.presentation-mode)>.app-frame>footer.app-footer>.footer-system-row>.footer-system-cell {
+  box-sizing:border-box!important;
+  border:3px solid transparent!important;
+  border-radius:9px!important;
+  background:var(--cc79-dark) padding-box,var(--cc79-silver) border-box!important;
+  box-shadow:inset 0 0 0 1px #777,inset 0 1px 2px #fff2!important;
+}
+html body .app-frame #stickyShell#stickyShell nav#mainNav#mainNav :is(button,select) {
+  color:#fff!important;
+  -webkit-text-fill-color:currentColor!important;
+}
+html body .app-frame #stickyShell#stickyShell nav#mainNav#mainNav
+:is(button,select):is(.active,[aria-selected="true"],[aria-current="page"],:hover) {
+  background:var(--cc79-silver)!important;
+  border-color:#c8c8c8!important;
+  color:#080808!important;
+  text-shadow:none!important;
+}
+html body:not(.presentation-mode)>.app-frame>footer.app-footer>.footer-system-row>.footer-system-cell button {
+  background:transparent!important;
+  box-shadow:none!important;
+  border:0!important;
+  color:#fff!important;
 }

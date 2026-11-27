@@ -1,6 +1,6 @@
 /* Bundled source: js/app.js */
 (()=>{'use strict';
-const VERSION='14.0.78', BUILD='20261117-V14.0.78-CONSOLIDATED-REPAIRS';
+const VERSION='14.0.79', BUILD='20261117-V14.0.79-CONSOLIDATED-REPAIRS';
 const ACTIVE_DATASET_KEY='b7fi-command-center-active-dataset-v1216';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
@@ -765,7 +765,7 @@ function balancePageNavigation(){
 }
 function fitHeaderGeometry(){
   if(document.body.classList.contains('presentation-mode')||document.body.classList.contains('screenshot-mode'))return;
-  /* V14.0.78: b7-header-fit measures the title span with logo width excluded. */
+  /* V14.0.79: b7-header-fit measures the title span with logo width excluded. */
 }
 let toolEditorSectionKey='tool-info',adminSectionKey='system';
 function enhanceSectionWorkspaces(){
@@ -1849,7 +1849,7 @@ function v11ToolCard(towerLayout=false){
   const latestStatusCard=towerLayout
     ? `<div class="c11-status-card cc44-daily-status cc78-editable-card"><span class="label">LATEST SYSTEM STATUS</span><div class="cc54-well cc77-daily-status">${cc44DailySystemStatus(t)}</div>${sectionUpdate('UPDATE LATEST SYSTEM STATUS',quickField('latestStatus'))}</div>`
     : `<div class="c11-status-card cc44-daily-status clickable" ${quickField('latestStatus')} role="button" tabindex="0" aria-label="Update latest daily system status for ${toolId}"><span class="label">${esc(alias)} LATEST SYSTEM STATUS</span>${cc44DailySystemStatus(t)}</div>`;
-  const leadNotesCard=`<div class="c11-status-card c11-bottom-card b7-section-tone-cyan ${towerLayout?'cc78-editable-card':'clickable'}" ${towerLayout?'':`${quickField('leadNotes')} role="button" tabindex="0"`}><span class="label">${towerLayout?'LEAD NOTES / REMINDERS':esc(alias)+' LEAD NOTES / REMINDERS'}</span><div class="c11-lines">${esc(t.notes||'No lead notes entered.')}</div>${towerLayout?sectionUpdate('UPDATE LEAD NOTES',quickField('leadNotes')):''}</div>`;
+  const leadNotesCard=`<div class="c11-status-card c11-bottom-card b7-section-tone-cyan ${towerLayout?'cc78-editable-card':'clickable'}" ${towerLayout?'':`${quickField('leadNotes')} role="button" tabindex="0"`}><span class="label">${towerLayout?'LEAD NOTES / REMINDERS':esc(alias)+' LEAD NOTES / REMINDERS'}</span><div class="${towerLayout?'cc54-well cc79-notes':'c11-lines'}">${esc(t.notes||'No lead notes entered.')}</div>${towerLayout?sectionUpdate('UPDATE LEAD NOTES',quickField('leadNotes')):''}</div>`;
   const statusColumn=`<section class="c11-column c11-status-column">
         ${towerLayout?`<div class="cc55-card cc59-badges cc78-editable-card"><h3 class="cc55-title">TOOL BADGES</h3>${badgesPanel}${sectionUpdate('UPDATE TOOL BADGES',`data-lead-tasks="${toolId}"`)}</div>`:shipCountdownCard+nextActionCard}
         ${towerLayout?leadNotesCard:latestStatusCard+leadNotesCard}
@@ -1857,9 +1857,9 @@ function v11ToolCard(towerLayout=false){
       </section>`;
   return `<section class="c11-tool-card cc41-live-card ${towerLayout?'cc53-live cc58-live cc74-live':''}" data-universal-tool-card="${esc(t.id)}">
     <div class="c11-card-grid b1224-universal-grid ${towerLayout?'cc53-grid':'b1226-three-column'}">
-      ${towerLayout?`<section class="cc75-signal-column" aria-label="System Intelligence"><section class="cc53-tower cc55-card"><h3 class="cc74-tower-heading">SYSTEM INTELLIGENCE</h3><div class="cc77-signal-inset"><h2 class="cc64-tower-badge" style="--cc64-signal-color:${towerSignalColor(towerSignal.tone)};--cc78-label-length:${towerLabel.length}">${esc(towerLabel)}</h2><div class="cc57-tower-media">${b1224Tower(t,false,false)}</div></div></section><section class="cc75-brain cc78-editable-card" aria-label="Command Center Brain"><b><button type="button" class="cc78-brain-link" data-brain-entry="${toolId}" title="Open Intelligence Center">COMMAND CENTER BRAIN</button></b><span class="cc54-well">${esc(towerSignal.reason)}</span>${sectionUpdate('UPDATE BRAIN INPUTS',`data-tool="${toolId}" title="Edit the tool data that drives the Brain"`)}</section></section>`:''}
+      ${towerLayout?`<section class="cc75-signal-column" aria-label="System Intelligence"><section class="cc53-tower cc55-card"><h3 class="cc74-tower-heading">SYSTEM INTELLIGENCE</h3><div class="cc77-signal-inset"><h2 class="cc64-tower-badge" style="--cc64-signal-color:${towerSignalColor(towerSignal.tone)};--cc78-label-length:${towerLabel.length}"><span class="cc79-tower-text">${esc(towerLabel)}</span></h2><div class="cc57-tower-media">${b1224Tower(t,false,false)}</div></div></section><section class="cc75-brain cc78-editable-card" aria-label="Command Center Brain"><h3 class="cc79-brain-title"><button type="button" class="cc78-brain-link" data-brain-entry="${toolId}" title="Open Intelligence Center">COMMAND CENTER BRAIN</button></h3><span class="cc54-well">${esc(towerSignal.reason)}</span>${sectionUpdate('UPDATE BRAIN INPUTS',`data-tool="${toolId}" title="Edit the tool data that drives the Brain"`)}</section></section>`:''}
       <section class="c11-column c11-identity-column">
-        ${towerLayout?`<div class="cc55-card cc58-information cc71-mini-look" role="group" aria-label="TOOL INFORMATION"><h3 class="cc55-title">TOOL INFORMATION</h3><div class="cc73-information-body"><div class="cc57-photo">${photoBadges}<img class="cc57-tool-image" src="${esc(img)}" alt="${esc(t.codename||'Tool')}"></div>`:`<div class="c11-photo b796-priority-photo b1226-photo b1313-unified-photo">${photoBadges}<div class="b1226-photo-top"><div class="b1226-photo-tower">${b1224Tower(t)}</div><div class="b1226-photo-main"><div class="v1210-photo-image"><img src="${esc(img)}" alt="${esc(t.codename||'Tool')}"></div></div></div></div>`}
+        ${towerLayout?`<div class="cc55-card cc58-information cc71-mini-look cc78-editable-card" role="group" aria-label="TOOL INFORMATION"><h3 class="cc55-title">TOOL INFORMATION</h3><div class="cc73-information-body"><div class="cc57-photo">${photoBadges}<img class="cc57-tool-image" src="${esc(img)}" alt="${esc(t.codename||'Tool')}"></div>`:`<div class="c11-photo b796-priority-photo b1226-photo b1313-unified-photo">${photoBadges}<div class="b1226-photo-top"><div class="b1226-photo-tower">${b1224Tower(t)}</div><div class="b1226-photo-main"><div class="v1210-photo-image"><img src="${esc(img)}" alt="${esc(t.codename||'Tool')}"></div></div></div></div>`}
         ${towerLayout?'<div class="cc55-well cc55-tool-details">':''}
         <div class="c11-identity-stack">
           ${c11IdentityButton(t,'utid','UTID',t.id,!t.id)}
@@ -1874,7 +1874,7 @@ function v11ToolCard(towerLayout=false){
         ${fiDateBadgeRow(t)}
         <button type="button" class="c11-reduced ${t.reducedProcess?'active':''}" data-direct-indicator="reduced" data-indicator-tool="${esc(t.id)}">${t.reducedProcess?'REDUCED PROCESS':'NORMAL PROCESS'}</button>
         ${carry?`<div class="c11-carry">⚠ QUARTER CARRYOVER — SHIP ASAP ⚠</div>`:`<div class="c11-carry c11-carry-placeholder" aria-hidden="true"></div>`}
-        ${towerLayout?`</div>${updateButton}</div></div>${latestStatusCard}`:`${badgesPanel}${updateButton}`}
+        ${towerLayout?`</div></div>${sectionUpdate('UPDATE TOOL STATUS',`data-tool="${toolId}"`)}</div>${latestStatusCard}`:`${badgesPanel}${updateButton}`}
       </section>
       ${towerLayout?'':statusColumn}
       <section class="c11-column c11-progress-column">
@@ -2047,7 +2047,7 @@ function brainFindings(){return brainFleet().sort((a,b)=>deriveToolState(b).scor
 function brainPanel(title,inner){return `<section class="panel brain-panel"><h2>${title}</h2>${inner}</section>`}
 function brainCenterView(){
  let fleet=brainFleet(),tool=nonArchivedTools().find(t=>t.id===brainUtid),cands=tool?brainCandidates(tool):[],candidate=cands.find(t=>t.id===brainCandidate),risk=brainFindings(),urgent=risk.filter(t=>(engineDaysToShip(t)??999)<=3),unverified=fleet.filter(t=>!t.shipDate||!t.fiHandoffDate).length;
- let header=`<div class="brain-heading"><div><h1>◈ COMMAND CENTER BRAIN</h1><p>INTELLIGENCE CENTER · OPERATIONAL FORECASTING & DECISION SUPPORT</p></div><span class="brain-readonly">V14.0.78 · LIVE ANALYSIS · NO AUTOMATIC RECORD CHANGES</span></div><div class="brain-mode"><b>INTELLIGENCE CONTROL</b><button type="button" data-brain-mode="auto" class="${brainMode==='auto'?'active':''}">COMMAND CENTER · FULL AUTO</button><button type="button" data-brain-mode="manual" class="${brainMode==='manual'?'active':''}">FI LEADS / MANAGERS</button></div>`;
+ let header=`<div class="brain-heading"><div><h1>◈ COMMAND CENTER BRAIN</h1><p>INTELLIGENCE CENTER · OPERATIONAL FORECASTING & DECISION SUPPORT</p></div><span class="brain-readonly">V14.0.79 · LIVE ANALYSIS · NO AUTOMATIC RECORD CHANGES</span></div><div class="brain-mode"><b>INTELLIGENCE CONTROL</b><button type="button" data-brain-mode="auto" class="${brainMode==='auto'?'active':''}">COMMAND CENTER · FULL AUTO</button><button type="button" data-brain-mode="manual" class="${brainMode==='manual'?'active':''}">FI LEADS / MANAGERS</button></div>`;
  if(route.sub==='home'){
  let findings=risk.slice(0,12).map(t=>{let c=brainCandidates(t),analysis=connectedBrainAnalysis(t);return `<div class="brain-result"><div><b>${brainToolLabel(t)}</b><small>${analysis.progress.pct}% OVERALL · ${esc(analysis.messages[0])} · FI COMPLETION ${analysis.forecast?esc(fmtDate(analysis.forecast)):'PENDING'}</small></div><button type="button" class="btn" data-brain-investigate="${esc(t.id)}">INVESTIGATE</button></div>`}).join('');
  return header+`<div class="brain-kpis"><div><small>ACTIVE TOOLS</small><strong>${fleet.length}</strong></div><div><small>SHIP DATE NEAR / PASSED</small><strong>${urgent.length}</strong></div><div><small>MISSING CORE DATA</small><strong>${unverified}</strong></div><div><small>TOOLS WITH SAME-TYPE OPTIONS</small><strong>${fleet.filter(t=>brainCandidates(t).length).length}</strong></div></div>`+brainPanel('AUTOMATIC MONITORING · LIVE TOOL RECORDS',`<p class="helper">These are review indicators based on existing dates and tool types—not validated shipping-delay predictions. Same-type matches are potential candidates, not approved swaps.</p>${findings||'<p>No active tools.</p>'}`)+brainPanel('INTELLIGENCE CAPABILITIES',`<div class="brain-tiles"><button data-brain-open="swap">⇄ TOOL SWAP ANALYZER</button><button data-brain-open="forecast">◷ FI MILESTONE FORECASTING</button><button data-brain-open="scenario">◇ WHAT-IF SIMULATIONS</button><button data-brain-open="history">▤ FORECAST HISTORY</button></div>`);
@@ -2383,7 +2383,10 @@ function fitPresentation(){
  const nav=document.querySelector('#app .presentation-inline-nav');const navHeight=nav?Math.ceil(nav.getBoundingClientRect().height):52;
  const height=Math.max(300,window.innerHeight-navHeight-20);document.documentElement.style.setProperty('--cc-presentation-height',height+'px');
  const liveCard=document.querySelector('.presentation-tool-only .cc41-live-card');
- if(liveCard)liveCard.style.setProperty('--cc62-fit',String(Math.min(1,height/1080)));
+ if(liveCard){
+   liveCard.style.setProperty('--cc62-fit',String(Math.min(1,height/1080)));
+   fitTowerStateLabel();
+ }
 
 }
 
@@ -2825,17 +2828,26 @@ document.addEventListener('click',function modernHybridControls(e){
    its own fixed viewport contract and is intentionally excluded. */
 function fitTowerStateLabel(){
   const label=document.querySelector('#app .cc77-signal-inset>.cc64-tower-badge');
-  if(!label||!label.clientWidth||!label.clientHeight)return;
-  const context=document.createElement('canvas').getContext('2d');
-  if(!context)return;
-  context.font='900 100px Arial, sans-serif';
-  const metrics=context.measureText(label.textContent);
-  if(!metrics.width)return;
-  const fitWidth=(label.clientWidth-18)*100/metrics.width;
-  const fitHeight=label.clientHeight-10;
-  const size=Math.floor(Math.min(fitWidth,fitHeight));
-  if(size>0)label.style.setProperty('--cc78-state-size',size+'px');
+  const text=label?.querySelector('.cc79-tower-text');
+  if(!text)return;
+  const bounds=label.getBoundingClientRect();
+  const zoom=label.clientWidth?bounds.width/label.clientWidth:0;
+  if(zoom<=0||bounds.height<=0)return;
+  const maxWidth=bounds.width-24*zoom;
+  const maxHeight=bounds.height-12*zoom;
+  let smallest=1;
+  let largest=label.clientHeight;
+  // Measure the rendered glyphs so font fallback, weight and browser zoom are included.
+  while(smallest<largest){
+    const size=Math.ceil((smallest+largest)/2);
+    text.style.setProperty('--cc79-state-size',size+'px');
+    const rendered=text.getBoundingClientRect();
+    if(rendered.width<=maxWidth&&rendered.height<=maxHeight)smallest=size;
+    else largest=size-1;
+  }
+  text.style.setProperty('--cc79-state-size',smallest+'px');
 }
+
 
 function syncLiveCardGeometry(){
   if(document.body.classList.contains('presentation-mode')||document.body.classList.contains('screenshot-mode'))return;
@@ -2850,7 +2862,8 @@ function syncLiveCardGeometry(){
   const available=Math.max(0,document.documentElement.clientHeight-gridBounds.top-window.scrollY-footerSpace);
   // Chromium reports outer width in screen CSS pixels and inner width in page CSS pixels.
   const zoomedOut=window.outerWidth>0&&window.innerWidth>window.outerWidth*1.12;
-  const gridHeight=zoomedOut?664:Math.max(664,Math.floor(available));
+  const designHeight=744;
+  const gridHeight=zoomedOut?designHeight:Math.max(designHeight,Math.floor(available));
   grid.style.setProperty('--cc78-live-height',gridHeight+'px');
   card.style.setProperty('--cc66-fit',String(Math.min(1,Math.max(0.64,available/gridHeight))));
 }
@@ -2939,7 +2952,7 @@ function inject(){
  const b=document.createElement('button');b.id='mu-launch';b.textContent='MULTI-USER DIAGNOSTICS';b.className='btn';b.hidden=true;document.body.appendChild(b);
  // V6.6.46: keep the internal diagnostics launcher hidden. The single visible Administration Center button opens it through data-shared-action=diagnostics.
  b.hidden=true;
- const p=document.createElement('section');p.id='mu-panel';p.innerHTML=`<div class="mu-head"><div><h2>B7 FI COMMAND CENTER — MULTI-USER CONNECTION TEST</h2><div class="mu-note">V14.0.78 · ONE TOOL = ONE ROW + SHARED SETTINGS · Microsoft Entra delegated authentication · Microsoft Graph · Microsoft List</div></div><button class="mu-close" id="mu-close">×</button></div><div id="mu-status" class="mu-status">Ready. Start the Command Center at http://localhost:5500, then sign in.</div><div class="mu-meta"><div><b>USER</b><br><span id="mu-user">Not signed in</span></div><div><b>SITE</b><br>${esc(CFG.siteHost+CFG.sitePath)}</div><div><b>LIST</b><br>${esc(CFG.listName)}<br><small id="mu-list-id">ID: not resolved</small></div><div><b>MODE</b><br>Shared List Test</div></div><div class="mu-checks" id="mu-checks"></div><div class="mu-actions"><button class="mu-btn" id="mu-signin">1 · SIGN IN WITH KLA</button><button class="mu-btn" id="mu-connect" disabled>2 · CONNECT + READ</button><button class="mu-btn" id="mu-refresh" disabled>3 · REFRESH / FIND EXTERNAL ROW</button><button class="mu-btn" id="mu-create" disabled>4 · CREATE TEMP TEST ROW</button><button class="mu-btn" id="mu-delete" disabled>5 · DELETE TEMP TEST ROW</button><button class="mu-btn" id="mu-listid">SET LIST ID</button><button class="mu-btn" id="mu-copyid" disabled>COPY LIST ID</button><button class="mu-btn" id="mu-signout" disabled>SIGN OUT</button></div><p class="mu-note"><b>Purpose:</b> This build preserves the current Command Center production data model while the shared-list connection is being validated. The panel below tests real multi-user read/write against the shared Microsoft List. Edit a test-row value and save it, then refresh from a second computer/user to verify shared updates. Saves use a change check to avoid silently overwriting a row changed by another user.</p><div id="mu-grid"></div>`;document.body.appendChild(p);
+ const p=document.createElement('section');p.id='mu-panel';p.innerHTML=`<div class="mu-head"><div><h2>B7 FI COMMAND CENTER — MULTI-USER CONNECTION TEST</h2><div class="mu-note">V14.0.79 · ONE TOOL = ONE ROW + SHARED SETTINGS · Microsoft Entra delegated authentication · Microsoft Graph · Microsoft List</div></div><button class="mu-close" id="mu-close">×</button></div><div id="mu-status" class="mu-status">Ready. Start the Command Center at http://localhost:5500, then sign in.</div><div class="mu-meta"><div><b>USER</b><br><span id="mu-user">Not signed in</span></div><div><b>SITE</b><br>${esc(CFG.siteHost+CFG.sitePath)}</div><div><b>LIST</b><br>${esc(CFG.listName)}<br><small id="mu-list-id">ID: not resolved</small></div><div><b>MODE</b><br>Shared List Test</div></div><div class="mu-checks" id="mu-checks"></div><div class="mu-actions"><button class="mu-btn" id="mu-signin">1 · SIGN IN WITH KLA</button><button class="mu-btn" id="mu-connect" disabled>2 · CONNECT + READ</button><button class="mu-btn" id="mu-refresh" disabled>3 · REFRESH / FIND EXTERNAL ROW</button><button class="mu-btn" id="mu-create" disabled>4 · CREATE TEMP TEST ROW</button><button class="mu-btn" id="mu-delete" disabled>5 · DELETE TEMP TEST ROW</button><button class="mu-btn" id="mu-listid">SET LIST ID</button><button class="mu-btn" id="mu-copyid" disabled>COPY LIST ID</button><button class="mu-btn" id="mu-signout" disabled>SIGN OUT</button></div><p class="mu-note"><b>Purpose:</b> This build preserves the current Command Center production data model while the shared-list connection is being validated. The panel below tests real multi-user read/write against the shared Microsoft List. Edit a test-row value and save it, then refresh from a second computer/user to verify shared updates. Saves use a change check to avoid silently overwriting a row changed by another user.</p><div id="mu-grid"></div>`;document.body.appendChild(p);
  b.onclick=()=>p.classList.add('open');p.querySelector('#mu-close').onclick=()=>p.classList.remove('open');
  p.querySelector('#mu-listid').onclick=()=>{let v=prompt('Paste the B7 FI Command Center Microsoft List ID from a connected laptop:',localStorage.getItem(LIST_ID_KEY)||'');if(v&&v.trim()){localStorage.setItem(LIST_ID_KEY,v.trim());list=null;status('List ID saved. Click 2 · CONNECT + READ.','ok')}};p.querySelector('#mu-copyid').onclick=()=>{let v=list?.id||localStorage.getItem(LIST_ID_KEY)||'';if(v)prompt('Copy this List ID to the other laptop:',v)};p.querySelector('#mu-signin').onclick=signIn;p.querySelector('#mu-connect').onclick=connect;p.querySelector('#mu-refresh').onclick=loadItems;p.querySelector('#mu-create').onclick=createTempRow;p.querySelector('#mu-delete').onclick=deleteTempRow;p.querySelector('#mu-signout').onclick=signOut;renderChecks();
 }
@@ -3035,7 +3048,7 @@ async function loadSharedScenario(localState){requireToolDataColumn();await refr
   for(const it of items){let t=parseToolData(it);if(t&&!titleOf(it).startsWith(TOOL_PREFIX)){let b={};setField(b,'Title',TOOL_PREFIX+String(t.id));if(Object.keys(b).length)await patchRow(it.id,b)}}
   // Never seed a populated shared list with local/browser test tools automatically.
   if(!sharedTools.length && items.length===0)console.warn('Shared list empty: explicit import is required to publish local tools.');await refreshAllItems();sharedTools=decodeSharedTools();let out=JSON.parse(JSON.stringify(localState));Object.assign(out,sharedSnapshot(sharedTools));lastSharedState=JSON.parse(JSON.stringify(out));return out}
-// V14.0.78: canonical comparison and guarded three-way saves.
+// V14.0.79: canonical comparison and guarded three-way saves.
 function canonicalValue(value){if(value===undefined)return 'null';if(Array.isArray(value))return '['+value.map(canonicalValue).join(',')+']';if(value&&typeof value==='object')return '{'+Object.keys(value).filter(k=>!['_sharedRowId','_sharedRevision','createdAt'].includes(k)).sort().map(k=>JSON.stringify(k)+':'+canonicalValue(value[k])).join(',')+'}';return JSON.stringify(value)}
 function mergeSharedChanges(base,local,remote,path='record'){
  if(canonicalValue(local)===canonicalValue(base))return remote;
@@ -3267,7 +3280,7 @@ document.addEventListener('DOMContentLoaded',async()=>{inject();bindHeaderLogin(
     const sh=document.querySelector('#stickyShell');const card=document.querySelector('.c11-card-grid');const badge=document.querySelector('.c11-badge');
     const styles=[...document.styleSheets].filter(s=>s.href).map(s=>{try{return new URL(s.href).pathname.split('/').pop()}catch{return s.href}});
     const rect=el=>el?Math.round(el.getBoundingClientRect().top)+' / '+Math.round(el.getBoundingClientRect().height):'not visible';
-    panel.innerHTML='<b>B7 LAYOUT DIAGNOSTICS · V14.0.78</b><hr style="border-color:#395566">'+
+    panel.innerHTML='<b>B7 LAYOUT DIAGNOSTICS · V14.0.79</b><hr style="border-color:#395566">'+
       'Viewport: '+innerWidth+' × '+innerHeight+'<br>Device pixel ratio: '+devicePixelRatio+'<br>'+ 
       'Header top / height: '+rect(sh)+'<br>Header position: '+(sh?getComputedStyle(sh).position:'none')+'<br>'+ 
       'Tool card top / height: '+rect(card)+'<br>Badge height: '+(badge?Math.round(badge.getBoundingClientRect().height)+'px':'not visible')+'<br>'+ 
@@ -3348,40 +3361,8 @@ document.addEventListener('DOMContentLoaded',async()=>{inject();bindHeaderLogin(
 
 ;
 /* Bundled source: js/b7-badge-source-v12.0.62.js */
-/* V14.0.78: CSS owns badge/card geometry. This diagnostic never writes styles. */
+/* V14.0.79: CSS owns badge/card geometry. This diagnostic never writes styles. */
 (()=>{window.b762BadgeDiagnostics=()=>[...document.querySelectorAll('#app .c11-tool-card .c11-identity-stack>*,#app .c11-tool-card .b783-date-row>*,#app .c11-tool-card .c11-badges>*')].map(el=>({name:el.textContent.trim().replace(/\s+/g,' ').slice(0,40),height:+el.getBoundingClientRect().height.toFixed(2),cssHeight:getComputedStyle(el).height}));})();
-;
-/* Bundled source: js/b7-raiders-navigation-v13.0.2.js */
-/* V13.0.2: nav chrome applied to actual dynamically generated buttons.
-   Inline important rules beat older stylesheet specificity and inline styling.
-   Observe child changes only, avoiding style-attribute feedback loops. */
-(function(){
-  'use strict';
-  function apply(){
-    const nav=document.getElementById('mainNav');if(!nav)return;
-    const dark='linear-gradient(180deg,#555 0%,#171717 28%,#030303 70%,#292929 100%)';
-    const light='linear-gradient(180deg,#fff 0%,#e3e3e3 40%,#aaa 100%)';
-    [nav,...nav.querySelectorAll('#subnav,#pageActions,#b797CenterSlot')].forEach(el=>{
-      el.style.setProperty('background','#060606','important');
-      el.style.setProperty('background-image','none','important');
-    });
-    nav.querySelectorAll('button,select').forEach(el=>{
-      const active=el.matches('.active,[aria-selected="true"],[aria-current="page"]');
-      el.style.setProperty('background',active?light:dark,'important');
-      el.style.setProperty('color',active?'#050505':'#fff','important');
-      el.style.setProperty('border-color',active?'#fff':'#aaa','important');
-    });
-  }
-  function init(){
-    const nav=document.getElementById('mainNav');if(!nav)return;
-    let pending=false;
-    new MutationObserver(()=>{if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;apply()})})
-      .observe(nav,{childList:true,subtree:true,attributes:true,attributeFilter:['class','aria-selected','aria-current']});
-    apply();
-  }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
-})();
-
 ;
 /* Bundled source: js/b7-raiders-live-finish-v13.0.6.js */
 (()=>{'use strict';
@@ -3402,7 +3383,7 @@ document.addEventListener('DOMContentLoaded',async()=>{inject();bindHeaderLogin(
 
 ;
 /* Bundled source: js/signal-lamps-v13.0.38.js */
-/* V14.0.78 — explicit lighting preview, save and close. */
+/* V14.0.79 — explicit lighting preview, save and close. */
 (()=>{'use strict';
 const KEY='b7.signalLighting.v1338';
 const defaults={mode:'pulse',brightness:45,duration:1.5,glow:80,pattern:'smooth'};
@@ -3429,10 +3410,10 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 ;
 /* Bundled source: js/raiders-header-footer-v13.0.39.js */
-(()=>{'use strict';function refresh(){const el=document.getElementById('footerConnectionVisual');if(!el)return;const core=document.getElementById('klaConnectionCore'),label=document.getElementById('headerConnectionLabel')?.textContent||'LOCAL DATA';const local=core?.classList.contains('local-mode')||label==='LOCAL DATA';el.textContent=local?'LOCAL MODE · V14.0.78':label+' · V14.0.78';el.classList.toggle('connected',!local&&/^(LIST CONNECTED|SYNCING LIST|SYNC PAUSED)$/.test(label));el.classList.toggle('connection-error',/FAILED|DISCONNECTED/.test(label))}function init(){refresh();const obs=new MutationObserver(refresh);for(const id of ['headerConnectionLabel','sharedStatus']){const el=document.getElementById(id);if(el)obs.observe(el,{childList:true,subtree:true,characterData:true})}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init()})();
+(()=>{'use strict';function refresh(){const el=document.getElementById('footerConnectionVisual');if(!el)return;const core=document.getElementById('klaConnectionCore'),label=document.getElementById('headerConnectionLabel')?.textContent||'LOCAL DATA';const local=core?.classList.contains('local-mode')||label==='LOCAL DATA';el.textContent=local?'LOCAL MODE · V14.0.79':label+' · V14.0.79';el.classList.toggle('connected',!local&&/^(LIST CONNECTED|SYNCING LIST|SYNC PAUSED)$/.test(label));el.classList.toggle('connection-error',/FAILED|DISCONNECTED/.test(label))}function init(){refresh();const obs=new MutationObserver(refresh);for(const id of ['headerConnectionLabel','sharedStatus']){const el=document.getElementById(id);if(el)obs.observe(el,{childList:true,subtree:true,characterData:true})}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init()})();
 ;
 /* Bundled source: js/design-stabilization-v13.0.40.js */
-/* V14.0.78: decorative lighting never substitutes a different operational tower asset. */
+/* V14.0.79: decorative lighting never substitutes a different operational tower asset. */
 (()=>{function sync(){const hint=document.querySelector('#b7-lamp-menu .b7-lamp-hint');if(hint&&hint.textContent!=='Apply previews your adjustments. Save keeps them on this browser. Close discards unsaved adjustments.')hint.textContent='Apply previews your adjustments. Save keeps them on this browser. Close discards unsaved adjustments.'}function init(){sync();new MutationObserver(sync).observe(document.body,{childList:true,subtree:true})}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init()})();
 ;
 /* Bundled source: js/b7-header-fit-v14.0.8.js */
@@ -3486,6 +3467,6 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 
 ;
-/* Bundled source: js/shell-clock-v14.0.78.js */
-/* V14.0.78: header date/time removed by request. */
+/* Bundled source: js/shell-clock-v14.0.79.js */
+/* V14.0.79: header date/time removed by request. */
 
