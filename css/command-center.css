@@ -36629,3 +36629,206 @@ html body.presentation-mode[data-center=operations][data-sub=summary] #app#app>.
   position:relative!important;
   inset:auto!important;
 }
+
+/* Match the Live Operations frames across the eight center workspaces. */
+html body[data-raiders-center] .app-frame,
+html body[data-raiders-center] .app-frame>.body-shell,
+html body[data-raiders-center] #app#app {
+  background:#080808!important;
+  color:#f5f5f5;
+}
+html body[data-raiders-center] #app#app :is(
+  .panel, .quarter-final-archive, .archive-quarter, .b7-report-actions,
+  .brain-heading, .brain-mode, .brain-form, .brain-compare, .brain-selected,
+  .b7-center-heading, .b752-graph-scroll, .b782-chart-card,
+  .v10-shipping-flow>section, .priority-source-control, .priority-edit-wrap,
+  .weekend-leadership, .weekend-leadership-view, .volunteer-panel,
+  .admin-mode-box, .section-workspace-nav, .brain-diagnostic,
+  .mystery-admin-card, .tool-photo-admin-card, .meeting-tool, .general-meeting,
+  .meeting-ready-tool, .oncall-preview
+),
+html body[data-raiders-center] #modal#modal :is(.modal-card,.meeting-history-tool,.b782-archive-controls) {
+  box-sizing:border-box;
+  border:3px solid transparent!important;
+  border-radius:9px!important;
+  background:var(--cc79-dark) padding-box,var(--cc79-silver) border-box!important;
+  box-shadow:inset 0 0 0 1px #777!important;
+  color:#f5f5f5!important;
+}
+html body[data-raiders-center] #app#app :is(
+  .brain-readonly,.brain-kpis>div,.brain-result,.brain-candidate,.brain-empty,
+  .brain-dual>div,.brain-pros>div,.b752-kpis>div,.b7-kpi,
+  .quarter-archive-head>div:last-child,.quarter-archive-families>div,
+  .status-history-frame>.ref-row,.meeting-history>.ref-row,
+  .b782-tool-row,.meeting-placeholder,.volunteer-display-row
+) {
+  border:1px solid #909090!important;
+  border-radius:6px!important;
+  background:#151515!important;
+  box-shadow:none!important;
+  color:#f5f5f5!important;
+}
+
+/* The title strip and table headers use black type on brushed silver. */
+html body[data-raiders-center] #app#app :is(
+  .center-page-title,.panel>h2,.panel-head,.brain-heading,
+  .b752-dash-head,.b782-chart-card>h3,.b782-timeline-head,
+  .v10-shipping-flow>section>header,.quarter-final-archive>h2,.quarter-archive-head,
+  .archive-quarter>summary,.b7-center-heading>h2,.meeting-title,
+  .volunteer-head,.data-table thead th
+),
+html body[data-raiders-center] #modal#modal .modal-form>h2 {
+  background:var(--cc79-silver)!important;
+  color:#080808!important;
+  -webkit-text-fill-color:#080808!important;
+  text-shadow:none!important;
+  border-color:#c8c8c8!important;
+}
+html body[data-raiders-center] #app#app .center-page-title {
+  border:1px solid #c8c8c8!important;
+  border-radius:8px!important;
+  padding:7px 10px!important;
+}
+html body[data-raiders-center] #app#app :is(
+  .panel>h2,.panel-head,.b752-dash-head,.b782-chart-card>h3,.b782-timeline-head,
+  .v10-shipping-flow>section>header,.quarter-final-archive>h2,.quarter-archive-head,
+  .archive-quarter>summary,.b7-center-heading>h2,.meeting-title,.volunteer-head
+) {
+  box-sizing:border-box;
+  padding:6px 9px!important;
+  border-radius:5px!important;
+}
+html body[data-raiders-center] #app#app :is(
+  .brain-heading,.panel-head,.b752-dash-head,.quarter-archive-head
+) :is(h1,h2,p,.helper,.b752-dash-head>span) {
+  color:#080808!important;
+  -webkit-text-fill-color:#080808!important;
+  text-shadow:none!important;
+}
+/* Interactive elements and meaningful states retain their own contrast. */
+html body[data-raiders-center] #app#app :is(
+  .brain-heading .brain-readonly,.quarter-archive-head>div:last-child,
+  .b752-dash-head button,.section-workspace-nav button
+) {
+  color:#f5f5f5!important;
+  -webkit-text-fill-color:#f5f5f5!important;
+}
+html body[data-raiders-center] #app#app :is(
+  .btn,.section-workspace-nav button,.brain-mode button,.brain-tiles button,
+  .b782-stage-buttons button,.v10-ship-mini
+):not(.active,.selected,.primary,.danger) {
+  border:2px solid transparent!important;
+  background:var(--cc79-dark) padding-box,var(--cc79-silver) border-box!important;
+  color:#f5f5f5!important;
+  -webkit-text-fill-color:#f5f5f5!important;
+  border-radius:6px!important;
+  box-shadow:inset 0 0 0 1px #666!important;
+}
+html body[data-raiders-center] #app#app :is(
+  .btn,.section-workspace-nav button,.brain-mode button,.b782-stage-buttons button,.brain-candidate
+):is(.active,.selected,.primary):not(.danger) {
+  border:1px solid #aaa!important;
+  background:var(--cc79-silver)!important;
+  color:#080808!important;
+  -webkit-text-fill-color:#080808!important;
+  text-shadow:none!important;
+  box-shadow:none!important;
+}
+html body[data-raiders-center] #app#app :is(.admin-actions,.admin-mode-box) .btn {
+  white-space:normal!important;
+  overflow-wrap:anywhere;
+  height:auto!important;
+}
+html body[data-raiders-center] #app#app :is(
+  input:not([type=checkbox],[type=radio],[type=range]),select,textarea
+),
+html body[data-raiders-center] #modal#modal :is(
+  input:not([type=checkbox],[type=radio],[type=range]),select,textarea
+) {
+  background:#121212!important;
+  border:1px solid #a6a6a6!important;
+  border-radius:5px!important;
+  color:#f5f5f5!important;
+  -webkit-text-fill-color:#f5f5f5!important;
+  color-scheme:dark;
+}
+html body[data-raiders-center] #app#app :is(button,a,input,select,textarea):focus-visible,
+html body[data-raiders-center] #modal#modal :is(button,a,input,select,textarea):focus-visible {
+  outline:2px solid #eee!important;
+  outline-offset:2px;
+}
+html body[data-raiders-center] #app#app :is(
+  .helper,.email-latest,.meeting-snapshot,.meeting-placeholder,
+  .b752-legend,.b782-legend,.b782-time-axis,.b782-y-axis,.b782-month>b,
+  .meeting-ready-tool>span,.b752-cycle-item small,
+  .brain-result small,.brain-heading .brain-readonly,.b7-center-heading>p,
+  .priority-why,.brain-kpis small,.b752-kpis small,.b7-kpi small
+) {
+  color:#dedede!important;
+  -webkit-text-fill-color:#dedede!important;
+  text-shadow:none!important;
+}
+html body[data-raiders-center] #app#app .b7-report-actions {
+  display:flex!important;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:7px;
+  margin-bottom:7px!important;
+  padding:4px 8px!important;
+}
+
+/* Status reports, tables, and timeline guides use neutral surfaces and dividers. */
+html body[data-raiders-center] #app#app :is(.email-status,.historical-status),
+html body[data-raiders-center] #modal#modal .historical-status {
+  background:#101010!important;
+  border-color:#757575!important;
+  border-radius:6px!important;
+}
+html body[data-raiders-center] #app#app :is(.email-row,.email-meta,.meeting-tool-head,.meeting-placeholder),
+html body[data-raiders-center] #modal#modal :is(.email-row,.email-meta) {
+  background:#121212!important;
+  border-color:#717171!important;
+}
+html body[data-raiders-center] #app#app :is(.email-row:nth-child(even),.data-table tbody tr:nth-child(even)>td) {
+  background:#1b1b1b!important;
+}
+html body[data-raiders-center] #app#app .data-table tbody tr:nth-child(odd)>td {
+  background:#101010!important;
+}
+html body[data-raiders-center] #app#app :is(.data-table td,.b782-months,.b752-cycle-plot,.b782-pair,.b782-track) {
+  border-color:#747474!important;
+}
+html body[data-raiders-center] #app#app :is(.data-table tbody tr:hover>td,.email-row.clickrow:hover) {
+  background:#303030!important;
+}
+html body[data-raiders-center] #app#app :is(.b782-track,.b752-cycle-chart) {
+  background:#101010!important;
+}
+html body[data-raiders-center] #app#app .b782-pair {
+  background:repeating-linear-gradient(to top,transparent 0,transparent calc(25% - 1px),#ffffff29 calc(25% - 1px),#ffffff29 25%)!important;
+}
+html body[data-raiders-center] #app#app :is(.b782-column.planned,.b782-legend i.planned) {
+  background:#858585!important;
+}
+html body[data-raiders-center] #app#app :is(.b782-column.actual,.b782-legend i.actual) {
+  background:#efefef!important;
+}
+html body[data-raiders-center] #app#app .b752-reference {
+  border-color:#aaa!important;
+}
+html body[data-raiders-center] #app#app .quarter-archive-result {
+  background:#141414!important;
+  border-radius:5px!important;
+  -webkit-text-fill-color:currentColor!important;
+}
+html body[data-raiders-center] #app#app .b718-presentation-admin .form-grid>label {
+  display:grid;
+  gap:4px;
+  min-width:0;
+}
+html body[data-raiders-center] #app#app .b718-presentation-admin .form-grid>label :is(input,select) {
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+}
