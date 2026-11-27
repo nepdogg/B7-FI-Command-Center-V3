@@ -1,9 +1,9 @@
-FI COMMAND CENTER V14.0.87
+FI COMMAND CENTER V14.0.88
 
-The Status, Intelligence, Priority, Archive, Administration, Shipping,
-Cycle Time, and Meeting centers use the Live Operations black and silver
-palette. Brushed silver frames and headings cover the main sections,
-with dark tables and controls. Operational indicators retain their colors.
+The Raiders palette now covers the regular Quarter Summary, Tools, Tool
+Edit, and Daily Update pages, plus Action, Reference, and Search. The
+regular Quarter Summary shares the presentation overview and uses silver
+table headings, dark family rows, and black labels on silver progress bars.
 
 LOCAL
 Extract to a new folder. Close the previous server and run
@@ -11,4 +11,4 @@ START-COMMAND-CENTER.bat from the new folder.
 
 GITHUB PAGES
 Replace index.html, css/command-center.css and js/command-center.js together.
-Keep existing assets and confirm V14.0.87 after reloading.
+Keep existing assets and confirm V14.0.88 after reloading.

@@ -36286,7 +36286,7 @@ html body.presentation-mode[data-center=operations][data-sub=live]
 }
 
 /* Quarter Summary and Hybrid share the same presentation overview. */
-html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview {
+html body:is(.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]),[data-raiders-center][data-center=operations][data-sub=summary]) #app#app .cc84-presentation-overview {
   --cc81-metrics-height:clamp(125px,26dvh,300px);
 }
 /* Hybrid combines the quarter overview and the selected mini tool card. */
@@ -36300,7 +36300,7 @@ html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app>.c
   background:#080808!important;
   box-sizing:border-box!important;
 }
-html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .cc48-quarter-top {
+html body:is(.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]),[data-raiders-center][data-center=operations][data-sub=summary]) #app#app .cc84-presentation-overview .cc48-quarter-top {
   display:grid!important;
   grid-row:1!important;
   min-width:0!important;
@@ -36309,12 +36309,12 @@ html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-s
   grid-template-columns:minmax(0,1fr)!important;
   grid-template-rows:var(--cc81-metrics-height) 43px!important;
 }
-html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .quarter-summary-hero {
+html body:is(.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]),[data-raiders-center][data-center=operations][data-sub=summary]) #app#app .cc84-presentation-overview .quarter-summary-hero {
   height:100%!important;
   min-height:0!important;
   max-height:none!important;
 }
-html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .quarter-hero-metric {
+html body:is(.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]),[data-raiders-center][data-center=operations][data-sub=summary]) #app#app .cc84-presentation-overview .quarter-hero-metric {
   container-type:inline-size;
   grid-template-columns:minmax(0,1fr)!important;
   grid-template-rows:clamp(26px,5.8dvh,64px) minmax(0,1fr)!important;
@@ -36327,7 +36327,7 @@ html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-s
   background:var(--cc79-silver)!important;
   box-shadow:inset 0 0 0 1px #fff4,0 2px 3px #000!important;
 }
-html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .quarter-hero-metric>small {
+html body:is(.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]),[data-raiders-center][data-center=operations][data-sub=summary]) #app#app .cc84-presentation-overview .quarter-hero-metric>small {
   display:flex!important;
   align-items:center;
   justify-content:center;
@@ -36338,7 +36338,7 @@ html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-s
   font:900 min(5.2cqi,4.6dvh,55px)/1.03 Arial,sans-serif!important;
   white-space:normal!important;
 }
-html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .cc82-countdown-well {
+html body:is(.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]),[data-raiders-center][data-center=operations][data-sub=summary]) #app#app .cc84-presentation-overview .cc82-countdown-well {
   display:grid;
   grid-template-columns:minmax(0,1fr);
   grid-template-rows:minmax(0,1fr) clamp(26px,4.5dvh,46px);
@@ -36353,7 +36353,7 @@ html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-s
   border-radius:6px;
   background:var(--cc79-dark);
 }
-html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .cc82-countdown-well>strong {
+html body:is(.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]),[data-raiders-center][data-center=operations][data-sub=summary]) #app#app .cc84-presentation-overview .cc82-countdown-well>strong {
   display:grid!important;
   place-items:center;
   width:100%!important;
@@ -36366,28 +36366,29 @@ html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-s
   white-space:normal!important;
   text-shadow:none!important;
 }
-html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .quarter-hero-metric :is(.hero-progress,.track) {
+html body:is(.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]),[data-raiders-center][data-center=operations][data-sub=summary]) #app#app .cc84-presentation-overview .quarter-hero-metric :is(.hero-progress,.track) {
   height:100%!important;
   min-height:0!important;
   max-height:none!important;
   border-radius:6px!important;
 }
-html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .quarter-hero-metric .bar-value {
+html body:is(.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]),[data-raiders-center][data-center=operations][data-sub=summary]) #app#app .cc84-presentation-overview .quarter-hero-metric .bar-value {
   font:900 clamp(9px,2.5cqi,25px)/1.1 Arial,sans-serif!important;
 }
-html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .summary-grid {
+html body:is(.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]),[data-raiders-center][data-center=operations][data-sub=summary]) #app#app .cc84-presentation-overview .summary-grid {
   height:43px!important;
   min-height:0!important;
   max-height:43px!important;
   grid-template-rows:minmax(0,1fr)!important;
 }
-html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .summary-box {
+html body:is(.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]),[data-raiders-center][data-center=operations][data-sub=summary]) #app#app .cc84-presentation-overview .summary-box {
   height:100%!important;
   min-height:0!important;
   max-height:none!important;
   opacity:1!important;
+  filter:none!important;
 }
-html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .summary-box>:is(span,b) {
+html body:is(.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]),[data-raiders-center][data-center=operations][data-sub=summary]) #app#app .cc84-presentation-overview .summary-box>:is(span,b) {
   color:#fff!important;
   -webkit-text-fill-color:#fff!important;
   text-shadow:none!important;
@@ -36395,10 +36396,10 @@ html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-s
   text-align:center;
   white-space:normal!important;
 }
-html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .summary-box>span {
+html body:is(.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]),[data-raiders-center][data-center=operations][data-sub=summary]) #app#app .cc84-presentation-overview .summary-box>span {
   font-size:clamp(8px,.82vw,15px)!important;
 }
-html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .summary-box>b {
+html body:is(.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]),[data-raiders-center][data-center=operations][data-sub=summary]) #app#app .cc84-presentation-overview .summary-box>b {
   font-size:clamp(16px,2vh,24px)!important;
 }
 
@@ -36566,25 +36567,25 @@ html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .c
   color:#080808!important;
   -webkit-text-fill-color:#080808!important;
 }
-html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview
+html body:is(.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]),[data-raiders-center][data-center=operations][data-sub=summary]) #app#app .cc84-presentation-overview
 .cc82-countdown-well :is(.bar-value,.bar-value>span) {
   background:transparent!important;
 }
 
-html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary])
+html body:is(.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]),[data-raiders-center][data-center=operations][data-sub=summary])
 #app#app .cc84-presentation-overview .quarter-summary-hero {
   border:0!important;
   outline:0!important;
   box-shadow:none!important;
   background:transparent!important;
 }
-html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary])
+html body:is(.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]),[data-raiders-center][data-center=operations][data-sub=summary])
 #app#app .cc84-presentation-overview :is(.quarter-hero-metric>small,.bar-value,.bar-value>span) {
   color:#080808!important;
   -webkit-text-fill-color:#080808!important;
   text-shadow:none!important;
 }
-html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary])
+html body:is(.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]),[data-raiders-center][data-center=operations][data-sub=summary])
 #app#app .cc84-presentation-overview .summary-box {
   border:2px solid transparent!important;
   border-radius:8px!important;
@@ -36630,7 +36631,7 @@ html body.presentation-mode[data-center=operations][data-sub=summary] #app#app>.
   inset:auto!important;
 }
 
-/* Match the Live Operations frames across the eight center workspaces. */
+/* Match the Live Operations frames across the center workspaces. */
 html body[data-raiders-center] .app-frame,
 html body[data-raiders-center] .app-frame>.body-shell,
 html body[data-raiders-center] #app#app {
@@ -36645,7 +36646,9 @@ html body[data-raiders-center] #app#app :is(
   .weekend-leadership, .weekend-leadership-view, .volunteer-panel,
   .admin-mode-box, .section-workspace-nav, .brain-diagnostic,
   .mystery-admin-card, .tool-photo-admin-card, .meeting-tool, .general-meeting,
-  .meeting-ready-tool, .oncall-preview
+  .meeting-ready-tool, .oncall-preview, .subsection, .checklist-panel, .customer-workflow-block,
+  .daily-card, .tool-fi-column, .fleet-family, .fleet-identity-card, .reference-launch,
+  .reference-group, .search-results-bottom, .search-result
 ),
 html body[data-raiders-center] #modal#modal :is(.modal-card,.meeting-history-tool,.b782-archive-controls) {
   box-sizing:border-box;
@@ -36660,7 +36663,9 @@ html body[data-raiders-center] #app#app :is(
   .brain-dual>div,.brain-pros>div,.b752-kpis>div,.b7-kpi,
   .quarter-archive-head>div:last-child,.quarter-archive-families>div,
   .status-history-frame>.ref-row,.meeting-history>.ref-row,
-  .b782-tool-row,.meeting-placeholder,.volunteer-display-row
+  .b782-tool-row,.meeting-placeholder,.volunteer-display-row,.ref-row,
+  .focus-column,.v10-fleet-kpis>div,.b783-family-status>div,.fleet-id-grid .v10-id-badge,
+  .tool-wafer-accounted,.readonly-value,.quarter-movement-readout
 ) {
   border:1px solid #909090!important;
   border-radius:6px!important;
@@ -36675,7 +36680,8 @@ html body[data-raiders-center] #app#app :is(
   .b752-dash-head,.b782-chart-card>h3,.b782-timeline-head,
   .v10-shipping-flow>section>header,.quarter-final-archive>h2,.quarter-archive-head,
   .archive-quarter>summary,.b7-center-heading>h2,.meeting-title,
-  .volunteer-head,.data-table thead th
+  .volunteer-head,.data-table thead th,.fleet-family-head,.subsection>h3,
+  .tool-fi-column>h3
 ),
 html body[data-raiders-center] #modal#modal .modal-form>h2 {
   background:var(--cc79-silver)!important;
@@ -36692,15 +36698,16 @@ html body[data-raiders-center] #app#app .center-page-title {
 html body[data-raiders-center] #app#app :is(
   .panel>h2,.panel-head,.b752-dash-head,.b782-chart-card>h3,.b782-timeline-head,
   .v10-shipping-flow>section>header,.quarter-final-archive>h2,.quarter-archive-head,
-  .archive-quarter>summary,.b7-center-heading>h2,.meeting-title,.volunteer-head
+  .archive-quarter>summary,.b7-center-heading>h2,.meeting-title,.volunteer-head,
+  .fleet-family-head,.subsection>h3,.tool-fi-column>h3
 ) {
   box-sizing:border-box;
   padding:6px 9px!important;
   border-radius:5px!important;
 }
 html body[data-raiders-center] #app#app :is(
-  .brain-heading,.panel-head,.b752-dash-head,.quarter-archive-head
-) :is(h1,h2,p,.helper,.b752-dash-head>span) {
+  .brain-heading,.panel-head,.b752-dash-head,.quarter-archive-head,.fleet-family-head
+) :is(h1,h2,h3,p,.helper,.b752-dash-head>span,.fleet-family-head>span) {
   color:#080808!important;
   -webkit-text-fill-color:#080808!important;
   text-shadow:none!important;
@@ -36831,4 +36838,79 @@ html body[data-raiders-center] #app#app .b718-presentation-admin .form-grid>labe
   min-width:0!important;
   max-width:100%!important;
   box-sizing:border-box!important;
+}
+
+/* The regular Quarter Summary shares the presentation cards inside its browser layout. */
+html body[data-raiders-center][data-center=operations][data-sub=summary]
+#app#app .quarter-summary-master.cc88-quarter-summary {
+  --cc81-metrics-height:clamp(134px,25vh,274px);
+  display:grid!important;
+  grid-template-rows:calc(var(--cc81-metrics-height) + 48px) minmax(0,1fr)!important;
+  gap:6px!important;
+  background:#080808!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+html body[data-raiders-center][data-sub=summary] #app#app .cc88-quarter-summary>.quarter-summary-family-wrap {
+  grid-row:2!important;
+  min-height:0!important;
+  overflow:auto!important;
+}
+html body[data-raiders-center][data-sub=summary] #app#app .cc88-quarter-summary .family-rows-scroll {
+  grid-template-rows:repeat(var(--family-count,1),minmax(40px,1fr))!important;
+  overflow-y:auto!important;
+}
+html body[data-raiders-center][data-sub=summary] #app#app .cc88-quarter-summary .family-matrix.header {
+  border:1px solid #c8c8c8!important;
+  border-radius:5px!important;
+  background:var(--cc79-silver)!important;
+}
+html body[data-raiders-center][data-sub=summary] #app#app .cc88-quarter-summary .family-matrix.header>b {
+  color:#080808!important;
+  -webkit-text-fill-color:#080808!important;
+  text-shadow:none!important;
+}
+html body[data-raiders-center][data-sub=summary] #app#app .cc88-quarter-summary .family-matrix :is(.family-cell,.reveal-btn) {
+  background:var(--cc79-dark)!important;
+  border:1px solid #adadad!important;
+  border-radius:5px!important;
+  color:#f5f5f5!important;
+  box-shadow:none!important;
+}
+html body[data-raiders-center][data-sub=summary] #app#app .cc88-quarter-summary .family-progress .track {
+  border:1px solid #a7a7a7!important;
+  background:var(--cc79-silver)!important;
+}
+html body[data-raiders-center][data-sub=summary] #app#app .cc88-quarter-summary .family-progress .track>span {
+  color:#080808!important;
+  -webkit-text-fill-color:#080808!important;
+  text-shadow:none!important;
+}
+html body[data-raiders-center] #app#app :is(.reference-launch,.search-results-bottom,.action-list) {
+  color:#f5f5f5!important;
+}
+html body[data-raiders-center] #app#app :is(.reference-launch,.reference-group,.search-results-bottom) :is(small,p) {
+  color:#dedede!important;
+}
+html body[data-raiders-center][data-sub=summary] #app#app .cc88-quarter-summary .cc82-countdown-well .bar-value {
+  position:absolute!important;
+  inset:0!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 2px minmax(0,1fr)!important;
+  align-items:center!important;
+  text-align:center!important;
+  white-space:normal!important;
+}
+html body[data-raiders-center][data-sub=summary] #app#app .cc88-quarter-summary .cc82-countdown-well .bar-value>i {
+  height:55%;
+  background:#333!important;
+  box-shadow:none!important;
+}
+html body[data-raiders-center] #app#app .action-card {
+  background:var(--cc79-dark)!important;
+  border-radius:7px!important;
+}
+html body[data-raiders-center] #app#app .action-summary>.summary-box {
+  background:var(--cc79-dark)!important;
+  border-radius:7px!important;
 }
