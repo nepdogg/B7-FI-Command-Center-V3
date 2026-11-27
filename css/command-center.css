@@ -27568,7 +27568,7 @@ html body[data-center="operations"][data-sub="live"] #app .v10-progress-track i{
 .v10-overall-progress .v10-progress-head b{color:#17d2ff!important;font-size:13px!important}.v10-overall-progress .v10-progress-head strong{font-size:24px!important}.v10-overall-track{height:38px!important;min-height:38px!important}.v10-overall-breakdown{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:5px!important}.v10-overall-breakdown span{border:1px solid #0879a7!important;border-radius:7px!important;padding:5px 7px!important;text-align:center!important;font-size:9px!important;color:#75dfff!important}.v10-overall-breakdown b{color:#fff!important;font-size:12px!important}.v10-overall-progress>small{font-size:9px!important;font-weight:900!important;color:#dff8ff!important;white-space:normal!important}
 
 /* Presentation parity and fit. It intentionally retains its enclosing frame. */
-body.presentation-mode[data-center="operations"][data-sub="live"] #app .presentation-tool-only{border:2px solid #08c8ff!important;border-radius:3px!important;padding:5px!important;height:calc(100dvh - 58px)!important;overflow:hidden!important}
+
 body.presentation-mode[data-center="operations"][data-sub="live"] #app .presentation-tool-only>.v10-tool-card{height:100%!important;max-height:100%!important;grid-template-rows:72px minmax(0,1fr)!important;overflow:hidden!important}
 body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-intelligence{height:70px!important;min-height:70px!important;max-height:70px!important;margin-bottom:9px!important;grid-template-columns:minmax(400px,29%) minmax(0,71%)!important}
 body.presentation-mode[data-center="operations"][data-sub="live"] #app .v10-priority-identity,
@@ -28868,7 +28868,7 @@ html body .fleet-badges .equipment-badge{height:34px!important;min-height:30px!i
 @media(prefers-reduced-motion:reduce){}
 /* Match the Quarter Summary wallboard: ONE visible perimeter enclosing card AND navigation. */
 html body.presentation-mode[data-center="operations"][data-sub="live"] #app.body-workspace{
-  border:3px solid #0bbde9!important;border-radius:5px!important;
+  border:0!important;
   padding:6px!important;gap:4px!important;
   grid-template-rows:minmax(0,1fr) 46px!important;
   background:#020e17!important;
@@ -28878,7 +28878,7 @@ html body.presentation-mode[data-center="operations"][data-sub="live"] #app>.pre
   border:0!important;min-height:0!important;overflow:hidden!important;
 }
 html body.presentation-mode[data-center="operations"][data-sub="live"] #app>.presentation-tool-nav{
-  border:1px solid #12b9e9!important;border-radius:2px!important;
+  border:0!important;
   height:46px!important;min-height:46px!important;max-height:46px!important;
 }
 /* Equipment badge geometry is identical in the compact fleet card and full Universal Tool Card. */
@@ -28975,10 +28975,7 @@ html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell #pageAction
 
 
 
-/* Preserve presentation's single outer border, without a second card perimeter. */
-html body.presentation-mode[data-center="operations"][data-sub="live"] #app.body-workspace{
-  border:3px solid #0bbde9!important;
-}
+
 
 /* ORIGINAL FILE: css/v11.17.9-navigation-final.css */
 /* V11.17.9: definitive navigation geometry. This file loads LAST.
@@ -35207,30 +35204,6 @@ html body #app#app section.c11-tool-card.cc41-live-card.cc58-live .cc54-action .
   }
 }
 
-/* Fit the current Live Operations card above the presentation navigation. */
-html body.presentation-mode[data-center=operations][data-sub=live] #app#app>.presentation-tool-only>.cc58-live {
-  --cc62-fit:1;
-  zoom:var(--cc62-fit);
-  height:1070px!important; min-height:1070px!important; max-height:1070px!important;
-  width:calc(100% / var(--cc62-fit))!important; max-width:none!important;
-}
-html body.presentation-mode[data-center=operations][data-sub=live] #app#app section.cc58-live>.cc53-grid {
-  height:1070px!important; min-height:1070px!important; max-height:1070px!important;
-  grid-template-columns:minmax(88px,15fr) repeat(3,minmax(0,28fr))!important;
-  grid-template-areas:"tower overview progress operations"!important;
-  grid-template-rows:minmax(0,1fr)!important;
-}
-html body.presentation-mode[data-center=operations][data-sub=live] #app#app section.cc58-live>.cc53-grid>.cc53-tower {height:100%!important}
-html body.presentation-mode[data-center=operations][data-sub=live] #app#app section.cc58-live>.cc53-grid>.c11-identity-column {grid-template-rows:620px 270px 168px!important}
-html body.presentation-mode[data-center=operations][data-sub=live] #app#app section.cc58-live>.cc53-grid>.c11-progress-column {grid-template-rows:96px 113px 136px repeat(8,73px) 75px!important}
-html body.presentation-mode[data-center=operations][data-sub=live] #app#app section.cc58-live>.cc53-grid>.c11-status-column {grid-template-rows:730px 334px!important}
-html body.presentation-mode[data-center=operations][data-sub=live] #app#app section.cc58-live .cc59-badges .c11-badges {
-  height:auto!important; max-height:none!important; grid-template-rows:none!important; grid-auto-rows:50px!important;
-}
-html body.presentation-mode[data-center=operations][data-sub=live] #app#app section.cc58-live .cc59-badges .c11-badges>button {
-  height:100%!important; max-height:100%!important;
-}
-
 /* Each Hybrid item moves as one card with a separate tower and mini tool pane. */
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .b1217-carousel-slot:is(.active,.side) {
   width:clamp(280px,36vw,680px)!important;
@@ -35700,7 +35673,7 @@ html body[data-center=operations][data-sub=live]:not(.presentation-mode):not(.sc
   overflow:hidden!important; clip-path:inset(50%);
 }
 html body #app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live>.cc53-grid {
-  grid-template-columns:minmax(0,17fr) minmax(0,28fr) minmax(0,26fr) minmax(0,29fr)!important;
+  grid-template-columns:var(--cc80-tool-columns)!important;
   container-type:inline-size;
 }
 html body #app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live>.cc53-grid>.c11-column {
@@ -36024,6 +35997,7 @@ html body #app#app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live 
 }
 
 :root {
+  --cc80-tool-columns:minmax(0,17fr) minmax(0,28fr) minmax(0,26fr) minmax(0,29fr);
   --cc79-silver:repeating-linear-gradient(0deg,#fff1 0 1px,transparent 1px 3px),linear-gradient(110deg,#9b9b9b,#e7e7e7 52%,#a5a5a5);
   --cc79-dark:linear-gradient(#141414,#080808);
 }
@@ -36160,7 +36134,8 @@ html body #app#app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live 
 html body .app-frame #stickyShell#stickyShell header.prototype-header .cc42-header-title,
 html body .app-frame #stickyShell#stickyShell header.prototype-header>#headerModeCenter#headerModeCenter.prototype-header-center,
 html body .app-frame #stickyShell#stickyShell nav#mainNav#mainNav :is(button,select),
-html body:not(.presentation-mode)>.app-frame>footer.app-footer>.footer-system-row>.footer-system-cell {
+html body:not(.presentation-mode)>.app-frame>footer.app-footer>.footer-system-row>.footer-system-cell,
+html body.presentation-mode[data-center=operations][data-sub=live] #app#app>.presentation-tool-nav>.presentation-nav-cell {
   box-sizing:border-box!important;
   border:3px solid transparent!important;
   border-radius:9px!important;
@@ -36183,4 +36158,133 @@ html body:not(.presentation-mode)>.app-frame>footer.app-footer>.footer-system-ro
   box-shadow:none!important;
   border:0!important;
   color:#fff!important;
+}
+
+/* Tool Card Presentation uses the Live Operations grid within a two-row viewport. */
+html body.presentation-mode[data-center=operations][data-sub=live]
+:is(.app-frame,.body-shell,#app#app>.cc80-tool-stage,#app#app) {
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  background:#080808!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=live] .app-frame {
+  padding:4px!important;
+  box-sizing:border-box!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=live] .app-frame>.body-shell,
+html body.presentation-mode[data-center=operations][data-sub=live] #app#app {
+  width:100%!important;
+  height:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  margin:0!important;
+  padding:0!important;
+  box-sizing:border-box!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=live] #app#app {
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:minmax(0,1fr) 48px!important;
+  gap:4px!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=live] #app#app>.cc80-tool-stage {
+  display:block!important;
+  grid-area:1/1!important;
+  position:static!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=live] #app#app>.cc80-tool-stage>.cc74-live {
+  zoom:var(--cc80-presentation-scale,1)!important;
+  width:var(--cc80-presentation-width,100%)!important;
+  height:var(--cc80-presentation-height,100%)!important;
+  min-width:0!important;
+  max-width:none!important;
+  min-height:0!important;
+  max-height:none!important;
+  box-sizing:border-box!important;
+  align-self:start!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=live]
+#app#app#app>.cc80-tool-stage>section.c11-tool-card.cc41-live-card.cc58-live.cc74-live>.cc53-grid {
+  display:grid!important;
+  grid-template-columns:var(--cc80-tool-columns)!important;
+  grid-template-areas:"tower overview progress operations"!important;
+  grid-template-rows:minmax(0,1fr)!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  max-width:none!important;
+  max-height:none!important;
+  gap:8px!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=live]
+#app#app#app>.cc80-tool-stage .cc53-grid>.c11-progress-column {
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:minmax(0,1.15fr) repeat(6,minmax(0,1fr))!important;
+  gap:6px!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=live]
+#app#app#app>.cc80-tool-stage .cc59-badges .c11-badge-region>.c11-badges {
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-template-rows:none!important;
+  grid-auto-rows:minmax(0,1fr)!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=live] #app#app>.presentation-tool-nav {
+  display:grid!important;
+  grid-area:2/1!important;
+  grid-template-columns:1.15fr .38fr 1.2fr 1fr 1.1fr 1fr .85fr!important;
+  position:static!important;
+  gap:5px!important;
+  width:100%!important;
+  height:48px!important;
+  min-height:0!important;
+  max-height:48px!important;
+  min-width:0!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+  background:none!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=live] #app#app>.presentation-tool-nav>.presentation-nav-cell {
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-width:0!important;
+  width:auto!important;
+  height:100%!important;
+  min-height:0!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:2px 4px!important;
+  color:#fff!important;
+  -webkit-text-fill-color:currentColor!important;
+  font:900 clamp(9px,1.05vw,18px)/1.1 Arial,sans-serif!important;
+  white-space:normal!important;
+  text-align:center!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=live]
+#app#app>.presentation-tool-nav>.presentation-nav-cell>span {
+  font:inherit!important;
+  color:inherit!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=live]
+#app#app>.presentation-tool-nav>button:is(:hover,:focus-visible):not(:disabled) {
+  background:var(--cc79-silver)!important;
+  color:#080808!important;
+  border-color:#c8c8c8!important;
 }
