@@ -28364,11 +28364,11 @@ html body.presentation-mode[data-center="operations"][data-sub="live"] .presenta
   height:51px!important;min-height:51px!important;max-height:51px!important;width:100%!important;
   margin:0!important;z-index:20!important;
 }
-/* Quarter presentation already has the correct outer border: remove its unused lower band. */
+/* Fit the Quarter Summary shell to the fullscreen viewport. */
 html body.presentation-mode[data-center="operations"][data-sub="summary"] #app{
   position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;
   min-height:0!important;max-height:100dvh!important;padding:4px!important;
-  border:2px solid #0bbde9!important;box-sizing:border-box!important;overflow:hidden!important;
+  border:0!important;box-sizing:border-box!important;overflow:hidden!important;
 }
 html body.presentation-mode[data-center="operations"][data-sub="summary"] .quarter-summary-presentation.quarter-summary-master{
   height:100%!important;min-height:0!important;max-height:100%!important;
@@ -36286,9 +36286,12 @@ html body.presentation-mode[data-center=operations][data-sub=live]
   border-color:#c8c8c8!important;
 }
 
+/* Quarter Summary and Hybrid share the same presentation overview. */
+html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview {
+  --cc81-metrics-height:clamp(125px,26dvh,300px);
+}
 /* Hybrid combines the quarter overview and the selected mini tool card. */
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app>.cc81-hybrid {
-  --cc81-metrics-height:clamp(125px,26dvh,300px);
   grid-template-rows:calc(var(--cc81-metrics-height) + 48px) minmax(0,1fr) 48px!important;
   gap:5px!important;
   padding:6px!important;
@@ -36298,15 +36301,21 @@ html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app>.c
   background:#080808!important;
   box-sizing:border-box!important;
 }
-html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid .cc48-quarter-top {
+html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .cc48-quarter-top {
+  display:grid!important;
+  grid-row:1!important;
+  min-width:0!important;
+  min-height:0!important;
+  gap:5px!important;
+  grid-template-columns:minmax(0,1fr)!important;
   grid-template-rows:var(--cc81-metrics-height) 43px!important;
 }
-html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid .quarter-summary-hero {
+html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .quarter-summary-hero {
   height:100%!important;
   min-height:0!important;
   max-height:none!important;
 }
-html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid .quarter-hero-metric {
+html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .quarter-hero-metric {
   container-type:inline-size;
   grid-template-columns:minmax(0,1fr)!important;
   grid-template-rows:clamp(26px,5.8dvh,64px) minmax(0,1fr)!important;
@@ -36319,7 +36328,7 @@ html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .c
   background:var(--cc79-silver)!important;
   box-shadow:inset 0 0 0 1px #fff4,0 2px 3px #000!important;
 }
-html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid .quarter-hero-metric>small {
+html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .quarter-hero-metric>small {
   display:flex!important;
   align-items:center;
   justify-content:center;
@@ -36330,7 +36339,7 @@ html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .c
   font:900 min(5.2cqi,4.6dvh,55px)/1.03 Arial,sans-serif!important;
   white-space:normal!important;
 }
-html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid .cc82-countdown-well {
+html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .cc82-countdown-well {
   display:grid;
   grid-template-columns:minmax(0,1fr);
   grid-template-rows:minmax(0,1fr) clamp(26px,4.5dvh,46px);
@@ -36345,7 +36354,7 @@ html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .c
   border-radius:6px;
   background:var(--cc79-dark);
 }
-html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid .cc82-countdown-well>strong {
+html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .cc82-countdown-well>strong {
   display:grid!important;
   place-items:center;
   width:100%!important;
@@ -36358,28 +36367,28 @@ html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .c
   white-space:normal!important;
   text-shadow:none!important;
 }
-html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid .quarter-hero-metric :is(.hero-progress,.track) {
+html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .quarter-hero-metric :is(.hero-progress,.track) {
   height:100%!important;
   min-height:0!important;
   max-height:none!important;
   border-radius:6px!important;
 }
-html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid .quarter-hero-metric .bar-value {
+html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .quarter-hero-metric .bar-value {
   font:900 clamp(9px,2.5cqi,25px)/1.1 Arial,sans-serif!important;
 }
-html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid .summary-grid {
+html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .summary-grid {
   height:43px!important;
   min-height:0!important;
   max-height:43px!important;
   grid-template-rows:minmax(0,1fr)!important;
 }
-html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid .summary-box {
+html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .summary-box {
   height:100%!important;
   min-height:0!important;
   max-height:none!important;
   opacity:1!important;
 }
-html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid .summary-box>:is(span,b) {
+html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .summary-box>:is(span,b) {
   color:#fff!important;
   -webkit-text-fill-color:#fff!important;
   text-shadow:none!important;
@@ -36387,10 +36396,10 @@ html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .c
   text-align:center;
   white-space:normal!important;
 }
-html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid .summary-box>span {
+html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .summary-box>span {
   font-size:clamp(8px,.82vw,15px)!important;
 }
-html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid .summary-box>b {
+html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview .summary-box>b {
   font-size:clamp(16px,2vh,24px)!important;
 }
 
@@ -36517,14 +36526,14 @@ html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .c
   text-align:right!important;
 }
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid
-:is(.summary-box,.b139-mini-card.b1312-mini-card,.cc62-mini-tower,.b139-mini-head>span,.b139-mini-photo,.b139-mini-info>div,.cc47-mini-process,.cc47-mini-carry,.b1217-hybrid-nav>.presentation-nav-cell) {
+:is(.b139-mini-card.b1312-mini-card,.cc62-mini-tower,.b139-mini-head>span,.b139-mini-photo,.b139-mini-info>div,.cc47-mini-process,.cc47-mini-carry,.b1217-hybrid-nav>.presentation-nav-cell) {
   border:2px solid transparent!important;
   border-radius:8px!important;
   background:var(--cc79-dark) padding-box,var(--cc79-silver) border-box!important;
   box-shadow:inset 0 0 0 1px #666!important;
 }
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid
-:is(.quarter-hero-metric>small,.bar-value,.bar-value>span,.cc62-mini-tower>strong,.b139-mini-head>strong,.b1217-hybrid-nav>button[aria-current=page],.b1217-hybrid-nav>button:hover) {
+:is(.cc62-mini-tower>strong,.b139-mini-head>strong,.b1217-hybrid-nav>button[aria-current=page],.b1217-hybrid-nav>button:hover) {
   background:var(--cc79-silver)!important;
   color:#080808!important;
   -webkit-text-fill-color:#080808!important;
@@ -36558,7 +36567,61 @@ html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .c
   color:#080808!important;
   -webkit-text-fill-color:#080808!important;
 }
-html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid
+html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary]) #app#app .cc84-presentation-overview
 .cc82-countdown-well :is(.bar-value,.bar-value>span) {
   background:transparent!important;
+}
+
+html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary])
+#app#app .cc84-presentation-overview .quarter-summary-hero {
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+}
+html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary])
+#app#app .cc84-presentation-overview :is(.quarter-hero-metric>small,.bar-value,.bar-value>span) {
+  color:#080808!important;
+  -webkit-text-fill-color:#080808!important;
+  text-shadow:none!important;
+}
+html body.presentation-mode[data-center=operations]:is([data-sub=hybrid],[data-sub=summary])
+#app#app .cc84-presentation-overview .summary-box {
+  border:2px solid transparent!important;
+  border-radius:8px!important;
+  background:var(--cc79-dark) padding-box,var(--cc79-silver) border-box!important;
+  box-shadow:inset 0 0 0 1px #666!important;
+}
+
+/* Quarter Summary has section frames and a borderless fullscreen shell. */
+html body.presentation-mode[data-center=operations][data-sub=summary]
+:is(.app-frame,.body-shell,#app#app,#app#app>.cc84-quarter-summary) {
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  border-radius:0!important;
+  background:#080808!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=summary] #app#app {
+  box-sizing:border-box!important;
+  padding:0!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=summary] #app#app>.cc84-quarter-summary {
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:calc(var(--cc81-metrics-height) + 48px) minmax(0,1fr) 48px!important;
+  gap:5px!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  max-height:100%!important;
+  margin:0!important;
+  padding:6px!important;
+  box-sizing:border-box!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=summary] #app#app>.cc84-quarter-summary>.quarter-summary-family-wrap {
+  grid-row:2!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=summary] #app#app>.cc84-quarter-summary>.quarter-summary-switchbar {
+  grid-row:3!important;
 }
