@@ -35397,6 +35397,7 @@ html body #app#app section.c11-tool-card.cc41-live-card.cc58-live>.cc53-grid>.cc
 /* A centered page width lets browser zoom scale the entire normal shell. */
 :root {
   --cc67-page-width:1560px;
+  --cc89-section-gap:6px;
 }
 html body:not(.presentation-mode):not(.screenshot-mode)>.app-frame {
   box-sizing:border-box!important;
@@ -35430,7 +35431,7 @@ html body:not(.presentation-mode):not(.screenshot-mode)>.app-frame>.body-shell>#
 }
 html body:not(.presentation-mode):not(.screenshot-mode)>.app-frame>footer.app-footer {
   position:static!important;
-  margin-block-start:6px!important;
+  margin-block-start:var(--cc89-section-gap)!important;
 }
 
 /* Reserve the same space for every tower status, including long labels. */
@@ -35975,17 +35976,6 @@ html body #app#app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live 
   gap:2px!important;
 }
 
-@media(min-width:1100px){
-  html body:not(.presentation-mode):not(.screenshot-mode)[data-center=operations][data-sub=live]>.app-frame>.body-shell {
-    padding-bottom:0!important;
-  }
-  html body:not(.presentation-mode):not(.screenshot-mode)[data-center=operations][data-sub=live] #app#app {
-    padding-bottom:0!important;
-  }
-  html body:not(.presentation-mode):not(.screenshot-mode)[data-center=operations][data-sub=live]>.app-frame>footer.app-footer {
-    margin-block-start:3px!important;
-  }
-}
 html body #app#app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live .cc78-editable-card .c11-badge-region>.c11-badges>button.b761-uniform-badge {
   height:100%!important;
   min-height:0!important;
@@ -36008,7 +35998,7 @@ html body #app#app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live>
   display:grid!important;
   grid-template-columns:minmax(0,1fr)!important;
   grid-template-rows:minmax(0,1fr) var(--cc79-lower-card-height)!important;
-  gap:6px!important;
+  gap:var(--cc89-section-gap)!important;
 }
 html body #app#app#app section.c11-tool-card.cc41-live-card.cc58-live.cc74-live>.cc53-grid>
 :is(.cc75-signal-column,.c11-column) {
@@ -36184,7 +36174,7 @@ html body.presentation-mode[data-center=operations][data-sub=live] #app#app {
   display:grid!important;
   grid-template-columns:minmax(0,1fr)!important;
   grid-template-rows:minmax(0,1fr) 48px!important;
-  gap:4px!important;
+  gap:var(--cc89-section-gap)!important;
 }
 html body.presentation-mode[data-center=operations][data-sub=live] #app#app>.cc80-tool-stage {
   display:block!important;
@@ -36222,14 +36212,14 @@ html body.presentation-mode[data-center=operations][data-sub=live]
   min-height:0!important;
   max-width:none!important;
   max-height:none!important;
-  gap:8px!important;
+  gap:var(--cc89-section-gap)!important;
 }
 html body.presentation-mode[data-center=operations][data-sub=live]
 #app#app#app>.cc80-tool-stage .cc53-grid>.c11-progress-column {
   display:grid!important;
   grid-template-columns:minmax(0,1fr)!important;
   grid-template-rows:minmax(0,1.15fr) repeat(6,minmax(0,1fr))!important;
-  gap:6px!important;
+  gap:var(--cc89-section-gap)!important;
 }
 html body.presentation-mode[data-center=operations][data-sub=live]
 #app#app#app>.cc80-tool-stage .cc59-badges .c11-badge-region>.c11-badges {
@@ -36242,7 +36232,7 @@ html body.presentation-mode[data-center=operations][data-sub=live] #app#app>.pre
   grid-area:2/1!important;
   grid-template-columns:1.15fr .38fr 1.2fr 1fr 1.1fr 1fr .85fr!important;
   position:static!important;
-  gap:5px!important;
+  gap:var(--cc89-section-gap)!important;
   width:100%!important;
   height:48px!important;
   min-height:0!important;
@@ -36291,8 +36281,8 @@ html body:is(.presentation-mode[data-center=operations]:is([data-sub=hybrid],[da
 }
 /* Hybrid combines the quarter overview and the selected mini tool card. */
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app>.cc81-hybrid {
-  grid-template-rows:calc(var(--cc81-metrics-height) + 48px) minmax(0,1fr) 48px!important;
-  gap:5px!important;
+  grid-template-rows:calc(var(--cc81-metrics-height) + 43px + var(--cc89-section-gap)) minmax(0,1fr) 48px!important;
+  gap:var(--cc89-section-gap)!important;
   padding:6px!important;
   border:0!important;
   outline:0!important;
@@ -36305,7 +36295,7 @@ html body:is(.presentation-mode[data-center=operations]:is([data-sub=hybrid],[da
   grid-row:1!important;
   min-width:0!important;
   min-height:0!important;
-  gap:5px!important;
+  gap:var(--cc89-section-gap)!important;
   grid-template-columns:minmax(0,1fr)!important;
   grid-template-rows:var(--cc81-metrics-height) 43px!important;
 }
@@ -36458,7 +36448,7 @@ html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .c
   margin:0!important;
   grid-template-columns:minmax(0,22%) minmax(0,1fr)!important;
   padding:4px!important;
-  gap:5px!important;
+  gap:var(--cc89-section-gap)!important;
 }
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid .cc62-mini-tower {
   container-type:inline-size;
@@ -36540,7 +36530,7 @@ html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .c
   text-shadow:none!important;
 }
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid .b1217-hybrid-nav {
-  gap:5px!important;
+  gap:var(--cc89-section-gap)!important;
   padding:0!important;
   background:none!important;
   border:0!important;
@@ -36609,8 +36599,8 @@ html body.presentation-mode[data-center=operations][data-sub=summary] #app#app {
 html body.presentation-mode[data-center=operations][data-sub=summary] #app#app>.quarter-summary-master.cc84-quarter-summary {
   display:grid!important;
   grid-template-columns:minmax(0,1fr)!important;
-  grid-template-rows:calc(var(--cc81-metrics-height) + 48px) minmax(0,1fr) 48px!important;
-  gap:5px!important;
+  grid-template-rows:calc(var(--cc81-metrics-height) + 43px + var(--cc89-section-gap)) minmax(0,1fr) 48px!important;
+  gap:var(--cc89-section-gap)!important;
   width:100%!important;
   height:100%!important;
   min-height:0!important;
@@ -36845,7 +36835,7 @@ html body[data-raiders-center][data-center=operations][data-sub=summary]
 #app#app .quarter-summary-master.cc88-quarter-summary {
   --cc81-metrics-height:clamp(134px,25vh,274px);
   display:grid!important;
-  grid-template-rows:calc(var(--cc81-metrics-height) + 48px) minmax(0,1fr)!important;
+  grid-template-rows:calc(var(--cc81-metrics-height) + 43px + var(--cc89-section-gap)) minmax(0,1fr)!important;
   gap:6px!important;
   background:#080808!important;
   border:0!important;
@@ -36913,4 +36903,93 @@ html body[data-raiders-center] #app#app .action-card {
 html body[data-raiders-center] #app#app .action-summary>.summary-box {
   background:var(--cc79-dark)!important;
   border-radius:7px!important;
+}
+
+/* The measured sticky shell ends at the navigation. The workspace adds one gap. */
+html body:not(.presentation-mode):not(.screenshot-mode)>.app-frame>#stickyShell#stickyShell {
+  margin-block:0!important;
+  padding:0!important;
+  border:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell#stickyShell>header.prototype-header {
+  --cc89-header-height:calc(84px + var(--cc89-section-gap));
+  height:var(--cc89-header-height)!important;
+  min-height:var(--cc89-header-height)!important;
+  max-height:var(--cc89-header-height)!important;
+  margin:0!important;
+  padding:var(--cc89-section-gap) var(--cc89-section-gap) 0!important;
+  gap:var(--cc89-section-gap)!important;
+  border:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) .app-frame>#stickyShell#stickyShell>nav#mainNav {
+  margin:0!important;
+  padding:var(--cc89-section-gap) var(--cc89-section-gap) 0!important;
+  gap:var(--cc89-section-gap)!important;
+  border:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #stickyShell#stickyShell #mainNav>:is(#b797CenterSlot,#subnav,#pageActions) {
+  height:auto!important;
+  min-height:0!important;
+  margin-block:0!important;
+  padding-block:0!important;
+  gap:var(--cc89-section-gap)!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)>.app-frame>.body-shell {
+  box-sizing:border-box!important;
+  margin:0!important;
+  padding:var(--cc89-section-gap) var(--cc89-section-gap) 0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)>.app-frame>.body-shell>#app#app {
+  display:flex!important;
+  flex-direction:column!important;
+  gap:var(--cc89-section-gap)!important;
+  margin:0!important;
+  padding:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)>.app-frame>.body-shell>#app#app>* {
+  margin-block:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)>.app-frame>footer.app-footer {
+  margin-block-start:var(--cc89-section-gap)!important;
+  padding:0 var(--cc89-section-gap) var(--cc89-section-gap)!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode)>.app-frame>footer.app-footer>.footer-system-row {
+  gap:var(--cc89-section-gap)!important;
+}
+
+/* Use the same spacing on section layouts and keep tighter gaps inside controls and badges. */
+html body:not(.presentation-mode):not(.screenshot-mode) #app#app#app :is(
+  .status-center-stack,.admin-section-workspace,.section-workspace,.brain-kpis,
+  .b752-kpis,.b7-center-kpis,.v10-shipping-flow,.modern-reference-grid,
+  .v10-fleet-kpis,.fleet-card-grid,.cc88-quarter-summary,.quarter-archive-families,
+  .section-workspace-nav,.b782-stage-buttons,.brain-tiles,
+  .c11-card-grid.cc53-grid,.cc53-grid>.c11-column,.cc53-grid>.cc75-signal-column
+) {
+  gap:var(--cc89-section-gap)!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #app#app#app :is(
+  .section-workspace-body,.quarter-final-archive,.b71805-family-list,.meeting-ready-list
+) {
+  display:grid!important;
+  gap:var(--cc89-section-gap)!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #app#app#app :is(
+  .section-workspace-body,.quarter-final-archive,.b71805-family-list,.meeting-ready-list,
+  .status-center-stack,.meeting-workspace-wrap
+)>:is(section,article,div) {
+  margin-block:0!important;
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #app#app .v10-shipping-flow>section {
+  margin-block:0 var(--cc89-section-gap)!important;
+}
+@media(min-width:951px){
+  html body:not(.presentation-mode):not(.screenshot-mode) #app#app .v10-shipping-flow>section {
+    margin-block:0!important;
+  }
+}
+html body:not(.presentation-mode):not(.screenshot-mode) #app#app :is(
+  .b782-shipping>.b782-chart-card,.b782-shipping>.b752-kpis,.b782-shipping>.b782-stage-buttons,
+  .b752-dashboard>.b752-kpis,.fleet-family>.fleet-family-head,.fleet-family>.b783-family-status
+) {
+  margin-block:0 var(--cc89-section-gap)!important;
 }
