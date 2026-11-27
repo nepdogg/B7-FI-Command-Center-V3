@@ -34650,9 +34650,6 @@ html body.presentation-mode[data-center=operations][data-sub=hybrid] #app .b1217
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app .b1217-carousel-slot.side{opacity:.55!important;filter:brightness(.75)!important}
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app .cc48-carousel-arrow{position:absolute!important;top:45%!important;width:38px!important;height:54px!important;z-index:25!important;border:1px solid #ccc!important;border-radius:10px!important;background:#080808!important;color:#fff!important;font-size:30px!important;cursor:pointer!important}
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app .cc48-carousel-arrow.previous{left:8px!important}html body.presentation-mode[data-center=operations][data-sub=hybrid] #app .cc48-carousel-arrow.next{right:8px!important}
-html body.presentation-mode[data-center=operations][data-sub=hybrid] #app .cc48-carousel-dots{position:absolute!important;inset:auto 55px 0!important;display:flex!important;justify-content:center!important;align-items:center!important;gap:6px!important;height:25px!important;overflow:auto!important;z-index:25!important}
-html body.presentation-mode[data-center=operations][data-sub=hybrid] #app .cc48-carousel-dots>button{width:8px!important;min-width:8px!important;height:8px!important;min-height:8px!important;padding:0!important;border:0!important;border-radius:50%!important;background:#555!important;cursor:pointer!important}
-html body.presentation-mode[data-center=operations][data-sub=hybrid] #app .cc48-carousel-dots>button.active{background:#fff!important;box-shadow:0 0 5px #fff!important}
 /* V14.0.77: Raiders Quarter Summary presentation and black progress labels. */
 html body.presentation-mode[data-center=operations][data-sub=summary]{--accent:#bcbcbc;--accent-rgb:188,188,188;background:#000!important}
 html body.presentation-mode[data-center=operations][data-sub=summary] .app-frame{background:#000!important;border:1px solid #aaa!important;box-shadow:none!important}
@@ -36312,7 +36309,8 @@ html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .c
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid .quarter-hero-metric {
   container-type:inline-size;
   grid-template-columns:minmax(0,1fr)!important;
-  grid-template-rows:clamp(27px,4dvh,44px) minmax(0,1fr)!important;
+  grid-template-rows:clamp(26px,5.8dvh,64px) minmax(0,1fr)!important;
+  align-items:stretch!important;
   justify-items:stretch!important;
   gap:2px!important;
   padding:0 3px 3px!important;
@@ -36324,11 +36322,12 @@ html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .c
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid .quarter-hero-metric>small {
   display:flex!important;
   align-items:center;
+  justify-content:center;
   width:auto!important;
   margin:0!important;
   padding:2px 8px!important;
-  text-align:left!important;
-  font:900 clamp(10px,3.1cqi,30px)/1.05 Arial,sans-serif!important;
+  text-align:center!important;
+  font:900 min(5.2cqi,4.6dvh,55px)/1.03 Arial,sans-serif!important;
   white-space:normal!important;
 }
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid .cc82-countdown-well {
@@ -36338,6 +36337,8 @@ html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .c
   min-width:0;
   min-height:0;
   width:100%;
+  height:100%;
+  align-self:stretch;
   box-sizing:border-box;
   padding:4px;
   border:1px solid #666;
@@ -36397,9 +36398,8 @@ html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .c
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid>.b1217-carousel {
   display:grid!important;
   grid-template-columns:minmax(0,1fr)!important;
-  grid-template-rows:minmax(0,1fr) 25px!important;
-  gap:4px!important;
-  padding:4px 0 0!important;
+  grid-template-rows:minmax(0,1fr)!important;
+  padding:4px 0!important;
   box-sizing:border-box!important;
   perspective:none!important;
 }
@@ -36417,25 +36417,31 @@ html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .c
   z-index:3!important;
 }
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid .b1217-carousel-slot.side {
-  --cc81-neighbor-offset:47%;
-  top:calc(50% - 14px)!important;
+  --cc81-neighbor-offset:36%;
+  --cc83-neighbor-scale:.76;
+  top:50%!important;
   left:50%!important;
   width:55%!important;
   height:calc(100% - 40px)!important;
   margin:0!important;
-  transform:translate(-50%,-50%) translateX(var(--cc81-neighbor-offset)) scale(.76)!important;
+  transform:translate(-50%,-50%) translateX(var(--cc81-neighbor-offset)) scale(var(--cc83-neighbor-scale))!important;
   transform-origin:center!important;
-  z-index:1!important;
-  opacity:.16!important;
-  filter:grayscale(1)!important;
+  z-index:2!important;
+  opacity:.31!important;
+  filter:grayscale(.72)!important;
 }
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid .b1217-carousel-slot[data-carousel-offset="-1"] {
-  --cc81-neighbor-offset:-47%;
+  --cc81-neighbor-offset:-36%;
 }
-html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid .cc48-carousel-dots {
-  grid-area:2/1!important;
-  position:static!important;
-  margin:0!important;
+html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid
+.b1217-carousel-slot:is([data-carousel-offset="-2"],[data-carousel-offset="2"]) {
+  --cc81-neighbor-offset:61%;
+  --cc83-neighbor-scale:.63;
+  z-index:1!important;
+  opacity:.22!important;
+}
+html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid .b1217-carousel-slot[data-carousel-offset="-2"] {
+  --cc81-neighbor-offset:-61%;
 }
 html body.presentation-mode[data-center=operations][data-sub=hybrid] #app#app .cc81-hybrid .b1217-carousel-slot>article.b139-mini-card.b1312-mini-card {
   width:100%!important;
