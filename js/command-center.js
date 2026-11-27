@@ -1,6 +1,6 @@
 /* Bundled source: js/app.js */
 (()=>{'use strict';
-const VERSION='14.0.81', BUILD='20261117-V14.0.81-CONSOLIDATED-REPAIRS';
+const VERSION='14.0.82', BUILD='20261117-V14.0.82-CONSOLIDATED-REPAIRS';
 const ACTIVE_DATASET_KEY='b7fi-command-center-active-dataset-v1216';
 const KEY='b7fi-command-center-v3-scenario-test-v6617'; const PROD_KEY='b7fi-command-center-v3'; const ROUTE_KEY='b7fi-command-center-last-route-scenario-test-v6617'; const V2KEY='b7fi-command-center-v2'; const V1KEY='b7fi-v0210-state';
 const FI200='FI_200';
@@ -765,7 +765,7 @@ function balancePageNavigation(){
 }
 function fitHeaderGeometry(){
   if(document.body.classList.contains('presentation-mode')||document.body.classList.contains('screenshot-mode'))return;
-  /* V14.0.81: b7-header-fit measures the title span with logo width excluded. */
+  /* V14.0.82: b7-header-fit measures the title span with logo width excluded. */
 }
 let toolEditorSectionKey='tool-info',adminSectionKey='system';
 function enhanceSectionWorkspaces(){
@@ -1012,9 +1012,11 @@ function toolPresentationNav(){
 }
 function quarterDayUrgency(days){days=Number(days)||0;if(days<=7)return'critical';if(days<=14)return'warning';if(days<=30)return'caution';return'good'}
 function quarterToolUrgency(left,days){left=Number(left)||0;days=Math.max(0,Number(days)||0);if(left<=0)return'complete';let pace=days/left;if(days<=7||pace<2)return'critical';if(days<=14||pace<4)return'warning';if(days<=30||pace<7)return'caution';return'good'}
-function cc48QuarterHero(q,a,sh,left,qt){const shippedPct=a.length?Math.round(sh/a.length*100):0;return `<section class="quarter-summary-hero ${qt.ended?'quarter-ended':''} ${qt.finalDay?'quarter-final-day':''}">
-      <div class="quarter-hero-metric tools-left urgency-${qt.ended?(left===0?'complete':'critical'):quarterToolUrgency(left,qt.remaining)}"><small>${qt.ended?(left===0?esc(q)+' MISSION COMPLETE':esc(q)+' QUARTER CLOSE'):esc(q)+' TOOLS LEFT TO SHIP'}</small><strong>${qt.ended&&left===0?'✓':left}</strong><div class="hero-progress"><div class="track"><div class="fill hero-tools-fill" style="width:${shippedPct}%"></div><span class="bar-value"><span>${sh} OF ${a.length} TOOLS SHIPPED</span><i aria-hidden="true"></i><span>${qt.ended?(left===0?'ALL TOOLS SHIPPED':left+' TOOL'+(left===1?'':'S')+' DID NOT SHIP'):(left+' TOOL'+(left===1?'':'S')+' LEFT TO SHIP')}</span></span></div></div></div>
-      <div class="quarter-hero-metric days-left urgency-${qt.ended?'complete':qt.finalDay?'critical':quarterDayUrgency(qt.remaining)}"><small>${qt.ended?esc(q)+' QUARTER ENDED':qt.notStarted?esc(q)+' STARTS SOON':qt.finalDay?esc(q)+' LAST DAY OF THE QUARTER':esc(q)+' DAYS REMAINING'}</small><strong>${qt.ended?'ENDED':qt.finalDay?'FINAL DAY':esc(String(qt.remaining))}</strong><div class="hero-progress"><div class="track"><div class="fill quarter-days" style="width:${qt.pct}%"></div><span class="bar-value"><span>DAY ${qt.elapsed} OF ${qt.total}</span><i aria-hidden="true"></i><span>${qt.ended?'QUARTER ENDED':qt.notStarted?'QUARTER NOT STARTED':qt.finalDay?'QUARTER ENDS TODAY':(qt.remaining+' DAY'+(qt.remaining===1?'':'S')+' LEFT')}</span></span></div></div></div>
+function cc48QuarterHero(q,a,sh,left,qt,withCountdownWell=false){const shippedPct=a.length?Math.round(sh/a.length*100):0;const openWell=withCountdownWell?'<div class="cc82-countdown-well">':'';
+  const closeWell=withCountdownWell?'</div>':'';
+  return `<section class="quarter-summary-hero ${qt.ended?'quarter-ended':''} ${qt.finalDay?'quarter-final-day':''}">
+      <div class="quarter-hero-metric tools-left urgency-${qt.ended?(left===0?'complete':'critical'):quarterToolUrgency(left,qt.remaining)}"><small>${qt.ended?(left===0?esc(q)+' MISSION COMPLETE':esc(q)+' QUARTER CLOSE'):esc(q)+' TOOLS LEFT TO SHIP'}</small>${openWell}<strong>${qt.ended&&left===0?'✓':left}</strong><div class="hero-progress"><div class="track"><div class="fill hero-tools-fill" style="width:${shippedPct}%"></div><span class="bar-value"><span>${sh} OF ${a.length} TOOLS SHIPPED</span><i aria-hidden="true"></i><span>${qt.ended?(left===0?'ALL TOOLS SHIPPED':left+' TOOL'+(left===1?'':'S')+' DID NOT SHIP'):(left+' TOOL'+(left===1?'':'S')+' LEFT TO SHIP')}</span></span></div></div>${closeWell}</div>
+      <div class="quarter-hero-metric days-left urgency-${qt.ended?'complete':qt.finalDay?'critical':quarterDayUrgency(qt.remaining)}"><small>${qt.ended?esc(q)+' QUARTER ENDED':qt.notStarted?esc(q)+' STARTS SOON':qt.finalDay?esc(q)+' LAST DAY OF THE QUARTER':esc(q)+' DAYS REMAINING'}</small>${openWell}<strong>${qt.ended?'ENDED':qt.finalDay?'FINAL DAY':esc(String(qt.remaining))}</strong><div class="hero-progress"><div class="track"><div class="fill quarter-days" style="width:${qt.pct}%"></div><span class="bar-value"><span>DAY ${qt.elapsed} OF ${qt.total}</span><i aria-hidden="true"></i><span>${qt.ended?'QUARTER ENDED':qt.notStarted?'QUARTER NOT STARTED':qt.finalDay?'QUARTER ENDS TODAY':(qt.remaining+' DAY'+(qt.remaining===1?'':'S')+' LEFT')}</span></span></div></div>${closeWell}</div>
     </section>`;}
 function quarterSummaryView(presentation=false,q=summaryViewQuarter()){
   let a=summaryTools(q),sh=a.filter(t=>fiSummaryStatus(t)==='Shipped').length,left=Math.max(0,a.length-sh),qt=quarterTimeProgress(q);
@@ -2020,7 +2022,7 @@ function hybridPresentationView(){
   const offsets=n>2?[-1,0,1]:n===2?[0,1]:n===1?[0]:[];
   const positions=offsets.map(offset=>({tool:cards[(idx+offset+n)%n],offset}));
   return `<section class="b1217-hybrid cc81-hybrid">
-    <div class="cc48-quarter-top">${cc48QuarterHero(q,a,sh,left,qt)}${(()=>{const html=quarterPanel(q),start=html.indexOf('<div class="summary-grid">');return start<0?'':html.slice(start,html.indexOf('</div>',start)+6);})()}</div>
+    <div class="cc48-quarter-top">${cc48QuarterHero(q,a,sh,left,qt,true)}${(()=>{const html=quarterPanel(q),start=html.indexOf('<div class="summary-grid">');return start<0?'':html.slice(start,html.indexOf('</div>',start)+6);})()}</div>
     <div class="b1217-carousel">${positions.length?positions.map(({tool,offset})=>`<div class="b1217-carousel-slot ${offset===0?'active':'side'}" data-carousel-offset="${offset}" ${offset!==0?`tabindex="0" role="button" aria-label="Select ${esc(tool.id)}"`:''}>${b1217CompactCard(tool)}</div>`).join(''):'<p>NO TOOLS AVAILABLE</p>'}<div class="cc48-carousel-dots">${cards.map((t,i)=>`<button type="button" data-carousel-jump="${esc(t.id)}" class="${i===idx?'active':''}" aria-label="Show tool ${esc(t.id)}" ${i===idx?'aria-current="true"':''}></button>`).join('')}</div></div>
     <nav class="b1217-hybrid-nav presentation-inline-nav quarter-summary-switchbar" aria-label="Hybrid presentation controls"><button class="presentation-nav-cell" data-carousel="prev">◀ PREVIOUS</button><button class="presentation-nav-cell" data-carousel="${livePaused?'play':'pause'}">${livePaused?'PLAY':'PAUSE'} ROTATION</button><button class="presentation-nav-cell" data-carousel="next">NEXT ▶</button><span class="presentation-nav-cell presentation-nav-count">${n?idx+1:0} / ${n}</span><button class="presentation-nav-cell" data-presentation-view="live">TOOL CARD</button><button class="presentation-nav-cell" data-presentation-view="summary">QUARTER SUMMARY</button><button class="presentation-nav-cell" data-presentation-view="hybrid" aria-current="page">HYBRID MODE</button><button class="presentation-nav-cell" type="button" data-presentation-exit="1">EXIT PRESENTATION</button></nav>
   </section>`;
@@ -2048,7 +2050,7 @@ function brainFindings(){return brainFleet().sort((a,b)=>deriveToolState(b).scor
 function brainPanel(title,inner){return `<section class="panel brain-panel"><h2>${title}</h2>${inner}</section>`}
 function brainCenterView(){
  let fleet=brainFleet(),tool=nonArchivedTools().find(t=>t.id===brainUtid),cands=tool?brainCandidates(tool):[],candidate=cands.find(t=>t.id===brainCandidate),risk=brainFindings(),urgent=risk.filter(t=>(engineDaysToShip(t)??999)<=3),unverified=fleet.filter(t=>!t.shipDate||!t.fiHandoffDate).length;
- let header=`<div class="brain-heading"><div><h1>◈ COMMAND CENTER BRAIN</h1><p>INTELLIGENCE CENTER · OPERATIONAL FORECASTING & DECISION SUPPORT</p></div><span class="brain-readonly">V14.0.81 · LIVE ANALYSIS · NO AUTOMATIC RECORD CHANGES</span></div><div class="brain-mode"><b>INTELLIGENCE CONTROL</b><button type="button" data-brain-mode="auto" class="${brainMode==='auto'?'active':''}">COMMAND CENTER · FULL AUTO</button><button type="button" data-brain-mode="manual" class="${brainMode==='manual'?'active':''}">FI LEADS / MANAGERS</button></div>`;
+ let header=`<div class="brain-heading"><div><h1>◈ COMMAND CENTER BRAIN</h1><p>INTELLIGENCE CENTER · OPERATIONAL FORECASTING & DECISION SUPPORT</p></div><span class="brain-readonly">V14.0.82 · LIVE ANALYSIS · NO AUTOMATIC RECORD CHANGES</span></div><div class="brain-mode"><b>INTELLIGENCE CONTROL</b><button type="button" data-brain-mode="auto" class="${brainMode==='auto'?'active':''}">COMMAND CENTER · FULL AUTO</button><button type="button" data-brain-mode="manual" class="${brainMode==='manual'?'active':''}">FI LEADS / MANAGERS</button></div>`;
  if(route.sub==='home'){
  let findings=risk.slice(0,12).map(t=>{let c=brainCandidates(t),analysis=connectedBrainAnalysis(t);return `<div class="brain-result"><div><b>${brainToolLabel(t)}</b><small>${analysis.progress.pct}% OVERALL · ${esc(analysis.messages[0])} · FI COMPLETION ${analysis.forecast?esc(fmtDate(analysis.forecast)):'PENDING'}</small></div><button type="button" class="btn" data-brain-investigate="${esc(t.id)}">INVESTIGATE</button></div>`}).join('');
  return header+`<div class="brain-kpis"><div><small>ACTIVE TOOLS</small><strong>${fleet.length}</strong></div><div><small>SHIP DATE NEAR / PASSED</small><strong>${urgent.length}</strong></div><div><small>MISSING CORE DATA</small><strong>${unverified}</strong></div><div><small>TOOLS WITH SAME-TYPE OPTIONS</small><strong>${fleet.filter(t=>brainCandidates(t).length).length}</strong></div></div>`+brainPanel('AUTOMATIC MONITORING · LIVE TOOL RECORDS',`<p class="helper">These are review indicators based on existing dates and tool types—not validated shipping-delay predictions. Same-type matches are potential candidates, not approved swaps.</p>${findings||'<p>No active tools.</p>'}`)+brainPanel('INTELLIGENCE CAPABILITIES',`<div class="brain-tiles"><button data-brain-open="swap">⇄ TOOL SWAP ANALYZER</button><button data-brain-open="forecast">◷ FI MILESTONE FORECASTING</button><button data-brain-open="scenario">◇ WHAT-IF SIMULATIONS</button><button data-brain-open="history">▤ FORECAST HISTORY</button></div>`);
@@ -2957,7 +2959,7 @@ function inject(){
  const b=document.createElement('button');b.id='mu-launch';b.textContent='MULTI-USER DIAGNOSTICS';b.className='btn';b.hidden=true;document.body.appendChild(b);
  // V6.6.46: keep the internal diagnostics launcher hidden. The single visible Administration Center button opens it through data-shared-action=diagnostics.
  b.hidden=true;
- const p=document.createElement('section');p.id='mu-panel';p.innerHTML=`<div class="mu-head"><div><h2>B7 FI COMMAND CENTER — MULTI-USER CONNECTION TEST</h2><div class="mu-note">V14.0.81 · ONE TOOL = ONE ROW + SHARED SETTINGS · Microsoft Entra delegated authentication · Microsoft Graph · Microsoft List</div></div><button class="mu-close" id="mu-close">×</button></div><div id="mu-status" class="mu-status">Ready. Start the Command Center at http://localhost:5500, then sign in.</div><div class="mu-meta"><div><b>USER</b><br><span id="mu-user">Not signed in</span></div><div><b>SITE</b><br>${esc(CFG.siteHost+CFG.sitePath)}</div><div><b>LIST</b><br>${esc(CFG.listName)}<br><small id="mu-list-id">ID: not resolved</small></div><div><b>MODE</b><br>Shared List Test</div></div><div class="mu-checks" id="mu-checks"></div><div class="mu-actions"><button class="mu-btn" id="mu-signin">1 · SIGN IN WITH KLA</button><button class="mu-btn" id="mu-connect" disabled>2 · CONNECT + READ</button><button class="mu-btn" id="mu-refresh" disabled>3 · REFRESH / FIND EXTERNAL ROW</button><button class="mu-btn" id="mu-create" disabled>4 · CREATE TEMP TEST ROW</button><button class="mu-btn" id="mu-delete" disabled>5 · DELETE TEMP TEST ROW</button><button class="mu-btn" id="mu-listid">SET LIST ID</button><button class="mu-btn" id="mu-copyid" disabled>COPY LIST ID</button><button class="mu-btn" id="mu-signout" disabled>SIGN OUT</button></div><p class="mu-note"><b>Purpose:</b> This build preserves the current Command Center production data model while the shared-list connection is being validated. The panel below tests real multi-user read/write against the shared Microsoft List. Edit a test-row value and save it, then refresh from a second computer/user to verify shared updates. Saves use a change check to avoid silently overwriting a row changed by another user.</p><div id="mu-grid"></div>`;document.body.appendChild(p);
+ const p=document.createElement('section');p.id='mu-panel';p.innerHTML=`<div class="mu-head"><div><h2>B7 FI COMMAND CENTER — MULTI-USER CONNECTION TEST</h2><div class="mu-note">V14.0.82 · ONE TOOL = ONE ROW + SHARED SETTINGS · Microsoft Entra delegated authentication · Microsoft Graph · Microsoft List</div></div><button class="mu-close" id="mu-close">×</button></div><div id="mu-status" class="mu-status">Ready. Start the Command Center at http://localhost:5500, then sign in.</div><div class="mu-meta"><div><b>USER</b><br><span id="mu-user">Not signed in</span></div><div><b>SITE</b><br>${esc(CFG.siteHost+CFG.sitePath)}</div><div><b>LIST</b><br>${esc(CFG.listName)}<br><small id="mu-list-id">ID: not resolved</small></div><div><b>MODE</b><br>Shared List Test</div></div><div class="mu-checks" id="mu-checks"></div><div class="mu-actions"><button class="mu-btn" id="mu-signin">1 · SIGN IN WITH KLA</button><button class="mu-btn" id="mu-connect" disabled>2 · CONNECT + READ</button><button class="mu-btn" id="mu-refresh" disabled>3 · REFRESH / FIND EXTERNAL ROW</button><button class="mu-btn" id="mu-create" disabled>4 · CREATE TEMP TEST ROW</button><button class="mu-btn" id="mu-delete" disabled>5 · DELETE TEMP TEST ROW</button><button class="mu-btn" id="mu-listid">SET LIST ID</button><button class="mu-btn" id="mu-copyid" disabled>COPY LIST ID</button><button class="mu-btn" id="mu-signout" disabled>SIGN OUT</button></div><p class="mu-note"><b>Purpose:</b> This build preserves the current Command Center production data model while the shared-list connection is being validated. The panel below tests real multi-user read/write against the shared Microsoft List. Edit a test-row value and save it, then refresh from a second computer/user to verify shared updates. Saves use a change check to avoid silently overwriting a row changed by another user.</p><div id="mu-grid"></div>`;document.body.appendChild(p);
  b.onclick=()=>p.classList.add('open');p.querySelector('#mu-close').onclick=()=>p.classList.remove('open');
  p.querySelector('#mu-listid').onclick=()=>{let v=prompt('Paste the B7 FI Command Center Microsoft List ID from a connected laptop:',localStorage.getItem(LIST_ID_KEY)||'');if(v&&v.trim()){localStorage.setItem(LIST_ID_KEY,v.trim());list=null;status('List ID saved. Click 2 · CONNECT + READ.','ok')}};p.querySelector('#mu-copyid').onclick=()=>{let v=list?.id||localStorage.getItem(LIST_ID_KEY)||'';if(v)prompt('Copy this List ID to the other laptop:',v)};p.querySelector('#mu-signin').onclick=signIn;p.querySelector('#mu-connect').onclick=connect;p.querySelector('#mu-refresh').onclick=loadItems;p.querySelector('#mu-create').onclick=createTempRow;p.querySelector('#mu-delete').onclick=deleteTempRow;p.querySelector('#mu-signout').onclick=signOut;renderChecks();
 }
@@ -3053,7 +3055,7 @@ async function loadSharedScenario(localState){requireToolDataColumn();await refr
   for(const it of items){let t=parseToolData(it);if(t&&!titleOf(it).startsWith(TOOL_PREFIX)){let b={};setField(b,'Title',TOOL_PREFIX+String(t.id));if(Object.keys(b).length)await patchRow(it.id,b)}}
   // Never seed a populated shared list with local/browser test tools automatically.
   if(!sharedTools.length && items.length===0)console.warn('Shared list empty: explicit import is required to publish local tools.');await refreshAllItems();sharedTools=decodeSharedTools();let out=JSON.parse(JSON.stringify(localState));Object.assign(out,sharedSnapshot(sharedTools));lastSharedState=JSON.parse(JSON.stringify(out));return out}
-// V14.0.81: canonical comparison and guarded three-way saves.
+// V14.0.82: canonical comparison and guarded three-way saves.
 function canonicalValue(value){if(value===undefined)return 'null';if(Array.isArray(value))return '['+value.map(canonicalValue).join(',')+']';if(value&&typeof value==='object')return '{'+Object.keys(value).filter(k=>!['_sharedRowId','_sharedRevision','createdAt'].includes(k)).sort().map(k=>JSON.stringify(k)+':'+canonicalValue(value[k])).join(',')+'}';return JSON.stringify(value)}
 function mergeSharedChanges(base,local,remote,path='record'){
  if(canonicalValue(local)===canonicalValue(base))return remote;
@@ -3285,7 +3287,7 @@ document.addEventListener('DOMContentLoaded',async()=>{inject();bindHeaderLogin(
     const sh=document.querySelector('#stickyShell');const card=document.querySelector('.c11-card-grid');const badge=document.querySelector('.c11-badge');
     const styles=[...document.styleSheets].filter(s=>s.href).map(s=>{try{return new URL(s.href).pathname.split('/').pop()}catch{return s.href}});
     const rect=el=>el?Math.round(el.getBoundingClientRect().top)+' / '+Math.round(el.getBoundingClientRect().height):'not visible';
-    panel.innerHTML='<b>B7 LAYOUT DIAGNOSTICS · V14.0.81</b><hr style="border-color:#395566">'+
+    panel.innerHTML='<b>B7 LAYOUT DIAGNOSTICS · V14.0.82</b><hr style="border-color:#395566">'+
       'Viewport: '+innerWidth+' × '+innerHeight+'<br>Device pixel ratio: '+devicePixelRatio+'<br>'+ 
       'Header top / height: '+rect(sh)+'<br>Header position: '+(sh?getComputedStyle(sh).position:'none')+'<br>'+ 
       'Tool card top / height: '+rect(card)+'<br>Badge height: '+(badge?Math.round(badge.getBoundingClientRect().height)+'px':'not visible')+'<br>'+ 
@@ -3366,7 +3368,7 @@ document.addEventListener('DOMContentLoaded',async()=>{inject();bindHeaderLogin(
 
 ;
 /* Bundled source: js/b7-badge-source-v12.0.62.js */
-/* V14.0.81: CSS owns badge/card geometry. This diagnostic never writes styles. */
+/* V14.0.82: CSS owns badge/card geometry. This diagnostic never writes styles. */
 (()=>{window.b762BadgeDiagnostics=()=>[...document.querySelectorAll('#app .c11-tool-card .c11-identity-stack>*,#app .c11-tool-card .b783-date-row>*,#app .c11-tool-card .c11-badges>*')].map(el=>({name:el.textContent.trim().replace(/\s+/g,' ').slice(0,40),height:+el.getBoundingClientRect().height.toFixed(2),cssHeight:getComputedStyle(el).height}));})();
 ;
 /* Bundled source: js/b7-raiders-live-finish-v13.0.6.js */
@@ -3388,7 +3390,7 @@ document.addEventListener('DOMContentLoaded',async()=>{inject();bindHeaderLogin(
 
 ;
 /* Bundled source: js/signal-lamps-v13.0.38.js */
-/* V14.0.81 — explicit lighting preview, save and close. */
+/* V14.0.82 — explicit lighting preview, save and close. */
 (()=>{'use strict';
 const KEY='b7.signalLighting.v1338';
 const defaults={mode:'pulse',brightness:45,duration:1.5,glow:80,pattern:'smooth'};
@@ -3415,10 +3417,10 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 ;
 /* Bundled source: js/raiders-header-footer-v13.0.39.js */
-(()=>{'use strict';function refresh(){const el=document.getElementById('footerConnectionVisual');if(!el)return;const core=document.getElementById('klaConnectionCore'),label=document.getElementById('headerConnectionLabel')?.textContent||'LOCAL DATA';const local=core?.classList.contains('local-mode')||label==='LOCAL DATA';el.textContent=local?'LOCAL MODE · V14.0.81':label+' · V14.0.81';el.classList.toggle('connected',!local&&/^(LIST CONNECTED|SYNCING LIST|SYNC PAUSED)$/.test(label));el.classList.toggle('connection-error',/FAILED|DISCONNECTED/.test(label))}function init(){refresh();const obs=new MutationObserver(refresh);for(const id of ['headerConnectionLabel','sharedStatus']){const el=document.getElementById(id);if(el)obs.observe(el,{childList:true,subtree:true,characterData:true})}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init()})();
+(()=>{'use strict';function refresh(){const el=document.getElementById('footerConnectionVisual');if(!el)return;const core=document.getElementById('klaConnectionCore'),label=document.getElementById('headerConnectionLabel')?.textContent||'LOCAL DATA';const local=core?.classList.contains('local-mode')||label==='LOCAL DATA';el.textContent=local?'LOCAL MODE · V14.0.82':label+' · V14.0.82';el.classList.toggle('connected',!local&&/^(LIST CONNECTED|SYNCING LIST|SYNC PAUSED)$/.test(label));el.classList.toggle('connection-error',/FAILED|DISCONNECTED/.test(label))}function init(){refresh();const obs=new MutationObserver(refresh);for(const id of ['headerConnectionLabel','sharedStatus']){const el=document.getElementById(id);if(el)obs.observe(el,{childList:true,subtree:true,characterData:true})}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init()})();
 ;
 /* Bundled source: js/design-stabilization-v13.0.40.js */
-/* V14.0.81: decorative lighting never substitutes a different operational tower asset. */
+/* V14.0.82: decorative lighting never substitutes a different operational tower asset. */
 (()=>{function sync(){const hint=document.querySelector('#b7-lamp-menu .b7-lamp-hint');if(hint&&hint.textContent!=='Apply previews your adjustments. Save keeps them on this browser. Close discards unsaved adjustments.')hint.textContent='Apply previews your adjustments. Save keeps them on this browser. Close discards unsaved adjustments.'}function init(){sync();new MutationObserver(sync).observe(document.body,{childList:true,subtree:true})}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init()})();
 ;
 /* Bundled source: js/b7-header-fit-v14.0.8.js */
@@ -3472,6 +3474,6 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 
 ;
-/* Bundled source: js/shell-clock-v14.0.81.js */
-/* V14.0.81: header date/time removed by request. */
+/* Bundled source: js/shell-clock-v14.0.82.js */
+/* V14.0.82: header date/time removed by request. */
 
